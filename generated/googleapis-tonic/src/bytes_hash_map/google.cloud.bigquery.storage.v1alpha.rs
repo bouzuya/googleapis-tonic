@@ -209,10 +209,10 @@ pub struct ListMetastorePartitionsRequest {
     /// supported.
     ///
     /// Examples: "int_field > 5"
-    /// "date_field = CAST('2014-9-27' as DATE)"
-    /// "nullable_field is not NULL"
-    /// "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
-    /// "numeric_field BETWEEN 1.0 AND 5.0"
+    ///            "date_field = CAST('2014-9-27' as DATE)"
+    ///            "nullable_field is not NULL"
+    ///            "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
+    ///            "numeric_field BETWEEN 1.0 AND 5.0"
     /// Restricted to a maximum length for 1 MB.
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
@@ -250,7 +250,7 @@ pub mod list_metastore_partitions_response {
     }
 }
 /// The top-level message sent by the client to the
-/// \[Partitions.StreamMetastorePartitions\]\[\] method.
+/// [Partitions.StreamMetastorePartitions][] method.
 /// Follows the default gRPC streaming maximum size of 4 MB.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamMetastorePartitionsRequest {
@@ -266,16 +266,15 @@ pub struct StreamMetastorePartitionsRequest {
     /// add_partitions(..). If the flag is set to false, the server will return
     /// ALREADY_EXISTS on commit if any partition already exists. If the flag is
     /// set to true:
-    ///
-    /// 1. the server will skip existing partitions
-    ///    insert only the non-existing partitions as part of the commit.
-    /// 1. The client must set the `skip_existing_partitions` field to true for
-    ///    all requests in the stream.
+    ///   1) the server will skip existing partitions
+    ///   insert only the non-existing partitions as part of the commit.
+    ///   2) The client must set the `skip_existing_partitions` field to true for
+    ///   all requests in the stream.
     #[prost(bool, tag = "3")]
     pub skip_existing_partitions: bool,
 }
 /// This is the response message sent by the server
-/// to the client for the \[Partitions.StreamMetastorePartitions\]\[\] method when
+/// to the client for the [Partitions.StreamMetastorePartitions][] method when
 /// the commit is successful. Server will close the stream after sending this
 /// message.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -306,7 +305,13 @@ pub struct BatchSizeTooLargeError {
 }
 /// Generated client implementations.
 pub mod metastore_partition_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// BigQuery Metastore Partition Service API.
@@ -397,8 +402,7 @@ pub mod metastore_partition_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -427,8 +431,7 @@ pub mod metastore_partition_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -460,8 +463,7 @@ pub mod metastore_partition_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -491,8 +493,7 @@ pub mod metastore_partition_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -531,8 +532,7 @@ pub mod metastore_partition_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

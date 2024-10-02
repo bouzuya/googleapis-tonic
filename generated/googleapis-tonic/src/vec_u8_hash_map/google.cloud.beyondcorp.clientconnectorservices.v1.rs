@@ -13,7 +13,6 @@ pub struct ClientConnectorService {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Optional. User-provided name.
     /// The display name should follow certain format.
-    ///
     /// * Must be 6 to 30 characters in length.
     /// * Can only contain lowercase letters, numbers, and hyphens.
     /// * Must start with a letter.
@@ -93,10 +92,8 @@ pub mod client_connector_service {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        TransportProtocol::Unspecified => {
-                            "TRANSPORT_PROTOCOL_UNSPECIFIED"
-                        }
-                        TransportProtocol::Tcp => "TCP",
+                        Self::Unspecified => "TRANSPORT_PROTOCOL_UNSPECIFIED",
+                        Self::Tcp => "TCP",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -176,13 +173,13 @@ pub mod client_connector_service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Running => "RUNNING",
-                State::Down => "DOWN",
-                State::Error => "ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Running => "RUNNING",
+                Self::Down => "DOWN",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -247,10 +244,9 @@ pub struct CreateClientConnectorServiceRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. User-settable client connector service resource ID.
-    ///
-    /// * Must start with a letter.
-    /// * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
-    /// * Must end with a number or a letter.
+    ///   * Must start with a letter.
+    ///   * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
+    ///   * Must end with a number or a letter.
     ///
     /// A random system generated name will be assigned
     /// if not specified by the user.
@@ -363,8 +359,8 @@ pub struct ClientConnectorServiceOperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -374,7 +370,13 @@ pub struct ClientConnectorServiceOperationMetadata {
 }
 /// Generated client implementations.
 pub mod client_connector_services_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API Overview:
@@ -387,7 +389,7 @@ pub mod client_connector_services_service_client {
     /// The ClientConnectorServicesService exposes the following resources:
     ///
     /// * Client Connector Services, named as follows:
-    ///  `projects/{project_id}/locations/{location_id}/client_connector_services/{client_connector_service_id}`.
+    ///   `projects/{project_id}/locations/{location_id}/client_connector_services/{client_connector_service_id}`.
     #[derive(Debug, Clone)]
     pub struct ClientConnectorServicesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -471,8 +473,7 @@ pub mod client_connector_services_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -502,8 +503,7 @@ pub mod client_connector_services_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -533,8 +533,7 @@ pub mod client_connector_services_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -564,8 +563,7 @@ pub mod client_connector_services_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -595,8 +593,7 @@ pub mod client_connector_services_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

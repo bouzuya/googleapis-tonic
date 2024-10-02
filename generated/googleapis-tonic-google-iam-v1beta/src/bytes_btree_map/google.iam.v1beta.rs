@@ -43,7 +43,7 @@ pub mod workload_identity_pool {
         Active = 1,
         /// The pool is soft-deleted. Soft-deleted pools are permanently deleted
         /// after approximately 30 days. You can restore a soft-deleted pool using
-        /// \[UndeleteWorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPools.UndeleteWorkloadIdentityPool\].
+        /// [UndeleteWorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPools.UndeleteWorkloadIdentityPool].
         ///
         /// You cannot reuse the ID of a soft-deleted pool until it is permanently
         /// deleted.
@@ -60,9 +60,9 @@ pub mod workload_identity_pool {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -105,31 +105,31 @@ pub struct WorkloadIdentityPoolProvider {
     /// The following keys are supported:
     ///
     /// * `google.subject`: The principal IAM is authenticating. You can reference
-    ///   this value in IAM bindings. This is also the
-    ///   subject that appears in Cloud Logging logs.
-    ///   Cannot exceed 127 characters.
+    ///                      this value in IAM bindings. This is also the
+    ///                      subject that appears in Cloud Logging logs.
+    ///                      Cannot exceed 127 characters.
     ///
     /// * `google.groups`: Groups the external identity belongs to. You can grant
-    ///   groups access to resources using an IAM `principalSet`
-    ///   binding; access applies to all members of the group.
+    ///                     groups access to resources using an IAM `principalSet`
+    ///                     binding; access applies to all members of the group.
     ///
     /// You can also provide custom attributes by specifying
     /// `attribute.{custom_attribute}`, where `{custom_attribute}` is the name of
     /// the custom attribute to be mapped. You can define a maximum of 50 custom
     /// attributes. The maximum length of a mapped attribute key is
-    /// 100 characters, and the key may only contain the characters \[a-z0-9\_\].
+    /// 100 characters, and the key may only contain the characters \[a-z0-9_\].
     ///
     /// You can reference these attributes in IAM policies to define fine-grained
     /// access for a workload to Google Cloud resources. For example:
     ///
     /// * `google.subject`:
-    ///   `principal://iam.googleapis.com/projects/{project}/locations/{location}/workloadIdentityPools/{pool}/subject/{value}`
+    /// `principal://iam.googleapis.com/projects/{project}/locations/{location}/workloadIdentityPools/{pool}/subject/{value}`
     ///
     /// * `google.groups`:
-    ///   `principalSet://iam.googleapis.com/projects/{project}/locations/{location}/workloadIdentityPools/{pool}/group/{value}`
+    /// `principalSet://iam.googleapis.com/projects/{project}/locations/{location}/workloadIdentityPools/{pool}/group/{value}`
     ///
     /// * `attribute.{custom_attribute}`:
-    ///   `principalSet://iam.googleapis.com/projects/{project}/locations/{location}/workloadIdentityPools/{pool}/attribute.{custom_attribute}/{value}`
+    /// `principalSet://iam.googleapis.com/projects/{project}/locations/{location}/workloadIdentityPools/{pool}/attribute.{custom_attribute}/{value}`
     ///
     /// Each value must be a \[Common Expression Language\]
     /// (<https://opensource.google/projects/cel>) function that maps an
@@ -145,34 +145,35 @@ pub struct WorkloadIdentityPoolProvider {
     ///
     /// For AWS providers, the following rules apply:
     ///
-    /// * If no attribute mapping is defined, the following default mapping
-    ///   applies:
+    /// - If no attribute mapping is defined, the following default mapping
+    ///    applies:
     ///
-    ///   ```text,
-    ///   {
-    ///     "google.subject":"assertion.arn",
-    ///     "attribute.aws_role":
-    ///         "assertion.arn.contains('assumed-role')"
-    ///         " ? assertion.arn.extract('{account_arn}assumed-role/')"
-    ///         "   + 'assumed-role/'"
-    ///         "   + assertion.arn.extract('assumed-role/{role_name}/')"
-    ///         " : assertion.arn",
-    ///   }
-    ///   ```
+    ///    ```
+    ///    {
+    ///      "google.subject":"assertion.arn",
+    ///      "attribute.aws_role":
+    ///          "assertion.arn.contains('assumed-role')"
+    ///          " ? assertion.arn.extract('{account_arn}assumed-role/')"
+    ///          "   + 'assumed-role/'"
+    ///          "   + assertion.arn.extract('assumed-role/{role_name}/')"
+    ///          " : assertion.arn",
+    ///    }
+    ///    ```
     ///
-    /// * If any custom attribute mappings are defined, they must include a mapping
-    ///   to the `google.subject` attribute.
+    /// - If any custom attribute mappings are defined, they must include a mapping
+    ///    to the `google.subject` attribute.
+    ///
     ///
     /// For OIDC providers, the following rules apply:
     ///
-    /// * Custom attribute mappings must be defined, and must include a mapping to
-    ///   the `google.subject` attribute. For example, the following maps the
-    ///   `sub` claim of the incoming credential to the `subject` attribute on
-    ///   a Google token.
+    /// - Custom attribute mappings must be defined, and must include a mapping to
+    ///    the `google.subject` attribute. For example, the following maps the
+    ///    `sub` claim of the incoming credential to the `subject` attribute on
+    ///    a Google token.
     ///
-    ///   ```text,
-    ///   {"google.subject": "assertion.sub"}
-    ///   ```
+    ///    ```
+    ///    {"google.subject": "assertion.sub"}
+    ///    ```
     #[prost(btree_map = "string, string", tag = "6")]
     pub attribute_mapping: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -188,11 +189,11 @@ pub struct WorkloadIdentityPoolProvider {
     /// The following keywords may be referenced in the expressions:
     ///
     /// * `assertion`: JSON representing the authentication credential issued by
-    ///   the provider.
+    ///                 the provider.
     /// * `google`: The Google attributes mapped from the assertion in the
-    ///   `attribute_mappings`.
+    ///              `attribute_mappings`.
     /// * `attribute`: The custom attributes mapped from the assertion in the
-    ///   `attribute_mappings`.
+    ///                 `attribute_mappings`.
     ///
     /// The maximum length of the attribute condition expression is 4096
     /// characters. If unspecified, all valid authentication credential are
@@ -201,7 +202,7 @@ pub struct WorkloadIdentityPoolProvider {
     /// The following example shows how to only allow credentials with a mapped
     /// `google.groups` value of `admins`:
     ///
-    /// ```text,
+    /// ```
     /// "'admins' in google.groups"
     /// ```
     #[prost(string, tag = "7")]
@@ -236,7 +237,7 @@ pub mod workload_identity_pool_provider {
         /// the full canonical resource name of the WorkloadIdentityPoolProvider,
         /// with or without the HTTPS prefix. For example:
         ///
-        /// ```text,
+        /// ```
         /// //iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>
         /// <https://iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>>
         /// ```
@@ -265,7 +266,7 @@ pub mod workload_identity_pool_provider {
         /// The provider is soft-deleted. Soft-deleted providers are permanently
         /// deleted after approximately 30 days. You can restore a soft-deleted
         /// provider using
-        /// \[UndeleteWorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityPools.UndeleteWorkloadIdentityPoolProvider\].
+        /// [UndeleteWorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityPools.UndeleteWorkloadIdentityPoolProvider].
         ///
         /// You cannot reuse the ID of a soft-deleted provider until it is
         /// permanently deleted.
@@ -278,9 +279,9 @@ pub mod workload_identity_pool_provider {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -474,7 +475,13 @@ pub struct WorkloadIdentityPoolOperationMetadata {}
 pub struct WorkloadIdentityPoolProviderOperationMetadata {}
 /// Generated client implementations.
 pub mod workload_identity_pools_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages WorkloadIdentityPools.
@@ -548,7 +555,7 @@ pub mod workload_identity_pools_client {
             self
         }
         /// Lists all non-deleted
-        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\]s in a
+        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool]s in a
         /// project. If `show_deleted` is set to `true`, then deleted pools are also
         /// listed.
         pub async fn list_workload_identity_pools(
@@ -562,8 +569,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -582,7 +588,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an individual
-        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
+        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
         pub async fn get_workload_identity_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkloadIdentityPoolRequest>,
@@ -594,8 +600,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -614,7 +619,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new
-        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
+        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
         ///
         /// You cannot reuse the name of a deleted pool until 30 days after deletion.
         pub async fn create_workload_identity_pool(
@@ -628,8 +633,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -648,7 +652,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing
-        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
+        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
         pub async fn update_workload_identity_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateWorkloadIdentityPoolRequest>,
@@ -660,8 +664,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -680,7 +683,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a
-        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
+        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
         ///
         /// You cannot use a deleted pool to exchange external
         /// credentials for Google Cloud credentials. However, deletion does
@@ -702,8 +705,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -721,7 +723,7 @@ pub mod workload_identity_pools_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Undeletes a \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\],
+        /// Undeletes a [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool],
         /// as long as it was deleted fewer than 30 days ago.
         pub async fn undelete_workload_identity_pool(
             &mut self,
@@ -734,8 +736,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -754,8 +755,8 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists all non-deleted
-        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityPoolProvider\]s
-        /// in a \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
+        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityPoolProvider]s
+        /// in a [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
         /// If `show_deleted` is set to `true`, then deleted providers are also listed.
         pub async fn list_workload_identity_pool_providers(
             &mut self,
@@ -770,8 +771,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -790,7 +790,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an individual
-        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityPoolProvider\].
+        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityPoolProvider].
         pub async fn get_workload_identity_pool_provider(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -804,8 +804,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -824,8 +823,8 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new
-        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\]
-        /// in a \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
+        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider]
+        /// in a [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
         ///
         /// You cannot reuse the name of a deleted provider until 30 days after
         /// deletion.
@@ -842,8 +841,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -862,7 +860,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing
-        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\].
+        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider].
         pub async fn update_workload_identity_pool_provider(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -876,8 +874,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -896,7 +893,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a
-        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\].
+        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider].
         /// Deleting a provider does not revoke credentials that have already been
         /// issued; they continue to grant access.
         /// You can undelete a provider for 30 days. After 30 days, deletion is
@@ -915,8 +912,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -935,7 +931,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Undeletes a
-        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\],
+        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider],
         /// as long as it was deleted fewer than 30 days ago.
         pub async fn undelete_workload_identity_pool_provider(
             &mut self,
@@ -950,8 +946,7 @@ pub mod workload_identity_pools_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

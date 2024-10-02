@@ -61,9 +61,9 @@ pub mod arrow_serialization_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CompressionCodec::CompressionUnspecified => "COMPRESSION_UNSPECIFIED",
-                CompressionCodec::Lz4Frame => "LZ4_FRAME",
-                CompressionCodec::Zstd => "ZSTD",
+                Self::CompressionUnspecified => "COMPRESSION_UNSPECIFIED",
+                Self::Lz4Frame => "LZ4_FRAME",
+                Self::Zstd => "ZSTD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -150,7 +150,7 @@ pub struct TableSchema {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableFieldSchema {
     /// Required. The field name. The name must contain only letters (a-z, A-Z),
-    /// numbers (0-9), or underscores (\_), and must start with a letter or
+    /// numbers (0-9), or underscores (_), and must start with a letter or
     /// underscore. The maximum length is 128 characters.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -194,23 +194,23 @@ pub struct TableFieldSchema {
     /// Values of this NUMERIC or BIGNUMERIC field must be in this range when:
     ///
     /// * Precision (P) and scale (S) are specified:
-    ///   \[-10^(P-S) + 10^(-S), 10^(P-S) - 10^(-S)\]
+    ///    \[-10^(P-S) + 10^(-S), 10^(P-S) - 10^(-S)\]
     /// * Precision (P) is specified but not scale (and thus scale is
-    ///   interpreted to be equal to zero):
-    ///   \[-10^P + 1, 10^P - 1\].
+    ///    interpreted to be equal to zero):
+    ///    \[-10^P + 1, 10^P - 1\].
     ///
     /// Acceptable values for precision and scale if both are specified:
     ///
     /// * If type = "NUMERIC":
-    ///   1 \<= precision - scale \<= 29 and 0 \<= scale \<= 9.
+    ///    1 <= precision - scale <= 29 and 0 <= scale <= 9.
     /// * If type = "BIGNUMERIC":
-    ///   1 \<= precision - scale \<= 38 and 0 \<= scale \<= 38.
+    ///    1 <= precision - scale <= 38 and 0 <= scale <= 38.
     ///
     /// Acceptable values for precision if only precision is specified but not
     /// scale (and thus scale is interpreted to be equal to zero):
     ///
-    /// * If type = "NUMERIC": 1 \<= precision \<= 29.
-    /// * If type = "BIGNUMERIC": 1 \<= precision \<= 38.
+    /// * If type = "NUMERIC": 1 <= precision <= 29.
+    /// * If type = "BIGNUMERIC": 1 <= precision <= 38.
     ///
     /// If scale is specified but not precision, then it is invalid.
     #[prost(int64, tag = "8")]
@@ -225,7 +225,6 @@ pub struct TableFieldSchema {
     /// Optional. The subtype of the RANGE, if the type of this field is RANGE. If
     /// the type is RANGE, this field is required. Possible values for the field
     /// element type of a RANGE include:
-    ///
     /// * DATE
     /// * DATETIME
     /// * TIMESTAMP
@@ -296,23 +295,23 @@ pub mod table_field_schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::String => "STRING",
-                Type::Int64 => "INT64",
-                Type::Double => "DOUBLE",
-                Type::Struct => "STRUCT",
-                Type::Bytes => "BYTES",
-                Type::Bool => "BOOL",
-                Type::Timestamp => "TIMESTAMP",
-                Type::Date => "DATE",
-                Type::Time => "TIME",
-                Type::Datetime => "DATETIME",
-                Type::Geography => "GEOGRAPHY",
-                Type::Numeric => "NUMERIC",
-                Type::Bignumeric => "BIGNUMERIC",
-                Type::Interval => "INTERVAL",
-                Type::Json => "JSON",
-                Type::Range => "RANGE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::String => "STRING",
+                Self::Int64 => "INT64",
+                Self::Double => "DOUBLE",
+                Self::Struct => "STRUCT",
+                Self::Bytes => "BYTES",
+                Self::Bool => "BOOL",
+                Self::Timestamp => "TIMESTAMP",
+                Self::Date => "DATE",
+                Self::Time => "TIME",
+                Self::Datetime => "DATETIME",
+                Self::Geography => "GEOGRAPHY",
+                Self::Numeric => "NUMERIC",
+                Self::Bignumeric => "BIGNUMERIC",
+                Self::Interval => "INTERVAL",
+                Self::Json => "JSON",
+                Self::Range => "RANGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -365,10 +364,10 @@ pub mod table_field_schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Nullable => "NULLABLE",
-                Mode::Required => "REQUIRED",
-                Mode::Repeated => "REPEATED",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Nullable => "NULLABLE",
+                Self::Required => "REQUIRED",
+                Self::Repeated => "REPEATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -473,38 +472,38 @@ pub mod read_session {
         ///
         /// As an example, consider a table with the following schema:
         ///
-        /// {
-        /// "name": "struct_field",
-        /// "type": "RECORD",
-        /// "mode": "NULLABLE",
-        /// "fields": \[
-        /// {
-        /// "name": "string_field1",
-        /// "type": "STRING",
+        ///    {
+        ///        "name": "struct_field",
+        ///        "type": "RECORD",
+        ///        "mode": "NULLABLE",
+        ///        "fields": [
+        ///            {
+        ///                "name": "string_field1",
+        ///                "type": "STRING",
         /// .              "mode": "NULLABLE"
-        /// },
-        /// {
-        /// "name": "string_field2",
-        /// "type": "STRING",
-        /// "mode": "NULLABLE"
-        /// }
-        /// \]
-        /// }
+        ///            },
+        ///            {
+        ///                "name": "string_field2",
+        ///                "type": "STRING",
+        ///                "mode": "NULLABLE"
+        ///            }
+        ///        ]
+        ///    }
         ///
         /// Specifying "struct_field" in the selected fields list will result in a
         /// read session schema with the following logical structure:
         ///
-        /// struct_field {
-        /// string_field1
-        /// string_field2
-        /// }
+        ///    struct_field {
+        ///        string_field1
+        ///        string_field2
+        ///    }
         ///
         /// Specifying "struct_field.string_field1" in the selected fields list will
         /// result in a read session schema with the following logical structure:
         ///
-        /// struct_field {
-        /// string_field1
-        /// }
+        ///    struct_field {
+        ///        string_field1
+        ///    }
         ///
         /// The order of the fields in the read session schema is derived from the
         /// table schema and does not correspond to the order in which the fields are
@@ -515,10 +514,10 @@ pub mod read_session {
         /// Aggregates are not supported.
         ///
         /// Examples: "int_field > 5"
-        /// "date_field = CAST('2014-9-27' as DATE)"
-        /// "nullable_field is not NULL"
-        /// "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
-        /// "numeric_field BETWEEN 1.0 AND 5.0"
+        ///            "date_field = CAST('2014-9-27' as DATE)"
+        ///            "nullable_field is not NULL"
+        ///            "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
+        ///            "numeric_field BETWEEN 1.0 AND 5.0"
         ///
         /// Restricted to a maximum length for 1 MB.
         #[prost(string, tag = "2")]
@@ -581,10 +580,8 @@ pub mod read_session {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ResponseCompressionCodec::Unspecified => {
-                        "RESPONSE_COMPRESSION_CODEC_UNSPECIFIED"
-                    }
-                    ResponseCompressionCodec::Lz4 => "RESPONSE_COMPRESSION_CODEC_LZ4",
+                    Self::Unspecified => "RESPONSE_COMPRESSION_CODEC_UNSPECIFIED",
+                    Self::Lz4 => "RESPONSE_COMPRESSION_CODEC_LZ4",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -639,7 +636,7 @@ pub struct WriteStream {
     /// Immutable. Type of the stream.
     #[prost(enumeration = "write_stream::Type", tag = "2")]
     pub r#type: i32,
-    /// Output only. Create time of the stream. For the \_default stream, this is
+    /// Output only. Create time of the stream. For the _default stream, this is
     /// the creation_time of the table.
     #[prost(message, optional, tag = "3")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -697,10 +694,10 @@ pub mod write_stream {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Committed => "COMMITTED",
-                Type::Pending => "PENDING",
-                Type::Buffered => "BUFFERED",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Committed => "COMMITTED",
+                Self::Pending => "PENDING",
+                Self::Buffered => "BUFFERED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -741,8 +738,8 @@ pub mod write_stream {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                WriteMode::Unspecified => "WRITE_MODE_UNSPECIFIED",
-                WriteMode::Insert => "INSERT",
+                Self::Unspecified => "WRITE_MODE_UNSPECIFIED",
+                Self::Insert => "INSERT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -775,9 +772,9 @@ impl DataFormat {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
-            DataFormat::Avro => "AVRO",
-            DataFormat::Arrow => "ARROW",
+            Self::Unspecified => "DATA_FORMAT_UNSPECIFIED",
+            Self::Avro => "AVRO",
+            Self::Arrow => "ARROW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -813,9 +810,9 @@ impl WriteStreamView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            WriteStreamView::Unspecified => "WRITE_STREAM_VIEW_UNSPECIFIED",
-            WriteStreamView::Basic => "BASIC",
-            WriteStreamView::Full => "FULL",
+            Self::Unspecified => "WRITE_STREAM_VIEW_UNSPECIFIED",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -898,7 +895,8 @@ pub mod stream_stats {
         ///
         /// This value, along with `at_response_end`, can be used to interpolate
         /// the progress made as the rows in the message are being processed using
-        /// the following formula: `at_response_start + (at_response_end - at_response_start) * rows_processed_from_response / rows_in_response`.
+        /// the following formula: `at_response_start + (at_response_end -
+        /// at_response_start) * rows_processed_from_response / rows_in_response`.
         ///
         /// Note that if a filter is provided, the `at_response_end` value of the
         /// previous response may not necessarily be equal to the
@@ -999,7 +997,7 @@ pub struct SplitReadStreamRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitReadStreamResponse {
     /// Primary stream, which contains the beginning portion of
-    /// \|original_stream|. An empty value indicates that the original stream can no
+    /// |original_stream|. An empty value indicates that the original stream can no
     /// longer be split.
     #[prost(message, optional, tag = "1")]
     pub primary_stream: ::core::option::Option<ReadStream>,
@@ -1036,8 +1034,8 @@ pub struct AppendRowsRequest {
     /// * In the first request to an AppendRows connection.
     ///
     /// * In all subsequent requests to an AppendRows connection, if you use the
-    ///   same connection to write to multiple tables or change the input schema for
-    ///   default streams.
+    /// same connection to write to multiple tables or change the input schema for
+    /// default streams.
     ///
     /// For explicitly created write streams, the format is:
     ///
@@ -1067,7 +1065,7 @@ pub struct AppendRowsRequest {
     /// If present, the write is only performed if the next append offset is same
     /// as the provided value. If not present, the write is performed at the
     /// current end of stream. Specifying a value for this field is not allowed
-    /// when calling AppendRows for the '\_default' stream.
+    /// when calling AppendRows for the '_default' stream.
     #[prost(message, optional, tag = "2")]
     pub offset: ::core::option::Option<i64>,
     /// Id set by client to annotate its identity. Only initial request setting is
@@ -1173,11 +1171,9 @@ pub mod append_rows_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MissingValueInterpretation::Unspecified => {
-                    "MISSING_VALUE_INTERPRETATION_UNSPECIFIED"
-                }
-                MissingValueInterpretation::NullValue => "NULL_VALUE",
-                MissingValueInterpretation::DefaultValue => "DEFAULT_VALUE",
+                Self::Unspecified => "MISSING_VALUE_INTERPRETATION_UNSPECIFIED",
+                Self::NullValue => "NULL_VALUE",
+                Self::DefaultValue => "DEFAULT_VALUE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1408,23 +1404,21 @@ pub mod storage_error {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StorageErrorCode::Unspecified => "STORAGE_ERROR_CODE_UNSPECIFIED",
-                StorageErrorCode::TableNotFound => "TABLE_NOT_FOUND",
-                StorageErrorCode::StreamAlreadyCommitted => "STREAM_ALREADY_COMMITTED",
-                StorageErrorCode::StreamNotFound => "STREAM_NOT_FOUND",
-                StorageErrorCode::InvalidStreamType => "INVALID_STREAM_TYPE",
-                StorageErrorCode::InvalidStreamState => "INVALID_STREAM_STATE",
-                StorageErrorCode::StreamFinalized => "STREAM_FINALIZED",
-                StorageErrorCode::SchemaMismatchExtraFields => {
-                    "SCHEMA_MISMATCH_EXTRA_FIELDS"
-                }
-                StorageErrorCode::OffsetAlreadyExists => "OFFSET_ALREADY_EXISTS",
-                StorageErrorCode::OffsetOutOfRange => "OFFSET_OUT_OF_RANGE",
-                StorageErrorCode::CmekNotProvided => "CMEK_NOT_PROVIDED",
-                StorageErrorCode::InvalidCmekProvided => "INVALID_CMEK_PROVIDED",
-                StorageErrorCode::CmekEncryptionError => "CMEK_ENCRYPTION_ERROR",
-                StorageErrorCode::KmsServiceError => "KMS_SERVICE_ERROR",
-                StorageErrorCode::KmsPermissionDenied => "KMS_PERMISSION_DENIED",
+                Self::Unspecified => "STORAGE_ERROR_CODE_UNSPECIFIED",
+                Self::TableNotFound => "TABLE_NOT_FOUND",
+                Self::StreamAlreadyCommitted => "STREAM_ALREADY_COMMITTED",
+                Self::StreamNotFound => "STREAM_NOT_FOUND",
+                Self::InvalidStreamType => "INVALID_STREAM_TYPE",
+                Self::InvalidStreamState => "INVALID_STREAM_STATE",
+                Self::StreamFinalized => "STREAM_FINALIZED",
+                Self::SchemaMismatchExtraFields => "SCHEMA_MISMATCH_EXTRA_FIELDS",
+                Self::OffsetAlreadyExists => "OFFSET_ALREADY_EXISTS",
+                Self::OffsetOutOfRange => "OFFSET_OUT_OF_RANGE",
+                Self::CmekNotProvided => "CMEK_NOT_PROVIDED",
+                Self::InvalidCmekProvided => "INVALID_CMEK_PROVIDED",
+                Self::CmekEncryptionError => "CMEK_ENCRYPTION_ERROR",
+                Self::KmsServiceError => "KMS_SERVICE_ERROR",
+                Self::KmsPermissionDenied => "KMS_PERMISSION_DENIED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1491,8 +1485,8 @@ pub mod row_error {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RowErrorCode::Unspecified => "ROW_ERROR_CODE_UNSPECIFIED",
-                RowErrorCode::FieldsError => "FIELDS_ERROR",
+                Self::Unspecified => "ROW_ERROR_CODE_UNSPECIFIED",
+                Self::FieldsError => "FIELDS_ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1507,7 +1501,13 @@ pub mod row_error {
 }
 /// Generated client implementations.
 pub mod big_query_read_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// BigQuery Read API.
@@ -1609,8 +1609,7 @@ pub mod big_query_read_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1646,8 +1645,7 @@ pub mod big_query_read_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1674,8 +1672,8 @@ pub mod big_query_read_client {
         ///
         /// Moreover, the two child streams will be allocated back-to-back in the
         /// original `ReadStream`. Concretely, it is guaranteed that for streams
-        /// original, primary, and residual, that original\[0-j\] = primary\[0-j\] and
-        /// original\[j-n\] = residual\[0-m\] once the streams have been read to
+        /// original, primary, and residual, that original[0-j] = primary[0-j] and
+        /// original[j-n] = residual[0-m] once the streams have been read to
         /// completion.
         pub async fn split_read_stream(
             &mut self,
@@ -1688,8 +1686,7 @@ pub mod big_query_read_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1711,7 +1708,13 @@ pub mod big_query_read_client {
 }
 /// Generated client implementations.
 pub mod big_query_write_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// BigQuery Write API.
@@ -1790,7 +1793,7 @@ pub mod big_query_write_client {
             self
         }
         /// Creates a write stream to the given table.
-        /// Additionally, every table has a special stream named '\_default'
+        /// Additionally, every table has a special stream named '_default'
         /// to which data can be written. This stream doesn't need to be created using
         /// CreateWriteStream. It is a stream that can be used simultaneously by any
         /// number of clients. Data written to this stream is considered committed as
@@ -1803,8 +1806,7 @@ pub mod big_query_write_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1845,14 +1847,14 @@ pub mod big_query_write_client {
         /// table are governed by the type of stream:
         ///
         /// * For COMMITTED streams (which includes the default stream), data is
-        ///  visible immediately upon successful append.
+        /// visible immediately upon successful append.
         ///
         /// * For BUFFERED streams, data is made visible via a subsequent `FlushRows`
-        ///  rpc which advances a cursor to a newer offset in the stream.
+        /// rpc which advances a cursor to a newer offset in the stream.
         ///
         /// * For PENDING streams, data is not made visible until the stream itself is
-        ///  finalized (via the `FinalizeWriteStream` rpc), and the stream is explicitly
-        ///  committed via the `BatchCommitWriteStreams` rpc.
+        /// finalized (via the `FinalizeWriteStream` rpc), and the stream is explicitly
+        /// committed via the `BatchCommitWriteStreams` rpc.
         pub async fn append_rows(
             &mut self,
             request: impl tonic::IntoStreamingRequest<Message = super::AppendRowsRequest>,
@@ -1864,8 +1866,7 @@ pub mod big_query_write_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1892,8 +1893,7 @@ pub mod big_query_write_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1912,7 +1912,7 @@ pub mod big_query_write_client {
             self.inner.unary(req, path, codec).await
         }
         /// Finalize a write stream so that no new data can be appended to the
-        /// stream. Finalize is not supported on the '\_default' stream.
+        /// stream. Finalize is not supported on the '_default' stream.
         pub async fn finalize_write_stream(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeWriteStreamRequest>,
@@ -1924,8 +1924,7 @@ pub mod big_query_write_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1960,8 +1959,7 @@ pub mod big_query_write_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1986,7 +1984,7 @@ pub mod big_query_write_client {
         /// Flush operation flushes up to any previously flushed offset in a BUFFERED
         /// stream, to the offset specified in the request.
         ///
-        /// Flush is not supported on the \_default stream, since it is not BUFFERED.
+        /// Flush is not supported on the _default stream, since it is not BUFFERED.
         pub async fn flush_rows(
             &mut self,
             request: impl tonic::IntoRequest<super::FlushRowsRequest>,
@@ -1998,8 +1996,7 @@ pub mod big_query_write_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

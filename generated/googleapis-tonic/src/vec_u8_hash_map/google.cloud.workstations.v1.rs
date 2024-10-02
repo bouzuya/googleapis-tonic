@@ -71,7 +71,7 @@ pub struct WorkstationCluster {
     /// Output only. Whether this workstation cluster is in degraded mode, in which
     /// case it may require user action to restore full functionality. Details can
     /// be found in
-    /// \[conditions\]\[google.cloud.workstations.v1.WorkstationCluster.conditions\].
+    /// [conditions][google.cloud.workstations.v1.WorkstationCluster.conditions].
     #[prost(bool, tag = "13")]
     pub degraded: bool,
     /// Output only. Status conditions describing the workstation cluster's current
@@ -178,18 +178,18 @@ pub struct WorkstationConfig {
     /// automatically shut down. We recommend that workstations be shut down daily
     /// to reduce costs and so that security updates can be applied upon restart.
     /// The
-    /// \[idle_timeout\]\[google.cloud.workstations.v1.WorkstationConfig.idle_timeout\]
+    /// [idle_timeout][google.cloud.workstations.v1.WorkstationConfig.idle_timeout]
     /// and
-    /// \[running_timeout\]\[google.cloud.workstations.v1.WorkstationConfig.running_timeout\]
+    /// [running_timeout][google.cloud.workstations.v1.WorkstationConfig.running_timeout]
     /// fields are independent of each other. Note that the
-    /// \[running_timeout\]\[google.cloud.workstations.v1.WorkstationConfig.running_timeout\]
+    /// [running_timeout][google.cloud.workstations.v1.WorkstationConfig.running_timeout]
     /// field shuts down VMs after the specified time, regardless of whether or not
     /// the VMs are idle.
     ///
     /// Provide duration terminated by `s` for seconds—for example, `"54000s"`
     /// (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates
     /// that workstations using this configuration should never time out. If
-    /// \[encryption_key\]\[google.cloud.workstations.v1.WorkstationConfig.encryption_key\]
+    /// [encryption_key][google.cloud.workstations.v1.WorkstationConfig.encryption_key]
     /// is set, it must be greater than `"0s"` and less than
     /// `"86400s"` (24 hours).
     ///
@@ -248,7 +248,7 @@ pub struct WorkstationConfig {
     pub replica_zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Output only. Whether this resource is degraded, in which case it may
     /// require user action to restore full functionality. See also the
-    /// \[conditions\]\[google.cloud.workstations.v1.WorkstationConfig.conditions\]
+    /// [conditions][google.cloud.workstations.v1.WorkstationConfig.conditions]
     /// field.
     #[prost(bool, tag = "15")]
     pub degraded: bool,
@@ -297,7 +297,7 @@ pub mod workstation_config {
             #[prost(string, tag = "2")]
             pub service_account: ::prost::alloc::string::String,
             /// Optional. Scopes to grant to the
-            /// \[service_account\]\[google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.service_account\].
+            /// [service_account][google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.service_account].
             /// Various scopes are automatically added based on feature usage. When
             /// specified, users of workstations under this configuration must have
             /// `iam.serviceAccounts.actAs` on the service account.
@@ -342,30 +342,30 @@ pub mod workstation_config {
             /// instances](<https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions>):
             ///
             /// * **Organization policy**: projects, folders, or
-            ///   organizations may be restricted from creating nested VMs if the
-            ///   **Disable VM nested virtualization** constraint is enforced in
-            ///   the organization policy. For more information, see the
-            ///   Compute Engine section,
-            ///   [Checking whether nested virtualization is
-            ///   allowed](<https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed>).
+            /// organizations may be restricted from creating nested VMs if the
+            /// **Disable VM nested virtualization** constraint is enforced in
+            /// the organization policy. For more information, see the
+            /// Compute Engine section,
+            /// [Checking whether nested virtualization is
+            /// allowed](<https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed>).
             /// * **Performance**: nested VMs might experience a 10% or greater
-            ///   decrease in performance for workloads that are CPU-bound and
-            ///   possibly greater than a 10% decrease for workloads that are
-            ///   input/output bound.
+            /// decrease in performance for workloads that are CPU-bound and
+            /// possibly greater than a 10% decrease for workloads that are
+            /// input/output bound.
             /// * **Machine Type**: nested virtualization can only be enabled on
-            ///   workstation configurations that specify a
-            ///   \[machine_type\]\[google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.machine_type\]
-            ///   in the N1 or N2 machine series.
+            /// workstation configurations that specify a
+            /// [machine_type][google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.machine_type]
+            /// in the N1 or N2 machine series.
             /// * **GPUs**: nested virtualization may not be enabled on workstation
-            ///   configurations with accelerators.
+            /// configurations with accelerators.
             /// * **Operating System**: Because
-            ///   [Container-Optimized
-            ///   OS](<https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos>)
-            ///   does not support nested virtualization, when nested virtualization is
-            ///   enabled, the underlying Compute Engine VM instances boot from an
-            ///   [Ubuntu
-            ///   LTS](<https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts>)
-            ///   image.
+            /// [Container-Optimized
+            /// OS](<https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos>)
+            /// does not support nested virtualization, when nested virtualization is
+            /// enabled, the underlying Compute Engine VM instances boot from an
+            /// [Ubuntu
+            /// LTS](<https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts>)
+            /// image.
             #[prost(bool, tag = "7")]
             pub enable_nested_virtualization: bool,
             /// Optional. A set of Compute Engine Shielded instance options.
@@ -428,7 +428,7 @@ pub mod workstation_config {
     pub mod persistent_directory {
         /// A PersistentDirectory backed by a Compute Engine regional persistent
         /// disk. The
-        /// \[persistent_directories\]\[google.cloud.workstations.v1.WorkstationConfig.persistent_directories\]
+        /// [persistent_directories][google.cloud.workstations.v1.WorkstationConfig.persistent_directories]
         /// field is repeated, but it may contain only one entry. It creates a
         /// [persistent
         /// disk](<https://cloud.google.com/compute/docs/disks/persistent-disks>) that
@@ -440,12 +440,12 @@ pub mod workstation_config {
         pub struct GceRegionalPersistentDisk {
             /// Optional. The GB capacity of a persistent home directory for each
             /// workstation created with this configuration. Must be empty if
-            /// \[source_snapshot\]\[google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.source_snapshot\]
+            /// [source_snapshot][google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.source_snapshot]
             /// is set.
             ///
             /// Valid values are `10`, `50`, `100`, `200`, `500`, or `1000`.
             /// Defaults to `200`. If less than `200` GB, the
-            /// \[disk_type\]\[google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.disk_type\]
+            /// [disk_type][google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.disk_type]
             /// must be
             /// `"pd-balanced"` or `"pd-ssd"`.
             #[prost(int32, tag = "1")]
@@ -453,7 +453,7 @@ pub mod workstation_config {
             /// Optional. Type of file system that the disk should be formatted with.
             /// The workstation image must support this file system type. Must be empty
             /// if
-            /// \[source_snapshot\]\[google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.source_snapshot\]
+            /// [source_snapshot][google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.source_snapshot]
             /// is set. Defaults to `"ext4"`.
             #[prost(string, tag = "2")]
             pub fs_type: ::prost::alloc::string::String,
@@ -464,9 +464,9 @@ pub mod workstation_config {
             pub disk_type: ::prost::alloc::string::String,
             /// Optional. Name of the snapshot to use as the source for the disk. If
             /// set,
-            /// \[size_gb\]\[google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.size_gb\]
+            /// [size_gb][google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.size_gb]
             /// and
-            /// \[fs_type\]\[google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.fs_type\]
+            /// [fs_type][google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.fs_type]
             /// must be empty.
             #[prost(string, tag = "5")]
             pub source_snapshot: ::prost::alloc::string::String,
@@ -511,9 +511,9 @@ pub mod workstation_config {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        ReclaimPolicy::Unspecified => "RECLAIM_POLICY_UNSPECIFIED",
-                        ReclaimPolicy::Delete => "DELETE",
-                        ReclaimPolicy::Retain => "RETAIN",
+                        Self::Unspecified => "RECLAIM_POLICY_UNSPECIFIED",
+                        Self::Delete => "DELETE",
+                        Self::Retain => "RETAIN",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -703,11 +703,11 @@ pub mod workstation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Starting => "STATE_STARTING",
-                State::Running => "STATE_RUNNING",
-                State::Stopping => "STATE_STOPPING",
-                State::Stopped => "STATE_STOPPED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Starting => "STATE_STARTING",
+                Self::Running => "STATE_RUNNING",
+                Self::Stopping => "STATE_STOPPING",
+                Self::Stopped => "STATE_STOPPED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1114,7 +1114,8 @@ pub mod generate_access_token_request {
 pub struct GenerateAccessTokenResponse {
     /// The generated bearer access token. To use this token, include it in an
     /// Authorization header of an HTTP request sent to the associated
-    /// workstation's hostname—for example, `Authorization: Bearer <access_token>`.
+    /// workstation's hostname—for example, `Authorization: Bearer
+    /// <access_token>`.
     #[prost(string, tag = "1")]
     pub access_token: ::prost::alloc::string::String,
     /// Time at which the generated token will expire.
@@ -1149,7 +1150,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod workstations_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for interacting with Cloud Workstations.
@@ -1234,8 +1241,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1265,8 +1271,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1296,8 +1301,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1327,8 +1331,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1358,8 +1361,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1389,8 +1391,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1420,8 +1421,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1452,8 +1452,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1483,8 +1482,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1514,8 +1512,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1545,8 +1542,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1573,8 +1569,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1604,8 +1599,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1636,8 +1630,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1667,8 +1660,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1698,8 +1690,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1729,8 +1720,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1760,8 +1750,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1791,8 +1780,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1823,8 +1811,7 @@ pub mod workstations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

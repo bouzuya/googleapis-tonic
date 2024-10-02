@@ -7,8 +7,7 @@ pub struct TextSentimentPredictionInstance {
     pub content: ::prost::alloc::string::String,
     /// The MIME type of the text snippet. The supported MIME types are listed
     /// below.
-    ///
-    /// * text/plain
+    /// - text/plain
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }
@@ -20,14 +19,13 @@ pub struct ImageClassificationPredictionInstance {
     pub content: ::prost::alloc::string::String,
     /// The MIME type of the content of the image. Only the images in below listed
     /// MIME types are supported.
-    ///
-    /// * image/jpeg
-    /// * image/gif
-    /// * image/png
-    /// * image/webp
-    /// * image/bmp
-    /// * image/tiff
-    /// * image/vnd.microsoft.icon
+    /// - image/jpeg
+    /// - image/gif
+    /// - image/png
+    /// - image/webp
+    /// - image/bmp
+    /// - image/tiff
+    /// - image/vnd.microsoft.icon
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }
@@ -39,14 +37,13 @@ pub struct ImageObjectDetectionPredictionInstance {
     pub content: ::prost::alloc::string::String,
     /// The MIME type of the content of the image. Only the images in below listed
     /// MIME types are supported.
-    ///
-    /// * image/jpeg
-    /// * image/gif
-    /// * image/png
-    /// * image/webp
-    /// * image/bmp
-    /// * image/tiff
-    /// * image/vnd.microsoft.icon
+    /// - image/jpeg
+    /// - image/gif
+    /// - image/png
+    /// - image/webp
+    /// - image/bmp
+    /// - image/tiff
+    /// - image/vnd.microsoft.icon
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }
@@ -58,9 +55,8 @@ pub struct ImageSegmentationPredictionInstance {
     pub content: ::prost::alloc::string::String,
     /// The MIME type of the content of the image. Only the images in below listed
     /// MIME types are supported.
-    ///
-    /// * image/jpeg
-    /// * image/png
+    /// - image/jpeg
+    /// - image/png
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }
@@ -72,8 +68,7 @@ pub struct TextClassificationPredictionInstance {
     pub content: ::prost::alloc::string::String,
     /// The MIME type of the text snippet. The supported MIME types are listed
     /// below.
-    ///
-    /// * text/plain
+    /// - text/plain
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }
@@ -85,8 +80,7 @@ pub struct TextExtractionPredictionInstance {
     pub content: ::prost::alloc::string::String,
     /// The MIME type of the text snippet. The supported MIME types are listed
     /// below.
-    ///
-    /// * text/plain
+    /// - text/plain
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
     /// This field is only used for batch prediction. If a key is provided, the

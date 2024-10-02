@@ -9,12 +9,12 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Status {
     /// The status code, which should be an enum value of
-    /// \[google.rpc.Code\]\[google.rpc.Code\].
+    /// [google.rpc.Code][google.rpc.Code].
     #[prost(int32, tag = "1")]
     pub code: i32,
     /// A developer-facing error message, which should be in English. Any
     /// user-facing error message should be localized and sent in the
-    /// \[google.rpc.Status.details\]\[google.rpc.Status.details\] field, or localized
+    /// [google.rpc.Status.details][google.rpc.Status.details] field, or localized
     /// by the client.
     #[prost(string, tag = "2")]
     pub message: ::prost::alloc::string::String,
@@ -24,6 +24,7 @@ pub struct Status {
     pub details: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 /// The canonical error codes for gRPC APIs.
+///
 ///
 /// Sometimes multiple error codes may apply.  Services should return
 /// the most specific error code that applies.  For example, prefer
@@ -106,15 +107,15 @@ pub enum Code {
     ///
     /// Service implementors can use the following guidelines to decide
     /// between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`:
-    /// (a) Use `UNAVAILABLE` if the client can retry just the failing call.
-    /// (b) Use `ABORTED` if the client should retry at a higher level. For
-    /// example, when a client-specified test-and-set fails, indicating the
-    /// client should restart a read-modify-write sequence.
-    /// (c) Use `FAILED_PRECONDITION` if the client should not retry until
-    /// the system state has been explicitly fixed. For example, if an "rmdir"
-    /// fails because the directory is non-empty, `FAILED_PRECONDITION`
-    /// should be returned since the client should not retry unless
-    /// the files are deleted from the directory.
+    ///   (a) Use `UNAVAILABLE` if the client can retry just the failing call.
+    ///   (b) Use `ABORTED` if the client should retry at a higher level. For
+    ///       example, when a client-specified test-and-set fails, indicating the
+    ///       client should restart a read-modify-write sequence.
+    ///   (c) Use `FAILED_PRECONDITION` if the client should not retry until
+    ///       the system state has been explicitly fixed. For example, if an "rmdir"
+    ///       fails because the directory is non-empty, `FAILED_PRECONDITION`
+    ///       should be returned since the client should not retry unless
+    ///       the files are deleted from the directory.
     ///
     /// HTTP Mapping: 400 Bad Request
     FailedPrecondition = 9,
@@ -177,23 +178,23 @@ impl Code {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Code::Ok => "OK",
-            Code::Cancelled => "CANCELLED",
-            Code::Unknown => "UNKNOWN",
-            Code::InvalidArgument => "INVALID_ARGUMENT",
-            Code::DeadlineExceeded => "DEADLINE_EXCEEDED",
-            Code::NotFound => "NOT_FOUND",
-            Code::AlreadyExists => "ALREADY_EXISTS",
-            Code::PermissionDenied => "PERMISSION_DENIED",
-            Code::Unauthenticated => "UNAUTHENTICATED",
-            Code::ResourceExhausted => "RESOURCE_EXHAUSTED",
-            Code::FailedPrecondition => "FAILED_PRECONDITION",
-            Code::Aborted => "ABORTED",
-            Code::OutOfRange => "OUT_OF_RANGE",
-            Code::Unimplemented => "UNIMPLEMENTED",
-            Code::Internal => "INTERNAL",
-            Code::Unavailable => "UNAVAILABLE",
-            Code::DataLoss => "DATA_LOSS",
+            Self::Ok => "OK",
+            Self::Cancelled => "CANCELLED",
+            Self::Unknown => "UNKNOWN",
+            Self::InvalidArgument => "INVALID_ARGUMENT",
+            Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+            Self::NotFound => "NOT_FOUND",
+            Self::AlreadyExists => "ALREADY_EXISTS",
+            Self::PermissionDenied => "PERMISSION_DENIED",
+            Self::Unauthenticated => "UNAUTHENTICATED",
+            Self::ResourceExhausted => "RESOURCE_EXHAUSTED",
+            Self::FailedPrecondition => "FAILED_PRECONDITION",
+            Self::Aborted => "ABORTED",
+            Self::OutOfRange => "OUT_OF_RANGE",
+            Self::Unimplemented => "UNIMPLEMENTED",
+            Self::Internal => "INTERNAL",
+            Self::Unavailable => "UNAVAILABLE",
+            Self::DataLoss => "DATA_LOSS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -225,29 +226,25 @@ impl Code {
 /// Example of an error when contacting the "pubsub.googleapis.com" API when it
 /// is not enabled:
 ///
-/// ```text
-/// { "reason": "API_DISABLED"
-///    "domain": "googleapis.com"
-///    "metadata": {
-///      "resource": "projects/123",
-///      "service": "pubsub.googleapis.com"
-///    }
-/// }
-/// ```
+///      { "reason": "API_DISABLED"
+///        "domain": "googleapis.com"
+///        "metadata": {
+///          "resource": "projects/123",
+///          "service": "pubsub.googleapis.com"
+///        }
+///      }
 ///
 /// This response indicates that the pubsub.googleapis.com API is not enabled.
 ///
 /// Example of an error that is returned when attempting to create a Spanner
 /// instance in a region that is out of stock:
 ///
-/// ```text
-/// { "reason": "STOCKOUT"
-///    "domain": "spanner.googleapis.com",
-///    "metadata": {
-///      "availableRegions": "us-central1,us-east2"
-///    }
-/// }
-/// ```
+///      { "reason": "STOCKOUT"
+///        "domain": "spanner.googleapis.com",
+///        "metadata": {
+///          "availableRegions": "us-central1,us-east2"
+///        }
+///      }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorInfo {
     /// The reason of the error. This is a constant value that identifies the
@@ -267,7 +264,7 @@ pub struct ErrorInfo {
     pub domain: ::prost::alloc::string::String,
     /// Additional structured details about this error.
     ///
-    /// Keys should match /\[a-zA-Z0-9-\_\]/ and be limited to 64 characters in
+    /// Keys should match /\[a-zA-Z0-9-_\]/ and be limited to 64 characters in
     /// length. When identifying the current value of an exceeded limit, the units
     /// should be contained in the key, not the value.  For example, rather than
     /// {"instanceLimit": "100/request"}, should be returned as,
@@ -400,39 +397,37 @@ pub mod bad_request {
         ///
         /// Consider the following:
         ///
-        /// ```text
-        /// message CreateContactRequest {
-        ///    message EmailAddress {
-        ///      enum Type {
-        ///        TYPE_UNSPECIFIED = 0;
-        ///        HOME = 1;
-        ///        WORK = 2;
+        ///      message CreateContactRequest {
+        ///        message EmailAddress {
+        ///          enum Type {
+        ///            TYPE_UNSPECIFIED = 0;
+        ///            HOME = 1;
+        ///            WORK = 2;
+        ///          }
+        ///
+        ///          optional string email = 1;
+        ///          repeated EmailType type = 2;
+        ///        }
+        ///
+        ///        string full_name = 1;
+        ///        repeated EmailAddress email_addresses = 2;
         ///      }
-        ///
-        ///      optional string email = 1;
-        ///      repeated EmailType type = 2;
-        ///    }
-        ///
-        ///    string full_name = 1;
-        ///    repeated EmailAddress email_addresses = 2;
-        /// }
-        /// ```
         ///
         /// In this example, in proto `field` could take one of the following values:
         ///
         /// * `full_name` for a violation in the `full_name` value
         /// * `email_addresses\[1\].email` for a violation in the `email` field of the
-        ///   first `email_addresses` message
+        ///    first `email_addresses` message
         /// * `email_addresses\[3\].type\[2\]` for a violation in the second `type`
-        ///   value in the third `email_addresses` message.
+        ///    value in the third `email_addresses` message.
         ///
         /// In JSON, the same values are represented as:
         ///
         /// * `fullName` for a violation in the `fullName` value
         /// * `emailAddresses\[1\].email` for a violation in the `email` field of the
-        ///   first `emailAddresses` message
+        ///    first `emailAddresses` message
         /// * `emailAddresses\[3\].type\[2\]` for a violation in the second `type`
-        ///   value in the third `emailAddresses` message.
+        ///    value in the third `emailAddresses` message.
         #[prost(string, tag = "1")]
         pub field: ::prost::alloc::string::String,
         /// A description of why the request element is bad.
@@ -464,7 +459,7 @@ pub struct ResourceInfo {
     /// The name of the resource being accessed.  For example, a shared calendar
     /// name: "example.com_4fghdhgsrgh@group.calendar.google.com", if the current
     /// error is
-    /// \[google.rpc.Code.PERMISSION_DENIED\]\[google.rpc.Code.PERMISSION_DENIED\].
+    /// [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
     #[prost(string, tag = "2")]
     pub resource_name: ::prost::alloc::string::String,
     /// The owner of the resource (optional).

@@ -19,10 +19,10 @@ impl AccessRight {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AccessRight::Unspecified => "ACCESS_RIGHT_UNSPECIFIED",
-            AccessRight::Standard => "STANDARD",
-            AccessRight::Admin => "ADMIN",
-            AccessRight::PerformanceReporting => "PERFORMANCE_REPORTING",
+            Self::Unspecified => "ACCESS_RIGHT_UNSPECIFIED",
+            Self::Standard => "STANDARD",
+            Self::Admin => "ADMIN",
+            Self::PerformanceReporting => "PERFORMANCE_REPORTING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -39,7 +39,7 @@ impl AccessRight {
 /// Primary type convension
 ///
 /// percent micro : 100% = 1 000 000 and 1% = 10 000
-/// cannot be negative.
+///                  cannot be negative.
 ///
 /// Information about tax nexus and related parameters applicable to orders
 /// delivered to the area covered by a single tax admin. Nexus is created when a
@@ -178,14 +178,20 @@ pub struct ListAccountTaxResponse {
 }
 /// Generated client implementations.
 pub mod account_tax_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages account level tax setting data.
     ///
     /// This API defines the following resource model:
     ///
-    /// * \[AccountTax\]\[google.shopping.merchant.accounts.v1main.AccountTax\]
+    /// - [AccountTax][google.shopping.merchant.accounts.v1main.AccountTax]
     #[derive(Debug, Clone)]
     pub struct AccountTaxServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -264,8 +270,7 @@ pub mod account_tax_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -298,8 +303,7 @@ pub mod account_tax_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -326,8 +330,7 @@ pub mod account_tax_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -435,10 +438,10 @@ pub mod account_issue {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::Error => "ERROR",
-                Severity::Suggestion => "SUGGESTION",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::Error => "ERROR",
+                Self::Suggestion => "SUGGESTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -497,7 +500,13 @@ pub struct ListAccountIssuesResponse {
 }
 /// Generated client implementations.
 pub mod account_issue_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support `AccountIssueService` API.
@@ -582,8 +591,7 @@ pub mod account_issue_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -656,9 +664,9 @@ pub mod user {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Verified => "VERIFIED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Verified => "VERIFIED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -756,7 +764,13 @@ pub struct ListUsersResponse {
 }
 /// Generated client implementations.
 pub mod user_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support user API.
@@ -838,8 +852,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -867,8 +880,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -896,8 +908,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -925,8 +936,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -956,8 +966,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1177,7 +1186,13 @@ pub struct ListSubAccountsResponse {
 }
 /// Generated client implementations.
 pub mod accounts_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support Accounts API.
@@ -1261,8 +1276,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1290,8 +1304,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1323,8 +1336,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1352,8 +1364,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1388,8 +1399,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1423,8 +1433,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1487,7 +1496,13 @@ pub struct UpdateAutofeedSettingsRequest {
 }
 /// Generated client implementations.
 pub mod autofeed_settings_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support
@@ -1575,8 +1590,7 @@ pub mod autofeed_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1606,8 +1620,7 @@ pub mod autofeed_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1707,13 +1720,9 @@ pub mod business_identity {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    IdentityDeclaration::Unspecified => {
-                        "IDENTITY_DECLARATION_UNSPECIFIED"
-                    }
-                    IdentityDeclaration::SelfIdentifiesAs => "SELF_IDENTIFIES_AS",
-                    IdentityDeclaration::DoesNotSelfIdentifyAs => {
-                        "DOES_NOT_SELF_IDENTIFY_AS"
-                    }
+                    Self::Unspecified => "IDENTITY_DECLARATION_UNSPECIFIED",
+                    Self::SelfIdentifiesAs => "SELF_IDENTIFIES_AS",
+                    Self::DoesNotSelfIdentifyAs => "DOES_NOT_SELF_IDENTIFY_AS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1758,9 +1767,9 @@ pub mod business_identity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PromotionsConsent::Unspecified => "PROMOTIONS_CONSENT_UNSPECIFIED",
-                PromotionsConsent::Given => "PROMOTIONS_CONSENT_GIVEN",
-                PromotionsConsent::Denied => "PROMOTIONS_CONSENT_DENIED",
+                Self::Unspecified => "PROMOTIONS_CONSENT_UNSPECIFIED",
+                Self::Given => "PROMOTIONS_CONSENT_GIVEN",
+                Self::Denied => "PROMOTIONS_CONSENT_DENIED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1794,7 +1803,13 @@ pub struct UpdateBusinessIdentityRequest {
 }
 /// Generated client implementations.
 pub mod business_identity_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support [business
@@ -1882,8 +1897,7 @@ pub mod business_identity_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1914,8 +1928,7 @@ pub mod business_identity_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1966,9 +1979,9 @@ impl PhoneVerificationState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PhoneVerificationState::Unspecified => "PHONE_VERIFICATION_STATE_UNSPECIFIED",
-            PhoneVerificationState::Verified => "PHONE_VERIFICATION_STATE_VERIFIED",
-            PhoneVerificationState::Unverified => "PHONE_VERIFICATION_STATE_UNVERIFIED",
+            Self::Unspecified => "PHONE_VERIFICATION_STATE_UNSPECIFIED",
+            Self::Verified => "PHONE_VERIFICATION_STATE_VERIFIED",
+            Self::Unverified => "PHONE_VERIFICATION_STATE_UNVERIFIED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2030,7 +2043,13 @@ pub struct UpdateBusinessInfoRequest {
 }
 /// Generated client implementations.
 pub mod business_info_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support business info API.
@@ -2112,8 +2131,7 @@ pub mod business_info_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2141,8 +2159,7 @@ pub mod business_info_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2209,10 +2226,10 @@ pub mod email_preferences {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OptInState::Unspecified => "OPT_IN_STATE_UNSPECIFIED",
-                OptInState::OptedOut => "OPTED_OUT",
-                OptInState::OptedIn => "OPTED_IN",
-                OptInState::Unconfirmed => "UNCONFIRMED",
+                Self::Unspecified => "OPT_IN_STATE_UNSPECIFIED",
+                Self::OptedOut => "OPTED_OUT",
+                Self::OptedIn => "OPTED_IN",
+                Self::Unconfirmed => "UNCONFIRMED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2247,7 +2264,13 @@ pub struct UpdateEmailPreferencesRequest {
 }
 /// Generated client implementations.
 pub mod email_preferences_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support the `EmailPreferences` API.
@@ -2327,7 +2350,7 @@ pub mod email_preferences_service_client {
         }
         /// Returns the email preferences for a Merchant Center account user.
         ///
-        /// Use the name=accounts/\*/users/me/emailPreferences alias to get preferences
+        /// Use the name=accounts/*/users/me/emailPreferences alias to get preferences
         /// for the authenticated user.
         pub async fn get_email_preferences(
             &mut self,
@@ -2340,8 +2363,7 @@ pub mod email_preferences_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2367,7 +2389,7 @@ pub mod email_preferences_service_client {
         ///
         /// It is invalid for updates to specify an UNCONFIRMED opt-in status value.
         ///
-        /// Use the name=accounts/\*/users/me/emailPreferences alias to update
+        /// Use the name=accounts/*/users/me/emailPreferences alias to update
         /// preferences
         /// for the authenticated user.
         pub async fn update_email_preferences(
@@ -2381,8 +2403,7 @@ pub mod email_preferences_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2453,7 +2474,13 @@ pub struct UnclaimHomepageRequest {
 }
 /// Generated client implementations.
 pub mod homepage_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support an API for a store's homepage.
@@ -2535,8 +2562,7 @@ pub mod homepage_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2563,8 +2589,7 @@ pub mod homepage_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2589,13 +2614,13 @@ pub mod homepage_service_client {
         /// exempts from verification) and return a successful response. If ownership
         /// can no longer be verified, it will return an error, but it won't clear the
         /// claim. In case of failure, a canonical error message will be returned:
-        /// \* PERMISSION_DENIED: user doesn't have the necessary permissions on this
-        /// MC account;
-        /// \* FAILED_PRECONDITION:
-        /// - The account is not a Merchant Center account;
-        /// - MC account doesn't have a homepage;
-        /// - claiming failed (in this case the error message will contain more
-        /// details).
+        ///    * PERMISSION_DENIED: user doesn't have the necessary permissions on this
+        ///    MC account;
+        ///    * FAILED_PRECONDITION:
+        ///      - The account is not a Merchant Center account;
+        ///      - MC account doesn't have a homepage;
+        ///      - claiming failed (in this case the error message will contain more
+        ///      details).
         pub async fn claim_homepage(
             &mut self,
             request: impl tonic::IntoRequest<super::ClaimHomepageRequest>,
@@ -2604,8 +2629,7 @@ pub mod homepage_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2632,8 +2656,7 @@ pub mod homepage_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2681,7 +2704,7 @@ pub struct ListOnlineReturnPoliciesRequest {
     /// When paginating, all other parameters provided to
     /// `ListOnlineReturnPolicies` must match the call that provided the page
     /// token. The token returned as
-    /// \[nextPageToken\]\[google.shopping.merchant.accounts.v1beta.ListOnlineReturnPoliciesResponse.next_page_token\]
+    /// [nextPageToken][google.shopping.merchant.accounts.v1beta.ListOnlineReturnPoliciesResponse.next_page_token]
     /// in the response to the previous request.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -2806,9 +2829,9 @@ pub mod online_return_policy {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::Fixed => "FIXED",
-                    Type::CustomerPayingActualFee => "CUSTOMER_PAYING_ACTUAL_FEE",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::Fixed => "FIXED",
+                    Self::CustomerPayingActualFee => "CUSTOMER_PAYING_ACTUAL_FEE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2885,10 +2908,10 @@ pub mod online_return_policy {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::NumberOfDaysAfterDelivery => "NUMBER_OF_DAYS_AFTER_DELIVERY",
-                    Type::NoReturns => "NO_RETURNS",
-                    Type::LifetimeReturns => "LIFETIME_RETURNS",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::NumberOfDaysAfterDelivery => "NUMBER_OF_DAYS_AFTER_DELIVERY",
+                    Self::NoReturns => "NO_RETURNS",
+                    Self::LifetimeReturns => "LIFETIME_RETURNS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2935,10 +2958,10 @@ pub mod online_return_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReturnMethod::Unspecified => "RETURN_METHOD_UNSPECIFIED",
-                ReturnMethod::ByMail => "BY_MAIL",
-                ReturnMethod::InStore => "IN_STORE",
-                ReturnMethod::AtAKiosk => "AT_A_KIOSK",
+                Self::Unspecified => "RETURN_METHOD_UNSPECIFIED",
+                Self::ByMail => "BY_MAIL",
+                Self::InStore => "IN_STORE",
+                Self::AtAKiosk => "AT_A_KIOSK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2980,9 +3003,9 @@ pub mod online_return_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ItemCondition::Unspecified => "ITEM_CONDITION_UNSPECIFIED",
-                ItemCondition::New => "NEW",
-                ItemCondition::Used => "USED",
+                Self::Unspecified => "ITEM_CONDITION_UNSPECIFIED",
+                Self::New => "NEW",
+                Self::Used => "USED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2998,15 +3021,20 @@ pub mod online_return_policy {
 }
 /// Generated client implementations.
 pub mod online_return_policy_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The service facilitates the management of a merchant's remorse return policy
     /// configuration, encompassing return policies for both ads and free listings
-    ///
     /// ## programs. This API defines the following resource model:
     ///
-    /// \[OnlineReturnPolicy\]\[google.shopping.merchant.accounts.v1.OnlineReturnPolicy\]
+    /// [OnlineReturnPolicy][google.shopping.merchant.accounts.v1.OnlineReturnPolicy]
     #[derive(Debug, Clone)]
     pub struct OnlineReturnPolicyServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -3090,8 +3118,7 @@ pub mod online_return_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3121,8 +3148,7 @@ pub mod online_return_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3227,10 +3253,10 @@ pub mod program {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::NotEligible => "NOT_ELIGIBLE",
-                State::Eligible => "ELIGIBLE",
-                State::Enabled => "ENABLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::NotEligible => "NOT_ELIGIBLE",
+                Self::Eligible => "ELIGIBLE",
+                Self::Enabled => "ENABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3299,7 +3325,13 @@ pub struct DisableProgramRequest {
 }
 /// Generated client implementations.
 pub mod programs_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for program management.
@@ -3391,8 +3423,7 @@ pub mod programs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3422,8 +3453,7 @@ pub mod programs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3451,8 +3481,7 @@ pub mod programs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3480,8 +3509,7 @@ pub mod programs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3627,7 +3655,7 @@ pub mod region {
         /// A range of postal codes that defines the region area.
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct PostalCodeRange {
-            /// Required. A postal code or a pattern of the form prefix\* denoting the
+            /// Required. A postal code or a pattern of the form prefix* denoting the
             /// inclusive lower bound of the range defining the area. Examples values:
             /// `94108`, `9410*`, `9*`.
             #[prost(string, tag = "1")]
@@ -3656,14 +3684,20 @@ pub mod region {
 }
 /// Generated client implementations.
 pub mod regions_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages regions configuration.
     ///
     /// This API defines the following resource model:
     ///
-    /// * \[Region\]\[google.shopping.merchant.accounts.v1main.Region\]
+    /// - [Region][google.shopping.merchant.accounts.v1main.Region]
     #[derive(Debug, Clone)]
     pub struct RegionsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -3742,8 +3776,7 @@ pub mod regions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3771,8 +3804,7 @@ pub mod regions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3800,8 +3832,7 @@ pub mod regions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3829,8 +3860,7 @@ pub mod regions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3860,8 +3890,7 @@ pub mod regions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3897,22 +3926,22 @@ pub struct ShippingSettings {
     pub warehouses: ::prost::alloc::vec::Vec<Warehouse>,
     /// Required. This field is used for avoid async issue. Make sure shipping
     /// setting data
-    /// didn't change between get call and insert call. The user should do
-    /// following steps：
+    ///   didn't change between get call and insert call. The user should do
+    ///   following steps：
     ///
     /// 1. Set etag field as empty string for initial shipping setting creation.
     ///
-    /// 1. After initial creation, call get method to obtain an etag and current
-    ///    shipping setting data before call insert.
+    /// 2. After initial creation, call get method to obtain an etag and current
+    /// shipping setting data before call insert.
     ///
-    /// 1. Modify to wanted shipping setting information.
+    /// 3. Modify to wanted shipping setting information.
     ///
-    /// 1. Call insert method with the wanted shipping setting information with
-    ///    the etag obtained from step 2.
+    /// 4. Call insert method with the wanted shipping setting information with
+    /// the etag obtained from step 2.
     ///
-    /// 1. If shipping setting data changed between step 2 and step 4. Insert
-    ///    request will fail because the etag changes every time the shipping setting
-    ///    data changes. User should repeate step 2-4 with the new etag.
+    /// 5. If shipping setting data changed between step 2 and step 4. Insert
+    /// request will fail because the etag changes every time the shipping setting
+    /// data changes. User should repeate step 2-4 with the new etag.
     #[prost(string, tag = "4")]
     pub etag: ::prost::alloc::string::String,
 }
@@ -4057,9 +4086,9 @@ pub mod service {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    StoreServiceType::Unspecified => "STORE_SERVICE_TYPE_UNSPECIFIED",
-                    StoreServiceType::AllStores => "ALL_STORES",
-                    StoreServiceType::SelectedStores => "SELECTED_STORES",
+                    Self::Unspecified => "STORE_SERVICE_TYPE_UNSPECIFIED",
+                    Self::AllStores => "ALL_STORES",
+                    Self::SelectedStores => "SELECTED_STORES",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4133,10 +4162,10 @@ pub mod service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ShipmentType::Unspecified => "SHIPMENT_TYPE_UNSPECIFIED",
-                ShipmentType::Delivery => "DELIVERY",
-                ShipmentType::LocalDelivery => "LOCAL_DELIVERY",
-                ShipmentType::CollectionPoint => "COLLECTION_POINT",
+                Self::Unspecified => "SHIPMENT_TYPE_UNSPECIFIED",
+                Self::Delivery => "DELIVERY",
+                Self::LocalDelivery => "LOCAL_DELIVERY",
+                Self::CollectionPoint => "COLLECTION_POINT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4194,9 +4223,9 @@ pub mod distance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Unit::Unspecified => "UNIT_UNSPECIFIED",
-                Unit::Miles => "MILES",
-                Unit::Kilometers => "KILOMETERS",
+                Self::Unspecified => "UNIT_UNSPECIFIED",
+                Self::Miles => "MILES",
+                Self::Kilometers => "KILOMETERS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4320,8 +4349,8 @@ pub struct DeliveryTime {
     pub transit_business_day_config: ::core::option::Option<BusinessDayConfig>,
     /// Optional. Indicates that the delivery time should be calculated per
     /// warehouse (shipping origin location) based on the settings of the selected
-    /// carrier. When set, no other transit time related field in \[delivery
-    /// time\]\[\[google.shopping.content.bundles.ShippingSetting.DeliveryTime\] should
+    /// carrier. When set, no other transit time related field in [delivery
+    /// time][\[google.shopping.content.bundles.ShippingSetting.DeliveryTime\] should
     /// be set.
     #[prost(message, repeated, tag = "9")]
     pub warehouse_based_delivery_times: ::prost::alloc::vec::Vec<
@@ -4389,14 +4418,14 @@ pub mod business_day_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Weekday::Unspecified => "WEEKDAY_UNSPECIFIED",
-                Weekday::Monday => "MONDAY",
-                Weekday::Tuesday => "TUESDAY",
-                Weekday::Wednesday => "WEDNESDAY",
-                Weekday::Thursday => "THURSDAY",
-                Weekday::Friday => "FRIDAY",
-                Weekday::Saturday => "SATURDAY",
-                Weekday::Sunday => "SUNDAY",
+                Self::Unspecified => "WEEKDAY_UNSPECIFIED",
+                Self::Monday => "MONDAY",
+                Self::Tuesday => "TUESDAY",
+                Self::Wednesday => "WEDNESDAY",
+                Self::Thursday => "THURSDAY",
+                Self::Friday => "FRIDAY",
+                Self::Saturday => "SATURDAY",
+                Self::Sunday => "SUNDAY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4429,7 +4458,7 @@ pub struct WarehouseBasedDeliveryTime {
     #[prost(string, optional, tag = "2")]
     pub carrier_service: ::core::option::Option<::prost::alloc::string::String>,
     /// Required. Warehouse name. This should match
-    /// \[warehouse\]\[ShippingSetting.warehouses.name\]
+    /// [warehouse][ShippingSetting.warehouses.name]
     #[prost(string, optional, tag = "3")]
     pub warehouse: ::core::option::Option<::prost::alloc::string::String>,
 }
@@ -4495,7 +4524,7 @@ pub struct Table {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransitTable {
     /// Required. A list of region names
-    /// \[Region.name\]\[google.shopping.merchant.accounts.v1beta.Region.name\] . The
+    /// [Region.name][google.shopping.merchant.accounts.v1beta.Region.name] . The
     /// last value can be
     /// `"all other locations"`. Example:
     /// `\["zone 1", "zone 2", "all other locations"\]`. The referred
@@ -4583,16 +4612,20 @@ pub mod minimum_order_value_table {
 pub struct Headers {
     /// Required. A list of inclusive order price upper bounds. The last price's
     /// value can be infinity by setting price amount_micros = -1. For example
-    /// `\[{"amount_micros": 10000000, "currency_code": "USD"}, {"amount_micros": 500000000, "currency_code": "USD"}, {"amount_micros": -1, "currency_code": "USD"}\]` represents the headers
-    /// "\<= $10", "\<= $500", and "> $500". All prices within a service must have
+    /// `[{"amount_micros": 10000000, "currency_code": "USD"},
+    /// {"amount_micros": 500000000, "currency_code": "USD"},
+    /// {"amount_micros": -1, "currency_code": "USD"}]` represents the headers
+    /// "<= $10", "<= $500", and "> $500". All prices within a service must have
     /// the same currency. Must be non-empty. Must be positive except -1. Can only
     /// be set if all other fields are not set.
     #[prost(message, repeated, tag = "1")]
     pub prices: ::prost::alloc::vec::Vec<super::super::super::r#type::Price>,
     /// Required. A list of inclusive order weight upper bounds. The last weight's
     /// value can be infinity by setting price amount_micros = -1. For example
-    /// `\[{"amount_micros": 10000000, "unit": "kg"}, {"amount_micros": 50000000, "unit": "kg"}, {"amount_micros": -1, "unit": "kg"}\]` represents the headers
-    /// "\<= 10kg", "\<= 50kg", and "> 50kg". All weights within a service must have
+    /// `[{"amount_micros": 10000000, "unit": "kg"}, {"amount_micros": 50000000,
+    /// "unit": "kg"},
+    /// {"amount_micros": -1, "unit": "kg"}]` represents the headers
+    /// "<= 10kg", "<= 50kg", and "> 50kg". All weights within a service must have
     /// the same unit. Must be non-empty. Must be positive except -1. Can only be
     /// set if all other fields are not set.
     #[prost(message, repeated, tag = "2")]
@@ -4601,7 +4634,7 @@ pub struct Headers {
     /// can be
     /// `"infinity"`. For example
     /// `\["10", "50", "infinity"\]` represents the headers
-    /// "\<= 10 items", "\<= 50 items", and "> 50 items". Must be non-empty. Can
+    /// "<= 10 items", "<= 50 items", and "> 50 items". Must be non-empty. Can
     /// only be set if all other fields are not set.
     #[prost(string, repeated, tag = "3")]
     pub number_of_items: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -4716,7 +4749,13 @@ pub struct InsertShippingSettingsRequest {
 }
 /// Generated client implementations.
 pub mod shipping_settings_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to get method call shipping setting information per Merchant API
@@ -4804,8 +4843,7 @@ pub mod shipping_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4836,8 +4874,7 @@ pub mod shipping_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4873,8 +4910,8 @@ impl TermsOfServiceKind {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TermsOfServiceKind::Unspecified => "TERMS_OF_SERVICE_KIND_UNSPECIFIED",
-            TermsOfServiceKind::MerchantCenter => "MERCHANT_CENTER",
+            Self::Unspecified => "TERMS_OF_SERVICE_KIND_UNSPECIFIED",
+            Self::MerchantCenter => "MERCHANT_CENTER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4951,7 +4988,13 @@ pub struct AcceptTermsOfServiceRequest {
 }
 /// Generated client implementations.
 pub mod terms_of_service_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support `TermsOfService` API.
@@ -5033,8 +5076,7 @@ pub mod terms_of_service_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5062,8 +5104,7 @@ pub mod terms_of_service_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5090,8 +5131,7 @@ pub mod terms_of_service_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5116,11 +5156,11 @@ pub mod terms_of_service_service_client {
 /// The state is as follows:
 ///
 /// * If the merchant has accepted a terms of service:
-///   [accepted](TermsOfServiceAggrementState.accepted) will be populated,
-///   otherwise it will be empty
+/// [accepted](TermsOfServiceAggrementState.accepted) will be populated,
+/// otherwise it will be empty
 /// * If the merchant must sign a terms of service:
-///   [required](TermsOfServiceAggrementState.required) will be populated,
-///   otherwise it will be empty.
+/// [required](TermsOfServiceAggrementState.required) will be populated,
+/// otherwise it will be empty.
 ///
 /// Note that both [required](TermsOfServiceAggrementState.required) and
 /// [accepted](TermsOfServiceAggrementState.accepted) can be present. In this
@@ -5210,7 +5250,13 @@ pub struct RetrieveForApplicationTermsOfServiceAgreementStateRequest {
 }
 /// Generated client implementations.
 pub mod terms_of_service_agreement_state_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to support `TermsOfServiceAgreementState` API.
@@ -5299,8 +5345,7 @@ pub mod terms_of_service_agreement_state_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5332,8 +5377,7 @@ pub mod terms_of_service_agreement_state_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

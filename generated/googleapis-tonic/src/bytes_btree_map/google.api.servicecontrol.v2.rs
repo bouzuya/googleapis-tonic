@@ -42,9 +42,9 @@ pub struct ResourceInfo {
     pub permission: ::prost::alloc::string::String,
     /// Optional. The identifier of the container of this resource. For Google
     /// Cloud APIs, the resource container must be one of the following formats:
-    /// - `projects/<project-id or project-number>`
-    /// - `folders/<folder-id>`
-    /// - `organizations/<organization-id>`
+    ///      - `projects/<project-id or project-number>`
+    ///      - `folders/<folder-id>`
+    ///      - `organizations/<organization-id>`
     /// For the policy enforcement on the container level (VPCSC and Location
     /// Policy check), this field takes precedence on the container extracted from
     /// name when presents.
@@ -60,7 +60,7 @@ pub struct ResourceInfo {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckResponse {
     /// Operation is allowed when this field is not set. Any non-'OK' status
-    /// indicates a denial; \[google.rpc.Status.details\]\[google.rpc.Status.details\]
+    /// indicates a denial; [google.rpc.Status.details][google.rpc.Status.details]
     /// would contain additional details about the denial.
     #[prost(message, optional, tag = "1")]
     pub status: ::core::option::Option<super::super::super::rpc::Status>,
@@ -108,7 +108,13 @@ pub struct ResourceInfoList {
 }
 /// Generated client implementations.
 pub mod service_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// [Service Control API
@@ -218,8 +224,7 @@ pub mod service_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -263,8 +268,7 @@ pub mod service_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -48,38 +48,38 @@ pub struct TableReadOptions {
     ///
     /// As an example, consider a table with the following schema:
     ///
-    /// {
-    /// "name": "struct_field",
-    /// "type": "RECORD",
-    /// "mode": "NULLABLE",
-    /// "fields": \[
-    /// {
-    /// "name": "string_field1",
-    /// "type": "STRING",
+    ///    {
+    ///        "name": "struct_field",
+    ///        "type": "RECORD",
+    ///        "mode": "NULLABLE",
+    ///        "fields": [
+    ///            {
+    ///                "name": "string_field1",
+    ///                "type": "STRING",
     /// .              "mode": "NULLABLE"
-    /// },
-    /// {
-    /// "name": "string_field2",
-    /// "type": "STRING",
-    /// "mode": "NULLABLE"
-    /// }
-    /// \]
-    /// }
+    ///            },
+    ///            {
+    ///                "name": "string_field2",
+    ///                "type": "STRING",
+    ///                "mode": "NULLABLE"
+    ///            }
+    ///        ]
+    ///    }
     ///
     /// Specifying "struct_field" in the selected fields list will result in a
     /// read session schema with the following logical structure:
     ///
-    /// struct_field {
-    /// string_field1
-    /// string_field2
-    /// }
+    ///    struct_field {
+    ///        string_field1
+    ///        string_field2
+    ///    }
     ///
     /// Specifying "struct_field.string_field1" in the selected fields list will
     /// result in a read session schema with the following logical structure:
     ///
-    /// struct_field {
-    /// string_field1
-    /// }
+    ///    struct_field {
+    ///        string_field1
+    ///    }
     ///
     /// The order of the fields in the read session schema is derived from the
     /// table schema and does not correspond to the order in which the fields are
@@ -90,10 +90,10 @@ pub struct TableReadOptions {
     /// a SQL query. Aggregates are not supported.
     ///
     /// Examples: "int_field > 5"
-    /// "date_field = CAST('2014-9-27' as DATE)"
-    /// "nullable_field is not NULL"
-    /// "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
-    /// "numeric_field BETWEEN 1.0 AND 5.0"
+    ///            "date_field = CAST('2014-9-27' as DATE)"
+    ///            "nullable_field is not NULL"
+    ///            "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
+    ///            "numeric_field BETWEEN 1.0 AND 5.0"
     ///
     /// Restricted to a maximum length for 1 MB.
     #[prost(string, tag = "2")]
@@ -261,7 +261,8 @@ pub struct Progress {
     ///
     /// This value, along with `at_response_end`, can be used to interpolate the
     /// progress made as the rows in the message are being processed using the
-    /// following formula: `at_response_start + (at_response_end - at_response_start) * rows_processed_from_response / rows_in_response`.
+    /// following formula: `at_response_start + (at_response_end -
+    /// at_response_start) * rows_processed_from_response / rows_in_response`.
     ///
     /// Note that if a filter is provided, the `at_response_end` value of the
     /// previous response may not necessarily be equal to the `at_response_start`
@@ -385,7 +386,7 @@ pub struct SplitReadStreamRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitReadStreamResponse {
     /// Primary stream, which contains the beginning portion of
-    /// \|original_stream|. An empty value indicates that the original stream can no
+    /// |original_stream|. An empty value indicates that the original stream can no
     /// longer be split.
     #[prost(message, optional, tag = "1")]
     pub primary_stream: ::core::option::Option<Stream>,
@@ -414,9 +415,9 @@ impl DataFormat {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
-            DataFormat::Avro => "AVRO",
-            DataFormat::Arrow => "ARROW",
+            Self::Unspecified => "DATA_FORMAT_UNSPECIFIED",
+            Self::Avro => "AVRO",
+            Self::Arrow => "ARROW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -455,9 +456,9 @@ impl ShardingStrategy {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ShardingStrategy::Unspecified => "SHARDING_STRATEGY_UNSPECIFIED",
-            ShardingStrategy::Liquid => "LIQUID",
-            ShardingStrategy::Balanced => "BALANCED",
+            Self::Unspecified => "SHARDING_STRATEGY_UNSPECIFIED",
+            Self::Liquid => "LIQUID",
+            Self::Balanced => "BALANCED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -472,7 +473,13 @@ impl ShardingStrategy {
 }
 /// Generated client implementations.
 pub mod big_query_storage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// BigQuery storage API.
@@ -572,8 +579,7 @@ pub mod big_query_storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -611,8 +617,7 @@ pub mod big_query_storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -644,8 +649,7 @@ pub mod big_query_storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -685,8 +689,7 @@ pub mod big_query_storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -712,8 +715,8 @@ pub mod big_query_storage_client {
         ///
         /// Moreover, the two child streams will be allocated back to back in the
         /// original Stream. Concretely, it is guaranteed that for streams Original,
-        /// Primary, and Residual, that Original\[0-j\] = Primary\[0-j\] and
-        /// Original\[j-n\] = Residual\[0-m\] once the streams have been read to
+        /// Primary, and Residual, that Original[0-j] = Primary[0-j] and
+        /// Original[j-n] = Residual[0-m] once the streams have been read to
         /// completion.
         ///
         /// This method is guaranteed to be idempotent.
@@ -728,8 +731,7 @@ pub mod big_query_storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -114,10 +114,10 @@ pub mod repository {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    TokenStatus::Unspecified => "TOKEN_STATUS_UNSPECIFIED",
-                    TokenStatus::NotFound => "NOT_FOUND",
-                    TokenStatus::Invalid => "INVALID",
-                    TokenStatus::Valid => "VALID",
+                    Self::Unspecified => "TOKEN_STATUS_UNSPECIFIED",
+                    Self::NotFound => "NOT_FOUND",
+                    Self::Invalid => "INVALID",
+                    Self::Valid => "VALID",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -462,10 +462,10 @@ pub mod compute_repository_access_token_status_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TokenStatus::Unspecified => "TOKEN_STATUS_UNSPECIFIED",
-                TokenStatus::NotFound => "NOT_FOUND",
-                TokenStatus::Invalid => "INVALID",
-                TokenStatus::Valid => "VALID",
+                Self::Unspecified => "TOKEN_STATUS_UNSPECIFIED",
+                Self::NotFound => "NOT_FOUND",
+                Self::Invalid => "INVALID",
+                Self::Valid => "VALID",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -672,11 +672,11 @@ pub mod fetch_file_git_statuses_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Added => "ADDED",
-                    State::Deleted => "DELETED",
-                    State::Modified => "MODIFIED",
-                    State::HasConflicts => "HAS_CONFLICTS",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Added => "ADDED",
+                    Self::Deleted => "DELETED",
+                    Self::Modified => "MODIFIED",
+                    Self::HasConflicts => "HAS_CONFLICTS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -941,10 +941,9 @@ pub struct ReleaseConfig {
     pub name: ::prost::alloc::string::String,
     /// Required. Git commit/tag/branch name at which the repository should be
     /// compiled. Must exist in the remote repository. Examples:
-    ///
-    /// * a commit SHA: `12ade345`
-    /// * a tag: `tag1`
-    /// * a branch name: `branch1`
+    /// - a commit SHA: `12ade345`
+    /// - a tag: `tag1`
+    /// - a branch name: `branch1`
     #[prost(string, tag = "2")]
     pub git_commitish: ::prost::alloc::string::String,
     /// Optional. If set, fields of `code_compilation_config` override the default
@@ -1128,10 +1127,9 @@ pub mod compilation_result {
     pub enum Source {
         /// Immutable. Git commit/tag/branch name at which the repository should be
         /// compiled. Must exist in the remote repository. Examples:
-        ///
-        /// * a commit SHA: `12ade345`
-        /// * a tag: `tag1`
-        /// * a branch name: `branch1`
+        /// - a commit SHA: `12ade345`
+        /// - a tag: `tag1`
+        /// - a branch name: `branch1`
         #[prost(string, tag = "2")]
         GitCommitish(::prost::alloc::string::String),
         /// Immutable. The name of the workspace to compile. Must be in the format
@@ -1432,11 +1430,11 @@ pub mod compilation_result_action {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    RelationType::Unspecified => "RELATION_TYPE_UNSPECIFIED",
-                    RelationType::Table => "TABLE",
-                    RelationType::View => "VIEW",
-                    RelationType::IncrementalTable => "INCREMENTAL_TABLE",
-                    RelationType::MaterializedView => "MATERIALIZED_VIEW",
+                    Self::Unspecified => "RELATION_TYPE_UNSPECIFIED",
+                    Self::Table => "TABLE",
+                    Self::View => "VIEW",
+                    Self::IncrementalTable => "INCREMENTAL_TABLE",
+                    Self::MaterializedView => "MATERIALIZED_VIEW",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1780,12 +1778,12 @@ pub mod workflow_invocation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Cancelled => "CANCELLED",
-                State::Failed => "FAILED",
-                State::Canceling => "CANCELING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Cancelled => "CANCELLED",
+                Self::Failed => "FAILED",
+                Self::Canceling => "CANCELING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1907,8 +1905,8 @@ pub struct WorkflowInvocationAction {
     #[prost(string, tag = "7")]
     pub failure_reason: ::prost::alloc::string::String,
     /// Output only. This action's timing details.
-    /// `start_time` will be set if the action is in \[RUNNING, SUCCEEDED,
-    /// CANCELLED, FAILED\] state.
+    /// `start_time` will be set if the action is in [RUNNING, SUCCEEDED,
+    /// CANCELLED, FAILED] state.
     /// `end_time` will be set if the action is in \[SUCCEEDED, CANCELLED, FAILED\]
     /// state.
     #[prost(message, optional, tag = "5")]
@@ -1966,13 +1964,13 @@ pub mod workflow_invocation_action {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Skipped => "SKIPPED",
-                State::Disabled => "DISABLED",
-                State::Succeeded => "SUCCEEDED",
-                State::Cancelled => "CANCELLED",
-                State::Failed => "FAILED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Skipped => "SKIPPED",
+                Self::Disabled => "DISABLED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Cancelled => "CANCELLED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2024,7 +2022,13 @@ pub struct QueryWorkflowInvocationActionsResponse {
 }
 /// Generated client implementations.
 pub mod dataform_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Dataform is a service to develop, create, document, test, and update curated
@@ -2110,8 +2114,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2138,8 +2141,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2166,8 +2168,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2194,8 +2195,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2222,8 +2222,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2251,8 +2250,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2283,8 +2281,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2317,8 +2314,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2349,8 +2345,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2382,8 +2377,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2413,8 +2407,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2444,8 +2437,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2472,8 +2464,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2500,8 +2491,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2528,8 +2518,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2559,8 +2548,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2587,8 +2575,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2615,8 +2602,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2646,8 +2632,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2677,8 +2662,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2705,8 +2689,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2733,8 +2716,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2764,8 +2746,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2795,8 +2776,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2826,8 +2806,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2854,8 +2833,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2886,8 +2864,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2917,8 +2894,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2942,8 +2918,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2973,8 +2948,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3001,8 +2975,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3032,8 +3005,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3060,8 +3032,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3088,8 +3059,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3116,8 +3086,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3144,8 +3113,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3175,8 +3143,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3206,8 +3173,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3237,8 +3203,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3268,8 +3233,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3299,8 +3263,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3327,8 +3290,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3355,8 +3317,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3383,8 +3344,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3411,8 +3371,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3442,8 +3401,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3473,8 +3431,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3504,8 +3461,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3532,8 +3488,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3560,8 +3515,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3593,8 +3547,7 @@ pub mod dataform_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -261,9 +261,9 @@ pub mod key_range {
         Unspecified = 0,
         /// \[start,limit\]
         ClosedClosed = 1,
-        /// \[start,limit)
+        /// [start,limit)
         ClosedOpen = 2,
-        /// (start,limit\]
+        /// (start,limit]
         OpenClosed = 3,
         /// (start,limit)
         OpenOpen = 4,
@@ -275,11 +275,11 @@ pub mod key_range {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::ClosedClosed => "CLOSED_CLOSED",
-                Type::ClosedOpen => "CLOSED_OPEN",
-                Type::OpenClosed => "OPEN_CLOSED",
-                Type::OpenOpen => "OPEN_OPEN",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::ClosedClosed => "CLOSED_CLOSED",
+                Self::ClosedOpen => "CLOSED_OPEN",
+                Self::OpenClosed => "OPEN_CLOSED",
+                Self::OpenOpen => "OPEN_OPEN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -554,9 +554,9 @@ pub mod finish_transaction_action {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Commit => "COMMIT",
-                Mode::Abandon => "ABANDON",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Commit => "COMMIT",
+                Self::Abandon => "ABANDON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1080,7 +1080,7 @@ pub struct CopyCloudBackupAction {
     pub backup_id: ::prost::alloc::string::String,
     /// The fully qualified uri of the source backup from which this
     /// backup was copied. eg.
-    /// "projects/\<project_id>/instances/\<instance_id>/backups/\<backup_id>".
+    /// "projects/<project_id>/instances/<instance_id>/backups/<backup_id>".
     #[prost(string, tag = "4")]
     pub source_backup: ::prost::alloc::string::String,
     /// Output only. The expiration time of the backup, which must be at least 6
@@ -1213,21 +1213,19 @@ pub struct CancelOperationAction {
 /// the same transaction in other Executors to parallelize partition processing.
 ///
 /// Example of a batch read flow:
-///
 /// 1. Start batch transaction with a timestamp (StartBatchTransactionAction)
-/// 1. Generate database partitions for a read or query
-///    (GenerateDbPartitionsForReadAction/GenerateDbPartitionsForQueryAction)
-/// 1. Call ExecutePartitionAction for some or all partitions, process rows
-/// 1. Clean up the transaction (CloseBatchTransactionAction).
+/// 2. Generate database partitions for a read or query
+/// (GenerateDbPartitionsForReadAction/GenerateDbPartitionsForQueryAction)
+/// 3. Call ExecutePartitionAction for some or all partitions, process rows
+/// 4. Clean up the transaction (CloseBatchTransactionAction).
 ///
 /// More sophisticated example, with parallel processing:
-///
 /// 1. Start batch transaction with a timestamp (StartBatchTransactionAction),
-///    note the returned BatchTransactionId
-/// 1. Generate database partitions for a read or query
-///    (GenerateDbPartitionsForReadAction/GenerateDbPartitionsForQueryAction)
-/// 1. Distribute the partitions over a pool of workers, along with the
-///    transaction ID.
+/// note the returned BatchTransactionId
+/// 2. Generate database partitions for a read or query
+/// (GenerateDbPartitionsForReadAction/GenerateDbPartitionsForQueryAction)
+/// 3. Distribute the partitions over a pool of workers, along with the
+/// transaction ID.
 ///
 /// In each worker:
 /// 4-1. StartBatchTransactionAction with the given transaction ID
@@ -1730,7 +1728,13 @@ pub struct SessionPoolOptions {
 }
 /// Generated client implementations.
 pub mod spanner_executor_proxy_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that executes SpannerActions asynchronously.
@@ -1825,8 +1829,7 @@ pub mod spanner_executor_proxy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

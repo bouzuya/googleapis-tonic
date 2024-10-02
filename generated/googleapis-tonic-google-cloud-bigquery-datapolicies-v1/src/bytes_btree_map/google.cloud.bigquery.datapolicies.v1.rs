@@ -74,11 +74,11 @@ pub struct ListDataPoliciesRequest {
     pub page_token: ::prost::alloc::string::String,
     /// Filters the data policies by policy tags that they
     /// are associated with. Currently filter only supports
-    /// "policy<span></span>\_tag" based filtering and OR based predicates. Sample
-    /// filter can be "policy<span></span>\_tag:
+    /// "policy<span></span>_tag" based filtering and OR based predicates. Sample
+    /// filter can be "policy<span></span>_tag:
     /// projects/1/locations/us/taxonomies/2/policyTags/3".
-    /// You may also use wildcard such as "policy<span></span>\_tag:
-    /// projects/1/locations/us/taxonomies/2\*". Please note that OR predicates
+    /// You may also use wildcard such as "policy<span></span>_tag:
+    /// projects/1/locations/us/taxonomies/2*". Please note that OR predicates
     /// cannot be used with wildcard filters.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
@@ -147,11 +147,9 @@ pub mod data_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataPolicyType::Unspecified => "DATA_POLICY_TYPE_UNSPECIFIED",
-                DataPolicyType::ColumnLevelSecurityPolicy => {
-                    "COLUMN_LEVEL_SECURITY_POLICY"
-                }
-                DataPolicyType::DataMaskingPolicy => "DATA_MASKING_POLICY",
+                Self::Unspecified => "DATA_POLICY_TYPE_UNSPECIFIED",
+                Self::ColumnLevelSecurityPolicy => "COLUMN_LEVEL_SECURITY_POLICY",
+                Self::DataMaskingPolicy => "DATA_MASKING_POLICY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -236,21 +234,21 @@ pub mod data_masking_policy {
         /// The masking behavior is as follows:
         ///
         /// * If text length > 4 characters: Replace text with XXXXX, append last
-        ///   four characters of original text.
-        /// * If text length \<= 4 characters: Apply SHA-256 hash.
+        /// four characters of original text.
+        /// * If text length <= 4 characters: Apply SHA-256 hash.
         LastFourCharacters = 9,
         /// Masking expression shows the first four characters of text.
         /// The masking behavior is as follows:
         ///
         /// * If text length > 4 characters: Replace text with XXXXX, prepend first
-        ///   four characters of original text.
-        /// * If text length \<= 4 characters: Apply SHA-256 hash.
+        /// four characters of original text.
+        /// * If text length <= 4 characters: Apply SHA-256 hash.
         FirstFourCharacters = 10,
         /// Masking expression for email addresses.
         /// The masking behavior is as follows:
         ///
         /// * Syntax-valid email address: Replace username with XXXXX. For example,
-        ///   cloudysanfrancisco@gmail.com becomes XXXXX@gmail.com.
+        /// cloudysanfrancisco@gmail.com becomes XXXXX@gmail.com.
         /// * Syntax-invalid email address: Apply SHA-256 hash.
         ///
         /// For more information, see [Email
@@ -278,14 +276,14 @@ pub mod data_masking_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PredefinedExpression::Unspecified => "PREDEFINED_EXPRESSION_UNSPECIFIED",
-                PredefinedExpression::Sha256 => "SHA256",
-                PredefinedExpression::AlwaysNull => "ALWAYS_NULL",
-                PredefinedExpression::DefaultMaskingValue => "DEFAULT_MASKING_VALUE",
-                PredefinedExpression::LastFourCharacters => "LAST_FOUR_CHARACTERS",
-                PredefinedExpression::FirstFourCharacters => "FIRST_FOUR_CHARACTERS",
-                PredefinedExpression::EmailMask => "EMAIL_MASK",
-                PredefinedExpression::DateYearMask => "DATE_YEAR_MASK",
+                Self::Unspecified => "PREDEFINED_EXPRESSION_UNSPECIFIED",
+                Self::Sha256 => "SHA256",
+                Self::AlwaysNull => "ALWAYS_NULL",
+                Self::DefaultMaskingValue => "DEFAULT_MASKING_VALUE",
+                Self::LastFourCharacters => "LAST_FOUR_CHARACTERS",
+                Self::FirstFourCharacters => "FIRST_FOUR_CHARACTERS",
+                Self::EmailMask => "EMAIL_MASK",
+                Self::DateYearMask => "DATE_YEAR_MASK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -318,7 +316,13 @@ pub mod data_masking_policy {
 }
 /// Generated client implementations.
 pub mod data_policy_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Data Policy Service provides APIs for managing the label-policy bindings.
@@ -401,8 +405,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -430,8 +433,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -458,8 +460,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -486,8 +487,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -514,8 +514,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -545,8 +544,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -578,8 +576,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -611,8 +608,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -646,8 +642,7 @@ pub mod data_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -67,10 +67,10 @@ pub mod error_handler {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
-                ErrorCode::OverQuota => "ERROR_CODE_OVER_QUOTA",
-                ErrorCode::DosApiDenial => "ERROR_CODE_DOS_API_DENIAL",
-                ErrorCode::Timeout => "ERROR_CODE_TIMEOUT",
+                Self::Unspecified => "ERROR_CODE_UNSPECIFIED",
+                Self::OverQuota => "ERROR_CODE_OVER_QUOTA",
+                Self::DosApiDenial => "ERROR_CODE_DOS_API_DENIAL",
+                Self::Timeout => "ERROR_CODE_TIMEOUT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -149,21 +149,11 @@ pub mod url_map {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RedirectHttpResponseCode::Unspecified => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode301 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_301"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode302 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_302"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode303 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_303"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode307 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_307"
-                }
+                Self::Unspecified => "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED",
+                Self::RedirectHttpResponseCode301 => "REDIRECT_HTTP_RESPONSE_CODE_301",
+                Self::RedirectHttpResponseCode302 => "REDIRECT_HTTP_RESPONSE_CODE_302",
+                Self::RedirectHttpResponseCode303 => "REDIRECT_HTTP_RESPONSE_CODE_303",
+                Self::RedirectHttpResponseCode307 => "REDIRECT_HTTP_RESPONSE_CODE_307",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -380,9 +370,9 @@ impl AuthFailAction {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AuthFailAction::Unspecified => "AUTH_FAIL_ACTION_UNSPECIFIED",
-            AuthFailAction::Redirect => "AUTH_FAIL_ACTION_REDIRECT",
-            AuthFailAction::Unauthorized => "AUTH_FAIL_ACTION_UNAUTHORIZED",
+            Self::Unspecified => "AUTH_FAIL_ACTION_UNSPECIFIED",
+            Self::Redirect => "AUTH_FAIL_ACTION_REDIRECT",
+            Self::Unauthorized => "AUTH_FAIL_ACTION_UNAUTHORIZED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -420,10 +410,10 @@ impl LoginRequirement {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LoginRequirement::LoginUnspecified => "LOGIN_UNSPECIFIED",
-            LoginRequirement::LoginOptional => "LOGIN_OPTIONAL",
-            LoginRequirement::LoginAdmin => "LOGIN_ADMIN",
-            LoginRequirement::LoginRequired => "LOGIN_REQUIRED",
+            Self::LoginUnspecified => "LOGIN_UNSPECIFIED",
+            Self::LoginOptional => "LOGIN_OPTIONAL",
+            Self::LoginAdmin => "LOGIN_ADMIN",
+            Self::LoginRequired => "LOGIN_REQUIRED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -462,10 +452,10 @@ impl SecurityLevel {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SecurityLevel::SecureUnspecified => "SECURE_UNSPECIFIED",
-            SecurityLevel::SecureNever => "SECURE_NEVER",
-            SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
-            SecurityLevel::SecureAlways => "SECURE_ALWAYS",
+            Self::SecureUnspecified => "SECURE_UNSPECIFIED",
+            Self::SecureNever => "SECURE_NEVER",
+            Self::SecureOptional => "SECURE_OPTIONAL",
+            Self::SecureAlways => "SECURE_ALWAYS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -635,10 +625,10 @@ pub mod application {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ServingStatus::Unspecified => "UNSPECIFIED",
-                ServingStatus::Serving => "SERVING",
-                ServingStatus::UserDisabled => "USER_DISABLED",
-                ServingStatus::SystemDisabled => "SYSTEM_DISABLED",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Serving => "SERVING",
+                Self::UserDisabled => "USER_DISABLED",
+                Self::SystemDisabled => "SYSTEM_DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -681,12 +671,10 @@ pub mod application {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DatabaseType::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
-                DatabaseType::CloudDatastore => "CLOUD_DATASTORE",
-                DatabaseType::CloudFirestore => "CLOUD_FIRESTORE",
-                DatabaseType::CloudDatastoreCompatibility => {
-                    "CLOUD_DATASTORE_COMPATIBILITY"
-                }
+                Self::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
+                Self::CloudDatastore => "CLOUD_DATASTORE",
+                Self::CloudFirestore => "CLOUD_FIRESTORE",
+                Self::CloudDatastoreCompatibility => "CLOUD_DATASTORE_COMPATIBILITY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -802,7 +790,6 @@ pub struct AuthorizedCertificate {
 pub struct CertificateRawData {
     /// PEM encoded x.509 public key certificate. This field is set once on
     /// certificate creation. Must include the header and footer. Example:
-    ///
     /// <pre>
     /// -----BEGIN CERTIFICATE-----
     /// <certificate_value>
@@ -813,13 +800,11 @@ pub struct CertificateRawData {
     /// Unencrypted PEM encoded RSA private key. This field is set once on
     /// certificate creation and then encrypted. The key size must be 2048
     /// bits or fewer. Must include the header and footer. Example:
-    ///
     /// <pre>
     /// -----BEGIN RSA PRIVATE KEY-----
     /// <unencrypted_key_value>
     /// -----END RSA PRIVATE KEY-----
     /// </pre>
-    ///
     /// @InputOnly
     #[prost(string, tag = "2")]
     pub private_key: ::prost::alloc::string::String,
@@ -880,15 +865,13 @@ impl ManagementStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ManagementStatus::Unspecified => "MANAGEMENT_STATUS_UNSPECIFIED",
-            ManagementStatus::Ok => "OK",
-            ManagementStatus::Pending => "PENDING",
-            ManagementStatus::FailedRetryingNotVisible => "FAILED_RETRYING_NOT_VISIBLE",
-            ManagementStatus::FailedPermanent => "FAILED_PERMANENT",
-            ManagementStatus::FailedRetryingCaaForbidden => {
-                "FAILED_RETRYING_CAA_FORBIDDEN"
-            }
-            ManagementStatus::FailedRetryingCaaChecking => "FAILED_RETRYING_CAA_CHECKING",
+            Self::Unspecified => "MANAGEMENT_STATUS_UNSPECIFIED",
+            Self::Ok => "OK",
+            Self::Pending => "PENDING",
+            Self::FailedRetryingNotVisible => "FAILED_RETRYING_NOT_VISIBLE",
+            Self::FailedPermanent => "FAILED_PERMANENT",
+            Self::FailedRetryingCaaForbidden => "FAILED_RETRYING_CAA_FORBIDDEN",
+            Self::FailedRetryingCaaChecking => "FAILED_RETRYING_CAA_CHECKING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1010,9 +993,9 @@ pub mod ssl_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SslManagementType::Unspecified => "SSL_MANAGEMENT_TYPE_UNSPECIFIED",
-                SslManagementType::Automatic => "AUTOMATIC",
-                SslManagementType::Manual => "MANUAL",
+                Self::Unspecified => "SSL_MANAGEMENT_TYPE_UNSPECIFIED",
+                Self::Automatic => "AUTOMATIC",
+                Self::Manual => "MANUAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1073,10 +1056,10 @@ pub mod resource_record {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RecordType::Unspecified => "RECORD_TYPE_UNSPECIFIED",
-                RecordType::A => "A",
-                RecordType::Aaaa => "AAAA",
-                RecordType::Cname => "CNAME",
+                Self::Unspecified => "RECORD_TYPE_UNSPECIFIED",
+                Self::A => "A",
+                Self::Aaaa => "AAAA",
+                Self::Cname => "CNAME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1107,10 +1090,11 @@ pub struct FirewallRule {
     #[prost(enumeration = "firewall_rule::Action", tag = "2")]
     pub action: i32,
     /// IP address or range, defined using CIDR notation, of requests that this
-    /// rule applies to. You can use the wildcard character "\*" to match all IPs
+    /// rule applies to. You can use the wildcard character "*" to match all IPs
     /// equivalent to "0/0" and "::/0" together.
     /// Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32`
-    /// or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
+    ///            or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
+    ///
     ///
     /// <p>Truncation will be silently performed on addresses which are not
     /// properly truncated. For example, `1.2.3.4/24` is accepted as the same
@@ -1152,9 +1136,9 @@ pub mod firewall_rule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::UnspecifiedAction => "UNSPECIFIED_ACTION",
-                Action::Allow => "ALLOW",
-                Action::Deny => "DENY",
+                Self::UnspecifiedAction => "UNSPECIFIED_ACTION",
+                Self::Allow => "ALLOW",
+                Self::Deny => "DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1284,12 +1268,12 @@ pub mod instance {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    LivenessState::Unspecified => "LIVENESS_STATE_UNSPECIFIED",
-                    LivenessState::Unknown => "UNKNOWN",
-                    LivenessState::Healthy => "HEALTHY",
-                    LivenessState::Unhealthy => "UNHEALTHY",
-                    LivenessState::Draining => "DRAINING",
-                    LivenessState::Timeout => "TIMEOUT",
+                    Self::Unspecified => "LIVENESS_STATE_UNSPECIFIED",
+                    Self::Unknown => "UNKNOWN",
+                    Self::Healthy => "HEALTHY",
+                    Self::Unhealthy => "UNHEALTHY",
+                    Self::Draining => "DRAINING",
+                    Self::Timeout => "TIMEOUT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1331,9 +1315,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Availability::Unspecified => "UNSPECIFIED",
-                Availability::Resident => "RESIDENT",
-                Availability::Dynamic => "DYNAMIC",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Resident => "RESIDENT",
+                Self::Dynamic => "DYNAMIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1387,16 +1371,10 @@ pub mod network_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IngressTrafficAllowed::Unspecified => {
-                    "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED"
-                }
-                IngressTrafficAllowed::All => "INGRESS_TRAFFIC_ALLOWED_ALL",
-                IngressTrafficAllowed::InternalOnly => {
-                    "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY"
-                }
-                IngressTrafficAllowed::InternalAndLb => {
-                    "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB"
-                }
+                Self::Unspecified => "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED",
+                Self::All => "INGRESS_TRAFFIC_ALLOWED_ALL",
+                Self::InternalOnly => "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY",
+                Self::InternalAndLb => "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1466,7 +1444,7 @@ pub struct TrafficSplit {
     #[prost(enumeration = "traffic_split::ShardBy", tag = "1")]
     pub shard_by: i32,
     /// Mapping from version IDs within the service to fractional
-    /// (0.000, 1\] allocations of traffic for that version. Each version can
+    /// (0.000, 1] allocations of traffic for that version. Each version can
     /// be specified only once, but some versions in the service may not
     /// have any traffic allocation. Services that have traffic allocated
     /// cannot be deleted until either the service is deleted or
@@ -1515,10 +1493,10 @@ pub mod traffic_split {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ShardBy::Unspecified => "UNSPECIFIED",
-                ShardBy::Cookie => "COOKIE",
-                ShardBy::Ip => "IP",
-                ShardBy::Random => "RANDOM",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Cookie => "COOKIE",
+                Self::Ip => "IP",
+                Self::Random => "RANDOM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1919,11 +1897,9 @@ pub mod endpoints_api_service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RolloutStrategy::UnspecifiedRolloutStrategy => {
-                    "UNSPECIFIED_ROLLOUT_STRATEGY"
-                }
-                RolloutStrategy::Fixed => "FIXED",
-                RolloutStrategy::Managed => "MANAGED",
+                Self::UnspecifiedRolloutStrategy => "UNSPECIFIED_ROLLOUT_STRATEGY",
+                Self::Fixed => "FIXED",
+                Self::Managed => "MANAGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2120,14 +2096,14 @@ pub struct Network {
     /// unless it is for the default network.
     ///
     /// * If the network that the instance is being created in is a Legacy network,
-    ///   then the IP address is allocated from the IPv4Range.
+    /// then the IP address is allocated from the IPv4Range.
     /// * If the network that the instance is being created in is an auto Subnet
-    ///   Mode Network, then only network name should be specified (not the
-    ///   subnetwork_name) and the IP address is created from the IPCidrRange of the
-    ///   subnetwork that exists in that zone for that network.
+    /// Mode Network, then only network name should be specified (not the
+    /// subnetwork_name) and the IP address is created from the IPCidrRange of the
+    /// subnetwork that exists in that zone for that network.
     /// * If the network that the instance is being created in is a custom Subnet
-    ///   Mode Network, then the subnetwork_name must be specified and the
-    ///   IP address is created from the IPCidrRange of the subnetwork.
+    /// Mode Network, then the subnetwork_name must be specified and the
+    /// IP address is created from the IPCidrRange of the subnetwork.
     ///
     /// If specified, the subnetwork must exist in the same region as the
     /// App Engine flexible environment application.
@@ -2216,9 +2192,9 @@ pub mod vpc_access_connector {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EgressSetting::Unspecified => "EGRESS_SETTING_UNSPECIFIED",
-                EgressSetting::AllTraffic => "ALL_TRAFFIC",
-                EgressSetting::PrivateIpRanges => "PRIVATE_IP_RANGES",
+                Self::Unspecified => "EGRESS_SETTING_UNSPECIFIED",
+                Self::AllTraffic => "ALL_TRAFFIC",
+                Self::PrivateIpRanges => "PRIVATE_IP_RANGES",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2280,25 +2256,15 @@ impl InboundServiceType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            InboundServiceType::InboundServiceUnspecified => {
-                "INBOUND_SERVICE_UNSPECIFIED"
-            }
-            InboundServiceType::InboundServiceMail => "INBOUND_SERVICE_MAIL",
-            InboundServiceType::InboundServiceMailBounce => "INBOUND_SERVICE_MAIL_BOUNCE",
-            InboundServiceType::InboundServiceXmppError => "INBOUND_SERVICE_XMPP_ERROR",
-            InboundServiceType::InboundServiceXmppMessage => {
-                "INBOUND_SERVICE_XMPP_MESSAGE"
-            }
-            InboundServiceType::InboundServiceXmppSubscribe => {
-                "INBOUND_SERVICE_XMPP_SUBSCRIBE"
-            }
-            InboundServiceType::InboundServiceXmppPresence => {
-                "INBOUND_SERVICE_XMPP_PRESENCE"
-            }
-            InboundServiceType::InboundServiceChannelPresence => {
-                "INBOUND_SERVICE_CHANNEL_PRESENCE"
-            }
-            InboundServiceType::InboundServiceWarmup => "INBOUND_SERVICE_WARMUP",
+            Self::InboundServiceUnspecified => "INBOUND_SERVICE_UNSPECIFIED",
+            Self::InboundServiceMail => "INBOUND_SERVICE_MAIL",
+            Self::InboundServiceMailBounce => "INBOUND_SERVICE_MAIL_BOUNCE",
+            Self::InboundServiceXmppError => "INBOUND_SERVICE_XMPP_ERROR",
+            Self::InboundServiceXmppMessage => "INBOUND_SERVICE_XMPP_MESSAGE",
+            Self::InboundServiceXmppSubscribe => "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+            Self::InboundServiceXmppPresence => "INBOUND_SERVICE_XMPP_PRESENCE",
+            Self::InboundServiceChannelPresence => "INBOUND_SERVICE_CHANNEL_PRESENCE",
+            Self::InboundServiceWarmup => "INBOUND_SERVICE_WARMUP",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2340,9 +2306,9 @@ impl ServingStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ServingStatus::Unspecified => "SERVING_STATUS_UNSPECIFIED",
-            ServingStatus::Serving => "SERVING",
-            ServingStatus::Stopped => "STOPPED",
+            Self::Unspecified => "SERVING_STATUS_UNSPECIFIED",
+            Self::Serving => "SERVING",
+            Self::Stopped => "STOPPED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2842,7 +2808,7 @@ pub struct DeleteDomainMappingRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Fields that should be returned when \[Version\]\[google.appengine.v1.Version\] resources
+/// Fields that should be returned when [Version][google.appengine.v1.Version] resources
 /// are retrieved.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -2862,8 +2828,8 @@ impl VersionView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            VersionView::Basic => "BASIC",
-            VersionView::Full => "FULL",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2894,8 +2860,8 @@ impl AuthorizedCertificateView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AuthorizedCertificateView::BasicCertificate => "BASIC_CERTIFICATE",
-            AuthorizedCertificateView::FullCertificate => "FULL_CERTIFICATE",
+            Self::BasicCertificate => "BASIC_CERTIFICATE",
+            Self::FullCertificate => "FULL_CERTIFICATE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2930,11 +2896,11 @@ impl DomainOverrideStrategy {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DomainOverrideStrategy::UnspecifiedDomainOverrideStrategy => {
+            Self::UnspecifiedDomainOverrideStrategy => {
                 "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY"
             }
-            DomainOverrideStrategy::Strict => "STRICT",
-            DomainOverrideStrategy::Override => "OVERRIDE",
+            Self::Strict => "STRICT",
+            Self::Override => "OVERRIDE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2951,7 +2917,13 @@ impl DomainOverrideStrategy {
 }
 /// Generated client implementations.
 pub mod applications_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages App Engine applications.
@@ -3033,8 +3005,7 @@ pub mod applications_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3067,8 +3038,7 @@ pub mod applications_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3103,8 +3073,7 @@ pub mod applications_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3143,8 +3112,7 @@ pub mod applications_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3166,7 +3134,13 @@ pub mod applications_client {
 }
 /// Generated client implementations.
 pub mod services_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages services of an application.
@@ -3251,8 +3225,7 @@ pub mod services_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3274,8 +3247,7 @@ pub mod services_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3300,8 +3272,7 @@ pub mod services_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3328,8 +3299,7 @@ pub mod services_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3348,7 +3318,13 @@ pub mod services_client {
 }
 /// Generated client implementations.
 pub mod versions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages versions of a service.
@@ -3433,8 +3409,7 @@ pub mod versions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3458,8 +3433,7 @@ pub mod versions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3484,8 +3458,7 @@ pub mod versions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3547,8 +3520,7 @@ pub mod versions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3575,8 +3547,7 @@ pub mod versions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3595,7 +3566,13 @@ pub mod versions_client {
 }
 /// Generated client implementations.
 pub mod instances_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages instances of a version.
@@ -3683,8 +3660,7 @@ pub mod instances_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3708,8 +3684,7 @@ pub mod instances_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3745,8 +3720,7 @@ pub mod instances_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3780,8 +3754,7 @@ pub mod instances_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3800,7 +3773,13 @@ pub mod instances_client {
 }
 /// Generated client implementations.
 pub mod firewall_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Firewall resources are used to define a collection of access control rules
@@ -3894,8 +3873,7 @@ pub mod firewall_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3913,7 +3891,7 @@ pub mod firewall_client {
         /// Replaces the entire firewall ruleset in one bulk operation. This overrides
         /// and replaces the rules of an existing firewall with the new rules.
         ///
-        /// If the final rule does not match traffic with the '\*' wildcard IP range,
+        /// If the final rule does not match traffic with the '*' wildcard IP range,
         /// then an "allow all" rule is explicitly added to the end of the list.
         pub async fn batch_update_ingress_rules(
             &mut self,
@@ -3926,8 +3904,7 @@ pub mod firewall_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3954,8 +3931,7 @@ pub mod firewall_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3979,8 +3955,7 @@ pub mod firewall_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4004,8 +3979,7 @@ pub mod firewall_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4029,8 +4003,7 @@ pub mod firewall_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4049,7 +4022,13 @@ pub mod firewall_client {
 }
 /// Generated client implementations.
 pub mod authorized_domains_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages domains a user is authorized to administer. To authorize use of a
@@ -4136,8 +4115,7 @@ pub mod authorized_domains_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4159,7 +4137,13 @@ pub mod authorized_domains_client {
 }
 /// Generated client implementations.
 pub mod authorized_certificates_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages SSL certificates a user is authorized to administer. A user can
@@ -4247,8 +4231,7 @@ pub mod authorized_certificates_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4278,8 +4261,7 @@ pub mod authorized_certificates_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4309,8 +4291,7 @@ pub mod authorized_certificates_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4344,8 +4325,7 @@ pub mod authorized_certificates_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4372,8 +4352,7 @@ pub mod authorized_certificates_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4395,7 +4374,13 @@ pub mod authorized_certificates_client {
 }
 /// Generated client implementations.
 pub mod domain_mappings_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages domains serving an application.
@@ -4480,8 +4465,7 @@ pub mod domain_mappings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4508,8 +4492,7 @@ pub mod domain_mappings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4541,8 +4524,7 @@ pub mod domain_mappings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4575,8 +4557,7 @@ pub mod domain_mappings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4608,8 +4589,7 @@ pub mod domain_mappings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4669,7 +4649,7 @@ pub struct CreateVersionMethod {
     #[prost(message, optional, tag = "1")]
     pub request: ::core::option::Option<CreateVersionRequest>,
 }
-/// Metadata for the given \[google.cloud.location.Location\]\[google.cloud.location.Location\].
+/// Metadata for the given [google.cloud.location.Location][google.cloud.location.Location].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
     /// App Engine standard environment is available in the given location.
@@ -4687,7 +4667,7 @@ pub struct LocationMetadata {
     #[prost(bool, tag = "6")]
     pub search_api_available: bool,
 }
-/// Metadata for the given \[google.longrunning.Operation\]\[google.longrunning.Operation\].
+/// Metadata for the given [google.longrunning.Operation][google.longrunning.Operation].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadataV1 {
     /// API method that initiated this operation. Example:
@@ -4740,8 +4720,8 @@ pub mod operation_metadata_v1 {
         CreateVersionMetadata(super::CreateVersionMetadataV1),
     }
 }
-/// Metadata for the given \[google.longrunning.Operation\]\[google.longrunning.Operation\] during a
-/// \[google.appengine.v1.CreateVersionRequest\]\[google.appengine.v1.CreateVersionRequest\].
+/// Metadata for the given [google.longrunning.Operation][google.longrunning.Operation] during a
+/// [google.appengine.v1.CreateVersionRequest][google.appengine.v1.CreateVersionRequest].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVersionMetadataV1 {
     /// The Cloud Build ID if one was created as part of the version create.

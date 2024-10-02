@@ -5,11 +5,11 @@ pub struct BigLakeConfiguration {
     /// Required. The connection specifying the credentials to be used to read and
     /// write to external storage, such as Cloud Storage. The connection_id can
     /// have the form `{project}.{location}.{connection_id}` or
-    /// \`projects/{project}/locations/{location}/connections/{connection_id}".
+    /// `projects/{project}/locations/{location}/connections/{connection_id}".
     #[prost(string, tag = "1")]
     pub connection_id: ::prost::alloc::string::String,
     /// Required. The fully qualified location prefix of the external folder where
-    /// table data is stored. The '\*' wildcard character is not allowed. The URI
+    /// table data is stored. The '*' wildcard character is not allowed. The URI
     /// should be in the format `gs://bucket/path_to_table/`
     #[prost(string, tag = "2")]
     pub storage_uri: ::prost::alloc::string::String,
@@ -48,8 +48,8 @@ pub mod big_lake_configuration {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FileFormat::Unspecified => "FILE_FORMAT_UNSPECIFIED",
-                FileFormat::Parquet => "PARQUET",
+                Self::Unspecified => "FILE_FORMAT_UNSPECIFIED",
+                Self::Parquet => "PARQUET",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -87,8 +87,8 @@ pub mod big_lake_configuration {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TableFormat::Unspecified => "TABLE_FORMAT_UNSPECIFIED",
-                TableFormat::Iceberg => "ICEBERG",
+                Self::Unspecified => "TABLE_FORMAT_UNSPECIFIED",
+                Self::Iceberg => "ICEBERG",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -125,7 +125,7 @@ pub struct DataFormatOptions {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatasetReference {
     /// Required. A unique ID for this dataset, without the project name. The ID
-    /// must contain only letters (a-z, A-Z), numbers (0-9), or underscores (\_).
+    /// must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
     /// The maximum length is 1,024 characters.
     #[prost(string, tag = "1")]
     pub dataset_id: ::prost::alloc::string::String,
@@ -169,7 +169,7 @@ pub struct ExternalDatasetReference {
     /// Required. The connection id that is used to access the external_source.
     ///
     /// Format:
-    /// projects/{project_id}/locations/{location_id}/connections/{connection_id}
+    ///    projects/{project_id}/locations/{location_id}/connections/{connection_id}
     #[prost(string, tag = "3")]
     pub connection: ::prost::alloc::string::String,
 }
@@ -209,8 +209,8 @@ pub mod restriction_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RestrictionType::Unspecified => "RESTRICTION_TYPE_UNSPECIFIED",
-                RestrictionType::RestrictedDataEgress => "RESTRICTED_DATA_EGRESS",
+                Self::Unspecified => "RESTRICTION_TYPE_UNSPECIFIED",
+                Self::RestrictedDataEgress => "RESTRICTED_DATA_EGRESS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -233,7 +233,7 @@ pub struct RoutineReference {
     #[prost(string, tag = "2")]
     pub dataset_id: ::prost::alloc::string::String,
     /// Required. The ID of the routine. The ID must contain only
-    /// letters (a-z, A-Z), numbers (0-9), or underscores (\_). The maximum
+    /// letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum
     /// length is 256 characters.
     #[prost(string, tag = "3")]
     pub routine_id: ::prost::alloc::string::String,
@@ -264,7 +264,7 @@ pub struct TableSchema {
     pub fields: ::prost::alloc::vec::Vec<TableFieldSchema>,
     /// Optional. Specifies metadata of the foreign data type definition in field
     /// schema
-    /// (\[TableFieldSchema.foreign_type_definition\]\[google.cloud.bigquery.v2.TableFieldSchema.foreign_type_definition\]).
+    /// ([TableFieldSchema.foreign_type_definition][google.cloud.bigquery.v2.TableFieldSchema.foreign_type_definition]).
     #[prost(message, optional, tag = "3")]
     pub foreign_type_info: ::core::option::Option<ForeignTypeInfo>,
 }
@@ -305,8 +305,8 @@ pub mod foreign_type_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TypeSystem::Unspecified => "TYPE_SYSTEM_UNSPECIFIED",
-                TypeSystem::Hive => "HIVE",
+                Self::Unspecified => "TYPE_SYSTEM_UNSPECIFIED",
+                Self::Hive => "HIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -332,7 +332,7 @@ pub struct DataPolicyOption {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableFieldSchema {
     /// Required. The field name. The name must contain only letters (a-z, A-Z),
-    /// numbers (0-9), or underscores (\_), and must start with a letter or
+    /// numbers (0-9), or underscores (_), and must start with a letter or
     /// underscore. The maximum length is 300 characters.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -386,14 +386,14 @@ pub struct TableFieldSchema {
     /// If type = "BYTES", then max_length represents the maximum number of
     /// bytes in this field.
     ///
-    /// It is invalid to set this field if type ≠ "STRING" and ≠ "BYTES".
+    /// It is invalid to set this field if type &ne; "STRING" and &ne; "BYTES".
     #[prost(int64, tag = "10")]
     pub max_length: i64,
     /// Optional. Precision (maximum number of total digits in base 10) and scale
     /// (maximum number of digits in the fractional part in base 10) constraints
     /// for values of this field for NUMERIC or BIGNUMERIC.
     ///
-    /// It is invalid to set precision or scale if type ≠ "NUMERIC" and ≠
+    /// It is invalid to set precision or scale if type &ne; "NUMERIC" and &ne;
     /// "BIGNUMERIC".
     ///
     /// If precision and scale are not specified, no value range constraint is
@@ -402,24 +402,24 @@ pub struct TableFieldSchema {
     /// Values of this NUMERIC or BIGNUMERIC field must be in this range when:
     ///
     /// * Precision (<var>P</var>) and scale (<var>S</var>) are specified:
-    ///   \[-10<sup><var>P</var>-<var>S</var></sup> + 10<sup>-<var>S</var></sup>,
-    ///   10<sup><var>P</var>-<var>S</var></sup> - 10<sup>-<var>S</var></sup>\]
+    ///    [-10<sup><var>P</var>-<var>S</var></sup> + 10<sup>-<var>S</var></sup>,
+    ///     10<sup><var>P</var>-<var>S</var></sup> - 10<sup>-<var>S</var></sup>]
     /// * Precision (<var>P</var>) is specified but not scale (and thus scale is
-    ///   interpreted to be equal to zero):
-    ///   \[-10<sup><var>P</var></sup> + 1, 10<sup><var>P</var></sup> - 1\].
+    ///    interpreted to be equal to zero):
+    ///    \[-10<sup><var>P</var></sup> + 1, 10<sup><var>P</var></sup> - 1\].
     ///
     /// Acceptable values for precision and scale if both are specified:
     ///
     /// * If type = "NUMERIC":
-    ///   1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9.
+    ///    1 &le; precision - scale &le; 29 and 0 &le; scale &le; 9.
     /// * If type = "BIGNUMERIC":
-    ///   1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38.
+    ///    1 &le; precision - scale &le; 38 and 0 &le; scale &le; 38.
     ///
     /// Acceptable values for precision if only precision is specified but not
     /// scale (and thus scale is interpreted to be equal to zero):
     ///
-    /// * If type = "NUMERIC": 1 ≤ precision ≤ 29.
-    /// * If type = "BIGNUMERIC": 1 ≤ precision ≤ 38.
+    /// * If type = "NUMERIC": 1 &le; precision &le; 29.
+    /// * If type = "BIGNUMERIC": 1 &le; precision &le; 38.
     ///
     /// If scale is specified but not precision, then it is invalid.
     #[prost(int64, tag = "11")]
@@ -471,7 +471,7 @@ pub mod table_field_schema {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FieldElementType {
         /// Required. The type of a field element. For more information, see
-        /// \[TableFieldSchema.type\]\[google.cloud.bigquery.v2.TableFieldSchema.type\].
+        /// [TableFieldSchema.type][google.cloud.bigquery.v2.TableFieldSchema.type].
         #[prost(string, tag = "1")]
         pub r#type: ::prost::alloc::string::String,
     }
@@ -516,9 +516,9 @@ pub mod table_field_schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RoundingMode::Unspecified => "ROUNDING_MODE_UNSPECIFIED",
-                RoundingMode::RoundHalfAwayFromZero => "ROUND_HALF_AWAY_FROM_ZERO",
-                RoundingMode::RoundHalfEven => "ROUND_HALF_EVEN",
+                Self::Unspecified => "ROUNDING_MODE_UNSPECIFIED",
+                Self::RoundHalfAwayFromZero => "ROUND_HALF_AWAY_FROM_ZERO",
+                Self::RoundHalfEven => "ROUND_HALF_EVEN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -580,9 +580,9 @@ pub mod dataset_access_entry {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TargetType::Unspecified => "TARGET_TYPE_UNSPECIFIED",
-                TargetType::Views => "VIEWS",
-                TargetType::Routines => "ROUTINES",
+                Self::Unspecified => "TARGET_TYPE_UNSPECIFIED",
+                Self::Views => "VIEWS",
+                Self::Routines => "ROUTINES",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -628,10 +628,10 @@ pub struct Access {
     pub domain: ::prost::alloc::string::String,
     /// \[Pick one\] A special group to grant access to. Possible values include:
     ///
-    /// * projectOwners: Owners of the enclosing project.
-    /// * projectReaders: Readers of the enclosing project.
-    /// * projectWriters: Writers of the enclosing project.
-    /// * allAuthenticatedUsers: All authenticated BigQuery users.
+    ///    * projectOwners: Owners of the enclosing project.
+    ///    * projectReaders: Readers of the enclosing project.
+    ///    * projectWriters: Writers of the enclosing project.
+    ///    * allAuthenticatedUsers: All authenticated BigQuery users.
     ///
     /// Maps to similarly-named IAM members.
     #[prost(string, tag = "5")]
@@ -892,9 +892,9 @@ pub mod dataset {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StorageBillingModel::Unspecified => "STORAGE_BILLING_MODEL_UNSPECIFIED",
-                StorageBillingModel::Logical => "LOGICAL",
-                StorageBillingModel::Physical => "PHYSICAL",
+                Self::Unspecified => "STORAGE_BILLING_MODEL_UNSPECIFIED",
+                Self::Logical => "LOGICAL",
+                Self::Physical => "PHYSICAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -967,9 +967,9 @@ pub mod linked_dataset_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LinkState::Unspecified => "LINK_STATE_UNSPECIFIED",
-                LinkState::Linked => "LINKED",
-                LinkState::Unlinked => "UNLINKED",
+                Self::Unspecified => "LINK_STATE_UNSPECIFIED",
+                Self::Linked => "LINKED",
+                Self::Unlinked => "UNLINKED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1032,10 +1032,10 @@ pub mod get_dataset_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DatasetView::Unspecified => "DATASET_VIEW_UNSPECIFIED",
-                DatasetView::Metadata => "METADATA",
-                DatasetView::Acl => "ACL",
-                DatasetView::Full => "FULL",
+                Self::Unspecified => "DATASET_VIEW_UNSPECIFIED",
+                Self::Metadata => "METADATA",
+                Self::Acl => "ACL",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1191,7 +1191,13 @@ pub struct UndeleteDatasetRequest {
 }
 /// Generated client implementations.
 pub mod dataset_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This is an experimental RPC service definition for the BigQuery
@@ -1276,8 +1282,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1304,8 +1309,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1335,8 +1339,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1365,8 +1368,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1396,8 +1398,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1425,8 +1426,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1455,8 +1455,7 @@ pub mod dataset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1499,10 +1498,10 @@ impl DecimalTargetType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DecimalTargetType::Unspecified => "DECIMAL_TARGET_TYPE_UNSPECIFIED",
-            DecimalTargetType::Numeric => "NUMERIC",
-            DecimalTargetType::Bignumeric => "BIGNUMERIC",
-            DecimalTargetType::String => "STRING",
+            Self::Unspecified => "DECIMAL_TARGET_TYPE_UNSPECIFIED",
+            Self::Numeric => "NUMERIC",
+            Self::Bignumeric => "BIGNUMERIC",
+            Self::String => "STRING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1623,8 +1622,8 @@ impl FileSetSpecType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            FileSetSpecType::FileSystemMatch => "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
-            FileSetSpecType::NewLineDelimitedManifest => {
+            Self::FileSystemMatch => "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
+            Self::NewLineDelimitedManifest => {
                 "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST"
             }
         }
@@ -1649,7 +1648,7 @@ pub struct HivePartitioningOptions {
     /// * AUTO: automatically infer partition key name(s) and type(s).
     ///
     /// * STRINGS: automatically infer partition key name(s).  All types are
-    ///   strings.
+    /// strings.
     ///
     /// * CUSTOM: partition key schema is encoded in the source URI prefix.
     ///
@@ -1721,8 +1720,8 @@ impl JsonExtension {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            JsonExtension::Unspecified => "JSON_EXTENSION_UNSPECIFIED",
-            JsonExtension::Geojson => "GEOJSON",
+            Self::Unspecified => "JSON_EXTENSION_UNSPECIFIED",
+            Self::Geojson => "GEOJSON",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1752,8 +1751,8 @@ impl MapTargetType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            MapTargetType::Unspecified => "MAP_TARGET_TYPE_UNSPECIFIED",
-            MapTargetType::ArrayOfStruct => "ARRAY_OF_STRUCT",
+            Self::Unspecified => "MAP_TARGET_TYPE_UNSPECIFIED",
+            Self::ArrayOfStruct => "ARRAY_OF_STRUCT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1809,13 +1808,13 @@ pub struct CsvOptions {
     /// When autodetect is on, the behavior is the following:
     ///
     /// * skipLeadingRows unspecified - Autodetect tries to detect headers in the
-    ///   first row. If they are not detected, the row is read as data. Otherwise
-    ///   data is read starting from the second row.
+    ///    first row. If they are not detected, the row is read as data. Otherwise
+    ///    data is read starting from the second row.
     /// * skipLeadingRows is 0 - Instructs autodetect that there are no headers and
-    ///   data should be read starting from the first row.
+    ///    data should be read starting from the first row.
     /// * skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect
-    ///   headers in row N. If headers are not detected, row N is just skipped.
-    ///   Otherwise row N is used to extract column names for the detected schema.
+    ///    headers in row N. If headers are not detected, row N is just skipped.
+    ///    Otherwise row N is used to extract column names for the detected schema.
     #[prost(message, optional, tag = "2")]
     pub skip_leading_rows: ::core::option::Option<i64>,
     /// Optional. The value that is used to quote data sections in a CSV file.
@@ -1885,14 +1884,14 @@ pub struct BigtableColumn {
     /// qualifier_encoded.
     /// The column field name is the same as the column qualifier. However, if the
     /// qualifier is not a valid BigQuery field identifier i.e. does not match
-    /// \[a-zA-Z\]\[a-zA-Z0-9\_\]\*, a valid identifier must be provided as field_name.
+    /// [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided as field_name.
     #[prost(message, optional, tag = "1")]
     pub qualifier_encoded: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
     /// Qualifier string.
     #[prost(message, optional, tag = "2")]
     pub qualifier_string: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. If the qualifier is not a valid BigQuery field identifier i.e.
-    /// does not match \[a-zA-Z\]\[a-zA-Z0-9\_\]\*,  a valid identifier must be provided
+    /// does not match [a-zA-Z][a-zA-Z0-9_]*,  a valid identifier must be provided
     /// as the column field name and is used as field name in queries.
     #[prost(string, tag = "3")]
     pub field_name: ::prost::alloc::string::String,
@@ -1915,15 +1914,15 @@ pub struct BigtableColumn {
     pub r#type: ::prost::alloc::string::String,
     /// Optional. The encoding of the values when the type is not STRING.
     /// Acceptable encoding values are:
-    /// TEXT - indicates values are alphanumeric text strings.
-    /// BINARY - indicates values are encoded using HBase Bytes.toBytes family of
-    /// functions.
+    ///    TEXT - indicates values are alphanumeric text strings.
+    ///    BINARY - indicates values are encoded using HBase Bytes.toBytes family of
+    ///             functions.
     /// 'encoding' can also be set at the column family level. However, the setting
     /// at this level takes precedence if 'encoding' is set at both levels.
     #[prost(string, tag = "5")]
     pub encoding: ::prost::alloc::string::String,
     /// Optional. If this is set, only the latest version of value in this column
-    /// are exposed.
+    ///              are exposed.
     /// 'onlyReadLatest' can also be set at the column family level. However, the
     /// setting at this level takes precedence if 'onlyReadLatest' is set at both
     /// levels.
@@ -1955,9 +1954,9 @@ pub struct BigtableColumnFamily {
     pub r#type: ::prost::alloc::string::String,
     /// Optional. The encoding of the values when the type is not STRING.
     /// Acceptable encoding values are:
-    /// TEXT - indicates values are alphanumeric text strings.
-    /// BINARY - indicates values are encoded using HBase Bytes.toBytes family of
-    /// functions.
+    ///    TEXT - indicates values are alphanumeric text strings.
+    ///    BINARY - indicates values are encoded using HBase Bytes.toBytes family of
+    ///             functions.
     /// This can be overridden for a specific column by listing that column in
     /// 'columns' and specifying an encoding for it.
     #[prost(string, tag = "3")]
@@ -2018,15 +2017,14 @@ pub struct GoogleSheetsOptions {
     /// when reading the data. The default value is 0. This property is useful if
     /// you have header rows that should be skipped. When autodetect is on,
     /// the behavior is the following:
-    ///
     /// * skipLeadingRows unspecified - Autodetect tries to detect headers in the
-    ///   first row. If they are not detected, the row is read as data. Otherwise
-    ///   data is read starting from the second row.
+    ///    first row. If they are not detected, the row is read as data. Otherwise
+    ///    data is read starting from the second row.
     /// * skipLeadingRows is 0 - Instructs autodetect that there are no headers and
-    ///   data should be read starting from the first row.
+    ///    data should be read starting from the first row.
     /// * skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect
-    ///   headers in row N. If headers are not detected, row N is just skipped.
-    ///   Otherwise row N is used to extract column names for the detected schema.
+    ///    headers in row N. If headers are not detected, row N is just skipped.
+    ///    Otherwise row N is used to extract column names for the detected schema.
     #[prost(message, optional, tag = "1")]
     pub skip_leading_rows: ::core::option::Option<i64>,
     /// Optional. Range of a sheet to query from. Only used when non-empty.
@@ -2039,12 +2037,12 @@ pub struct GoogleSheetsOptions {
 pub struct ExternalDataConfiguration {
     /// \[Required\] The fully-qualified URIs that point to your data in Google
     /// Cloud. For Google Cloud Storage URIs:
-    /// Each URI can contain one '*' wildcard character and it must come after
-    /// the 'bucket' name.
-    /// Size limits related to load jobs apply to external data sources.
+    ///    Each URI can contain one '*' wildcard character and it must come after
+    ///    the 'bucket' name.
+    ///    Size limits related to load jobs apply to external data sources.
     /// For Google Cloud Bigtable URIs:
-    /// Exactly one URI can be specified and it has be a fully specified and
-    /// valid HTTPS URL for a Google Cloud Bigtable table.
+    ///    Exactly one URI can be specified and it has be a fully specified and
+    ///    valid HTTPS URL for a Google Cloud Bigtable table.
     /// For Google Cloud Datastore backups, exactly one URI can be specified. Also,
     /// the '*' wildcard character is not allowed.
     #[prost(string, repeated, tag = "1")]
@@ -2093,13 +2091,13 @@ pub struct ExternalDataConfiguration {
     /// The default value is false.
     /// The sourceFormat property determines what BigQuery treats as an extra
     /// value:
-    /// CSV: Trailing columns
-    /// JSON: Named values that don't match any column names
-    /// Google Cloud Bigtable: This setting is ignored.
-    /// Google Cloud Datastore backups: This setting is ignored.
-    /// Avro: This setting is ignored.
-    /// ORC: This setting is ignored.
-    /// Parquet: This setting is ignored.
+    ///    CSV: Trailing columns
+    ///    JSON: Named values that don't match any column names
+    ///    Google Cloud Bigtable: This setting is ignored.
+    ///    Google Cloud Datastore backups: This setting is ignored.
+    ///    Avro: This setting is ignored.
+    ///    ORC: This setting is ignored.
+    ///    Parquet: This setting is ignored.
     #[prost(message, optional, tag = "6")]
     pub ignore_unknown_values: ::core::option::Option<bool>,
     /// Optional. The compression type of the data source.
@@ -2227,9 +2225,9 @@ pub mod external_data_configuration {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ObjectMetadata::Unspecified => "OBJECT_METADATA_UNSPECIFIED",
-                ObjectMetadata::Directory => "DIRECTORY",
-                ObjectMetadata::Simple => "SIMPLE",
+                Self::Unspecified => "OBJECT_METADATA_UNSPECIFIED",
+                Self::Directory => "DIRECTORY",
+                Self::Simple => "SIMPLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2275,9 +2273,9 @@ pub mod external_data_configuration {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MetadataCacheMode::Unspecified => "METADATA_CACHE_MODE_UNSPECIFIED",
-                MetadataCacheMode::Automatic => "AUTOMATIC",
-                MetadataCacheMode::Manual => "MANUAL",
+                Self::Unspecified => "METADATA_CACHE_MODE_UNSPECIFIED",
+                Self::Automatic => "AUTOMATIC",
+                Self::Manual => "MANUAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2301,7 +2299,7 @@ pub struct ModelReference {
     #[prost(string, tag = "2")]
     pub dataset_id: ::prost::alloc::string::String,
     /// Required. The ID of the model. The ID must contain only
-    /// letters (a-z, A-Z), numbers (0-9), or underscores (\_). The maximum
+    /// letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum
     /// length is 1,024 characters.
     #[prost(string, tag = "3")]
     pub model_id: ::prost::alloc::string::String,
@@ -2424,41 +2422,41 @@ pub mod range_partitioning {
 ///
 /// * ARRAY<STRING>:
 ///
-///   {
-///   "typeKind": "ARRAY",
-///   "arrayElementType": {"typeKind": "STRING"}
-///   }
+///      {
+///        "typeKind": "ARRAY",
+///        "arrayElementType": {"typeKind": "STRING"}
+///      }
 ///
-/// * STRUCT\<x STRING, y ARRAY<DATE>\>:
+/// * STRUCT<x STRING, y ARRAY<DATE>>:
 ///
-///   {
-///   "typeKind": "STRUCT",
-///   "structType":
-///   {
-///   "fields":
-///   \[
-///   {
-///   "name": "x",
-///   "type": {"typeKind": "STRING"}
-///   },
-///   {
-///   "name": "y",
-///   "type":
-///   {
-///   "typeKind": "ARRAY",
-///   "arrayElementType": {"typeKind": "DATE"}
-///   }
-///   }
-///   \]
-///   }
-///   }
+///      {
+///        "typeKind": "STRUCT",
+///        "structType":
+///        {
+///          "fields":
+///          [
+///            {
+///              "name": "x",
+///              "type": {"typeKind": "STRING"}
+///            },
+///            {
+///              "name": "y",
+///              "type":
+///              {
+///                "typeKind": "ARRAY",
+///                "arrayElementType": {"typeKind": "DATE"}
+///              }
+///            }
+///          ]
+///        }
+///      }
 ///
 /// * RANGE<DATE>:
 ///
-///   {
-///   "typeKind": "RANGE",
-///   "rangeElementType": {"typeKind": "DATE"}
-///   }
+///      {
+///        "typeKind": "RANGE",
+///        "rangeElementType": {"typeKind": "DATE"}
+///      }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StandardSqlDataType {
     /// Required. The top level type of this field.
@@ -2522,7 +2520,7 @@ pub mod standard_sql_data_type {
         /// because a JSON object cannot have duplicate field names.
         Struct = 17,
         /// Encoded as a pair with types matching range_element_type. Pairs must
-        /// begin with "\[", end with ")", and be separated by ", ".
+        /// begin with "[", end with ")", and be separated by ", ".
         Range = 29,
     }
     impl TypeKind {
@@ -2532,24 +2530,24 @@ pub mod standard_sql_data_type {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TypeKind::Unspecified => "TYPE_KIND_UNSPECIFIED",
-                TypeKind::Int64 => "INT64",
-                TypeKind::Bool => "BOOL",
-                TypeKind::Float64 => "FLOAT64",
-                TypeKind::String => "STRING",
-                TypeKind::Bytes => "BYTES",
-                TypeKind::Timestamp => "TIMESTAMP",
-                TypeKind::Date => "DATE",
-                TypeKind::Time => "TIME",
-                TypeKind::Datetime => "DATETIME",
-                TypeKind::Interval => "INTERVAL",
-                TypeKind::Geography => "GEOGRAPHY",
-                TypeKind::Numeric => "NUMERIC",
-                TypeKind::Bignumeric => "BIGNUMERIC",
-                TypeKind::Json => "JSON",
-                TypeKind::Array => "ARRAY",
-                TypeKind::Struct => "STRUCT",
-                TypeKind::Range => "RANGE",
+                Self::Unspecified => "TYPE_KIND_UNSPECIFIED",
+                Self::Int64 => "INT64",
+                Self::Bool => "BOOL",
+                Self::Float64 => "FLOAT64",
+                Self::String => "STRING",
+                Self::Bytes => "BYTES",
+                Self::Timestamp => "TIMESTAMP",
+                Self::Date => "DATE",
+                Self::Time => "TIME",
+                Self::Datetime => "DATETIME",
+                Self::Interval => "INTERVAL",
+                Self::Geography => "GEOGRAPHY",
+                Self::Numeric => "NUMERIC",
+                Self::Bignumeric => "BIGNUMERIC",
+                Self::Json => "JSON",
+                Self::Array => "ARRAY",
+                Self::Struct => "STRUCT",
+                Self::Range => "RANGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2642,13 +2640,14 @@ pub struct TimePartitioning {
     #[prost(message, optional, tag = "2")]
     pub expiration_ms: ::core::option::Option<i64>,
     /// Optional. If not set, the table is partitioned by pseudo
-    /// column '\_PARTITIONTIME'; if set, the table is partitioned by this field.
+    /// column '_PARTITIONTIME'; if set, the table is partitioned by this field.
     /// The field must be a top-level TIMESTAMP or DATE field. Its mode must be
     /// NULLABLE or REQUIRED.
     /// A wrapper is used here because an empty string is an invalid value.
     #[prost(message, optional, tag = "3")]
     pub field: ::core::option::Option<::prost::alloc::string::String>,
 }
+///
 /// This is used for defining User Defined Function (UDF) resources only when
 /// using legacy SQL.  Users of GoogleSQL should leverage either DDL (e.g.
 /// CREATE \[TEMPORARY\] FUNCTION ... ) or the Routines API to define UDF
@@ -2698,25 +2697,25 @@ pub struct DestinationTableProperties {
 /// Currently supported connection properties:
 ///
 /// * **dataset_project_id**: represents the default project for datasets that
-///   are used in the query. Setting the
-///   system variable `@@dataset_project_id` achieves the same behavior.  For
-///   more information about system variables, see:
-///   <https://cloud.google.com/bigquery/docs/reference/system-variables>
+/// are used in the query. Setting the
+/// system variable `@@dataset_project_id` achieves the same behavior.  For
+/// more information about system variables, see:
+/// <https://cloud.google.com/bigquery/docs/reference/system-variables>
 ///
 /// * **time_zone**: represents the default timezone used to run the query.
 ///
 /// * **session_id**: associates the query with a given session.
 ///
 /// * **query_label**: associates the query with a given job label. If set,
-///   all subsequent queries in a script or session will have this label. For the
-///   format in which a you can specify a query label, see labels
-///   in the JobConfiguration resource type:
-///   <https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration>
+/// all subsequent queries in a script or session will have this label. For the
+/// format in which a you can specify a query label, see labels
+/// in the JobConfiguration resource type:
+/// <https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration>
 ///
 /// * **service_account**: indicates the service account to use to run a
-///   continuous query. If set, the query job uses the service account to access
-///   Google Cloud resources. Service account access is bounded by the IAM
-///   permissions that you have granted to the service account.
+/// continuous query. If set, the query job uses the service account to access
+/// Google Cloud resources. Service account access is bounded by the IAM
+/// permissions that you have granted to the service account.
 ///
 /// Additional properties are allowed, but ignored. Specifying multiple
 /// connection properties with the same key returns an error.
@@ -2760,9 +2759,9 @@ pub struct JobConfigurationQuery {
     /// The following values are supported:
     ///
     /// * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the
-    ///   table.
+    /// table.
     /// * CREATE_NEVER: The table must already exist. If it does not,
-    ///   a 'notFound' error is returned in the job result.
+    /// a 'notFound' error is returned in the job result.
     ///
     /// The default value is CREATE_IF_NEEDED.
     /// Creation, truncation and append actions occur as one atomic update
@@ -2773,11 +2772,11 @@ pub struct JobConfigurationQuery {
     /// already exists. The following values are supported:
     ///
     /// * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the
-    ///   data, removes the constraints, and uses the schema from the query result.
+    /// data, removes the constraints, and uses the schema from the query result.
     /// * WRITE_APPEND: If the table already exists, BigQuery appends the data to
-    ///   the table.
+    /// the table.
     /// * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate'
-    ///   error is returned in the job result.
+    /// error is returned in the job result.
     ///
     /// The default value is WRITE_EMPTY. Each action is atomic and only occurs if
     /// BigQuery is able to complete the job successfully. Creation, truncation and
@@ -2855,7 +2854,7 @@ pub struct JobConfigurationQuery {
     ///
     /// * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
     /// * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original
-    ///   schema to nullable.
+    /// schema to nullable.
     #[prost(string, repeated, tag = "18")]
     pub schema_update_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Time-based partitioning specification for the destination table. Only one
@@ -2943,11 +2942,9 @@ pub mod script_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                KeyResultStatementKind::Unspecified => {
-                    "KEY_RESULT_STATEMENT_KIND_UNSPECIFIED"
-                }
-                KeyResultStatementKind::Last => "LAST",
-                KeyResultStatementKind::FirstSelect => "FIRST_SELECT",
+                Self::Unspecified => "KEY_RESULT_STATEMENT_KIND_UNSPECIFIED",
+                Self::Last => "LAST",
+                Self::FirstSelect => "FIRST_SELECT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2968,15 +2965,15 @@ pub struct JobConfigurationLoad {
     /// \[Required\] The fully-qualified URIs that point to your data in Google
     /// Cloud.
     /// For Google Cloud Storage URIs:
-    /// Each URI can contain one '*' wildcard character and it must come after
-    /// the 'bucket' name. Size limits related to load jobs apply to external
-    /// data sources.
+    ///    Each URI can contain one '*' wildcard character and it must come after
+    ///    the 'bucket' name. Size limits related to load jobs apply to external
+    ///    data sources.
     /// For Google Cloud Bigtable URIs:
-    /// Exactly one URI can be specified and it has be a fully specified and
-    /// valid HTTPS URL for a Google Cloud Bigtable table.
+    ///    Exactly one URI can be specified and it has be a fully specified and
+    ///    valid HTTPS URL for a Google Cloud Bigtable table.
     /// For Google Cloud Datastore backups:
-    /// Exactly one URI can be specified. Also, the '*' wildcard character is not
-    /// allowed.
+    ///   Exactly one URI can be specified. Also, the '*' wildcard character is not
+    ///   allowed.
     #[prost(string, repeated, tag = "1")]
     pub source_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Specifies how source URIs are interpreted for constructing the
@@ -3002,23 +2999,23 @@ pub struct JobConfigurationLoad {
     /// The following values are supported:
     ///
     /// * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the
-    ///   table.
+    /// table.
     /// * CREATE_NEVER: The table must already exist. If it does not,
-    ///   a 'notFound' error is returned in the job result.
-    ///   The default value is CREATE_IF_NEEDED.
-    ///   Creation, truncation and append actions occur as one atomic update
-    ///   upon job completion.
+    /// a 'notFound' error is returned in the job result.
+    /// The default value is CREATE_IF_NEEDED.
+    /// Creation, truncation and append actions occur as one atomic update
+    /// upon job completion.
     #[prost(string, tag = "5")]
     pub create_disposition: ::prost::alloc::string::String,
     /// Optional. Specifies the action that occurs if the destination table
     /// already exists. The following values are supported:
     ///
     /// * WRITE_TRUNCATE:  If the table already exists, BigQuery overwrites the
-    ///   data, removes the constraints and uses the schema from the load job.
+    /// data, removes the constraints and uses the schema from the load job.
     /// * WRITE_APPEND: If the table already exists, BigQuery appends the data to
-    ///   the table.
+    /// the table.
     /// * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate'
-    ///   error is returned in the job result.
+    /// error is returned in the job result.
     ///
     /// The default value is WRITE_APPEND.
     /// Each action is atomic and only occurs if BigQuery is able to complete the
@@ -3053,13 +3050,13 @@ pub struct JobConfigurationLoad {
     /// is on, the behavior is the following:
     ///
     /// * skipLeadingRows unspecified - Autodetect tries to detect headers in the
-    ///   first row. If they are not detected, the row is read as data. Otherwise
-    ///   data is read starting from the second row.
+    ///    first row. If they are not detected, the row is read as data. Otherwise
+    ///    data is read starting from the second row.
     /// * skipLeadingRows is 0 - Instructs autodetect that there are no headers and
-    ///   data should be read starting from the first row.
+    ///    data should be read starting from the first row.
     /// * skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect
-    ///   headers in row N. If headers are not detected, row N is just skipped.
-    ///   Otherwise row N is used to extract column names for the detected schema.
+    ///    headers in row N. If headers are not detected, row N is just skipped.
+    ///    Otherwise row N is used to extract column names for the detected schema.
     #[prost(message, optional, tag = "9")]
     pub skip_leading_rows: ::core::option::Option<i32>,
     /// Optional. The character encoding of the data.
@@ -3076,7 +3073,7 @@ pub struct JobConfigurationLoad {
     ///
     /// If BigQuery can't convert a character other than the ASCII `0` character,
     /// BigQuery converts the character to the standard Unicode replacement
-    /// character: �.
+    /// character: &#65533;.
     #[prost(string, tag = "10")]
     pub encoding: ::prost::alloc::string::String,
     /// Optional. The value that is used to quote data sections in a CSV file.
@@ -3130,10 +3127,10 @@ pub struct JobConfigurationLoad {
     /// result. The default value is false.
     /// The sourceFormat property determines what BigQuery treats as an extra
     /// value:
-    /// CSV: Trailing columns
-    /// JSON: Named values that don't match any column names in the table schema
-    /// Avro, Parquet, ORC: Fields in the file schema that don't exist in the
-    /// table schema.
+    ///    CSV: Trailing columns
+    ///    JSON: Named values that don't match any column names in the table schema
+    ///    Avro, Parquet, ORC: Fields in the file schema that don't exist in the
+    ///    table schema.
     #[prost(message, optional, tag = "18")]
     pub ignore_unknown_values: ::core::option::Option<bool>,
     /// If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity
@@ -3160,7 +3157,7 @@ pub struct JobConfigurationLoad {
     ///
     /// * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
     /// * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original
-    ///   schema to nullable.
+    /// schema to nullable.
     #[prost(string, repeated, tag = "21")]
     pub schema_update_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Time-based partitioning specification for the destination table. Only one
@@ -3242,7 +3239,7 @@ pub struct JobConfigurationLoad {
     pub preserve_ascii_control_characters: ::core::option::Option<bool>,
     /// Optional. Connection properties which can modify the load job behavior.
     /// Currently, only the 'session_id' connection property is supported, and is
-    /// used to resolve \_SESSION appearing as the dataset id.
+    /// used to resolve _SESSION appearing as the dataset id.
     #[prost(message, repeated, tag = "46")]
     pub connection_properties: ::prost::alloc::vec::Vec<ConnectionProperty>,
     /// Optional. If this property is true, the job creates a new session using a
@@ -3268,11 +3265,11 @@ pub struct JobConfigurationLoad {
     /// Copying files only is supported when all the following are true:
     ///
     /// * `source_uris` are located in the same Cloud Storage location as the
-    ///   destination table's `storage_uri` location.
+    ///    destination table's `storage_uri` location.
     /// * `source_format` is `PARQUET`.
     /// * `destination_table` is an existing BigLake managed table. The table's
-    ///   schema does not have flexible column names. The table's columns do not
-    ///   have type parameters other than precision and scale.
+    ///    schema does not have flexible column names. The table's columns do not
+    ///    have type parameters other than precision and scale.
     /// * No options other than the above are specified.
     #[prost(message, optional, tag = "51")]
     pub copy_files_only: ::core::option::Option<bool>,
@@ -3310,12 +3307,10 @@ pub mod job_configuration_load {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ColumnNameCharacterMap::Unspecified => {
-                    "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED"
-                }
-                ColumnNameCharacterMap::Strict => "STRICT",
-                ColumnNameCharacterMap::V1 => "V1",
-                ColumnNameCharacterMap::V2 => "V2",
+                Self::Unspecified => "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
+                Self::Strict => "STRICT",
+                Self::V1 => "V1",
+                Self::V2 => "V2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3333,7 +3328,7 @@ pub mod job_configuration_load {
 /// JobConfigurationTableCopy configures a job that copies data from one table
 /// to another.
 /// For more information on copying tables, see [Copy a
-/// table](<https://cloud.google.com/bigquery/docs/managing-tables#copy-table>).
+///   table](<https://cloud.google.com/bigquery/docs/managing-tables#copy-table>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobConfigurationTableCopy {
     /// \[Pick one\] Source table to copy.
@@ -3349,9 +3344,9 @@ pub struct JobConfigurationTableCopy {
     /// The following values are supported:
     ///
     /// * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the
-    ///   table.
+    /// table.
     /// * CREATE_NEVER: The table must already exist. If it does not,
-    ///   a 'notFound' error is returned in the job result.
+    /// a 'notFound' error is returned in the job result.
     ///
     /// The default value is CREATE_IF_NEEDED.
     /// Creation, truncation and append actions occur as one atomic update
@@ -3362,11 +3357,11 @@ pub struct JobConfigurationTableCopy {
     /// already exists. The following values are supported:
     ///
     /// * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the
-    ///   table data and uses the schema and table constraints from the source table.
+    /// table data and uses the schema and table constraints from the source table.
     /// * WRITE_APPEND: If the table already exists, BigQuery appends the data to
-    ///   the table.
+    /// the table.
     /// * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate'
-    ///   error is returned in the job result.
+    /// error is returned in the job result.
     ///
     /// The default value is WRITE_EMPTY. Each action is atomic and only occurs if
     /// BigQuery is able to complete the job successfully. Creation, truncation and
@@ -3423,11 +3418,11 @@ pub mod job_configuration_table_copy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
-                OperationType::Copy => "COPY",
-                OperationType::Snapshot => "SNAPSHOT",
-                OperationType::Restore => "RESTORE",
-                OperationType::Clone => "CLONE",
+                Self::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
+                Self::Copy => "COPY",
+                Self::Snapshot => "SNAPSHOT",
+                Self::Restore => "RESTORE",
+                Self::Clone => "CLONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3608,11 +3603,11 @@ pub mod job_creation_reason {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::Requested => "REQUESTED",
-                Code::LongRunning => "LONG_RUNNING",
-                Code::LargeResults => "LARGE_RESULTS",
-                Code::Other => "OTHER",
+                Self::Unspecified => "CODE_UNSPECIFIED",
+                Self::Requested => "REQUESTED",
+                Self::LongRunning => "LONG_RUNNING",
+                Self::LargeResults => "LARGE_RESULTS",
+                Self::Other => "OTHER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3635,7 +3630,7 @@ pub struct JobReference {
     #[prost(string, tag = "1")]
     pub project_id: ::prost::alloc::string::String,
     /// Required. The ID of the job. The ID must contain only letters (a-z, A-Z),
-    /// numbers (0-9), underscores (\_), or dashes (-). The maximum length is 1,024
+    /// numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024
     /// characters.
     #[prost(string, tag = "2")]
     pub job_id: ::prost::alloc::string::String,
@@ -3654,7 +3649,7 @@ pub struct JobReference {
 pub struct RemoteModelInfo {
     /// Output only. Fully qualified name of the user-provided connection object of
     /// the remote model. Format:
-    /// `"projects/{project_id}/locations/{location_id}/connections/{connection_id}"`
+    /// ```"projects/{project_id}/locations/{location_id}/connections/{connection_id}"```
     #[prost(string, tag = "3")]
     pub connection: ::prost::alloc::string::String,
     /// Output only. Max number of rows in each batch sent to the remote service.
@@ -3668,7 +3663,8 @@ pub struct RemoteModelInfo {
     /// recognition. The expected format is
     /// `projects/{project}/locations/{location}/recognizers/{recognizer}`.
     /// Customers can specify this field at model creation. If not specified, a
-    /// default recognizer `projects/{model project}/locations/global/recognizers/_` will be used. See more details at
+    /// default recognizer `projects/{model
+    /// project}/locations/global/recognizers/_` will be used. See more details at
     /// [recognizers](<https://cloud.google.com/speech-to-text/v2/docs/reference/rest/v2/projects.locations.recognizers>)
     #[prost(string, tag = "7")]
     pub speech_recognizer: ::prost::alloc::string::String,
@@ -3716,13 +3712,11 @@ pub mod remote_model_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RemoteServiceType::Unspecified => "REMOTE_SERVICE_TYPE_UNSPECIFIED",
-                RemoteServiceType::CloudAiTranslateV3 => "CLOUD_AI_TRANSLATE_V3",
-                RemoteServiceType::CloudAiVisionV1 => "CLOUD_AI_VISION_V1",
-                RemoteServiceType::CloudAiNaturalLanguageV1 => {
-                    "CLOUD_AI_NATURAL_LANGUAGE_V1"
-                }
-                RemoteServiceType::CloudAiSpeechToTextV2 => "CLOUD_AI_SPEECH_TO_TEXT_V2",
+                Self::Unspecified => "REMOTE_SERVICE_TYPE_UNSPECIFIED",
+                Self::CloudAiTranslateV3 => "CLOUD_AI_TRANSLATE_V3",
+                Self::CloudAiVisionV1 => "CLOUD_AI_VISION_V1",
+                Self::CloudAiNaturalLanguageV1 => "CLOUD_AI_NATURAL_LANGUAGE_V1",
+                Self::CloudAiSpeechToTextV2 => "CLOUD_AI_SPEECH_TO_TEXT_V2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3824,7 +3818,7 @@ pub struct Model {
     #[prost(message, repeated, tag = "10")]
     pub feature_columns: ::prost::alloc::vec::Vec<StandardSqlField>,
     /// Output only. Label columns that were used to train this model.
-    /// The output of the model will have a "predicted\_" prefix to these columns.
+    /// The output of the model will have a "predicted_" prefix to these columns.
     #[prost(message, repeated, tag = "11")]
     pub label_columns: ::prost::alloc::vec::Vec<StandardSqlField>,
     /// Output only. This field will be populated if a TRANSFORM clause was used to
@@ -3904,13 +3898,13 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SeasonalPeriodType::Unspecified => "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
-                    SeasonalPeriodType::NoSeasonality => "NO_SEASONALITY",
-                    SeasonalPeriodType::Daily => "DAILY",
-                    SeasonalPeriodType::Weekly => "WEEKLY",
-                    SeasonalPeriodType::Monthly => "MONTHLY",
-                    SeasonalPeriodType::Quarterly => "QUARTERLY",
-                    SeasonalPeriodType::Yearly => "YEARLY",
+                    Self::Unspecified => "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+                    Self::NoSeasonality => "NO_SEASONALITY",
+                    Self::Daily => "DAILY",
+                    Self::Weekly => "WEEKLY",
+                    Self::Monthly => "MONTHLY",
+                    Self::Quarterly => "QUARTERLY",
+                    Self::Yearly => "YEARLY",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3965,12 +3959,10 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    KmeansInitializationMethod::Unspecified => {
-                        "KMEANS_INITIALIZATION_METHOD_UNSPECIFIED"
-                    }
-                    KmeansInitializationMethod::Random => "RANDOM",
-                    KmeansInitializationMethod::Custom => "CUSTOM",
-                    KmeansInitializationMethod::KmeansPlusPlus => "KMEANS_PLUS_PLUS",
+                    Self::Unspecified => "KMEANS_INITIALIZATION_METHOD_UNSPECIFIED",
+                    Self::Random => "RANDOM",
+                    Self::Custom => "CUSTOM",
+                    Self::KmeansPlusPlus => "KMEANS_PLUS_PLUS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4018,9 +4010,9 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BoosterType::Unspecified => "BOOSTER_TYPE_UNSPECIFIED",
-                    BoosterType::Gbtree => "GBTREE",
-                    BoosterType::Dart => "DART",
+                    Self::Unspecified => "BOOSTER_TYPE_UNSPECIFIED",
+                    Self::Gbtree => "GBTREE",
+                    Self::Dart => "DART",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4062,9 +4054,9 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DartNormalizeType::Unspecified => "DART_NORMALIZE_TYPE_UNSPECIFIED",
-                    DartNormalizeType::Tree => "TREE",
-                    DartNormalizeType::Forest => "FOREST",
+                    Self::Unspecified => "DART_NORMALIZE_TYPE_UNSPECIFIED",
+                    Self::Tree => "TREE",
+                    Self::Forest => "FOREST",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4111,11 +4103,11 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    TreeMethod::Unspecified => "TREE_METHOD_UNSPECIFIED",
-                    TreeMethod::Auto => "AUTO",
-                    TreeMethod::Exact => "EXACT",
-                    TreeMethod::Approx => "APPROX",
-                    TreeMethod::Hist => "HIST",
+                    Self::Unspecified => "TREE_METHOD_UNSPECIFIED",
+                    Self::Auto => "AUTO",
+                    Self::Exact => "EXACT",
+                    Self::Approx => "APPROX",
+                    Self::Hist => "HIST",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4165,7 +4157,7 @@ pub mod model {
             /// median_absolute_error = APPROX_QUANTILES(absolute_error, 2)\[OFFSET(1)\]
             MedianAbsoluteError = 4,
             /// R^2 score. This corresponds to r2_score in ML.EVALUATE.
-            /// r_squared = 1 - SUM(squared_error)/(COUNT(label)\*VAR_POP(label))
+            /// r_squared = 1 - SUM(squared_error)/(COUNT(label)*VAR_POP(label))
             RSquared = 5,
             /// Explained variance.
             /// explained_variance = 1 - VAR_POP(label_error)/VAR_POP(label)
@@ -4204,31 +4196,25 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    HparamTuningObjective::Unspecified => {
-                        "HPARAM_TUNING_OBJECTIVE_UNSPECIFIED"
-                    }
-                    HparamTuningObjective::MeanAbsoluteError => "MEAN_ABSOLUTE_ERROR",
-                    HparamTuningObjective::MeanSquaredError => "MEAN_SQUARED_ERROR",
-                    HparamTuningObjective::MeanSquaredLogError => {
-                        "MEAN_SQUARED_LOG_ERROR"
-                    }
-                    HparamTuningObjective::MedianAbsoluteError => "MEDIAN_ABSOLUTE_ERROR",
-                    HparamTuningObjective::RSquared => "R_SQUARED",
-                    HparamTuningObjective::ExplainedVariance => "EXPLAINED_VARIANCE",
-                    HparamTuningObjective::Precision => "PRECISION",
-                    HparamTuningObjective::Recall => "RECALL",
-                    HparamTuningObjective::Accuracy => "ACCURACY",
-                    HparamTuningObjective::F1Score => "F1_SCORE",
-                    HparamTuningObjective::LogLoss => "LOG_LOSS",
-                    HparamTuningObjective::RocAuc => "ROC_AUC",
-                    HparamTuningObjective::DaviesBouldinIndex => "DAVIES_BOULDIN_INDEX",
-                    HparamTuningObjective::MeanAveragePrecision => {
-                        "MEAN_AVERAGE_PRECISION"
-                    }
-                    HparamTuningObjective::NormalizedDiscountedCumulativeGain => {
+                    Self::Unspecified => "HPARAM_TUNING_OBJECTIVE_UNSPECIFIED",
+                    Self::MeanAbsoluteError => "MEAN_ABSOLUTE_ERROR",
+                    Self::MeanSquaredError => "MEAN_SQUARED_ERROR",
+                    Self::MeanSquaredLogError => "MEAN_SQUARED_LOG_ERROR",
+                    Self::MedianAbsoluteError => "MEDIAN_ABSOLUTE_ERROR",
+                    Self::RSquared => "R_SQUARED",
+                    Self::ExplainedVariance => "EXPLAINED_VARIANCE",
+                    Self::Precision => "PRECISION",
+                    Self::Recall => "RECALL",
+                    Self::Accuracy => "ACCURACY",
+                    Self::F1Score => "F1_SCORE",
+                    Self::LogLoss => "LOG_LOSS",
+                    Self::RocAuc => "ROC_AUC",
+                    Self::DaviesBouldinIndex => "DAVIES_BOULDIN_INDEX",
+                    Self::MeanAveragePrecision => "MEAN_AVERAGE_PRECISION",
+                    Self::NormalizedDiscountedCumulativeGain => {
                         "NORMALIZED_DISCOUNTED_CUMULATIVE_GAIN"
                     }
-                    HparamTuningObjective::AverageRank => "AVERAGE_RANK",
+                    Self::AverageRank => "AVERAGE_RANK",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4473,7 +4459,7 @@ pub mod model {
                 pub struct CategoricalValue {
                     /// Counts of all categories for the categorical feature. If there are
                     /// more than ten categories, we return top ten (by count) and return
-                    /// one more CategoryCount with category "*OTHER*" and count as
+                    /// one more CategoryCount with category "_OTHER_" and count as
                     /// aggregate counts of remaining categories.
                     #[prost(message, repeated, tag = "1")]
                     pub category_counts: ::prost::alloc::vec::Vec<
@@ -4745,10 +4731,10 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    EncodingMethod::Unspecified => "ENCODING_METHOD_UNSPECIFIED",
-                    EncodingMethod::OneHotEncoding => "ONE_HOT_ENCODING",
-                    EncodingMethod::LabelEncoding => "LABEL_ENCODING",
-                    EncodingMethod::DummyEncoding => "DUMMY_ENCODING",
+                    Self::Unspecified => "ENCODING_METHOD_UNSPECIFIED",
+                    Self::OneHotEncoding => "ONE_HOT_ENCODING",
+                    Self::LabelEncoding => "LABEL_ENCODING",
+                    Self::DummyEncoding => "DUMMY_ENCODING",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4798,10 +4784,10 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    PcaSolver::Unspecified => "UNSPECIFIED",
-                    PcaSolver::Full => "FULL",
-                    PcaSolver::Randomized => "RANDOMIZED",
-                    PcaSolver::Auto => "AUTO",
+                    Self::Unspecified => "UNSPECIFIED",
+                    Self::Full => "FULL",
+                    Self::Randomized => "RANDOMIZED",
+                    Self::Auto => "AUTO",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4847,8 +4833,8 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ModelRegistry::Unspecified => "MODEL_REGISTRY_UNSPECIFIED",
-                    ModelRegistry::VertexAi => "VERTEX_AI",
+                    Self::Unspecified => "MODEL_REGISTRY_UNSPECIFIED",
+                    Self::VertexAi => "VERTEX_AI",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4871,7 +4857,7 @@ pub mod model {
         /// Output only. The start time of this training run.
         #[prost(message, optional, tag = "8")]
         pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-        /// Output only. Output of each iteration run, results.size() \<=
+        /// Output only. Output of each iteration run, results.size() <=
         /// max_iterations.
         #[prost(message, repeated, tag = "6")]
         pub results: ::prost::alloc::vec::Vec<training_run::IterationResult>,
@@ -4952,15 +4938,14 @@ pub mod model {
             pub data_split_eval_fraction: f64,
             /// The column to split data with. This column won't be used as a
             /// feature.
-            ///
             /// 1. When data_split_method is CUSTOM, the corresponding column should
-            ///    be boolean. The rows with true value tag are eval data, and the false
-            ///    are training data.
-            /// 1. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION
-            ///    rows (from smallest to largest) in the corresponding column are used
-            ///    as training data, and the rest are eval data. It respects the order
-            ///    in Orderable data types:
-            ///    <https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties>
+            /// be boolean. The rows with true value tag are eval data, and the false
+            /// are training data.
+            /// 2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION
+            /// rows (from smallest to largest) in the corresponding column are used
+            /// as training data, and the rest are eval data. It respects the order
+            /// in Orderable data types:
+            /// <https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties>
             #[prost(string, tag = "12")]
             pub data_split_column: ::prost::alloc::string::String,
             /// The strategy to determine learn rate for the current iteration.
@@ -5216,7 +5201,7 @@ pub mod model {
             /// Whether the model should include intercept during model training.
             #[prost(message, optional, tag = "85")]
             pub fit_intercept: ::core::option::Option<bool>,
-            /// Number of principal components to keep in the PCA model. Must be \<= the
+            /// Number of principal components to keep in the PCA model. Must be <= the
             /// number of features.
             #[prost(int64, tag = "86")]
             pub num_principal_components: i64,
@@ -5680,13 +5665,13 @@ pub mod model {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    TrialStatus::Unspecified => "TRIAL_STATUS_UNSPECIFIED",
-                    TrialStatus::NotStarted => "NOT_STARTED",
-                    TrialStatus::Running => "RUNNING",
-                    TrialStatus::Succeeded => "SUCCEEDED",
-                    TrialStatus::Failed => "FAILED",
-                    TrialStatus::Infeasible => "INFEASIBLE",
-                    TrialStatus::StoppedEarly => "STOPPED_EARLY",
+                    Self::Unspecified => "TRIAL_STATUS_UNSPECIFIED",
+                    Self::NotStarted => "NOT_STARTED",
+                    Self::Running => "RUNNING",
+                    Self::Succeeded => "SUCCEEDED",
+                    Self::Failed => "FAILED",
+                    Self::Infeasible => "INFEASIBLE",
+                    Self::StoppedEarly => "STOPPED_EARLY",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5777,33 +5762,31 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ModelType::Unspecified => "MODEL_TYPE_UNSPECIFIED",
-                ModelType::LinearRegression => "LINEAR_REGRESSION",
-                ModelType::LogisticRegression => "LOGISTIC_REGRESSION",
-                ModelType::Kmeans => "KMEANS",
-                ModelType::MatrixFactorization => "MATRIX_FACTORIZATION",
-                ModelType::DnnClassifier => "DNN_CLASSIFIER",
-                ModelType::Tensorflow => "TENSORFLOW",
-                ModelType::DnnRegressor => "DNN_REGRESSOR",
-                ModelType::Xgboost => "XGBOOST",
-                ModelType::BoostedTreeRegressor => "BOOSTED_TREE_REGRESSOR",
-                ModelType::BoostedTreeClassifier => "BOOSTED_TREE_CLASSIFIER",
-                ModelType::Arima => "ARIMA",
-                ModelType::AutomlRegressor => "AUTOML_REGRESSOR",
-                ModelType::AutomlClassifier => "AUTOML_CLASSIFIER",
-                ModelType::Pca => "PCA",
-                ModelType::DnnLinearCombinedClassifier => {
-                    "DNN_LINEAR_COMBINED_CLASSIFIER"
-                }
-                ModelType::DnnLinearCombinedRegressor => "DNN_LINEAR_COMBINED_REGRESSOR",
-                ModelType::Autoencoder => "AUTOENCODER",
-                ModelType::ArimaPlus => "ARIMA_PLUS",
-                ModelType::ArimaPlusXreg => "ARIMA_PLUS_XREG",
-                ModelType::RandomForestRegressor => "RANDOM_FOREST_REGRESSOR",
-                ModelType::RandomForestClassifier => "RANDOM_FOREST_CLASSIFIER",
-                ModelType::TensorflowLite => "TENSORFLOW_LITE",
-                ModelType::Onnx => "ONNX",
-                ModelType::TransformOnly => "TRANSFORM_ONLY",
+                Self::Unspecified => "MODEL_TYPE_UNSPECIFIED",
+                Self::LinearRegression => "LINEAR_REGRESSION",
+                Self::LogisticRegression => "LOGISTIC_REGRESSION",
+                Self::Kmeans => "KMEANS",
+                Self::MatrixFactorization => "MATRIX_FACTORIZATION",
+                Self::DnnClassifier => "DNN_CLASSIFIER",
+                Self::Tensorflow => "TENSORFLOW",
+                Self::DnnRegressor => "DNN_REGRESSOR",
+                Self::Xgboost => "XGBOOST",
+                Self::BoostedTreeRegressor => "BOOSTED_TREE_REGRESSOR",
+                Self::BoostedTreeClassifier => "BOOSTED_TREE_CLASSIFIER",
+                Self::Arima => "ARIMA",
+                Self::AutomlRegressor => "AUTOML_REGRESSOR",
+                Self::AutomlClassifier => "AUTOML_CLASSIFIER",
+                Self::Pca => "PCA",
+                Self::DnnLinearCombinedClassifier => "DNN_LINEAR_COMBINED_CLASSIFIER",
+                Self::DnnLinearCombinedRegressor => "DNN_LINEAR_COMBINED_REGRESSOR",
+                Self::Autoencoder => "AUTOENCODER",
+                Self::ArimaPlus => "ARIMA_PLUS",
+                Self::ArimaPlusXreg => "ARIMA_PLUS_XREG",
+                Self::RandomForestRegressor => "RANDOM_FOREST_REGRESSOR",
+                Self::RandomForestClassifier => "RANDOM_FOREST_CLASSIFIER",
+                Self::TensorflowLite => "TENSORFLOW_LITE",
+                Self::Onnx => "ONNX",
+                Self::TransformOnly => "TRANSFORM_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5868,9 +5851,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LossType::Unspecified => "LOSS_TYPE_UNSPECIFIED",
-                LossType::MeanSquaredLoss => "MEAN_SQUARED_LOSS",
-                LossType::MeanLogLoss => "MEAN_LOG_LOSS",
+                Self::Unspecified => "LOSS_TYPE_UNSPECIFIED",
+                Self::MeanSquaredLoss => "MEAN_SQUARED_LOSS",
+                Self::MeanLogLoss => "MEAN_LOG_LOSS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5911,9 +5894,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DistanceType::Unspecified => "DISTANCE_TYPE_UNSPECIFIED",
-                DistanceType::Euclidean => "EUCLIDEAN",
-                DistanceType::Cosine => "COSINE",
+                Self::Unspecified => "DISTANCE_TYPE_UNSPECIFIED",
+                Self::Euclidean => "EUCLIDEAN",
+                Self::Cosine => "COSINE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5961,12 +5944,12 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataSplitMethod::Unspecified => "DATA_SPLIT_METHOD_UNSPECIFIED",
-                DataSplitMethod::Random => "RANDOM",
-                DataSplitMethod::Custom => "CUSTOM",
-                DataSplitMethod::Sequential => "SEQUENTIAL",
-                DataSplitMethod::NoSplit => "NO_SPLIT",
-                DataSplitMethod::AutoSplit => "AUTO_SPLIT",
+                Self::Unspecified => "DATA_SPLIT_METHOD_UNSPECIFIED",
+                Self::Random => "RANDOM",
+                Self::Custom => "CUSTOM",
+                Self::Sequential => "SEQUENTIAL",
+                Self::NoSplit => "NO_SPLIT",
+                Self::AutoSplit => "AUTO_SPLIT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6022,15 +6005,15 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataFrequency::Unspecified => "DATA_FREQUENCY_UNSPECIFIED",
-                DataFrequency::AutoFrequency => "AUTO_FREQUENCY",
-                DataFrequency::Yearly => "YEARLY",
-                DataFrequency::Quarterly => "QUARTERLY",
-                DataFrequency::Monthly => "MONTHLY",
-                DataFrequency::Weekly => "WEEKLY",
-                DataFrequency::Daily => "DAILY",
-                DataFrequency::Hourly => "HOURLY",
-                DataFrequency::PerMinute => "PER_MINUTE",
+                Self::Unspecified => "DATA_FREQUENCY_UNSPECIFIED",
+                Self::AutoFrequency => "AUTO_FREQUENCY",
+                Self::Yearly => "YEARLY",
+                Self::Quarterly => "QUARTERLY",
+                Self::Monthly => "MONTHLY",
+                Self::Weekly => "WEEKLY",
+                Self::Daily => "DAILY",
+                Self::Hourly => "HOURLY",
+                Self::PerMinute => "PER_MINUTE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6210,75 +6193,75 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HolidayRegion::Unspecified => "HOLIDAY_REGION_UNSPECIFIED",
-                HolidayRegion::Global => "GLOBAL",
-                HolidayRegion::Na => "NA",
-                HolidayRegion::Japac => "JAPAC",
-                HolidayRegion::Emea => "EMEA",
-                HolidayRegion::Lac => "LAC",
-                HolidayRegion::Ae => "AE",
-                HolidayRegion::Ar => "AR",
-                HolidayRegion::At => "AT",
-                HolidayRegion::Au => "AU",
-                HolidayRegion::Be => "BE",
-                HolidayRegion::Br => "BR",
-                HolidayRegion::Ca => "CA",
-                HolidayRegion::Ch => "CH",
-                HolidayRegion::Cl => "CL",
-                HolidayRegion::Cn => "CN",
-                HolidayRegion::Co => "CO",
-                HolidayRegion::Cs => "CS",
-                HolidayRegion::Cz => "CZ",
-                HolidayRegion::De => "DE",
-                HolidayRegion::Dk => "DK",
-                HolidayRegion::Dz => "DZ",
-                HolidayRegion::Ec => "EC",
-                HolidayRegion::Ee => "EE",
-                HolidayRegion::Eg => "EG",
-                HolidayRegion::Es => "ES",
-                HolidayRegion::Fi => "FI",
-                HolidayRegion::Fr => "FR",
-                HolidayRegion::Gb => "GB",
-                HolidayRegion::Gr => "GR",
-                HolidayRegion::Hk => "HK",
-                HolidayRegion::Hu => "HU",
-                HolidayRegion::Id => "ID",
-                HolidayRegion::Ie => "IE",
-                HolidayRegion::Il => "IL",
-                HolidayRegion::In => "IN",
-                HolidayRegion::Ir => "IR",
-                HolidayRegion::It => "IT",
-                HolidayRegion::Jp => "JP",
-                HolidayRegion::Kr => "KR",
-                HolidayRegion::Lv => "LV",
-                HolidayRegion::Ma => "MA",
-                HolidayRegion::Mx => "MX",
-                HolidayRegion::My => "MY",
-                HolidayRegion::Ng => "NG",
-                HolidayRegion::Nl => "NL",
-                HolidayRegion::No => "NO",
-                HolidayRegion::Nz => "NZ",
-                HolidayRegion::Pe => "PE",
-                HolidayRegion::Ph => "PH",
-                HolidayRegion::Pk => "PK",
-                HolidayRegion::Pl => "PL",
-                HolidayRegion::Pt => "PT",
-                HolidayRegion::Ro => "RO",
-                HolidayRegion::Rs => "RS",
-                HolidayRegion::Ru => "RU",
-                HolidayRegion::Sa => "SA",
-                HolidayRegion::Se => "SE",
-                HolidayRegion::Sg => "SG",
-                HolidayRegion::Si => "SI",
-                HolidayRegion::Sk => "SK",
-                HolidayRegion::Th => "TH",
-                HolidayRegion::Tr => "TR",
-                HolidayRegion::Tw => "TW",
-                HolidayRegion::Ua => "UA",
-                HolidayRegion::Us => "US",
-                HolidayRegion::Ve => "VE",
-                HolidayRegion::Vn => "VN",
-                HolidayRegion::Za => "ZA",
+                Self::Unspecified => "HOLIDAY_REGION_UNSPECIFIED",
+                Self::Global => "GLOBAL",
+                Self::Na => "NA",
+                Self::Japac => "JAPAC",
+                Self::Emea => "EMEA",
+                Self::Lac => "LAC",
+                Self::Ae => "AE",
+                Self::Ar => "AR",
+                Self::At => "AT",
+                Self::Au => "AU",
+                Self::Be => "BE",
+                Self::Br => "BR",
+                Self::Ca => "CA",
+                Self::Ch => "CH",
+                Self::Cl => "CL",
+                Self::Cn => "CN",
+                Self::Co => "CO",
+                Self::Cs => "CS",
+                Self::Cz => "CZ",
+                Self::De => "DE",
+                Self::Dk => "DK",
+                Self::Dz => "DZ",
+                Self::Ec => "EC",
+                Self::Ee => "EE",
+                Self::Eg => "EG",
+                Self::Es => "ES",
+                Self::Fi => "FI",
+                Self::Fr => "FR",
+                Self::Gb => "GB",
+                Self::Gr => "GR",
+                Self::Hk => "HK",
+                Self::Hu => "HU",
+                Self::Id => "ID",
+                Self::Ie => "IE",
+                Self::Il => "IL",
+                Self::In => "IN",
+                Self::Ir => "IR",
+                Self::It => "IT",
+                Self::Jp => "JP",
+                Self::Kr => "KR",
+                Self::Lv => "LV",
+                Self::Ma => "MA",
+                Self::Mx => "MX",
+                Self::My => "MY",
+                Self::Ng => "NG",
+                Self::Nl => "NL",
+                Self::No => "NO",
+                Self::Nz => "NZ",
+                Self::Pe => "PE",
+                Self::Ph => "PH",
+                Self::Pk => "PK",
+                Self::Pl => "PL",
+                Self::Pt => "PT",
+                Self::Ro => "RO",
+                Self::Rs => "RS",
+                Self::Ru => "RU",
+                Self::Sa => "SA",
+                Self::Se => "SE",
+                Self::Sg => "SG",
+                Self::Si => "SI",
+                Self::Sk => "SK",
+                Self::Th => "TH",
+                Self::Tr => "TR",
+                Self::Tw => "TW",
+                Self::Ua => "UA",
+                Self::Us => "US",
+                Self::Ve => "VE",
+                Self::Vn => "VN",
+                Self::Za => "ZA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6393,12 +6376,12 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ColorSpace::Unspecified => "COLOR_SPACE_UNSPECIFIED",
-                ColorSpace::Rgb => "RGB",
-                ColorSpace::Hsv => "HSV",
-                ColorSpace::Yiq => "YIQ",
-                ColorSpace::Yuv => "YUV",
-                ColorSpace::Grayscale => "GRAYSCALE",
+                Self::Unspecified => "COLOR_SPACE_UNSPECIFIED",
+                Self::Rgb => "RGB",
+                Self::Hsv => "HSV",
+                Self::Yiq => "YIQ",
+                Self::Yuv => "YUV",
+                Self::Grayscale => "GRAYSCALE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6442,9 +6425,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LearnRateStrategy::Unspecified => "LEARN_RATE_STRATEGY_UNSPECIFIED",
-                LearnRateStrategy::LineSearch => "LINE_SEARCH",
-                LearnRateStrategy::Constant => "CONSTANT",
+                Self::Unspecified => "LEARN_RATE_STRATEGY_UNSPECIFIED",
+                Self::LineSearch => "LINE_SEARCH",
+                Self::Constant => "CONSTANT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6485,9 +6468,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OptimizationStrategy::Unspecified => "OPTIMIZATION_STRATEGY_UNSPECIFIED",
-                OptimizationStrategy::BatchGradientDescent => "BATCH_GRADIENT_DESCENT",
-                OptimizationStrategy::NormalEquation => "NORMAL_EQUATION",
+                Self::Unspecified => "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+                Self::BatchGradientDescent => "BATCH_GRADIENT_DESCENT",
+                Self::NormalEquation => "NORMAL_EQUATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6528,9 +6511,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FeedbackType::Unspecified => "FEEDBACK_TYPE_UNSPECIFIED",
-                FeedbackType::Implicit => "IMPLICIT",
-                FeedbackType::Explicit => "EXPLICIT",
+                Self::Unspecified => "FEEDBACK_TYPE_UNSPECIFIED",
+                Self::Implicit => "IMPLICIT",
+                Self::Explicit => "EXPLICIT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6619,7 +6602,13 @@ pub struct ListModelsResponse {
 }
 /// Generated client implementations.
 pub mod model_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This is an experimental RPC service definition for the BigQuery
@@ -6704,8 +6693,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6734,8 +6722,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6762,8 +6749,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6790,8 +6776,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6824,7 +6809,7 @@ pub struct RowAccessPolicyReference {
     #[prost(string, tag = "3")]
     pub table_id: ::prost::alloc::string::String,
     /// Required. The ID of the row access policy. The ID must contain only
-    /// letters (a-z, A-Z), numbers (0-9), or underscores (\_). The maximum
+    /// letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum
     /// length is 256 characters.
     #[prost(string, tag = "4")]
     pub policy_id: ::prost::alloc::string::String,
@@ -6976,9 +6961,9 @@ pub mod explain_query_stage {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ComputeMode::Unspecified => "COMPUTE_MODE_UNSPECIFIED",
-                ComputeMode::Bigquery => "BIGQUERY",
-                ComputeMode::BiEngine => "BI_ENGINE",
+                Self::Unspecified => "COMPUTE_MODE_UNSPECIFIED",
+                Self::Bigquery => "BIGQUERY",
+                Self::BiEngine => "BI_ENGINE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7112,13 +7097,13 @@ pub mod bi_engine_reason {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::NoReservation => "NO_RESERVATION",
-                Code::InsufficientReservation => "INSUFFICIENT_RESERVATION",
-                Code::UnsupportedSqlText => "UNSUPPORTED_SQL_TEXT",
-                Code::InputTooLarge => "INPUT_TOO_LARGE",
-                Code::OtherReason => "OTHER_REASON",
-                Code::TableExcluded => "TABLE_EXCLUDED",
+                Self::Unspecified => "CODE_UNSPECIFIED",
+                Self::NoReservation => "NO_RESERVATION",
+                Self::InsufficientReservation => "INSUFFICIENT_RESERVATION",
+                Self::UnsupportedSqlText => "UNSUPPORTED_SQL_TEXT",
+                Self::InputTooLarge => "INPUT_TOO_LARGE",
+                Self::OtherReason => "OTHER_REASON",
+                Self::TableExcluded => "TABLE_EXCLUDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7189,12 +7174,10 @@ pub mod bi_engine_statistics {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BiEngineMode::AccelerationModeUnspecified => {
-                    "ACCELERATION_MODE_UNSPECIFIED"
-                }
-                BiEngineMode::Disabled => "DISABLED",
-                BiEngineMode::Partial => "PARTIAL",
-                BiEngineMode::Full => "FULL",
+                Self::AccelerationModeUnspecified => "ACCELERATION_MODE_UNSPECIFIED",
+                Self::Disabled => "DISABLED",
+                Self::Partial => "PARTIAL",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7245,13 +7228,11 @@ pub mod bi_engine_statistics {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BiEngineAccelerationMode::Unspecified => {
-                    "BI_ENGINE_ACCELERATION_MODE_UNSPECIFIED"
-                }
-                BiEngineAccelerationMode::BiEngineDisabled => "BI_ENGINE_DISABLED",
-                BiEngineAccelerationMode::PartialInput => "PARTIAL_INPUT",
-                BiEngineAccelerationMode::FullInput => "FULL_INPUT",
-                BiEngineAccelerationMode::FullQuery => "FULL_QUERY",
+                Self::Unspecified => "BI_ENGINE_ACCELERATION_MODE_UNSPECIFIED",
+                Self::BiEngineDisabled => "BI_ENGINE_DISABLED",
+                Self::PartialInput => "PARTIAL_INPUT",
+                Self::FullInput => "FULL_INPUT",
+                Self::FullQuery => "FULL_QUERY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7376,33 +7357,33 @@ pub mod index_unused_reason {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::IndexConfigNotAvailable => "INDEX_CONFIG_NOT_AVAILABLE",
-                Code::PendingIndexCreation => "PENDING_INDEX_CREATION",
-                Code::BaseTableTruncated => "BASE_TABLE_TRUNCATED",
-                Code::IndexConfigModified => "INDEX_CONFIG_MODIFIED",
-                Code::TimeTravelQuery => "TIME_TRAVEL_QUERY",
-                Code::NoPruningPower => "NO_PRUNING_POWER",
-                Code::UnindexedSearchFields => "UNINDEXED_SEARCH_FIELDS",
-                Code::UnsupportedSearchPattern => "UNSUPPORTED_SEARCH_PATTERN",
-                Code::OptimizedWithMaterializedView => "OPTIMIZED_WITH_MATERIALIZED_VIEW",
-                Code::SecuredByDataMasking => "SECURED_BY_DATA_MASKING",
-                Code::MismatchedTextAnalyzer => "MISMATCHED_TEXT_ANALYZER",
-                Code::BaseTableTooSmall => "BASE_TABLE_TOO_SMALL",
-                Code::BaseTableTooLarge => "BASE_TABLE_TOO_LARGE",
-                Code::EstimatedPerformanceGainTooLow => {
+                Self::Unspecified => "CODE_UNSPECIFIED",
+                Self::IndexConfigNotAvailable => "INDEX_CONFIG_NOT_AVAILABLE",
+                Self::PendingIndexCreation => "PENDING_INDEX_CREATION",
+                Self::BaseTableTruncated => "BASE_TABLE_TRUNCATED",
+                Self::IndexConfigModified => "INDEX_CONFIG_MODIFIED",
+                Self::TimeTravelQuery => "TIME_TRAVEL_QUERY",
+                Self::NoPruningPower => "NO_PRUNING_POWER",
+                Self::UnindexedSearchFields => "UNINDEXED_SEARCH_FIELDS",
+                Self::UnsupportedSearchPattern => "UNSUPPORTED_SEARCH_PATTERN",
+                Self::OptimizedWithMaterializedView => "OPTIMIZED_WITH_MATERIALIZED_VIEW",
+                Self::SecuredByDataMasking => "SECURED_BY_DATA_MASKING",
+                Self::MismatchedTextAnalyzer => "MISMATCHED_TEXT_ANALYZER",
+                Self::BaseTableTooSmall => "BASE_TABLE_TOO_SMALL",
+                Self::BaseTableTooLarge => "BASE_TABLE_TOO_LARGE",
+                Self::EstimatedPerformanceGainTooLow => {
                     "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW"
                 }
-                Code::NotSupportedInStandardEdition => {
+                Self::NotSupportedInStandardEdition => {
                     "NOT_SUPPORTED_IN_STANDARD_EDITION"
                 }
-                Code::IndexSuppressedByFunctionOption => {
+                Self::IndexSuppressedByFunctionOption => {
                     "INDEX_SUPPRESSED_BY_FUNCTION_OPTION"
                 }
-                Code::QueryCacheHit => "QUERY_CACHE_HIT",
-                Code::StaleIndex => "STALE_INDEX",
-                Code::InternalError => "INTERNAL_ERROR",
-                Code::OtherReason => "OTHER_REASON",
+                Self::QueryCacheHit => "QUERY_CACHE_HIT",
+                Self::StaleIndex => "STALE_INDEX",
+                Self::InternalError => "INTERNAL_ERROR",
+                Self::OtherReason => "OTHER_REASON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7492,10 +7473,10 @@ pub mod search_statistics {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IndexUsageMode::Unspecified => "INDEX_USAGE_MODE_UNSPECIFIED",
-                IndexUsageMode::Unused => "UNUSED",
-                IndexUsageMode::PartiallyUsed => "PARTIALLY_USED",
-                IndexUsageMode::FullyUsed => "FULLY_USED",
+                Self::Unspecified => "INDEX_USAGE_MODE_UNSPECIFIED",
+                Self::Unused => "UNUSED",
+                Self::PartiallyUsed => "PARTIALLY_USED",
+                Self::FullyUsed => "FULLY_USED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7561,10 +7542,10 @@ pub mod vector_search_statistics {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IndexUsageMode::Unspecified => "INDEX_USAGE_MODE_UNSPECIFIED",
-                IndexUsageMode::Unused => "UNUSED",
-                IndexUsageMode::PartiallyUsed => "PARTIALLY_USED",
-                IndexUsageMode::FullyUsed => "FULLY_USED",
+                Self::Unspecified => "INDEX_USAGE_MODE_UNSPECIFIED",
+                Self::Unused => "UNUSED",
+                Self::PartiallyUsed => "PARTIALLY_USED",
+                Self::FullyUsed => "FULLY_USED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7687,94 +7668,127 @@ pub struct JobStatistics2 {
     /// Possible values:
     ///
     /// * `SELECT`:
-    ///   [`SELECT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#select_list>)
-    ///   statement.
+    /// [`SELECT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#select_list>)
+    /// statement.
     /// * `ASSERT`:
-    ///   [`ASSERT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/debugging-statements#assert>)
-    ///   statement.
+    /// [`ASSERT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/debugging-statements#assert>)
+    /// statement.
     /// * `INSERT`:
-    ///   [`INSERT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax#insert_statement>)
-    ///   statement.
+    /// [`INSERT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax#insert_statement>)
+    /// statement.
     /// * `UPDATE`:
-    ///   [`UPDATE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#update_statement>)
-    ///   statement.
+    /// [`UPDATE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#update_statement>)
+    /// statement.
     /// * `DELETE`:
-    ///   [`DELETE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language>)
-    ///   statement.
+    /// [`DELETE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language>)
+    /// statement.
     /// * `MERGE`:
-    ///   [`MERGE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language>)
-    ///   statement.
-    /// * `CREATE_TABLE`: [`CREATE TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_table_statement>)
-    ///   statement, without `AS SELECT`.
-    /// * `CREATE_TABLE_AS_SELECT`: [`CREATE TABLE AS SELECT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#query_statement>)
-    ///   statement.
-    /// * `CREATE_VIEW`: [`CREATE VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_view_statement>)
-    ///   statement.
-    /// * `CREATE_MODEL`: [`CREATE MODEL`](<https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create#create_model_statement>)
-    ///   statement.
-    /// * `CREATE_MATERIALIZED_VIEW`: [`CREATE MATERIALIZED VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_materialized_view_statement>)
-    ///   statement.
-    /// * `CREATE_FUNCTION`: [`CREATE FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_function_statement>)
-    ///   statement.
-    /// * `CREATE_TABLE_FUNCTION`: [`CREATE TABLE FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_table_function_statement>)
-    ///   statement.
-    /// * `CREATE_PROCEDURE`: [`CREATE PROCEDURE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_procedure>)
-    ///   statement.
-    /// * `CREATE_ROW_ACCESS_POLICY`: [`CREATE ROW ACCESS POLICY`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_row_access_policy_statement>)
-    ///   statement.
-    /// * `CREATE_SCHEMA`: [`CREATE SCHEMA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_schema_statement>)
-    ///   statement.
-    /// * `CREATE_SNAPSHOT_TABLE`: [`CREATE SNAPSHOT TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_snapshot_table_statement>)
-    ///   statement.
-    /// * `CREATE_SEARCH_INDEX`: [`CREATE SEARCH INDEX`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_search_index_statement>)
-    ///   statement.
-    /// * `DROP_TABLE`: [`DROP TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_table_statement>)
-    ///   statement.
-    /// * `DROP_EXTERNAL_TABLE`: [`DROP EXTERNAL TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_external_table_statement>)
-    ///   statement.
-    /// * `DROP_VIEW`: [`DROP VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_view_statement>)
-    ///   statement.
-    /// * `DROP_MODEL`: [`DROP MODEL`](<https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-drop-model>)
-    ///   statement.
-    /// * `DROP_MATERIALIZED_VIEW`: [`DROP MATERIALIZED VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_materialized_view_statement>)
-    ///   statement.
-    /// * `DROP_FUNCTION` : [`DROP FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_function_statement>)
-    ///   statement.
-    /// * `DROP_TABLE_FUNCTION` : [`DROP TABLE FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_table_function>)
-    ///   statement.
-    /// * `DROP_PROCEDURE`: [`DROP PROCEDURE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_procedure_statement>)
-    ///   statement.
-    /// * `DROP_SEARCH_INDEX`: [`DROP SEARCH INDEX`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_search_index>)
-    ///   statement.
-    /// * `DROP_SCHEMA`: [`DROP SCHEMA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_schema_statement>)
-    ///   statement.
-    /// * `DROP_SNAPSHOT_TABLE`: [`DROP SNAPSHOT TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_snapshot_table_statement>)
-    ///   statement.
-    /// * `DROP_ROW_ACCESS_POLICY`: \[`DROP [ALL\] ROW ACCESS POLICY|POLICIES`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_row_access_policy_statement>)
-    ///   statement.
-    /// * `ALTER_TABLE`: [`ALTER TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_table_set_options_statement>)
-    ///   statement.
-    /// * `ALTER_VIEW`: [`ALTER VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_view_set_options_statement>)
-    ///   statement.
-    /// * `ALTER_MATERIALIZED_VIEW`: [`ALTER MATERIALIZED VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_materialized_view_set_options_statement>)
-    ///   statement.
-    /// * `ALTER_SCHEMA`: [`ALTER SCHEMA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#aalter_schema_set_options_statement>)
-    ///   statement.
+    /// [`MERGE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language>)
+    /// statement.
+    /// * `CREATE_TABLE`: [`CREATE
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_table_statement>)
+    /// statement, without `AS SELECT`.
+    /// * `CREATE_TABLE_AS_SELECT`: [`CREATE TABLE AS
+    /// SELECT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#query_statement>)
+    /// statement.
+    /// * `CREATE_VIEW`: [`CREATE
+    /// VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_view_statement>)
+    /// statement.
+    /// * `CREATE_MODEL`: [`CREATE
+    /// MODEL`](<https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create#create_model_statement>)
+    /// statement.
+    /// * `CREATE_MATERIALIZED_VIEW`: [`CREATE MATERIALIZED
+    /// VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_materialized_view_statement>)
+    /// statement.
+    /// * `CREATE_FUNCTION`: [`CREATE
+    /// FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_function_statement>)
+    /// statement.
+    /// * `CREATE_TABLE_FUNCTION`: [`CREATE TABLE
+    /// FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_table_function_statement>)
+    /// statement.
+    /// * `CREATE_PROCEDURE`: [`CREATE
+    /// PROCEDURE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_procedure>)
+    /// statement.
+    /// * `CREATE_ROW_ACCESS_POLICY`: [`CREATE ROW ACCESS
+    /// POLICY`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_row_access_policy_statement>)
+    /// statement.
+    /// * `CREATE_SCHEMA`: [`CREATE
+    /// SCHEMA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_schema_statement>)
+    /// statement.
+    /// * `CREATE_SNAPSHOT_TABLE`: [`CREATE SNAPSHOT
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_snapshot_table_statement>)
+    /// statement.
+    /// * `CREATE_SEARCH_INDEX`: [`CREATE SEARCH
+    /// INDEX`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_search_index_statement>)
+    /// statement.
+    /// * `DROP_TABLE`: [`DROP
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_table_statement>)
+    /// statement.
+    /// * `DROP_EXTERNAL_TABLE`: [`DROP EXTERNAL
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_external_table_statement>)
+    /// statement.
+    /// * `DROP_VIEW`: [`DROP
+    /// VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_view_statement>)
+    /// statement.
+    /// * `DROP_MODEL`: [`DROP
+    /// MODEL`](<https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-drop-model>)
+    /// statement.
+    /// * `DROP_MATERIALIZED_VIEW`: [`DROP MATERIALIZED
+    ///   VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_materialized_view_statement>)
+    /// statement.
+    /// * `DROP_FUNCTION` : [`DROP
+    /// FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_function_statement>)
+    /// statement.
+    /// * `DROP_TABLE_FUNCTION` : [`DROP TABLE
+    /// FUNCTION`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_table_function>)
+    /// statement.
+    /// * `DROP_PROCEDURE`: [`DROP
+    /// PROCEDURE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_procedure_statement>)
+    /// statement.
+    /// * `DROP_SEARCH_INDEX`: [`DROP SEARCH
+    /// INDEX`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_search_index>)
+    /// statement.
+    /// * `DROP_SCHEMA`: [`DROP
+    /// SCHEMA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_schema_statement>)
+    /// statement.
+    /// * `DROP_SNAPSHOT_TABLE`: [`DROP SNAPSHOT
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_snapshot_table_statement>)
+    /// statement.
+    /// * `DROP_ROW_ACCESS_POLICY`: \[`DROP [ALL\] ROW ACCESS
+    /// POLICY|POLICIES`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#drop_row_access_policy_statement>)
+    /// statement.
+    /// * `ALTER_TABLE`: [`ALTER
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_table_set_options_statement>)
+    /// statement.
+    /// * `ALTER_VIEW`: [`ALTER
+    /// VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_view_set_options_statement>)
+    /// statement.
+    /// * `ALTER_MATERIALIZED_VIEW`: [`ALTER MATERIALIZED
+    /// VIEW`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_materialized_view_set_options_statement>)
+    /// statement.
+    /// * `ALTER_SCHEMA`: [`ALTER
+    /// SCHEMA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#aalter_schema_set_options_statement>)
+    /// statement.
     /// * `SCRIPT`:
-    ///   [`SCRIPT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/procedural-language>).
-    /// * `TRUNCATE_TABLE`: [`TRUNCATE TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax#truncate_table_statement>)
-    ///   statement.
-    /// * `CREATE_EXTERNAL_TABLE`: [`CREATE EXTERNAL TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_external_table_statement>)
-    ///   statement.
-    /// * `EXPORT_DATA`: [`EXPORT DATA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/other-statements#export_data_statement>)
-    ///   statement.
-    /// * `EXPORT_MODEL`: [`EXPORT MODEL`](<https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-export-model>)
-    ///   statement.
-    /// * `LOAD_DATA`: [`LOAD DATA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/other-statements#load_data_statement>)
-    ///   statement.
+    /// [`SCRIPT`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/procedural-language>).
+    /// * `TRUNCATE_TABLE`: [`TRUNCATE
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax#truncate_table_statement>)
+    /// statement.
+    /// * `CREATE_EXTERNAL_TABLE`: [`CREATE EXTERNAL
+    /// TABLE`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#create_external_table_statement>)
+    /// statement.
+    /// * `EXPORT_DATA`: [`EXPORT
+    /// DATA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/other-statements#export_data_statement>)
+    /// statement.
+    /// * `EXPORT_MODEL`: [`EXPORT
+    /// MODEL`](<https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-export-model>)
+    /// statement.
+    /// * `LOAD_DATA`: [`LOAD
+    /// DATA`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/other-statements#load_data_statement>)
+    /// statement.
     /// * `CALL`:
-    ///   [`CALL`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/procedural-language#call>)
-    ///   statement.
+    /// [`CALL`](<https://cloud.google.com/bigquery/docs/reference/standard-sql/procedural-language#call>)
+    /// statement.
     #[prost(string, tag = "14")]
     pub statement_type: ::prost::alloc::string::String,
     /// Output only. The DDL operation performed, possibly
@@ -7971,9 +7985,9 @@ pub mod ml_statistics {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TrainingType::Unspecified => "TRAINING_TYPE_UNSPECIFIED",
-                TrainingType::SingleTraining => "SINGLE_TRAINING",
-                TrainingType::HparamTuning => "HPARAM_TUNING",
+                Self::Unspecified => "TRAINING_TYPE_UNSPECIFIED",
+                Self::SingleTraining => "SINGLE_TRAINING",
+                Self::HparamTuning => "HPARAM_TUNING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8004,18 +8018,18 @@ pub mod script_statistics {
     /// Represents the location of the statement/expression being evaluated.
     /// Line and column numbers are defined as follows:
     ///
-    /// * Line and column numbers start with one.  That is, line 1 column 1 denotes
-    ///   the start of the script.
-    /// * When inside a stored procedure, all line/column numbers are relative
-    ///   to the procedure body, not the script in which the procedure was defined.
-    /// * Start/end positions exclude leading/trailing comments and whitespace.
-    ///   The end position always ends with a ";", when present.
-    /// * Multi-byte Unicode characters are treated as just one column.
-    /// * If the original script (or procedure definition) contains TAB characters,
-    ///   a tab "snaps" the indentation forward to the nearest multiple of 8
-    ///   characters, plus 1. For example, a TAB on column 1, 2, 3, 4, 5, 6 , or 8
-    ///   will advance the next character to column 9.  A TAB on column 9, 10, 11,
-    ///   12, 13, 14, 15, or 16 will advance the next character to column 17.
+    /// - Line and column numbers start with one.  That is, line 1 column 1 denotes
+    ///    the start of the script.
+    /// - When inside a stored procedure, all line/column numbers are relative
+    ///    to the procedure body, not the script in which the procedure was defined.
+    /// - Start/end positions exclude leading/trailing comments and whitespace.
+    ///    The end position always ends with a ";", when present.
+    /// - Multi-byte Unicode characters are treated as just one column.
+    /// - If the original script (or procedure definition) contains TAB characters,
+    ///    a tab "snaps" the indentation forward to the nearest multiple of 8
+    ///    characters, plus 1. For example, a TAB on column 1, 2, 3, 4, 5, 6 , or 8
+    ///    will advance the next character to column 9.  A TAB on column 9, 10, 11,
+    ///    12, 13, 14, 15, or 16 will advance the next character to column 17.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ScriptStackFrame {
         /// Output only. One-based start line.
@@ -8066,9 +8080,9 @@ pub mod script_statistics {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EvaluationKind::Unspecified => "EVALUATION_KIND_UNSPECIFIED",
-                EvaluationKind::Statement => "STATEMENT",
-                EvaluationKind::Expression => "EXPRESSION",
+                Self::Unspecified => "EVALUATION_KIND_UNSPECIFIED",
+                Self::Statement => "STATEMENT",
+                Self::Expression => "EXPRESSION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8318,8 +8332,7 @@ pub struct SparkStatistics {
     pub spark_job_location: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Endpoints returned from Dataproc.
     /// Key list:
-    ///
-    /// * history_server_endpoint: A link to Spark job UI.
+    ///   - history_server_endpoint: A link to Spark job UI.
     #[prost(btree_map = "string, string", tag = "3")]
     pub endpoints: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -8465,26 +8478,24 @@ pub mod materialized_view {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RejectedReason::Unspecified => "REJECTED_REASON_UNSPECIFIED",
-                RejectedReason::NoData => "NO_DATA",
-                RejectedReason::Cost => "COST",
-                RejectedReason::BaseTableTruncated => "BASE_TABLE_TRUNCATED",
-                RejectedReason::BaseTableDataChange => "BASE_TABLE_DATA_CHANGE",
-                RejectedReason::BaseTablePartitionExpirationChange => {
+                Self::Unspecified => "REJECTED_REASON_UNSPECIFIED",
+                Self::NoData => "NO_DATA",
+                Self::Cost => "COST",
+                Self::BaseTableTruncated => "BASE_TABLE_TRUNCATED",
+                Self::BaseTableDataChange => "BASE_TABLE_DATA_CHANGE",
+                Self::BaseTablePartitionExpirationChange => {
                     "BASE_TABLE_PARTITION_EXPIRATION_CHANGE"
                 }
-                RejectedReason::BaseTableExpiredPartition => {
-                    "BASE_TABLE_EXPIRED_PARTITION"
-                }
-                RejectedReason::BaseTableIncompatibleMetadataChange => {
+                Self::BaseTableExpiredPartition => "BASE_TABLE_EXPIRED_PARTITION",
+                Self::BaseTableIncompatibleMetadataChange => {
                     "BASE_TABLE_INCOMPATIBLE_METADATA_CHANGE"
                 }
-                RejectedReason::TimeZone => "TIME_ZONE",
-                RejectedReason::OutOfTimeTravelWindow => "OUT_OF_TIME_TRAVEL_WINDOW",
-                RejectedReason::BaseTableFineGrainedSecurityPolicy => {
+                Self::TimeZone => "TIME_ZONE",
+                Self::OutOfTimeTravelWindow => "OUT_OF_TIME_TRAVEL_WINDOW",
+                Self::BaseTableFineGrainedSecurityPolicy => {
                     "BASE_TABLE_FINE_GRAINED_SECURITY_POLICY"
                 }
-                RejectedReason::BaseTableTooStale => "BASE_TABLE_TOO_STALE",
+                Self::BaseTableTooStale => "BASE_TABLE_TOO_STALE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8574,10 +8585,10 @@ pub mod table_metadata_cache_usage {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UnusedReason::Unspecified => "UNUSED_REASON_UNSPECIFIED",
-                UnusedReason::ExceededMaxStaleness => "EXCEEDED_MAX_STALENESS",
-                UnusedReason::MetadataCachingNotEnabled => "METADATA_CACHING_NOT_ENABLED",
-                UnusedReason::OtherReason => "OTHER_REASON",
+                Self::Unspecified => "UNUSED_REASON_UNSPECIFIED",
+                Self::ExceededMaxStaleness => "EXCEEDED_MAX_STALENESS",
+                Self::MetadataCachingNotEnabled => "METADATA_CACHING_NOT_ENABLED",
+                Self::OtherReason => "OTHER_REASON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8621,10 +8632,10 @@ impl ReservationEdition {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ReservationEdition::Unspecified => "RESERVATION_EDITION_UNSPECIFIED",
-            ReservationEdition::Standard => "STANDARD",
-            ReservationEdition::Enterprise => "ENTERPRISE",
-            ReservationEdition::EnterprisePlus => "ENTERPRISE_PLUS",
+            Self::Unspecified => "RESERVATION_EDITION_UNSPECIFIED",
+            Self::Standard => "STANDARD",
+            Self::Enterprise => "ENTERPRISE",
+            Self::EnterprisePlus => "ENTERPRISE_PLUS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8709,9 +8720,9 @@ pub struct CancelJobRequest {
     /// the job for the following scenarios:
     ///
     /// * If the location to run a job is not in the `us` or
-    ///   the `eu` multi-regional location
+    ///    the `eu` multi-regional location
     /// * If the job's location is in a single region (for example,
-    ///   `us-central1`)
+    ///    `us-central1`)
     ///
     /// For more information, see
     /// <https://cloud.google.com/bigquery/docs/locations#specifying_your_location.>
@@ -8741,9 +8752,9 @@ pub struct GetJobRequest {
     /// the job for the following scenarios:
     ///
     /// * If the location to run a job is not in the `us` or
-    ///   the `eu` multi-regional location
+    ///    the `eu` multi-regional location
     /// * If the job's location is in a single region (for example,
-    ///   `us-central1`)
+    ///    `us-central1`)
     ///
     /// For more information, see
     /// <https://cloud.google.com/bigquery/docs/locations#specifying_your_location.>
@@ -8842,8 +8853,8 @@ pub mod list_jobs_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Projection::Minimal => "minimal",
-                Projection::Full => "full",
+                Self::Minimal => "minimal",
+                Self::Full => "full",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8883,9 +8894,9 @@ pub mod list_jobs_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StateFilter::Done => "done",
-                StateFilter::Pending => "pending",
-                StateFilter::Running => "running",
+                Self::Done => "done",
+                Self::Pending => "pending",
+                Self::Running => "running",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8998,9 +9009,9 @@ pub struct GetQueryResultsRequest {
     /// the job for the following scenarios:
     ///
     /// * If the location to run a job is not in the `us` or
-    ///   the `eu` multi-regional location
+    ///    the `eu` multi-regional location
     /// * If the job's location is in a single region (for example,
-    ///   `us-central1`)
+    /// `us-central1`)
     ///
     /// For more information, see
     /// <https://cloud.google.com/bigquery/docs/locations#specifying_your_location.>
@@ -9177,31 +9188,31 @@ pub struct QueryRequest {
     /// following properties:
     ///
     /// 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is
-    ///    recommended.
+    ///     recommended.
     ///
-    /// 1. Read only queries can ignore this token since they are nullipotent by
-    ///    definition.
+    /// 2. Read only queries can ignore this token since they are nullipotent by
+    ///     definition.
     ///
-    /// 1. For the purposes of idempotency ensured by the request_id, a request
-    ///    is considered duplicate of another only if they have the same request_id
-    ///    and are actually duplicates. When determining whether a request is a
-    ///    duplicate of another request, all parameters in the request that
-    ///    may affect the result are considered. For example, query,
-    ///    connection_properties, query_parameters, use_legacy_sql are parameters
-    ///    that affect the result and are considered when determining whether a
-    ///    request is a duplicate, but properties like timeout_ms don't
-    ///    affect the result and are thus not considered. Dry run query
-    ///    requests are never considered duplicate of another request.
+    /// 3. For the purposes of idempotency ensured by the request_id, a request
+    ///     is considered duplicate of another only if they have the same request_id
+    ///     and are actually duplicates. When determining whether a request is a
+    ///     duplicate of another request, all parameters in the request that
+    ///     may affect the result are considered. For example, query,
+    ///     connection_properties, query_parameters, use_legacy_sql are parameters
+    ///     that affect the result and are considered when determining whether a
+    ///     request is a duplicate, but properties like timeout_ms don't
+    ///     affect the result and are thus not considered. Dry run query
+    ///     requests are never considered duplicate of another request.
     ///
-    /// 1. When a duplicate mutating query request is detected, it returns:
-    ///    a. the results of the mutation if it completes successfully within
-    ///    the timeout.
-    ///    b. the running operation if it is still in progress at the end of the
-    ///    timeout.
+    /// 4. When a duplicate mutating query request is detected, it returns:
+    ///     a. the results of the mutation if it completes successfully within
+    ///        the timeout.
+    ///     b. the running operation if it is still in progress at the end of the
+    ///         timeout.
     ///
-    /// 1. Its lifetime is limited to 15 minutes. In other words, if two
-    ///    requests are sent with the same request_id, but more than 15 minutes
-    ///    apart, idempotency is not guaranteed.
+    /// 5. Its lifetime is limited to 15 minutes. In other words, if two
+    ///     requests are sent with the same request_id, but more than 15 minutes
+    ///     apart, idempotency is not guaranteed.
     #[prost(string, tag = "19")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. If true, creates a new session using a randomly generated
@@ -9254,9 +9265,9 @@ pub mod query_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                JobCreationMode::Unspecified => "JOB_CREATION_MODE_UNSPECIFIED",
-                JobCreationMode::JobCreationRequired => "JOB_CREATION_REQUIRED",
-                JobCreationMode::JobCreationOptional => "JOB_CREATION_OPTIONAL",
+                Self::Unspecified => "JOB_CREATION_MODE_UNSPECIFIED",
+                Self::JobCreationRequired => "JOB_CREATION_REQUIRED",
+                Self::JobCreationOptional => "JOB_CREATION_OPTIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9352,7 +9363,13 @@ pub struct QueryResponse {
 }
 /// Generated client implementations.
 pub mod job_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This is an experimental RPC service definition for the BigQuery
@@ -9442,8 +9459,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9469,8 +9485,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9491,11 +9506,11 @@ pub mod job_service_client {
         /// a variety of use cases.
         ///
         /// * The *Metadata* URI is used for most interactions, as it accepts the job
-        ///  configuration directly.
+        ///   configuration directly.
         /// * The *Upload* URI is ONLY for the case when you're sending both a load job
-        ///  configuration and a data stream together.  In this case, the Upload URI
-        ///  accepts the job configuration and the data as two distinct multipart MIME
-        ///  parts.
+        ///   configuration and a data stream together.  In this case, the Upload URI
+        ///   accepts the job configuration and the data as two distinct multipart MIME
+        ///   parts.
         pub async fn insert_job(
             &mut self,
             request: impl tonic::IntoRequest<super::InsertJobRequest>,
@@ -9504,8 +9519,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9530,8 +9544,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9559,8 +9572,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9587,8 +9599,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9616,8 +9627,7 @@ pub mod job_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9802,11 +9812,11 @@ pub mod join_restriction_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                JoinCondition::Unspecified => "JOIN_CONDITION_UNSPECIFIED",
-                JoinCondition::JoinAny => "JOIN_ANY",
-                JoinCondition::JoinAll => "JOIN_ALL",
-                JoinCondition::JoinNotRequired => "JOIN_NOT_REQUIRED",
-                JoinCondition::JoinBlocked => "JOIN_BLOCKED",
+                Self::Unspecified => "JOIN_CONDITION_UNSPECIFIED",
+                Self::JoinAny => "JOIN_ANY",
+                Self::JoinAll => "JOIN_ALL",
+                Self::JoinNotRequired => "JOIN_NOT_REQUIRED",
+                Self::JoinBlocked => "JOIN_BLOCKED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9870,7 +9880,13 @@ pub struct GetServiceAccountResponse {
 }
 /// Generated client implementations.
 pub mod project_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This is an experimental RPC service definition for the BigQuery
@@ -9959,8 +9975,7 @@ pub mod project_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10026,7 +10041,7 @@ pub struct Routine {
     /// is absent for `Increment` (inferred as FLOAT64 at query time).
     ///
     /// Suppose the function `Add` is replaced by
-    /// `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);`
+    ///    `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);`
     ///
     /// Then the inferred return type of `Increment` is automatically changed to
     /// INT64 at query time, while the return type of `Decrement` remains FLOAT64.
@@ -10166,9 +10181,9 @@ pub mod routine {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ArgumentKind::Unspecified => "ARGUMENT_KIND_UNSPECIFIED",
-                    ArgumentKind::FixedType => "FIXED_TYPE",
-                    ArgumentKind::AnyType => "ANY_TYPE",
+                    Self::Unspecified => "ARGUMENT_KIND_UNSPECIFIED",
+                    Self::FixedType => "FIXED_TYPE",
+                    Self::AnyType => "ANY_TYPE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10211,10 +10226,10 @@ pub mod routine {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Mode::Unspecified => "MODE_UNSPECIFIED",
-                    Mode::In => "IN",
-                    Mode::Out => "OUT",
-                    Mode::Inout => "INOUT",
+                    Self::Unspecified => "MODE_UNSPECIFIED",
+                    Self::In => "IN",
+                    Self::Out => "OUT",
+                    Self::Inout => "INOUT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10233,13 +10248,13 @@ pub mod routine {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RemoteFunctionOptions {
         /// Endpoint of the user-provided remote service, e.g.
-        /// `<https://us-east1-my_gcf_project.cloudfunctions.net/remote_add`>
+        /// ```<https://us-east1-my_gcf_project.cloudfunctions.net/remote_add```>
         #[prost(string, tag = "1")]
         pub endpoint: ::prost::alloc::string::String,
         /// Fully qualified name of the user-provided connection object which holds
         /// the authentication information to send requests to the remote service.
         /// Format:
-        /// `"projects/{projectId}/locations/{locationId}/connections/{connectionId}"`
+        /// ```"projects/{projectId}/locations/{locationId}/connections/{connectionId}"```
         #[prost(string, tag = "2")]
         pub connection: ::prost::alloc::string::String,
         /// User-defined context as a set of key/value pairs, which will be sent as
@@ -10289,11 +10304,11 @@ pub mod routine {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RoutineType::Unspecified => "ROUTINE_TYPE_UNSPECIFIED",
-                RoutineType::ScalarFunction => "SCALAR_FUNCTION",
-                RoutineType::Procedure => "PROCEDURE",
-                RoutineType::TableValuedFunction => "TABLE_VALUED_FUNCTION",
-                RoutineType::AggregateFunction => "AGGREGATE_FUNCTION",
+                Self::Unspecified => "ROUTINE_TYPE_UNSPECIFIED",
+                Self::ScalarFunction => "SCALAR_FUNCTION",
+                Self::Procedure => "PROCEDURE",
+                Self::TableValuedFunction => "TABLE_VALUED_FUNCTION",
+                Self::AggregateFunction => "AGGREGATE_FUNCTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10342,12 +10357,12 @@ pub mod routine {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Language::Unspecified => "LANGUAGE_UNSPECIFIED",
-                Language::Sql => "SQL",
-                Language::Javascript => "JAVASCRIPT",
-                Language::Python => "PYTHON",
-                Language::Java => "JAVA",
-                Language::Scala => "SCALA",
+                Self::Unspecified => "LANGUAGE_UNSPECIFIED",
+                Self::Sql => "SQL",
+                Self::Javascript => "JAVASCRIPT",
+                Self::Python => "PYTHON",
+                Self::Java => "JAVA",
+                Self::Scala => "SCALA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10404,9 +10419,9 @@ pub mod routine {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeterminismLevel::Unspecified => "DETERMINISM_LEVEL_UNSPECIFIED",
-                DeterminismLevel::Deterministic => "DETERMINISTIC",
-                DeterminismLevel::NotDeterministic => "NOT_DETERMINISTIC",
+                Self::Unspecified => "DETERMINISM_LEVEL_UNSPECIFIED",
+                Self::Deterministic => "DETERMINISTIC",
+                Self::NotDeterministic => "NOT_DETERMINISTIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10449,9 +10464,9 @@ pub mod routine {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SecurityMode::Unspecified => "SECURITY_MODE_UNSPECIFIED",
-                SecurityMode::Definer => "DEFINER",
-                SecurityMode::Invoker => "INVOKER",
+                Self::Unspecified => "SECURITY_MODE_UNSPECIFIED",
+                Self::Definer => "DEFINER",
+                Self::Invoker => "INVOKER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10490,8 +10505,8 @@ pub mod routine {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataGovernanceType::Unspecified => "DATA_GOVERNANCE_TYPE_UNSPECIFIED",
-                DataGovernanceType::DataMasking => "DATA_MASKING",
+                Self::Unspecified => "DATA_GOVERNANCE_TYPE_UNSPECIFIED",
+                Self::DataMasking => "DATA_MASKING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10508,7 +10523,7 @@ pub mod routine {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SparkOptions {
     /// Fully qualified name of the user-provided Spark connection object. Format:
-    /// `"projects/{project_id}/locations/{location_id}/connections/{connection_id}"`
+    /// ```"projects/{project_id}/locations/{location_id}/connections/{connection_id}"```
     #[prost(string, tag = "1")]
     pub connection: ::prost::alloc::string::String,
     /// Runtime version. If not specified, the default runtime version is used.
@@ -10556,7 +10571,7 @@ pub struct SparkOptions {
     pub archive_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The fully qualified name of a class in jar_uris, for example,
     /// com.example.wordcount. Exactly one of main_class and main_jar_uri field
-    /// should be set for Java/Scala language type.
+    ///   should be set for Java/Scala language type.
     #[prost(string, tag = "10")]
     pub main_class: ::prost::alloc::string::String,
 }
@@ -10675,7 +10690,13 @@ pub struct ListRoutinesResponse {
 }
 /// Generated client implementations.
 pub mod routine_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This is an experimental RPC service definition for the BigQuery
@@ -10760,8 +10781,7 @@ pub mod routine_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10788,8 +10808,7 @@ pub mod routine_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10817,8 +10836,7 @@ pub mod routine_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10846,8 +10864,7 @@ pub mod routine_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10874,8 +10891,7 @@ pub mod routine_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10906,8 +10922,7 @@ pub mod routine_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -10976,9 +10991,9 @@ pub struct RowAccessPolicy {
     /// supported.
     ///
     /// Examples: region="EU"
-    /// date_field = CAST('2019-9-27' as DATE)
-    /// nullable_field is not NULL
-    /// numeric_field BETWEEN 1.0 AND 5.0
+    ///            date_field = CAST('2019-9-27' as DATE)
+    ///            nullable_field is not NULL
+    ///            numeric_field BETWEEN 1.0 AND 5.0
     #[prost(string, tag = "3")]
     pub filter_predicate: ::prost::alloc::string::String,
     /// Output only. The time when this row access policy was created, in
@@ -10992,7 +11007,13 @@ pub struct RowAccessPolicy {
 }
 /// Generated client implementations.
 pub mod row_access_policy_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for interacting with row access policies.
@@ -11079,8 +11100,7 @@ pub mod row_access_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11205,13 +11225,11 @@ pub mod table_replication_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReplicationStatus::Unspecified => "REPLICATION_STATUS_UNSPECIFIED",
-                ReplicationStatus::Active => "ACTIVE",
-                ReplicationStatus::SourceDeleted => "SOURCE_DELETED",
-                ReplicationStatus::PermissionDenied => "PERMISSION_DENIED",
-                ReplicationStatus::UnsupportedConfiguration => {
-                    "UNSUPPORTED_CONFIGURATION"
-                }
+                Self::Unspecified => "REPLICATION_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::SourceDeleted => "SOURCE_DELETED",
+                Self::PermissionDenied => "PERMISSION_DENIED",
+                Self::UnsupportedConfiguration => "UNSUPPORTED_CONFIGURATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11441,12 +11459,12 @@ pub struct Table {
     /// * `TABLE`: A normal BigQuery table.
     /// * `VIEW`: A virtual table defined by a SQL query.
     /// * `EXTERNAL`: A table that references data stored in an external storage
-    ///   system, such as Google Cloud Storage.
+    ///    system, such as Google Cloud Storage.
     /// * `MATERIALIZED_VIEW`: A precomputed view defined by a SQL query.
     /// * `SNAPSHOT`: An immutable BigQuery table that preserves the contents of a
-    ///   base table at a particular time. See additional information on
-    ///   [table
-    ///   snapshots](<https://cloud.google.com/bigquery/docs/table-snapshots-intro>).
+    ///    base table at a particular time. See additional information on
+    ///    [table
+    ///    snapshots](<https://cloud.google.com/bigquery/docs/table-snapshots-intro>).
     ///
     /// The default value is `TABLE`.
     #[prost(string, tag = "17")]
@@ -11652,10 +11670,10 @@ pub mod get_table_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TableMetadataView::Unspecified => "TABLE_METADATA_VIEW_UNSPECIFIED",
-                TableMetadataView::Basic => "BASIC",
-                TableMetadataView::StorageStats => "STORAGE_STATS",
-                TableMetadataView::Full => "FULL",
+                Self::Unspecified => "TABLE_METADATA_VIEW_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::StorageStats => "STORAGE_STATS",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11814,7 +11832,13 @@ pub struct TableList {
 }
 /// Generated client implementations.
 pub mod table_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This is an experimental RPC service definition for the BigQuery
@@ -11901,8 +11925,7 @@ pub mod table_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11926,8 +11949,7 @@ pub mod table_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11957,8 +11979,7 @@ pub mod table_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11987,8 +12008,7 @@ pub mod table_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -12016,8 +12036,7 @@ pub mod table_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -12045,8 +12064,7 @@ pub mod table_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

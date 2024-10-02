@@ -23,10 +23,10 @@ pub struct NodeConfig {
     /// not included:
     ///
     /// * `<https://www.googleapis.com/auth/compute`> is required for mounting
-    ///   persistent storage on your nodes.
+    /// persistent storage on your nodes.
     /// * `<https://www.googleapis.com/auth/devstorage.read_only`> is required for
-    ///   communicating with **gcr.io**
-    ///   (the [Google Container Registry](/container-registry/)).
+    /// communicating with **gcr.io**
+    /// (the [Google Container Registry](/container-registry/)).
     ///
     /// If unspecified, no scopes are added, unless Cloud Logging or Cloud
     /// Monitoring are enabled, in which case their required scopes will be added.
@@ -38,7 +38,7 @@ pub struct NodeConfig {
     pub service_account: ::prost::alloc::string::String,
     /// The metadata key/value pairs assigned to instances in the cluster.
     ///
-    /// Keys must conform to the regexp \[a-zA-Z0-9-\_\]+ and be less than 128 bytes
+    /// Keys must conform to the regexp \[a-zA-Z0-9-_\]+ and be less than 128 bytes
     /// in length. These are reflected as part of a URL in the metadata server.
     /// Additionally, to avoid ambiguity, keys must not conflict with any other
     /// metadata keys for the project or be one of the four reserved keys:
@@ -98,8 +98,8 @@ pub struct NodeConfig {
     /// Minimum CPU platform to be used by this instance. The instance may be
     /// scheduled on the specified or newer CPU platform. Applicable values are the
     /// friendly names of CPU platforms, such as
-    /// <code>minCpuPlatform: "Intel Haswell"</code> or
-    /// <code>minCpuPlatform: "Intel Sandy Bridge"</code>. For more
+    /// <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
+    /// <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
     /// information, read [how to specify min CPU platform](<https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform>)
     #[prost(string, tag = "13")]
     pub min_cpu_platform: ::prost::alloc::string::String,
@@ -159,10 +159,10 @@ pub mod node_taint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Effect::Unspecified => "EFFECT_UNSPECIFIED",
-                Effect::NoSchedule => "NO_SCHEDULE",
-                Effect::PreferNoSchedule => "PREFER_NO_SCHEDULE",
-                Effect::NoExecute => "NO_EXECUTE",
+                Self::Unspecified => "EFFECT_UNSPECIFIED",
+                Self::NoSchedule => "NO_SCHEDULE",
+                Self::PreferNoSchedule => "PREFER_NO_SCHEDULE",
+                Self::NoExecute => "NO_EXECUTE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -344,8 +344,8 @@ pub mod network_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Provider::Unspecified => "PROVIDER_UNSPECIFIED",
-                Provider::Calico => "CALICO",
+                Self::Unspecified => "PROVIDER_UNSPECIFIED",
+                Self::Calico => "CALICO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -683,12 +683,12 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Provisioning => "PROVISIONING",
-                Status::Running => "RUNNING",
-                Status::Reconciling => "RECONCILING",
-                Status::Stopping => "STOPPING",
-                Status::Error => "ERROR",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Provisioning => "PROVISIONING",
+                Self::Running => "RUNNING",
+                Self::Reconciling => "RECONCILING",
+                Self::Stopping => "STOPPING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -846,11 +846,11 @@ pub mod operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Pending => "PENDING",
-                Status::Running => "RUNNING",
-                Status::Done => "DONE",
-                Status::Aborting => "ABORTING",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Done => "DONE",
+                Self::Aborting => "ABORTING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -921,23 +921,23 @@ pub mod operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::CreateCluster => "CREATE_CLUSTER",
-                Type::DeleteCluster => "DELETE_CLUSTER",
-                Type::UpgradeMaster => "UPGRADE_MASTER",
-                Type::UpgradeNodes => "UPGRADE_NODES",
-                Type::RepairCluster => "REPAIR_CLUSTER",
-                Type::UpdateCluster => "UPDATE_CLUSTER",
-                Type::CreateNodePool => "CREATE_NODE_POOL",
-                Type::DeleteNodePool => "DELETE_NODE_POOL",
-                Type::SetNodePoolManagement => "SET_NODE_POOL_MANAGEMENT",
-                Type::AutoRepairNodes => "AUTO_REPAIR_NODES",
-                Type::AutoUpgradeNodes => "AUTO_UPGRADE_NODES",
-                Type::SetLabels => "SET_LABELS",
-                Type::SetMasterAuth => "SET_MASTER_AUTH",
-                Type::SetNodePoolSize => "SET_NODE_POOL_SIZE",
-                Type::SetNetworkPolicy => "SET_NETWORK_POLICY",
-                Type::SetMaintenancePolicy => "SET_MAINTENANCE_POLICY",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::CreateCluster => "CREATE_CLUSTER",
+                Self::DeleteCluster => "DELETE_CLUSTER",
+                Self::UpgradeMaster => "UPGRADE_MASTER",
+                Self::UpgradeNodes => "UPGRADE_NODES",
+                Self::RepairCluster => "REPAIR_CLUSTER",
+                Self::UpdateCluster => "UPDATE_CLUSTER",
+                Self::CreateNodePool => "CREATE_NODE_POOL",
+                Self::DeleteNodePool => "DELETE_NODE_POOL",
+                Self::SetNodePoolManagement => "SET_NODE_POOL_MANAGEMENT",
+                Self::AutoRepairNodes => "AUTO_REPAIR_NODES",
+                Self::AutoUpgradeNodes => "AUTO_UPGRADE_NODES",
+                Self::SetLabels => "SET_LABELS",
+                Self::SetMasterAuth => "SET_MASTER_AUTH",
+                Self::SetNodePoolSize => "SET_NODE_POOL_SIZE",
+                Self::SetNetworkPolicy => "SET_NETWORK_POLICY",
+                Self::SetMaintenancePolicy => "SET_MAINTENANCE_POLICY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1007,7 +1007,7 @@ pub struct GetClusterRequest {
     #[prost(string, tag = "3")]
     pub cluster_id: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to retrieve.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1033,7 +1033,7 @@ pub struct UpdateClusterRequest {
     #[prost(message, optional, tag = "4")]
     pub update: ::core::option::Option<ClusterUpdate>,
     /// The name (project, location, cluster) of the cluster to update.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1128,7 +1128,7 @@ pub struct SetLoggingServiceRequest {
     #[prost(string, tag = "4")]
     pub logging_service: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to set logging.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1158,7 +1158,7 @@ pub struct SetMonitoringServiceRequest {
     #[prost(string, tag = "4")]
     pub monitoring_service: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to set monitoring.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1185,7 +1185,7 @@ pub struct SetAddonsConfigRequest {
     #[prost(message, optional, tag = "4")]
     pub addons_config: ::core::option::Option<AddonsConfig>,
     /// The name (project, location, cluster) of the cluster to set addons.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1217,7 +1217,7 @@ pub struct SetLocationsRequest {
     #[prost(string, repeated, tag = "4")]
     pub locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The name (project, location, cluster) of the cluster to set locations.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1244,7 +1244,7 @@ pub struct UpdateMasterRequest {
     #[prost(string, tag = "4")]
     pub master_version: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to update.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1273,7 +1273,7 @@ pub struct SetMasterAuthRequest {
     #[prost(message, optional, tag = "5")]
     pub update: ::core::option::Option<MasterAuth>,
     /// The name (project, location, cluster) of the cluster to set auth.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1312,10 +1312,10 @@ pub mod set_master_auth_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unknown => "UNKNOWN",
-                Action::SetPassword => "SET_PASSWORD",
-                Action::GeneratePassword => "GENERATE_PASSWORD",
-                Action::SetUsername => "SET_USERNAME",
+                Self::Unknown => "UNKNOWN",
+                Self::SetPassword => "SET_PASSWORD",
+                Self::GeneratePassword => "GENERATE_PASSWORD",
+                Self::SetUsername => "SET_USERNAME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1349,7 +1349,7 @@ pub struct DeleteClusterRequest {
     #[prost(string, tag = "3")]
     pub cluster_id: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to delete.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "4")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1404,7 +1404,7 @@ pub struct GetOperationRequest {
     #[prost(string, tag = "3")]
     pub operation_id: ::prost::alloc::string::String,
     /// The name (project, location, operation id) of the operation to get.
-    /// Specified in the format 'projects/*/locations/*/operations/\*'.
+    /// Specified in the format 'projects/*/locations/*/operations/*'.
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1445,7 +1445,7 @@ pub struct CancelOperationRequest {
     #[prost(string, tag = "3")]
     pub operation_id: ::prost::alloc::string::String,
     /// The name (project, location, operation id) of the operation to cancel.
-    /// Specified in the format 'projects/*/locations/*/operations/\*'.
+    /// Specified in the format 'projects/*/locations/*/operations/*'.
     #[prost(string, tag = "4")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1569,7 +1569,7 @@ pub struct ListNodePoolsRequest {
     #[prost(string, tag = "3")]
     pub cluster_id: ::prost::alloc::string::String,
     /// The parent (project, location, cluster id) where the node pools will be listed.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "5")]
     pub parent: ::prost::alloc::string::String,
 }
@@ -1691,13 +1691,13 @@ pub mod node_pool {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Provisioning => "PROVISIONING",
-                Status::Running => "RUNNING",
-                Status::RunningWithError => "RUNNING_WITH_ERROR",
-                Status::Reconciling => "RECONCILING",
-                Status::Stopping => "STOPPING",
-                Status::Error => "ERROR",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Provisioning => "PROVISIONING",
+                Self::Running => "RUNNING",
+                Self::RunningWithError => "RUNNING_WITH_ERROR",
+                Self::Reconciling => "RECONCILING",
+                Self::Stopping => "STOPPING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1888,7 +1888,7 @@ pub struct NodePoolAutoscaling {
     /// Is autoscaling enabled for this node pool.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
-    /// Minimum number of nodes in the NodePool. Must be >= 1 and \<=
+    /// Minimum number of nodes in the NodePool. Must be >= 1 and <=
     /// max_node_count.
     #[prost(int32, tag = "2")]
     pub min_node_count: i32,
@@ -1932,7 +1932,7 @@ pub struct SetLabelsRequest {
     #[prost(string, tag = "5")]
     pub label_fingerprint: ::prost::alloc::string::String,
     /// The name (project, location, cluster id) of the cluster to set labels.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1959,7 +1959,7 @@ pub struct SetLegacyAbacRequest {
     #[prost(bool, tag = "4")]
     pub enabled: bool,
     /// The name (project, location, cluster id) of the cluster to set legacy abac.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1983,7 +1983,7 @@ pub struct StartIpRotationRequest {
     #[prost(string, tag = "3")]
     pub cluster_id: ::prost::alloc::string::String,
     /// The name (project, location, cluster id) of the cluster to start IP rotation.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
 }
@@ -2006,7 +2006,7 @@ pub struct CompleteIpRotationRequest {
     #[prost(string, tag = "3")]
     pub cluster_id: ::prost::alloc::string::String,
     /// The name (project, location, cluster id) of the cluster to complete IP rotation.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
 }
@@ -2044,7 +2044,7 @@ pub struct SetNetworkPolicyRequest {
     pub network_policy: ::core::option::Option<NetworkPolicy>,
     /// The name (project, location, cluster id) of the cluster to set networking
     /// policy.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
 }
@@ -2069,13 +2069,19 @@ pub struct SetMaintenancePolicyRequest {
     pub maintenance_policy: ::core::option::Option<MaintenancePolicy>,
     /// The name (project, location, cluster id) of the cluster to set maintenance
     /// policy.
-    /// Specified in the format 'projects/*/locations/*/clusters/\*'.
+    /// Specified in the format 'projects/*/locations/*/clusters/*'.
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod cluster_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Container Engine Cluster Manager v1alpha1
@@ -2161,8 +2167,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2189,8 +2194,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2229,8 +2233,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2257,8 +2260,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2285,8 +2287,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2313,8 +2314,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2341,8 +2341,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2369,8 +2368,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2397,8 +2395,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2425,8 +2422,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2453,8 +2449,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2484,8 +2479,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2520,8 +2514,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2551,8 +2544,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2579,8 +2571,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2607,8 +2598,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2635,8 +2625,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2666,8 +2655,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2694,8 +2682,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2722,8 +2709,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2750,8 +2736,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2779,8 +2764,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2807,8 +2791,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2835,8 +2818,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2863,8 +2845,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2891,8 +2872,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2919,8 +2899,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2947,8 +2926,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2975,8 +2953,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3003,8 +2980,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

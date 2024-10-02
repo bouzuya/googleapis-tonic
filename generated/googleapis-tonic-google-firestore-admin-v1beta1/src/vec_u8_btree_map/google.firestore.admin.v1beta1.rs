@@ -3,7 +3,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexField {
     /// The path of the field. Must match the field path specification described
-    /// by \[google.firestore.v1beta1.Document.fields\]\[fields\].
+    /// by [google.firestore.v1beta1.Document.fields][fields].
     /// Special field path `__name__` may be used by itself or at the end of a
     /// path. `__type__` may be used only at the end of path.
     #[prost(string, tag = "1")]
@@ -31,10 +31,10 @@ pub mod index_field {
         /// The mode is unspecified.
         Unspecified = 0,
         /// The field's values are indexed so as to support sequencing in
-        /// ascending order and also query by \<, >, \<=, >=, and =.
+        /// ascending order and also query by <, >, <=, >=, and =.
         Ascending = 2,
         /// The field's values are indexed so as to support sequencing in
-        /// descending order and also query by \<, >, \<=, >=, and =.
+        /// descending order and also query by <, >, <=, >=, and =.
         Descending = 3,
         /// The field's array values are indexed so as to support membership using
         /// ARRAY_CONTAINS queries.
@@ -47,10 +47,10 @@ pub mod index_field {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Ascending => "ASCENDING",
-                Mode::Descending => "DESCENDING",
-                Mode::ArrayContains => "ARRAY_CONTAINS",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Ascending => "ASCENDING",
+                Self::Descending => "DESCENDING",
+                Self::ArrayContains => "ARRAY_CONTAINS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -127,10 +127,10 @@ pub mod index {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Error => "ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -146,7 +146,7 @@ pub mod index {
     }
 }
 /// Metadata for index operations. This metadata populates
-/// the metadata field of \[google.longrunning.Operation\]\[google.longrunning.Operation\].
+/// the metadata field of [google.longrunning.Operation][google.longrunning.Operation].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexOperationMetadata {
     /// The time that work began on the operation.
@@ -165,7 +165,7 @@ pub struct IndexOperationMetadata {
     pub operation_type: i32,
     /// True if the \[google.longrunning.Operation\] was cancelled. If the
     /// cancellation is in progress, cancelled will be true but
-    /// \[google.longrunning.Operation.done\]\[google.longrunning.Operation.done\] will be false.
+    /// [google.longrunning.Operation.done][google.longrunning.Operation.done] will be false.
     #[prost(bool, tag = "5")]
     pub cancelled: bool,
     /// Progress of the existing operation, measured in number of documents.
@@ -200,8 +200,8 @@ pub mod index_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
-                OperationType::CreatingIndex => "CREATING_INDEX",
+                Self::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
+                Self::CreatingIndex => "CREATING_INDEX",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -226,7 +226,7 @@ pub struct Progress {
     #[prost(int64, tag = "2")]
     pub work_estimated: i64,
 }
-/// The request for \[FirestoreAdmin.CreateIndex\]\[google.firestore.admin.v1beta1.FirestoreAdmin.CreateIndex\].
+/// The request for [FirestoreAdmin.CreateIndex][google.firestore.admin.v1beta1.FirestoreAdmin.CreateIndex].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexRequest {
     /// The name of the database this index will apply to. For example:
@@ -238,7 +238,7 @@ pub struct CreateIndexRequest {
     #[prost(message, optional, tag = "2")]
     pub index: ::core::option::Option<Index>,
 }
-/// The request for \[FirestoreAdmin.GetIndex\]\[google.firestore.admin.v1beta1.FirestoreAdmin.GetIndex\].
+/// The request for [FirestoreAdmin.GetIndex][google.firestore.admin.v1beta1.FirestoreAdmin.GetIndex].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIndexRequest {
     /// The name of the index. For example:
@@ -246,7 +246,7 @@ pub struct GetIndexRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// The request for \[FirestoreAdmin.ListIndexes\]\[google.firestore.admin.v1beta1.FirestoreAdmin.ListIndexes\].
+/// The request for [FirestoreAdmin.ListIndexes][google.firestore.admin.v1beta1.FirestoreAdmin.ListIndexes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesRequest {
     /// The database name. For example:
@@ -262,7 +262,7 @@ pub struct ListIndexesRequest {
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// The request for \[FirestoreAdmin.DeleteIndex\]\[google.firestore.admin.v1beta1.FirestoreAdmin.DeleteIndex\].
+/// The request for [FirestoreAdmin.DeleteIndex][google.firestore.admin.v1beta1.FirestoreAdmin.DeleteIndex].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIndexRequest {
     /// The index name. For example:
@@ -270,7 +270,7 @@ pub struct DeleteIndexRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// The response for \[FirestoreAdmin.ListIndexes\]\[google.firestore.admin.v1beta1.FirestoreAdmin.ListIndexes\].
+/// The response for [FirestoreAdmin.ListIndexes][google.firestore.admin.v1beta1.FirestoreAdmin.ListIndexes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesResponse {
     /// The indexes.
@@ -280,7 +280,7 @@ pub struct ListIndexesResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
-/// The request for \[FirestoreAdmin.ExportDocuments\]\[google.firestore.admin.v1beta1.FirestoreAdmin.ExportDocuments\].
+/// The request for [FirestoreAdmin.ExportDocuments][google.firestore.admin.v1beta1.FirestoreAdmin.ExportDocuments].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDocumentsRequest {
     /// Database to export. Should be of the form:
@@ -301,7 +301,7 @@ pub struct ExportDocumentsRequest {
     #[prost(string, tag = "4")]
     pub output_uri_prefix: ::prost::alloc::string::String,
 }
-/// The request for \[FirestoreAdmin.ImportDocuments\]\[google.firestore.admin.v1beta1.FirestoreAdmin.ImportDocuments\].
+/// The request for [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1beta1.FirestoreAdmin.ImportDocuments].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportDocumentsRequest {
     /// Database to import into. Should be of the form:
@@ -316,11 +316,11 @@ pub struct ImportDocumentsRequest {
     /// This must match the output_uri_prefix of an ExportDocumentsResponse from
     /// an export that has completed successfully.
     /// See:
-    /// \[google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix\]\[google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix\].
+    /// [google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix].
     #[prost(string, tag = "4")]
     pub input_uri_prefix: ::prost::alloc::string::String,
 }
-/// Returned in the \[google.longrunning.Operation\]\[google.longrunning.Operation\] response field.
+/// Returned in the [google.longrunning.Operation][google.longrunning.Operation] response field.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDocumentsResponse {
     /// Location of the output files. This can be used to begin an import
@@ -411,14 +411,14 @@ impl OperationState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OperationState::StateUnspecified => "STATE_UNSPECIFIED",
-            OperationState::Initializing => "INITIALIZING",
-            OperationState::Processing => "PROCESSING",
-            OperationState::Cancelling => "CANCELLING",
-            OperationState::Finalizing => "FINALIZING",
-            OperationState::Successful => "SUCCESSFUL",
-            OperationState::Failed => "FAILED",
-            OperationState::Cancelled => "CANCELLED",
+            Self::StateUnspecified => "STATE_UNSPECIFIED",
+            Self::Initializing => "INITIALIZING",
+            Self::Processing => "PROCESSING",
+            Self::Cancelling => "CANCELLING",
+            Self::Finalizing => "FINALIZING",
+            Self::Successful => "SUCCESSFUL",
+            Self::Failed => "FAILED",
+            Self::Cancelled => "CANCELLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -438,7 +438,13 @@ impl OperationState {
 }
 /// Generated client implementations.
 pub mod firestore_admin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Cloud Firestore Admin API.
@@ -451,6 +457,7 @@ pub mod firestore_admin_client {
     /// the Google Cloud Firestore API.
     ///
     /// Operation: An Operation represents work being performed in the background.
+    ///
     ///
     /// # Services
     ///
@@ -554,15 +561,15 @@ pub mod firestore_admin_client {
         }
         /// Creates the specified index.
         /// A newly created index's initial state is `CREATING`. On completion of the
-        /// returned \[google.longrunning.Operation\]\[google.longrunning.Operation\], the state will be `READY`.
+        /// returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
         /// If the index already exists, the call will return an `ALREADY_EXISTS`
         /// status.
         ///
         /// During creation, the process could result in an error, in which case the
         /// index will move to the `ERROR` state. The process can be recovered by
         /// fixing the data that caused the error, removing the index with
-        /// \[delete\]\[google.firestore.admin.v1beta1.FirestoreAdmin.DeleteIndex\], then re-creating the index with
-        /// \[create\]\[google.firestore.admin.v1beta1.FirestoreAdmin.CreateIndex\].
+        /// [delete][google.firestore.admin.v1beta1.FirestoreAdmin.DeleteIndex], then re-creating the index with
+        /// [create][google.firestore.admin.v1beta1.FirestoreAdmin.CreateIndex].
         ///
         /// Indexes with a single field cannot be created.
         pub async fn create_index(
@@ -576,8 +583,7 @@ pub mod firestore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -607,8 +613,7 @@ pub mod firestore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -635,8 +640,7 @@ pub mod firestore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -663,8 +667,7 @@ pub mod firestore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -701,8 +704,7 @@ pub mod firestore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -736,8 +738,7 @@ pub mod firestore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -757,6 +758,6 @@ pub mod firestore_admin_client {
         }
     }
 }
-/// The metadata message for \[google.cloud.location.Location.metadata\]\[google.cloud.location.Location.metadata\].
+/// The metadata message for [google.cloud.location.Location.metadata][google.cloud.location.Location.metadata].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {}

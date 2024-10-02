@@ -364,10 +364,10 @@ pub mod transfer_message {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MessageSeverity::Unspecified => "MESSAGE_SEVERITY_UNSPECIFIED",
-                MessageSeverity::Info => "INFO",
-                MessageSeverity::Warning => "WARNING",
-                MessageSeverity::Error => "ERROR",
+                Self::Unspecified => "MESSAGE_SEVERITY_UNSPECIFIED",
+                Self::Info => "INFO",
+                Self::Warning => "WARNING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -401,9 +401,9 @@ impl TransferType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransferType::Unspecified => "TRANSFER_TYPE_UNSPECIFIED",
-            TransferType::Batch => "BATCH",
-            TransferType::Streaming => "STREAMING",
+            Self::Unspecified => "TRANSFER_TYPE_UNSPECIFIED",
+            Self::Batch => "BATCH",
+            Self::Streaming => "STREAMING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -441,12 +441,12 @@ impl TransferState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransferState::Unspecified => "TRANSFER_STATE_UNSPECIFIED",
-            TransferState::Pending => "PENDING",
-            TransferState::Running => "RUNNING",
-            TransferState::Succeeded => "SUCCEEDED",
-            TransferState::Failed => "FAILED",
-            TransferState::Cancelled => "CANCELLED",
+            Self::Unspecified => "TRANSFER_STATE_UNSPECIFIED",
+            Self::Pending => "PENDING",
+            Self::Running => "RUNNING",
+            Self::Succeeded => "SUCCEEDED",
+            Self::Failed => "FAILED",
+            Self::Cancelled => "CANCELLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -557,14 +557,14 @@ pub mod data_source_parameter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::String => "STRING",
-                Type::Integer => "INTEGER",
-                Type::Double => "DOUBLE",
-                Type::Boolean => "BOOLEAN",
-                Type::Record => "RECORD",
-                Type::PlusPage => "PLUS_PAGE",
-                Type::List => "LIST",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::String => "STRING",
+                Self::Integer => "INTEGER",
+                Self::Double => "DOUBLE",
+                Self::Boolean => "BOOLEAN",
+                Self::Record => "RECORD",
+                Self::PlusPage => "PLUS_PAGE",
+                Self::List => "LIST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -691,12 +691,10 @@ pub mod data_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AuthorizationType::Unspecified => "AUTHORIZATION_TYPE_UNSPECIFIED",
-                AuthorizationType::AuthorizationCode => "AUTHORIZATION_CODE",
-                AuthorizationType::GooglePlusAuthorizationCode => {
-                    "GOOGLE_PLUS_AUTHORIZATION_CODE"
-                }
-                AuthorizationType::FirstPartyOauth => "FIRST_PARTY_OAUTH",
+                Self::Unspecified => "AUTHORIZATION_TYPE_UNSPECIFIED",
+                Self::AuthorizationCode => "AUTHORIZATION_CODE",
+                Self::GooglePlusAuthorizationCode => "GOOGLE_PLUS_AUTHORIZATION_CODE",
+                Self::FirstPartyOauth => "FIRST_PARTY_OAUTH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -744,9 +742,9 @@ pub mod data_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataRefreshType::Unspecified => "DATA_REFRESH_TYPE_UNSPECIFIED",
-                DataRefreshType::SlidingWindow => "SLIDING_WINDOW",
-                DataRefreshType::CustomSlidingWindow => "CUSTOM_SLIDING_WINDOW",
+                Self::Unspecified => "DATA_REFRESH_TYPE_UNSPECIFIED",
+                Self::SlidingWindow => "SLIDING_WINDOW",
+                Self::CustomSlidingWindow => "CUSTOM_SLIDING_WINDOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -832,15 +830,13 @@ pub struct CreateTransferConfigRequest {
     /// This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
     /// and new credentials are needed, as indicated by `CheckValidCreds`. In order
     /// to obtain authorization_code, make a request to the following URL:
-    ///
     /// <pre class="prettyprint" suppresswarning="true">
     /// <https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>>
     /// </pre>
-    ///
     /// * The <var>client_id</var> is the OAuth client_id of the data source as
-    ///   returned by ListDataSources method.
+    /// returned by ListDataSources method.
     /// * <var>data_source_scopes</var> are the scopes returned by ListDataSources
-    ///   method.
+    /// method.
     ///
     /// Note that this should not be set when `service_account_name` is used to
     /// create the transfer config.
@@ -852,15 +848,13 @@ pub struct CreateTransferConfigRequest {
     /// `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials
     /// are needed, as indicated by `CheckValidCreds`. In order to obtain version
     /// info, make a request to the following URL:
-    ///
     /// <pre class="prettyprint" suppresswarning="true">
     /// <https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>>
     /// </pre>
-    ///
     /// * The <var>client_id</var> is the OAuth client_id of the data source as
-    ///   returned by ListDataSources method.
+    /// returned by ListDataSources method.
     /// * <var>data_source_scopes</var> are the scopes returned by ListDataSources
-    ///   method.
+    /// method.
     ///
     /// Note that this should not be set when `service_account_name` is used to
     /// create the transfer config.
@@ -898,15 +892,13 @@ pub struct UpdateTransferConfigRequest {
     /// This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
     /// and new credentials are needed, as indicated by `CheckValidCreds`. In order
     /// to obtain authorization_code, make a request to the following URL:
-    ///
     /// <pre class="prettyprint" suppresswarning="true">
     /// <https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>>
     /// </pre>
-    ///
     /// * The <var>client_id</var> is the OAuth client_id of the data source as
-    ///   returned by ListDataSources method.
+    /// returned by ListDataSources method.
     /// * <var>data_source_scopes</var> are the scopes returned by ListDataSources
-    ///   method.
+    /// method.
     ///
     /// Note that this should not be set when `service_account_name` is used to
     /// update the transfer config.
@@ -921,15 +913,13 @@ pub struct UpdateTransferConfigRequest {
     /// `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials
     /// are needed, as indicated by `CheckValidCreds`. In order to obtain version
     /// info, make a request to the following URL:
-    ///
     /// <pre class="prettyprint" suppresswarning="true">
     /// <https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>>
     /// </pre>
-    ///
     /// * The <var>client_id</var> is the OAuth client_id of the data source as
-    ///   returned by ListDataSources method.
+    /// returned by ListDataSources method.
     /// * <var>data_source_scopes</var> are the scopes returned by ListDataSources
-    ///   method.
+    /// method.
     ///
     /// Note that this should not be set when `service_account_name` is used to
     /// update the transfer config.
@@ -1075,8 +1065,8 @@ pub mod list_transfer_runs_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RunAttempt::Unspecified => "RUN_ATTEMPT_UNSPECIFIED",
-                RunAttempt::Latest => "LATEST",
+                Self::Unspecified => "RUN_ATTEMPT_UNSPECIFIED",
+                Self::Latest => "LATEST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1268,7 +1258,13 @@ pub struct UnenrollDataSourcesRequest {
 }
 /// Generated client implementations.
 pub mod data_transfer_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This API allows users to manage their data transfers into BigQuery.
@@ -1350,8 +1346,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1381,8 +1376,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1409,8 +1403,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1438,8 +1431,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1467,8 +1459,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1495,8 +1486,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1527,8 +1517,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1546,11 +1535,12 @@ pub mod data_transfer_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates transfer runs for a time range \[start_time, end_time\].
+        /// Creates transfer runs for a time range [start_time, end_time].
         /// For each date - or whatever granularity the data source supports - in the
         /// range, one transfer run is created.
         /// Note that runs are created per UTC time in the time range.
         /// DEPRECATED: use StartManualTransferRuns instead.
+        #[deprecated]
         pub async fn schedule_transfer_runs(
             &mut self,
             request: impl tonic::IntoRequest<super::ScheduleTransferRunsRequest>,
@@ -1562,8 +1552,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1596,8 +1585,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1624,8 +1612,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1652,8 +1639,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1683,8 +1669,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1714,8 +1699,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1746,8 +1730,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1781,8 +1764,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1813,8 +1795,7 @@ pub mod data_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

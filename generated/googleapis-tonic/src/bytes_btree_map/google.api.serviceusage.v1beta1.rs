@@ -5,15 +5,13 @@ pub struct Service {
     /// The resource name of the consumer and service.
     ///
     /// A valid name would be:
-    ///
-    /// * `projects/123/services/serviceusage.googleapis.com`
+    /// - `projects/123/services/serviceusage.googleapis.com`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The resource name of the consumer.
     ///
     /// A valid name would be:
-    ///
-    /// * `projects/123`
+    /// - `projects/123`
     #[prost(string, tag = "5")]
     pub parent: ::prost::alloc::string::String,
     /// The service configuration of the available service.
@@ -60,8 +58,8 @@ pub struct ServiceConfig {
     #[prost(message, repeated, tag = "18")]
     pub endpoints: ::prost::alloc::vec::Vec<super::super::Endpoint>,
     /// Defines the monitored resources used by this service. This is required
-    /// by the \[Service.monitoring\]\[google.api.Service.monitoring\] and
-    /// \[Service.logging\]\[google.api.Service.logging\] configurations.
+    /// by the [Service.monitoring][google.api.Service.monitoring] and
+    /// [Service.logging][google.api.Service.logging] configurations.
     #[prost(message, repeated, tag = "25")]
     pub monitored_resources: ::prost::alloc::vec::Vec<
         super::super::MonitoredResourceDescriptor,
@@ -230,19 +228,19 @@ pub struct QuotaOverride {
     ///
     /// This map has the following restrictions:
     ///
-    /// * Keys that are not defined in the limit's unit are not valid keys.
-    ///   Any string appearing in `{brackets}` in the unit (besides `{project}`
-    ///   or
-    ///   `{user}`) is a defined key.
-    /// * `project` is not a valid key; the project is already specified in
-    ///   the parent resource name.
-    /// * `user` is not a valid key; the API does not support quota overrides
-    ///   that apply only to a specific user.
-    /// * If `region` appears as a key, its value must be a valid Cloud region.
-    /// * If `zone` appears as a key, its value must be a valid Cloud zone.
-    /// * If any valid key other than `region` or `zone` appears in the map, then
-    ///   all valid keys other than `region` or `zone` must also appear in the
-    ///   map.
+    /// *   Keys that are not defined in the limit's unit are not valid keys.
+    ///      Any string appearing in `{brackets}` in the unit (besides `{project}`
+    ///      or
+    ///      `{user}`) is a defined key.
+    /// *   `project` is not a valid key; the project is already specified in
+    ///      the parent resource name.
+    /// *   `user` is not a valid key; the API does not support quota overrides
+    ///      that apply only to a specific user.
+    /// *   If `region` appears as a key, its value must be a valid Cloud region.
+    /// *   If `zone` appears as a key, its value must be a valid Cloud zone.
+    /// *   If any valid key other than `region` or `zone` appears in the map, then
+    ///      all valid keys other than `region` or `zone` must also appear in the
+    ///      map.
     #[prost(btree_map = "string, string", tag = "3")]
     pub dimensions: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -292,6 +290,7 @@ pub struct ProducerQuotaPolicy {
     /// Can be any nonnegative integer, or -1 (unlimited quota).
     #[prost(int64, tag = "2")]
     pub policy_value: i64,
+    ///
     /// If this map is nonempty, then this policy applies only to specific values
     /// for dimensions defined in the limit unit.
     ///
@@ -301,18 +300,18 @@ pub struct ProducerQuotaPolicy {
     ///
     /// This map has the following restrictions:
     ///
-    /// * Keys that are not defined in the limit's unit are not valid keys.
-    ///   Any string appearing in {brackets} in the unit (besides {project} or
-    ///   {user}) is a defined key.
-    /// * `project` is not a valid key; the project is already specified in
-    ///   the parent resource name.
-    /// * `user` is not a valid key; the API does not support quota policies
-    ///   that apply only to a specific user.
-    /// * If `region` appears as a key, its value must be a valid Cloud region.
-    /// * If `zone` appears as a key, its value must be a valid Cloud zone.
-    /// * If any valid key other than `region` or `zone` appears in the map, then
-    ///   all valid keys other than `region` or `zone` must also appear in the
-    ///   map.
+    /// *   Keys that are not defined in the limit's unit are not valid keys.
+    ///      Any string appearing in {brackets} in the unit (besides {project} or
+    ///      {user}) is a defined key.
+    /// *   `project` is not a valid key; the project is already specified in
+    ///      the parent resource name.
+    /// *   `user` is not a valid key; the API does not support quota policies
+    ///      that apply only to a specific user.
+    /// *   If `region` appears as a key, its value must be a valid Cloud region.
+    /// *   If `zone` appears as a key, its value must be a valid Cloud zone.
+    /// *   If any valid key other than `region` or `zone` appears in the map, then
+    ///      all valid keys other than `region` or `zone` must also appear in the
+    ///      map.
     #[prost(btree_map = "string, string", tag = "3")]
     pub dimensions: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -351,6 +350,7 @@ pub struct AdminQuotaPolicy {
     /// Can be any nonnegative integer, or -1 (unlimited quota).
     #[prost(int64, tag = "2")]
     pub policy_value: i64,
+    ///
     /// If this map is nonempty, then this policy applies only to specific values
     /// for dimensions defined in the limit unit.
     ///
@@ -360,9 +360,9 @@ pub struct AdminQuotaPolicy {
     ///
     /// This map has the following restrictions:
     ///
-    /// * If `region` appears as a key, its value must be a valid Cloud region.
-    /// * If `zone` appears as a key, its value must be a valid Cloud zone.
-    /// * Keys other than `region` or `zone` are not valid.
+    /// *   If `region` appears as a key, its value must be a valid Cloud region.
+    /// *   If `zone` appears as a key, its value must be a valid Cloud zone.
+    /// *   Keys other than `region` or `zone` are not valid.
     #[prost(btree_map = "string, string", tag = "3")]
     pub dimensions: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -421,9 +421,9 @@ impl State {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Disabled => "DISABLED",
-            State::Enabled => "ENABLED",
+            Self::Unspecified => "STATE_UNSPECIFIED",
+            Self::Disabled => "DISABLED",
+            Self::Enabled => "ENABLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -461,9 +461,9 @@ impl QuotaView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            QuotaView::Unspecified => "QUOTA_VIEW_UNSPECIFIED",
-            QuotaView::Basic => "BASIC",
-            QuotaView::Full => "FULL",
+            Self::Unspecified => "QUOTA_VIEW_UNSPECIFIED",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -496,11 +496,9 @@ impl QuotaSafetyCheck {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            QuotaSafetyCheck::Unspecified => "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-            QuotaSafetyCheck::LimitDecreaseBelowUsage => "LIMIT_DECREASE_BELOW_USAGE",
-            QuotaSafetyCheck::LimitDecreasePercentageTooHigh => {
-                "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-            }
+            Self::Unspecified => "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+            Self::LimitDecreaseBelowUsage => "LIMIT_DECREASE_BELOW_USAGE",
+            Self::LimitDecreasePercentageTooHigh => "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -568,7 +566,7 @@ pub struct ListServicesRequest {
     pub parent: ::prost::alloc::string::String,
     /// Requested size of the next page of data.
     /// Requested page size cannot exceed 200.
-    /// If not set, the default page size is 50.
+    ///   If not set, the default page size is 50.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Token identifying which result to start with, which is returned by a
@@ -1076,8 +1074,8 @@ pub mod get_service_identity_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IdentityState::Unspecified => "IDENTITY_STATE_UNSPECIFIED",
-                IdentityState::Active => "ACTIVE",
+                Self::Unspecified => "IDENTITY_STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1095,7 +1093,13 @@ pub mod get_service_identity_response {
 pub struct GetServiceIdentityMetadata {}
 /// Generated client implementations.
 pub mod service_usage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
@@ -1171,6 +1175,7 @@ pub mod service_usage_client {
         /// Enables a service so that it can be used with a project.
         ///
         /// Operation response type: `google.protobuf.Empty`
+        #[deprecated]
         pub async fn enable_service(
             &mut self,
             request: impl tonic::IntoRequest<super::EnableServiceRequest>,
@@ -1182,8 +1187,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1210,6 +1214,7 @@ pub mod service_usage_client {
         /// the target service is not currently enabled.
         ///
         /// Operation response type: `google.protobuf.Empty`
+        #[deprecated]
         pub async fn disable_service(
             &mut self,
             request: impl tonic::IntoRequest<super::DisableServiceRequest>,
@@ -1221,8 +1226,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1241,6 +1245,7 @@ pub mod service_usage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Returns the service configuration and enabled state for a given service.
+        #[deprecated]
         pub async fn get_service(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceRequest>,
@@ -1249,8 +1254,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1275,6 +1279,7 @@ pub mod service_usage_client {
         /// already been enabled on the project. The list can be filtered to
         /// only include services in a specific state, for example to only include
         /// services enabled on the project.
+        #[deprecated]
         pub async fn list_services(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServicesRequest>,
@@ -1286,8 +1291,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1310,6 +1314,7 @@ pub mod service_usage_client {
         /// changes occur.
         ///
         /// Operation response type: `google.protobuf.Empty`
+        #[deprecated]
         pub async fn batch_enable_services(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchEnableServicesRequest>,
@@ -1321,8 +1326,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1356,8 +1360,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1387,8 +1390,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1418,8 +1420,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1454,8 +1455,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1485,8 +1485,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1516,8 +1515,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1547,8 +1545,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1580,8 +1577,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1615,8 +1611,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1646,8 +1641,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1677,8 +1671,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1708,8 +1701,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1741,8 +1733,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1772,8 +1763,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

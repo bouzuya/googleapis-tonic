@@ -18,13 +18,12 @@ pub struct NetworkConfig {
     pub vmware_engine_network_canonical: ::prost::alloc::string::String,
     /// Output only. The IP address layout version of the management IP address
     /// range. Possible versions include:
-    ///
     /// * `managementIpAddressLayoutVersion=1`: Indicates the legacy IP address
-    ///   layout used by some existing private clouds. This is no longer supported
-    ///   for new private clouds as it does not support all features.
+    /// layout used by some existing private clouds. This is no longer supported
+    /// for new private clouds as it does not support all features.
     /// * `managementIpAddressLayoutVersion=2`: Indicates the latest IP address
-    ///   layout used by all newly created private clouds. This version supports all
-    ///   current features.
+    /// layout used by all newly created private clouds. This version supports all
+    /// current features.
     #[prost(int32, tag = "8")]
     pub management_ip_address_layout_version: i32,
     /// Output only. DNS Server IP of the Private Cloud.
@@ -136,7 +135,7 @@ pub mod private_cloud {
         /// * Ends with a non-hyphen character
         /// * Not formatted as a UUID
         /// * Complies with [RFC
-        ///   1034](<https://datatracker.ietf.org/doc/html/rfc1034>) (section 3.5)
+        /// 1034](<https://datatracker.ietf.org/doc/html/rfc1034>) (section 3.5)
         #[prost(string, tag = "1")]
         pub cluster_id: ::prost::alloc::string::String,
         /// Required. The map of cluster node types in this cluster, where the key is
@@ -191,13 +190,13 @@ pub mod private_cloud {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Failed => "FAILED",
-                State::Deleted => "DELETED",
-                State::Purging => "PURGING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Failed => "FAILED",
+                Self::Deleted => "DELETED",
+                Self::Purging => "PURGING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -246,9 +245,9 @@ pub mod private_cloud {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Standard => "STANDARD",
-                Type::TimeLimited => "TIME_LIMITED",
-                Type::Stretched => "STRETCHED",
+                Self::Standard => "STANDARD",
+                Self::TimeLimited => "TIME_LIMITED",
+                Self::Stretched => "STRETCHED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -342,12 +341,12 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Repairing => "REPAIRING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Repairing => "REPAIRING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -430,11 +429,11 @@ pub mod node {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Failed => "FAILED",
-                State::Upgrading => "UPGRADING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Failed => "FAILED",
+                Self::Upgrading => "UPGRADING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -517,11 +516,11 @@ pub mod external_address {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -605,13 +604,13 @@ pub mod subnet {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Reconciling => "RECONCILING",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Reconciling => "RECONCILING",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -761,9 +760,9 @@ pub mod external_access_rule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Allow => "ALLOW",
-                Action::Deny => "DENY",
+                Self::Unspecified => "ACTION_UNSPECIFIED",
+                Self::Allow => "ALLOW",
+                Self::Deny => "DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -808,11 +807,11 @@ pub mod external_access_rule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -899,12 +898,12 @@ pub mod logging_server {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Protocol::Unspecified => "PROTOCOL_UNSPECIFIED",
-                Protocol::Udp => "UDP",
-                Protocol::Tcp => "TCP",
-                Protocol::Tls => "TLS",
-                Protocol::Ssl => "SSL",
-                Protocol::Relp => "RELP",
+                Self::Unspecified => "PROTOCOL_UNSPECIFIED",
+                Self::Udp => "UDP",
+                Self::Tcp => "TCP",
+                Self::Tls => "TLS",
+                Self::Ssl => "SSL",
+                Self::Relp => "RELP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -948,9 +947,9 @@ pub mod logging_server {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SourceType::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
-                SourceType::Esxi => "ESXI",
-                SourceType::Vcsa => "VCSA",
+                Self::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
+                Self::Esxi => "ESXI",
+                Self::Vcsa => "VCSA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1044,9 +1043,9 @@ pub mod node_type {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Kind::Unspecified => "KIND_UNSPECIFIED",
-                Kind::Standard => "STANDARD",
-                Kind::StorageOnly => "STORAGE_ONLY",
+                Self::Unspecified => "KIND_UNSPECIFIED",
+                Self::Standard => "STANDARD",
+                Self::StorageOnly => "STORAGE_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1086,8 +1085,8 @@ pub mod node_type {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Capability::Unspecified => "CAPABILITY_UNSPECIFIED",
-                Capability::StretchedClusters => "STRETCHED_CLUSTERS",
+                Self::Unspecified => "CAPABILITY_UNSPECIFIED",
+                Self::StretchedClusters => "STRETCHED_CLUSTERS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1114,9 +1113,9 @@ pub struct Credentials {
 /// private cloud provisioning, but this behavior is subject to change
 /// and you should always verify active keys.
 /// Use
-/// \[VmwareEngine.ListHcxActivationKeys\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys\]
+/// [VmwareEngine.ListHcxActivationKeys][google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]
 /// to retrieve existing keys and
-/// \[VmwareEngine.CreateHcxActivationKey\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey\]
+/// [VmwareEngine.CreateHcxActivationKey][google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]
 /// to create new ones.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HcxActivationKey {
@@ -1172,10 +1171,10 @@ pub mod hcx_activation_key {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Available => "AVAILABLE",
-                State::Consumed => "CONSUMED",
-                State::Creating => "CREATING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Available => "AVAILABLE",
+                Self::Consumed => "CONSUMED",
+                Self::Creating => "CREATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1238,10 +1237,10 @@ pub mod hcx {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Activating => "ACTIVATING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Activating => "ACTIVATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1302,9 +1301,9 @@ pub mod nsx {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1364,9 +1363,9 @@ pub mod vcenter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1393,7 +1392,7 @@ pub struct AutoscalingSettings {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC
-    ///   1034](<https://datatracker.ietf.org/doc/html/rfc1034>) (section 3.5)
+    /// 1034](<https://datatracker.ietf.org/doc/html/rfc1034>) (section 3.5)
     ///
     /// Currently there map must contain only one element
     /// that describes the autoscaling policy for compute nodes.
@@ -1619,11 +1618,11 @@ pub mod network_peering {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Inactive => "INACTIVE",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Inactive => "INACTIVE",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1681,16 +1680,14 @@ pub mod network_peering {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PeerNetworkType::Unspecified => "PEER_NETWORK_TYPE_UNSPECIFIED",
-                PeerNetworkType::Standard => "STANDARD",
-                PeerNetworkType::VmwareEngineNetwork => "VMWARE_ENGINE_NETWORK",
-                PeerNetworkType::PrivateServicesAccess => "PRIVATE_SERVICES_ACCESS",
-                PeerNetworkType::NetappCloudVolumes => "NETAPP_CLOUD_VOLUMES",
-                PeerNetworkType::ThirdPartyService => "THIRD_PARTY_SERVICE",
-                PeerNetworkType::DellPowerscale => "DELL_POWERSCALE",
-                PeerNetworkType::GoogleCloudNetappVolumes => {
-                    "GOOGLE_CLOUD_NETAPP_VOLUMES"
-                }
+                Self::Unspecified => "PEER_NETWORK_TYPE_UNSPECIFIED",
+                Self::Standard => "STANDARD",
+                Self::VmwareEngineNetwork => "VMWARE_ENGINE_NETWORK",
+                Self::PrivateServicesAccess => "PRIVATE_SERVICES_ACCESS",
+                Self::NetappCloudVolumes => "NETAPP_CLOUD_VOLUMES",
+                Self::ThirdPartyService => "THIRD_PARTY_SERVICE",
+                Self::DellPowerscale => "DELL_POWERSCALE",
+                Self::GoogleCloudNetappVolumes => "GOOGLE_CLOUD_NETAPP_VOLUMES",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1737,7 +1734,7 @@ pub struct PeeringRoute {
     ///
     /// * Routes of direction `INCOMING` are imported from the peer network.
     /// * Routes of direction `OUTGOING` are exported from the intranet VPC network
-    ///   of the VMware Engine network.
+    /// of the VMware Engine network.
     #[prost(enumeration = "peering_route::Direction", tag = "6")]
     pub direction: i32,
 }
@@ -1774,10 +1771,10 @@ pub mod peering_route {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::DynamicPeeringRoute => "DYNAMIC_PEERING_ROUTE",
-                Type::StaticPeeringRoute => "STATIC_PEERING_ROUTE",
-                Type::SubnetPeeringRoute => "SUBNET_PEERING_ROUTE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::DynamicPeeringRoute => "DYNAMIC_PEERING_ROUTE",
+                Self::StaticPeeringRoute => "STATIC_PEERING_ROUTE",
+                Self::SubnetPeeringRoute => "SUBNET_PEERING_ROUTE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1819,9 +1816,9 @@ pub mod peering_route {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Direction::Unspecified => "DIRECTION_UNSPECIFIED",
-                Direction::Incoming => "INCOMING",
-                Direction::Outgoing => "OUTGOING",
+                Self::Unspecified => "DIRECTION_UNSPECIFIED",
+                Self::Incoming => "INCOMING",
+                Self::Outgoing => "OUTGOING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1937,10 +1934,10 @@ pub mod network_policy {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Unprovisioned => "UNPROVISIONED",
-                    State::Reconciling => "RECONCILING",
-                    State::Active => "ACTIVE",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Unprovisioned => "UNPROVISIONED",
+                    Self::Reconciling => "RECONCILING",
+                    Self::Active => "ACTIVE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2028,12 +2025,12 @@ pub mod management_dns_zone_binding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2162,10 +2159,10 @@ pub mod vmware_engine_network {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::Intranet => "INTRANET",
-                    Type::Internet => "INTERNET",
-                    Type::GoogleCloud => "GOOGLE_CLOUD",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::Intranet => "INTRANET",
+                    Self::Internet => "INTERNET",
+                    Self::GoogleCloud => "GOOGLE_CLOUD",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2212,11 +2209,11 @@ pub mod vmware_engine_network {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2261,9 +2258,9 @@ pub mod vmware_engine_network {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Legacy => "LEGACY",
-                Type::Standard => "STANDARD",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Legacy => "LEGACY",
+                Self::Standard => "STANDARD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2387,13 +2384,13 @@ pub mod private_connection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Unprovisioned => "UNPROVISIONED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Unprovisioned => "UNPROVISIONED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2443,11 +2440,11 @@ pub mod private_connection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::PrivateServiceAccess => "PRIVATE_SERVICE_ACCESS",
-                Type::NetappCloudVolumes => "NETAPP_CLOUD_VOLUMES",
-                Type::DellPowerscale => "DELL_POWERSCALE",
-                Type::ThirdPartyService => "THIRD_PARTY_SERVICE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::PrivateServiceAccess => "PRIVATE_SERVICE_ACCESS",
+                Self::NetappCloudVolumes => "NETAPP_CLOUD_VOLUMES",
+                Self::DellPowerscale => "DELL_POWERSCALE",
+                Self::ThirdPartyService => "THIRD_PARTY_SERVICE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2490,9 +2487,9 @@ pub mod private_connection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RoutingMode::Unspecified => "ROUTING_MODE_UNSPECIFIED",
-                RoutingMode::Global => "GLOBAL",
-                RoutingMode::Regional => "REGIONAL",
+                Self::Unspecified => "ROUTING_MODE_UNSPECIFIED",
+                Self::Global => "GLOBAL",
+                Self::Regional => "REGIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2535,9 +2532,9 @@ pub mod private_connection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PeeringState::Unspecified => "PEERING_STATE_UNSPECIFIED",
-                PeeringState::PeeringActive => "PEERING_ACTIVE",
-                PeeringState::PeeringInactive => "PEERING_INACTIVE",
+                Self::Unspecified => "PEERING_STATE_UNSPECIFIED",
+                Self::PeeringActive => "PEERING_ACTIVE",
+                Self::PeeringInactive => "PEERING_INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2552,7 +2549,7 @@ pub mod private_connection {
     }
 }
 /// VmwareEngine specific metadata for the given
-/// \[google.cloud.location.Location\]\[google.cloud.location.Location\]. It is
+/// [google.cloud.location.Location][google.cloud.location.Location]. It is
 /// returned as a content of the `google.cloud.location.Location.metadata` field.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
@@ -2594,8 +2591,8 @@ pub mod location_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Capability::Unspecified => "CAPABILITY_UNSPECIFIED",
-                Capability::StretchedClusters => "STRETCHED_CLUSTERS",
+                Self::Unspecified => "CAPABILITY_UNSPECIFIED",
+                Self::StretchedClusters => "STRETCHED_CLUSTERS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2652,7 +2649,7 @@ pub mod principal {
     }
 }
 /// Request message for
-/// \[VmwareEngine.ListPrivateClouds\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateClouds\]
+/// [VmwareEngine.ListPrivateClouds][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateClouds]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrivateCloudsRequest {
     /// Required. The resource name of the private cloud to be queried for
@@ -2690,16 +2687,14 @@ pub struct ListPrivateCloudsRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-pc")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
     ///
     /// By default, each expression is an `AND` expression. However, you can
     /// include `AND` and `OR` expressions explicitly. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "private-cloud-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "private-cloud-2")
@@ -2714,7 +2709,7 @@ pub struct ListPrivateCloudsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListPrivateClouds\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateClouds\]
+/// [VmwareEngine.ListPrivateClouds][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateClouds]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrivateCloudsResponse {
     /// A list of private clouds.
@@ -2730,7 +2725,7 @@ pub struct ListPrivateCloudsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetPrivateCloud\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateCloud\]
+/// [VmwareEngine.GetPrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateCloud]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPrivateCloudRequest {
     /// Required. The resource name of the private cloud to retrieve.
@@ -2742,7 +2737,7 @@ pub struct GetPrivateCloudRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreatePrivateCloud\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateCloud\]
+/// [VmwareEngine.CreatePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateCloud]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePrivateCloudRequest {
     /// Required. The resource name of the location to create the new
@@ -2762,7 +2757,7 @@ pub struct CreatePrivateCloudRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "2")]
     pub private_cloud_id: ::prost::alloc::string::String,
     /// Required. The initial description of the new private cloud.
@@ -2778,7 +2773,7 @@ pub struct CreatePrivateCloudRequest {
     pub validate_only: bool,
 }
 /// Request message for
-/// \[VmwareEngine.UpdatePrivateCloud\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateCloud\]
+/// [VmwareEngine.UpdatePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateCloud]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePrivateCloudRequest {
     /// Required. Private cloud description.
@@ -2797,7 +2792,7 @@ pub struct UpdatePrivateCloudRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeletePrivateCloud\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateCloud\]
+/// [VmwareEngine.DeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateCloud]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePrivateCloudRequest {
     /// Required. The resource name of the private cloud to delete.
@@ -2822,7 +2817,7 @@ pub struct DeletePrivateCloudRequest {
     /// is `3`. Specifying a non-zero value for this field changes the value of
     /// `PrivateCloud.state` to `DELETED` and sets `expire_time` to the planned
     /// deletion time. Deletion can be cancelled before `expire_time` elapses using
-    /// \[VmwareEngine.UndeletePrivateCloud\]\[google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud\].
+    /// [VmwareEngine.UndeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud].
     /// Specifying a value of `0` for this field instead begins the deletion
     /// process and ceases billing immediately. During the final deletion process,
     /// the value of `PrivateCloud.state` becomes `PURGING`.
@@ -2830,7 +2825,7 @@ pub struct DeletePrivateCloudRequest {
     pub delay_hours: ::core::option::Option<i32>,
 }
 /// Request message for
-/// \[VmwareEngine.UndeletePrivateCloud\]\[google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud\]
+/// [VmwareEngine.UndeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeletePrivateCloudRequest {
     /// Required. The resource name of the private cloud scheduled for deletion.
@@ -2846,7 +2841,7 @@ pub struct UndeletePrivateCloudRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListClusters\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListClusters\]
+/// [VmwareEngine.ListClusters][google.cloud.vmwareengine.v1.VmwareEngine.ListClusters]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListClustersRequest {
     /// Required. The resource name of the private cloud to query for clusters.
@@ -2869,18 +2864,17 @@ pub struct ListClustersRequest {
     /// must match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-cluster")
     /// (nodeCount = "3")
     /// ```
     ///
     /// By default, each expression is an `AND` expression. However, you can
     /// include `AND` and `OR` expressions explicitly. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-cluster-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-cluster-2")
@@ -2895,7 +2889,7 @@ pub struct ListClustersRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListClusters\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListClusters\]
+/// [VmwareEngine.ListClusters][google.cloud.vmwareengine.v1.VmwareEngine.ListClusters]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListClustersResponse {
     /// A list of private cloud clusters.
@@ -2911,7 +2905,7 @@ pub struct ListClustersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetCluster\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetCluster\]
+/// [VmwareEngine.GetCluster][google.cloud.vmwareengine.v1.VmwareEngine.GetCluster]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetClusterRequest {
     /// Required. The cluster resource name to retrieve.
@@ -2923,7 +2917,7 @@ pub struct GetClusterRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateCluster\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster\]
+/// [VmwareEngine.CreateCluster][google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateClusterRequest {
     /// Required. The resource name of the private cloud to create a new cluster
@@ -2943,7 +2937,7 @@ pub struct CreateClusterRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "2")]
     pub cluster_id: ::prost::alloc::string::String,
     /// Required. The initial description of the new cluster.
@@ -2959,7 +2953,7 @@ pub struct CreateClusterRequest {
     pub validate_only: bool,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateCluster\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster\]
+/// [VmwareEngine.UpdateCluster][google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateClusterRequest {
     /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -2982,7 +2976,7 @@ pub struct UpdateClusterRequest {
     pub validate_only: bool,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteCluster\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster\]
+/// [VmwareEngine.DeleteCluster][google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteClusterRequest {
     /// Required. The resource name of the cluster to delete.
@@ -2998,7 +2992,7 @@ pub struct DeleteClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListNodes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNodes\]
+/// [VmwareEngine.ListNodes][google.cloud.vmwareengine.v1.VmwareEngine.ListNodes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNodesRequest {
     /// Required. The resource name of the cluster to be queried for nodes.
@@ -3024,7 +3018,7 @@ pub struct ListNodesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListNodes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNodes\]
+/// [VmwareEngine.ListNodes][google.cloud.vmwareengine.v1.VmwareEngine.ListNodes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNodesResponse {
     /// The nodes.
@@ -3036,7 +3030,7 @@ pub struct ListNodesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetNode\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetNode\]
+/// [VmwareEngine.GetNode][google.cloud.vmwareengine.v1.VmwareEngine.GetNode]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeRequest {
     /// Required. The resource name of the node to retrieve.
@@ -3046,7 +3040,7 @@ pub struct GetNodeRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListExternalAddresses\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses\]
+/// [VmwareEngine.ListExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExternalAddressesRequest {
     /// Required. The resource name of the private cloud to be queried for
@@ -3082,8 +3076,7 @@ pub struct ListExternalAddressesRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-ip")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -3091,8 +3084,7 @@ pub struct ListExternalAddressesRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-ip-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-ip-2")
@@ -3108,7 +3100,7 @@ pub struct ListExternalAddressesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListExternalAddresses\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses\]
+/// [VmwareEngine.ListExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExternalAddressesResponse {
     /// A list of external IP addresses.
@@ -3124,7 +3116,7 @@ pub struct ListExternalAddressesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.FetchNetworkPolicyExternalAddresses\]\[google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses\]
+/// [VmwareEngine.FetchNetworkPolicyExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchNetworkPolicyExternalAddressesRequest {
     /// Required. The resource name of the network policy to query for assigned
@@ -3151,7 +3143,7 @@ pub struct FetchNetworkPolicyExternalAddressesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.FetchNetworkPolicyExternalAddresses\]\[google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses\]
+/// [VmwareEngine.FetchNetworkPolicyExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchNetworkPolicyExternalAddressesResponse {
     /// A list of external IP addresses assigned to VMware workload VMs within the
@@ -3164,7 +3156,7 @@ pub struct FetchNetworkPolicyExternalAddressesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetExternalAddress\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetExternalAddress\]
+/// [VmwareEngine.GetExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.GetExternalAddress]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetExternalAddressRequest {
     /// Required. The resource name of the external IP address to retrieve.
@@ -3176,7 +3168,7 @@ pub struct GetExternalAddressRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateExternalAddress\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAddress\]
+/// [VmwareEngine.CreateExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAddress]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateExternalAddressRequest {
     /// Required. The resource name of the private cloud
@@ -3200,7 +3192,7 @@ pub struct CreateExternalAddressRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "3")]
     pub external_address_id: ::prost::alloc::string::String,
     /// Optional. A request ID to identify requests. Specify a unique request ID
@@ -3221,7 +3213,7 @@ pub struct CreateExternalAddressRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateExternalAddress\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAddress\]
+/// [VmwareEngine.UpdateExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAddress]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateExternalAddressRequest {
     /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -3252,7 +3244,7 @@ pub struct UpdateExternalAddressRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteExternalAddress\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAddress\]
+/// [VmwareEngine.DeleteExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAddress]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteExternalAddressRequest {
     /// Required. The resource name of the external IP address to delete.
@@ -3280,7 +3272,7 @@ pub struct DeleteExternalAddressRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListSubnets\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets\]
+/// [VmwareEngine.ListSubnets][google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSubnetsRequest {
     /// Required. The resource name of the private cloud to be queried for
@@ -3306,7 +3298,7 @@ pub struct ListSubnetsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListSubnets\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets\]
+/// [VmwareEngine.ListSubnets][google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSubnetsResponse {
     /// A list of subnets.
@@ -3322,7 +3314,7 @@ pub struct ListSubnetsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetSubnet\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetSubnet\]
+/// [VmwareEngine.GetSubnet][google.cloud.vmwareengine.v1.VmwareEngine.GetSubnet]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSubnetRequest {
     /// Required. The resource name of the subnet to retrieve.
@@ -3334,7 +3326,7 @@ pub struct GetSubnetRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateSubnet\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateSubnet\]
+/// [VmwareEngine.UpdateSubnet][google.cloud.vmwareengine.v1.VmwareEngine.UpdateSubnet]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSubnetRequest {
     /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -3349,7 +3341,7 @@ pub struct UpdateSubnetRequest {
     pub subnet: ::core::option::Option<Subnet>,
 }
 /// Request message for
-/// \[VmwareEngine.ListExternalAccessRules\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules\]
+/// [VmwareEngine.ListExternalAccessRules][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExternalAccessRulesRequest {
     /// Required. The resource name of the network policy to query for external
@@ -3385,8 +3377,7 @@ pub struct ListExternalAccessRulesRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-rule")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -3394,8 +3385,7 @@ pub struct ListExternalAccessRulesRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-rule-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-rule-2")
@@ -3411,7 +3401,7 @@ pub struct ListExternalAccessRulesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListExternalAccessRules\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules\]
+/// [VmwareEngine.ListExternalAccessRules][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExternalAccessRulesResponse {
     /// A list of external access firewall rules.
@@ -3427,7 +3417,7 @@ pub struct ListExternalAccessRulesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetExternalAccessRule\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetExternalAccessRule\]
+/// [VmwareEngine.GetExternalAccessRule][google.cloud.vmwareengine.v1.VmwareEngine.GetExternalAccessRule]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetExternalAccessRuleRequest {
     /// Required. The resource name of the external access firewall rule to
@@ -3439,7 +3429,7 @@ pub struct GetExternalAccessRuleRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateExternalAccessRule\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAccessRule\]
+/// [VmwareEngine.CreateExternalAccessRule][google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAccessRule]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateExternalAccessRuleRequest {
     /// Required. The resource name of the network policy
@@ -3463,7 +3453,7 @@ pub struct CreateExternalAccessRuleRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "3")]
     pub external_access_rule_id: ::prost::alloc::string::String,
     /// A request ID to identify requests. Specify a unique request ID
@@ -3484,7 +3474,7 @@ pub struct CreateExternalAccessRuleRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateExternalAccessRule\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAccessRule\]
+/// [VmwareEngine.UpdateExternalAccessRule][google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAccessRule]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateExternalAccessRuleRequest {
     /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -3515,7 +3505,7 @@ pub struct UpdateExternalAccessRuleRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteExternalAccessRule\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAccessRule\]
+/// [VmwareEngine.DeleteExternalAccessRule][google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAccessRule]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteExternalAccessRuleRequest {
     /// Required. The resource name of the external access firewall rule to delete.
@@ -3543,7 +3533,7 @@ pub struct DeleteExternalAccessRuleRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListLoggingServers\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers\]
+/// [VmwareEngine.ListLoggingServers][google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLoggingServersRequest {
     /// Required. The resource name of the private cloud to be queried for
@@ -3580,8 +3570,7 @@ pub struct ListLoggingServersRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-server")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -3589,8 +3578,7 @@ pub struct ListLoggingServersRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-server-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-server-2")
@@ -3606,7 +3594,7 @@ pub struct ListLoggingServersRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListLoggingServers\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers\]
+/// [VmwareEngine.ListLoggingServers][google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLoggingServersResponse {
     /// A list of Logging Servers.
@@ -3622,7 +3610,7 @@ pub struct ListLoggingServersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetLoggingServer\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetLoggingServer\]
+/// [VmwareEngine.GetLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.GetLoggingServer]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLoggingServerRequest {
     /// Required. The resource name of the Logging Server to retrieve.
@@ -3634,7 +3622,7 @@ pub struct GetLoggingServerRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateLoggingServer\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateLoggingServer\]
+/// [VmwareEngine.CreateLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.CreateLoggingServer]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLoggingServerRequest {
     /// Required. The resource name of the private cloud
@@ -3658,7 +3646,7 @@ pub struct CreateLoggingServerRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "3")]
     pub logging_server_id: ::prost::alloc::string::String,
     /// Optional. A request ID to identify requests. Specify a unique request ID
@@ -3679,7 +3667,7 @@ pub struct CreateLoggingServerRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateLoggingServer\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateLoggingServer\]
+/// [VmwareEngine.UpdateLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.UpdateLoggingServer]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateLoggingServerRequest {
     /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -3710,7 +3698,7 @@ pub struct UpdateLoggingServerRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteLoggingServer\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteLoggingServer\]
+/// [VmwareEngine.DeleteLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.DeleteLoggingServer]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLoggingServerRequest {
     /// Required. The resource name of the logging server to delete.
@@ -3758,8 +3746,8 @@ pub struct OperationMetadata {
     /// Output only. True if the user has requested cancellation
     /// of the operation; false otherwise.
     /// Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -3768,7 +3756,7 @@ pub struct OperationMetadata {
     pub api_version: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListNodeTypes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes\]
+/// [VmwareEngine.ListNodeTypes][google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNodeTypesRequest {
     /// Required. The resource name of the location to be queried for node types.
@@ -3803,8 +3791,7 @@ pub struct ListNodeTypesRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "standard-72")
     /// (virtual_cpu_count > 2)
     /// ```
@@ -3812,8 +3799,7 @@ pub struct ListNodeTypesRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "standard-96") AND
     /// (virtual_cpu_count > 2) OR
     /// (name = "standard-72")
@@ -3822,7 +3808,7 @@ pub struct ListNodeTypesRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListNodeTypes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes\]
+/// [VmwareEngine.ListNodeTypes][google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNodeTypesResponse {
     /// A list of Node Types.
@@ -3838,7 +3824,7 @@ pub struct ListNodeTypesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetNodeType\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetNodeType\]
+/// [VmwareEngine.GetNodeType][google.cloud.vmwareengine.v1.VmwareEngine.GetNodeType]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeTypeRequest {
     /// Required. The resource name of the node type to retrieve.
@@ -3850,7 +3836,7 @@ pub struct GetNodeTypeRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ShowNsxCredentials\]\[google.cloud.vmwareengine.v1.VmwareEngine.ShowNsxCredentials\]
+/// [VmwareEngine.ShowNsxCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ShowNsxCredentials]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShowNsxCredentialsRequest {
     /// Required. The resource name of the private cloud
@@ -3863,7 +3849,7 @@ pub struct ShowNsxCredentialsRequest {
     pub private_cloud: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ShowVcenterCredentials\]\[google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials\]
+/// [VmwareEngine.ShowVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShowVcenterCredentialsRequest {
     /// Required. The resource name of the private cloud
@@ -3888,7 +3874,7 @@ pub struct ShowVcenterCredentialsRequest {
     pub username: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ResetNsxCredentials\]\[google.cloud.vmwareengine.v1.VmwareEngine.ResetNsxCredentials\]
+/// [VmwareEngine.ResetNsxCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ResetNsxCredentials]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetNsxCredentialsRequest {
     /// Required. The resource name of the private cloud
@@ -3917,7 +3903,7 @@ pub struct ResetNsxCredentialsRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ResetVcenterCredentials\]\[google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials\]
+/// [VmwareEngine.ResetVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetVcenterCredentialsRequest {
     /// Required. The resource name of the private cloud
@@ -3957,7 +3943,7 @@ pub struct ResetVcenterCredentialsRequest {
     pub username: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListHcxActivationKeys\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys\]
+/// [VmwareEngine.ListHcxActivationKeys][google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHcxActivationKeysResponse {
     /// List of HCX activation keys.
@@ -3973,7 +3959,7 @@ pub struct ListHcxActivationKeysResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.ListHcxActivationKeys\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys\]
+/// [VmwareEngine.ListHcxActivationKeys][google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHcxActivationKeysRequest {
     /// Required. The resource name of the private cloud
@@ -3999,7 +3985,7 @@ pub struct ListHcxActivationKeysRequest {
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// Request message for \[VmwareEngine.GetHcxActivationKeys\]\[\]
+/// Request message for [VmwareEngine.GetHcxActivationKeys][]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetHcxActivationKeyRequest {
     /// Required. The resource name of the HCX activation key to retrieve.
@@ -4011,7 +3997,7 @@ pub struct GetHcxActivationKeyRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateHcxActivationKey\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey\]
+/// [VmwareEngine.CreateHcxActivationKey][google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateHcxActivationKeyRequest {
     /// Required. The resource name of the private cloud to create the key for.
@@ -4035,7 +4021,7 @@ pub struct CreateHcxActivationKeyRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "3")]
     pub hcx_activation_key_id: ::prost::alloc::string::String,
     /// A request ID to identify requests. Specify a unique request ID
@@ -4056,7 +4042,7 @@ pub struct CreateHcxActivationKeyRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetDnsForwarding\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetDnsForwarding\]
+/// [VmwareEngine.GetDnsForwarding][google.cloud.vmwareengine.v1.VmwareEngine.GetDnsForwarding]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDnsForwardingRequest {
     /// Required. The resource name of a `DnsForwarding` to retrieve.
@@ -4068,7 +4054,7 @@ pub struct GetDnsForwardingRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateDnsForwarding\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateDnsForwarding\]
+/// [VmwareEngine.UpdateDnsForwarding][google.cloud.vmwareengine.v1.VmwareEngine.UpdateDnsForwarding]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDnsForwardingRequest {
     /// Required. DnsForwarding config details.
@@ -4099,7 +4085,7 @@ pub struct UpdateDnsForwardingRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateNetworkPeering\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateNetworkPeering\]
+/// [VmwareEngine.CreateNetworkPeering][google.cloud.vmwareengine.v1.VmwareEngine.CreateNetworkPeering]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNetworkPeeringRequest {
     /// Required. The resource name of the location to create the new network
@@ -4119,7 +4105,7 @@ pub struct CreateNetworkPeeringRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "2")]
     pub network_peering_id: ::prost::alloc::string::String,
     /// Required. The initial description of the new network peering.
@@ -4143,7 +4129,7 @@ pub struct CreateNetworkPeeringRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteNetworkPeering\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPeering\]
+/// [VmwareEngine.DeleteNetworkPeering][google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPeering]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNetworkPeeringRequest {
     /// Required. The resource name of the network peering to be deleted.
@@ -4171,7 +4157,7 @@ pub struct DeleteNetworkPeeringRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetNetworkPeering\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetNetworkPeering\]
+/// [VmwareEngine.GetNetworkPeering][google.cloud.vmwareengine.v1.VmwareEngine.GetNetworkPeering]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNetworkPeeringRequest {
     /// Required. The resource name of the network peering to retrieve.
@@ -4183,7 +4169,7 @@ pub struct GetNetworkPeeringRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListNetworkPeerings\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings\]
+/// [VmwareEngine.ListNetworkPeerings][google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworkPeeringsRequest {
     /// Required. The resource name of the location (global) to query for
@@ -4217,8 +4203,7 @@ pub struct ListNetworkPeeringsRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-peering")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -4226,8 +4211,7 @@ pub struct ListNetworkPeeringsRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-peering-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-peering-2")
@@ -4243,7 +4227,7 @@ pub struct ListNetworkPeeringsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateNetworkPeering\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPeering\]
+/// [VmwareEngine.UpdateNetworkPeering][google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPeering]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNetworkPeeringRequest {
     /// Required. Network peering description.
@@ -4274,7 +4258,7 @@ pub struct UpdateNetworkPeeringRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListNetworkPeerings\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings\]
+/// [VmwareEngine.ListNetworkPeerings][google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworkPeeringsResponse {
     /// A list of network peerings.
@@ -4289,7 +4273,7 @@ pub struct ListNetworkPeeringsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.ListPeeringRoutes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes\]
+/// [VmwareEngine.ListPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPeeringRoutesRequest {
     /// Required. The resource name of the network peering to retrieve peering
@@ -4319,7 +4303,7 @@ pub struct ListPeeringRoutesRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListPeeringRoutes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes\]
+/// [VmwareEngine.ListPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPeeringRoutesResponse {
     /// A list of peering routes.
@@ -4331,7 +4315,7 @@ pub struct ListPeeringRoutesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListNetworkPolicies\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies\]
+/// [VmwareEngine.ListNetworkPolicies][google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworkPoliciesRequest {
     /// Required. The resource name of the location (region) to query for
@@ -4366,8 +4350,7 @@ pub struct ListNetworkPoliciesRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-policy")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -4375,8 +4358,7 @@ pub struct ListNetworkPoliciesRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-policy-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-policy-2")
@@ -4392,7 +4374,7 @@ pub struct ListNetworkPoliciesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListNetworkPolicies\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies\]
+/// [VmwareEngine.ListNetworkPolicies][google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworkPoliciesResponse {
     /// A list of network policies.
@@ -4408,7 +4390,7 @@ pub struct ListNetworkPoliciesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetNetworkPolicy\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetNetworkPolicy\]
+/// [VmwareEngine.GetNetworkPolicy][google.cloud.vmwareengine.v1.VmwareEngine.GetNetworkPolicy]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNetworkPolicyRequest {
     /// Required. The resource name of the network policy to retrieve.
@@ -4420,7 +4402,7 @@ pub struct GetNetworkPolicyRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateNetworkPolicy\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPolicy\]
+/// [VmwareEngine.UpdateNetworkPolicy][google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPolicy]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNetworkPolicyRequest {
     /// Required. Network policy description.
@@ -4451,7 +4433,7 @@ pub struct UpdateNetworkPolicyRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateNetworkPolicy\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateNetworkPolicy\]
+/// [VmwareEngine.CreateNetworkPolicy][google.cloud.vmwareengine.v1.VmwareEngine.CreateNetworkPolicy]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNetworkPolicyRequest {
     /// Required. The resource name of the location (region)
@@ -4459,7 +4441,7 @@ pub struct CreateNetworkPolicyRequest {
     /// Resource names are schemeless URIs that follow the conventions in
     /// <https://cloud.google.com/apis/design/resource_names.>
     /// For example:
-    /// `projects/my-project/locations/us-central1`
+    ///   `projects/my-project/locations/us-central1`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The user-provided identifier of the network policy to be created.
@@ -4473,7 +4455,7 @@ pub struct CreateNetworkPolicyRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "2")]
     pub network_policy_id: ::prost::alloc::string::String,
     /// Required. The network policy configuration to use in the request.
@@ -4497,7 +4479,7 @@ pub struct CreateNetworkPolicyRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteNetworkPolicy\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPolicy\]
+/// [VmwareEngine.DeleteNetworkPolicy][google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPolicy]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNetworkPolicyRequest {
     /// Required. The resource name of the network policy to delete.
@@ -4525,7 +4507,7 @@ pub struct DeleteNetworkPolicyRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListManagementDnsZoneBindings\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings\]
+/// [VmwareEngine.ListManagementDnsZoneBindings][google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListManagementDnsZoneBindingsRequest {
     /// Required. The resource name of the private cloud to be queried for
@@ -4562,8 +4544,7 @@ pub struct ListManagementDnsZoneBindingsRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-management-dns-zone-binding")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -4571,8 +4552,7 @@ pub struct ListManagementDnsZoneBindingsRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-management-dns-zone-binding-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-management-dns-zone-binding-2")
@@ -4588,7 +4568,7 @@ pub struct ListManagementDnsZoneBindingsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListManagementDnsZoneBindings\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings\]
+/// [VmwareEngine.ListManagementDnsZoneBindings][google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListManagementDnsZoneBindingsResponse {
     /// A list of management DNS zone bindings.
@@ -4604,7 +4584,7 @@ pub struct ListManagementDnsZoneBindingsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.GetManagementDnsZoneBinding\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetManagementDnsZoneBinding\]
+/// [VmwareEngine.GetManagementDnsZoneBinding][google.cloud.vmwareengine.v1.VmwareEngine.GetManagementDnsZoneBinding]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetManagementDnsZoneBindingRequest {
     /// Required. The resource name of the management DNS zone binding to
@@ -4615,7 +4595,7 @@ pub struct GetManagementDnsZoneBindingRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[VmwareEngine.CreateManagementDnsZoneBindings\]\[\]
+/// Request message for [VmwareEngine.CreateManagementDnsZoneBindings][]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateManagementDnsZoneBindingRequest {
     /// Required. The resource name of the private cloud
@@ -4640,7 +4620,7 @@ pub struct CreateManagementDnsZoneBindingRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "3")]
     pub management_dns_zone_binding_id: ::prost::alloc::string::String,
     /// Optional. A request ID to identify requests. Specify a unique request ID
@@ -4661,7 +4641,7 @@ pub struct CreateManagementDnsZoneBindingRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateManagementDnsZoneBinding\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateManagementDnsZoneBinding\]
+/// [VmwareEngine.UpdateManagementDnsZoneBinding][google.cloud.vmwareengine.v1.VmwareEngine.UpdateManagementDnsZoneBinding]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateManagementDnsZoneBindingRequest {
     /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -4692,7 +4672,7 @@ pub struct UpdateManagementDnsZoneBindingRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteManagementDnsZoneBinding\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteManagementDnsZoneBinding\]
+/// [VmwareEngine.DeleteManagementDnsZoneBinding][google.cloud.vmwareengine.v1.VmwareEngine.DeleteManagementDnsZoneBinding]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteManagementDnsZoneBindingRequest {
     /// Required. The resource name of the management DNS zone binding to delete.
@@ -4719,7 +4699,7 @@ pub struct DeleteManagementDnsZoneBindingRequest {
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
-/// Request message for \[VmwareEngine.RepairManagementDnsZoneBindings\]\[\]
+/// Request message for [VmwareEngine.RepairManagementDnsZoneBindings][]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepairManagementDnsZoneBindingRequest {
     /// Required. The resource name of the management DNS zone binding to repair.
@@ -4747,7 +4727,7 @@ pub struct RepairManagementDnsZoneBindingRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.CreateVmwareEngineNetwork\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork\]
+/// [VmwareEngine.CreateVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVmwareEngineNetworkRequest {
     /// Required. The resource name of the location to create the new VMware Engine
@@ -4765,14 +4745,14 @@ pub struct CreateVmwareEngineNetworkRequest {
     /// identifier must meet the following requirements:
     ///
     /// * For networks of type LEGACY, adheres to the format:
-    ///   `{region-id}-default`. Replace `{region-id}` with the region where you want
-    ///   to create the VMware Engine network. For example, "us-central1-default".
+    /// `{region-id}-default`. Replace `{region-id}` with the region where you want
+    /// to create the VMware Engine network. For example, "us-central1-default".
     /// * Only contains 1-63 alphanumeric characters and hyphens
     /// * Begins with an alphabetical character
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "2")]
     pub vmware_engine_network_id: ::prost::alloc::string::String,
     /// Required. The initial description of the new VMware Engine network.
@@ -4796,7 +4776,7 @@ pub struct CreateVmwareEngineNetworkRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.UpdateVmwareEngineNetwork\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdateVmwareEngineNetwork\]
+/// [VmwareEngine.UpdateVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.UpdateVmwareEngineNetwork]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVmwareEngineNetworkRequest {
     /// Required. VMware Engine network description.
@@ -4828,7 +4808,7 @@ pub struct UpdateVmwareEngineNetworkRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeleteVmwareEngineNetwork\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork\]
+/// [VmwareEngine.DeleteVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteVmwareEngineNetworkRequest {
     /// Required. The resource name of the VMware Engine network to be deleted.
@@ -4862,7 +4842,7 @@ pub struct DeleteVmwareEngineNetworkRequest {
     pub etag: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetVmwareEngineNetwork\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetVmwareEngineNetwork\]
+/// [VmwareEngine.GetVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.GetVmwareEngineNetwork]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVmwareEngineNetworkRequest {
     /// Required. The resource name of the VMware Engine network to retrieve.
@@ -4874,7 +4854,7 @@ pub struct GetVmwareEngineNetworkRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListVmwareEngineNetworks\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks\]
+/// [VmwareEngine.ListVmwareEngineNetworks][google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVmwareEngineNetworksRequest {
     /// Required. The resource name of the location to query for
@@ -4908,8 +4888,7 @@ pub struct ListVmwareEngineNetworksRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-network")
     /// (createTime > "2021-04-12T08:15:10.40Z")
     /// ```
@@ -4917,8 +4896,7 @@ pub struct ListVmwareEngineNetworksRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-network-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-network-2")
@@ -4934,7 +4912,7 @@ pub struct ListVmwareEngineNetworksRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListVmwareEngineNetworks\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks\]
+/// [VmwareEngine.ListVmwareEngineNetworks][google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVmwareEngineNetworksResponse {
     /// A list of VMware Engine networks.
@@ -4949,7 +4927,7 @@ pub struct ListVmwareEngineNetworksResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.CreatePrivateConnection\]\[google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateConnection\]
+/// [VmwareEngine.CreatePrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateConnection]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePrivateConnectionRequest {
     /// Required. The resource name of the location to create the new private
@@ -4969,7 +4947,7 @@ pub struct CreatePrivateConnectionRequest {
     /// * Ends with a non-hyphen character
     /// * Not formatted as a UUID
     /// * Complies with [RFC 1034](<https://datatracker.ietf.org/doc/html/rfc1034>)
-    ///   (section 3.5)
+    /// (section 3.5)
     #[prost(string, tag = "2")]
     pub private_connection_id: ::prost::alloc::string::String,
     /// Required. The initial description of the new private connection.
@@ -4993,7 +4971,7 @@ pub struct CreatePrivateConnectionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetPrivateConnection\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateConnection\]
+/// [VmwareEngine.GetPrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateConnection]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPrivateConnectionRequest {
     /// Required. The resource name of the private connection to retrieve.
@@ -5005,7 +4983,7 @@ pub struct GetPrivateConnectionRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListPrivateConnections\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections\]
+/// [VmwareEngine.ListPrivateConnections][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrivateConnectionsRequest {
     /// Required. The resource name of the location to query for
@@ -5039,8 +5017,7 @@ pub struct ListPrivateConnectionsRequest {
     ///
     /// To filter on multiple expressions, provide each separate expression within
     /// parentheses. For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-connection")
     /// (createTime > "2022-09-22T08:15:10.40Z")
     /// ```
@@ -5048,8 +5025,7 @@ pub struct ListPrivateConnectionsRequest {
     /// By default, each expression is an `AND` expression. However, you
     /// can include `AND` and `OR` expressions explicitly.
     /// For example:
-    ///
-    /// ```text,
+    /// ```
     /// (name = "example-connection-1") AND
     /// (createTime > "2021-04-12T08:15:10.40Z") OR
     /// (name = "example-connection-2")
@@ -5065,7 +5041,7 @@ pub struct ListPrivateConnectionsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListPrivateConnections\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections\]
+/// [VmwareEngine.ListPrivateConnections][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrivateConnectionsResponse {
     /// A list of private connections.
@@ -5080,7 +5056,7 @@ pub struct ListPrivateConnectionsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[VmwareEngine.UpdatePrivateConnection\]\[google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateConnection\]
+/// [VmwareEngine.UpdatePrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateConnection]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePrivateConnectionRequest {
     /// Required. Private connection description.
@@ -5111,7 +5087,7 @@ pub struct UpdatePrivateConnectionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.DeletePrivateConnection\]\[google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateConnection\]
+/// [VmwareEngine.DeletePrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateConnection]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePrivateConnectionRequest {
     /// Required. The resource name of the private connection to be deleted.
@@ -5139,7 +5115,7 @@ pub struct DeletePrivateConnectionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.ListPrivateConnectionPeeringRoutes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes\]
+/// [VmwareEngine.ListPrivateConnectionPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrivateConnectionPeeringRoutesRequest {
     /// Required. The resource name of the private connection to retrieve peering
@@ -5162,7 +5138,7 @@ pub struct ListPrivateConnectionPeeringRoutesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[VmwareEngine.ListPrivateConnectionPeeringRoutes\]\[google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes\]
+/// [VmwareEngine.ListPrivateConnectionPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrivateConnectionPeeringRoutesResponse {
     /// A list of peering routes.
@@ -5174,7 +5150,7 @@ pub struct ListPrivateConnectionPeeringRoutesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GrantDnsBindPermission\]\[google.cloud.vmwareengine.v1.VmwareEngine.GrantDnsBindPermission\]
+/// [VmwareEngine.GrantDnsBindPermission][google.cloud.vmwareengine.v1.VmwareEngine.GrantDnsBindPermission]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GrantDnsBindPermissionRequest {
     /// Required. The name of the resource which stores the users/service accounts
@@ -5208,7 +5184,7 @@ pub struct GrantDnsBindPermissionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.RevokeDnsBindPermission\]\[google.cloud.vmwareengine.v1.VmwareEngine.RevokeDnsBindPermission\]
+/// [VmwareEngine.RevokeDnsBindPermission][google.cloud.vmwareengine.v1.VmwareEngine.RevokeDnsBindPermission]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RevokeDnsBindPermissionRequest {
     /// Required. The name of the resource which stores the users/service accounts
@@ -5242,7 +5218,7 @@ pub struct RevokeDnsBindPermissionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[VmwareEngine.GetDnsBindPermission\]\[google.cloud.vmwareengine.v1.VmwareEngine.GetDnsBindPermission\]
+/// [VmwareEngine.GetDnsBindPermission][google.cloud.vmwareengine.v1.VmwareEngine.GetDnsBindPermission]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDnsBindPermissionRequest {
     /// Required. The name of the resource which stores the users/service accounts
@@ -5256,7 +5232,13 @@ pub struct GetDnsBindPermissionRequest {
 }
 /// Generated client implementations.
 pub mod vmware_engine_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// VMwareEngine manages VMware's private clusters in the Cloud.
@@ -5341,8 +5323,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5369,8 +5350,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5406,8 +5386,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5444,8 +5423,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5489,8 +5467,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5523,8 +5500,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5554,8 +5530,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5582,8 +5557,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5616,8 +5590,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5653,8 +5626,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5687,8 +5659,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5718,8 +5689,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5746,8 +5716,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5778,8 +5747,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5812,8 +5780,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5843,8 +5810,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5876,8 +5842,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5913,8 +5878,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5946,8 +5910,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5977,8 +5940,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6005,8 +5967,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6041,8 +6002,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6072,8 +6032,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6103,8 +6062,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6134,8 +6092,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6166,8 +6123,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6197,8 +6153,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6229,8 +6184,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6257,8 +6211,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6288,8 +6241,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6320,8 +6272,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6351,8 +6302,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6382,8 +6332,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6410,8 +6359,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6438,8 +6386,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6466,8 +6413,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6497,8 +6443,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6528,8 +6473,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6556,8 +6500,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6588,8 +6531,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6619,8 +6561,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6651,8 +6592,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6684,8 +6624,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6718,8 +6657,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6751,8 +6689,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6783,8 +6720,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6814,8 +6750,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6845,8 +6780,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6876,8 +6810,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6904,8 +6837,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6935,8 +6867,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6968,8 +6899,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7010,8 +6940,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7043,8 +6972,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7074,8 +7002,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7105,8 +7032,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7144,8 +7070,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7178,8 +7103,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7213,8 +7137,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7247,8 +7170,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7278,8 +7200,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7311,8 +7232,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7345,8 +7265,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7379,8 +7298,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7410,8 +7328,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7442,8 +7359,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7475,8 +7391,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7506,8 +7421,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7539,8 +7453,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7572,8 +7485,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7605,8 +7517,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7639,8 +7550,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7672,8 +7582,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7705,8 +7614,7 @@ pub mod vmware_engine_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

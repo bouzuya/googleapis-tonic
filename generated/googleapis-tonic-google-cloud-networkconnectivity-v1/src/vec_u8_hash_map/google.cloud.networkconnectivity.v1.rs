@@ -19,8 +19,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -38,7 +38,7 @@ pub struct OperationMetadata {
 pub struct Hub {
     /// Immutable. The name of the hub. Hub names must be unique. They use the
     /// following form:
-    /// `projects/{project_number}/locations/global/hubs/{hub_id}`
+    ///      `projects/{project_number}/locations/global/hubs/{hub_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time the hub was created.
@@ -74,7 +74,7 @@ pub struct Hub {
     pub routing_vpcs: ::prost::alloc::vec::Vec<RoutingVpc>,
     /// Output only. The route tables that belong to this hub. They use the
     /// following form:
-    /// `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+    ///     `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
     ///
     /// This field is read-only. Network Connectivity Center automatically
     /// populates it based on the route tables nested under the hub.
@@ -117,7 +117,7 @@ pub struct RoutingVpc {
 pub struct Spoke {
     /// Immutable. The name of the spoke. Spoke names must be unique. They use the
     /// following form:
-    /// `projects/{project_number}/locations/{region}/spokes/{spoke_id}`
+    ///      `projects/{project_number}/locations/{region}/spokes/{spoke_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time the spoke was created.
@@ -225,11 +225,11 @@ pub mod spoke {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Code::Unspecified => "CODE_UNSPECIFIED",
-                    Code::PendingReview => "PENDING_REVIEW",
-                    Code::Rejected => "REJECTED",
-                    Code::Paused => "PAUSED",
-                    Code::Failed => "FAILED",
+                    Self::Unspecified => "CODE_UNSPECIFIED",
+                    Self::PendingReview => "PENDING_REVIEW",
+                    Self::Rejected => "REJECTED",
+                    Self::Paused => "PAUSED",
+                    Self::Failed => "FAILED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -250,7 +250,7 @@ pub mod spoke {
 pub struct RouteTable {
     /// Immutable. The name of the route table. Route table names must be unique.
     /// They use the following form:
-    /// `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}`
+    ///       `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time the route table was created.
@@ -286,7 +286,7 @@ pub struct RouteTable {
 pub struct Route {
     /// Immutable. The name of the route. Route names must be unique. Route names
     /// use the following form:
-    /// `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`
+    ///       `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time the route was created.
@@ -340,7 +340,7 @@ pub struct Route {
 pub struct Group {
     /// Immutable. The name of the group. Group names must be unique. They
     /// use the following form:
-    /// `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`
+    ///       `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time the group was created.
@@ -371,7 +371,7 @@ pub struct Group {
     pub state: i32,
 }
 /// Request for
-/// \[HubService.ListHubs\]\[google.cloud.networkconnectivity.v1.HubService.ListHubs\]
+/// [HubService.ListHubs][google.cloud.networkconnectivity.v1.HubService.ListHubs]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubsRequest {
@@ -392,7 +392,7 @@ pub struct ListHubsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for
-/// \[HubService.ListHubs\]\[google.cloud.networkconnectivity.v1.HubService.ListHubs\]
+/// [HubService.ListHubs][google.cloud.networkconnectivity.v1.HubService.ListHubs]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubsResponse {
@@ -409,7 +409,7 @@ pub struct ListHubsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for
-/// \[HubService.GetHub\]\[google.cloud.networkconnectivity.v1.HubService.GetHub\]
+/// [HubService.GetHub][google.cloud.networkconnectivity.v1.HubService.GetHub]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetHubRequest {
@@ -418,7 +418,7 @@ pub struct GetHubRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[HubService.CreateHub\]\[google.cloud.networkconnectivity.v1.HubService.CreateHub\]
+/// [HubService.CreateHub][google.cloud.networkconnectivity.v1.HubService.CreateHub]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateHubRequest {
@@ -449,7 +449,7 @@ pub struct CreateHubRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[HubService.UpdateHub\]\[google.cloud.networkconnectivity.v1.HubService.UpdateHub\]
+/// [HubService.UpdateHub][google.cloud.networkconnectivity.v1.HubService.UpdateHub]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateHubRequest {
@@ -481,7 +481,7 @@ pub struct UpdateHubRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[HubService.DeleteHub\]\[google.cloud.networkconnectivity.v1.HubService.DeleteHub\].
+/// [HubService.DeleteHub][google.cloud.networkconnectivity.v1.HubService.DeleteHub].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteHubRequest {
     /// Required. The name of the hub to delete.
@@ -505,7 +505,8 @@ pub struct DeleteHubRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[HubService.ListHubSpokes\]\[google.cloud.networkconnectivity.v1.HubService.ListHubSpokes\].
+/// [HubService.ListHubSpokes][google.cloud.networkconnectivity.v1.HubService.ListHubSpokes].
+///
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubSpokesRequest {
     /// Required. The name of the hub.
@@ -573,9 +574,9 @@ pub mod list_hub_spokes_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SpokeView::Unspecified => "SPOKE_VIEW_UNSPECIFIED",
-                SpokeView::Basic => "BASIC",
-                SpokeView::Detailed => "DETAILED",
+                Self::Unspecified => "SPOKE_VIEW_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::Detailed => "DETAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -590,7 +591,7 @@ pub mod list_hub_spokes_request {
     }
 }
 /// The response for
-/// \[HubService.ListHubSpokes\]\[google.cloud.networkconnectivity.v1.HubService.ListHubSpokes\].
+/// [HubService.ListHubSpokes][google.cloud.networkconnectivity.v1.HubService.ListHubSpokes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubSpokesResponse {
     /// The requested spokes.
@@ -608,7 +609,7 @@ pub struct ListHubSpokesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The request for
-/// \[HubService.ListSpokes\]\[google.cloud.networkconnectivity.v1.HubService.ListSpokes\].
+/// [HubService.ListSpokes][google.cloud.networkconnectivity.v1.HubService.ListSpokes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSpokesRequest {
     /// Required. The parent resource.
@@ -628,7 +629,7 @@ pub struct ListSpokesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// The response for
-/// \[HubService.ListSpokes\]\[google.cloud.networkconnectivity.v1.HubService.ListSpokes\].
+/// [HubService.ListSpokes][google.cloud.networkconnectivity.v1.HubService.ListSpokes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSpokesResponse {
     /// The requested spokes.
@@ -644,7 +645,7 @@ pub struct ListSpokesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The request for
-/// \[HubService.GetSpoke\]\[google.cloud.networkconnectivity.v1.HubService.GetSpoke\].
+/// [HubService.GetSpoke][google.cloud.networkconnectivity.v1.HubService.GetSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSpokeRequest {
     /// Required. The name of the spoke resource.
@@ -652,7 +653,7 @@ pub struct GetSpokeRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[HubService.CreateSpoke\]\[google.cloud.networkconnectivity.v1.HubService.CreateSpoke\].
+/// [HubService.CreateSpoke][google.cloud.networkconnectivity.v1.HubService.CreateSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSpokeRequest {
     /// Required. The parent resource.
@@ -682,7 +683,7 @@ pub struct CreateSpokeRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[HubService.UpdateSpoke\]\[google.cloud.networkconnectivity.v1.HubService.UpdateSpoke\]
+/// [HubService.UpdateSpoke][google.cloud.networkconnectivity.v1.HubService.UpdateSpoke]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSpokeRequest {
@@ -714,7 +715,7 @@ pub struct UpdateSpokeRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[HubService.DeleteSpoke\]\[google.cloud.networkconnectivity.v1.HubService.DeleteSpoke\].
+/// [HubService.DeleteSpoke][google.cloud.networkconnectivity.v1.HubService.DeleteSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSpokeRequest {
     /// Required. The name of the spoke to delete.
@@ -738,7 +739,7 @@ pub struct DeleteSpokeRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[HubService.AcceptHubSpoke\]\[google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke\].
+/// [HubService.AcceptHubSpoke][google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcceptHubSpokeRequest {
     /// Required. The name of the hub into which to accept the spoke.
@@ -765,7 +766,7 @@ pub struct AcceptHubSpokeRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// The response for
-/// \[HubService.AcceptHubSpoke\]\[google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke\].
+/// [HubService.AcceptHubSpoke][google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcceptHubSpokeResponse {
     /// The spoke that was operated on.
@@ -773,7 +774,7 @@ pub struct AcceptHubSpokeResponse {
     pub spoke: ::core::option::Option<Spoke>,
 }
 /// The request for
-/// \[HubService.RejectHubSpoke\]\[google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke\].
+/// [HubService.RejectHubSpoke][google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RejectHubSpokeRequest {
     /// Required. The name of the hub from which to reject the spoke.
@@ -803,7 +804,7 @@ pub struct RejectHubSpokeRequest {
     pub details: ::prost::alloc::string::String,
 }
 /// The response for
-/// \[HubService.RejectHubSpoke\]\[google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke\].
+/// [HubService.RejectHubSpoke][google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RejectHubSpokeResponse {
     /// The spoke that was operated on.
@@ -811,7 +812,7 @@ pub struct RejectHubSpokeResponse {
     pub spoke: ::core::option::Option<Spoke>,
 }
 /// The request for
-/// \[HubService.GetRouteTable\]\[google.cloud.networkconnectivity.v1.HubService.GetRouteTable\].
+/// [HubService.GetRouteTable][google.cloud.networkconnectivity.v1.HubService.GetRouteTable].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRouteTableRequest {
     /// Required. The name of the route table resource.
@@ -819,7 +820,7 @@ pub struct GetRouteTableRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[HubService.GetRoute\]\[google.cloud.networkconnectivity.v1.HubService.GetRoute\].
+/// [HubService.GetRoute][google.cloud.networkconnectivity.v1.HubService.GetRoute].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRouteRequest {
     /// Required. The name of the route resource.
@@ -827,7 +828,7 @@ pub struct GetRouteRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[HubService.ListRoutes\]\[google.cloud.networkconnectivity.v1.HubService.ListRoutes\]
+/// [HubService.ListRoutes][google.cloud.networkconnectivity.v1.HubService.ListRoutes]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRoutesRequest {
@@ -848,7 +849,7 @@ pub struct ListRoutesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for
-/// \[HubService.ListRoutes\]\[google.cloud.networkconnectivity.v1.HubService.ListRoutes\]
+/// [HubService.ListRoutes][google.cloud.networkconnectivity.v1.HubService.ListRoutes]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRoutesResponse {
@@ -865,7 +866,7 @@ pub struct ListRoutesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for
-/// \[HubService.ListRouteTables\]\[google.cloud.networkconnectivity.v1.HubService.ListRouteTables\]
+/// [HubService.ListRouteTables][google.cloud.networkconnectivity.v1.HubService.ListRouteTables]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRouteTablesRequest {
@@ -886,7 +887,7 @@ pub struct ListRouteTablesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for
-/// \[HubService.ListRouteTables\]\[google.cloud.networkconnectivity.v1.HubService.ListRouteTables\]
+/// [HubService.ListRouteTables][google.cloud.networkconnectivity.v1.HubService.ListRouteTables]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRouteTablesResponse {
@@ -903,7 +904,7 @@ pub struct ListRouteTablesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for
-/// \[HubService.ListGroups\]\[google.cloud.networkconnectivity.v1.HubService.ListGroups\]
+/// [HubService.ListGroups][google.cloud.networkconnectivity.v1.HubService.ListGroups]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGroupsRequest {
@@ -924,7 +925,7 @@ pub struct ListGroupsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for
-/// \[HubService.ListGroups\]\[google.cloud.networkconnectivity.v1.HubService.ListGroups\]
+/// [HubService.ListGroups][google.cloud.networkconnectivity.v1.HubService.ListGroups]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGroupsResponse {
@@ -1093,7 +1094,7 @@ pub mod spoke_summary {
     }
 }
 /// The request for
-/// \[HubService.GetGroup\]\[google.cloud.networkconnectivity.v1.HubService.GetGroup\].
+/// [HubService.GetGroup][google.cloud.networkconnectivity.v1.HubService.GetGroup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGroupRequest {
     /// Required. The name of the route table resource.
@@ -1118,9 +1119,9 @@ impl LocationFeature {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LocationFeature::Unspecified => "LOCATION_FEATURE_UNSPECIFIED",
-            LocationFeature::SiteToCloudSpokes => "SITE_TO_CLOUD_SPOKES",
-            LocationFeature::SiteToSiteSpokes => "SITE_TO_SITE_SPOKES",
+            Self::Unspecified => "LOCATION_FEATURE_UNSPECIFIED",
+            Self::SiteToCloudSpokes => "SITE_TO_CLOUD_SPOKES",
+            Self::SiteToSiteSpokes => "SITE_TO_SITE_SPOKES",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1153,9 +1154,9 @@ impl RouteType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RouteType::Unspecified => "ROUTE_TYPE_UNSPECIFIED",
-            RouteType::VpcPrimarySubnet => "VPC_PRIMARY_SUBNET",
-            RouteType::VpcSecondarySubnet => "VPC_SECONDARY_SUBNET",
+            Self::Unspecified => "ROUTE_TYPE_UNSPECIFIED",
+            Self::VpcPrimarySubnet => "VPC_PRIMARY_SUBNET",
+            Self::VpcSecondarySubnet => "VPC_SECONDARY_SUBNET",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1200,15 +1201,15 @@ impl State {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Creating => "CREATING",
-            State::Active => "ACTIVE",
-            State::Deleting => "DELETING",
-            State::Accepting => "ACCEPTING",
-            State::Rejecting => "REJECTING",
-            State::Updating => "UPDATING",
-            State::Inactive => "INACTIVE",
-            State::Obsolete => "OBSOLETE",
+            Self::Unspecified => "STATE_UNSPECIFIED",
+            Self::Creating => "CREATING",
+            Self::Active => "ACTIVE",
+            Self::Deleting => "DELETING",
+            Self::Accepting => "ACCEPTING",
+            Self::Rejecting => "REJECTING",
+            Self::Updating => "UPDATING",
+            Self::Inactive => "INACTIVE",
+            Self::Obsolete => "OBSOLETE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1250,11 +1251,11 @@ impl SpokeType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SpokeType::Unspecified => "SPOKE_TYPE_UNSPECIFIED",
-            SpokeType::VpnTunnel => "VPN_TUNNEL",
-            SpokeType::InterconnectAttachment => "INTERCONNECT_ATTACHMENT",
-            SpokeType::RouterAppliance => "ROUTER_APPLIANCE",
-            SpokeType::VpcNetwork => "VPC_NETWORK",
+            Self::Unspecified => "SPOKE_TYPE_UNSPECIFIED",
+            Self::VpnTunnel => "VPN_TUNNEL",
+            Self::InterconnectAttachment => "INTERCONNECT_ATTACHMENT",
+            Self::RouterAppliance => "ROUTER_APPLIANCE",
+            Self::VpcNetwork => "VPC_NETWORK",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1271,7 +1272,13 @@ impl SpokeType {
 }
 /// Generated client implementations.
 pub mod hub_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Network Connectivity Center is a hub-and-spoke abstraction for network
@@ -1358,8 +1365,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1386,8 +1392,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1417,8 +1422,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1449,8 +1453,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1480,8 +1483,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1513,8 +1515,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1545,8 +1546,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1573,8 +1573,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1604,8 +1603,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1635,8 +1633,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1669,8 +1666,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1701,8 +1697,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1732,8 +1727,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1760,8 +1754,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1788,8 +1781,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1819,8 +1811,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1850,8 +1841,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1878,8 +1868,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1909,8 +1898,7 @@ pub mod hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2058,8 +2046,8 @@ pub mod policy_based_route {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ProtocolVersion::Unspecified => "PROTOCOL_VERSION_UNSPECIFIED",
-                    ProtocolVersion::Ipv4 => "IPV4",
+                    Self::Unspecified => "PROTOCOL_VERSION_UNSPECIFIED",
+                    Self::Ipv4 => "IPV4",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2127,9 +2115,9 @@ pub mod policy_based_route {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Code::WarningUnspecified => "WARNING_UNSPECIFIED",
-                    Code::ResourceNotActive => "RESOURCE_NOT_ACTIVE",
-                    Code::ResourceBeingModified => "RESOURCE_BEING_MODIFIED",
+                    Self::WarningUnspecified => "WARNING_UNSPECIFIED",
+                    Self::ResourceNotActive => "RESOURCE_NOT_ACTIVE",
+                    Self::ResourceBeingModified => "RESOURCE_BEING_MODIFIED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2172,8 +2160,8 @@ pub mod policy_based_route {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OtherRoutes::Unspecified => "OTHER_ROUTES_UNSPECIFIED",
-                OtherRoutes::DefaultRouting => "DEFAULT_ROUTING",
+                Self::Unspecified => "OTHER_ROUTES_UNSPECIFIED",
+                Self::DefaultRouting => "DEFAULT_ROUTING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2210,7 +2198,7 @@ pub mod policy_based_route {
         NextHopOtherRoutes(i32),
     }
 }
-/// Request for \[PolicyBasedRouting.ListPolicyBasedRoutes\]\[\] method.
+/// Request for [PolicyBasedRouting.ListPolicyBasedRoutes][] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyBasedRoutesRequest {
     /// Required. The parent resource's name.
@@ -2229,7 +2217,7 @@ pub struct ListPolicyBasedRoutesRequest {
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
 }
-/// Response for \[PolicyBasedRouting.ListPolicyBasedRoutes\]\[\] method.
+/// Response for [PolicyBasedRouting.ListPolicyBasedRoutes][] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyBasedRoutesResponse {
     /// Policy based routes to be returned.
@@ -2243,14 +2231,14 @@ pub struct ListPolicyBasedRoutesResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Request for \[PolicyBasedRouting.GetPolicyBasedRoute\]\[\] method.
+/// Request for [PolicyBasedRouting.GetPolicyBasedRoute][] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPolicyBasedRouteRequest {
     /// Required. Name of the PolicyBasedRoute resource to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request for \[PolicyBasedRouting.CreatePolicyBasedRoute\]\[\] method.
+/// Request for [PolicyBasedRouting.CreatePolicyBasedRoute][] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePolicyBasedRouteRequest {
     /// Required. The parent resource's name of the PolicyBasedRoute.
@@ -2278,7 +2266,7 @@ pub struct CreatePolicyBasedRouteRequest {
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
-/// Request for \[PolicyBasedRouting.DeletePolicyBasedRoute\]\[\] method.
+/// Request for [PolicyBasedRouting.DeletePolicyBasedRoute][] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePolicyBasedRouteRequest {
     /// Required. Name of the PolicyBasedRoute resource to delete.
@@ -2302,7 +2290,13 @@ pub struct DeletePolicyBasedRouteRequest {
 }
 /// Generated client implementations.
 pub mod policy_based_routing_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Policy-Based Routing allows GCP customers to specify flexibile routing
@@ -2390,8 +2384,7 @@ pub mod policy_based_routing_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2421,8 +2414,7 @@ pub mod policy_based_routing_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2452,8 +2444,7 @@ pub mod policy_based_routing_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2483,8 +2474,7 @@ pub mod policy_based_routing_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

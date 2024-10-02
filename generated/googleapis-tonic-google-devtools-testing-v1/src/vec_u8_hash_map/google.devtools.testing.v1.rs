@@ -98,16 +98,16 @@ pub mod status_update {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeviceState::Unspecified => "DEVICE_STATE_UNSPECIFIED",
-                DeviceState::Device => "DEVICE",
-                DeviceState::Recovery => "RECOVERY",
-                DeviceState::Rescue => "RESCUE",
-                DeviceState::Sideload => "SIDELOAD",
-                DeviceState::Missing => "MISSING",
-                DeviceState::Offline => "OFFLINE",
-                DeviceState::Unauthorized => "UNAUTHORIZED",
-                DeviceState::Authorizing => "AUTHORIZING",
-                DeviceState::Connecting => "CONNECTING",
+                Self::Unspecified => "DEVICE_STATE_UNSPECIFIED",
+                Self::Device => "DEVICE",
+                Self::Recovery => "RECOVERY",
+                Self::Rescue => "RESCUE",
+                Self::Sideload => "SIDELOAD",
+                Self::Missing => "MISSING",
+                Self::Offline => "OFFLINE",
+                Self::Unauthorized => "UNAUTHORIZED",
+                Self::Authorizing => "AUTHORIZING",
+                Self::Connecting => "CONNECTING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -502,7 +502,6 @@ pub struct Apk {
 }
 /// An Android App Bundle file format, containing a BundleConfig.pb file,
 /// a base module directory, zero or more dynamic feature module directories.
-///
 /// <p>See <https://developer.android.com/guide/app-bundle/build> for guidance on
 /// building App Bundles.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -548,7 +547,7 @@ pub struct ObbFile {
     /// Android
     /// e.g. \[main|patch\].0300110.com.example.android.obb
     /// which will be installed into
-    /// \<shared-storage\>/Android/obb/\<package-name\>/
+    ///    \<shared-storage\>/Android/obb/\<package-name\>/
     /// on the device.
     #[prost(string, tag = "1")]
     pub obb_file_name: ::prost::alloc::string::String,
@@ -566,14 +565,15 @@ pub struct RegularFile {
     /// allowlisted path. If the file exists, it will be replaced.
     /// The following device-side directories and any of their subdirectories are
     /// allowlisted:
-    ///
     /// <p>${EXTERNAL_STORAGE}, /sdcard, or /storage</p>
     /// <p>${ANDROID_DATA}/local/tmp, or /data/local/tmp</p>
     /// <p>Specifying a path outside of these directory trees is invalid.
+    ///
     /// <p> The paths /sdcard and /data will be made available and treated as
     /// implicit path substitutions. E.g. if /sdcard on a particular device does
     /// not map to external storage, the system will replace it with the external
     /// storage path prefix for that device and copy the file there.
+    ///
     /// <p> It is strongly advised to use the <a href=
     /// "<http://developer.android.com/reference/android/os/Environment.html">>
     /// Environment API</a> in app and test code to access files on the device in a
@@ -732,22 +732,22 @@ pub struct AndroidInstrumentationTest {
     /// Each target must be fully qualified with the package name or class name,
     /// in one of these formats:
     ///
-    /// * "package package_name"
-    /// * "class package_name.class_name"
-    /// * "class package_name.class_name#method_name"
+    ///   - "package package_name"
+    ///   - "class package_name.class_name"
+    ///   - "class package_name.class_name#method_name"
     ///
     /// If empty, all targets in the module will be run.
     #[prost(string, repeated, tag = "6")]
     pub test_targets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The option of whether running each test within its own invocation of
     /// instrumentation with Android Test Orchestrator or not.
-    /// \** Orchestrator is only compatible with AndroidJUnitRunner version 1.1 or
+    /// ** Orchestrator is only compatible with AndroidJUnitRunner version 1.1 or
     /// higher! **
     /// Orchestrator offers the following benefits:
     ///
-    /// * No shared state
-    /// * Crashes are isolated
-    /// * Logs are scoped per test
+    ///   - No shared state
+    ///   - Crashes are isolated
+    ///   - Logs are scoped per test
     ///
     /// See
     /// <<https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator>>
@@ -842,8 +842,8 @@ pub mod android_robo_test {
 pub struct RoboDirective {
     /// Required. The android resource name of the target UI element.
     /// For example,
-    /// in Java: R.string.foo
-    /// in xml: @string/foo
+    ///     in Java: R.string.foo
+    ///     in xml: @string/foo
     /// Only the "foo" part is needed.
     /// Reference doc:
     /// <https://developer.android.com/guide/topics/resources/accessing-resources.html>
@@ -1201,15 +1201,13 @@ pub mod invalid_request_detail {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Reason::Unspecified => "REASON_UNSPECIFIED",
-                Reason::RequestInvalid => "REQUEST_INVALID",
-                Reason::ResourceTooBig => "RESOURCE_TOO_BIG",
-                Reason::ResourceNotFound => "RESOURCE_NOT_FOUND",
-                Reason::Unsupported => "UNSUPPORTED",
-                Reason::NotImplemented => "NOT_IMPLEMENTED",
-                Reason::ResultStoragePermissionDenied => {
-                    "RESULT_STORAGE_PERMISSION_DENIED"
-                }
+                Self::Unspecified => "REASON_UNSPECIFIED",
+                Self::RequestInvalid => "REQUEST_INVALID",
+                Self::ResourceTooBig => "RESOURCE_TOO_BIG",
+                Self::ResourceNotFound => "RESOURCE_NOT_FOUND",
+                Self::Unsupported => "UNSUPPORTED",
+                Self::NotImplemented => "NOT_IMPLEMENTED",
+                Self::ResultStoragePermissionDenied => "RESULT_STORAGE_PERMISSION_DENIED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1265,8 +1263,8 @@ pub struct UniformSharding {
     /// Required. The total number of shards to create. This must always be a
     /// positive number that is no greater than the total number of test cases.
     /// When you select one or more physical devices, the number of shards must be
-    /// \<= 50. When you select one or more ARM virtual devices, it must be \<= 200.
-    /// When you select only x86 virtual devices, it must be \<= 500.
+    /// <= 50. When you select one or more ARM virtual devices, it must be <= 200.
+    /// When you select only x86 virtual devices, it must be <= 500.
     #[prost(int32, tag = "1")]
     pub num_shards: i32,
 }
@@ -1280,9 +1278,9 @@ pub struct ManualSharding {
     /// Required. Group of packages, classes, and/or test methods to be run for
     /// each manually-created shard. You must specify at least one shard if this
     /// field is present. When you select one or more physical devices, the number
-    /// of repeated test_targets_for_shard must be \<= 50. When you select one or
-    /// more ARM virtual devices, it must be \<= 200. When you select only x86
-    /// virtual devices, it must be \<= 500.
+    /// of repeated test_targets_for_shard must be <= 50. When you select one or
+    /// more ARM virtual devices, it must be <= 200. When you select only x86
+    /// virtual devices, it must be <= 500.
     #[prost(message, repeated, tag = "1")]
     pub test_targets_for_shard: ::prost::alloc::vec::Vec<TestTargetsForShard>,
 }
@@ -1310,20 +1308,20 @@ pub struct SmartSharding {
     /// shard, the number of shards will not exceed the number of test cases. Shard
     /// duration will be exceeded if:
     ///
-    /// * The maximum shard limit is reached and there is more calculated test time
-    ///   remaining to allocate into shards.
-    /// * Any individual test is estimated to be longer than the targeted shard
-    ///   duration.
+    /// - The maximum shard limit is reached and there is more calculated test time
+    /// remaining to allocate into shards.
+    /// - Any individual test is estimated to be longer than the targeted shard
+    /// duration.
     ///
     /// Shard duration is not guaranteed because smart sharding uses test case
     /// history and default durations which may not be accurate. The rules for
     /// finding the test case timing records are:
     ///
-    /// * If the service has processed a test case in the last 30 days, the record
+    /// - If the service has processed a test case in the last 30 days, the record
     ///   of the latest successful test case will be used.
-    /// * For new test cases, the average duration of other known test cases will
+    /// - For new test cases, the average duration of other known test cases will
     ///   be used.
-    /// * If there are no previous test case timing records available, the default
+    /// - If there are no previous test case timing records available, the default
     ///   test case duration is 15 seconds.
     ///
     /// Because the actual shard duration can exceed the targeted shard duration,
@@ -1334,9 +1332,9 @@ pub struct SmartSharding {
     /// finish.
     ///
     /// Note that there is a limit for maximum number of shards. When you select
-    /// one or more physical devices, the number of shards must be \<= 50. When you
-    /// select one or more ARM virtual devices, it must be \<= 200. When you select
-    /// only x86 virtual devices, it must be \<= 500. To guarantee at least one test
+    /// one or more physical devices, the number of shards must be <= 50. When you
+    /// select one or more ARM virtual devices, it must be <= 200. When you select
+    /// only x86 virtual devices, it must be <= 500. To guarantee at least one test
     /// case for per shard, the number of shards will not exceed the number of test
     /// cases. Each shard created counts toward daily test quota.
     #[prost(message, optional, tag = "1")]
@@ -1417,7 +1415,7 @@ pub enum OrchestratorOption {
     /// offers.
     Unspecified = 0,
     /// Run test using orchestrator.
-    /// \** Only compatible with AndroidJUnitRunner version 1.1 or higher! **
+    /// ** Only compatible with AndroidJUnitRunner version 1.1 or higher! **
     /// Recommended.
     UseOrchestrator = 1,
     /// Run test without using orchestrator.
@@ -1430,9 +1428,9 @@ impl OrchestratorOption {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OrchestratorOption::Unspecified => "ORCHESTRATOR_OPTION_UNSPECIFIED",
-            OrchestratorOption::UseOrchestrator => "USE_ORCHESTRATOR",
-            OrchestratorOption::DoNotUseOrchestrator => "DO_NOT_USE_ORCHESTRATOR",
+            Self::Unspecified => "ORCHESTRATOR_OPTION_UNSPECIFIED",
+            Self::UseOrchestrator => "USE_ORCHESTRATOR",
+            Self::DoNotUseOrchestrator => "DO_NOT_USE_ORCHESTRATOR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1464,9 +1462,9 @@ impl RoboMode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RoboMode::Unspecified => "ROBO_MODE_UNSPECIFIED",
-            RoboMode::RoboVersion1 => "ROBO_VERSION_1",
-            RoboMode::RoboVersion2 => "ROBO_VERSION_2",
+            Self::Unspecified => "ROBO_MODE_UNSPECIFIED",
+            Self::RoboVersion1 => "ROBO_VERSION_1",
+            Self::RoboVersion2 => "ROBO_VERSION_2",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1501,10 +1499,10 @@ impl RoboActionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RoboActionType::ActionTypeUnspecified => "ACTION_TYPE_UNSPECIFIED",
-            RoboActionType::SingleClick => "SINGLE_CLICK",
-            RoboActionType::EnterText => "ENTER_TEXT",
-            RoboActionType::Ignore => "IGNORE",
+            Self::ActionTypeUnspecified => "ACTION_TYPE_UNSPECIFIED",
+            Self::SingleClick => "SINGLE_CLICK",
+            Self::EnterText => "ENTER_TEXT",
+            Self::Ignore => "IGNORE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1555,9 +1553,9 @@ pub enum InvalidMatrixDetails {
     /// or in the manifest file. This can be caused by one of the following
     /// reasons:
     ///
-    /// * the user provided a runner class name that's incorrect, or
-    /// * the test runner isn't built into the test APK (might be in the app APK
-    ///   instead).
+    /// - the user provided a runner class name that's incorrect, or
+    /// - the test runner isn't built into the test APK (might be in the app APK
+    /// instead).
     NoTestRunnerClass = 19,
     /// A main launcher activity could not be found.
     NoLauncherActivity = 8,
@@ -1638,51 +1636,47 @@ impl InvalidMatrixDetails {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            InvalidMatrixDetails::Unspecified => "INVALID_MATRIX_DETAILS_UNSPECIFIED",
-            InvalidMatrixDetails::DetailsUnavailable => "DETAILS_UNAVAILABLE",
-            InvalidMatrixDetails::MalformedApk => "MALFORMED_APK",
-            InvalidMatrixDetails::MalformedTestApk => "MALFORMED_TEST_APK",
-            InvalidMatrixDetails::NoManifest => "NO_MANIFEST",
-            InvalidMatrixDetails::NoPackageName => "NO_PACKAGE_NAME",
-            InvalidMatrixDetails::InvalidPackageName => "INVALID_PACKAGE_NAME",
-            InvalidMatrixDetails::TestSameAsApp => "TEST_SAME_AS_APP",
-            InvalidMatrixDetails::NoInstrumentation => "NO_INSTRUMENTATION",
-            InvalidMatrixDetails::NoSignature => "NO_SIGNATURE",
-            InvalidMatrixDetails::InstrumentationOrchestratorIncompatible => {
+            Self::Unspecified => "INVALID_MATRIX_DETAILS_UNSPECIFIED",
+            Self::DetailsUnavailable => "DETAILS_UNAVAILABLE",
+            Self::MalformedApk => "MALFORMED_APK",
+            Self::MalformedTestApk => "MALFORMED_TEST_APK",
+            Self::NoManifest => "NO_MANIFEST",
+            Self::NoPackageName => "NO_PACKAGE_NAME",
+            Self::InvalidPackageName => "INVALID_PACKAGE_NAME",
+            Self::TestSameAsApp => "TEST_SAME_AS_APP",
+            Self::NoInstrumentation => "NO_INSTRUMENTATION",
+            Self::NoSignature => "NO_SIGNATURE",
+            Self::InstrumentationOrchestratorIncompatible => {
                 "INSTRUMENTATION_ORCHESTRATOR_INCOMPATIBLE"
             }
-            InvalidMatrixDetails::NoTestRunnerClass => "NO_TEST_RUNNER_CLASS",
-            InvalidMatrixDetails::NoLauncherActivity => "NO_LAUNCHER_ACTIVITY",
-            InvalidMatrixDetails::ForbiddenPermissions => "FORBIDDEN_PERMISSIONS",
-            InvalidMatrixDetails::InvalidRoboDirectives => "INVALID_ROBO_DIRECTIVES",
-            InvalidMatrixDetails::InvalidResourceName => "INVALID_RESOURCE_NAME",
-            InvalidMatrixDetails::InvalidDirectiveAction => "INVALID_DIRECTIVE_ACTION",
-            InvalidMatrixDetails::TestLoopIntentFilterNotFound => {
-                "TEST_LOOP_INTENT_FILTER_NOT_FOUND"
-            }
-            InvalidMatrixDetails::ScenarioLabelNotDeclared => {
-                "SCENARIO_LABEL_NOT_DECLARED"
-            }
-            InvalidMatrixDetails::ScenarioLabelMalformed => "SCENARIO_LABEL_MALFORMED",
-            InvalidMatrixDetails::ScenarioNotDeclared => "SCENARIO_NOT_DECLARED",
-            InvalidMatrixDetails::DeviceAdminReceiver => "DEVICE_ADMIN_RECEIVER",
-            InvalidMatrixDetails::MalformedXcTestZip => "MALFORMED_XC_TEST_ZIP",
-            InvalidMatrixDetails::BuiltForIosSimulator => "BUILT_FOR_IOS_SIMULATOR",
-            InvalidMatrixDetails::NoTestsInXcTestZip => "NO_TESTS_IN_XC_TEST_ZIP",
-            InvalidMatrixDetails::UseDestinationArtifacts => "USE_DESTINATION_ARTIFACTS",
-            InvalidMatrixDetails::TestNotAppHosted => "TEST_NOT_APP_HOSTED",
-            InvalidMatrixDetails::PlistCannotBeParsed => "PLIST_CANNOT_BE_PARSED",
-            InvalidMatrixDetails::TestOnlyApk => "TEST_ONLY_APK",
-            InvalidMatrixDetails::MalformedIpa => "MALFORMED_IPA",
-            InvalidMatrixDetails::MissingUrlScheme => "MISSING_URL_SCHEME",
-            InvalidMatrixDetails::MalformedAppBundle => "MALFORMED_APP_BUNDLE",
-            InvalidMatrixDetails::NoCodeApk => "NO_CODE_APK",
-            InvalidMatrixDetails::InvalidInputApk => "INVALID_INPUT_APK",
-            InvalidMatrixDetails::InvalidApkPreviewSdk => "INVALID_APK_PREVIEW_SDK",
-            InvalidMatrixDetails::MatrixTooLarge => "MATRIX_TOO_LARGE",
-            InvalidMatrixDetails::TestQuotaExceeded => "TEST_QUOTA_EXCEEDED",
-            InvalidMatrixDetails::ServiceNotActivated => "SERVICE_NOT_ACTIVATED",
-            InvalidMatrixDetails::UnknownPermissionError => "UNKNOWN_PERMISSION_ERROR",
+            Self::NoTestRunnerClass => "NO_TEST_RUNNER_CLASS",
+            Self::NoLauncherActivity => "NO_LAUNCHER_ACTIVITY",
+            Self::ForbiddenPermissions => "FORBIDDEN_PERMISSIONS",
+            Self::InvalidRoboDirectives => "INVALID_ROBO_DIRECTIVES",
+            Self::InvalidResourceName => "INVALID_RESOURCE_NAME",
+            Self::InvalidDirectiveAction => "INVALID_DIRECTIVE_ACTION",
+            Self::TestLoopIntentFilterNotFound => "TEST_LOOP_INTENT_FILTER_NOT_FOUND",
+            Self::ScenarioLabelNotDeclared => "SCENARIO_LABEL_NOT_DECLARED",
+            Self::ScenarioLabelMalformed => "SCENARIO_LABEL_MALFORMED",
+            Self::ScenarioNotDeclared => "SCENARIO_NOT_DECLARED",
+            Self::DeviceAdminReceiver => "DEVICE_ADMIN_RECEIVER",
+            Self::MalformedXcTestZip => "MALFORMED_XC_TEST_ZIP",
+            Self::BuiltForIosSimulator => "BUILT_FOR_IOS_SIMULATOR",
+            Self::NoTestsInXcTestZip => "NO_TESTS_IN_XC_TEST_ZIP",
+            Self::UseDestinationArtifacts => "USE_DESTINATION_ARTIFACTS",
+            Self::TestNotAppHosted => "TEST_NOT_APP_HOSTED",
+            Self::PlistCannotBeParsed => "PLIST_CANNOT_BE_PARSED",
+            Self::TestOnlyApk => "TEST_ONLY_APK",
+            Self::MalformedIpa => "MALFORMED_IPA",
+            Self::MissingUrlScheme => "MISSING_URL_SCHEME",
+            Self::MalformedAppBundle => "MALFORMED_APP_BUNDLE",
+            Self::NoCodeApk => "NO_CODE_APK",
+            Self::InvalidInputApk => "INVALID_INPUT_APK",
+            Self::InvalidApkPreviewSdk => "INVALID_APK_PREVIEW_SDK",
+            Self::MatrixTooLarge => "MATRIX_TOO_LARGE",
+            Self::TestQuotaExceeded => "TEST_QUOTA_EXCEEDED",
+            Self::ServiceNotActivated => "SERVICE_NOT_ACTIVATED",
+            Self::UnknownPermissionError => "UNKNOWN_PERMISSION_ERROR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1795,17 +1789,17 @@ impl TestState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TestState::Unspecified => "TEST_STATE_UNSPECIFIED",
-            TestState::Validating => "VALIDATING",
-            TestState::Pending => "PENDING",
-            TestState::Running => "RUNNING",
-            TestState::Finished => "FINISHED",
-            TestState::Error => "ERROR",
-            TestState::UnsupportedEnvironment => "UNSUPPORTED_ENVIRONMENT",
-            TestState::IncompatibleEnvironment => "INCOMPATIBLE_ENVIRONMENT",
-            TestState::IncompatibleArchitecture => "INCOMPATIBLE_ARCHITECTURE",
-            TestState::Cancelled => "CANCELLED",
-            TestState::Invalid => "INVALID",
+            Self::Unspecified => "TEST_STATE_UNSPECIFIED",
+            Self::Validating => "VALIDATING",
+            Self::Pending => "PENDING",
+            Self::Running => "RUNNING",
+            Self::Finished => "FINISHED",
+            Self::Error => "ERROR",
+            Self::UnsupportedEnvironment => "UNSUPPORTED_ENVIRONMENT",
+            Self::IncompatibleEnvironment => "INCOMPATIBLE_ENVIRONMENT",
+            Self::IncompatibleArchitecture => "INCOMPATIBLE_ARCHITECTURE",
+            Self::Cancelled => "CANCELLED",
+            Self::Invalid => "INVALID",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1834,14 +1828,14 @@ pub enum OutcomeSummary {
     Unspecified = 0,
     /// The test matrix run was successful, for instance:
     ///
-    /// * All the test cases passed.
-    /// * Robo did not detect a crash of the application under test.
+    /// - All the test cases passed.
+    /// - Robo did not detect a crash of the application under test.
     Success = 1,
     /// A run failed, for instance:
     ///
-    /// * One or more test cases failed.
-    /// * A test timed out.
-    /// * The application under test crashed.
+    /// - One or more test cases failed.
+    /// - A test timed out.
+    /// - The application under test crashed.
     Failure = 2,
     /// Something unexpected happened. The run should still be considered
     /// unsuccessful but this is likely a transient problem and re-running the
@@ -1849,7 +1843,7 @@ pub enum OutcomeSummary {
     Inconclusive = 3,
     /// All tests were skipped, for instance:
     ///
-    /// * All device configurations were incompatible.
+    /// - All device configurations were incompatible.
     Skipped = 4,
 }
 impl OutcomeSummary {
@@ -1859,11 +1853,11 @@ impl OutcomeSummary {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OutcomeSummary::Unspecified => "OUTCOME_SUMMARY_UNSPECIFIED",
-            OutcomeSummary::Success => "SUCCESS",
-            OutcomeSummary::Failure => "FAILURE",
-            OutcomeSummary::Inconclusive => "INCONCLUSIVE",
-            OutcomeSummary::Skipped => "SKIPPED",
+            Self::Unspecified => "OUTCOME_SUMMARY_UNSPECIFIED",
+            Self::Success => "SUCCESS",
+            Self::Failure => "FAILURE",
+            Self::Inconclusive => "INCONCLUSIVE",
+            Self::Skipped => "SKIPPED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1880,7 +1874,13 @@ impl OutcomeSummary {
 }
 /// Generated client implementations.
 pub mod test_execution_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service for requesting test executions and querying their status.
@@ -1896,13 +1896,13 @@ pub mod test_execution_service_client {
     ///
     /// The TestExecutionService models this behavior using two resource types:
     ///
-    /// * TestMatrix: a group of one or more TestExecutions, built by taking a
-    ///  product of values over a pre-defined set of axes. In the case of Android
-    ///  Tests, for example, device model and OS version are two axes of the matrix.
+    /// - TestMatrix: a group of one or more TestExecutions, built by taking a
+    ///   product of values over a pre-defined set of axes. In the case of Android
+    ///   Tests, for example, device model and OS version are two axes of the matrix.
     ///
-    /// * TestExecution: a single execution of one or more test targets on a
-    ///  single device. These are created automatically when a TestMatrix is
-    ///  created.
+    /// - TestExecution: a single execution of one or more test targets on a
+    ///   single device. These are created automatically when a TestMatrix is
+    ///   created.
     ///
     /// This service returns any error codes from the canonical error space (i.e.
     /// google.rpc.Code). The errors which may be returned are specified on each
@@ -1986,9 +1986,9 @@ pub mod test_execution_service_client {
         ///
         /// May return any of the following canonical error codes:
         ///
-        /// * PERMISSION_DENIED - if the user is not authorized to write to project
-        /// * INVALID_ARGUMENT - if the request is malformed or if the matrix tries
-        ///  to use too many simultaneous devices.
+        /// - PERMISSION_DENIED - if the user is not authorized to write to project
+        /// - INVALID_ARGUMENT - if the request is malformed or if the matrix tries
+        ///                      to use too many simultaneous devices.
         pub async fn create_test_matrix(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTestMatrixRequest>,
@@ -1997,8 +1997,7 @@ pub mod test_execution_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2026,9 +2025,9 @@ pub mod test_execution_service_client {
         ///
         /// May return any of the following canonical error codes:
         ///
-        /// * PERMISSION_DENIED - if the user is not authorized to read project
-        /// * INVALID_ARGUMENT - if the request is malformed
-        /// * NOT_FOUND - if the Test Matrix does not exist
+        /// - PERMISSION_DENIED - if the user is not authorized to read project
+        /// - INVALID_ARGUMENT - if the request is malformed
+        /// - NOT_FOUND - if the Test Matrix does not exist
         pub async fn get_test_matrix(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTestMatrixRequest>,
@@ -2037,8 +2036,7 @@ pub mod test_execution_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2062,9 +2060,9 @@ pub mod test_execution_service_client {
         ///
         /// May return any of the following canonical error codes:
         ///
-        /// * PERMISSION_DENIED - if the user is not authorized to read project
-        /// * INVALID_ARGUMENT - if the request is malformed
-        /// * NOT_FOUND - if the Test Matrix does not exist
+        /// - PERMISSION_DENIED - if the user is not authorized to read project
+        /// - INVALID_ARGUMENT - if the request is malformed
+        /// - NOT_FOUND - if the Test Matrix does not exist
         pub async fn cancel_test_matrix(
             &mut self,
             request: impl tonic::IntoRequest<super::CancelTestMatrixRequest>,
@@ -2076,8 +2074,7 @@ pub mod test_execution_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2211,7 +2208,13 @@ pub struct GetApkDetailsResponse {
 }
 /// Generated client implementations.
 pub mod application_detail_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service which parses input applications and returns details that can be
@@ -2299,8 +2302,7 @@ pub mod application_detail_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2485,14 +2487,14 @@ pub mod device_session {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SessionState::Unspecified => "SESSION_STATE_UNSPECIFIED",
-                SessionState::Requested => "REQUESTED",
-                SessionState::Pending => "PENDING",
-                SessionState::Active => "ACTIVE",
-                SessionState::Expired => "EXPIRED",
-                SessionState::Finished => "FINISHED",
-                SessionState::Unavailable => "UNAVAILABLE",
-                SessionState::Error => "ERROR",
+                Self::Unspecified => "SESSION_STATE_UNSPECIFIED",
+                Self::Requested => "REQUESTED",
+                Self::Pending => "PENDING",
+                Self::Active => "ACTIVE",
+                Self::Expired => "EXPIRED",
+                Self::Finished => "FINISHED",
+                Self::Unavailable => "UNAVAILABLE",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2526,7 +2528,13 @@ pub mod device_session {
 }
 /// Generated client implementations.
 pub mod direct_access_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service for allocating devices and interacting with the live-allocated
@@ -2621,8 +2629,7 @@ pub mod direct_access_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2653,8 +2660,7 @@ pub mod direct_access_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2684,8 +2690,7 @@ pub mod direct_access_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2716,8 +2721,7 @@ pub mod direct_access_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2747,8 +2751,7 @@ pub mod direct_access_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2782,8 +2785,7 @@ pub mod direct_access_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2865,12 +2867,12 @@ pub mod get_test_environment_catalog_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnvironmentType::Unspecified => "ENVIRONMENT_TYPE_UNSPECIFIED",
-                EnvironmentType::Android => "ANDROID",
-                EnvironmentType::Ios => "IOS",
-                EnvironmentType::NetworkConfiguration => "NETWORK_CONFIGURATION",
-                EnvironmentType::ProvidedSoftware => "PROVIDED_SOFTWARE",
-                EnvironmentType::DeviceIpBlocks => "DEVICE_IP_BLOCKS",
+                Self::Unspecified => "ENVIRONMENT_TYPE_UNSPECIFIED",
+                Self::Android => "ANDROID",
+                Self::Ios => "IOS",
+                Self::NetworkConfiguration => "NETWORK_CONFIGURATION",
+                Self::ProvidedSoftware => "PROVIDED_SOFTWARE",
+                Self::DeviceIpBlocks => "DEVICE_IP_BLOCKS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3321,10 +3323,10 @@ impl DeviceForm {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DeviceForm::Unspecified => "DEVICE_FORM_UNSPECIFIED",
-            DeviceForm::Virtual => "VIRTUAL",
-            DeviceForm::Physical => "PHYSICAL",
-            DeviceForm::Emulator => "EMULATOR",
+            Self::Unspecified => "DEVICE_FORM_UNSPECIFIED",
+            Self::Virtual => "VIRTUAL",
+            Self::Physical => "PHYSICAL",
+            Self::Emulator => "EMULATOR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3358,10 +3360,10 @@ impl DeviceFormFactor {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DeviceFormFactor::Unspecified => "DEVICE_FORM_FACTOR_UNSPECIFIED",
-            DeviceFormFactor::Phone => "PHONE",
-            DeviceFormFactor::Tablet => "TABLET",
-            DeviceFormFactor::Wearable => "WEARABLE",
+            Self::Unspecified => "DEVICE_FORM_FACTOR_UNSPECIFIED",
+            Self::Phone => "PHONE",
+            Self::Tablet => "TABLET",
+            Self::Wearable => "WEARABLE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3396,10 +3398,9 @@ pub enum DeviceCapacity {
     ///
     /// Please note that high capacity devices do not guarantee short wait times
     /// due to several factors:
-    ///
     /// 1. Traffic (how heavily they are used at any given moment)
-    /// 1. High capacity devices are prioritized for certain usages, which may
-    ///    cause user tests to be slower than selecting other similar device types.
+    /// 2. High capacity devices are prioritized for certain usages, which may
+    /// cause user tests to be slower than selecting other similar device types.
     High = 1,
     /// Devices that are medium in capacity (The lab has a decent number of these
     /// devices, though not as many as high capacity devices).
@@ -3429,11 +3430,11 @@ impl DeviceCapacity {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DeviceCapacity::Unspecified => "DEVICE_CAPACITY_UNSPECIFIED",
-            DeviceCapacity::High => "DEVICE_CAPACITY_HIGH",
-            DeviceCapacity::Medium => "DEVICE_CAPACITY_MEDIUM",
-            DeviceCapacity::Low => "DEVICE_CAPACITY_LOW",
-            DeviceCapacity::None => "DEVICE_CAPACITY_NONE",
+            Self::Unspecified => "DEVICE_CAPACITY_UNSPECIFIED",
+            Self::High => "DEVICE_CAPACITY_HIGH",
+            Self::Medium => "DEVICE_CAPACITY_MEDIUM",
+            Self::Low => "DEVICE_CAPACITY_LOW",
+            Self::None => "DEVICE_CAPACITY_NONE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3450,7 +3451,13 @@ impl DeviceCapacity {
 }
 /// Generated client implementations.
 pub mod test_environment_discovery_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for discovering environments supported by the TestExecutionService.
@@ -3461,30 +3468,30 @@ pub mod test_environment_discovery_service_client {
     ///
     /// It defines the following resource model:
     ///
-    /// * The API a collection of \[TestEnvironmentCatalog\]
-    ///  \[google.devtools.test.v1.TestEnvironmentCatalog\] resources, named
-    ///  `testEnvironmentCatalog/*`
+    /// - The API a collection of [TestEnvironmentCatalog]
+    ///   [google.devtools.test.v1.TestEnvironmentCatalog] resources, named
+    ///   `testEnvironmentCatalog/*`
     ///
-    /// * Each TestEnvironmentCatalog resource describes a set of supported
-    ///  environments.
+    /// - Each TestEnvironmentCatalog resource describes a set of supported
+    ///   environments.
     ///
-    /// * An \[AndroidDeviceCatalog\]\[google.devtools.test.v1.AndroidDeviceCatalog\]
-    ///  describes supported Android devices. It contains lists of supported
-    ///  \[AndroidModels\]\[google.devtools.test.v1.AndroidModel\] and
-    ///  \[AndroidVersions\]\[google.devtools.test.v1.AndroidVersion\] along with a
-    ///  \[AndroidRuntimeConfiguration\]\[google.devtools.test.v1.AndroidRuntimeConfiguration\].
-    ///  Each AndroidModel contains a list of Versions it supports. All
-    ///  models support all locales and orientations described by the
-    ///  AndroidRuntimeConfiguration
+    /// - An [AndroidDeviceCatalog][google.devtools.test.v1.AndroidDeviceCatalog]
+    ///   describes supported Android devices. It contains lists of supported
+    ///   [AndroidModels][google.devtools.test.v1.AndroidModel] and
+    ///   [AndroidVersions][google.devtools.test.v1.AndroidVersion] along with a
+    ///   [AndroidRuntimeConfiguration][google.devtools.test.v1.AndroidRuntimeConfiguration].
+    ///   Each AndroidModel contains a list of Versions it supports. All
+    ///   models support all locales and orientations described by the
+    ///   AndroidRuntimeConfiguration
     ///
-    /// * An \[IosDeviceCatalog\]\[google.devtools.test.v1.IosDeviceCatalog\]
-    ///  describes supported iOS devices. It contains lists of supported
-    ///  \[IosModels\]\[google.devtools.test.v1.IosModel\] and
-    ///  \[IosVersions\]\[google.devtools.test.v1.IosVersion\] along with a
-    ///  \[IosRuntimeConfiguration\]\[google.devtools.test.v1.IosRuntimeConfiguration\].
-    ///  Each IosModel contains a list of Versions it supports. All
-    ///  models support all locales and orientations described by the
-    ///  IosRuntimeConfiguration.
+    /// - An [IosDeviceCatalog][google.devtools.test.v1.IosDeviceCatalog]
+    ///   describes supported iOS devices. It contains lists of supported
+    ///   [IosModels][google.devtools.test.v1.IosModel] and
+    ///   [IosVersions][google.devtools.test.v1.IosVersion] along with a
+    ///   [IosRuntimeConfiguration][google.devtools.test.v1.IosRuntimeConfiguration].
+    ///   Each IosModel contains a list of Versions it supports. All
+    ///   models support all locales and orientations described by the
+    ///   IosRuntimeConfiguration.
     #[derive(Debug, Clone)]
     pub struct TestEnvironmentDiscoveryServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -3560,9 +3567,9 @@ pub mod test_environment_discovery_service_client {
         ///
         /// May return any of the following canonical error codes:
         ///
-        /// * INVALID_ARGUMENT - if the request is malformed
-        /// * NOT_FOUND - if the environment type does not exist
-        /// * INTERNAL - if an internal error occurred
+        /// - INVALID_ARGUMENT - if the request is malformed
+        /// - NOT_FOUND - if the environment type does not exist
+        /// - INTERNAL - if an internal error occurred
         pub async fn get_test_environment_catalog(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTestEnvironmentCatalogRequest>,
@@ -3574,8 +3581,7 @@ pub mod test_environment_discovery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

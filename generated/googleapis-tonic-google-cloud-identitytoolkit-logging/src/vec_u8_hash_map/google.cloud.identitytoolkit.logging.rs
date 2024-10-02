@@ -9,10 +9,8 @@ pub struct RequestLog {
     /// For API calls, this should be the name of the API method.
     /// For example,
     ///
-    /// ```text
-    /// "google.datastore.v1.Datastore.RunQuery"
-    /// "google.logging.v1.LoggingService.DeleteLog"
-    /// ```
+    ///      "google.datastore.v1.Datastore.RunQuery"
+    ///      "google.logging.v1.LoggingService.DeleteLog"
     #[prost(string, tag = "1")]
     pub method_name: ::prost::alloc::string::String,
     /// The status of the overall operation.
@@ -58,13 +56,14 @@ pub struct RequestMetadata {
     ///
     /// For example:
     ///
-    /// * `google-api-python-client/1.4.0`:
-    ///   The request was made by the Google API client for Python.
-    /// * `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`:
-    ///   The request was made by the Google Cloud SDK CLI (gcloud).
-    /// * `AppEngine-Google; (+<http://code.google.com/appengine;> appid: s~my-project`:
-    ///   The request was made from the `my-project` App Engine app.
-    ///   NOLINT
+    /// +   `google-api-python-client/1.4.0`:
+    ///      The request was made by the Google API client for Python.
+    /// +   `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`:
+    ///      The request was made by the Google Cloud SDK CLI (gcloud).
+    /// +   `AppEngine-Google; (+<http://code.google.com/appengine;> appid:
+    ///       s~my-project`:
+    ///      The request was made from the `my-project` App Engine app.
+    /// NOLINT
     #[prost(string, tag = "2")]
     pub caller_supplied_user_agent: ::prost::alloc::string::String,
 }

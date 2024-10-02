@@ -16,7 +16,7 @@ pub struct PlayableLocation {
     /// playable location.
     ///
     /// By default, the set of playable locations returned from
-    /// \[SamplePlayableLocations\]\[google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations\]
+    /// [SamplePlayableLocations][google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations]
     /// use center-point coordinates.
     #[prost(message, optional, tag = "5")]
     pub center_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
@@ -63,10 +63,11 @@ pub struct SpacingOptions {
     /// ranking locations first, not to maximize the number of locations selected.
     /// Consider the following scenario:
     ///
-    /// * Rank: A: 2, B: 1, C: 3.
-    /// * Distance: A--200m--B--200m--C
+    ///    * Rank: A: 2, B: 1, C: 3.
+    ///    * Distance: A--200m--B--200m--C
     ///
     /// If spacing=250, it will pick the highest ranked location \[B\], not \[A, C\].
+    ///
     ///
     /// Note:
     ///
@@ -74,18 +75,18 @@ pub struct SpacingOptions {
     /// ones.
     /// Suppose three game object types, each with the following spacing:
     ///
-    /// * X: 400m, Y: undefined, Z: 200m.
+    ///    * X: 400m, Y: undefined, Z: 200m.
     ///
     /// 1. Add locations for X, within 400m of each other.
-    /// 1. Add locations for Y, without any spacing.
-    /// 1. Finally, add locations for Z within 200m of each other as well X and Y.
+    /// 2. Add locations for Y, without any spacing.
+    /// 3. Finally, add locations for Z within 200m of each other as well X and Y.
     ///
     /// The distance diagram between those locations end up as:
     ///
-    /// * From->To.
-    /// * X->X: 400m
-    /// * Y->X, Y->Y: unspecified.
-    /// * Z->X, Z->Y, Z->Z: 200m.
+    ///    * From->To.
+    ///    * X->X: 400m
+    ///    * Y->X, Y->Y: unspecified.
+    ///    * Z->X, Z->Y, Z->Z: 200m.
     #[prost(double, tag = "1")]
     pub min_spacing_meters: f64,
     /// Specifies whether the minimum spacing constraint applies to the
@@ -132,9 +133,9 @@ pub mod spacing_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PointType::Unspecified => "POINT_TYPE_UNSPECIFIED",
-                PointType::CenterPoint => "CENTER_POINT",
-                PointType::SnappedPoint => "SNAPPED_POINT",
+                Self::Unspecified => "POINT_TYPE_UNSPECIFIED",
+                Self::CenterPoint => "CENTER_POINT",
+                Self::SnappedPoint => "SNAPPED_POINT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -179,7 +180,7 @@ pub struct Criterion {
     /// `request_criteria` to represent a distinct type of game object. For
     /// example, 1=monster location, 2=powerup location.
     ///
-    /// The response contains a map\<game_object_type, Response>.
+    /// The response contains a map<game_object_type, Response>.
     #[prost(int32, tag = "1")]
     pub game_object_type: i32,
     /// Specifies filtering options, and specifies what will be included in the
@@ -193,8 +194,8 @@ pub struct Criterion {
     ///
     /// The following fields are omitted unless you specify them here:
     ///
-    /// * snapped_point
-    /// * types
+    ///    * snapped_point
+    ///    * types
     ///
     /// Note: The more fields you include, the more expensive in terms of data and
     /// associated latency your query will be.
@@ -212,10 +213,10 @@ pub struct AreaFilter {
     ///
     /// The S2 geometry library is available in a number of languages:
     ///
-    /// * [C++](<https://github.com/google/s2geometry>)
-    /// * [Java](<https://github.com/google/s2-geometry-library-java>)
-    /// * [Go](<https://github.com/golang/geo>)
-    /// * [Python](<https://github.com/google/s2geometry/tree/master/src/python>)
+    ///    * [C++](<https://github.com/google/s2geometry>)
+    ///    * [Java](<https://github.com/google/s2-geometry-library-java>)
+    ///    * [Go](<https://github.com/golang/geo>)
+    ///    * [Python](<https://github.com/google/s2geometry/tree/master/src/python>)
     #[prost(fixed64, tag = "1")]
     pub s2_cell_id: u64,
 }

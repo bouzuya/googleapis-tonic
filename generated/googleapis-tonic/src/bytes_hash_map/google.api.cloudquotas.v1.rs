@@ -99,10 +99,10 @@ pub mod quota_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ContainerType::Unspecified => "CONTAINER_TYPE_UNSPECIFIED",
-                ContainerType::Project => "PROJECT",
-                ContainerType::Folder => "FOLDER",
-                ContainerType::Organization => "ORGANIZATION",
+                Self::Unspecified => "CONTAINER_TYPE_UNSPECIFIED",
+                Self::Project => "PROJECT",
+                Self::Folder => "FOLDER",
+                Self::Organization => "ORGANIZATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -160,9 +160,9 @@ pub mod quota_increase_eligibility {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IneligibilityReason::Unspecified => "INELIGIBILITY_REASON_UNSPECIFIED",
-                IneligibilityReason::NoValidBillingAccount => "NO_VALID_BILLING_ACCOUNT",
-                IneligibilityReason::Other => "OTHER",
+                Self::Unspecified => "INELIGIBILITY_REASON_UNSPECIFIED",
+                Self::NoValidBillingAccount => "NO_VALID_BILLING_ACCOUNT",
+                Self::Other => "OTHER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -310,9 +310,9 @@ pub mod quota_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Origin::Unspecified => "ORIGIN_UNSPECIFIED",
-                Origin::CloudConsole => "CLOUD_CONSOLE",
-                Origin::AutoAdjuster => "AUTO_ADJUSTER",
+                Self::Unspecified => "ORIGIN_UNSPECIFIED",
+                Self::CloudConsole => "CLOUD_CONSOLE",
+                Self::AutoAdjuster => "AUTO_ADJUSTER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -392,11 +392,9 @@ impl QuotaSafetyCheck {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            QuotaSafetyCheck::Unspecified => "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-            QuotaSafetyCheck::QuotaDecreaseBelowUsage => "QUOTA_DECREASE_BELOW_USAGE",
-            QuotaSafetyCheck::QuotaDecreasePercentageTooHigh => {
-                "QUOTA_DECREASE_PERCENTAGE_TOO_HIGH"
-            }
+            Self::Unspecified => "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+            Self::QuotaDecreaseBelowUsage => "QUOTA_DECREASE_BELOW_USAGE",
+            Self::QuotaDecreasePercentageTooHigh => "QUOTA_DECREASE_PERCENTAGE_TOO_HIGH",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -564,16 +562,22 @@ pub struct UpdateQuotaPreferenceRequest {
 }
 /// Generated client implementations.
 pub mod cloud_quotas_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Cloud Quotas API is an infrastructure service for Google Cloud that lets
     /// service consumers list and manage their resource usage limits.
     ///
-    /// * List/Get the metadata and current status of the quotas for a service.
-    /// * Create/Update quota preferencess that declare the preferred quota values.
-    /// * Check the status of a quota preference request.
-    /// * List/Get pending and historical quota preference.
+    /// - List/Get the metadata and current status of the quotas for a service.
+    /// - Create/Update quota preferencess that declare the preferred quota values.
+    /// - Check the status of a quota preference request.
+    /// - List/Get pending and historical quota preference.
     #[derive(Debug, Clone)]
     pub struct CloudQuotasClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -655,8 +659,7 @@ pub mod cloud_quotas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -683,8 +686,7 @@ pub mod cloud_quotas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -714,8 +716,7 @@ pub mod cloud_quotas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -745,8 +746,7 @@ pub mod cloud_quotas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -776,8 +776,7 @@ pub mod cloud_quotas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -808,8 +807,7 @@ pub mod cloud_quotas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -63,7 +63,7 @@ pub struct ListQuotaGroupsResponse {
     /// The methods, current quota usage and limits per each group. The quota is
     /// shared between all methods in the group. The groups are sorted in
     /// descending order based on
-    /// \[quotaUsage\]\[google.shopping.merchant.quota.v1main.QuotaGroup.quota_usage\].
+    /// [quotaUsage][google.shopping.merchant.quota.v1main.QuotaGroup.quota_usage].
     #[prost(message, repeated, tag = "1")]
     pub quota_groups: ::prost::alloc::vec::Vec<QuotaGroup>,
     /// A token, which can be sent as `page_token` to retrieve the next page.
@@ -73,7 +73,13 @@ pub struct ListQuotaGroupsResponse {
 }
 /// Generated client implementations.
 pub mod quota_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to get method call quota information per Merchant API method.
@@ -159,8 +165,7 @@ pub mod quota_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -132,8 +132,8 @@ pub mod speech_adaptation {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranscriptNormalization {
     /// A list of replacement entries. We will perform replacement with one entry
-    /// at a time. For example, the second entry in \["cat" => "dog", "mountain cat"
-    /// => "mountain dog"\] will never be applied because we will always process the
+    /// at a time. For example, the second entry in ["cat" => "dog", "mountain cat"
+    /// => "mountain dog"] will never be applied because we will always process the
     /// first entry before it. At most 100 entries.
     #[prost(message, repeated, tag = "1")]
     pub entries: ::prost::alloc::vec::Vec<transcript_normalization::Entry>,
@@ -253,14 +253,14 @@ pub struct StreamingRecognitionConfig {
     /// `true`.
     ///
     /// The `single_utterance` field can only be used with specified models,
-    /// otherwise an error is thrown. The `model` field in \[`RecognitionConfig`\]\[\]
+    /// otherwise an error is thrown. The `model` field in [`RecognitionConfig`][]
     /// must be set to:
     ///
     /// * `command_and_search`
     /// * `phone_call` AND additional field `useEnhanced`=`true`
     /// * The `model` field is left undefined. In this case the API auto-selects
-    ///   a model based on any other parameters that you set in
-    ///   `RecognitionConfig`.
+    ///    a model based on any other parameters that you set in
+    ///    `RecognitionConfig`.
     #[prost(bool, tag = "2")]
     pub single_utterance: bool,
     /// If `true`, interim results (tentative hypotheses) may be
@@ -301,7 +301,7 @@ pub struct RecognitionConfig {
     /// Encoding of audio data sent in all `RecognitionAudio` messages.
     /// This field is optional for `FLAC` and `WAV` audio files and required
     /// for all other audio formats. For details, see
-    /// \[AudioEncoding\]\[google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding\].
+    /// [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
     #[prost(enumeration = "recognition_config::AudioEncoding", tag = "1")]
     pub encoding: i32,
     /// Sample rate in Hertz of the audio data sent in all
@@ -311,7 +311,7 @@ pub struct RecognitionConfig {
     /// the audio source (instead of re-sampling).
     /// This field is optional for FLAC and WAV audio files, but is
     /// required for all other audio formats. For details, see
-    /// \[AudioEncoding\]\[google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding\].
+    /// [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
     #[prost(int32, tag = "2")]
     pub sample_rate_hertz: i32,
     /// The number of channels in the input audio data.
@@ -366,7 +366,7 @@ pub struct RecognitionConfig {
     pub max_alternatives: i32,
     /// If set to `true`, the server will attempt to filter out
     /// profanities, replacing all but the initial character in each filtered word
-    /// with asterisks, e.g. "f\*\*\*". If set to `false` or omitted, profanities
+    /// with asterisks, e.g. "f***". If set to `false` or omitted, profanities
     /// won't be filtered out.
     #[prost(bool, tag = "5")]
     pub profanity_filter: bool,
@@ -383,7 +383,7 @@ pub struct RecognitionConfig {
     /// and final transcripts.
     #[prost(message, optional, tag = "24")]
     pub transcript_normalization: ::core::option::Option<TranscriptNormalization>,
-    /// Array of \[SpeechContext\]\[google.cloud.speech.v1p1beta1.SpeechContext\].
+    /// Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
     /// A means to provide context to assist the speech recognition. For more
     /// information, see
     /// [speech
@@ -453,7 +453,6 @@ pub struct RecognitionConfig {
     /// best suited to your domain to get best results. If a model is not
     /// explicitly specified, then we auto-select a model based on the parameters
     /// in the RecognitionConfig.
-    ///
     /// <table>
     ///    <tr>
     ///      <td><b>Model</b></td>
@@ -538,7 +537,7 @@ pub mod recognition_config {
     /// an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
     /// encoding configuration must match the encoding described in the audio
     /// header; otherwise the request returns an
-    /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] error
+    /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error
     /// code.
     #[derive(
         Clone,
@@ -605,16 +604,16 @@ pub mod recognition_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AudioEncoding::EncodingUnspecified => "ENCODING_UNSPECIFIED",
-                AudioEncoding::Linear16 => "LINEAR16",
-                AudioEncoding::Flac => "FLAC",
-                AudioEncoding::Mulaw => "MULAW",
-                AudioEncoding::Amr => "AMR",
-                AudioEncoding::AmrWb => "AMR_WB",
-                AudioEncoding::OggOpus => "OGG_OPUS",
-                AudioEncoding::SpeexWithHeaderByte => "SPEEX_WITH_HEADER_BYTE",
-                AudioEncoding::Mp3 => "MP3",
-                AudioEncoding::WebmOpus => "WEBM_OPUS",
+                Self::EncodingUnspecified => "ENCODING_UNSPECIFIED",
+                Self::Linear16 => "LINEAR16",
+                Self::Flac => "FLAC",
+                Self::Mulaw => "MULAW",
+                Self::Amr => "AMR",
+                Self::AmrWb => "AMR_WB",
+                Self::OggOpus => "OGG_OPUS",
+                Self::SpeexWithHeaderByte => "SPEEX_WITH_HEADER_BYTE",
+                Self::Mp3 => "MP3",
+                Self::WebmOpus => "WEBM_OPUS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -750,15 +749,15 @@ pub mod recognition_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InteractionType::Unspecified => "INTERACTION_TYPE_UNSPECIFIED",
-                InteractionType::Discussion => "DISCUSSION",
-                InteractionType::Presentation => "PRESENTATION",
-                InteractionType::PhoneCall => "PHONE_CALL",
-                InteractionType::Voicemail => "VOICEMAIL",
-                InteractionType::ProfessionallyProduced => "PROFESSIONALLY_PRODUCED",
-                InteractionType::VoiceSearch => "VOICE_SEARCH",
-                InteractionType::VoiceCommand => "VOICE_COMMAND",
-                InteractionType::Dictation => "DICTATION",
+                Self::Unspecified => "INTERACTION_TYPE_UNSPECIFIED",
+                Self::Discussion => "DISCUSSION",
+                Self::Presentation => "PRESENTATION",
+                Self::PhoneCall => "PHONE_CALL",
+                Self::Voicemail => "VOICEMAIL",
+                Self::ProfessionallyProduced => "PROFESSIONALLY_PRODUCED",
+                Self::VoiceSearch => "VOICE_SEARCH",
+                Self::VoiceCommand => "VOICE_COMMAND",
+                Self::Dictation => "DICTATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -809,10 +808,10 @@ pub mod recognition_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MicrophoneDistance::Unspecified => "MICROPHONE_DISTANCE_UNSPECIFIED",
-                MicrophoneDistance::Nearfield => "NEARFIELD",
-                MicrophoneDistance::Midfield => "MIDFIELD",
-                MicrophoneDistance::Farfield => "FARFIELD",
+                Self::Unspecified => "MICROPHONE_DISTANCE_UNSPECIFIED",
+                Self::Nearfield => "NEARFIELD",
+                Self::Midfield => "MIDFIELD",
+                Self::Farfield => "FARFIELD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -854,9 +853,9 @@ pub mod recognition_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OriginalMediaType::Unspecified => "ORIGINAL_MEDIA_TYPE_UNSPECIFIED",
-                OriginalMediaType::Audio => "AUDIO",
-                OriginalMediaType::Video => "VIDEO",
+                Self::Unspecified => "ORIGINAL_MEDIA_TYPE_UNSPECIFIED",
+                Self::Audio => "AUDIO",
+                Self::Video => "VIDEO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -905,13 +904,13 @@ pub mod recognition_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RecordingDeviceType::Unspecified => "RECORDING_DEVICE_TYPE_UNSPECIFIED",
-                RecordingDeviceType::Smartphone => "SMARTPHONE",
-                RecordingDeviceType::Pc => "PC",
-                RecordingDeviceType::PhoneLine => "PHONE_LINE",
-                RecordingDeviceType::Vehicle => "VEHICLE",
-                RecordingDeviceType::OtherOutdoorDevice => "OTHER_OUTDOOR_DEVICE",
-                RecordingDeviceType::OtherIndoorDevice => "OTHER_INDOOR_DEVICE",
+                Self::Unspecified => "RECORDING_DEVICE_TYPE_UNSPECIFIED",
+                Self::Smartphone => "SMARTPHONE",
+                Self::Pc => "PC",
+                Self::PhoneLine => "PHONE_LINE",
+                Self::Vehicle => "VEHICLE",
+                Self::OtherOutdoorDevice => "OTHER_OUTDOOR_DEVICE",
+                Self::OtherIndoorDevice => "OTHER_INDOOR_DEVICE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -960,7 +959,7 @@ pub struct SpeechContext {
 }
 /// Contains audio data in the encoding specified in the `RecognitionConfig`.
 /// Either `content` or `uri` must be supplied. Supplying both or neither
-/// returns \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\].
+/// returns [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
 /// See [content limits](<https://cloud.google.com/speech-to-text/quotas#content>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecognitionAudio {
@@ -985,7 +984,7 @@ pub mod recognition_audio {
         /// Currently, only Google Cloud Storage URIs are
         /// supported, which must be specified in the following format:
         /// `gs://bucket_name/object_name` (other URI formats return
-        /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\]).
+        /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]).
         /// For more information, see [Request
         /// URIs](<https://cloud.google.com/storage/docs/reference-uris>).
         #[prost(string, tag = "2")]
@@ -1075,47 +1074,47 @@ pub struct LongRunningRecognizeMetadata {
 ///
 /// 1. results { alternatives { transcript: "tube" } stability: 0.01 }
 ///
-/// 1. results { alternatives { transcript: "to be a" } stability: 0.01 }
+/// 2. results { alternatives { transcript: "to be a" } stability: 0.01 }
 ///
-/// 1. results { alternatives { transcript: "to be" } stability: 0.9 }
-///    results { alternatives { transcript: " or not to be" } stability: 0.01 }
+/// 3. results { alternatives { transcript: "to be" } stability: 0.9 }
+///     results { alternatives { transcript: " or not to be" } stability: 0.01 }
 ///
-/// 1. results { alternatives { transcript: "to be or not to be"
-///    confidence: 0.92 }
-///    alternatives { transcript: "to bee or not to bee" }
-///    is_final: true }
+/// 4. results { alternatives { transcript: "to be or not to be"
+///                              confidence: 0.92 }
+///               alternatives { transcript: "to bee or not to bee" }
+///               is_final: true }
 ///
-/// 1. results { alternatives { transcript: " that's" } stability: 0.01 }
+/// 5. results { alternatives { transcript: " that's" } stability: 0.01 }
 ///
-/// 1. results { alternatives { transcript: " that is" } stability: 0.9 }
-///    results { alternatives { transcript: " the question" } stability: 0.01 }
+/// 6. results { alternatives { transcript: " that is" } stability: 0.9 }
+///     results { alternatives { transcript: " the question" } stability: 0.01 }
 ///
-/// 1. results { alternatives { transcript: " that is the question"
-///    confidence: 0.98 }
-///    alternatives { transcript: " that was the question" }
-///    is_final: true }
+/// 7. results { alternatives { transcript: " that is the question"
+///                              confidence: 0.98 }
+///               alternatives { transcript: " that was the question" }
+///               is_final: true }
 ///
 /// Notes:
 ///
-/// * Only two of the above responses #4 and #7 contain final results; they are
-///   indicated by `is_final: true`. Concatenating these together generates the
-///   full transcript: "to be or not to be that is the question".
+/// - Only two of the above responses #4 and #7 contain final results; they are
+///    indicated by `is_final: true`. Concatenating these together generates the
+///    full transcript: "to be or not to be that is the question".
 ///
-/// * The others contain interim `results`. #3 and #6 contain two interim
-///   `results`: the first portion has a high stability and is less likely to
-///   change; the second portion has a low stability and is very likely to
-///   change. A UI designer might choose to show only high stability `results`.
+/// - The others contain interim `results`. #3 and #6 contain two interim
+///    `results`: the first portion has a high stability and is less likely to
+///    change; the second portion has a low stability and is very likely to
+///    change. A UI designer might choose to show only high stability `results`.
 ///
-/// * The specific `stability` and `confidence` values shown above are only for
-///   illustrative purposes. Actual values may vary.
+/// - The specific `stability` and `confidence` values shown above are only for
+///    illustrative purposes. Actual values may vary.
 ///
-/// * In each response, only one of these fields will be set:
-///   `error`,
-///   `speech_event_type`, or
-///   one or more (repeated) `results`.
+/// - In each response, only one of these fields will be set:
+///      `error`,
+///      `speech_event_type`, or
+///      one or more (repeated) `results`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingRecognizeResponse {
-    /// If set, returns a \[google.rpc.Status\]\[google.rpc.Status\] message that
+    /// If set, returns a [google.rpc.Status][google.rpc.Status] message that
     /// specifies the error for the operation.
     #[prost(message, optional, tag = "1")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
@@ -1191,11 +1190,11 @@ pub mod streaming_recognize_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SpeechEventType::SpeechEventUnspecified => "SPEECH_EVENT_UNSPECIFIED",
-                SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
-                SpeechEventType::SpeechActivityBegin => "SPEECH_ACTIVITY_BEGIN",
-                SpeechEventType::SpeechActivityEnd => "SPEECH_ACTIVITY_END",
-                SpeechEventType::SpeechActivityTimeout => "SPEECH_ACTIVITY_TIMEOUT",
+                Self::SpeechEventUnspecified => "SPEECH_EVENT_UNSPECIFIED",
+                Self::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
+                Self::SpeechActivityBegin => "SPEECH_ACTIVITY_BEGIN",
+                Self::SpeechActivityEnd => "SPEECH_ACTIVITY_END",
+                Self::SpeechActivityTimeout => "SPEECH_ACTIVITY_TIMEOUT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1351,7 +1350,13 @@ pub struct SpeechAdaptationInfo {
 }
 /// Generated client implementations.
 pub mod speech_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements Google Cloud Speech API.
@@ -1437,8 +1442,7 @@ pub mod speech_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1470,8 +1474,7 @@ pub mod speech_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1504,8 +1507,7 @@ pub mod speech_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1747,7 +1749,13 @@ pub struct DeleteCustomClassRequest {
 }
 /// Generated client implementations.
 pub mod adaptation_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements Google Cloud Speech Adaptation API.
@@ -1831,8 +1839,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1859,8 +1866,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1890,8 +1896,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1918,8 +1923,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1946,8 +1950,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1974,8 +1977,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2002,8 +2004,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2033,8 +2034,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2061,8 +2061,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2089,8 +2088,7 @@ pub mod adaptation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

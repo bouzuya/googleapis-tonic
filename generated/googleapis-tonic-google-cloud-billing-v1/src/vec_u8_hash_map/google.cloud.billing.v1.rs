@@ -16,7 +16,8 @@ pub struct BillingAccount {
     /// services.
     #[prost(bool, tag = "2")]
     pub open: bool,
-    /// The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Cloud Console.
+    /// The display name given to the billing account, such as `My Billing
+    /// Account`. This name is displayed in the Google Cloud Console.
     #[prost(string, tag = "3")]
     pub display_name: ::prost::alloc::string::String,
     /// If this account is a
@@ -30,11 +31,10 @@ pub struct BillingAccount {
     /// Use the `MoveBillingAccount` method to update the account's parent resource
     /// if it is a organization.
     /// Format:
-    ///
-    /// * `organizations/{organization_id}`, for example,
-    ///   `organizations/12345678`
-    /// * `billingAccounts/{billing_account_id}`, for example,
-    ///   `billingAccounts/012345-567890-ABCDEF`
+    ///    - `organizations/{organization_id}`, for example,
+    ///      `organizations/12345678`
+    ///    - `billingAccounts/{billing_account_id}`, for example,
+    ///      `billingAccounts/012345-567890-ABCDEF`
     #[prost(string, tag = "6")]
     pub parent: ::prost::alloc::string::String,
 }
@@ -96,11 +96,10 @@ pub struct ListBillingAccountsRequest {
     pub filter: ::prost::alloc::string::String,
     /// Optional. The parent resource to list billing accounts from.
     /// Format:
-    ///
-    /// * `organizations/{organization_id}`, for example,
-    ///   `organizations/12345678`
-    /// * `billingAccounts/{billing_account_id}`, for example,
-    ///   `billingAccounts/012345-567890-ABCDEF`
+    ///    - `organizations/{organization_id}`, for example,
+    ///      `organizations/12345678`
+    ///    - `billingAccounts/{billing_account_id}`, for example,
+    ///      `billingAccounts/012345-567890-ABCDEF`
     #[prost(string, tag = "4")]
     pub parent: ::prost::alloc::string::String,
 }
@@ -127,9 +126,8 @@ pub struct CreateBillingAccountRequest {
     pub billing_account: ::core::option::Option<BillingAccount>,
     /// Optional. The parent to create a billing account from.
     /// Format:
-    ///
-    /// * `billingAccounts/{billing_account_id}`, for example,
-    ///   `billingAccounts/012345-567890-ABCDEF`
+    ///    - `billingAccounts/{billing_account_id}`, for example,
+    ///       `billingAccounts/012345-567890-ABCDEF`
     #[prost(string, tag = "2")]
     pub parent: ::prost::alloc::string::String,
 }
@@ -218,7 +216,13 @@ pub struct MoveBillingAccountRequest {
 }
 /// Generated client implementations.
 pub mod cloud_billing_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Retrieves the Google Cloud Console billing accounts and associates them with
@@ -303,8 +307,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -336,8 +339,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -369,8 +371,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -411,8 +412,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -445,8 +445,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -480,8 +479,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -514,7 +512,8 @@ pub mod cloud_billing_client {
         ///
         /// The current authenticated user must have ownership privileges for both
         /// the
-        /// [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo) and the [billing
+        /// [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
+        /// ) and the [billing
         /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
         ///
         /// You can disable billing on the project by setting the
@@ -541,8 +540,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -577,8 +575,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -614,8 +611,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -651,8 +647,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -679,8 +674,7 @@ pub mod cloud_billing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -806,8 +800,8 @@ pub struct PricingInfo {
 ///
 /// `usage_unit: GBy`
 /// `tiered_rates:`
-/// `\[start_usage_amount: 20, unit_price: $10\]`
-/// `\[start_usage_amount: 100, unit_price: $5\]`
+///     `\[start_usage_amount: 20, unit_price: $10\]`
+///     `\[start_usage_amount: 100, unit_price: $5\]`
 ///
 /// The above expresses a pricing formula where the first 20GB is free, the
 /// next 80GB is priced at $10 per GB followed by $5 per GB for additional
@@ -913,9 +907,9 @@ pub mod aggregation_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AggregationLevel::Unspecified => "AGGREGATION_LEVEL_UNSPECIFIED",
-                AggregationLevel::Account => "ACCOUNT",
-                AggregationLevel::Project => "PROJECT",
+                Self::Unspecified => "AGGREGATION_LEVEL_UNSPECIFIED",
+                Self::Account => "ACCOUNT",
+                Self::Project => "PROJECT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -955,9 +949,9 @@ pub mod aggregation_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AggregationInterval::Unspecified => "AGGREGATION_INTERVAL_UNSPECIFIED",
-                AggregationInterval::Daily => "DAILY",
-                AggregationInterval::Monthly => "MONTHLY",
+                Self::Unspecified => "AGGREGATION_INTERVAL_UNSPECIFIED",
+                Self::Daily => "DAILY",
+                Self::Monthly => "MONTHLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1016,10 +1010,10 @@ pub mod geo_taxonomy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Global => "GLOBAL",
-                Type::Regional => "REGIONAL",
-                Type::MultiRegional => "MULTI_REGIONAL",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Global => "GLOBAL",
+                Self::Regional => "REGIONAL",
+                Self::MultiRegional => "MULTI_REGIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1109,7 +1103,13 @@ pub struct ListSkusResponse {
 }
 /// Generated client implementations.
 pub mod cloud_catalog_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A catalog of Google Cloud Platform services and SKUs.
@@ -1196,8 +1196,7 @@ pub mod cloud_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1227,8 +1226,7 @@ pub mod cloud_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -15,9 +15,9 @@
 /// This message (and all its submessages) can be used in two contexts:
 ///
 /// * Status: sent by the bot to report the current capabilities of the device to
-///   allow reservation matching.
+/// allow reservation matching.
 /// * Request: sent by a client to request a device with certain capabilities in
-///   a reservation.
+/// a reservation.
 ///
 /// Several of the fields in this message have different semantics depending on
 /// which of which of these contexts it is used. These semantics are described
@@ -78,11 +78,11 @@ pub mod worker {
         /// The current set of standard keys are:
         ///
         /// * pool: different workers can be reserved for different purposes. For
-        ///   example, an admin might want to segregate long-running integration tests
-        ///   from short-running unit tests, so unit tests will always get some
-        ///   throughput. To support this, the server can assign different values for
-        ///   `pool` (such as "itest" and "utest") to different workers, and then have
-        ///   jobs request workers from those pools.
+        /// example, an admin might want to segregate long-running integration tests
+        /// from short-running unit tests, so unit tests will always get some
+        /// throughput. To support this, the server can assign different values for
+        /// `pool` (such as "itest" and "utest") to different workers, and then have
+        /// jobs request workers from those pools.
         #[prost(string, tag = "1")]
         pub key: ::prost::alloc::string::String,
         /// The property's value.
@@ -98,10 +98,10 @@ pub mod worker {
         /// The current set of standard keys are:
         ///
         /// * DockerImage: the image of the container. When being reported by the
-        ///   bot, the empty value should always be included if the bot is able to pull
-        ///   its own images; the bot may optionally *also* report images that are
-        ///   present in its cache. When being requested in a lease, the value is the
-        ///   URI of the image (eg `gcr.io/user/image@sha256:hash`).
+        /// bot, the empty value should always be included if the bot is able to pull
+        /// its own images; the bot may optionally *also* report images that are
+        /// present in its cache. When being requested in a lease, the value is the
+        /// URI of the image (eg `gcr.io/user/image@sha256:hash`).
         #[prost(string, tag = "1")]
         pub key: ::prost::alloc::string::String,
         /// The configuration's value.
@@ -130,12 +130,10 @@ pub struct Device {
     ///
     /// Keys may be repeated, and have the following interpretation:
     ///
-    /// ```text
-    /// * Status context: the device can support *any* the listed values. For
-    /// example, an "ISA" property might include "x86", "x86-64" and "sse4".
+    ///     * Status context: the device can support *any* the listed values. For
+    ///     example, an "ISA" property might include "x86", "x86-64" and "sse4".
     ///
-    /// * Request context: the device *must* support *all* of the listed values.
-    /// ```
+    ///     * Request context: the device *must* support *all* of the listed values.
     #[prost(message, repeated, tag = "2")]
     pub properties: ::prost::alloc::vec::Vec<device::Property>,
 }
@@ -149,12 +147,12 @@ pub mod device {
         /// The current set of standard keys are:
         ///
         /// * os: a human-readable description of the OS. Examples include `linux`,
-        ///   `ubuntu` and `ubuntu 14.04` (note that a bot may advertise itself as more
-        ///   than one). This will be replaced in the future by more well-structured
-        ///   keys and values to represent OS variants.
+        /// `ubuntu` and `ubuntu 14.04` (note that a bot may advertise itself as more
+        /// than one). This will be replaced in the future by more well-structured
+        /// keys and values to represent OS variants.
         ///
         /// * has-docker: "true" if the bot has Docker installed. This will be
-        ///   replaced in the future by a more structured message for Docker support.
+        /// replaced in the future by a more structured message for Docker support.
         #[prost(string, tag = "1")]
         pub key: ::prost::alloc::string::String,
         /// The property's value.
@@ -178,7 +176,7 @@ pub struct BotSession {
     /// A unique bot ID within the farm used to persistently identify this bot over
     /// time (i.e., over multiple sessions). This ID must be unique within a
     /// farm. Typically, the bot ID will be the same as the name of the primary
-    /// device in the worker (e.g., what you'd get from typing `uname -n` on \*nix),
+    /// device in the worker (e.g., what you'd get from typing `uname -n` on *nix),
     /// but this is not required since a single device may allow multiple bots to
     /// run on it, each with access to different resources. What is important is
     /// that this ID is meaningful to humans, who might need to hunt a physical
@@ -344,11 +342,11 @@ pub mod admin_temp {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Command::Unspecified => "UNSPECIFIED",
-                Command::BotUpdate => "BOT_UPDATE",
-                Command::BotRestart => "BOT_RESTART",
-                Command::BotTerminate => "BOT_TERMINATE",
-                Command::HostRestart => "HOST_RESTART",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::BotUpdate => "BOT_UPDATE",
+                Self::BotRestart => "BOT_RESTART",
+                Self::BotTerminate => "BOT_TERMINATE",
+                Self::HostRestart => "HOST_RESTART",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -424,12 +422,12 @@ impl BotStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            BotStatus::Unspecified => "BOT_STATUS_UNSPECIFIED",
-            BotStatus::Ok => "OK",
-            BotStatus::Unhealthy => "UNHEALTHY",
-            BotStatus::HostRebooting => "HOST_REBOOTING",
-            BotStatus::BotTerminating => "BOT_TERMINATING",
-            BotStatus::Initializing => "INITIALIZING",
+            Self::Unspecified => "BOT_STATUS_UNSPECIFIED",
+            Self::Ok => "OK",
+            Self::Unhealthy => "UNHEALTHY",
+            Self::HostRebooting => "HOST_REBOOTING",
+            Self::BotTerminating => "BOT_TERMINATING",
+            Self::Initializing => "INITIALIZING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -474,11 +472,11 @@ impl LeaseState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LeaseState::Unspecified => "LEASE_STATE_UNSPECIFIED",
-            LeaseState::Pending => "PENDING",
-            LeaseState::Active => "ACTIVE",
-            LeaseState::Completed => "COMPLETED",
-            LeaseState::Cancelled => "CANCELLED",
+            Self::Unspecified => "LEASE_STATE_UNSPECIFIED",
+            Self::Pending => "PENDING",
+            Self::Active => "ACTIVE",
+            Self::Completed => "COMPLETED",
+            Self::Cancelled => "CANCELLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -495,7 +493,13 @@ impl LeaseState {
 }
 /// Generated client implementations.
 pub mod bots_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Design doc: https://goo.gl/oojM5H
@@ -605,8 +609,7 @@ pub mod bots_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -635,8 +638,7 @@ pub mod bots_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -680,7 +682,7 @@ pub mod command_task {
         /// This field should be passed directly to the underlying operating system,
         /// and so it must be sensible to that operating system. For example, on
         /// Windows, the first argument might be "C:\Windows\System32\ping.exe" -
-        /// that is, using drive letters and backslashes. A command for a \*nix
+        /// that is, using drive letters and backslashes. A command for a *nix
         /// system, on the other hand, would use forward slashes.
         ///
         /// All other fields in the RWAPI must consistently use forward slashes,
@@ -774,7 +776,7 @@ pub mod command_task {
         /// tasks may be hard-frozen in which case this process will fail. This
         /// timeout specifies how long to wait for a terminated task to shut down
         /// gracefully (e.g. via SIGTERM) before we bring down the hammer (e.g.
-        /// SIGKILL on \*nix, CTRL_BREAK_EVENT on Windows).
+        /// SIGKILL on *nix, CTRL_BREAK_EVENT on Windows).
         #[prost(message, optional, tag = "3")]
         pub shutdown: ::core::option::Option<::prost_types::Duration>,
     }
@@ -791,8 +793,8 @@ pub struct CommandOutputs {
     pub exit_code: i32,
     /// The output files. The blob referenced by the digest should contain
     /// one of the following (implementation-dependent):
-    /// \* A marshalled DirectoryMetadata of the returned filesystem
-    /// \* A LUCI-style .isolated file
+    ///     * A marshalled DirectoryMetadata of the returned filesystem
+    ///     * A LUCI-style .isolated file
     #[prost(message, optional, tag = "2")]
     pub outputs: ::core::option::Option<Digest>,
 }
@@ -826,8 +828,8 @@ pub struct CommandResult {
     pub exit_code: i32,
     /// The output files. The blob referenced by the digest should contain
     /// one of the following (implementation-dependent):
-    /// \* A marshalled DirectoryMetadata of the returned filesystem
-    /// \* A LUCI-style .isolated file
+    ///     * A marshalled DirectoryMetadata of the returned filesystem
+    ///     * A LUCI-style .isolated file
     #[prost(message, optional, tag = "3")]
     pub outputs: ::core::option::Option<Digest>,
     /// The elapsed time between calling Accept and Complete. The server will also
@@ -878,7 +880,7 @@ pub struct FileMetadata {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DirectoryMetadata {
     /// The path of the directory, as in
-    /// \[FileMetadata.path\]\[google.devtools.remoteworkers.v1test2.FileMetadata.path\].
+    /// [FileMetadata.path][google.devtools.remoteworkers.v1test2.FileMetadata.path].
     #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
     /// A pointer to the contents of the directory, in the form of a marshalled

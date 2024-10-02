@@ -17,9 +17,9 @@ pub struct Setting {
     pub metadata: ::core::option::Option<SettingMetadata>,
     /// The configured value of the setting at the given parent resource (ignoring
     /// the resource hierarchy). The data type of
-    /// \[Value\]\[google.cloud.resourcesettings.v1.Value\] must always be consistent
+    /// [Value][google.cloud.resourcesettings.v1.Value] must always be consistent
     /// with the data type defined in
-    /// \[Setting.metadata\]\[google.cloud.resourcesettings.v1.Setting.metadata\].
+    /// [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
     #[prost(message, optional, tag = "8")]
     pub local_value: ::core::option::Option<Value>,
     /// Output only. The computed effective value of the setting at the given
@@ -29,20 +29,20 @@ pub struct Setting {
     /// order (the next option is used if the previous one does not exist):
     ///
     /// 1. the local setting value on the given resource:
-    ///    \[Setting.local_value\]\[google.cloud.resourcesettings.v1.Setting.local_value\]
-    /// 1. if one of the given resource's ancestors have a local setting value,
-    ///    the local value at the nearest such ancestor
-    /// 1. the setting's default value:
-    ///    \[SettingMetadata.default_value\]\[google.cloud.resourcesettings.v1.SettingMetadata.default_value\]
-    /// 1. an empty value (defined as a `Value` with all fields unset)
+    /// [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
+    /// 2. if one of the given resource's ancestors have a local setting value,
+    ///     the local value at the nearest such ancestor
+    /// 3. the setting's default value:
+    /// [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
+    /// 4. an empty value (defined as a `Value` with all fields unset)
     ///
-    /// The data type of \[Value\]\[google.cloud.resourcesettings.v1.Value\] must
+    /// The data type of [Value][google.cloud.resourcesettings.v1.Value] must
     /// always be consistent with the data type defined in
-    /// \[Setting.metadata\]\[google.cloud.resourcesettings.v1.Setting.metadata\].
+    /// [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
     #[prost(message, optional, tag = "9")]
     pub effective_value: ::core::option::Option<Value>,
     /// A fingerprint used for optimistic concurrency. See
-    /// \[UpdateSetting\]\[google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting\]
+    /// [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting]
     /// for more details.
     #[prost(string, tag = "10")]
     pub etag: ::prost::alloc::string::String,
@@ -64,7 +64,7 @@ pub struct SettingMetadata {
     #[prost(enumeration = "setting_metadata::DataType", tag = "4")]
     pub data_type: i32,
     /// The value provided by
-    /// \[Setting.effective_value\]\[google.cloud.resourcesettings.v1.Setting.effective_value\]
+    /// [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value]
     /// if no setting value is explicitly set.
     ///
     /// Note: not all settings have a default value.
@@ -74,7 +74,7 @@ pub struct SettingMetadata {
 /// Nested message and enum types in `SettingMetadata`.
 pub mod setting_metadata {
     /// The data type for setting values of this setting. See
-    /// \[Value\]\[google.cloud.resourcesettings.v1.Value\] for more details on the
+    /// [Value][google.cloud.resourcesettings.v1.Value] for more details on the
     /// available data types.
     #[derive(
         Clone,
@@ -107,11 +107,11 @@ pub mod setting_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
-                DataType::Boolean => "BOOLEAN",
-                DataType::String => "STRING",
-                DataType::StringSet => "STRING_SET",
-                DataType::EnumValue => "ENUM_VALUE",
+                Self::Unspecified => "DATA_TYPE_UNSPECIFIED",
+                Self::Boolean => "BOOLEAN",
+                Self::String => "STRING",
+                Self::StringSet => "STRING_SET",
+                Self::EnumValue => "ENUM_VALUE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -207,7 +207,7 @@ pub struct ListSettingsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSettingRequest {
     /// Required. The name of the setting to get. See
-    /// \[Setting\]\[google.cloud.resourcesettings.v1.Setting\] for naming
+    /// [Setting][google.cloud.resourcesettings.v1.Setting] for naming
     /// requirements.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -219,7 +219,7 @@ pub struct GetSettingRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSettingRequest {
     /// Required. The setting to update. See
-    /// \[Setting\]\[google.cloud.resourcesettings.v1.Setting\] for field requirements.
+    /// [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
     #[prost(message, optional, tag = "1")]
     pub setting: ::core::option::Option<Setting>,
 }
@@ -231,16 +231,16 @@ pub enum SettingView {
     /// The API will default to the SETTING_VIEW_BASIC view.
     Unspecified = 0,
     /// Include
-    /// \[Setting.metadata\]\[google.cloud.resourcesettings.v1.Setting.metadata\], but
+    /// [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata], but
     /// nothing else. This is the default value (for both ListSettings and
     /// GetSetting).
     Basic = 1,
     /// Include
-    /// \[Setting.effective_value\]\[google.cloud.resourcesettings.v1.Setting.effective_value\],
+    /// [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value],
     /// but nothing else.
     EffectiveValue = 2,
     /// Include
-    /// \[Setting.local_value\]\[google.cloud.resourcesettings.v1.Setting.local_value\],
+    /// [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value],
     /// but nothing else.
     LocalValue = 3,
 }
@@ -251,10 +251,10 @@ impl SettingView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SettingView::Unspecified => "SETTING_VIEW_UNSPECIFIED",
-            SettingView::Basic => "SETTING_VIEW_BASIC",
-            SettingView::EffectiveValue => "SETTING_VIEW_EFFECTIVE_VALUE",
-            SettingView::LocalValue => "SETTING_VIEW_LOCAL_VALUE",
+            Self::Unspecified => "SETTING_VIEW_UNSPECIFIED",
+            Self::Basic => "SETTING_VIEW_BASIC",
+            Self::EffectiveValue => "SETTING_VIEW_EFFECTIVE_VALUE",
+            Self::LocalValue => "SETTING_VIEW_LOCAL_VALUE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -270,7 +270,13 @@ impl SettingView {
 }
 /// Generated client implementations.
 pub mod resource_settings_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An interface to interact with resource settings and setting values throughout
@@ -371,8 +377,7 @@ pub mod resource_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -402,8 +407,7 @@ pub mod resource_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -445,8 +449,7 @@ pub mod resource_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

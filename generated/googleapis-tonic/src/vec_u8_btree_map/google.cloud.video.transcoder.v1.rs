@@ -105,11 +105,11 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ProcessingState::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
-                ProcessingState::Pending => "PENDING",
-                ProcessingState::Running => "RUNNING",
-                ProcessingState::Succeeded => "SUCCEEDED",
-                ProcessingState::Failed => "FAILED",
+                Self::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -155,9 +155,9 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ProcessingMode::Unspecified => "PROCESSING_MODE_UNSPECIFIED",
-                ProcessingMode::Interactive => "PROCESSING_MODE_INTERACTIVE",
-                ProcessingMode::Batch => "PROCESSING_MODE_BATCH",
+                Self::Unspecified => "PROCESSING_MODE_UNSPECIFIED",
+                Self::Interactive => "PROCESSING_MODE_INTERACTIVE",
+                Self::Batch => "PROCESSING_MODE_BATCH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -198,9 +198,9 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OptimizationStrategy::Unspecified => "OPTIMIZATION_STRATEGY_UNSPECIFIED",
-                OptimizationStrategy::Autodetect => "AUTODETECT",
-                OptimizationStrategy::Disabled => "DISABLED",
+                Self::Unspecified => "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+                Self::Autodetect => "AUTODETECT",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -287,7 +287,7 @@ pub struct JobConfig {
     pub overlays: ::prost::alloc::vec::Vec<Overlay>,
     /// List of encryption configurations for the content.
     /// Each configuration has an ID. Specify this ID in the
-    /// \[MuxStream.encryption_id\]\[google.cloud.video.transcoder.v1.MuxStream.encryption_id\]
+    /// [MuxStream.encryption_id][google.cloud.video.transcoder.v1.MuxStream.encryption_id]
     /// field to indicate the configuration to use for that `MuxStream` output.
     #[prost(message, repeated, tag = "11")]
     pub encryptions: ::prost::alloc::vec::Vec<Encryption>,
@@ -395,10 +395,10 @@ pub struct MuxStream {
     ///
     /// Supported container formats:
     ///
-    /// * `ts`
-    /// * `fmp4`- the corresponding file extension is `.m4s`
-    /// * `mp4`
-    /// * `vtt`
+    /// - `ts`
+    /// - `fmp4`- the corresponding file extension is `.m4s`
+    /// - `mp4`
+    /// - `vtt`
     ///
     /// See also:
     /// [Supported input and output
@@ -478,13 +478,9 @@ pub mod manifest {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SegmentReferenceScheme::Unspecified => {
-                        "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED"
-                    }
-                    SegmentReferenceScheme::SegmentList => "SEGMENT_LIST",
-                    SegmentReferenceScheme::SegmentTemplateNumber => {
-                        "SEGMENT_TEMPLATE_NUMBER"
-                    }
+                    Self::Unspecified => "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED",
+                    Self::SegmentList => "SEGMENT_LIST",
+                    Self::SegmentTemplateNumber => "SEGMENT_TEMPLATE_NUMBER",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -526,9 +522,9 @@ pub mod manifest {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ManifestType::Unspecified => "MANIFEST_TYPE_UNSPECIFIED",
-                ManifestType::Hls => "HLS",
-                ManifestType::Dash => "DASH",
+                Self::Unspecified => "MANIFEST_TYPE_UNSPECIFIED",
+                Self::Hls => "HLS",
+                Self::Dash => "DASH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -564,7 +560,7 @@ pub struct SpriteSheet {
     ///
     /// Supported formats:
     ///
-    /// * `jpeg`
+    /// - `jpeg`
     #[prost(string, tag = "1")]
     pub format: ::prost::alloc::string::String,
     /// Required. File name prefix for the generated sprite sheets.
@@ -575,9 +571,9 @@ pub struct SpriteSheet {
     pub file_prefix: ::prost::alloc::string::String,
     /// Required. The width of sprite in pixels. Must be an even integer. To
     /// preserve the source aspect ratio, set the
-    /// \[SpriteSheet.sprite_width_pixels\]\[google.cloud.video.transcoder.v1.SpriteSheet.sprite_width_pixels\]
+    /// [SpriteSheet.sprite_width_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_width_pixels]
     /// field or the
-    /// \[SpriteSheet.sprite_height_pixels\]\[google.cloud.video.transcoder.v1.SpriteSheet.sprite_height_pixels\]
+    /// [SpriteSheet.sprite_height_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_height_pixels]
     /// field, but not both (the API will automatically calculate the missing
     /// field).
     ///
@@ -589,9 +585,9 @@ pub struct SpriteSheet {
     pub sprite_width_pixels: i32,
     /// Required. The height of sprite in pixels. Must be an even integer. To
     /// preserve the source aspect ratio, set the
-    /// \[SpriteSheet.sprite_height_pixels\]\[google.cloud.video.transcoder.v1.SpriteSheet.sprite_height_pixels\]
+    /// [SpriteSheet.sprite_height_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_height_pixels]
     /// field or the
-    /// \[SpriteSheet.sprite_width_pixels\]\[google.cloud.video.transcoder.v1.SpriteSheet.sprite_width_pixels\]
+    /// [SpriteSheet.sprite_width_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_width_pixels]
     /// field, but not both (the API will automatically calculate the missing
     /// field).
     ///
@@ -781,9 +777,9 @@ pub mod overlay {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FadeType::Unspecified => "FADE_TYPE_UNSPECIFIED",
-                FadeType::FadeIn => "FADE_IN",
-                FadeType::FadeOut => "FADE_OUT",
+                Self::Unspecified => "FADE_TYPE_UNSPECIFIED",
+                Self::FadeIn => "FADE_IN",
+                Self::FadeOut => "FADE_OUT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -858,8 +854,8 @@ pub mod preprocessing_config {
         ///
         /// Supported denoiser modes:
         ///
-        /// * `standard`
-        /// * `grain`
+        /// - `standard`
+        /// - `grain`
         #[prost(string, tag = "2")]
         pub tune: ::prost::alloc::string::String,
     }
@@ -883,14 +879,14 @@ pub mod preprocessing_config {
         /// Specify audio loudness normalization in loudness units relative to full
         /// scale (LUFS). Enter a value between -24 and 0 (the default), where:
         ///
-        /// * -24 is the Advanced Television Systems Committee (ATSC A/85) standard
-        /// * -23 is the EU R128 broadcast standard
-        /// * -19 is the prior standard for online mono audio
-        /// * -18 is the ReplayGain standard
-        /// * -16 is the prior standard for stereo audio
-        /// * -14 is the new online audio standard recommended by Spotify, as well
-        ///   as Amazon Echo
-        /// * 0 disables normalization
+        /// *   -24 is the Advanced Television Systems Committee (ATSC A/85) standard
+        /// *   -23 is the EU R128 broadcast standard
+        /// *   -19 is the prior standard for online mono audio
+        /// *   -18 is the ReplayGain standard
+        /// *   -16 is the prior standard for stereo audio
+        /// *   -14 is the new online audio standard recommended by Spotify, as well
+        ///      as Amazon Echo
+        /// *   0 disables normalization
         #[prost(double, tag = "1")]
         pub lufs: f64,
         /// Enable boosting high frequency components. The default is `false`.
@@ -956,8 +952,8 @@ pub mod preprocessing_config {
             /// The default is `send_frame`.
             /// Supported values:
             ///
-            /// * `send_frame`: Output one frame for each frame
-            /// * `send_field`: Output one frame for each field
+            /// - `send_frame`: Output one frame for each frame
+            /// - `send_field`: Output one frame for each field
             #[prost(string, tag = "1")]
             pub mode: ::prost::alloc::string::String,
             /// Disable spacial interlacing.
@@ -968,9 +964,9 @@ pub mod preprocessing_config {
             /// The default is `auto`.
             /// Supported values:
             ///
-            /// * `tff`: Assume the top field is first
-            /// * `bff`: Assume the bottom field is first
-            /// * `auto`: Enable automatic detection of field parity
+            /// - `tff`: Assume the top field is first
+            /// - `bff`: Assume the bottom field is first
+            /// - `auto`: Enable automatic detection of field parity
             #[prost(string, tag = "3")]
             pub parity: ::prost::alloc::string::String,
             /// Deinterlace all frames rather than just the frames identified as
@@ -985,17 +981,17 @@ pub mod preprocessing_config {
             /// The default is `send_frame`.
             /// Supported values:
             ///
-            /// * `send_frame`: Output one frame for each frame
-            /// * `send_field`: Output one frame for each field
+            /// - `send_frame`: Output one frame for each frame
+            /// - `send_field`: Output one frame for each field
             #[prost(string, tag = "1")]
             pub mode: ::prost::alloc::string::String,
             /// The picture field parity assumed for the input interlaced video.
             /// The default is `auto`.
             /// Supported values:
             ///
-            /// * `tff`: Assume the top field is first
-            /// * `bff`: Assume the bottom field is first
-            /// * `auto`: Enable automatic detection of field parity
+            /// - `tff`: Assume the top field is first
+            /// - `bff`: Assume the bottom field is first
+            /// - `auto`: Enable automatic detection of field parity
             #[prost(string, tag = "2")]
             pub parity: ::prost::alloc::string::String,
             /// Deinterlace all frames rather than just the frames identified as
@@ -1064,23 +1060,23 @@ pub mod video_stream {
         ///
         /// Supported pixel formats:
         ///
-        /// * `yuv420p` pixel format
-        /// * `yuv422p` pixel format
-        /// * `yuv444p` pixel format
-        /// * `yuv420p10` 10-bit HDR pixel format
-        /// * `yuv422p10` 10-bit HDR pixel format
-        /// * `yuv444p10` 10-bit HDR pixel format
-        /// * `yuv420p12` 12-bit HDR pixel format
-        /// * `yuv422p12` 12-bit HDR pixel format
-        /// * `yuv444p12` 12-bit HDR pixel format
+        /// - `yuv420p` pixel format
+        /// - `yuv422p` pixel format
+        /// - `yuv444p` pixel format
+        /// - `yuv420p10` 10-bit HDR pixel format
+        /// - `yuv422p10` 10-bit HDR pixel format
+        /// - `yuv444p10` 10-bit HDR pixel format
+        /// - `yuv420p12` 12-bit HDR pixel format
+        /// - `yuv422p12` 12-bit HDR pixel format
+        /// - `yuv444p12` 12-bit HDR pixel format
         #[prost(string, tag = "5")]
         pub pixel_format: ::prost::alloc::string::String,
         /// Specify the `rate_control_mode`. The default is `vbr`.
         ///
         /// Supported rate control modes:
         ///
-        /// * `vbr` - variable bitrate
-        /// * `crf` - constant rate factor
+        /// - `vbr` - variable bitrate
+        /// - `crf` - constant rate factor
         #[prost(string, tag = "6")]
         pub rate_control_mode: ::prost::alloc::string::String,
         /// Target CRF level. Must be between 10 and 36, where 10 is the highest
@@ -1108,8 +1104,8 @@ pub mod video_stream {
         ///
         /// Supported entropy coders:
         ///
-        /// * `cavlc`
-        /// * `cabac`
+        /// - `cavlc`
+        /// - `cabac`
         #[prost(string, tag = "14")]
         pub entropy_coder: ::prost::alloc::string::String,
         /// Allow B-pyramid for reference frame selection. This may not be supported
@@ -1129,9 +1125,9 @@ pub mod video_stream {
         /// Enforces the specified codec profile. The following profiles are
         /// supported:
         ///
-        /// * `baseline`
-        /// * `main`
-        /// * `high` (default)
+        /// *   `baseline`
+        /// *   `main`
+        /// *   `high` (default)
         ///
         /// The available options are
         /// [FFmpeg-compatible](<https://trac.ffmpeg.org/wiki/Encode/H.264#Tune>).
@@ -1217,23 +1213,23 @@ pub mod video_stream {
         ///
         /// Supported pixel formats:
         ///
-        /// * `yuv420p` pixel format
-        /// * `yuv422p` pixel format
-        /// * `yuv444p` pixel format
-        /// * `yuv420p10` 10-bit HDR pixel format
-        /// * `yuv422p10` 10-bit HDR pixel format
-        /// * `yuv444p10` 10-bit HDR pixel format
-        /// * `yuv420p12` 12-bit HDR pixel format
-        /// * `yuv422p12` 12-bit HDR pixel format
-        /// * `yuv444p12` 12-bit HDR pixel format
+        /// - `yuv420p` pixel format
+        /// - `yuv422p` pixel format
+        /// - `yuv444p` pixel format
+        /// - `yuv420p10` 10-bit HDR pixel format
+        /// - `yuv422p10` 10-bit HDR pixel format
+        /// - `yuv444p10` 10-bit HDR pixel format
+        /// - `yuv420p12` 12-bit HDR pixel format
+        /// - `yuv422p12` 12-bit HDR pixel format
+        /// - `yuv444p12` 12-bit HDR pixel format
         #[prost(string, tag = "5")]
         pub pixel_format: ::prost::alloc::string::String,
         /// Specify the `rate_control_mode`. The default is `vbr`.
         ///
         /// Supported rate control modes:
         ///
-        /// * `vbr` - variable bitrate
-        /// * `crf` - constant rate factor
+        /// - `vbr` - variable bitrate
+        /// - `crf` - constant rate factor
         #[prost(string, tag = "6")]
         pub rate_control_mode: ::prost::alloc::string::String,
         /// Target CRF level. Must be between 10 and 36, where 10 is the highest
@@ -1274,24 +1270,24 @@ pub mod video_stream {
         /// Enforces the specified codec profile. The following profiles are
         /// supported:
         ///
-        /// * 8-bit profiles
-        ///   * `main` (default)
-        ///   * `main-intra`
-        ///   * `mainstillpicture`
-        /// * 10-bit profiles
-        ///   * `main10` (default)
-        ///   * `main10-intra`
-        ///   * `main422-10`
-        ///   * `main422-10-intra`
-        ///   * `main444-10`
-        ///   * `main444-10-intra`
-        /// * 12-bit profiles
-        ///   * `main12` (default)
-        ///   * `main12-intra`
-        ///   * `main422-12`
-        ///   * `main422-12-intra`
-        ///   * `main444-12`
-        ///   * `main444-12-intra`
+        /// *   8-bit profiles
+        ///      *   `main` (default)
+        ///      *   `main-intra`
+        ///      *   `mainstillpicture`
+        /// *   10-bit profiles
+        ///      *   `main10` (default)
+        ///      *   `main10-intra`
+        ///      *   `main422-10`
+        ///      *   `main422-10-intra`
+        ///      *   `main444-10`
+        ///      *   `main444-10-intra`
+        /// *   12-bit profiles
+        ///      *   `main12` (default)
+        ///      *   `main12-intra`
+        ///      *   `main422-12`
+        ///      *   `main422-12-intra`
+        ///      *   `main444-12`
+        ///      *   `main444-12-intra`
         ///
         /// The available options are
         /// [FFmpeg-compatible](<https://x265.readthedocs.io/>).
@@ -1377,22 +1373,22 @@ pub mod video_stream {
         ///
         /// Supported pixel formats:
         ///
-        /// * `yuv420p` pixel format
-        /// * `yuv422p` pixel format
-        /// * `yuv444p` pixel format
-        /// * `yuv420p10` 10-bit HDR pixel format
-        /// * `yuv422p10` 10-bit HDR pixel format
-        /// * `yuv444p10` 10-bit HDR pixel format
-        /// * `yuv420p12` 12-bit HDR pixel format
-        /// * `yuv422p12` 12-bit HDR pixel format
-        /// * `yuv444p12` 12-bit HDR pixel format
+        /// - `yuv420p` pixel format
+        /// - `yuv422p` pixel format
+        /// - `yuv444p` pixel format
+        /// - `yuv420p10` 10-bit HDR pixel format
+        /// - `yuv422p10` 10-bit HDR pixel format
+        /// - `yuv444p10` 10-bit HDR pixel format
+        /// - `yuv420p12` 12-bit HDR pixel format
+        /// - `yuv422p12` 12-bit HDR pixel format
+        /// - `yuv444p12` 12-bit HDR pixel format
         #[prost(string, tag = "5")]
         pub pixel_format: ::prost::alloc::string::String,
         /// Specify the `rate_control_mode`. The default is `vbr`.
         ///
         /// Supported rate control modes:
         ///
-        /// * `vbr` - variable bitrate
+        /// - `vbr` - variable bitrate
         #[prost(string, tag = "6")]
         pub rate_control_mode: ::prost::alloc::string::String,
         /// Target CRF level. Must be between 10 and 36, where 10 is the highest
@@ -1404,10 +1400,10 @@ pub mod video_stream {
         /// Enforces the specified codec profile. The following profiles are
         /// supported:
         ///
-        /// * `profile0` (default)
-        /// * `profile1`
-        /// * `profile2`
-        /// * `profile3`
+        /// *   `profile0` (default)
+        /// *   `profile1`
+        /// *   `profile2`
+        /// *   `profile3`
         ///
         /// The available options are
         /// [WebM-compatible](<https://www.webmproject.org/vp9/profiles/>).
@@ -1459,12 +1455,12 @@ pub struct AudioStream {
     ///
     /// Supported audio codecs:
     ///
-    /// * `aac`
-    /// * `aac-he`
-    /// * `aac-he-v2`
-    /// * `mp3`
-    /// * `ac3`
-    /// * `eac3`
+    /// - `aac`
+    /// - `aac-he`
+    /// - `aac-he-v2`
+    /// - `mp3`
+    /// - `ac3`
+    /// - `eac3`
     #[prost(string, tag = "1")]
     pub codec: ::prost::alloc::string::String,
     /// Required. Audio bitrate in bits per second. Must be between 1 and
@@ -1480,12 +1476,12 @@ pub struct AudioStream {
     ///
     /// Supported channel names:
     ///
-    /// * `fl` - Front left channel
-    /// * `fr` - Front right channel
-    /// * `sl` - Side left channel
-    /// * `sr` - Side right channel
-    /// * `fc` - Front center channel
-    /// * `lfe` - Low frequency
+    /// - `fl` - Front left channel
+    /// - `fr` - Front right channel
+    /// - `sl` - Side left channel
+    /// - `sr` - Side right channel
+    /// - `fc` - Front center channel
+    /// - `lfe` - Low frequency
     #[prost(string, repeated, tag = "4")]
     pub channel_layout: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
@@ -1539,11 +1535,11 @@ pub struct TextStream {
     ///
     /// Supported text codecs:
     ///
-    /// * `srt`
-    /// * `ttml`
-    /// * `cea608`
-    /// * `cea708`
-    /// * `webvtt`
+    /// - `srt`
+    /// - `ttml`
+    /// - `cea608`
+    /// - `cea708`
+    /// - `webvtt`
     #[prost(string, tag = "1")]
     pub codec: ::prost::alloc::string::String,
     /// The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
@@ -1622,8 +1618,8 @@ pub mod encryption {
         ///
         /// Supported encryption schemes:
         ///
-        /// * `cenc`
-        /// * `cbcs`
+        /// - `cenc`
+        /// - `cbcs`
         #[prost(string, tag = "2")]
         pub scheme: ::prost::alloc::string::String,
     }
@@ -1832,7 +1828,13 @@ pub struct ListJobTemplatesResponse {
 }
 /// Generated client implementations.
 pub mod transcoder_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Using the Transcoder API, you can queue asynchronous jobs for transcoding
@@ -1919,8 +1921,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1950,8 +1951,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1978,8 +1978,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2006,8 +2005,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2034,8 +2032,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2065,8 +2062,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2093,8 +2089,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2121,8 +2116,7 @@ pub mod transcoder_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

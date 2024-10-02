@@ -65,14 +65,14 @@ pub mod common_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Initializing => "INITIALIZING",
-                State::Processing => "PROCESSING",
-                State::Cancelling => "CANCELLING",
-                State::Finalizing => "FINALIZING",
-                State::Successful => "SUCCESSFUL",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Initializing => "INITIALIZING",
+                Self::Processing => "PROCESSING",
+                Self::Cancelling => "CANCELLING",
+                Self::Finalizing => "FINALIZING",
+                Self::Successful => "SUCCESSFUL",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -104,7 +104,7 @@ pub struct Progress {
     pub work_estimated: i64,
 }
 /// The request for
-/// \[google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities\]\[google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities\].
+/// [google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities][google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportEntitiesRequest {
     /// Project ID against which to make the request.
@@ -132,7 +132,7 @@ pub struct ExportEntitiesRequest {
     ///
     /// The resulting files will be nested deeper than the specified URL prefix.
     /// The final output URL will be provided in the
-    /// \[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\]\[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\]
+    /// [google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url][google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url]
     /// field. That value should be used for subsequent ImportEntities operations.
     ///
     /// By nesting the data files deeper, the same Cloud Storage bucket can be used
@@ -141,7 +141,7 @@ pub struct ExportEntitiesRequest {
     pub output_url_prefix: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[google.datastore.admin.v1beta1.DatastoreAdmin.ImportEntities\]\[google.datastore.admin.v1beta1.DatastoreAdmin.ImportEntities\].
+/// [google.datastore.admin.v1beta1.DatastoreAdmin.ImportEntities][google.datastore.admin.v1beta1.DatastoreAdmin.ImportEntities].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportEntitiesRequest {
     /// Project ID against which to make the request.
@@ -165,7 +165,7 @@ pub struct ImportEntitiesRequest {
     /// considerations](<https://cloud.google.com/storage/docs/naming#object-considerations>).
     ///
     /// For more information, see
-    /// \[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\]\[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\].
+    /// [google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url][google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url].
     #[prost(string, tag = "3")]
     pub input_url: ::prost::alloc::string::String,
     /// Optionally specify which kinds/namespaces are to be imported. If provided,
@@ -176,12 +176,12 @@ pub struct ImportEntitiesRequest {
     pub entity_filter: ::core::option::Option<EntityFilter>,
 }
 /// The response for
-/// \[google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities\]\[google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities\].
+/// [google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities][google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportEntitiesResponse {
     /// Location of the output metadata file. This can be used to begin an import
     /// into Cloud Datastore (this project or another project). See
-    /// \[google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url\]\[google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url\].
+    /// [google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url][google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url].
     /// Only present if the operation completed successfully.
     #[prost(string, tag = "1")]
     pub output_url: ::prost::alloc::string::String,
@@ -203,9 +203,9 @@ pub struct ExportEntitiesMetadata {
     pub entity_filter: ::core::option::Option<EntityFilter>,
     /// Location for the export metadata and data files. This will be the same
     /// value as the
-    /// \[google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix\]\[google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix\]
+    /// [google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix][google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix]
     /// field. The final output location is provided in
-    /// \[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\]\[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\].
+    /// [google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url][google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url].
     #[prost(string, tag = "5")]
     pub output_url_prefix: ::prost::alloc::string::String,
 }
@@ -226,7 +226,7 @@ pub struct ImportEntitiesMetadata {
     pub entity_filter: ::core::option::Option<EntityFilter>,
     /// The location of the import metadata file. This will be the same value as
     /// the
-    /// \[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\]\[google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url\]
+    /// [google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url][google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url]
     /// field.
     #[prost(string, tag = "5")]
     pub input_url: ::prost::alloc::string::String,
@@ -237,19 +237,19 @@ pub struct ImportEntitiesMetadata {
 /// Example usage:
 ///
 /// Entire project:
-/// kinds=\[\], namespace_ids=\[\]
+///    kinds=\[\], namespace_ids=\[\]
 ///
 /// Kinds Foo and Bar in all namespaces:
-/// kinds=\['Foo', 'Bar'\], namespace_ids=\[\]
+///    kinds=\['Foo', 'Bar'\], namespace_ids=\[\]
 ///
 /// Kinds Foo and Bar only in the default namespace:
-/// kinds=\['Foo', 'Bar'\], namespace_ids=\[''\]
+///    kinds=\['Foo', 'Bar'\], namespace_ids=\[''\]
 ///
 /// Kinds Foo and Bar in both the default and Baz namespaces:
-/// kinds=\['Foo', 'Bar'\], namespace_ids=\['', 'Baz'\]
+///    kinds=\['Foo', 'Bar'\], namespace_ids=\['', 'Baz'\]
 ///
 /// The entire Baz namespace:
-/// kinds=\[\], namespace_ids=\['Baz'\]
+///    kinds=\[\], namespace_ids=\['Baz'\]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityFilter {
     /// If empty, then this represents all kinds.
@@ -283,9 +283,9 @@ impl OperationType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
-            OperationType::ExportEntities => "EXPORT_ENTITIES",
-            OperationType::ImportEntities => "IMPORT_ENTITIES",
+            Self::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
+            Self::ExportEntities => "EXPORT_ENTITIES",
+            Self::ImportEntities => "IMPORT_ENTITIES",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -300,15 +300,20 @@ impl OperationType {
 }
 /// Generated client implementations.
 pub mod datastore_admin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Cloud Datastore Admin API
     ///
     /// The Datastore Admin API provides several admin services for Cloud Datastore.
     ///
-    /// ---
-    ///
+    /// -----------------------------------------------------------------------------
     /// ## Concepts
     ///
     /// Project, namespace, kind, and entity as defined in the Google Cloud Datastore
@@ -320,8 +325,7 @@ pub mod datastore_admin_client {
     /// specified as a combination of kinds and namespaces (either or both of which
     /// may be all).
     ///
-    /// ---
-    ///
+    /// -----------------------------------------------------------------------------
     /// ## Services
     ///
     /// # Export/Import
@@ -444,8 +448,7 @@ pub mod datastore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -479,8 +482,7 @@ pub mod datastore_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

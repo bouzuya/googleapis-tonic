@@ -161,7 +161,7 @@ pub struct AccessSettings {
 pub struct GcipSettings {
     /// GCIP tenant ids that are linked to the IAP resource.
     /// tenant_ids could be a string beginning with a number character to indicate
-    /// authenticating with GCIP tenant flow, or in the format of \_<ProjectNumber>
+    /// authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
     /// to indicate authenticating with GCIP agent flow.
     /// If agent flow is used, tenant_ids should only contain one single element,
     /// while for tenant flow, tenant_ids can contain multiple elements.
@@ -245,11 +245,11 @@ pub mod reauth_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Method::Unspecified => "METHOD_UNSPECIFIED",
-                Method::Login => "LOGIN",
-                Method::Password => "PASSWORD",
-                Method::SecureKey => "SECURE_KEY",
-                Method::EnrolledSecondFactors => "ENROLLED_SECOND_FACTORS",
+                Self::Unspecified => "METHOD_UNSPECIFIED",
+                Self::Login => "LOGIN",
+                Self::Password => "PASSWORD",
+                Self::SecureKey => "SECURE_KEY",
+                Self::EnrolledSecondFactors => "ENROLLED_SECOND_FACTORS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -293,9 +293,9 @@ pub mod reauth_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyType::Unspecified => "POLICY_TYPE_UNSPECIFIED",
-                PolicyType::Minimum => "MINIMUM",
-                PolicyType::Default => "DEFAULT",
+                Self::Unspecified => "POLICY_TYPE_UNSPECIFIED",
+                Self::Minimum => "MINIMUM",
+                Self::Default => "DEFAULT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -377,28 +377,29 @@ pub struct AttributePropagationSettings {
     /// types from `attributes`: `attributes.saml_attributes`,
     /// `attributes.iap_attributes`. The following functions are supported:
     ///
-    /// * filter `<list>.filter(<iter_var>, <predicate>)`: Returns a subset of
+    ///   - filter `<list>.filter(<iter_var>, <predicate>)`: Returns a subset of
     ///   `<list>` where `<predicate>` is true for every item.
     ///
-    /// * in `<var> in <list>`: Returns true if `<list>` contains `<var>`.
+    ///   - in `<var> in <list>`: Returns true if `<list>` contains `<var>`.
     ///
-    /// * selectByName `<list>.selectByName(<string>)`: Returns the attribute
+    ///   - selectByName `<list>.selectByName(<string>)`: Returns the attribute
     ///   in
     ///   `<list>` with the given `<string>` name, otherwise returns empty.
     ///
-    /// * emitAs `<attribute>.emitAs(<string>)`: Sets the `<attribute>` name
+    ///   - emitAs `<attribute>.emitAs(<string>)`: Sets the `<attribute>` name
     ///   field to the given `<string>` for propagation in selected output
     ///   credentials.
     ///
-    /// * strict `<attribute>.strict()`: Ignores the `x-goog-iap-attr-` prefix
+    ///   - strict `<attribute>.strict()`: Ignores the `x-goog-iap-attr-` prefix
     ///   for the provided `<attribute>` when propagating with the `HEADER` output
     ///   credential, such as request headers.
     ///
-    /// * append `<target_list>.append(<attribute>)` OR
+    ///   - append `<target_list>.append(<attribute>)` OR
     ///   `<target_list>.append(<list>)`: Appends the provided `<attribute>` or
     ///   `<list>` to the end of `<target_list>`.
     ///
-    /// Example expression: `attributes.saml_attributes.filter(x, x.name in \['test'\]).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
+    /// Example expression: `attributes.saml_attributes.filter(x, x.name in
+    /// \['test'\]).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
     #[prost(string, optional, tag = "1")]
     pub expression: ::core::option::Option<::prost::alloc::string::String>,
     /// Which output credentials attributes selected by the CEL expression should
@@ -438,9 +439,11 @@ pub mod attribute_propagation_settings {
         Unspecified = 0,
         /// Propagate attributes in the headers with "x-goog-iap-attr-" prefix.
         Header = 1,
-        /// Propagate attributes in the JWT of the form: `"additional_claims": { "my_attribute": \["value1", "value2"\] }`
+        /// Propagate attributes in the JWT of the form: `"additional_claims": {
+        /// "my_attribute": \["value1", "value2"\] }`
         Jwt = 2,
-        /// Propagate attributes in the RCToken of the form: `"additional_claims": { "my_attribute": \["value1", "value2"\] }`
+        /// Propagate attributes in the RCToken of the form: `"additional_claims": {
+        /// "my_attribute": \["value1", "value2"\] }`
         Rctoken = 3,
     }
     impl OutputCredentials {
@@ -450,10 +453,10 @@ pub mod attribute_propagation_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OutputCredentials::Unspecified => "OUTPUT_CREDENTIALS_UNSPECIFIED",
-                OutputCredentials::Header => "HEADER",
-                OutputCredentials::Jwt => "JWT",
-                OutputCredentials::Rctoken => "RCTOKEN",
+                Self::Unspecified => "OUTPUT_CREDENTIALS_UNSPECIFIED",
+                Self::Header => "HEADER",
+                Self::Jwt => "JWT",
+                Self::Rctoken => "RCTOKEN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -610,7 +613,13 @@ pub struct IdentityAwareProxyClient {
 }
 /// Generated client implementations.
 pub mod identity_aware_proxy_admin_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// APIs for Identity-Aware Proxy Admin configurations.
@@ -702,8 +711,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -738,8 +746,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -776,8 +783,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -804,8 +810,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -833,8 +838,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -866,8 +870,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -897,8 +900,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -928,8 +930,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -956,8 +957,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -987,8 +987,7 @@ pub mod identity_aware_proxy_admin_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1010,7 +1009,13 @@ pub mod identity_aware_proxy_admin_service_client {
 }
 /// Generated client implementations.
 pub mod identity_aware_proxy_o_auth_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API to programmatically create, list and retrieve Identity Aware Proxy (IAP)
@@ -1099,8 +1104,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1134,8 +1138,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1162,8 +1165,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1197,8 +1199,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1228,8 +1229,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1260,8 +1260,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1294,8 +1293,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1326,8 +1324,7 @@ pub mod identity_aware_proxy_o_auth_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

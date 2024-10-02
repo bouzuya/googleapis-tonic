@@ -26,7 +26,7 @@ pub struct UserInfo {
     /// A unique user identification string, as determined by the client.
     /// The maximum number of allowed characters is 255.
     /// Allowed characters include numbers 0 to 9, uppercase and lowercase letters,
-    /// and restricted special symbols (:, @, +, -, \_, ~)
+    /// and restricted special symbols (:, @, +, -, _, ~)
     /// The format is "user:xxxx@example.com";
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
@@ -103,19 +103,13 @@ impl UpdateType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            UpdateType::Unspecified => "UPDATE_TYPE_UNSPECIFIED",
-            UpdateType::Replace => "UPDATE_TYPE_REPLACE",
-            UpdateType::Merge => "UPDATE_TYPE_MERGE",
-            UpdateType::InsertPropertiesByNames => {
-                "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES"
-            }
-            UpdateType::ReplacePropertiesByNames => {
-                "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES"
-            }
-            UpdateType::DeletePropertiesByNames => {
-                "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES"
-            }
-            UpdateType::MergeAndReplaceOrInsertPropertiesByNames => {
+            Self::Unspecified => "UPDATE_TYPE_UNSPECIFIED",
+            Self::Replace => "UPDATE_TYPE_REPLACE",
+            Self::Merge => "UPDATE_TYPE_MERGE",
+            Self::InsertPropertiesByNames => "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES",
+            Self::ReplacePropertiesByNames => "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES",
+            Self::DeletePropertiesByNames => "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES",
+            Self::MergeAndReplaceOrInsertPropertiesByNames => {
                 "UPDATE_TYPE_MERGE_AND_REPLACE_OR_INSERT_PROPERTIES_BY_NAMES"
             }
         }
@@ -160,9 +154,9 @@ impl DatabaseType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatabaseType::DbUnknown => "DB_UNKNOWN",
-            DatabaseType::DbInfraSpanner => "DB_INFRA_SPANNER",
-            DatabaseType::DbCloudSqlPostgres => "DB_CLOUD_SQL_POSTGRES",
+            Self::DbUnknown => "DB_UNKNOWN",
+            Self::DbInfraSpanner => "DB_INFRA_SPANNER",
+            Self::DbCloudSqlPostgres => "DB_CLOUD_SQL_POSTGRES",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -195,12 +189,12 @@ impl AccessControlMode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AccessControlMode::AclModeUnknown => "ACL_MODE_UNKNOWN",
-            AccessControlMode::AclModeUniversalAccess => "ACL_MODE_UNIVERSAL_ACCESS",
-            AccessControlMode::AclModeDocumentLevelAccessControlByoid => {
+            Self::AclModeUnknown => "ACL_MODE_UNKNOWN",
+            Self::AclModeUniversalAccess => "ACL_MODE_UNIVERSAL_ACCESS",
+            Self::AclModeDocumentLevelAccessControlByoid => {
                 "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID"
             }
-            AccessControlMode::AclModeDocumentLevelAccessControlGci => {
+            Self::AclModeDocumentLevelAccessControlGci => {
                 "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI"
             }
         }
@@ -240,12 +234,10 @@ impl DocumentCreatorDefaultRole {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DocumentCreatorDefaultRole::Unspecified => {
-                "DOCUMENT_CREATOR_DEFAULT_ROLE_UNSPECIFIED"
-            }
-            DocumentCreatorDefaultRole::DocumentAdmin => "DOCUMENT_ADMIN",
-            DocumentCreatorDefaultRole::DocumentEditor => "DOCUMENT_EDITOR",
-            DocumentCreatorDefaultRole::DocumentViewer => "DOCUMENT_VIEWER",
+            Self::Unspecified => "DOCUMENT_CREATOR_DEFAULT_ROLE_UNSPECIFIED",
+            Self::DocumentAdmin => "DOCUMENT_ADMIN",
+            Self::DocumentEditor => "DOCUMENT_EDITOR",
+            Self::DocumentViewer => "DOCUMENT_VIEWER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -605,13 +597,13 @@ impl RawDocumentFileType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RawDocumentFileType::Unspecified => "RAW_DOCUMENT_FILE_TYPE_UNSPECIFIED",
-            RawDocumentFileType::Pdf => "RAW_DOCUMENT_FILE_TYPE_PDF",
-            RawDocumentFileType::Docx => "RAW_DOCUMENT_FILE_TYPE_DOCX",
-            RawDocumentFileType::Xlsx => "RAW_DOCUMENT_FILE_TYPE_XLSX",
-            RawDocumentFileType::Pptx => "RAW_DOCUMENT_FILE_TYPE_PPTX",
-            RawDocumentFileType::Text => "RAW_DOCUMENT_FILE_TYPE_TEXT",
-            RawDocumentFileType::Tiff => "RAW_DOCUMENT_FILE_TYPE_TIFF",
+            Self::Unspecified => "RAW_DOCUMENT_FILE_TYPE_UNSPECIFIED",
+            Self::Pdf => "RAW_DOCUMENT_FILE_TYPE_PDF",
+            Self::Docx => "RAW_DOCUMENT_FILE_TYPE_DOCX",
+            Self::Xlsx => "RAW_DOCUMENT_FILE_TYPE_XLSX",
+            Self::Pptx => "RAW_DOCUMENT_FILE_TYPE_PPTX",
+            Self::Text => "RAW_DOCUMENT_FILE_TYPE_TEXT",
+            Self::Tiff => "RAW_DOCUMENT_FILE_TYPE_TIFF",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -649,10 +641,10 @@ impl ContentCategory {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ContentCategory::Unspecified => "CONTENT_CATEGORY_UNSPECIFIED",
-            ContentCategory::Image => "CONTENT_CATEGORY_IMAGE",
-            ContentCategory::Audio => "CONTENT_CATEGORY_AUDIO",
-            ContentCategory::Video => "CONTENT_CATEGORY_VIDEO",
+            Self::Unspecified => "CONTENT_CATEGORY_UNSPECIFIED",
+            Self::Image => "CONTENT_CATEGORY_IMAGE",
+            Self::Audio => "CONTENT_CATEGORY_AUDIO",
+            Self::Video => "CONTENT_CATEGORY_VIDEO",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -789,9 +781,9 @@ pub mod document_link {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::SoftDeleted => "SOFT_DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::SoftDeleted => "SOFT_DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -838,7 +830,13 @@ pub struct DeleteDocumentLinkRequest {
 }
 /// Generated client implementations.
 pub mod document_link_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This service lets you manage document-links.
@@ -924,8 +922,7 @@ pub mod document_link_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -955,8 +952,7 @@ pub mod document_link_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -983,8 +979,7 @@ pub mod document_link_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1011,8 +1006,7 @@ pub mod document_link_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1068,7 +1062,7 @@ pub struct PropertyDefinition {
     /// Required. The name of the metadata property.
     /// Must be unique within a document schema and is case insensitive.
     /// Names must be non-blank, start with a letter, and can contain alphanumeric
-    /// characters and: /, :, -, \_, and .
+    /// characters and: /, :, -, _, and .
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The display-name for the property, used for front-end.
@@ -1158,13 +1152,13 @@ pub mod property_definition {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RetrievalImportance::Unspecified => "RETRIEVAL_IMPORTANCE_UNSPECIFIED",
-                RetrievalImportance::Highest => "HIGHEST",
-                RetrievalImportance::Higher => "HIGHER",
-                RetrievalImportance::High => "HIGH",
-                RetrievalImportance::Medium => "MEDIUM",
-                RetrievalImportance::Low => "LOW",
-                RetrievalImportance::Lowest => "LOWEST",
+                Self::Unspecified => "RETRIEVAL_IMPORTANCE_UNSPECIFIED",
+                Self::Highest => "HIGHEST",
+                Self::Higher => "HIGHER",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
+                Self::Lowest => "LOWEST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1319,7 +1313,13 @@ pub struct ListDocumentSchemasResponse {
 }
 /// Generated client implementations.
 pub mod document_schema_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This service lets you manage document schema.
@@ -1401,8 +1401,7 @@ pub mod document_schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1424,7 +1423,7 @@ pub mod document_schema_service_client {
         /// Document Schema is non-empty and does not equal the existing name.
         /// Supports only appending new properties, adding new ENUM possible values,
         /// and updating the
-        /// \[EnumTypeOptions.validation_check_disabled\]\[google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled\]
+        /// [EnumTypeOptions.validation_check_disabled][google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled]
         /// flag for ENUM possible values. Updating existing properties will result
         /// into INVALID_ARGUMENT.
         pub async fn update_document_schema(
@@ -1435,8 +1434,7 @@ pub mod document_schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1464,8 +1462,7 @@ pub mod document_schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1494,8 +1491,7 @@ pub mod document_schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1525,8 +1521,7 @@ pub mod document_schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1566,18 +1561,18 @@ pub struct DocumentQuery {
     /// Negation operators: "NOT" and "!" are negation operators (example: "NOT
     /// software").
     ///
-    /// Comparison operators: support the binary comparison operators =, !=, \<, >,
-    /// \<= and >= for string, numeric, enum, boolean. Also support like operator
+    /// Comparison operators: support the binary comparison operators =, !=, <, >,
+    /// <= and >= for string, numeric, enum, boolean. Also support like operator
     /// `~~` for string. It provides semantic search functionality by parsing,
     /// stemming and doing synonyms expansion against the input query.
     ///
     /// To specify a property in the query, the left hand side expression in the
     /// comparison must be the property ID including the parent. The right hand
     /// side must be literals. For example:
-    /// ""projects/123/locations/us".property_a \< 1" matches results whose
+    /// "\"projects/123/locations/us\".property_a < 1" matches results whose
     /// "property_a" is less than 1 in project 123 and us location.
     /// The literals and comparison expression can be connected in a single query
-    /// (example: "software engineer "projects/123/locations/us".salary > 100").
+    /// (example: "software engineer \"projects/123/locations/us\".salary > 100").
     ///
     /// Functions: supported functions are `LOWER(\[property_name\])` to perform a
     /// case insensitive match and `EMPTY(\[property_name\])` to filter on the
@@ -1598,18 +1593,18 @@ pub struct DocumentQuery {
     /// If the query is a natural language question. False by default. If true,
     /// then the question-answering feature will be used instead of search, and
     /// `result_count` in
-    /// \[SearchDocumentsRequest\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest\]
+    /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest]
     /// must be set. In addition, all other input fields related to search
     /// (pagination, histograms, etc.) will be ignored.
     #[prost(bool, tag = "12")]
     pub is_nl_query: bool,
     /// This filter specifies a structured syntax to match against the
-    /// \[PropertyDefinition\].\[is_filterable\]\[\] marked as `true`. The syntax for
+    /// \[PropertyDefinition\].[is_filterable][] marked as `true`. The syntax for
     /// this expression is a subset of SQL syntax.
     ///
     /// Supported operators are: `=`, `!=`, `<`, `<=`, `>`, and `>=` where the left
     /// of the operator is a property name and the right of the operator is a
-    /// number or a quoted string. You must escape backslash (\\) and quote (")
+    /// number or a quoted string. You must escape backslash (\\) and quote (\")
     /// characters. Supported functions are `LOWER(\[property_name\])` to perform a
     /// case insensitive match and `EMPTY(\[property_name\])` to filter on the
     /// existence of a key.
@@ -1617,10 +1612,11 @@ pub struct DocumentQuery {
     /// Boolean expressions (AND/OR/NOT) are supported up to 3 levels of nesting
     /// (for example, "((A AND B AND C) OR NOT D) AND E"), a maximum of 100
     /// comparisons or functions are allowed in the expression. The expression must
-    /// be \< 6000 bytes in length.
+    /// be < 6000 bytes in length.
     ///
     /// Sample Query:
-    /// `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND driving_years > 10`
+    /// `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
+    /// driving_years > 10`
     #[deprecated]
     #[prost(string, tag = "4")]
     pub custom_property_filter: ::prost::alloc::string::String,
@@ -1629,7 +1625,7 @@ pub struct DocumentQuery {
     #[prost(message, repeated, tag = "5")]
     pub time_filters: ::prost::alloc::vec::Vec<TimeFilter>,
     /// This filter specifies the exact document schema
-    /// \[Document.document_schema_name\]\[google.cloud.contentwarehouse.v1.Document.document_schema_name\]
+    /// [Document.document_schema_name][google.cloud.contentwarehouse.v1.Document.document_schema_name]
     /// of the documents to search against.
     ///
     /// If a value isn't specified, documents within the search results are
@@ -1641,7 +1637,7 @@ pub struct DocumentQuery {
     #[prost(string, repeated, tag = "6")]
     pub document_schema_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// This filter specifies a structured syntax to match against the
-    /// \[PropertyDefinition.is_filterable\]\[google.cloud.contentwarehouse.v1.PropertyDefinition.is_filterable\]
+    /// [PropertyDefinition.is_filterable][google.cloud.contentwarehouse.v1.PropertyDefinition.is_filterable]
     /// marked as `true`. The relationship between the PropertyFilters is OR.
     #[prost(message, repeated, tag = "7")]
     pub property_filter: ::prost::alloc::vec::Vec<PropertyFilter>,
@@ -1697,7 +1693,7 @@ pub struct TimeFilter {
     pub time_range: ::core::option::Option<super::super::super::r#type::Interval>,
     /// Specifies which time field to filter documents on.
     ///
-    /// Defaults to \[TimeField.UPLOAD_TIME\]\[\].
+    /// Defaults to [TimeField.UPLOAD_TIME][].
     #[prost(enumeration = "time_filter::TimeField", tag = "2")]
     pub time_field: i32,
 }
@@ -1733,10 +1729,10 @@ pub mod time_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TimeField::Unspecified => "TIME_FIELD_UNSPECIFIED",
-                TimeField::CreateTime => "CREATE_TIME",
-                TimeField::UpdateTime => "UPDATE_TIME",
-                TimeField::DispositionTime => "DISPOSITION_TIME",
+                Self::Unspecified => "TIME_FIELD_UNSPECIFIED",
+                Self::CreateTime => "CREATE_TIME",
+                Self::UpdateTime => "UPDATE_TIME",
+                Self::DispositionTime => "DISPOSITION_TIME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1754,7 +1750,7 @@ pub mod time_filter {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyFilter {
     /// The Document schema name
-    /// \[Document.document_schema_name\]\[google.cloud.contentwarehouse.v1.Document.document_schema_name\].
+    /// [Document.document_schema_name][google.cloud.contentwarehouse.v1.Document.document_schema_name].
     /// Format:
     /// projects/{project_number}/locations/{location}/documentSchemas/{document_schema_id}.
     #[prost(string, tag = "1")]
@@ -1765,14 +1761,14 @@ pub struct PropertyFilter {
     /// Supported operators are: `=`, `!=`, `<`, `<=`, `>`, `>=`, and `~~` where
     /// the left of the operator is a property name and the right of the operator
     /// is a number or a quoted string. You must escape backslash (\\) and quote
-    /// (") characters.
+    /// (\") characters.
     ///
     /// `~~` is the LIKE operator. The right of the operator must be a string. The
     /// only supported property data type for LIKE is text_values. It provides
     /// semantic search functionality by parsing, stemming and doing synonyms
     /// expansion against the input query. It matches if the property contains
     /// semantic similar content to the query. It is not regex matching or wildcard
-    /// matching. For example, "property.company ~~ "google"" will match records
+    /// matching. For example, "property.company ~~ \"google\"" will match records
     /// whose property `property.compnay` have values like "Google Inc.", "Google
     /// LLC" or "Google Company".
     ///
@@ -1783,17 +1779,19 @@ pub struct PropertyFilter {
     /// Boolean expressions (AND/OR/NOT) are supported up to 3 levels of nesting
     /// (for example, "((A AND B AND C) OR NOT D) AND E"), a maximum of 100
     /// comparisons or functions are allowed in the expression. The expression must
-    /// be \< 6000 bytes in length.
+    /// be < 6000 bytes in length.
     ///
     /// Only properties that are marked filterable are allowed
-    /// (\[PropertyDefinition.is_filterable\]\[google.cloud.contentwarehouse.v1.PropertyDefinition.is_filterable\]).
+    /// ([PropertyDefinition.is_filterable][google.cloud.contentwarehouse.v1.PropertyDefinition.is_filterable]).
     /// Property names do not need to be prefixed by the document schema id (as is
     /// the case with histograms), however property names will need to be prefixed
     /// by its parent hierarchy, if any.  For example:
     /// top_property_name.sub_property_name.
     ///
     /// Sample Query:
-    /// `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND driving_years > 10`
+    /// `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
+    /// driving_years > 10`
+    ///
     ///
     /// CMEK compliant deployment only supports:
     ///
@@ -1843,11 +1841,11 @@ pub mod file_type_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FileType::Unspecified => "FILE_TYPE_UNSPECIFIED",
-                FileType::All => "ALL",
-                FileType::Folder => "FOLDER",
-                FileType::Document => "DOCUMENT",
-                FileType::RootFolder => "ROOT_FOLDER",
+                Self::Unspecified => "FILE_TYPE_UNSPECIFIED",
+                Self::All => "ALL",
+                Self::Folder => "FOLDER",
+                Self::Document => "DOCUMENT",
+                Self::RootFolder => "ROOT_FOLDER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1888,7 +1886,7 @@ pub struct HistogramQuery {
     /// searches.
     ///
     /// See
-    /// \[SearchDocumentsRequest.histogram_queries\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest.histogram_queries\]
+    /// [SearchDocumentsRequest.histogram_queries][google.cloud.contentwarehouse.v1.SearchDocumentsRequest.histogram_queries]
     /// for details about syntax.
     #[prost(string, tag = "1")]
     pub histogram_query: ::prost::alloc::string::String,
@@ -1908,7 +1906,7 @@ pub struct HistogramQuery {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HistogramQueryPropertyNameFilter {
     /// This filter specifies the exact document schema(s)
-    /// \[Document.document_schema_name\]\[google.cloud.contentwarehouse.v1.Document.document_schema_name\]
+    /// [Document.document_schema_name][google.cloud.contentwarehouse.v1.Document.document_schema_name]
     /// to run histogram query against. It is optional. It will perform histogram
     /// for property names for all the document schemas if it is not set.
     ///
@@ -1967,8 +1965,8 @@ pub mod histogram_query_property_name_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HistogramYAxis::HistogramYaxisDocument => "HISTOGRAM_YAXIS_DOCUMENT",
-                HistogramYAxis::HistogramYaxisProperty => "HISTOGRAM_YAXIS_PROPERTY",
+                Self::HistogramYaxisDocument => "HISTOGRAM_YAXIS_DOCUMENT",
+                Self::HistogramYaxisProperty => "HISTOGRAM_YAXIS_PROPERTY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1982,7 +1980,7 @@ pub mod histogram_query_property_name_filter {
     }
 }
 /// Histogram result that matches
-/// \[HistogramQuery\]\[google.cloud.contentwarehouse.v1.HistogramQuery\] specified
+/// [HistogramQuery][google.cloud.contentwarehouse.v1.HistogramQuery] specified
 /// in searches.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HistogramQueryResult {
@@ -2121,7 +2119,7 @@ pub struct SearchDocumentsRequest {
     /// An integer that specifies the current offset (that is, starting result
     /// location, amongst the documents deemed by the API as relevant) in search
     /// results. This field is only considered if
-    /// \[page_token\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest.page_token\]
+    /// [page_token][google.cloud.contentwarehouse.v1.SearchDocumentsRequest.page_token]
     /// is unset.
     ///
     /// The maximum allowed value is 5000. Otherwise an error is thrown.
@@ -2139,7 +2137,7 @@ pub struct SearchDocumentsRequest {
     pub page_size: i32,
     /// The token specifying the current offset within search results.
     /// See
-    /// \[SearchDocumentsResponse.next_page_token\]\[google.cloud.contentwarehouse.v1.SearchDocumentsResponse.next_page_token\]
+    /// [SearchDocumentsResponse.next_page_token][google.cloud.contentwarehouse.v1.SearchDocumentsResponse.next_page_token]
     /// for an explanation of how to obtain the next set of query results.
     #[prost(string, tag = "7")]
     pub page_token: ::prost::alloc::string::String,
@@ -2150,14 +2148,14 @@ pub struct SearchDocumentsRequest {
     /// Supported options are:
     ///
     /// * `"relevance desc"`: By relevance descending, as determined by the API
-    ///   algorithms.
+    ///    algorithms.
     /// * `"upload_date desc"`: By upload date descending.
     /// * `"upload_date"`: By upload date ascending.
     /// * `"update_date desc"`: By last updated date descending.
     /// * `"update_date"`: By last updated date ascending.
     /// * `"retrieval_importance desc"`: By retrieval importance of properties
-    ///   descending. This feature is still under development, please do not use
-    ///   unless otherwise instructed to do so.
+    ///    descending. This feature is still under development, please do not use
+    ///    unless otherwise instructed to do so.
     #[prost(string, tag = "8")]
     pub order_by: ::prost::alloc::string::String,
     /// An expression specifying a histogram request against matching
@@ -2167,34 +2165,34 @@ pub struct SearchDocumentsRequest {
     /// The following aggregation functions are supported:
     ///
     /// * `count(string_histogram_facet)`: Count the number of matching entities
-    ///   for each distinct attribute value.
+    /// for each distinct attribute value.
     ///
     /// Data types:
     ///
     /// * Histogram facet (aka filterable properties): Facet names with format
-    ///   \<schema id\>.\<facet\>. Facets will have the
-    ///   format of: `[a-zA-Z][a-zA-Z0-9_:/-.]`. If the facet is a child
-    ///   facet, then the parent hierarchy needs to be specified separated by
-    ///   dots in the prefix after the schema id. Thus, the format for a multi-
-    ///   level facet is: \<schema id\>.\<parent facet name\>.
-    ///   \<child facet name\>. Example:
-    ///   schema123.root_parent_facet.middle_facet.child_facet
+    /// &lt;schema id&gt;.&lt;facet&gt;. Facets will have the
+    /// format of: `[a-zA-Z][a-zA-Z0-9_:/-.]`. If the facet is a child
+    /// facet, then the parent hierarchy needs to be specified separated by
+    /// dots in the prefix after the schema id. Thus, the format for a multi-
+    /// level facet is: &lt;schema id&gt;.&lt;parent facet name&gt;.
+    /// &lt;child facet name&gt;. Example:
+    /// schema123.root_parent_facet.middle_facet.child_facet
     /// * DocumentSchemaId: (with no schema id prefix) to get
-    ///   histograms for each document type (returns the schema id path, e.g.
-    ///   projects/12345/locations/us-west/documentSchemas/abc123).
+    /// histograms for each document type (returns the schema id path, e.g.
+    /// projects/12345/locations/us-west/documentSchemas/abc123).
     ///
     /// Example expression:
     ///
     /// * Document type counts:
-    ///   count('DocumentSchemaId')
+    ///    count('DocumentSchemaId')
     ///
     /// * For schema id, abc123, get the counts for MORTGAGE_TYPE:
-    ///   count('abc123.MORTGAGE_TYPE')
+    ///    count('abc123.MORTGAGE_TYPE')
     #[prost(message, repeated, tag = "9")]
     pub histogram_queries: ::prost::alloc::vec::Vec<HistogramQuery>,
     /// Controls if the search document request requires the return of a total size
     /// of matched documents. See
-    /// \[SearchDocumentsResponse.total_size\]\[google.cloud.contentwarehouse.v1.SearchDocumentsResponse.total_size\].
+    /// [SearchDocumentsResponse.total_size][google.cloud.contentwarehouse.v1.SearchDocumentsResponse.total_size].
     ///
     /// Enabling this flag may adversely impact performance. Hint: If this is
     /// used with pagination, set this flag on the initial query but set this
@@ -2205,13 +2203,13 @@ pub struct SearchDocumentsRequest {
     pub require_total_size: bool,
     /// Controls if the search document request requires the return of a total size
     /// of matched documents. See
-    /// \[SearchDocumentsResponse.total_size\]\[google.cloud.contentwarehouse.v1.SearchDocumentsResponse.total_size\].
+    /// [SearchDocumentsResponse.total_size][google.cloud.contentwarehouse.v1.SearchDocumentsResponse.total_size].
     #[prost(enumeration = "search_documents_request::TotalResultSize", tag = "12")]
     pub total_result_size: i32,
     /// Experimental, do not use.
     /// The limit on the number of documents returned for the question-answering
     /// feature. To enable the question-answering feature, set
-    /// \[DocumentQuery\].\[is_nl_query\]\[\] to true.
+    /// \[DocumentQuery\].[is_nl_query][] to true.
     #[prost(int32, tag = "11")]
     pub qa_size_limit: i32,
 }
@@ -2246,9 +2244,9 @@ pub mod search_documents_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TotalResultSize::Unspecified => "TOTAL_RESULT_SIZE_UNSPECIFIED",
-                TotalResultSize::EstimatedSize => "ESTIMATED_SIZE",
-                TotalResultSize::ActualSize => "ACTUAL_SIZE",
+                Self::Unspecified => "TOTAL_RESULT_SIZE_UNSPECIFIED",
+                Self::EstimatedSize => "ESTIMATED_SIZE",
+                Self::ActualSize => "ACTUAL_SIZE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2318,14 +2316,15 @@ pub struct SetAclRequest {
     /// Supported operators are: `=`, `!=`, `<`, `<=`, `>`, and `>=` where
     /// the left of the operator is `DocumentSchemaId` or property name and the
     /// right of the operator is a number or a quoted string. You must escape
-    /// backslash (\\) and quote (") characters.
+    /// backslash (\\) and quote (\") characters.
     ///
     /// Boolean expressions (AND/OR) are supported up to 3 levels of nesting (for
     /// example, "((A AND B AND C) OR D) AND E"), a maximum of 10 comparisons are
-    /// allowed in the expression. The expression must be \< 6000 bytes in length.
+    /// allowed in the expression. The expression must be < 6000 bytes in length.
     ///
     /// Sample condition:
-    /// `"DocumentSchemaId = \"some schema id\" OR SchemaId.floatPropertyName >= 10"`
+    ///      `"DocumentSchemaId = \"some schema id\" OR SchemaId.floatPropertyName
+    ///      >= 10"`
     #[prost(message, optional, tag = "2")]
     pub policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
     /// The meta information collected about the end user, used to enforce access
@@ -2414,11 +2413,11 @@ pub mod rule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TriggerType::Unknown => "UNKNOWN",
-                TriggerType::OnCreate => "ON_CREATE",
-                TriggerType::OnUpdate => "ON_UPDATE",
-                TriggerType::OnCreateLink => "ON_CREATE_LINK",
-                TriggerType::OnDeleteLink => "ON_DELETE_LINK",
+                Self::Unknown => "UNKNOWN",
+                Self::OnCreate => "ON_CREATE",
+                Self::OnUpdate => "ON_UPDATE",
+                Self::OnCreateLink => "ON_CREATE_LINK",
+                Self::OnDeleteLink => "ON_DELETE_LINK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2515,10 +2514,10 @@ pub mod access_control_action {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OperationType::Unknown => "UNKNOWN",
-                OperationType::AddPolicyBinding => "ADD_POLICY_BINDING",
-                OperationType::RemovePolicyBinding => "REMOVE_POLICY_BINDING",
-                OperationType::ReplacePolicyBinding => "REPLACE_POLICY_BINDING",
+                Self::Unknown => "UNKNOWN",
+                Self::AddPolicyBinding => "ADD_POLICY_BINDING",
+                Self::RemovePolicyBinding => "REMOVE_POLICY_BINDING",
+                Self::ReplacePolicyBinding => "REPLACE_POLICY_BINDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2537,7 +2536,7 @@ pub mod access_control_action {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataValidationAction {
     /// Map of (K, V) -> (field, string condition to be evaluated on the field)
-    /// E.g., ("age", "age > 18  && age \< 60") entry triggers validation of field
+    /// E.g., ("age", "age > 18  && age < 60") entry triggers validation of field
     /// age with the given condition. Map entries will be ANDed during validation.
     #[prost(btree_map = "string, string", tag = "1")]
     pub conditions: ::prost::alloc::collections::BTreeMap<
@@ -2703,11 +2702,11 @@ pub mod action_output {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unknown => "UNKNOWN",
-                State::ActionSucceeded => "ACTION_SUCCEEDED",
-                State::ActionFailed => "ACTION_FAILED",
-                State::ActionTimedOut => "ACTION_TIMED_OUT",
-                State::ActionPending => "ACTION_PENDING",
+                Self::Unknown => "UNKNOWN",
+                Self::ActionSucceeded => "ACTION_SUCCEEDED",
+                Self::ActionFailed => "ACTION_FAILED",
+                Self::ActionTimedOut => "ACTION_TIMED_OUT",
+                Self::ActionPending => "ACTION_PENDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2792,7 +2791,7 @@ pub mod qa_result {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchDocumentsResponse {
     /// The document entities that match the specified
-    /// \[SearchDocumentsRequest\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest\].
+    /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
     #[prost(message, repeated, tag = "1")]
     pub matching_documents: ::prost::alloc::vec::Vec<
         search_documents_response::MatchingDocument,
@@ -2803,12 +2802,12 @@ pub struct SearchDocumentsResponse {
     pub next_page_token: ::prost::alloc::string::String,
     /// The total number of matched documents which is available only if the client
     /// set
-    /// \[SearchDocumentsRequest.require_total_size\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest.require_total_size\]
+    /// [SearchDocumentsRequest.require_total_size][google.cloud.contentwarehouse.v1.SearchDocumentsRequest.require_total_size]
     /// to `true` or set
-    /// \[SearchDocumentsRequest.total_result_size\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest.total_result_size\]
+    /// [SearchDocumentsRequest.total_result_size][google.cloud.contentwarehouse.v1.SearchDocumentsRequest.total_result_size]
     /// to `ESTIMATED_SIZE` or `ACTUAL_SIZE`. Otherwise, the value will be `-1`.
-    /// Typically a UI would handle this condition by displaying "of
-    /// many", for example: "Displaying 10 of many".
+    /// Typically a UI would handle this condition by displaying &quot;of
+    /// many&quot;, for example: &quot;Displaying 10 of many&quot;.
     #[prost(int32, tag = "3")]
     pub total_size: i32,
     /// Additional information for the API invocation, such as the request tracking
@@ -2816,7 +2815,7 @@ pub struct SearchDocumentsResponse {
     #[prost(message, optional, tag = "4")]
     pub metadata: ::core::option::Option<ResponseMetadata>,
     /// The histogram results that match with the specified
-    /// \[SearchDocumentsRequest.histogram_queries\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest.histogram_queries\].
+    /// [SearchDocumentsRequest.histogram_queries][google.cloud.contentwarehouse.v1.SearchDocumentsRequest.histogram_queries].
     #[prost(message, repeated, tag = "6")]
     pub histogram_query_results: ::prost::alloc::vec::Vec<HistogramQueryResult>,
     /// Experimental.
@@ -2827,11 +2826,11 @@ pub struct SearchDocumentsResponse {
 /// Nested message and enum types in `SearchDocumentsResponse`.
 pub mod search_documents_response {
     /// Document entry with metadata inside
-    /// \[SearchDocumentsResponse\]\[google.cloud.contentwarehouse.v1.SearchDocumentsResponse\]
+    /// [SearchDocumentsResponse][google.cloud.contentwarehouse.v1.SearchDocumentsResponse]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MatchingDocument {
         /// Document that matches the specified
-        /// \[SearchDocumentsRequest\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest\].
+        /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
         /// This document only contains indexed metadata information.
         #[prost(message, optional, tag = "1")]
         pub document: ::core::option::Option<super::Document>,
@@ -2844,7 +2843,7 @@ pub mod search_documents_response {
         /// contain a snippet that answers the user's natural-language query. No HTML
         /// bold tags will be present, and highlights in the answer snippet can be
         /// found in
-        /// \[QAResult.highlights\]\[google.cloud.contentwarehouse.v1.QAResult.highlights\].
+        /// [QAResult.highlights][google.cloud.contentwarehouse.v1.QAResult.highlights].
         #[prost(string, tag = "2")]
         pub search_text_snippet: ::prost::alloc::string::String,
         /// Experimental.
@@ -2881,7 +2880,13 @@ pub struct SetAclResponse {
 }
 /// Generated client implementations.
 pub mod document_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This service lets you manage document.
@@ -2966,8 +2971,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2994,8 +2998,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3026,8 +3029,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3054,8 +3056,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3074,7 +3075,7 @@ pub mod document_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Searches for documents using provided
-        /// \[SearchDocumentsRequest\]\[google.cloud.contentwarehouse.v1.SearchDocumentsRequest\].
+        /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
         /// This call only returns documents that the caller has permission to search
         /// against.
         pub async fn search_documents(
@@ -3088,8 +3089,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3116,8 +3116,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3149,8 +3148,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3178,8 +3176,7 @@ pub mod document_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3308,22 +3305,20 @@ pub struct IngestPipelineConfig {
     /// The document level acl policy config.
     /// This refers to an Identity and Access (IAM) policy, which specifies access
     /// controls for all documents ingested by the pipeline. The
-    /// \[role\]\[google.iam.v1.Binding.role\] and
-    /// \[members\]\[google.iam.v1.Binding.role\] under the policy needs to be
+    /// [role][google.iam.v1.Binding.role] and
+    /// [members][google.iam.v1.Binding.role] under the policy needs to be
     /// specified.
     ///
     /// The following roles are supported for document level acl control:
-    ///
     /// * roles/contentwarehouse.documentAdmin
     /// * roles/contentwarehouse.documentEditor
     /// * roles/contentwarehouse.documentViewer
     ///
     /// The following members are supported for document level acl control:
-    ///
     /// * user:user-email@example.com
     /// * group:group-email@example.com
-    ///   Note that for documents searched with LLM, only single level user or group
-    ///   acl check is supported.
+    /// Note that for documents searched with LLM, only single level user or group
+    /// acl check is supported.
     #[prost(message, optional, tag = "1")]
     pub document_acl_policy: ::core::option::Option<
         super::super::super::iam::v1::Policy,
@@ -3344,7 +3339,6 @@ pub struct IngestPipelineConfig {
     /// complete within 5 minutes or this file ingestion may fail due to timeout.
     /// Format: `<https://{region}-{project_id}.cloudfunctions.net/{cloud_function}`>
     /// The following keys are available the request json payload.
-    ///
     /// * display_name
     /// * properties
     /// * plain_text
@@ -3357,7 +3351,6 @@ pub struct IngestPipelineConfig {
     /// ingested to the Document AI Warehouse as part of Document proto content
     /// and/or related information. The original values will be overridden if any
     /// key is present in the response.
-    ///
     /// * display_name
     /// * properties
     /// * plain_text
@@ -3519,7 +3512,13 @@ pub mod run_pipeline_request {
 }
 /// Generated client implementations.
 pub mod pipeline_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This service lets you manage pipelines.
@@ -3604,8 +3603,7 @@ pub mod pipeline_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3700,7 +3698,13 @@ pub struct ListRuleSetsResponse {
 }
 /// Generated client implementations.
 pub mod rule_set_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to manage customer specific RuleSets.
@@ -3782,8 +3786,7 @@ pub mod rule_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3810,8 +3813,7 @@ pub mod rule_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3839,8 +3841,7 @@ pub mod rule_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3867,8 +3868,7 @@ pub mod rule_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3898,8 +3898,7 @@ pub mod rule_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4032,7 +4031,13 @@ pub struct DeleteSynonymSetRequest {
 }
 /// Generated client implementations.
 pub mod synonym_set_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A Service that manage/custom customer specified SynonymSets.
@@ -4116,8 +4121,7 @@ pub mod synonym_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4146,8 +4150,7 @@ pub mod synonym_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4176,8 +4179,7 @@ pub mod synonym_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4205,8 +4207,7 @@ pub mod synonym_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4236,8 +4237,7 @@ pub mod synonym_set_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

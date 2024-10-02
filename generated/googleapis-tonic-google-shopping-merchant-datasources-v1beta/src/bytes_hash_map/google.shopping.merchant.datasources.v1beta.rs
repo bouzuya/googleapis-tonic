@@ -107,10 +107,10 @@ pub mod primary_product_data_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Channel::Unspecified => "CHANNEL_UNSPECIFIED",
-                Channel::OnlineProducts => "ONLINE_PRODUCTS",
-                Channel::LocalProducts => "LOCAL_PRODUCTS",
-                Channel::Products => "PRODUCTS",
+                Self::Unspecified => "CHANNEL_UNSPECIFIED",
+                Self::OnlineProducts => "ONLINE_PRODUCTS",
+                Self::LocalProducts => "LOCAL_PRODUCTS",
+                Self::Products => "PRODUCTS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -296,14 +296,14 @@ pub mod file_input {
         /// one of those three protocols. Immutable for Google Sheets files.
         #[prost(string, tag = "7")]
         pub fetch_uri: ::prost::alloc::string::String,
-        /// Optional. An optional user name for \[fetch
-        /// url\]\[google.shopping.content.bundles.DataSources.FileInput.fetch_url\].
+        /// Optional. An optional user name for [fetch
+        /// url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
         /// Used for [submitting data sources through
         /// SFTP](<https://support.google.com/merchants/answer/13813117>).
         #[prost(string, tag = "8")]
         pub username: ::prost::alloc::string::String,
-        /// Optional. An optional password for \[fetch
-        /// url\]\[google.shopping.content.bundles.DataSources.FileInput.fetch_url\].
+        /// Optional. An optional password for [fetch
+        /// url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
         /// Used for [submitting data sources through
         /// SFTP](<https://support.google.com/merchants/answer/13813117>).
         #[prost(string, tag = "9")]
@@ -314,18 +314,18 @@ pub mod file_input {
         /// The required fields vary based on the frequency of fetching. For a
         /// monthly
         /// fetch schedule,
-        /// \[day of
-        /// month\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.day_of_month\]
+        /// [day of
+        /// month][google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.day_of_month]
         /// and
-        /// \[hour of
-        /// day\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.time_of_day\]
+        /// [hour of
+        /// day][google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.time_of_day]
         /// are required. For a weekly fetch schedule,
-        /// \[day of
-        /// week\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.day_of_week\]
-        /// and \[hour of
-        /// day\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.time_of_day\]
-        /// are required. For a daily fetch schedule, only an \[hour of
-        /// day\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.time_of_day\]
+        /// [day of
+        /// week][google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.day_of_week]
+        /// and [hour of
+        /// day][google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.time_of_day]
+        /// are required. For a daily fetch schedule, only an [hour of
+        /// day][google.shopping.content.bundles.DataSources.FileInput.FetchSchedule.time_of_day]
         /// is required.
         #[derive(
             Clone,
@@ -356,10 +356,10 @@ pub mod file_input {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Frequency::Unspecified => "FREQUENCY_UNSPECIFIED",
-                    Frequency::Daily => "FREQUENCY_DAILY",
-                    Frequency::Weekly => "FREQUENCY_WEEKLY",
-                    Frequency::Monthly => "FREQUENCY_MONTHLY",
+                    Self::Unspecified => "FREQUENCY_UNSPECIFIED",
+                    Self::Daily => "FREQUENCY_DAILY",
+                    Self::Weekly => "FREQUENCY_WEEKLY",
+                    Self::Monthly => "FREQUENCY_MONTHLY",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -394,10 +394,10 @@ pub mod file_input {
         /// the Merchant Center.
         Upload = 1,
         /// The file is fetched from the configured
-        /// \[fetch_uri\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSettings.fetch_uri\].
+        /// [fetch_uri][google.shopping.content.bundles.DataSources.FileInput.FetchSettings.fetch_uri].
         Fetch = 2,
         /// The file is fetched from Google Sheets specified in the
-        /// \[fetch_uri\]\[google.shopping.content.bundles.DataSources.FileInput.FetchSettings.fetch_uri\].
+        /// [fetch_uri][google.shopping.content.bundles.DataSources.FileInput.FetchSettings.fetch_uri].
         GoogleSheets = 3,
     }
     impl FileInputType {
@@ -407,10 +407,10 @@ pub mod file_input {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FileInputType::Unspecified => "FILE_INPUT_TYPE_UNSPECIFIED",
-                FileInputType::Upload => "UPLOAD",
-                FileInputType::Fetch => "FETCH",
-                FileInputType::GoogleSheets => "GOOGLE_SHEETS",
+                Self::Unspecified => "FILE_INPUT_TYPE_UNSPECIFIED",
+                Self::Upload => "UPLOAD",
+                Self::Fetch => "FETCH",
+                Self::GoogleSheets => "GOOGLE_SHEETS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -497,11 +497,11 @@ pub mod data_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Input::Unspecified => "INPUT_UNSPECIFIED",
-                Input::Api => "API",
-                Input::File => "FILE",
-                Input::Ui => "UI",
-                Input::Autofeed => "AUTOFEED",
+                Self::Unspecified => "INPUT_UNSPECIFIED",
+                Self::Api => "API",
+                Self::File => "FILE",
+                Self::Ui => "UI",
+                Self::Autofeed => "AUTOFEED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -608,7 +608,7 @@ pub struct UpdateDataSourceRequest {
     /// Fields specified in the update mask without a value specified in the
     /// body will be deleted from the data source.
     ///
-    /// Providing special "\*" value for full data source replacement is not
+    /// Providing special "*" value for full data source replacement is not
     /// supported.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -631,7 +631,13 @@ pub struct DeleteDataSourceRequest {
 }
 /// Generated client implementations.
 pub mod data_sources_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to manage primary, supplemental, inventory and other data sources.
@@ -715,8 +721,7 @@ pub mod data_sources_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -746,8 +751,7 @@ pub mod data_sources_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -774,8 +778,7 @@ pub mod data_sources_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -803,8 +806,7 @@ pub mod data_sources_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -831,8 +833,7 @@ pub mod data_sources_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -863,8 +864,7 @@ pub mod data_sources_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -976,9 +976,9 @@ pub mod file_upload {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                    Severity::Warning => "WARNING",
-                    Severity::Error => "ERROR",
+                    Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                    Self::Warning => "WARNING",
+                    Self::Error => "ERROR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1023,10 +1023,10 @@ pub mod file_upload {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ProcessingState::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
-                ProcessingState::Failed => "FAILED",
-                ProcessingState::InProgress => "IN_PROGRESS",
-                ProcessingState::Succeeded => "SUCCEEDED",
+                Self::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
+                Self::Failed => "FAILED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Succeeded => "SUCCEEDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1052,7 +1052,13 @@ pub struct GetFileUploadRequest {
 }
 /// Generated client implementations.
 pub mod file_uploads_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to manage data source file uploads.
@@ -1135,8 +1141,7 @@ pub mod file_uploads_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -42,8 +42,8 @@ pub mod big_query_connection_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConnectionType::Unspecified => "CONNECTION_TYPE_UNSPECIFIED",
-                ConnectionType::CloudSql => "CLOUD_SQL",
+                Self::Unspecified => "CONNECTION_TYPE_UNSPECIFIED",
+                Self::CloudSql => "CLOUD_SQL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -108,9 +108,9 @@ pub mod cloud_sql_big_query_connection_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DatabaseType::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
-                DatabaseType::Postgres => "POSTGRES",
-                DatabaseType::Mysql => "MYSQL",
+                Self::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
+                Self::Postgres => "POSTGRES",
+                Self::Mysql => "MYSQL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -173,16 +173,16 @@ impl IntegratedSystem {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            IntegratedSystem::Unspecified => "INTEGRATED_SYSTEM_UNSPECIFIED",
-            IntegratedSystem::Bigquery => "BIGQUERY",
-            IntegratedSystem::CloudPubsub => "CLOUD_PUBSUB",
-            IntegratedSystem::DataprocMetastore => "DATAPROC_METASTORE",
-            IntegratedSystem::Dataplex => "DATAPLEX",
-            IntegratedSystem::CloudSpanner => "CLOUD_SPANNER",
-            IntegratedSystem::CloudBigtable => "CLOUD_BIGTABLE",
-            IntegratedSystem::CloudSql => "CLOUD_SQL",
-            IntegratedSystem::Looker => "LOOKER",
-            IntegratedSystem::VertexAi => "VERTEX_AI",
+            Self::Unspecified => "INTEGRATED_SYSTEM_UNSPECIFIED",
+            Self::Bigquery => "BIGQUERY",
+            Self::CloudPubsub => "CLOUD_PUBSUB",
+            Self::DataprocMetastore => "DATAPROC_METASTORE",
+            Self::Dataplex => "DATAPLEX",
+            Self::CloudSpanner => "CLOUD_SPANNER",
+            Self::CloudBigtable => "CLOUD_BIGTABLE",
+            Self::CloudSql => "CLOUD_SQL",
+            Self::Looker => "LOOKER",
+            Self::VertexAi => "VERTEX_AI",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -221,9 +221,9 @@ impl ManagingSystem {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ManagingSystem::Unspecified => "MANAGING_SYSTEM_UNSPECIFIED",
-            ManagingSystem::Dataplex => "MANAGING_SYSTEM_DATAPLEX",
-            ManagingSystem::Other => "MANAGING_SYSTEM_OTHER",
+            Self::Unspecified => "MANAGING_SYSTEM_UNSPECIFIED",
+            Self::Dataplex => "MANAGING_SYSTEM_DATAPLEX",
+            Self::Other => "MANAGING_SYSTEM_OTHER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -283,9 +283,9 @@ pub mod data_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Service::Unspecified => "SERVICE_UNSPECIFIED",
-                Service::CloudStorage => "CLOUD_STORAGE",
-                Service::Bigquery => "BIGQUERY",
+                Self::Unspecified => "SERVICE_UNSPECIFIED",
+                Self::CloudStorage => "CLOUD_STORAGE",
+                Self::Bigquery => "BIGQUERY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -312,22 +312,22 @@ pub struct StorageProperties {
     ///
     /// Examples of a valid `file_pattern`:
     ///
-    /// * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
-    ///   directory
-    /// * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
-    ///   and all subdirectories recursively
-    /// * `gs://bucket_name/file*`: matches files prefixed by `file` in
-    ///   `bucket_name`
-    /// * `gs://bucket_name/??.txt`: matches files with two characters followed by
-    ///   `.txt` in `bucket_name`
-    /// * `gs://bucket_name/\[aeiou\].txt`: matches files that contain a single
-    ///   vowel character followed by `.txt` in
-    ///   `bucket_name`
-    /// * `gs://bucket_name/\[a-m\].txt`: matches files that contain `a`, `b`, ...
-    ///   or `m` followed by `.txt` in `bucket_name`
-    /// * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match
-    ///   the `a/*/b` pattern, such as `a/c/b`, `a/d/b`
-    /// * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
+    ///   * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
+    ///                               directory
+    ///   * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
+    ///                                and all subdirectories recursively
+    ///   * `gs://bucket_name/file*`: matches files prefixed by `file` in
+    ///                               `bucket_name`
+    ///   * `gs://bucket_name/??.txt`: matches files with two characters followed by
+    ///                                `.txt` in `bucket_name`
+    ///   * `gs://bucket_name/\[aeiou\].txt`: matches files that contain a single
+    ///                                     vowel character followed by `.txt` in
+    ///                                     `bucket_name`
+    ///   * `gs://bucket_name/\[a-m\].txt`: matches files that contain `a`, `b`, ...
+    ///                                   or `m` followed by `.txt` in `bucket_name`
+    ///   * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match
+    ///                               the `a/*/b` pattern, such as `a/c/b`, `a/d/b`
+    ///   * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
     #[prost(string, repeated, tag = "1")]
     pub file_pattern: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// File type in MIME format, for example, `text/plain`.
@@ -493,22 +493,22 @@ pub struct GcsFilesetSpec {
     ///
     /// Examples of valid `file_patterns`:
     ///
-    /// * `gs://bucket_name/dir/*`: matches all files in `bucket_name/dir`
-    ///   directory
-    /// * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`
-    ///   and all subdirectories
-    /// * `gs://bucket_name/file*`: matches files prefixed by `file` in
-    ///   `bucket_name`
-    /// * `gs://bucket_name/??.txt`: matches files with two characters followed by
-    ///   `.txt` in `bucket_name`
-    /// * `gs://bucket_name/\[aeiou\].txt`: matches files that contain a single
-    ///   vowel character followed by `.txt` in
-    ///   `bucket_name`
-    /// * `gs://bucket_name/\[a-m\].txt`: matches files that contain `a`, `b`, ...
-    ///   or `m` followed by `.txt` in `bucket_name`
-    /// * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match
-    ///   the `a/*/b` pattern, such as `a/c/b`, `a/d/b`
-    /// * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
+    ///   * `gs://bucket_name/dir/*`: matches all files in `bucket_name/dir`
+    ///                               directory
+    ///   * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`
+    ///                                and all subdirectories
+    ///   * `gs://bucket_name/file*`: matches files prefixed by `file` in
+    ///                               `bucket_name`
+    ///   * `gs://bucket_name/??.txt`: matches files with two characters followed by
+    ///                                `.txt` in `bucket_name`
+    ///   * `gs://bucket_name/\[aeiou\].txt`: matches files that contain a single
+    ///                                     vowel character followed by `.txt` in
+    ///                                     `bucket_name`
+    ///   * `gs://bucket_name/\[a-m\].txt`: matches files that contain `a`, `b`, ...
+    ///                                   or `m` followed by `.txt` in `bucket_name`
+    ///   * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match
+    ///                               the `a/*/b` pattern, such as `a/c/b`, `a/d/b`
+    ///   * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
     ///
     /// You can combine wildcards to match complex sets of files, for example:
     ///
@@ -588,7 +588,6 @@ pub struct ColumnSchema {
     /// Optional. The subtype of the RANGE, if the type of this field is RANGE. If
     /// the type is RANGE, this field is required. Possible values for the field
     /// element type of a RANGE include:
-    ///
     /// * DATE
     /// * DATETIME
     /// * TIMESTAMP
@@ -647,12 +646,12 @@ pub mod column_schema {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    LookerColumnType::Unspecified => "LOOKER_COLUMN_TYPE_UNSPECIFIED",
-                    LookerColumnType::Dimension => "DIMENSION",
-                    LookerColumnType::DimensionGroup => "DIMENSION_GROUP",
-                    LookerColumnType::Filter => "FILTER",
-                    LookerColumnType::Measure => "MEASURE",
-                    LookerColumnType::Parameter => "PARAMETER",
+                    Self::Unspecified => "LOOKER_COLUMN_TYPE_UNSPECIFIED",
+                    Self::Dimension => "DIMENSION",
+                    Self::DimensionGroup => "DIMENSION_GROUP",
+                    Self::Filter => "FILTER",
+                    Self::Measure => "MEASURE",
+                    Self::Parameter => "PARAMETER",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -673,7 +672,7 @@ pub mod column_schema {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FieldElementType {
         /// Required. The type of a field element. See
-        /// \[ColumnSchema.type\]\[google.cloud.datacatalog.v1.ColumnSchema.type\].
+        /// [ColumnSchema.type][google.cloud.datacatalog.v1.ColumnSchema.type].
         #[prost(string, tag = "1")]
         pub r#type: ::prost::alloc::string::String,
     }
@@ -709,11 +708,11 @@ pub mod column_schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IndexingType::Unspecified => "INDEXING_TYPE_UNSPECIFIED",
-                IndexingType::None => "INDEXING_TYPE_NONE",
-                IndexingType::NonUnique => "INDEXING_TYPE_NON_UNIQUE",
-                IndexingType::Unique => "INDEXING_TYPE_UNIQUE",
-                IndexingType::PrimaryKey => "INDEXING_TYPE_PRIMARY_KEY",
+                Self::Unspecified => "INDEXING_TYPE_UNSPECIFIED",
+                Self::None => "INDEXING_TYPE_NONE",
+                Self::NonUnique => "INDEXING_TYPE_NON_UNIQUE",
+                Self::Unique => "INDEXING_TYPE_UNIQUE",
+                Self::PrimaryKey => "INDEXING_TYPE_PRIMARY_KEY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -759,8 +758,8 @@ pub struct SearchCatalogResult {
     ///
     /// Examples:
     ///
-    /// * `projects/{PROJECT_ID}/locations/{LOCATION_ID}/entryGroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`
-    /// * `projects/{PROJECT_ID}/tagTemplates/{TAG_TEMPLATE_ID}`
+    ///   * `projects/{PROJECT_ID}/locations/{LOCATION_ID}/entryGroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`
+    ///   * `projects/{PROJECT_ID}/tagTemplates/{TAG_TEMPLATE_ID}`
     #[prost(string, tag = "3")]
     pub relative_resource_name: ::prost::alloc::string::String,
     /// The full name of the Google Cloud resource the entry belongs to.
@@ -782,11 +781,11 @@ pub struct SearchCatalogResult {
     ///
     /// * For non-regionalized resources:
     ///
-    ///   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+    ///    `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
     ///
     /// * For regionalized resources:
     ///
-    ///   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+    ///    `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
     ///
     /// Example for a DPMS table:
     ///
@@ -826,11 +825,11 @@ pub mod search_catalog_result {
 pub enum SearchResultType {
     /// Default unknown type.
     Unspecified = 0,
-    /// An \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
+    /// An [Entry][google.cloud.datacatalog.v1.Entry].
     Entry = 1,
-    /// A \[TagTemplate\]\[google.cloud.datacatalog.v1.TagTemplate\].
+    /// A [TagTemplate][google.cloud.datacatalog.v1.TagTemplate].
     TagTemplate = 2,
-    /// An \[EntryGroup\]\[google.cloud.datacatalog.v1.EntryGroup\].
+    /// An [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
     EntryGroup = 3,
 }
 impl SearchResultType {
@@ -840,10 +839,10 @@ impl SearchResultType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SearchResultType::Unspecified => "SEARCH_RESULT_TYPE_UNSPECIFIED",
-            SearchResultType::Entry => "ENTRY",
-            SearchResultType::TagTemplate => "TAG_TEMPLATE",
-            SearchResultType::EntryGroup => "ENTRY_GROUP",
+            Self::Unspecified => "SEARCH_RESULT_TYPE_UNSPECIFIED",
+            Self::Entry => "ENTRY",
+            Self::TagTemplate => "TAG_TEMPLATE",
+            Self::EntryGroup => "ENTRY_GROUP",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -949,10 +948,10 @@ impl TableSourceType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TableSourceType::Unspecified => "TABLE_SOURCE_TYPE_UNSPECIFIED",
-            TableSourceType::BigqueryView => "BIGQUERY_VIEW",
-            TableSourceType::BigqueryTable => "BIGQUERY_TABLE",
-            TableSourceType::BigqueryMaterializedView => "BIGQUERY_MATERIALIZED_VIEW",
+            Self::Unspecified => "TABLE_SOURCE_TYPE_UNSPECIFIED",
+            Self::BigqueryView => "BIGQUERY_VIEW",
+            Self::BigqueryTable => "BIGQUERY_TABLE",
+            Self::BigqueryMaterializedView => "BIGQUERY_MATERIALIZED_VIEW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1029,7 +1028,7 @@ pub mod tag {
     }
 }
 /// Contains the value and additional information on a field within
-/// a \[Tag\]\[google.cloud.datacatalog.v1.Tag\].
+/// a [Tag][google.cloud.datacatalog.v1.Tag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagField {
     /// Output only. The display name of this field.
@@ -1037,7 +1036,7 @@ pub struct TagField {
     pub display_name: ::prost::alloc::string::String,
     /// Output only. The order of this field with respect to other fields in this
     /// tag. Can be set by
-    /// \[Tag\]\[google.cloud.datacatalog.v1.TagTemplateField.order\].
+    /// [Tag][google.cloud.datacatalog.v1.TagTemplateField.order].
     ///
     /// For example, a higher value can indicate a more important field.
     /// The value can be negative. Multiple fields can have the same order, and
@@ -1091,7 +1090,7 @@ pub mod tag_field {
 /// A tag template defines a tag that can have one or more typed fields.
 ///
 /// The template is used to create tags that are attached to Google Cloud
-/// resources. \[Tag template roles\]
+///   resources. \[Tag template roles\]
 /// (<https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles>)
 /// provide permissions to create, edit, and use the template. For example,
 /// see the \[TagTemplate User\]
@@ -1107,17 +1106,17 @@ pub struct TagTemplate {
     pub name: ::prost::alloc::string::String,
     /// Display name for this template. Defaults to an empty string.
     ///
-    /// The name must contain only Unicode letters, numbers (0-9), underscores (\_),
+    /// The name must contain only Unicode letters, numbers (0-9), underscores (_),
     /// dashes (-), spaces ( ), and can't start or end with spaces.
     /// The maximum length is 200 characters.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// Indicates whether tags created with this template are public. Public tags
     /// do not require tag template access to appear in
-    /// \[ListTags\]\[google.cloud.datacatalog.v1.ListTags\] API response.
+    /// [ListTags][google.cloud.datacatalog.v1.ListTags] API response.
     ///
     /// Additionally, you can search for a public tag by value with a
-    /// simple search query in addition to using a `tag:` predicate.
+    /// simple search query in addition to using a ``tag:`` predicate.
     #[prost(bool, tag = "5")]
     pub is_publicly_readable: bool,
     /// Required. Map of tag template field IDs to the settings for the field.
@@ -1128,7 +1127,7 @@ pub struct TagTemplate {
     /// following limitations:
     ///
     /// * Can contain uppercase and lowercase letters, numbers (0-9) and
-    ///   underscores (\_).
+    ///    underscores (_).
     /// * Must be at least 1 character and at most 64 characters long.
     /// * Must start with a letter or underscore.
     #[prost(map = "string, message", tag = "3")]
@@ -1149,13 +1148,13 @@ pub struct TagTemplateField {
     /// specified in its name.
     ///
     /// The name must contain only letters (a-z, A-Z), numbers (0-9),
-    /// or underscores (\_), and must start with a letter or underscore.
+    /// or underscores (_), and must start with a letter or underscore.
     /// The maximum length is 64 characters.
     #[prost(string, tag = "6")]
     pub name: ::prost::alloc::string::String,
     /// The display name for this field. Defaults to an empty string.
     ///
-    /// The name must contain only Unicode letters, numbers (0-9), underscores (\_),
+    /// The name must contain only Unicode letters, numbers (0-9), underscores (_),
     /// dashes (-), spaces ( ), and can't start or end with spaces.
     /// The maximum length is 200 characters.
     #[prost(string, tag = "1")]
@@ -1208,7 +1207,7 @@ pub mod field_type {
             /// string.
             ///
             /// The name must contain only Unicode letters, numbers (0-9), underscores
-            /// (\_), dashes (-), spaces ( ), and can't start or end with spaces. The
+            /// (_), dashes (-), spaces ( ), and can't start or end with spaces. The
             /// maximum length is 200 characters.
             #[prost(string, tag = "1")]
             pub display_name: ::prost::alloc::string::String,
@@ -1247,12 +1246,12 @@ pub mod field_type {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PrimitiveType::Unspecified => "PRIMITIVE_TYPE_UNSPECIFIED",
-                PrimitiveType::Double => "DOUBLE",
-                PrimitiveType::String => "STRING",
-                PrimitiveType::Bool => "BOOL",
-                PrimitiveType::Timestamp => "TIMESTAMP",
-                PrimitiveType::Richtext => "RICHTEXT",
+                Self::Unspecified => "PRIMITIVE_TYPE_UNSPECIFIED",
+                Self::Double => "DOUBLE",
+                Self::String => "STRING",
+                Self::Bool => "BOOL",
+                Self::Timestamp => "TIMESTAMP",
+                Self::Richtext => "RICHTEXT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1283,12 +1282,12 @@ pub mod field_type {
 ///
 /// Usage statistics have the following limitations:
 ///
-/// * Only BigQuery tables have them.
-/// * They only include BigQuery query jobs.
-/// * They might be underestimated because wildcard table references
-///   are not yet counted. For more information, see
-///   \[Querying multiple tables using a wildcard table\]
-///   (<https://cloud.google.com/bigquery/docs/querying-wildcard-tables>)
+/// - Only BigQuery tables have them.
+/// - They only include BigQuery query jobs.
+/// - They might be underestimated because wildcard table references
+///    are not yet counted. For more information, see
+///    \[Querying multiple tables using a wildcard table\]
+///    (<https://cloud.google.com/bigquery/docs/querying-wildcard-tables>)
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UsageStats {
     /// The number of successful uses of the underlying entry.
@@ -1344,7 +1343,7 @@ pub struct UsageSignal {
     pub favorite_count: ::core::option::Option<i64>,
 }
 /// Request message for
-/// \[SearchCatalog\]\[google.cloud.datacatalog.v1.DataCatalog.SearchCatalog\].
+/// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCatalogRequest {
     /// Required. The scope of this search request.
@@ -1379,9 +1378,9 @@ pub struct SearchCatalogRequest {
     /// search results. If empty, returns the first page.
     ///
     /// This token is returned in the
-    /// \[SearchCatalogResponse.next_page_token\]\[google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token\]
+    /// [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
     /// field of the response to a previous
-    /// \[SearchCatalogRequest\]\[google.cloud.datacatalog.v1.DataCatalog.SearchCatalog\]
+    /// [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -1465,7 +1464,7 @@ pub mod search_catalog_request {
     }
 }
 /// Response message for
-/// \[SearchCatalog\]\[google.cloud.datacatalog.v1.DataCatalog.SearchCatalog\].
+/// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCatalogResponse {
     /// Search results.
@@ -1488,7 +1487,7 @@ pub struct SearchCatalogResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[CreateEntryGroup\]\[google.cloud.datacatalog.v1.DataCatalog.CreateEntryGroup\].
+/// [CreateEntryGroup][google.cloud.datacatalog.v1.DataCatalog.CreateEntryGroup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEntryGroupRequest {
     /// Required. The names of the project and location that the new entry group
@@ -1501,7 +1500,7 @@ pub struct CreateEntryGroupRequest {
     /// Required. The ID of the entry group to create.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and must start with a letter or underscore.
+    /// underscores (_), and must start with a letter or underscore.
     /// The maximum size is 64 bytes when encoded in UTF-8.
     #[prost(string, tag = "3")]
     pub entry_group_id: ::prost::alloc::string::String,
@@ -1510,7 +1509,7 @@ pub struct CreateEntryGroupRequest {
     pub entry_group: ::core::option::Option<EntryGroup>,
 }
 /// Request message for
-/// \[UpdateEntryGroup\]\[google.cloud.datacatalog.v1.DataCatalog.UpdateEntryGroup\].
+/// [UpdateEntryGroup][google.cloud.datacatalog.v1.DataCatalog.UpdateEntryGroup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEntryGroupRequest {
     /// Required. Updates for the entry group. The `name` field must be set.
@@ -1525,7 +1524,7 @@ pub struct UpdateEntryGroupRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[GetEntryGroup\]\[google.cloud.datacatalog.v1.DataCatalog.GetEntryGroup\].
+/// [GetEntryGroup][google.cloud.datacatalog.v1.DataCatalog.GetEntryGroup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEntryGroupRequest {
     /// Required. The name of the entry group to get.
@@ -1536,7 +1535,7 @@ pub struct GetEntryGroupRequest {
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[DeleteEntryGroup\]\[google.cloud.datacatalog.v1.DataCatalog.DeleteEntryGroup\].
+/// [DeleteEntryGroup][google.cloud.datacatalog.v1.DataCatalog.DeleteEntryGroup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEntryGroupRequest {
     /// Required. The name of the entry group to delete.
@@ -1547,7 +1546,7 @@ pub struct DeleteEntryGroupRequest {
     pub force: bool,
 }
 /// Request message for
-/// \[ListEntryGroups\]\[google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups\].
+/// [ListEntryGroups][google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntryGroupsRequest {
     /// Required. The name of the location that contains the entry groups to list.
@@ -1567,7 +1566,7 @@ pub struct ListEntryGroupsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListEntryGroups\]\[google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups\].
+/// [ListEntryGroups][google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntryGroupsResponse {
     /// Entry group details.
@@ -1579,7 +1578,7 @@ pub struct ListEntryGroupsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CreateEntry\]\[google.cloud.datacatalog.v1.DataCatalog.CreateEntry\].
+/// [CreateEntry][google.cloud.datacatalog.v1.DataCatalog.CreateEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEntryRequest {
     /// Required. The name of the entry group this entry belongs to.
@@ -1591,7 +1590,7 @@ pub struct CreateEntryRequest {
     /// Required. The ID of the entry to create.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// and underscores (\_).
+    /// and underscores (_).
     /// The maximum size is 64 bytes when encoded in UTF-8.
     #[prost(string, tag = "3")]
     pub entry_id: ::prost::alloc::string::String,
@@ -1600,7 +1599,7 @@ pub struct CreateEntryRequest {
     pub entry: ::core::option::Option<Entry>,
 }
 /// Request message for
-/// \[UpdateEntry\]\[google.cloud.datacatalog.v1.DataCatalog.UpdateEntry\].
+/// [UpdateEntry][google.cloud.datacatalog.v1.DataCatalog.UpdateEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEntryRequest {
     /// Required. Updates for the entry. The `name` field must be set.
@@ -1639,7 +1638,7 @@ pub struct UpdateEntryRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[DeleteEntry\]\[google.cloud.datacatalog.v1.DataCatalog.DeleteEntry\].
+/// [DeleteEntry][google.cloud.datacatalog.v1.DataCatalog.DeleteEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEntryRequest {
     /// Required. The name of the entry to delete.
@@ -1647,7 +1646,7 @@ pub struct DeleteEntryRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[GetEntry\]\[google.cloud.datacatalog.v1.DataCatalog.GetEntry\].
+/// [GetEntry][google.cloud.datacatalog.v1.DataCatalog.GetEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEntryRequest {
     /// Required. The name of the entry to get.
@@ -1655,7 +1654,7 @@ pub struct GetEntryRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[LookupEntry\]\[google.cloud.datacatalog.v1.DataCatalog.LookupEntry\].
+/// [LookupEntry][google.cloud.datacatalog.v1.DataCatalog.LookupEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupEntryRequest {
     /// Project where the lookup should be performed. Required to lookup
@@ -1685,8 +1684,8 @@ pub mod lookup_entry_request {
         ///
         /// Full names are case-sensitive. For example:
         ///
-        /// * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
-        /// * `//pubsub.googleapis.com/projects/{PROJECT_ID}/topics/{TOPIC_ID}`
+        ///   * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+        ///   * `//pubsub.googleapis.com/projects/{PROJECT_ID}/topics/{TOPIC_ID}`
         #[prost(string, tag = "1")]
         LinkedResource(::prost::alloc::string::String),
         /// The SQL name of the entry. SQL names are case-sensitive.
@@ -1712,11 +1711,11 @@ pub mod lookup_entry_request {
         ///
         /// * For non-regionalized resources:
         ///
-        ///   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+        ///    `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
         ///
         /// * For regionalized resources:
         ///
-        ///   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+        ///    `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
         ///
         /// Example for a DPMS table:
         ///
@@ -1734,7 +1733,7 @@ pub mod lookup_entry_request {
 ///
 /// An entry resource contains resource details, for example, its schema.
 /// Additionally, you can attach flexible metadata to an entry in the form of a
-/// \[Tag\]\[google.cloud.datacatalog.v1.Tag\].
+/// [Tag][google.cloud.datacatalog.v1.Tag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entry {
     /// Output only. The resource name of an entry in URL format.
@@ -1758,7 +1757,7 @@ pub struct Entry {
     /// defaults to an empty string.
     ///
     /// The resource string must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), periods (.), colons (:), slashes (/), dashes (-),
+    /// underscores (_), periods (.), colons (:), slashes (/), dashes (-),
     /// and hashes (#).
     /// The maximum size is 200 bytes when encoded in UTF-8.
     #[prost(string, tag = "9")]
@@ -1768,6 +1767,7 @@ pub struct Entry {
     /// of the resource. Set automatically for entries representing resources from
     /// synced systems. Settable only during creation, and read-only later. Can
     /// be used for search and lookup of the entries.
+    ///
     #[prost(string, tag = "29")]
     pub fully_qualified_name: ::prost::alloc::string::String,
     /// Display name of an entry.
@@ -2022,9 +2022,9 @@ pub mod database_table_spec {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ViewType::Unspecified => "VIEW_TYPE_UNSPECIFIED",
-                    ViewType::StandardView => "STANDARD_VIEW",
-                    ViewType::MaterializedView => "MATERIALIZED_VIEW",
+                    Self::Unspecified => "VIEW_TYPE_UNSPECIFIED",
+                    Self::StandardView => "STANDARD_VIEW",
+                    Self::MaterializedView => "MATERIALIZED_VIEW",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2076,9 +2076,9 @@ pub mod database_table_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TableType::Unspecified => "TABLE_TYPE_UNSPECIFIED",
-                TableType::Native => "NATIVE",
-                TableType::External => "EXTERNAL",
+                Self::Unspecified => "TABLE_TYPE_UNSPECIFIED",
+                Self::Native => "NATIVE",
+                Self::External => "EXTERNAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2188,10 +2188,10 @@ pub mod routine_spec {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Mode::Unspecified => "MODE_UNSPECIFIED",
-                    Mode::In => "IN",
-                    Mode::Out => "OUT",
-                    Mode::Inout => "INOUT",
+                    Self::Unspecified => "MODE_UNSPECIFIED",
+                    Self::In => "IN",
+                    Self::Out => "OUT",
+                    Self::Inout => "INOUT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2234,9 +2234,9 @@ pub mod routine_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RoutineType::Unspecified => "ROUTINE_TYPE_UNSPECIFIED",
-                RoutineType::ScalarFunction => "SCALAR_FUNCTION",
-                RoutineType::Procedure => "PROCEDURE",
+                Self::Unspecified => "ROUTINE_TYPE_UNSPECIFIED",
+                Self::ScalarFunction => "SCALAR_FUNCTION",
+                Self::Procedure => "PROCEDURE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2282,10 +2282,10 @@ pub mod dataset_spec {
 pub struct SqlDatabaseSystemSpec {
     /// SQL Database Engine.
     /// enum SqlEngine {
-    /// UNDEFINED = 0;
-    /// MY_SQL = 1;
-    /// POSTGRE_SQL = 2;
-    /// SQL_SERVER = 3;
+    ///   UNDEFINED = 0;
+    ///   MY_SQL = 1;
+    ///   POSTGRE_SQL = 2;
+    ///   SQL_SERVER = 3;
     /// }
     /// Engine of the enclosing database instance.
     #[prost(string, tag = "1")]
@@ -2295,11 +2295,11 @@ pub struct SqlDatabaseSystemSpec {
     pub database_version: ::prost::alloc::string::String,
     /// Host of the SQL database
     /// enum InstanceHost {
-    /// UNDEFINED = 0;
-    /// SELF_HOSTED = 1;
-    /// CLOUD_SQL = 2;
-    /// AMAZON_RDS = 3;
-    /// AZURE_SQL = 4;
+    ///   UNDEFINED = 0;
+    ///   SELF_HOSTED = 1;
+    ///   CLOUD_SQL = 2;
+    ///   AMAZON_RDS = 3;
+    ///   AZURE_SQL = 4;
     /// }
     /// Host of the enclousing database instance.
     #[prost(string, tag = "3")]
@@ -2396,7 +2396,7 @@ pub struct VertexModelSourceInfo {
     #[prost(enumeration = "vertex_model_source_info::ModelSourceType", tag = "1")]
     pub source_type: i32,
     /// If this Model is copy of another Model. If true then
-    /// \[source_type\]\[google.cloud.datacatalog.v1.VertexModelSourceInfo.source_type\]
+    /// [source_type][google.cloud.datacatalog.v1.VertexModelSourceInfo.source_type]
     /// pertains to the original.
     #[prost(bool, tag = "2")]
     pub copy: bool,
@@ -2435,11 +2435,11 @@ pub mod vertex_model_source_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ModelSourceType::Unspecified => "MODEL_SOURCE_TYPE_UNSPECIFIED",
-                ModelSourceType::Automl => "AUTOML",
-                ModelSourceType::Custom => "CUSTOM",
-                ModelSourceType::Bqml => "BQML",
-                ModelSourceType::ModelGarden => "MODEL_GARDEN",
+                Self::Unspecified => "MODEL_SOURCE_TYPE_UNSPECIFIED",
+                Self::Automl => "AUTOML",
+                Self::Custom => "CUSTOM",
+                Self::Bqml => "BQML",
+                Self::ModelGarden => "MODEL_GARDEN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2541,19 +2541,19 @@ pub mod vertex_dataset_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
-                DataType::Table => "TABLE",
-                DataType::Image => "IMAGE",
-                DataType::Text => "TEXT",
-                DataType::Video => "VIDEO",
-                DataType::Conversation => "CONVERSATION",
-                DataType::TimeSeries => "TIME_SERIES",
-                DataType::Document => "DOCUMENT",
-                DataType::TextToSpeech => "TEXT_TO_SPEECH",
-                DataType::Translation => "TRANSLATION",
-                DataType::StoreVision => "STORE_VISION",
-                DataType::EnterpriseKnowledgeGraph => "ENTERPRISE_KNOWLEDGE_GRAPH",
-                DataType::TextPrompt => "TEXT_PROMPT",
+                Self::Unspecified => "DATA_TYPE_UNSPECIFIED",
+                Self::Table => "TABLE",
+                Self::Image => "IMAGE",
+                Self::Text => "TEXT",
+                Self::Video => "VIDEO",
+                Self::Conversation => "CONVERSATION",
+                Self::TimeSeries => "TIME_SERIES",
+                Self::Document => "DOCUMENT",
+                Self::TextToSpeech => "TEXT_TO_SPEECH",
+                Self::Translation => "TRANSLATION",
+                Self::StoreVision => "STORE_VISION",
+                Self::EnterpriseKnowledgeGraph => "ENTERPRISE_KNOWLEDGE_GRAPH",
+                Self::TextPrompt => "TEXT_PROMPT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2642,7 +2642,7 @@ pub mod contacts {
 /// Entry group metadata.
 ///
 /// An `EntryGroup` resource represents a logical grouping of zero or more
-/// Data Catalog \[Entry\]\[google.cloud.datacatalog.v1.Entry\] resources.
+/// Data Catalog [Entry][google.cloud.datacatalog.v1.Entry] resources.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntryGroup {
     /// The resource name of the entry group in URL format.
@@ -2665,7 +2665,7 @@ pub struct EntryGroup {
     pub data_catalog_timestamps: ::core::option::Option<SystemTimestamps>,
 }
 /// Request message for
-/// \[CreateTagTemplate\]\[google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplate\].
+/// [CreateTagTemplate][google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplate].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagTemplateRequest {
     /// Required. The name of the project and the template location
@@ -2675,7 +2675,7 @@ pub struct CreateTagTemplateRequest {
     /// Required. The ID of the tag template to create.
     ///
     /// The ID must contain only lowercase letters (a-z), numbers (0-9),
-    /// or underscores (\_), and must start with a letter or underscore.
+    /// or underscores (_), and must start with a letter or underscore.
     /// The maximum size is 64 bytes when encoded in UTF-8.
     #[prost(string, tag = "3")]
     pub tag_template_id: ::prost::alloc::string::String,
@@ -2684,7 +2684,7 @@ pub struct CreateTagTemplateRequest {
     pub tag_template: ::core::option::Option<TagTemplate>,
 }
 /// Request message for
-/// \[GetTagTemplate\]\[google.cloud.datacatalog.v1.DataCatalog.GetTagTemplate\].
+/// [GetTagTemplate][google.cloud.datacatalog.v1.DataCatalog.GetTagTemplate].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTagTemplateRequest {
     /// Required. The name of the tag template to get.
@@ -2692,7 +2692,7 @@ pub struct GetTagTemplateRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[UpdateTagTemplate\]\[google.cloud.datacatalog.v1.DataCatalog.UpdateTagTemplate\].
+/// [UpdateTagTemplate][google.cloud.datacatalog.v1.DataCatalog.UpdateTagTemplate].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagTemplateRequest {
     /// Required. The template to update. The `name` field must be set.
@@ -2711,7 +2711,7 @@ pub struct UpdateTagTemplateRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[DeleteTagTemplate\]\[google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplate\].
+/// [DeleteTagTemplate][google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplate].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagTemplateRequest {
     /// Required. The name of the tag template to delete.
@@ -2724,7 +2724,7 @@ pub struct DeleteTagTemplateRequest {
     pub force: bool,
 }
 /// Request message for
-/// \[CreateTag\]\[google.cloud.datacatalog.v1.DataCatalog.CreateTag\].
+/// [CreateTag][google.cloud.datacatalog.v1.DataCatalog.CreateTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagRequest {
     /// Required. The name of the resource to attach this tag to.
@@ -2741,7 +2741,7 @@ pub struct CreateTagRequest {
     pub tag: ::core::option::Option<Tag>,
 }
 /// Request message for
-/// \[UpdateTag\]\[google.cloud.datacatalog.v1.DataCatalog.UpdateTag\].
+/// [UpdateTag][google.cloud.datacatalog.v1.DataCatalog.UpdateTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagRequest {
     /// Required. The updated tag. The "name" field must be set.
@@ -2757,7 +2757,7 @@ pub struct UpdateTagRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[DeleteTag\]\[google.cloud.datacatalog.v1.DataCatalog.DeleteTag\].
+/// [DeleteTag][google.cloud.datacatalog.v1.DataCatalog.DeleteTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagRequest {
     /// Required. The name of the tag to delete.
@@ -2765,7 +2765,7 @@ pub struct DeleteTagRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CreateTagTemplateField\]\[google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplateField\].
+/// [CreateTagTemplateField][google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplateField].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagTemplateFieldRequest {
     /// Required. The name of the project and the template location
@@ -2777,7 +2777,7 @@ pub struct CreateTagTemplateFieldRequest {
     /// Note: Adding a required field to an existing template is *not* allowed.
     ///
     /// Field IDs can contain letters (both uppercase and lowercase), numbers
-    /// (0-9), underscores (\_) and dashes (-). Field IDs must be at least 1
+    /// (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
     /// character long and at most 128 characters long. Field IDs must also be
     /// unique within their template.
     #[prost(string, tag = "2")]
@@ -2787,7 +2787,7 @@ pub struct CreateTagTemplateFieldRequest {
     pub tag_template_field: ::core::option::Option<TagTemplateField>,
 }
 /// Request message for
-/// \[UpdateTagTemplateField\]\[google.cloud.datacatalog.v1.DataCatalog.UpdateTagTemplateField\].
+/// [UpdateTagTemplateField][google.cloud.datacatalog.v1.DataCatalog.UpdateTagTemplateField].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagTemplateFieldRequest {
     /// Required. The name of the tag template field.
@@ -2816,7 +2816,7 @@ pub struct UpdateTagTemplateFieldRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[RenameTagTemplateField\]\[google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateField\].
+/// [RenameTagTemplateField][google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateField].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameTagTemplateFieldRequest {
     /// Required. The name of the tag template field.
@@ -2828,7 +2828,7 @@ pub struct RenameTagTemplateFieldRequest {
     pub new_tag_template_field_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[RenameTagTemplateFieldEnumValue\]\[google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateFieldEnumValue\].
+/// [RenameTagTemplateFieldEnumValue][google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateFieldEnumValue].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameTagTemplateFieldEnumValueRequest {
     /// Required. The name of the enum field value.
@@ -2840,7 +2840,7 @@ pub struct RenameTagTemplateFieldEnumValueRequest {
     pub new_enum_value_display_name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DeleteTagTemplateField\]\[google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplateField\].
+/// [DeleteTagTemplateField][google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplateField].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagTemplateFieldRequest {
     /// Required. The name of the tag template field to delete.
@@ -2853,13 +2853,13 @@ pub struct DeleteTagTemplateFieldRequest {
     pub force: bool,
 }
 /// Request message for
-/// \[ListTags\]\[google.cloud.datacatalog.v1.DataCatalog.ListTags\].
+/// [ListTags][google.cloud.datacatalog.v1.DataCatalog.ListTags].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTagsRequest {
     /// Required. The name of the Data Catalog resource to list the tags of.
     ///
-    /// The resource can be an \[Entry\]\[google.cloud.datacatalog.v1.Entry\]
-    /// or an \[EntryGroup\]\[google.cloud.datacatalog.v1.EntryGroup\]
+    /// The resource can be an [Entry][google.cloud.datacatalog.v1.Entry]
+    /// or an [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]
     /// (without `/entries/{entries}` at the end).
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -2872,10 +2872,10 @@ pub struct ListTagsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListTags\]\[google.cloud.datacatalog.v1.DataCatalog.ListTags\].
+/// [ListTags][google.cloud.datacatalog.v1.DataCatalog.ListTags].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTagsResponse {
-    /// \[Tag\]\[google.cloud.datacatalog.v1.Tag\] details.
+    /// [Tag][google.cloud.datacatalog.v1.Tag] details.
     #[prost(message, repeated, tag = "1")]
     pub tags: ::prost::alloc::vec::Vec<Tag>,
     /// Pagination token of the next results page. Empty if there are
@@ -2884,10 +2884,10 @@ pub struct ListTagsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[ReconcileTags\]\[google.cloud.datacatalog.v1.DataCatalog.ReconcileTags\].
+/// [ReconcileTags][google.cloud.datacatalog.v1.DataCatalog.ReconcileTags].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReconcileTagsRequest {
-    /// Required. Name of \[Entry\]\[google.cloud.datacatalog.v1.Entry\] to be tagged.
+    /// Required. Name of [Entry][google.cloud.datacatalog.v1.Entry] to be tagged.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The name of the tag template, which is used for reconciliation.
@@ -2905,9 +2905,9 @@ pub struct ReconcileTagsRequest {
     #[prost(message, repeated, tag = "4")]
     pub tags: ::prost::alloc::vec::Vec<Tag>,
 }
-/// \[Long-running operation\]\[google.longrunning.Operation\]
+/// [Long-running operation][google.longrunning.Operation]
 /// response message returned by
-/// \[ReconcileTags\]\[google.cloud.datacatalog.v1.DataCatalog.ReconcileTags\].
+/// [ReconcileTags][google.cloud.datacatalog.v1.DataCatalog.ReconcileTags].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReconcileTagsResponse {
     /// Number of tags created in the request.
@@ -2920,16 +2920,16 @@ pub struct ReconcileTagsResponse {
     #[prost(int64, tag = "3")]
     pub deleted_tags_count: i64,
 }
-/// \[Long-running operation\]\[google.longrunning.Operation\]
+/// [Long-running operation][google.longrunning.Operation]
 /// metadata message returned by the
-/// \[ReconcileTags\]\[google.cloud.datacatalog.v1.DataCatalog.ReconcileTags\].
+/// [ReconcileTags][google.cloud.datacatalog.v1.DataCatalog.ReconcileTags].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReconcileTagsMetadata {
     /// State of the reconciliation operation.
     #[prost(enumeration = "reconcile_tags_metadata::ReconciliationState", tag = "1")]
     pub state: i32,
     /// Maps the name of each tagged column (or empty string for a
-    /// sole entry) to tagging operation \[status\]\[google.rpc.Status\].
+    /// sole entry) to tagging operation [status][google.rpc.Status].
     #[prost(map = "string, message", tag = "2")]
     pub errors: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -2968,12 +2968,10 @@ pub mod reconcile_tags_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReconciliationState::Unspecified => "RECONCILIATION_STATE_UNSPECIFIED",
-                ReconciliationState::ReconciliationQueued => "RECONCILIATION_QUEUED",
-                ReconciliationState::ReconciliationInProgress => {
-                    "RECONCILIATION_IN_PROGRESS"
-                }
-                ReconciliationState::ReconciliationDone => "RECONCILIATION_DONE",
+                Self::Unspecified => "RECONCILIATION_STATE_UNSPECIFIED",
+                Self::ReconciliationQueued => "RECONCILIATION_QUEUED",
+                Self::ReconciliationInProgress => "RECONCILIATION_IN_PROGRESS",
+                Self::ReconciliationDone => "RECONCILIATION_DONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2989,7 +2987,7 @@ pub mod reconcile_tags_metadata {
     }
 }
 /// Request message for
-/// \[ListEntries\]\[google.cloud.datacatalog.v1.DataCatalog.ListEntries\].
+/// [ListEntries][google.cloud.datacatalog.v1.DataCatalog.ListEntries].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntriesRequest {
     /// Required. The name of the entry group that contains the entries to list.
@@ -3014,7 +3012,7 @@ pub struct ListEntriesRequest {
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Response message for
-/// \[ListEntries\]\[google.cloud.datacatalog.v1.DataCatalog.ListEntries\].
+/// [ListEntries][google.cloud.datacatalog.v1.DataCatalog.ListEntries].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntriesResponse {
     /// Entry details.
@@ -3026,7 +3024,7 @@ pub struct ListEntriesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[StarEntry\]\[google.cloud.datacatalog.v1.DataCatalog.StarEntry\].
+/// [StarEntry][google.cloud.datacatalog.v1.DataCatalog.StarEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StarEntryRequest {
     /// Required. The name of the entry to mark as starred.
@@ -3034,12 +3032,12 @@ pub struct StarEntryRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[StarEntry\]\[google.cloud.datacatalog.v1.DataCatalog.StarEntry\].
+/// [StarEntry][google.cloud.datacatalog.v1.DataCatalog.StarEntry].
 /// Empty for now
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StarEntryResponse {}
 /// Request message for
-/// \[UnstarEntry\]\[google.cloud.datacatalog.v1.DataCatalog.UnstarEntry\].
+/// [UnstarEntry][google.cloud.datacatalog.v1.DataCatalog.UnstarEntry].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnstarEntryRequest {
     /// Required. The name of the entry to mark as **not** starred.
@@ -3047,12 +3045,12 @@ pub struct UnstarEntryRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[UnstarEntry\]\[google.cloud.datacatalog.v1.DataCatalog.UnstarEntry\].
+/// [UnstarEntry][google.cloud.datacatalog.v1.DataCatalog.UnstarEntry].
 /// Empty for now
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UnstarEntryResponse {}
 /// Request message for
-/// \[ImportEntries\]\[google.cloud.datacatalog.v1.DataCatalog.ImportEntries\]
+/// [ImportEntries][google.cloud.datacatalog.v1.DataCatalog.ImportEntries]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportEntriesRequest {
@@ -3077,9 +3075,9 @@ pub mod import_entries_request {
         GcsBucketPath(::prost::alloc::string::String),
     }
 }
-/// Response message for \[long-running operation\]\[google.longrunning.Operation\]
+/// Response message for [long-running operation][google.longrunning.Operation]
 /// returned by the
-/// \[ImportEntries\]\[google.cloud.datacatalog.v1.DataCatalog.ImportEntries\].
+/// [ImportEntries][google.cloud.datacatalog.v1.DataCatalog.ImportEntries].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImportEntriesResponse {
     /// Cumulative number of entries created and entries updated as a result of
@@ -3090,9 +3088,9 @@ pub struct ImportEntriesResponse {
     #[prost(int64, optional, tag = "6")]
     pub deleted_entries_count: ::core::option::Option<i64>,
 }
-/// Metadata message for \[long-running operation\]\[google.longrunning.Operation\]
+/// Metadata message for [long-running operation][google.longrunning.Operation]
 /// returned by the
-/// \[ImportEntries\]\[google.cloud.datacatalog.v1.DataCatalog.ImportEntries\].
+/// [ImportEntries][google.cloud.datacatalog.v1.DataCatalog.ImportEntries].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportEntriesMetadata {
     /// State of the import operation.
@@ -3139,11 +3137,11 @@ pub mod import_entries_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ImportState::Unspecified => "IMPORT_STATE_UNSPECIFIED",
-                ImportState::ImportQueued => "IMPORT_QUEUED",
-                ImportState::ImportInProgress => "IMPORT_IN_PROGRESS",
-                ImportState::ImportDone => "IMPORT_DONE",
-                ImportState::ImportObsolete => "IMPORT_OBSOLETE",
+                Self::Unspecified => "IMPORT_STATE_UNSPECIFIED",
+                Self::ImportQueued => "IMPORT_QUEUED",
+                Self::ImportInProgress => "IMPORT_IN_PROGRESS",
+                Self::ImportDone => "IMPORT_DONE",
+                Self::ImportObsolete => "IMPORT_OBSOLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3160,7 +3158,7 @@ pub mod import_entries_metadata {
     }
 }
 /// Request message for
-/// \[ModifyEntryOverview\]\[google.cloud.datacatalog.v1.DataCatalog.ModifyEntryOverview\].
+/// [ModifyEntryOverview][google.cloud.datacatalog.v1.DataCatalog.ModifyEntryOverview].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModifyEntryOverviewRequest {
     /// Required. The full resource name of the entry.
@@ -3171,7 +3169,7 @@ pub struct ModifyEntryOverviewRequest {
     pub entry_overview: ::core::option::Option<EntryOverview>,
 }
 /// Request message for
-/// \[ModifyEntryContacts\]\[google.cloud.datacatalog.v1.DataCatalog.ModifyEntryContacts\].
+/// [ModifyEntryContacts][google.cloud.datacatalog.v1.DataCatalog.ModifyEntryContacts].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModifyEntryContactsRequest {
     /// Required. The full resource name of the entry.
@@ -3248,22 +3246,22 @@ impl EntryType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EntryType::Unspecified => "ENTRY_TYPE_UNSPECIFIED",
-            EntryType::Table => "TABLE",
-            EntryType::Model => "MODEL",
-            EntryType::DataStream => "DATA_STREAM",
-            EntryType::Fileset => "FILESET",
-            EntryType::Cluster => "CLUSTER",
-            EntryType::Database => "DATABASE",
-            EntryType::DataSourceConnection => "DATA_SOURCE_CONNECTION",
-            EntryType::Routine => "ROUTINE",
-            EntryType::Lake => "LAKE",
-            EntryType::Zone => "ZONE",
-            EntryType::Service => "SERVICE",
-            EntryType::DatabaseSchema => "DATABASE_SCHEMA",
-            EntryType::Dashboard => "DASHBOARD",
-            EntryType::Explore => "EXPLORE",
-            EntryType::Look => "LOOK",
+            Self::Unspecified => "ENTRY_TYPE_UNSPECIFIED",
+            Self::Table => "TABLE",
+            Self::Model => "MODEL",
+            Self::DataStream => "DATA_STREAM",
+            Self::Fileset => "FILESET",
+            Self::Cluster => "CLUSTER",
+            Self::Database => "DATABASE",
+            Self::DataSourceConnection => "DATA_SOURCE_CONNECTION",
+            Self::Routine => "ROUTINE",
+            Self::Lake => "LAKE",
+            Self::Zone => "ZONE",
+            Self::Service => "SERVICE",
+            Self::DatabaseSchema => "DATABASE_SCHEMA",
+            Self::Dashboard => "DASHBOARD",
+            Self::Explore => "EXPLORE",
+            Self::Look => "LOOK",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3291,7 +3289,13 @@ impl EntryType {
 }
 /// Generated client implementations.
 pub mod data_catalog_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Data Catalog API service allows you to discover, understand, and manage
@@ -3368,7 +3372,7 @@ pub mod data_catalog_client {
         /// Searches Data Catalog for multiple resources like entries and tags that
         /// match a query.
         ///
-        /// This is a \[Custom Method\]
+        /// This is a [Custom Method]
         /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
         /// all information on a resource, only its ID and high level fields. To get
         /// more information, you can subsequently call specific get methods.
@@ -3378,7 +3382,7 @@ pub mod data_catalog_client {
         /// result pages. Additionally, returned (and not returned) results can vary
         /// if you repeat search queries.
         ///
-        /// For more information, see \[Data Catalog search syntax\]
+        /// For more information, see [Data Catalog search syntax]
         /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
         pub async fn search_catalog(
             &mut self,
@@ -3391,8 +3395,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3445,8 +3448,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3473,8 +3475,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3506,8 +3507,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3539,8 +3539,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3570,8 +3569,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3608,8 +3606,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3641,8 +3638,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3663,7 +3659,7 @@ pub mod data_catalog_client {
         /// Deletes an existing entry.
         ///
         /// You can delete only the entries created by the
-        /// \[CreateEntry\]\[google.cloud.datacatalog.v1.DataCatalog.CreateEntry\]
+        /// [CreateEntry][google.cloud.datacatalog.v1.DataCatalog.CreateEntry]
         /// method.
         ///
         /// You must enable the Data Catalog API in the project identified by
@@ -3678,8 +3674,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3706,8 +3701,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3736,8 +3730,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3759,7 +3752,7 @@ pub mod data_catalog_client {
         ///
         /// Note: Currently, this method can list only custom entries.
         /// To get a list of both custom and automatically created entries, use
-        /// \[SearchCatalog\]\[google.cloud.datacatalog.v1.DataCatalog.SearchCatalog\].
+        /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
         pub async fn list_entries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntriesRequest>,
@@ -3771,8 +3764,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3791,7 +3783,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Modifies entry overview, part of the business context of an
-        /// \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
+        /// [Entry][google.cloud.datacatalog.v1.Entry].
         ///
         /// To call this method, you must have the `datacatalog.entries.updateOverview`
         /// IAM permission on the corresponding project.
@@ -3803,8 +3795,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3823,7 +3814,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Modifies contacts, part of the business context of an
-        /// \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
+        /// [Entry][google.cloud.datacatalog.v1.Entry].
         ///
         /// To call this method, you must have the `datacatalog.entries.updateContacts`
         /// IAM permission on the corresponding project.
@@ -3835,8 +3826,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3858,7 +3848,7 @@ pub mod data_catalog_client {
         ///
         /// You must enable the Data Catalog API in the project identified by the
         /// `parent` parameter.
-        /// For more information, see \[Data Catalog resource project\]
+        /// For more information, see [Data Catalog resource project]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
         pub async fn create_tag_template(
             &mut self,
@@ -3868,8 +3858,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3896,8 +3885,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3932,8 +3920,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3964,8 +3951,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3999,8 +3985,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4037,8 +4022,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4059,7 +4043,7 @@ pub mod data_catalog_client {
         /// Renames a field in a tag template.
         ///
         /// You must enable the Data Catalog API in the project identified by the
-        /// `name` parameter. For more information, see \[Data Catalog resource project\]
+        /// `name` parameter. For more information, see [Data Catalog resource project]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
         pub async fn rename_tag_template_field(
             &mut self,
@@ -4072,8 +4056,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4107,8 +4090,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4140,8 +4122,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4161,14 +4142,14 @@ pub mod data_catalog_client {
         }
         /// Creates a tag and assigns it to:
         ///
-        /// * An \[Entry\]\[google.cloud.datacatalog.v1.Entry\] if the method name is
-        ///  `projects.locations.entryGroups.entries.tags.create`.
-        /// * Or \[EntryGroup\]\[google.cloud.datacatalog.v1.EntryGroup\]if the method
-        ///  name is `projects.locations.entryGroups.tags.create`.
+        /// * An [Entry][google.cloud.datacatalog.v1.Entry] if the method name is
+        ///   `projects.locations.entryGroups.entries.tags.create`.
+        /// * Or [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]if the method
+        ///   name is `projects.locations.entryGroups.tags.create`.
         ///
-        /// Note: The project identified by the `parent` parameter for the \[tag\]
+        /// Note: The project identified by the `parent` parameter for the [tag]
         /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters)
-        /// and the \[tag template\]
+        /// and the [tag template]
         /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
         /// used to create the tag must be in the same organization.
         pub async fn create_tag(
@@ -4179,8 +4160,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4207,8 +4187,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4235,8 +4214,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4254,8 +4232,8 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists tags assigned to an \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
-        /// The \[columns\]\[google.cloud.datacatalog.v1.Tag.column\] in the response are
+        /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+        /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
         /// lowercased.
         pub async fn list_tags(
             &mut self,
@@ -4268,8 +4246,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4289,17 +4266,17 @@ pub mod data_catalog_client {
         }
         /// `ReconcileTags` creates or updates a list of tags on the entry.
         /// If the
-        /// \[ReconcileTagsRequest.force_delete_missing\]\[google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing\]
+        /// [ReconcileTagsRequest.force_delete_missing][google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]
         /// parameter is set, the operation deletes tags not included in the input tag
         /// list.
         ///
-        /// `ReconcileTags` returns a \[long-running operation\]
-        /// \[google.longrunning.Operation\] resource that can be queried with
-        /// \[Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
-        /// to return \[ReconcileTagsMetadata\]
-        /// \[google.cloud.datacatalog.v1.ReconcileTagsMetadata\] and
-        /// a \[ReconcileTagsResponse\]
-        /// \[google.cloud.datacatalog.v1.ReconcileTagsResponse\] message.
+        /// `ReconcileTags` returns a [long-running operation]
+        /// [google.longrunning.Operation] resource that can be queried with
+        /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+        /// to return [ReconcileTagsMetadata]
+        /// [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
+        /// a [ReconcileTagsResponse]
+        /// [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
         pub async fn reconcile_tags(
             &mut self,
             request: impl tonic::IntoRequest<super::ReconcileTagsRequest>,
@@ -4311,8 +4288,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4330,7 +4306,7 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Marks an \[Entry\]\[google.cloud.datacatalog.v1.Entry\] as starred by
+        /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
         /// the current user. Starring information is private to each user.
         pub async fn star_entry(
             &mut self,
@@ -4343,8 +4319,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4362,7 +4337,7 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Marks an \[Entry\]\[google.cloud.datacatalog.v1.Entry\] as NOT starred by
+        /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
         /// the current user. Starring information is private to each user.
         pub async fn unstar_entry(
             &mut self,
@@ -4375,8 +4350,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4399,8 +4373,8 @@ pub mod data_catalog_client {
         ///
         /// Supported resources are:
         ///
-        /// * Tag templates
-        /// * Entry groups
+        /// - Tag templates
+        /// - Entry groups
         ///
         /// Note: This method sets policies only within Data Catalog and can't be
         /// used to manage policies in BigQuery, Pub/Sub, Dataproc Metastore, and any
@@ -4408,9 +4382,9 @@ pub mod data_catalog_client {
         ///
         /// To call this method, you must have the following Google IAM permissions:
         ///
-        /// * `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
-        ///  templates.
-        /// * `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+        /// - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
+        ///   templates.
+        /// - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4424,8 +4398,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4448,22 +4421,22 @@ pub mod data_catalog_client {
         /// May return:
         ///
         /// * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
-        ///  permission to view it.
+        ///   permission to view it.
         /// * An empty policy if the resource exists but doesn't have a set policy.
         ///
         /// Supported resources are:
         ///
-        /// * Tag templates
-        /// * Entry groups
+        /// - Tag templates
+        /// - Entry groups
         ///
         /// Note: This method doesn't get policies from Google Cloud Platform
         /// resources ingested into Data Catalog.
         ///
         /// To call this method, you must have the following Google IAM permissions:
         ///
-        /// * `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
-        ///  templates.
-        /// * `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+        /// - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
+        ///   templates.
+        /// - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4477,8 +4450,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4502,8 +4474,8 @@ pub mod data_catalog_client {
         ///
         /// Supported resources are:
         ///
-        /// * Tag templates
-        /// * Entry groups
+        /// - Tag templates
+        /// - Entry groups
         ///
         /// Note: This method gets policies only within Data Catalog and can't be
         /// used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any
@@ -4525,8 +4497,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4552,15 +4523,15 @@ pub mod data_catalog_client {
         /// `ImportEntries` accepts source data snapshots of a third-party system.
         /// Snapshot should be delivered as a .wire or base65-encoded .txt file
         /// containing a sequence of Protocol Buffer messages of
-        /// \[DumpItem\]\[google.cloud.datacatalog.v1.DumpItem\] type.
+        /// [DumpItem][google.cloud.datacatalog.v1.DumpItem] type.
         ///
-        /// `ImportEntries` returns a \[long-running operation\]
-        /// \[google.longrunning.Operation\] resource that can be queried with
-        /// \[Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
+        /// `ImportEntries` returns a [long-running operation]
+        /// [google.longrunning.Operation] resource that can be queried with
+        /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
         /// to return
-        /// \[ImportEntriesMetadata\]\[google.cloud.datacatalog.v1.ImportEntriesMetadata\]
+        /// [ImportEntriesMetadata][google.cloud.datacatalog.v1.ImportEntriesMetadata]
         /// and an
-        /// \[ImportEntriesResponse\]\[google.cloud.datacatalog.v1.ImportEntriesResponse\]
+        /// [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
         /// message.
         pub async fn import_entries(
             &mut self,
@@ -4573,8 +4544,7 @@ pub mod data_catalog_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4641,19 +4611,19 @@ pub mod dump_item {
 /// For example, a "data sensitivity" taxonomy might contain the following policy
 /// tags:
 ///
-/// ```text,
+/// ```
 /// + PII
-///   + Account number
-///   + Age
-///   + SSN
-///   + Zipcode
+///    + Account number
+///    + Age
+///    + SSN
+///    + Zipcode
 /// + Financials
-///   + Revenue
+///    + Revenue
 /// ```
 ///
 /// A "data origin" taxonomy might contain the following policy tags:
 ///
-/// ```text,
+/// ```
 /// + User data
 /// + Employee data
 /// + Partner data
@@ -4737,8 +4707,8 @@ pub mod taxonomy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyType::Unspecified => "POLICY_TYPE_UNSPECIFIED",
-                PolicyType::FineGrainedAccessControl => "FINE_GRAINED_ACCESS_CONTROL",
+                Self::Unspecified => "POLICY_TYPE_UNSPECIFIED",
+                Self::FineGrainedAccessControl => "FINE_GRAINED_ACCESS_CONTROL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4755,11 +4725,11 @@ pub mod taxonomy {
 ///
 /// Policy tags can be defined in a hierarchy. For example:
 ///
-/// ```text,
+/// ```
 /// + Geolocation
-///   + LatLong
-///   + City
-///   + ZipCode
+///    + LatLong
+///    + City
+///    + ZipCode
 /// ```
 ///
 /// Where the "Geolocation" policy tag contains three children.
@@ -4797,7 +4767,7 @@ pub struct PolicyTag {
     pub child_policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[CreateTaxonomy\]\[google.cloud.datacatalog.v1.PolicyTagManager.CreateTaxonomy\].
+/// [CreateTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.CreateTaxonomy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTaxonomyRequest {
     /// Required. Resource name of the project that the taxonomy will belong to.
@@ -4808,7 +4778,7 @@ pub struct CreateTaxonomyRequest {
     pub taxonomy: ::core::option::Option<Taxonomy>,
 }
 /// Request message for
-/// \[DeleteTaxonomy\]\[google.cloud.datacatalog.v1.PolicyTagManager.DeleteTaxonomy\].
+/// [DeleteTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.DeleteTaxonomy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTaxonomyRequest {
     /// Required. Resource name of the taxonomy to delete.
@@ -4818,7 +4788,7 @@ pub struct DeleteTaxonomyRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[UpdateTaxonomy\]\[google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy\].
+/// [UpdateTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTaxonomyRequest {
     /// The taxonomy to update. You can update only its description, display name,
@@ -4834,7 +4804,7 @@ pub struct UpdateTaxonomyRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[ListTaxonomies\]\[google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies\].
+/// [ListTaxonomies][google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTaxonomiesRequest {
     /// Required. Resource name of the project to list the taxonomies of.
@@ -4856,7 +4826,7 @@ pub struct ListTaxonomiesRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListTaxonomies\]\[google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies\].
+/// [ListTaxonomies][google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTaxonomiesResponse {
     /// Taxonomies that the project contains.
@@ -4868,7 +4838,7 @@ pub struct ListTaxonomiesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[GetTaxonomy\]\[google.cloud.datacatalog.v1.PolicyTagManager.GetTaxonomy\].
+/// [GetTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.GetTaxonomy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTaxonomyRequest {
     /// Required. Resource name of the taxonomy to get.
@@ -4876,7 +4846,7 @@ pub struct GetTaxonomyRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CreatePolicyTag\]\[google.cloud.datacatalog.v1.PolicyTagManager.CreatePolicyTag\].
+/// [CreatePolicyTag][google.cloud.datacatalog.v1.PolicyTagManager.CreatePolicyTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePolicyTagRequest {
     /// Required. Resource name of the taxonomy that the policy tag will belong to.
@@ -4887,7 +4857,7 @@ pub struct CreatePolicyTagRequest {
     pub policy_tag: ::core::option::Option<PolicyTag>,
 }
 /// Request message for
-/// \[DeletePolicyTag\]\[google.cloud.datacatalog.v1.PolicyTagManager.DeletePolicyTag\].
+/// [DeletePolicyTag][google.cloud.datacatalog.v1.PolicyTagManager.DeletePolicyTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePolicyTagRequest {
     /// Required. Resource name of the policy tag to delete.
@@ -4897,7 +4867,7 @@ pub struct DeletePolicyTagRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[UpdatePolicyTag\]\[google.cloud.datacatalog.v1.PolicyTagManager.UpdatePolicyTag\].
+/// [UpdatePolicyTag][google.cloud.datacatalog.v1.PolicyTagManager.UpdatePolicyTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePolicyTagRequest {
     /// The policy tag to update. You can update only its description, display
@@ -4914,7 +4884,7 @@ pub struct UpdatePolicyTagRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[ListPolicyTags\]\[google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags\].
+/// [ListPolicyTags][google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyTagsRequest {
     /// Required. Resource name of the taxonomy to list the policy tags of.
@@ -4933,7 +4903,7 @@ pub struct ListPolicyTagsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListPolicyTags\]\[google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags\].
+/// [ListPolicyTags][google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyTagsResponse {
     /// The policy tags that belong to the taxonomy.
@@ -4945,7 +4915,7 @@ pub struct ListPolicyTagsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[GetPolicyTag\]\[google.cloud.datacatalog.v1.PolicyTagManager.GetPolicyTag\].
+/// [GetPolicyTag][google.cloud.datacatalog.v1.PolicyTagManager.GetPolicyTag].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPolicyTagRequest {
     /// Required. Resource name of the policy tag.
@@ -4954,7 +4924,13 @@ pub struct GetPolicyTagRequest {
 }
 /// Generated client implementations.
 pub mod policy_tag_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Policy Tag Manager API service allows you to manage your policy tags and
@@ -5043,8 +5019,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5073,8 +5048,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5102,8 +5076,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5134,8 +5107,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5162,8 +5134,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5190,8 +5161,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5214,7 +5184,7 @@ pub mod policy_tag_manager_client {
         /// * All of its descendant policy tags, if any
         /// * Policies associated with the policy tag and its descendants
         /// * References from BigQuery table schema of the policy tag and its
-        ///  descendants
+        ///   descendants
         pub async fn delete_policy_tag(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePolicyTagRequest>,
@@ -5223,8 +5193,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5252,8 +5221,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5283,8 +5251,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5311,8 +5278,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5344,8 +5310,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5377,8 +5342,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5413,8 +5377,7 @@ pub mod policy_tag_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5477,7 +5440,7 @@ pub struct SerializedPolicyTag {
     pub child_policy_tags: ::prost::alloc::vec::Vec<SerializedPolicyTag>,
 }
 /// Request message for
-/// \[ReplaceTaxonomy\]\[google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy\].
+/// [ReplaceTaxonomy][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplaceTaxonomyRequest {
     /// Required. Resource name of the taxonomy to update.
@@ -5488,7 +5451,7 @@ pub struct ReplaceTaxonomyRequest {
     pub serialized_taxonomy: ::core::option::Option<SerializedTaxonomy>,
 }
 /// Request message for
-/// \[ImportTaxonomies\]\[google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies\].
+/// [ImportTaxonomies][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportTaxonomiesRequest {
     /// Required. Resource name of project that the imported taxonomies will belong
@@ -5528,7 +5491,7 @@ pub struct CrossRegionalSource {
     pub taxonomy: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ImportTaxonomies\]\[google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies\].
+/// [ImportTaxonomies][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportTaxonomiesResponse {
     /// Imported taxonomies.
@@ -5536,7 +5499,7 @@ pub struct ImportTaxonomiesResponse {
     pub taxonomies: ::prost::alloc::vec::Vec<Taxonomy>,
 }
 /// Request message for
-/// \[ExportTaxonomies\]\[google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies\].
+/// [ExportTaxonomies][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportTaxonomiesRequest {
     /// Required. Resource name of the project that the exported taxonomies belong
@@ -5562,7 +5525,7 @@ pub mod export_taxonomies_request {
     }
 }
 /// Response message for
-/// \[ExportTaxonomies\]\[google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies\].
+/// [ExportTaxonomies][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportTaxonomiesResponse {
     /// List of taxonomies and policy tags as nested protocol buffers.
@@ -5571,7 +5534,13 @@ pub struct ExportTaxonomiesResponse {
 }
 /// Generated client implementations.
 pub mod policy_tag_manager_serialization_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Policy Tag Manager Serialization API service allows you to manipulate
@@ -5657,11 +5626,11 @@ pub mod policy_tag_manager_serialization_client {
         ///
         /// This operation automatically does the following:
         ///
-        /// * Deletes the existing policy tags that are missing from the
-        ///  `SerializedPolicyTag`.
-        /// * Creates policy tags that don't have resource names. They are considered
-        ///  new.
-        /// * Updates policy tags with valid resources names accordingly.
+        /// - Deletes the existing policy tags that are missing from the
+        ///   `SerializedPolicyTag`.
+        /// - Creates policy tags that don't have resource names. They are considered
+        ///   new.
+        /// - Updates policy tags with valid resources names accordingly.
         pub async fn replace_taxonomy(
             &mut self,
             request: impl tonic::IntoRequest<super::ReplaceTaxonomyRequest>,
@@ -5670,8 +5639,7 @@ pub mod policy_tag_manager_serialization_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5708,8 +5676,7 @@ pub mod policy_tag_manager_serialization_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5744,8 +5711,7 @@ pub mod policy_tag_manager_serialization_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

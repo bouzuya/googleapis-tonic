@@ -85,11 +85,11 @@ pub mod environment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Suspended => "SUSPENDED",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Suspended => "SUSPENDED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -106,7 +106,7 @@ pub mod environment {
     }
 }
 /// Request message for
-/// \[GetEnvironment\]\[google.cloud.shell.v1.CloudShellService.GetEnvironment\].
+/// [GetEnvironment][google.cloud.shell.v1.CloudShellService.GetEnvironment].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEnvironmentRequest {
     /// Required. Name of the requested resource, for example `users/me/environments/default`
@@ -115,15 +115,15 @@ pub struct GetEnvironmentRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Message included in the metadata field of operations returned from
-/// \[CreateEnvironment\]\[google.cloud.shell.v1.CloudShellService.CreateEnvironment\].
+/// [CreateEnvironment][google.cloud.shell.v1.CloudShellService.CreateEnvironment].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CreateEnvironmentMetadata {}
 /// Message included in the metadata field of operations returned from
-/// \[DeleteEnvironment\]\[google.cloud.shell.v1.CloudShellService.DeleteEnvironment\].
+/// [DeleteEnvironment][google.cloud.shell.v1.CloudShellService.DeleteEnvironment].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeleteEnvironmentMetadata {}
 /// Request message for
-/// \[StartEnvironment\]\[google.cloud.shell.v1.CloudShellService.StartEnvironment\].
+/// [StartEnvironment][google.cloud.shell.v1.CloudShellService.StartEnvironment].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartEnvironmentRequest {
     /// Name of the resource that should be started, for example
@@ -142,7 +142,7 @@ pub struct StartEnvironmentRequest {
     pub public_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[AuthorizeEnvironment\]\[google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment\].
+/// [AuthorizeEnvironment][google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorizeEnvironmentRequest {
     /// Name of the resource that should receive the credentials, for example
@@ -162,15 +162,15 @@ pub struct AuthorizeEnvironmentRequest {
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Response message for
-/// \[AuthorizeEnvironment\]\[google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment\].
+/// [AuthorizeEnvironment][google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AuthorizeEnvironmentResponse {}
 /// Message included in the metadata field of operations returned from
-/// \[AuthorizeEnvironment\]\[google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment\].
+/// [AuthorizeEnvironment][google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AuthorizeEnvironmentMetadata {}
 /// Message included in the metadata field of operations returned from
-/// \[StartEnvironment\]\[google.cloud.shell.v1.CloudShellService.StartEnvironment\].
+/// [StartEnvironment][google.cloud.shell.v1.CloudShellService.StartEnvironment].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StartEnvironmentMetadata {
     /// Current state of the environment being started.
@@ -223,11 +223,11 @@ pub mod start_environment_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Starting => "STARTING",
-                State::UnarchivingDisk => "UNARCHIVING_DISK",
-                State::AwaitingComputeResources => "AWAITING_COMPUTE_RESOURCES",
-                State::Finished => "FINISHED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Starting => "STARTING",
+                Self::UnarchivingDisk => "UNARCHIVING_DISK",
+                Self::AwaitingComputeResources => "AWAITING_COMPUTE_RESOURCES",
+                Self::Finished => "FINISHED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -244,7 +244,7 @@ pub mod start_environment_metadata {
     }
 }
 /// Message included in the response field of operations returned from
-/// \[StartEnvironment\]\[google.cloud.shell.v1.CloudShellService.StartEnvironment\]
+/// [StartEnvironment][google.cloud.shell.v1.CloudShellService.StartEnvironment]
 /// once the operation is complete.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartEnvironmentResponse {
@@ -253,7 +253,7 @@ pub struct StartEnvironmentResponse {
     pub environment: ::core::option::Option<Environment>,
 }
 /// Request message for
-/// \[AddPublicKey\]\[google.cloud.shell.v1.CloudShellService.AddPublicKey\].
+/// [AddPublicKey][google.cloud.shell.v1.CloudShellService.AddPublicKey].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddPublicKeyRequest {
     /// Environment this key should be added to, e.g.
@@ -264,13 +264,13 @@ pub struct AddPublicKeyRequest {
     /// `ssh-dss` (see RFC4253), `ssh-rsa` (see RFC4253), `ecdsa-sha2-nistp256`
     /// (see RFC5656), `ecdsa-sha2-nistp384` (see RFC5656) and
     /// `ecdsa-sha2-nistp521` (see RFC5656). It should be structured as
-    /// \<format\> \<content\>, where \<content\> part is encoded with
+    /// &lt;format&gt; &lt;content&gt;, where &lt;content&gt; part is encoded with
     /// Base64.
     #[prost(string, tag = "2")]
     pub key: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[AddPublicKey\]\[google.cloud.shell.v1.CloudShellService.AddPublicKey\].
+/// [AddPublicKey][google.cloud.shell.v1.CloudShellService.AddPublicKey].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddPublicKeyResponse {
     /// Key that was added to the environment.
@@ -278,11 +278,11 @@ pub struct AddPublicKeyResponse {
     pub key: ::prost::alloc::string::String,
 }
 /// Message included in the metadata field of operations returned from
-/// \[AddPublicKey\]\[google.cloud.shell.v1.CloudShellService.AddPublicKey\].
+/// [AddPublicKey][google.cloud.shell.v1.CloudShellService.AddPublicKey].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AddPublicKeyMetadata {}
 /// Request message for
-/// \[RemovePublicKey\]\[google.cloud.shell.v1.CloudShellService.RemovePublicKey\].
+/// [RemovePublicKey][google.cloud.shell.v1.CloudShellService.RemovePublicKey].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemovePublicKeyRequest {
     /// Environment this key should be removed from, e.g.
@@ -294,11 +294,11 @@ pub struct RemovePublicKeyRequest {
     pub key: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[RemovePublicKey\]\[google.cloud.shell.v1.CloudShellService.RemovePublicKey\].
+/// [RemovePublicKey][google.cloud.shell.v1.CloudShellService.RemovePublicKey].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RemovePublicKeyResponse {}
 /// Message included in the metadata field of operations returned from
-/// \[RemovePublicKey\]\[google.cloud.shell.v1.CloudShellService.RemovePublicKey\].
+/// [RemovePublicKey][google.cloud.shell.v1.CloudShellService.RemovePublicKey].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RemovePublicKeyMetadata {}
 /// Cloud-shell specific information that will be included as details in failure
@@ -350,12 +350,12 @@ pub mod cloud_shell_error_details {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CloudShellErrorCode::Unspecified => "CLOUD_SHELL_ERROR_CODE_UNSPECIFIED",
-                CloudShellErrorCode::ImageUnavailable => "IMAGE_UNAVAILABLE",
-                CloudShellErrorCode::CloudShellDisabled => "CLOUD_SHELL_DISABLED",
-                CloudShellErrorCode::TosViolation => "TOS_VIOLATION",
-                CloudShellErrorCode::QuotaExceeded => "QUOTA_EXCEEDED",
-                CloudShellErrorCode::EnvironmentUnavailable => "ENVIRONMENT_UNAVAILABLE",
+                Self::Unspecified => "CLOUD_SHELL_ERROR_CODE_UNSPECIFIED",
+                Self::ImageUnavailable => "IMAGE_UNAVAILABLE",
+                Self::CloudShellDisabled => "CLOUD_SHELL_DISABLED",
+                Self::TosViolation => "TOS_VIOLATION",
+                Self::QuotaExceeded => "QUOTA_EXCEEDED",
+                Self::EnvironmentUnavailable => "ENVIRONMENT_UNAVAILABLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -374,7 +374,13 @@ pub mod cloud_shell_error_details {
 }
 /// Generated client implementations.
 pub mod cloud_shell_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API for interacting with Google Cloud Shell. Each user of Cloud Shell has at
@@ -462,8 +468,7 @@ pub mod cloud_shell_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -498,8 +503,7 @@ pub mod cloud_shell_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -532,8 +536,7 @@ pub mod cloud_shell_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -565,8 +568,7 @@ pub mod cloud_shell_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -599,8 +601,7 @@ pub mod cloud_shell_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

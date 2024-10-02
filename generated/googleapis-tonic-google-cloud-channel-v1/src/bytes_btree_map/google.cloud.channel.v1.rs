@@ -62,9 +62,9 @@ pub mod edu_data {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InstituteType::Unspecified => "INSTITUTE_TYPE_UNSPECIFIED",
-                InstituteType::K12 => "K12",
-                InstituteType::University => "UNIVERSITY",
+                Self::Unspecified => "INSTITUTE_TYPE_UNSPECIFIED",
+                Self::K12 => "K12",
+                Self::University => "UNIVERSITY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -115,14 +115,14 @@ pub mod edu_data {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InstituteSize::Unspecified => "INSTITUTE_SIZE_UNSPECIFIED",
-                InstituteSize::Size1100 => "SIZE_1_100",
-                InstituteSize::Size101500 => "SIZE_101_500",
-                InstituteSize::Size5011000 => "SIZE_501_1000",
-                InstituteSize::Size10012000 => "SIZE_1001_2000",
-                InstituteSize::Size20015000 => "SIZE_2001_5000",
-                InstituteSize::Size500110000 => "SIZE_5001_10000",
-                InstituteSize::Size10001OrMore => "SIZE_10001_OR_MORE",
+                Self::Unspecified => "INSTITUTE_SIZE_UNSPECIFIED",
+                Self::Size1100 => "SIZE_1_100",
+                Self::Size101500 => "SIZE_101_500",
+                Self::Size5011000 => "SIZE_501_1000",
+                Self::Size10012000 => "SIZE_1001_2000",
+                Self::Size20015000 => "SIZE_2001_5000",
+                Self::Size500110000 => "SIZE_5001_10000",
+                Self::Size10001OrMore => "SIZE_10001_OR_MORE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -203,9 +203,9 @@ pub mod cloud_identity_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomerType::Unspecified => "CUSTOMER_TYPE_UNSPECIFIED",
-                CustomerType::Domain => "DOMAIN",
-                CustomerType::Team => "TEAM",
+                Self::Unspecified => "CUSTOMER_TYPE_UNSPECIFIED",
+                Self::Domain => "DOMAIN",
+                Self::Team => "TEAM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -293,7 +293,7 @@ pub struct ChannelPartnerLink {
     pub channel_partner_cloud_identity_info: ::core::option::Option<CloudIdentityInfo>,
 }
 /// The level of granularity the
-/// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] will
+/// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] will
 /// display.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -302,7 +302,7 @@ pub enum ChannelPartnerLinkView {
     /// The API will default to the BASIC view.
     Unspecified = 0,
     /// Includes all fields except the
-    /// \[ChannelPartnerLink.channel_partner_cloud_identity_info\]\[google.cloud.channel.v1.ChannelPartnerLink.channel_partner_cloud_identity_info\].
+    /// [ChannelPartnerLink.channel_partner_cloud_identity_info][google.cloud.channel.v1.ChannelPartnerLink.channel_partner_cloud_identity_info].
     Basic = 1,
     /// Includes all fields.
     Full = 2,
@@ -314,9 +314,9 @@ impl ChannelPartnerLinkView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ChannelPartnerLinkView::Unspecified => "UNSPECIFIED",
-            ChannelPartnerLinkView::Basic => "BASIC",
-            ChannelPartnerLinkView::Full => "FULL",
+            Self::Unspecified => "UNSPECIFIED",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -352,13 +352,11 @@ impl ChannelPartnerLinkState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ChannelPartnerLinkState::Unspecified => {
-                "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED"
-            }
-            ChannelPartnerLinkState::Invited => "INVITED",
-            ChannelPartnerLinkState::Active => "ACTIVE",
-            ChannelPartnerLinkState::Revoked => "REVOKED",
-            ChannelPartnerLinkState::Suspended => "SUSPENDED",
+            Self::Unspecified => "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED",
+            Self::Invited => "INVITED",
+            Self::Active => "ACTIVE",
+            Self::Revoked => "REVOKED",
+            Self::Suspended => "SUSPENDED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -529,8 +527,8 @@ impl MediaType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            MediaType::Unspecified => "MEDIA_TYPE_UNSPECIFIED",
-            MediaType::Image => "MEDIA_TYPE_IMAGE",
+            Self::Unspecified => "MEDIA_TYPE_UNSPECIFIED",
+            Self::Image => "MEDIA_TYPE_IMAGE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -543,7 +541,7 @@ impl MediaType {
     }
 }
 /// Represents an offer made to resellers for purchase.
-/// An offer is associated with a \[Sku\]\[google.cloud.channel.v1.Sku\], has a plan
+/// An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan
 /// for payment, a price, and defines the constraints for buying.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Offer {
@@ -643,11 +641,11 @@ pub mod parameter_definition {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ParameterType::Unspecified => "PARAMETER_TYPE_UNSPECIFIED",
-                ParameterType::Int64 => "INT64",
-                ParameterType::String => "STRING",
-                ParameterType::Double => "DOUBLE",
-                ParameterType::Boolean => "BOOLEAN",
+                Self::Unspecified => "PARAMETER_TYPE_UNSPECIFIED",
+                Self::Int64 => "INT64",
+                Self::String => "STRING",
+                Self::Double => "DOUBLE",
+                Self::Boolean => "BOOLEAN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -810,12 +808,10 @@ impl PromotionalOrderType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PromotionalOrderType::PromotionalTypeUnspecified => {
-                "PROMOTIONAL_TYPE_UNSPECIFIED"
-            }
-            PromotionalOrderType::NewUpgrade => "NEW_UPGRADE",
-            PromotionalOrderType::Transfer => "TRANSFER",
-            PromotionalOrderType::PromotionSwitch => "PROMOTION_SWITCH",
+            Self::PromotionalTypeUnspecified => "PROMOTIONAL_TYPE_UNSPECIFIED",
+            Self::NewUpgrade => "NEW_UPGRADE",
+            Self::Transfer => "TRANSFER",
+            Self::PromotionSwitch => "PROMOTION_SWITCH",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -853,12 +849,12 @@ impl PaymentPlan {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PaymentPlan::Unspecified => "PAYMENT_PLAN_UNSPECIFIED",
-            PaymentPlan::Commitment => "COMMITMENT",
-            PaymentPlan::Flexible => "FLEXIBLE",
-            PaymentPlan::Free => "FREE",
-            PaymentPlan::Trial => "TRIAL",
-            PaymentPlan::Offline => "OFFLINE",
+            Self::Unspecified => "PAYMENT_PLAN_UNSPECIFIED",
+            Self::Commitment => "COMMITMENT",
+            Self::Flexible => "FLEXIBLE",
+            Self::Free => "FREE",
+            Self::Trial => "TRIAL",
+            Self::Offline => "OFFLINE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -892,9 +888,9 @@ impl PaymentType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PaymentType::Unspecified => "PAYMENT_TYPE_UNSPECIFIED",
-            PaymentType::Prepay => "PREPAY",
-            PaymentType::Postpay => "POSTPAY",
+            Self::Unspecified => "PAYMENT_TYPE_UNSPECIFIED",
+            Self::Prepay => "PREPAY",
+            Self::Postpay => "POSTPAY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -940,14 +936,14 @@ impl ResourceType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ResourceType::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
-            ResourceType::Seat => "SEAT",
-            ResourceType::Mau => "MAU",
-            ResourceType::Gb => "GB",
-            ResourceType::LicensedUser => "LICENSED_USER",
-            ResourceType::Minutes => "MINUTES",
-            ResourceType::IaasUsage => "IAAS_USAGE",
-            ResourceType::Subscription => "SUBSCRIPTION",
+            Self::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
+            Self::Seat => "SEAT",
+            Self::Mau => "MAU",
+            Self::Gb => "GB",
+            Self::LicensedUser => "LICENSED_USER",
+            Self::Minutes => "MINUTES",
+            Self::IaasUsage => "IAAS_USAGE",
+            Self::Subscription => "SUBSCRIPTION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -985,10 +981,10 @@ impl PeriodType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PeriodType::Unspecified => "PERIOD_TYPE_UNSPECIFIED",
-            PeriodType::Day => "DAY",
-            PeriodType::Month => "MONTH",
-            PeriodType::Year => "YEAR",
+            Self::Unspecified => "PERIOD_TYPE_UNSPECIFIED",
+            Self::Day => "DAY",
+            Self::Month => "MONTH",
+            Self::Year => "YEAR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1053,24 +1049,24 @@ pub struct Entitlement {
     pub association_info: ::core::option::Option<AssociationInfo>,
     /// Extended entitlement parameters. When creating an entitlement, valid
     /// parameter names and values are defined in the
-    /// \[Offer.parameter_definitions\]\[google.cloud.channel.v1.Offer.parameter_definitions\].
+    /// [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
     ///
     /// For Google Workspace, the following Parameters may be accepted as input:
     ///
-    /// * max_units: The maximum assignable units for a flexible offer
+    /// - max_units: The maximum assignable units for a flexible offer
     ///
     /// OR
     ///
-    /// * num_units: The total commitment for commitment-based offers
+    /// - num_units: The total commitment for commitment-based offers
     ///
     /// The response may additionally include the following output-only Parameters:
     ///
-    /// * assigned_units: The number of licenses assigned to users.
+    /// - assigned_units: The number of licenses assigned to users.
     ///
     /// For Google Cloud billing subaccounts, the following Parameter may be
     /// accepted as input:
     ///
-    /// * display_name: The display name of the billing subaccount.
+    /// - display_name: The display name of the billing subaccount.
     #[prost(message, repeated, tag = "26")]
     pub parameters: ::prost::alloc::vec::Vec<Parameter>,
     /// Optional. The billing account resource name that is used to pay for this
@@ -1108,9 +1104,9 @@ pub mod entitlement {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ProvisioningState::Unspecified => "PROVISIONING_STATE_UNSPECIFIED",
-                ProvisioningState::Active => "ACTIVE",
-                ProvisioningState::Suspended => "SUSPENDED",
+                Self::Unspecified => "PROVISIONING_STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Suspended => "SUSPENDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1124,7 +1120,7 @@ pub mod entitlement {
         }
     }
     /// Suspension reason for an entitlement if
-    /// \[provisioning_state\]\[google.cloud.channel.v1.Entitlement.provisioning_state\]
+    /// [provisioning_state][google.cloud.channel.v1.Entitlement.provisioning_state]
     /// = SUSPENDED.
     #[derive(
         Clone,
@@ -1160,12 +1156,12 @@ pub mod entitlement {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SuspensionReason::Unspecified => "SUSPENSION_REASON_UNSPECIFIED",
-                SuspensionReason::ResellerInitiated => "RESELLER_INITIATED",
-                SuspensionReason::TrialEnded => "TRIAL_ENDED",
-                SuspensionReason::RenewalWithTypeCancel => "RENEWAL_WITH_TYPE_CANCEL",
-                SuspensionReason::PendingTosAcceptance => "PENDING_TOS_ACCEPTANCE",
-                SuspensionReason::Other => "OTHER",
+                Self::Unspecified => "SUSPENSION_REASON_UNSPECIFIED",
+                Self::ResellerInitiated => "RESELLER_INITIATED",
+                Self::TrialEnded => "TRIAL_ENDED",
+                Self::RenewalWithTypeCancel => "RENEWAL_WITH_TYPE_CANCEL",
+                Self::PendingTosAcceptance => "PENDING_TOS_ACCEPTANCE",
+                Self::Other => "OTHER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1331,11 +1327,11 @@ pub mod transfer_eligibility {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Reason::Unspecified => "REASON_UNSPECIFIED",
-                Reason::PendingTosAcceptance => "PENDING_TOS_ACCEPTANCE",
-                Reason::SkuNotEligible => "SKU_NOT_ELIGIBLE",
-                Reason::SkuSuspended => "SKU_SUSPENDED",
-                Reason::ChannelPartnerNotAuthorizedForSku => {
+                Self::Unspecified => "REASON_UNSPECIFIED",
+                Self::PendingTosAcceptance => "PENDING_TOS_ACCEPTANCE",
+                Self::SkuNotEligible => "SKU_NOT_ELIGIBLE",
+                Self::SkuSuspended => "SKU_SUSPENDED",
+                Self::ChannelPartnerNotAuthorizedForSku => {
                     "CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU"
                 }
             }
@@ -1450,21 +1446,21 @@ pub mod entitlement_change {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
-                ChangeType::Created => "CREATED",
-                ChangeType::PricePlanSwitched => "PRICE_PLAN_SWITCHED",
-                ChangeType::CommitmentChanged => "COMMITMENT_CHANGED",
-                ChangeType::Renewed => "RENEWED",
-                ChangeType::Suspended => "SUSPENDED",
-                ChangeType::Activated => "ACTIVATED",
-                ChangeType::Cancelled => "CANCELLED",
-                ChangeType::SkuChanged => "SKU_CHANGED",
-                ChangeType::RenewalSettingChanged => "RENEWAL_SETTING_CHANGED",
-                ChangeType::PaidSubscriptionStarted => "PAID_SUBSCRIPTION_STARTED",
-                ChangeType::LicenseCapChanged => "LICENSE_CAP_CHANGED",
-                ChangeType::SuspensionDetailsChanged => "SUSPENSION_DETAILS_CHANGED",
-                ChangeType::TrialEndDateExtended => "TRIAL_END_DATE_EXTENDED",
-                ChangeType::TrialStarted => "TRIAL_STARTED",
+                Self::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
+                Self::Created => "CREATED",
+                Self::PricePlanSwitched => "PRICE_PLAN_SWITCHED",
+                Self::CommitmentChanged => "COMMITMENT_CHANGED",
+                Self::Renewed => "RENEWED",
+                Self::Suspended => "SUSPENDED",
+                Self::Activated => "ACTIVATED",
+                Self::Cancelled => "CANCELLED",
+                Self::SkuChanged => "SKU_CHANGED",
+                Self::RenewalSettingChanged => "RENEWAL_SETTING_CHANGED",
+                Self::PaidSubscriptionStarted => "PAID_SUBSCRIPTION_STARTED",
+                Self::LicenseCapChanged => "LICENSE_CAP_CHANGED",
+                Self::SuspensionDetailsChanged => "SUSPENSION_DETAILS_CHANGED",
+                Self::TrialEndDateExtended => "TRIAL_END_DATE_EXTENDED",
+                Self::TrialStarted => "TRIAL_STARTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1521,13 +1517,11 @@ pub mod entitlement_change {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OperatorType::Unspecified => "OPERATOR_TYPE_UNSPECIFIED",
-                OperatorType::CustomerServiceRepresentative => {
-                    "CUSTOMER_SERVICE_REPRESENTATIVE"
-                }
-                OperatorType::System => "SYSTEM",
-                OperatorType::Customer => "CUSTOMER",
-                OperatorType::Reseller => "RESELLER",
+                Self::Unspecified => "OPERATOR_TYPE_UNSPECIFIED",
+                Self::CustomerServiceRepresentative => "CUSTOMER_SERVICE_REPRESENTATIVE",
+                Self::System => "SYSTEM",
+                Self::Customer => "CUSTOMER",
+                Self::Reseller => "RESELLER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1576,10 +1570,10 @@ pub mod entitlement_change {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CancellationReason::Unspecified => "CANCELLATION_REASON_UNSPECIFIED",
-                CancellationReason::ServiceTerminated => "SERVICE_TERMINATED",
-                CancellationReason::RelationshipEnded => "RELATIONSHIP_ENDED",
-                CancellationReason::PartialTransfer => "PARTIAL_TRANSFER",
+                Self::Unspecified => "CANCELLATION_REASON_UNSPECIFIED",
+                Self::ServiceTerminated => "SERVICE_TERMINATED",
+                Self::RelationshipEnded => "RELATIONSHIP_ENDED",
+                Self::PartialTransfer => "PARTIAL_TRANSFER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1628,15 +1622,11 @@ pub mod entitlement_change {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ActivationReason::Unspecified => "ACTIVATION_REASON_UNSPECIFIED",
-                ActivationReason::ResellerRevokedSuspension => {
-                    "RESELLER_REVOKED_SUSPENSION"
-                }
-                ActivationReason::CustomerAcceptedPendingTos => {
-                    "CUSTOMER_ACCEPTED_PENDING_TOS"
-                }
-                ActivationReason::RenewalSettingsChanged => "RENEWAL_SETTINGS_CHANGED",
-                ActivationReason::OtherActivationReason => "OTHER_ACTIVATION_REASON",
+                Self::Unspecified => "ACTIVATION_REASON_UNSPECIFIED",
+                Self::ResellerRevokedSuspension => "RESELLER_REVOKED_SUSPENSION",
+                Self::CustomerAcceptedPendingTos => "CUSTOMER_ACCEPTED_PENDING_TOS",
+                Self::RenewalSettingsChanged => "RENEWAL_SETTINGS_CHANGED",
+                Self::OtherActivationReason => "OTHER_ACTIVATION_REASON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1669,7 +1659,7 @@ pub mod entitlement_change {
     }
 }
 /// Provides contextual information about a
-/// \[google.longrunning.Operation\]\[google.longrunning.Operation\].
+/// [google.longrunning.Operation][google.longrunning.Operation].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
     /// The RPC that initiated this Long Running Operation.
@@ -1724,20 +1714,18 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
-                OperationType::CreateEntitlement => "CREATE_ENTITLEMENT",
-                OperationType::ChangeRenewalSettings => "CHANGE_RENEWAL_SETTINGS",
-                OperationType::StartPaidService => "START_PAID_SERVICE",
-                OperationType::ActivateEntitlement => "ACTIVATE_ENTITLEMENT",
-                OperationType::SuspendEntitlement => "SUSPEND_ENTITLEMENT",
-                OperationType::CancelEntitlement => "CANCEL_ENTITLEMENT",
-                OperationType::TransferEntitlements => "TRANSFER_ENTITLEMENTS",
-                OperationType::TransferEntitlementsToGoogle => {
-                    "TRANSFER_ENTITLEMENTS_TO_GOOGLE"
-                }
-                OperationType::ChangeOffer => "CHANGE_OFFER",
-                OperationType::ChangeParameters => "CHANGE_PARAMETERS",
-                OperationType::ProvisionCloudIdentity => "PROVISION_CLOUD_IDENTITY",
+                Self::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
+                Self::CreateEntitlement => "CREATE_ENTITLEMENT",
+                Self::ChangeRenewalSettings => "CHANGE_RENEWAL_SETTINGS",
+                Self::StartPaidService => "START_PAID_SERVICE",
+                Self::ActivateEntitlement => "ACTIVATE_ENTITLEMENT",
+                Self::SuspendEntitlement => "SUSPEND_ENTITLEMENT",
+                Self::CancelEntitlement => "CANCEL_ENTITLEMENT",
+                Self::TransferEntitlements => "TRANSFER_ENTITLEMENTS",
+                Self::TransferEntitlementsToGoogle => "TRANSFER_ENTITLEMENTS_TO_GOOGLE",
+                Self::ChangeOffer => "CHANGE_OFFER",
+                Self::ChangeParameters => "CHANGE_PARAMETERS",
+                Self::ProvisionCloudIdentity => "PROVISION_CLOUD_IDENTITY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1763,7 +1751,7 @@ pub mod operation_metadata {
     }
 }
 /// Request message for
-/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+/// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunReportJobRequest {
     /// Required. The report's resource name. Specifies the account and report used
@@ -1780,10 +1768,12 @@ pub struct RunReportJobRequest {
     /// to restrict the report output.
     ///
     /// Filters support logical operators (AND, OR, NOT) and conditional operators
-    /// (=, !=, \<, >, \<=, and >=) using `column_id` as keys.
+    /// (=, !=, <, >, <=, and >=) using `column_id` as keys.
     ///
     /// For example:
-    /// `(customer:"accounts/C123abc/customers/S456def" OR customer:"accounts/C123abc/customers/S789ghi") AND invoice_start_date.year >= 2022`
+    /// `(customer:"accounts/C123abc/customers/S456def" OR
+    /// customer:"accounts/C123abc/customers/S789ghi") AND
+    /// invoice_start_date.year >= 2022`
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. The BCP-47 language code, such as "en-US".  If specified, the
@@ -1794,11 +1784,11 @@ pub struct RunReportJobRequest {
     pub language_code: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+/// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunReportJobResponse {
     /// Pass `report_job.name` to
-    /// \[FetchReportResultsRequest.report_job\]\[google.cloud.channel.v1.FetchReportResultsRequest.report_job\]
+    /// [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
     /// to retrieve the report's results.
     #[prost(message, optional, tag = "1")]
     pub report_job: ::core::option::Option<ReportJob>,
@@ -1809,11 +1799,11 @@ pub struct RunReportJobResponse {
     pub report_metadata: ::core::option::Option<ReportResultsMetadata>,
 }
 /// Request message for
-/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
+/// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchReportResultsRequest {
     /// Required. The report job created by
-    /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+    /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
     /// Report_job uses the format:
     /// accounts/{account_id}/reportJobs/{report_job_id}
     #[prost(string, tag = "1")]
@@ -1828,9 +1818,9 @@ pub struct FetchReportResultsRequest {
     pub page_size: i32,
     /// Optional. A token that specifies a page of results beyond the first page.
     /// Obtained through
-    /// \[FetchReportResultsResponse.next_page_token\]\[google.cloud.channel.v1.FetchReportResultsResponse.next_page_token\]
+    /// [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
+    /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -1840,7 +1830,7 @@ pub struct FetchReportResultsRequest {
     pub partition_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Response message for
-/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
+/// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
 /// Contains a tabular representation of the report results.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchReportResultsResponse {
@@ -1853,13 +1843,13 @@ pub struct FetchReportResultsResponse {
     #[prost(message, repeated, tag = "2")]
     pub rows: ::prost::alloc::vec::Vec<Row>,
     /// Pass this token to
-    /// \[FetchReportResultsRequest.page_token\]\[google.cloud.channel.v1.FetchReportResultsRequest.page_token\]
+    /// [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token]
     /// to retrieve the next page of results.
     #[prost(string, tag = "3")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
+/// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListReportsRequest {
     /// Required. The resource name of the partner account to list available
@@ -1873,9 +1863,9 @@ pub struct ListReportsRequest {
     pub page_size: i32,
     /// Optional. A token that specifies a page of results beyond the first page.
     /// Obtained through
-    /// \[ListReportsResponse.next_page_token\]\[google.cloud.channel.v1.ListReportsResponse.next_page_token\]
+    /// [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\]
+    /// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -1887,20 +1877,20 @@ pub struct ListReportsRequest {
     pub language_code: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
+/// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListReportsResponse {
     /// The reports available to the partner.
     #[prost(message, repeated, tag = "1")]
     pub reports: ::prost::alloc::vec::Vec<Report>,
     /// Pass this token to
-    /// \[FetchReportResultsRequest.page_token\]\[google.cloud.channel.v1.FetchReportResultsRequest.page_token\]
+    /// [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token]
     /// to retrieve the next page of results.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
-/// The result of a \[RunReportJob\]\[\] operation. Contains the name to use in
-/// \[FetchReportResultsRequest.report_job\]\[google.cloud.channel.v1.FetchReportResultsRequest.report_job\]
+/// The result of a [RunReportJob][] operation. Contains the name to use in
+/// [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
 /// and the status of the operation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportJob {
@@ -1914,9 +1904,9 @@ pub struct ReportJob {
     pub report_status: ::core::option::Option<ReportStatus>,
 }
 /// The features describing the data. Returned by
-/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\]
+/// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]
 /// and
-/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
+/// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportResultsMetadata {
     /// Details of the completed report.
@@ -1943,9 +1933,9 @@ pub struct ReportResultsMetadata {
 pub struct Column {
     /// The unique name of the column (for example, customer_domain,
     /// channel_partner, customer_cost). You can use column IDs in
-    /// \[RunReportJobRequest.filter\]\[google.cloud.channel.v1.RunReportJobRequest.filter\].
+    /// [RunReportJobRequest.filter][google.cloud.channel.v1.RunReportJobRequest.filter].
     /// To see all reports and their columns, call
-    /// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
+    /// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
     #[prost(string, tag = "1")]
     pub column_id: ::prost::alloc::string::String,
     /// The column's display name.
@@ -1994,13 +1984,13 @@ pub mod column {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
-                DataType::String => "STRING",
-                DataType::Int => "INT",
-                DataType::Decimal => "DECIMAL",
-                DataType::Money => "MONEY",
-                DataType::Date => "DATE",
-                DataType::DateTime => "DATE_TIME",
+                Self::Unspecified => "DATA_TYPE_UNSPECIFIED",
+                Self::String => "STRING",
+                Self::Int => "INT",
+                Self::Decimal => "DECIMAL",
+                Self::Money => "MONEY",
+                Self::Date => "DATE",
+                Self::DateTime => "DATE_TIME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2147,11 +2137,11 @@ pub mod report_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Writing => "WRITING",
-                State::Available => "AVAILABLE",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Started => "STARTED",
+                Self::Writing => "WRITING",
+                Self::Available => "AVAILABLE",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2194,7 +2184,13 @@ pub struct Report {
 }
 /// Generated client implementations.
 pub mod cloud_channel_reports_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// CloudChannelReportsService lets Google Cloud resellers and
@@ -2283,28 +2279,29 @@ pub mod cloud_channel_reports_service_client {
         ///
         /// * PERMISSION_DENIED: The user doesn't have access to this report.
         /// * INVALID_ARGUMENT: Required request parameters are missing
-        ///  or invalid.
+        ///   or invalid.
         /// * NOT_FOUND: The report identifier was not found.
         /// * INTERNAL: Any non-user error related to a technical issue
-        ///  in the backend. Contact Cloud Channel support.
+        ///   in the backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue
-        ///  in the backend. Contact Cloud Channel support.
+        ///   in the backend. Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata contains an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         ///
         /// To get the results of report generation, call
-        /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
+        /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
         /// with the
-        /// \[RunReportJobResponse.report_job\]\[google.cloud.channel.v1.RunReportJobResponse.report_job\].
+        /// [RunReportJobResponse.report_job][google.cloud.channel.v1.RunReportJobResponse.report_job].
         ///
         /// Deprecated: Please use [Export Channel Services data to
         /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
         /// instead.
+        #[deprecated]
         pub async fn run_report_job(
             &mut self,
             request: impl tonic::IntoRequest<super::RunReportJobRequest>,
@@ -2316,8 +2313,7 @@ pub mod cloud_channel_reports_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2336,11 +2332,12 @@ pub mod cloud_channel_reports_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves data generated by
-        /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+        /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
         ///
         /// Deprecated: Please use [Export Channel Services data to
         /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
         /// instead.
+        #[deprecated]
         pub async fn fetch_report_results(
             &mut self,
             request: impl tonic::IntoRequest<super::FetchReportResultsRequest>,
@@ -2352,8 +2349,7 @@ pub mod cloud_channel_reports_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2377,6 +2373,7 @@ pub mod cloud_channel_reports_service_client {
         /// Deprecated: Please use [Export Channel Services data to
         /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
         /// instead.
+        #[deprecated]
         pub async fn list_reports(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReportsRequest>,
@@ -2388,8 +2385,7 @@ pub mod cloud_channel_reports_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2423,7 +2419,7 @@ pub struct CustomerRepricingConfig {
     pub repricing_config: ::core::option::Option<RepricingConfig>,
     /// Output only. Timestamp of an update to the repricing rule. If `update_time`
     /// is after
-    /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+    /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
     /// then it indicates this was set mid-month.
     #[prost(message, optional, tag = "3")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -2443,7 +2439,7 @@ pub struct ChannelPartnerRepricingConfig {
     pub repricing_config: ::core::option::Option<RepricingConfig>,
     /// Output only. Timestamp of an update to the repricing rule. If `update_time`
     /// is after
-    /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+    /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
     /// then it indicates this was set mid-month.
     #[prost(message, optional, tag = "3")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -2460,7 +2456,7 @@ pub struct RepricingConfig {
     /// Required. Information about the adjustment.
     #[prost(message, optional, tag = "2")]
     pub adjustment: ::core::option::Option<RepricingAdjustment>,
-    /// Required. The \[RebillingBasis\]\[google.cloud.channel.v1.RebillingBasis\] to
+    /// Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
     /// use for this bill. Specifies the relative cost based on repricing costs you
     /// will apply.
     #[prost(enumeration = "RebillingBasis", tag = "3")]
@@ -2489,7 +2485,7 @@ pub mod repricing_config {
     /// The channel partner value is derived from the resource name. Takes an
     /// empty json object.
     /// Deprecated: This is no longer supported. Use
-    /// \[RepricingConfig.EntitlementGranularity\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity\]
+    /// [RepricingConfig.EntitlementGranularity][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]
     /// instead.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ChannelPartnerGranularity {}
@@ -2499,24 +2495,24 @@ pub mod repricing_config {
         /// Applies the repricing configuration at the entitlement level.
         ///
         /// Note: If a
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// using
-        /// \[RepricingConfig.EntitlementGranularity\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity\]
+        /// [RepricingConfig.EntitlementGranularity][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]
         /// becomes effective, then no existing or future
-        /// \[RepricingConfig.ChannelPartnerGranularity\]\[google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity\]
+        /// [RepricingConfig.ChannelPartnerGranularity][google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity]
         /// will apply to the
-        /// \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\].
+        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
         /// This is the recommended value for both
-        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
         /// and
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\].
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig].
         #[prost(message, tag = "4")]
         EntitlementGranularity(EntitlementGranularity),
         /// Applies the repricing configuration at the channel partner level.
         /// Only
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// supports this value. Deprecated: This is no longer supported. Use
-        /// \[RepricingConfig.entitlement_granularity\]\[google.cloud.channel.v1.RepricingConfig.entitlement_granularity\]
+        /// [RepricingConfig.entitlement_granularity][google.cloud.channel.v1.RepricingConfig.entitlement_granularity]
         /// instead.
         #[prost(message, tag = "5")]
         ChannelPartnerGranularity(ChannelPartnerGranularity),
@@ -2556,7 +2552,7 @@ pub struct ConditionalOverride {
     /// Required. Information about the applied override's adjustment.
     #[prost(message, optional, tag = "1")]
     pub adjustment: ::core::option::Option<RepricingAdjustment>,
-    /// Required. The \[RebillingBasis\]\[google.cloud.channel.v1.RebillingBasis\] to
+    /// Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
     /// use for the applied override. Shows the relative cost based on your
     /// repricing costs.
     #[prost(enumeration = "RebillingBasis", tag = "2")]
@@ -2616,9 +2612,9 @@ impl RebillingBasis {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RebillingBasis::Unspecified => "REBILLING_BASIS_UNSPECIFIED",
-            RebillingBasis::CostAtList => "COST_AT_LIST",
-            RebillingBasis::DirectCustomerCost => "DIRECT_CUSTOMER_COST",
+            Self::Unspecified => "REBILLING_BASIS_UNSPECIFIED",
+            Self::CostAtList => "COST_AT_LIST",
+            Self::DirectCustomerCost => "DIRECT_CUSTOMER_COST",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2632,7 +2628,7 @@ impl RebillingBasis {
     }
 }
 /// Request message for
-/// \[CloudChannelService.CheckCloudIdentityAccountsExist\]\[google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist\].
+/// [CloudChannelService.CheckCloudIdentityAccountsExist][google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckCloudIdentityAccountsExistRequest {
     /// Required. The reseller account's resource name.
@@ -2665,7 +2661,7 @@ pub struct CloudIdentityCustomerAccount {
     pub customer_cloud_identity_id: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.CheckCloudIdentityAccountsExist\]\[google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist\].
+/// [CloudChannelService.CheckCloudIdentityAccountsExist][google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckCloudIdentityAccountsExistResponse {
     /// The Cloud Identity accounts associated with the domain.
@@ -2673,7 +2669,7 @@ pub struct CheckCloudIdentityAccountsExistResponse {
     pub cloud_identity_accounts: ::prost::alloc::vec::Vec<CloudIdentityCustomerAccount>,
 }
 /// Request message for
-/// \[CloudChannelService.ListCustomers\]\[google.cloud.channel.v1.CloudChannelService.ListCustomers\]
+/// [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomersRequest {
     /// Required. The resource name of the reseller account to list customers from.
@@ -2687,9 +2683,9 @@ pub struct ListCustomersRequest {
     pub page_size: i32,
     /// Optional. A token identifying a page of results other than the first page.
     /// Obtained through
-    /// \[ListCustomersResponse.next_page_token\]\[google.cloud.channel.v1.ListCustomersResponse.next_page_token\]
+    /// [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListCustomers\]\[google.cloud.channel.v1.CloudChannelService.ListCustomers\]
+    /// [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -2701,7 +2697,7 @@ pub struct ListCustomersRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.ListCustomers\]\[google.cloud.channel.v1.CloudChannelService.ListCustomers\].
+/// [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomersResponse {
     /// The customers belonging to a reseller or distributor.
@@ -2709,13 +2705,13 @@ pub struct ListCustomersResponse {
     pub customers: ::prost::alloc::vec::Vec<Customer>,
     /// A token to retrieve the next page of results.
     /// Pass to
-    /// \[ListCustomersRequest.page_token\]\[google.cloud.channel.v1.ListCustomersRequest.page_token\]
+    /// [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.GetCustomer\]\[google.cloud.channel.v1.CloudChannelService.GetCustomer\].
+/// [CloudChannelService.GetCustomer][google.cloud.channel.v1.CloudChannelService.GetCustomer].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCustomerRequest {
     /// Required. The resource name of the customer to retrieve.
@@ -2724,7 +2720,7 @@ pub struct GetCustomerRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.CreateCustomer\]\[google.cloud.channel.v1.CloudChannelService.CreateCustomer\]
+/// [CloudChannelService.CreateCustomer][google.cloud.channel.v1.CloudChannelService.CreateCustomer]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCustomerRequest {
     /// Required. The resource name of reseller account in which to create the
@@ -2736,7 +2732,7 @@ pub struct CreateCustomerRequest {
     pub customer: ::core::option::Option<Customer>,
 }
 /// Request message for
-/// \[CloudChannelService.UpdateCustomer\]\[google.cloud.channel.v1.CloudChannelService.UpdateCustomer\].
+/// [CloudChannelService.UpdateCustomer][google.cloud.channel.v1.CloudChannelService.UpdateCustomer].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCustomerRequest {
     /// Required. New contents of the customer.
@@ -2748,7 +2744,7 @@ pub struct UpdateCustomerRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[CloudChannelService.DeleteCustomer\]\[google.cloud.channel.v1.CloudChannelService.DeleteCustomer\].
+/// [CloudChannelService.DeleteCustomer][google.cloud.channel.v1.CloudChannelService.DeleteCustomer].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCustomerRequest {
     /// Required. The resource name of the customer to delete.
@@ -2756,7 +2752,7 @@ pub struct DeleteCustomerRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ImportCustomer\]\[google.cloud.channel.v1.CloudChannelService.ImportCustomer\]
+/// [CloudChannelService.ImportCustomer][google.cloud.channel.v1.CloudChannelService.ImportCustomer]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportCustomerRequest {
     /// Required. The resource name of the reseller's account.
@@ -2812,7 +2808,7 @@ pub mod import_customer_request {
     }
 }
 /// Request message for
-/// \[CloudChannelService.ProvisionCloudIdentity\]\[google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity\]
+/// [CloudChannelService.ProvisionCloudIdentity][google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvisionCloudIdentityRequest {
     /// Required. Resource name of the customer.
@@ -2830,7 +2826,7 @@ pub struct ProvisionCloudIdentityRequest {
     pub validate_only: bool,
 }
 /// Request message for
-/// \[CloudChannelService.ListEntitlements\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlements\]
+/// [CloudChannelService.ListEntitlements][google.cloud.channel.v1.CloudChannelService.ListEntitlements]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntitlementsRequest {
     /// Required. The resource name of the reseller's customer account to list
@@ -2845,15 +2841,15 @@ pub struct ListEntitlementsRequest {
     pub page_size: i32,
     /// Optional. A token for a page of results other than the first page.
     /// Obtained using
-    /// \[ListEntitlementsResponse.next_page_token\]\[google.cloud.channel.v1.ListEntitlementsResponse.next_page_token\]
+    /// [ListEntitlementsResponse.next_page_token][google.cloud.channel.v1.ListEntitlementsResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListEntitlements\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlements\]
+    /// [CloudChannelService.ListEntitlements][google.cloud.channel.v1.CloudChannelService.ListEntitlements]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.ListEntitlements\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlements\].
+/// [CloudChannelService.ListEntitlements][google.cloud.channel.v1.CloudChannelService.ListEntitlements].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntitlementsResponse {
     /// The reseller customer's entitlements.
@@ -2861,13 +2857,13 @@ pub struct ListEntitlementsResponse {
     pub entitlements: ::prost::alloc::vec::Vec<Entitlement>,
     /// A token to list the next page of results.
     /// Pass to
-    /// \[ListEntitlementsRequest.page_token\]\[google.cloud.channel.v1.ListEntitlementsRequest.page_token\]
+    /// [ListEntitlementsRequest.page_token][google.cloud.channel.v1.ListEntitlementsRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ListTransferableSkus\]\[google.cloud.channel.v1.CloudChannelService.ListTransferableSkus\]
+/// [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferableSkusRequest {
     /// Required. The reseller account's resource name.
@@ -2882,9 +2878,9 @@ pub struct ListTransferableSkusRequest {
     pub page_size: i32,
     /// A token for a page of results other than the first page.
     /// Obtained using
-    /// \[ListTransferableSkusResponse.next_page_token\]\[google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token\]
+    /// [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListTransferableSkus\]\[google.cloud.channel.v1.CloudChannelService.ListTransferableSkus\]
+    /// [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
     /// call. Optional.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -2930,7 +2926,7 @@ pub mod list_transferable_skus_request {
     }
 }
 /// Response message for
-/// \[CloudChannelService.ListTransferableSkus\]\[google.cloud.channel.v1.CloudChannelService.ListTransferableSkus\].
+/// [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferableSkusResponse {
     /// Information about existing SKUs for a customer that needs a transfer.
@@ -2938,13 +2934,13 @@ pub struct ListTransferableSkusResponse {
     pub transferable_skus: ::prost::alloc::vec::Vec<TransferableSku>,
     /// A token to retrieve the next page of results.
     /// Pass to
-    /// \[ListTransferableSkusRequest.page_token\]\[google.cloud.channel.v1.ListTransferableSkusRequest.page_token\]
+    /// [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ListTransferableOffers\]\[google.cloud.channel.v1.CloudChannelService.ListTransferableOffers\]
+/// [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferableOffersRequest {
     /// Required. The resource name of the reseller's account.
@@ -2957,9 +2953,9 @@ pub struct ListTransferableOffersRequest {
     pub page_size: i32,
     /// A token for a page of results other than the first page.
     /// Obtained using
-    /// \[ListTransferableOffersResponse.next_page_token\]\[google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token\]
+    /// [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListTransferableOffers\]\[google.cloud.channel.v1.CloudChannelService.ListTransferableOffers\]
+    /// [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -3006,7 +3002,7 @@ pub mod list_transferable_offers_request {
     }
 }
 /// Response message for
-/// \[CloudChannelService.ListTransferableOffers\]\[google.cloud.channel.v1.CloudChannelService.ListTransferableOffers\].
+/// [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferableOffersResponse {
     /// Information about Offers for a customer that can be used for
@@ -3015,7 +3011,7 @@ pub struct ListTransferableOffersResponse {
     pub transferable_offers: ::prost::alloc::vec::Vec<TransferableOffer>,
     /// A token to retrieve the next page of results.
     /// Pass to
-    /// \[ListTransferableOffersRequest.page_token\]\[google.cloud.channel.v1.ListTransferableOffersRequest.page_token\]
+    /// [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
@@ -3029,7 +3025,7 @@ pub struct TransferableOffer {
     pub offer: ::core::option::Option<Offer>,
 }
 /// Request message for
-/// \[CloudChannelService.GetEntitlement\]\[google.cloud.channel.v1.CloudChannelService.GetEntitlement\].
+/// [CloudChannelService.GetEntitlement][google.cloud.channel.v1.CloudChannelService.GetEntitlement].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEntitlementRequest {
     /// Required. The resource name of the entitlement to retrieve.
@@ -3039,7 +3035,7 @@ pub struct GetEntitlementRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ListChannelPartnerLinks\]\[google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks\]
+/// [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelPartnerLinksRequest {
     /// Required. The resource name of the reseller account for listing channel
@@ -3053,9 +3049,9 @@ pub struct ListChannelPartnerLinksRequest {
     pub page_size: i32,
     /// Optional. A token for a page of results other than the first page.
     /// Obtained using
-    /// \[ListChannelPartnerLinksResponse.next_page_token\]\[google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token\]
+    /// [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListChannelPartnerLinks\]\[google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks\]
+    /// [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -3064,7 +3060,7 @@ pub struct ListChannelPartnerLinksRequest {
     pub view: i32,
 }
 /// Response message for
-/// \[CloudChannelService.ListChannelPartnerLinks\]\[google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks\].
+/// [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelPartnerLinksResponse {
     /// The Channel partner links for a reseller.
@@ -3072,13 +3068,13 @@ pub struct ListChannelPartnerLinksResponse {
     pub channel_partner_links: ::prost::alloc::vec::Vec<ChannelPartnerLink>,
     /// A token to retrieve the next page of results.
     /// Pass to
-    /// \[ListChannelPartnerLinksRequest.page_token\]\[google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token\]
+    /// [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.GetChannelPartnerLink\]\[google.cloud.channel.v1.CloudChannelService.GetChannelPartnerLink\].
+/// [CloudChannelService.GetChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.GetChannelPartnerLink].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetChannelPartnerLinkRequest {
     /// Required. The resource name of the channel partner link to retrieve.
@@ -3091,7 +3087,7 @@ pub struct GetChannelPartnerLinkRequest {
     pub view: i32,
 }
 /// Request message for
-/// \[CloudChannelService.CreateChannelPartnerLink\]\[google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink\]
+/// [CloudChannelService.CreateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateChannelPartnerLinkRequest {
     /// Required. Create a channel partner link for the provided reseller account's
@@ -3106,7 +3102,7 @@ pub struct CreateChannelPartnerLinkRequest {
     pub channel_partner_link: ::core::option::Option<ChannelPartnerLink>,
 }
 /// Request message for
-/// \[CloudChannelService.UpdateChannelPartnerLink\]\[google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerLink\]
+/// [CloudChannelService.UpdateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerLink]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateChannelPartnerLinkRequest {
     /// Required. The resource name of the channel partner link to cancel.
@@ -3125,7 +3121,7 @@ pub struct UpdateChannelPartnerLinkRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
-/// \[CloudChannelService.GetCustomerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.GetCustomerRepricingConfig\].
+/// [CloudChannelService.GetCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.GetCustomerRepricingConfig].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCustomerRepricingConfigRequest {
     /// Required. The resource name of the CustomerRepricingConfig.
@@ -3135,7 +3131,7 @@ pub struct GetCustomerRepricingConfigRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ListCustomerRepricingConfigs\]\[google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs\].
+/// [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomerRepricingConfigsRequest {
     /// Required. The resource name of the customer.
@@ -3151,9 +3147,9 @@ pub struct ListCustomerRepricingConfigsRequest {
     pub page_size: i32,
     /// Optional. A token identifying a page of results beyond the first page.
     /// Obtained through
-    /// \[ListCustomerRepricingConfigsResponse.next_page_token\]\[google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token\]
+    /// [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListCustomerRepricingConfigs\]\[google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs\]
+    /// [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -3168,7 +3164,7 @@ pub struct ListCustomerRepricingConfigsRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.ListCustomerRepricingConfigs\]\[google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs\].
+/// [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomerRepricingConfigsResponse {
     /// The repricing configs for this channel partner.
@@ -3176,13 +3172,13 @@ pub struct ListCustomerRepricingConfigsResponse {
     pub customer_repricing_configs: ::prost::alloc::vec::Vec<CustomerRepricingConfig>,
     /// A token to retrieve the next page of results.
     /// Pass to
-    /// \[ListCustomerRepricingConfigsRequest.page_token\]\[google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token\]
+    /// [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.CreateCustomerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig\].
+/// [CloudChannelService.CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCustomerRepricingConfigRequest {
     /// Required. The resource name of the customer that will receive this
@@ -3195,7 +3191,7 @@ pub struct CreateCustomerRepricingConfigRequest {
     pub customer_repricing_config: ::core::option::Option<CustomerRepricingConfig>,
 }
 /// Request message for
-/// \[CloudChannelService.UpdateCustomerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.UpdateCustomerRepricingConfig\].
+/// [CloudChannelService.UpdateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.UpdateCustomerRepricingConfig].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCustomerRepricingConfigRequest {
     /// Required. The CustomerRepricingConfig object to update.
@@ -3203,7 +3199,7 @@ pub struct UpdateCustomerRepricingConfigRequest {
     pub customer_repricing_config: ::core::option::Option<CustomerRepricingConfig>,
 }
 /// Request message for
-/// \[CloudChannelService.DeleteCustomerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig\].
+/// [CloudChannelService.DeleteCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCustomerRepricingConfigRequest {
     /// Required. The resource name of the customer repricing config rule to
@@ -3213,7 +3209,7 @@ pub struct DeleteCustomerRepricingConfigRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.GetChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.GetChannelPartnerRepricingConfig\]
+/// [CloudChannelService.GetChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.GetChannelPartnerRepricingConfig]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetChannelPartnerRepricingConfigRequest {
     /// Required. The resource name of the ChannelPartnerRepricingConfig
@@ -3223,11 +3219,11 @@ pub struct GetChannelPartnerRepricingConfigRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ListChannelPartnerRepricingConfigs\]\[google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs\].
+/// [CloudChannelService.ListChannelPartnerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelPartnerRepricingConfigsRequest {
     /// Required. The resource name of the account's
-    /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]. Parent
+    /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]. Parent
     /// uses the format:
     /// accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
     /// Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
@@ -3241,9 +3237,9 @@ pub struct ListChannelPartnerRepricingConfigsRequest {
     pub page_size: i32,
     /// Optional. A token identifying a page of results beyond the first page.
     /// Obtained through
-    /// \[ListChannelPartnerRepricingConfigsResponse.next_page_token\]\[google.cloud.channel.v1.ListChannelPartnerRepricingConfigsResponse.next_page_token\]
+    /// [ListChannelPartnerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsResponse.next_page_token]
     /// of the previous
-    /// \[CloudChannelService.ListChannelPartnerRepricingConfigs\]\[google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs\]
+    /// [CloudChannelService.ListChannelPartnerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -3253,12 +3249,14 @@ pub struct ListChannelPartnerRepricingConfigsRequest {
     /// BatchGet-like query. To use the filter, you must set
     /// `parent=accounts/{account_id}/channelPartnerLinks/-`.
     ///
-    /// Example: `channel_partner_link = accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link = accounts/account_id/channelPartnerLinks/c2`.
+    /// Example: `channel_partner_link =
+    /// accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link =
+    /// accounts/account_id/channelPartnerLinks/c2`.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.ListChannelPartnerRepricingConfigs\]\[google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs\].
+/// [CloudChannelService.ListChannelPartnerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelPartnerRepricingConfigsResponse {
     /// The repricing configs for this channel partner.
@@ -3268,13 +3266,13 @@ pub struct ListChannelPartnerRepricingConfigsResponse {
     >,
     /// A token to retrieve the next page of results.
     /// Pass to
-    /// \[ListChannelPartnerRepricingConfigsRequest.page_token\]\[google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token\]
+    /// [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token]
     /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.CreateChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig\].
+/// [CloudChannelService.CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateChannelPartnerRepricingConfigRequest {
     /// Required. The resource name of the ChannelPartner that will receive the
@@ -3289,7 +3287,7 @@ pub struct CreateChannelPartnerRepricingConfigRequest {
     >,
 }
 /// Request message for
-/// \[CloudChannelService.UpdateChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerRepricingConfig\].
+/// [CloudChannelService.UpdateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerRepricingConfig].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateChannelPartnerRepricingConfigRequest {
     /// Required. The ChannelPartnerRepricingConfig object to update.
@@ -3321,8 +3319,8 @@ pub struct ListSkuGroupsRequest {
     pub page_size: i32,
     /// Optional. A token identifying a page of results beyond the first page.
     /// Obtained through
-    /// \[ListSkuGroups.next_page_token\]\[\] of the previous
-    /// \[CloudChannelService.ListSkuGroups\]\[google.cloud.channel.v1.CloudChannelService.ListSkuGroups\]
+    /// [ListSkuGroups.next_page_token][] of the previous
+    /// [CloudChannelService.ListSkuGroups][google.cloud.channel.v1.CloudChannelService.ListSkuGroups]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -3341,8 +3339,8 @@ pub struct ListSkuGroupBillableSkusRequest {
     pub page_size: i32,
     /// Optional. A token identifying a page of results beyond the first page.
     /// Obtained through
-    /// \[ListSkuGroupBillableSkus.next_page_token\]\[\] of the previous
-    /// \[CloudChannelService.ListSkuGroupBillableSkus\]\[google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus\]
+    /// [ListSkuGroupBillableSkus.next_page_token][] of the previous
+    /// [CloudChannelService.ListSkuGroupBillableSkus][google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -3354,7 +3352,7 @@ pub struct ListSkuGroupsResponse {
     #[prost(message, repeated, tag = "1")]
     pub sku_groups: ::prost::alloc::vec::Vec<SkuGroup>,
     /// A token to retrieve the next page of results.
-    /// Pass to \[ListSkuGroups.page_token\]\[\] to obtain that
+    /// Pass to [ListSkuGroups.page_token][] to obtain that
     /// page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
@@ -3366,7 +3364,7 @@ pub struct ListSkuGroupBillableSkusResponse {
     #[prost(message, repeated, tag = "1")]
     pub billable_skus: ::prost::alloc::vec::Vec<BillableSku>,
     /// A token to retrieve the next page of results.
-    /// Pass to \[ListSkuGroupBillableSkus.page_token\]\[\] to obtain that
+    /// Pass to [ListSkuGroupBillableSkus.page_token][] to obtain that
     /// page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
@@ -3407,7 +3405,7 @@ pub struct BillableSku {
     pub service_display_name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.CreateEntitlement\]\[google.cloud.channel.v1.CloudChannelService.CreateEntitlement\]
+/// [CloudChannelService.CreateEntitlement][google.cloud.channel.v1.CloudChannelService.CreateEntitlement]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEntitlementRequest {
     /// Required. The resource name of the reseller's customer account in which to
@@ -3434,7 +3432,7 @@ pub struct CreateEntitlementRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.TransferEntitlements\]\[google.cloud.channel.v1.CloudChannelService.TransferEntitlements\].
+/// [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferEntitlementsRequest {
     /// Required. The resource name of the reseller's customer account that will
@@ -3467,7 +3465,7 @@ pub struct TransferEntitlementsRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.TransferEntitlements\]\[google.cloud.channel.v1.CloudChannelService.TransferEntitlements\].
+/// [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
 /// This is put in the response field of google.longrunning.Operation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferEntitlementsResponse {
@@ -3476,7 +3474,7 @@ pub struct TransferEntitlementsResponse {
     pub entitlements: ::prost::alloc::vec::Vec<Entitlement>,
 }
 /// Request message for
-/// \[CloudChannelService.TransferEntitlementsToGoogle\]\[google.cloud.channel.v1.CloudChannelService.TransferEntitlementsToGoogle\].
+/// [CloudChannelService.TransferEntitlementsToGoogle][google.cloud.channel.v1.CloudChannelService.TransferEntitlementsToGoogle].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferEntitlementsToGoogleRequest {
     /// Required. The resource name of the reseller's customer account where the
@@ -3502,7 +3500,7 @@ pub struct TransferEntitlementsToGoogleRequest {
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
-/// Request message for \[CloudChannelService.ChangeParametersRequest\]\[\].
+/// Request message for [CloudChannelService.ChangeParametersRequest][].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeParametersRequest {
     /// Required. The name of the entitlement to update.
@@ -3514,7 +3512,7 @@ pub struct ChangeParametersRequest {
     /// parameters.
     ///
     /// To view the available Parameters for a request, refer to the
-    /// \[Offer.parameter_definitions\]\[google.cloud.channel.v1.Offer.parameter_definitions\]
+    /// [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
     /// from the desired offer.
     #[prost(message, repeated, tag = "2")]
     pub parameters: ::prost::alloc::vec::Vec<Parameter>,
@@ -3537,7 +3535,7 @@ pub struct ChangeParametersRequest {
     pub purchase_order_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ChangeRenewalSettings\]\[google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings\].
+/// [CloudChannelService.ChangeRenewalSettings][google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeRenewalSettingsRequest {
     /// Required. The name of the entitlement to update.
@@ -3564,7 +3562,7 @@ pub struct ChangeRenewalSettingsRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ChangeOffer\]\[google.cloud.channel.v1.CloudChannelService.ChangeOffer\].
+/// [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeOfferRequest {
     /// Required. The resource name of the entitlement to update.
@@ -3578,7 +3576,7 @@ pub struct ChangeOfferRequest {
     pub offer: ::prost::alloc::string::String,
     /// Optional. Parameters needed to purchase the Offer. To view the available
     /// Parameters refer to the
-    /// \[Offer.parameter_definitions\]\[google.cloud.channel.v1.Offer.parameter_definitions\]
+    /// [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
     /// from the desired offer.
     #[prost(message, repeated, tag = "3")]
     pub parameters: ::prost::alloc::vec::Vec<Parameter>,
@@ -3608,7 +3606,7 @@ pub struct ChangeOfferRequest {
     pub billing_account: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.StartPaidService\]\[google.cloud.channel.v1.CloudChannelService.StartPaidService\].
+/// [CloudChannelService.StartPaidService][google.cloud.channel.v1.CloudChannelService.StartPaidService].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartPaidServiceRequest {
     /// Required. The name of the entitlement to start a paid service for.
@@ -3632,7 +3630,7 @@ pub struct StartPaidServiceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.CancelEntitlement\]\[google.cloud.channel.v1.CloudChannelService.CancelEntitlement\].
+/// [CloudChannelService.CancelEntitlement][google.cloud.channel.v1.CloudChannelService.CancelEntitlement].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelEntitlementRequest {
     /// Required. The resource name of the entitlement to cancel.
@@ -3656,7 +3654,7 @@ pub struct CancelEntitlementRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.SuspendEntitlement\]\[google.cloud.channel.v1.CloudChannelService.SuspendEntitlement\].
+/// [CloudChannelService.SuspendEntitlement][google.cloud.channel.v1.CloudChannelService.SuspendEntitlement].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SuspendEntitlementRequest {
     /// Required. The resource name of the entitlement to suspend.
@@ -3680,7 +3678,7 @@ pub struct SuspendEntitlementRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ActivateEntitlement\]\[google.cloud.channel.v1.CloudChannelService.ActivateEntitlement\].
+/// [CloudChannelService.ActivateEntitlement][google.cloud.channel.v1.CloudChannelService.ActivateEntitlement].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActivateEntitlementRequest {
     /// Required. The resource name of the entitlement to activate.
@@ -3853,7 +3851,7 @@ pub struct ListPurchasableSkusRequest {
 /// Nested message and enum types in `ListPurchasableSkusRequest`.
 pub mod list_purchasable_skus_request {
     /// List SKUs for a new entitlement. Make the purchase using
-    /// \[CloudChannelService.CreateEntitlement\]\[google.cloud.channel.v1.CloudChannelService.CreateEntitlement\].
+    /// [CloudChannelService.CreateEntitlement][google.cloud.channel.v1.CloudChannelService.CreateEntitlement].
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CreateEntitlementPurchase {
         /// Required. List SKUs belonging to this Product.
@@ -3864,7 +3862,7 @@ pub mod list_purchasable_skus_request {
     }
     /// List SKUs for upgrading or downgrading an entitlement. Make the purchase
     /// using
-    /// \[CloudChannelService.ChangeOffer\]\[google.cloud.channel.v1.CloudChannelService.ChangeOffer\].
+    /// [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ChangeOfferPurchase {
         /// Required. Resource name of the entitlement.
@@ -3906,9 +3904,9 @@ pub mod list_purchasable_skus_request {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
-                    ChangeType::Upgrade => "UPGRADE",
-                    ChangeType::Downgrade => "DOWNGRADE",
+                    Self::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
+                    Self::Upgrade => "UPGRADE",
+                    Self::Downgrade => "DOWNGRADE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4156,15 +4154,15 @@ pub struct ListSubscribersResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CloudChannelService.ListEntitlementChanges\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges\]
+/// [CloudChannelService.ListEntitlementChanges][google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntitlementChangesRequest {
     /// Required. The resource name of the entitlement for which to list
     /// entitlement changes. The `-` wildcard may be used to match entitlements
     /// across a customer. Formats:
     ///
-    /// * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-    /// * accounts/{account_id}/customers/{customer_id}/entitlements/-
+    ///    * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+    ///    * accounts/{account_id}/customers/{customer_id}/entitlements/-
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of entitlement changes to return. The service
@@ -4174,11 +4172,11 @@ pub struct ListEntitlementChangesRequest {
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Optional. A page token, received from a previous
-    /// \[CloudChannelService.ListEntitlementChanges\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges\]
+    /// [CloudChannelService.ListEntitlementChanges][google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]
     /// call. Provide this to retrieve the subsequent page.
     ///
     /// When paginating, all other parameters provided to
-    /// \[CloudChannelService.ListEntitlementChanges\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges\]
+    /// [CloudChannelService.ListEntitlementChanges][google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]
     /// must match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -4187,7 +4185,7 @@ pub struct ListEntitlementChangesRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[CloudChannelService.ListEntitlementChanges\]\[google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges\]
+/// [CloudChannelService.ListEntitlementChanges][google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntitlementChangesResponse {
     /// The list of entitlement changes.
@@ -4199,31 +4197,35 @@ pub struct ListEntitlementChangesResponse {
 }
 /// Generated client implementations.
 pub mod cloud_channel_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// CloudChannelService lets Google cloud resellers and distributors manage
     /// their customers, channel partners, entitlements, and reports.
     ///
     /// Using this service:
-    ///
     /// 1. Resellers and distributors can manage a customer entity.
-    /// 1. Distributors can register an authorized reseller in their channel and
-    ///   provide them with delegated admin access.
-    /// 1. Resellers and distributors can manage customer entitlements.
+    /// 2. Distributors can register an authorized reseller in their channel and
+    ///    provide them with delegated admin access.
+    /// 3. Resellers and distributors can manage customer entitlements.
     ///
     /// CloudChannelService exposes the following resources:
+    /// - [Customer][google.cloud.channel.v1.Customer]s: An entity-usually an
+    /// enterprise-managed by a reseller or distributor.
     ///
-    /// * \[Customer\]\[google.cloud.channel.v1.Customer\]s: An entity-usually an
-    ///  enterprise-managed by a reseller or distributor.
+    /// - [Entitlement][google.cloud.channel.v1.Entitlement]s: An entity that
+    /// provides a customer with the means to use a service. Entitlements are created
+    /// or updated as a result of a successful fulfillment.
     ///
-    /// * \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]s: An entity that
-    ///  provides a customer with the means to use a service. Entitlements are created
-    ///  or updated as a result of a successful fulfillment.
-    ///
-    /// * \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]s: An
-    ///  entity that identifies links between distributors and their indirect
-    ///  resellers in a channel.
+    /// - [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s: An
+    /// entity that identifies links between distributors and their indirect
+    /// resellers in a channel.
     #[derive(Debug, Clone)]
     pub struct CloudChannelServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -4293,16 +4295,16 @@ pub mod cloud_channel_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// List \[Customer\]\[google.cloud.channel.v1.Customer\]s.
+        /// List [Customer][google.cloud.channel.v1.Customer]s.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
-        /// List of \[Customer\]\[google.cloud.channel.v1.Customer\]s, or an empty list if
+        /// List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
         /// there are no customers.
         pub async fn list_customers(
             &mut self,
@@ -4315,8 +4317,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4334,19 +4335,19 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the requested \[Customer\]\[google.cloud.channel.v1.Customer\]
+        /// Returns the requested [Customer][google.cloud.channel.v1.Customer]
         /// resource.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The customer resource doesn't exist. Usually the result of an
-        ///  invalid name parameter.
+        /// invalid name parameter.
         ///
         /// Return value:
-        /// The \[Customer\]\[google.cloud.channel.v1.Customer\] resource.
+        /// The [Customer][google.cloud.channel.v1.Customer] resource.
         pub async fn get_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomerRequest>,
@@ -4355,8 +4356,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4380,18 +4380,18 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * INVALID_VALUE: Invalid domain value in the request.
         ///
         /// Return value:
         /// A list of
-        /// \[CloudIdentityCustomerAccount\]\[google.cloud.channel.v1.CloudIdentityCustomerAccount\]
+        /// [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
         /// resources for the domain (may be empty)
         ///
         /// Note: in the v1alpha1 version of the API, a NOT_FOUND error returns if
         /// no
-        /// \[CloudIdentityCustomerAccount\]\[google.cloud.channel.v1.CloudIdentityCustomerAccount\]
+        /// [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
         /// resources match the domain.
         pub async fn check_cloud_identity_accounts_exist(
             &mut self,
@@ -4406,8 +4406,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4425,22 +4424,22 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a new \[Customer\]\[google.cloud.channel.v1.Customer\] resource under
+        /// Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
         /// the reseller or distributor account.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The reseller account making the request is different from the
-        ///    reseller account in the API request.
-        ///  * You are not authorized to create a customer. See
-        ///    https://support.google.com/channelservices/answer/9759265
+        ///     * The reseller account making the request is different from the
+        ///     reseller account in the API request.
+        ///     * You are not authorized to create a customer. See
+        ///     https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT:
-        ///  * Required request parameters are missing or invalid.
-        ///  * Domain field value doesn't match the primary email domain.
+        ///     * Required request parameters are missing or invalid.
+        ///     * Domain field value doesn't match the primary email domain.
         ///
         /// Return value:
-        /// The newly created \[Customer\]\[google.cloud.channel.v1.Customer\] resource.
+        /// The newly created [Customer][google.cloud.channel.v1.Customer] resource.
         pub async fn create_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomerRequest>,
@@ -4449,8 +4448,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4468,19 +4466,19 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates an existing \[Customer\]\[google.cloud.channel.v1.Customer\] resource
+        /// Updates an existing [Customer][google.cloud.channel.v1.Customer] resource
         /// for the reseller or distributor.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-        /// * NOT_FOUND: No \[Customer\]\[google.cloud.channel.v1.Customer\] resource found
-        ///  for the name in the request.
+        /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+        /// for the name in the request.
         ///
         /// Return value:
-        /// The updated \[Customer\]\[google.cloud.channel.v1.Customer\] resource.
+        /// The updated [Customer][google.cloud.channel.v1.Customer] resource.
         pub async fn update_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCustomerRequest>,
@@ -4489,8 +4487,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4508,16 +4505,16 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes the given \[Customer\]\[google.cloud.channel.v1.Customer\] permanently.
+        /// Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The account making the request does not own
-        ///  this customer.
+        /// this customer.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * FAILED_PRECONDITION: The customer has existing entitlements.
-        /// * NOT_FOUND: No \[Customer\]\[google.cloud.channel.v1.Customer\] resource found
-        ///  for the name in the request.
+        /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+        /// for the name in the request.
         pub async fn delete_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomerRequest>,
@@ -4526,8 +4523,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4545,7 +4541,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Imports a \[Customer\]\[google.cloud.channel.v1.Customer\] from the Cloud
+        /// Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
         /// Identity associated with the provided Cloud Identity ID or domain before a
         /// TransferEntitlements call. If a linked Customer already exists and
         /// overwrite_if_exists is true, it will update that Customer's data.
@@ -4553,18 +4549,18 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The reseller account making the request is different from the
-        ///    reseller account in the API request.
-        ///  * You are not authorized to import the customer. See
-        ///    https://support.google.com/channelservices/answer/9759265
+        ///     * The reseller account making the request is different from the
+        ///     reseller account in the API request.
+        ///     * You are not authorized to import the customer. See
+        ///     https://support.google.com/channelservices/answer/9759265
         /// * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
         /// * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
-        ///  expired or invalid.
+        /// expired or invalid.
         /// * ALREADY_EXISTS: A customer already exists and has conflicting critical
-        ///  fields. Requires an overwrite.
+        /// fields. Requires an overwrite.
         ///
         /// Return value:
-        /// The \[Customer\]\[google.cloud.channel.v1.Customer\].
+        /// The [Customer][google.cloud.channel.v1.Customer].
         pub async fn import_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportCustomerRequest>,
@@ -4573,8 +4569,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4597,25 +4592,25 @@ pub mod cloud_channel_service_client {
         ///
         /// Possible error codes:
         ///
-        /// * PERMISSION_DENIED:
-        ///  * The customer doesn't belong to the reseller.
-        ///  * You are not authorized to provision cloud identity id. See
-        ///    https://support.google.com/channelservices/answer/9759265
-        /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-        /// * NOT_FOUND: The customer was not found.
-        /// * ALREADY_EXISTS: The customer's primary email already exists. Retry
-        ///  after changing the customer's primary contact email.
+        /// *  PERMISSION_DENIED:
+        ///      * The customer doesn't belong to the reseller.
+        ///      * You are not authorized to provision cloud identity id. See
+        ///      https://support.google.com/channelservices/answer/9759265
+        /// *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
+        /// *  NOT_FOUND: The customer was not found.
+        /// *  ALREADY_EXISTS: The customer's primary email already exists. Retry
+        ///    after changing the customer's primary contact email.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata contains an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn provision_cloud_identity(
             &mut self,
             request: impl tonic::IntoRequest<super::ProvisionCloudIdentityRequest>,
@@ -4627,8 +4622,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4646,7 +4640,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]s belonging to a
+        /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
         /// customer.
         ///
         /// Possible error codes:
@@ -4656,7 +4650,7 @@ pub mod cloud_channel_service_client {
         ///
         /// Return value:
         /// A list of the customer's
-        /// \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]s.
+        /// [Entitlement][google.cloud.channel.v1.Entitlement]s.
         pub async fn list_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntitlementsRequest>,
@@ -4668,8 +4662,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4687,7 +4680,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// List \[TransferableSku\]\[google.cloud.channel.v1.TransferableSku\]s of a
+        /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
         /// customer based on the Cloud Identity ID or Customer Name in the request.
         ///
         /// Use this method to list the entitlements information of an
@@ -4697,15 +4690,15 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The customer doesn't belong to the reseller and has no auth token.
-        ///  * The supplied auth token is invalid.
-        ///  * The reseller account making the request is different
-        ///    from the reseller account in the query.
+        ///     * The customer doesn't belong to the reseller and has no auth token.
+        ///     * The supplied auth token is invalid.
+        ///     * The reseller account making the request is different
+        ///     from the reseller account in the query.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
         /// A list of the customer's
-        /// \[TransferableSku\]\[google.cloud.channel.v1.TransferableSku\].
+        /// [TransferableSku][google.cloud.channel.v1.TransferableSku].
         pub async fn list_transferable_skus(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTransferableSkusRequest>,
@@ -4717,8 +4710,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4736,7 +4728,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// List \[TransferableOffer\]\[google.cloud.channel.v1.TransferableOffer\]s of a
+        /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
         /// customer based on Cloud Identity ID or Customer Name in the request.
         ///
         /// Use this method when a reseller gets the entitlement information of an
@@ -4746,17 +4738,17 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The customer doesn't belong to the reseller and has no auth token.
-        ///  * The customer provided incorrect reseller information when generating
-        ///    auth token.
-        ///  * The reseller account making the request is different
-        ///    from the reseller account in the query.
-        ///  * The reseller is not authorized to transact on this Product. See
-        ///    https://support.google.com/channelservices/answer/9759265
+        ///     * The customer doesn't belong to the reseller and has no auth token.
+        ///     * The customer provided incorrect reseller information when generating
+        ///     auth token.
+        ///     * The reseller account making the request is different
+        ///     from the reseller account in the query.
+        ///     * The reseller is not authorized to transact on this Product. See
+        ///     https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
-        /// List of \[TransferableOffer\]\[google.cloud.channel.v1.TransferableOffer\] for
+        /// List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
         /// the given customer and SKU.
         pub async fn list_transferable_offers(
             &mut self,
@@ -4769,8 +4761,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4788,7 +4779,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the requested \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]
+        /// Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
         /// resource.
         ///
         /// Possible error codes:
@@ -4798,7 +4789,7 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: The customer entitlement was not found.
         ///
         /// Return value:
-        /// The requested \[Entitlement\]\[google.cloud.channel.v1.Entitlement\] resource.
+        /// The requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
         pub async fn get_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntitlementRequest>,
@@ -4807,8 +4798,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4831,40 +4821,40 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The customer doesn't belong to the reseller.
-        ///  * The reseller is not authorized to transact on this Product. See
-        ///    https://support.google.com/channelservices/answer/9759265
+        ///     * The customer doesn't belong to the reseller.
+        ///     * The reseller is not authorized to transact on this Product. See
+        ///     https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT:
-        ///  * Required request parameters are missing or invalid.
-        ///  * There is already a customer entitlement for a SKU from the same
-        ///    product family.
+        ///     * Required request parameters are missing or invalid.
+        ///     * There is already a customer entitlement for a SKU from the same
+        ///     product family.
         /// * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact
-        ///  Google Channel support for further troubleshooting.
+        /// Google Channel support for further troubleshooting.
         /// * NOT_FOUND: The customer or offer resource was not found.
         /// * ALREADY_EXISTS:
-        ///  * The SKU was already purchased for the customer.
-        ///  * The customer's primary email already exists. Retry
-        ///    after changing the customer's primary contact email.
+        ///     * The SKU was already purchased for the customer.
+        ///     * The customer's primary email already exists. Retry
+        ///     after changing the customer's primary contact email.
         /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
-        ///  * The domain required for purchasing a SKU has not been verified.
-        ///  * A pre-requisite SKU required to purchase an Add-On SKU is missing.
-        ///    For example, Google Workspace Business Starter is required to purchase
-        ///    Vault or Drive.
-        ///  * (Developer accounts only) Reseller and resold domain must meet the
-        ///    following naming requirements:
-        ///    * Domain names must start with goog-test.
-        ///    * Domain names must include the reseller domain.
+        ///     * The domain required for purchasing a SKU has not been verified.
+        ///     * A pre-requisite SKU required to purchase an Add-On SKU is missing.
+        ///     For example, Google Workspace Business Starter is required to purchase
+        ///     Vault or Drive.
+        ///     * (Developer accounts only) Reseller and resold domain must meet the
+        ///     following naming requirements:
+        ///         * Domain names must start with goog-test.
+        ///         * Domain names must include the reseller domain.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn create_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEntitlementRequest>,
@@ -4876,8 +4866,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4904,20 +4893,20 @@ pub mod cloud_channel_service_client {
         ///
         /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-        ///  For example, the number of seats being changed is greater than the allowed
-        ///  number of max seats, or decreasing seats for a commitment based plan.
+        /// For example, the number of seats being changed is greater than the allowed
+        /// number of max seats, or decreasing seats for a commitment based plan.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn change_parameters(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeParametersRequest>,
@@ -4929,8 +4918,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4959,18 +4947,18 @@ pub mod cloud_channel_service_client {
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * NOT_COMMITMENT_PLAN: Renewal Settings are only applicable for a
-        ///  commitment plan. Can't enable or disable renewals for non-commitment plans.
+        /// commitment plan. Can't enable or disable renewals for non-commitment plans.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        ///   Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn change_renewal_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeRenewalSettingsRequest>,
@@ -4982,8 +4970,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5012,16 +4999,16 @@ pub mod cloud_channel_service_client {
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Offer or Entitlement resource not found.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn change_offer(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeOfferRequest>,
@@ -5033,8 +5020,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5064,18 +5050,18 @@ pub mod cloud_channel_service_client {
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for
-        ///  entitlement on trial plans.
+        /// entitlement on trial plans.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn start_paid_service(
             &mut self,
             request: impl tonic::IntoRequest<super::StartPaidServiceRequest>,
@@ -5087,8 +5073,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5117,16 +5102,16 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: Entitlement resource not found.
         /// * NOT_ACTIVE: Entitlement is not active.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn suspend_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::SuspendEntitlementRequest>,
@@ -5138,8 +5123,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5164,17 +5148,17 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * FAILED_PRECONDITION: There are Google Cloud projects linked to the
-        ///  Google Cloud entitlement's Cloud Billing subaccount.
+        /// Google Cloud entitlement's Cloud Billing subaccount.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * DELETION_TYPE_NOT_ALLOWED: Cancel is only allowed for Google Workspace
-        ///  add-ons, or entitlements for Google Cloud's development platform.
+        /// add-ons, or entitlements for Google Cloud's development platform.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
@@ -5182,7 +5166,7 @@ pub mod cloud_channel_service_client {
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The response will contain
         /// google.protobuf.Empty on success. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn cancel_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::CancelEntitlementRequest>,
@@ -5194,8 +5178,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5222,24 +5205,24 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * SUSPENSION_NOT_RESELLER_INITIATED: Can only activate reseller-initiated
-        ///  suspensions and entitlements that have accepted the TOS.
+        /// suspensions and entitlements that have accepted the TOS.
         /// * NOT_SUSPENDED: Can only activate suspended entitlements not in an ACTIVE
-        ///  state.
+        /// state.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn activate_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::ActivateEntitlementRequest>,
@@ -5251,8 +5234,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5275,33 +5257,33 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The customer doesn't belong to the reseller.
-        ///  * The reseller is not authorized to transact on this Product. See
-        ///    https://support.google.com/channelservices/answer/9759265
+        ///     * The customer doesn't belong to the reseller.
+        ///     * The reseller is not authorized to transact on this Product. See
+        ///     https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The customer or offer resource was not found.
         /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
         /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
-        ///  * The SKU requires domain verification to transfer, but the domain is
-        ///    not verified.
-        ///  * An Add-On SKU (example, Vault or Drive) is missing the
-        ///    pre-requisite SKU (example, G Suite Basic).
-        ///  * (Developer accounts only) Reseller and resold domain must meet the
-        ///    following naming requirements:
-        ///    * Domain names must start with goog-test.
-        ///    * Domain names must include the reseller domain.
-        ///  * Specify all transferring entitlements.
+        ///     * The SKU requires domain verification to transfer, but the domain is
+        ///     not verified.
+        ///     * An Add-On SKU (example, Vault or Drive) is missing the
+        ///     pre-requisite SKU (example, G Suite Basic).
+        ///     * (Developer accounts only) Reseller and resold domain must meet the
+        ///     following naming requirements:
+        ///         * Domain names must start with goog-test.
+        ///         * Domain names must include the reseller domain.
+        ///     * Specify all transferring entitlements.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn transfer_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::TransferEntitlementsRequest>,
@@ -5313,8 +5295,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5341,18 +5322,18 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: The customer or offer resource was not found.
         /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
         /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
-        ///  * The SKU requires domain verification to transfer, but the domain is
-        ///    not verified.
-        ///  * An Add-On SKU (example, Vault or Drive) is missing the
-        ///    pre-requisite SKU (example, G Suite Basic).
-        ///  * (Developer accounts only) Reseller and resold domain must meet the
-        ///    following naming requirements:
-        ///    * Domain names must start with goog-test.
-        ///    * Domain names must include the reseller domain.
+        ///     * The SKU requires domain verification to transfer, but the domain is
+        ///     not verified.
+        ///     * An Add-On SKU (example, Vault or Drive) is missing the
+        ///     pre-requisite SKU (example, G Suite Basic).
+        ///     * (Developer accounts only) Reseller and resold domain must meet the
+        ///     following naming requirements:
+        ///         * Domain names must start with goog-test.
+        ///         * Domain names must include the reseller domain.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
@@ -5360,7 +5341,7 @@ pub mod cloud_channel_service_client {
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The response will contain
         /// google.protobuf.Empty on success. The Operation metadata will contain an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
         pub async fn transfer_entitlements_to_google(
             &mut self,
             request: impl tonic::IntoRequest<super::TransferEntitlementsToGoogleRequest>,
@@ -5372,8 +5353,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5391,18 +5371,18 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// List \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]s
+        /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
         /// belonging to a distributor. You must be a distributor to call this method.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
         /// The list of the distributor account's
-        /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] resources.
+        /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
         pub async fn list_channel_partner_links(
             &mut self,
             request: impl tonic::IntoRequest<super::ListChannelPartnerLinksRequest>,
@@ -5414,8 +5394,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5434,19 +5413,19 @@ pub mod cloud_channel_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested
-        /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] resource.
+        /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
         /// You must be a distributor to call this method.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: ChannelPartnerLink resource not found because of an
-        ///  invalid channel partner link name.
+        /// invalid channel partner link name.
         ///
         /// Return value:
-        /// The \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]
+        /// The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
         /// resource.
         pub async fn get_channel_partner_link(
             &mut self,
@@ -5459,8 +5438,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5488,18 +5466,18 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * ALREADY_EXISTS: The ChannelPartnerLink sent in the request already
-        ///  exists.
+        /// exists.
         /// * NOT_FOUND: No Cloud Identity customer exists for provided domain.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
-        /// The new \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]
+        /// The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
         /// resource.
         pub async fn create_channel_partner_link(
             &mut self,
@@ -5512,8 +5490,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5538,21 +5515,21 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        ///  from the reseller account in the API request.
+        /// from the reseller account in the API request.
         /// * INVALID_ARGUMENT:
-        ///  * Required request parameters are missing or invalid.
-        ///  * Link state cannot change from invited to active or suspended.
-        ///  * Cannot send reseller_cloud_identity_id, invite_url, or name in update
-        ///    mask.
+        ///     * Required request parameters are missing or invalid.
+        ///     * Link state cannot change from invited to active or suspended.
+        ///     * Cannot send reseller_cloud_identity_id, invite_url, or name in update
+        ///     mask.
         /// * NOT_FOUND: ChannelPartnerLink resource not found.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The updated
-        /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] resource.
+        /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
         pub async fn update_channel_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateChannelPartnerLinkRequest>,
@@ -5564,8 +5541,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5589,16 +5565,16 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * NOT_FOUND: The
-        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
-        ///  was not found.
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// was not found.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
         /// resource, otherwise returns an error.
         pub async fn get_customer_repricing_config(
             &mut self,
@@ -5611,8 +5587,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5636,23 +5611,23 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * NOT_FOUND: The
-        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
-        ///  specified does not exist or is not associated with the given account.
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
         /// resources. The data for each resource is displayed in the ascending order
         /// of:
         ///
         /// * Customer ID
-        /// * \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\]
-        /// * \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
-        /// * \[CustomerRepricingConfig.update_time\]\[google.cloud.channel.v1.CustomerRepricingConfig.update_time\]
+        /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
+        /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_customer_repricing_configs(
@@ -5666,8 +5641,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5687,45 +5661,45 @@ pub mod cloud_channel_service_client {
         }
         /// Creates a CustomerRepricingConfig. Call this method to set modifications
         /// for a specific customer's bill. You can only create configs if the
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
         /// is a future month. If needed, you can create a config for the current
         /// month, with some restrictions.
         ///
         /// When creating a config for a future month, make sure there are no existing
         /// configs for that
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
         ///
         /// The following restrictions are for creating configs in the current month.
         ///
         /// * This functionality is reserved for recovering from an erroneous config,
-        ///  and should not be used for regular business cases.
+        /// and should not be used for regular business cases.
         /// * The new config will not modify exports used with other configs.
-        ///  Changes to the config may be immediate, but may take up to 24 hours.
+        /// Changes to the config may be immediate, but may take up to 24 hours.
         /// * There is a limit of ten configs for any
-        ///  \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\],
-        ///  for any
-        ///  \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
+        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+        /// for any
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
         /// * The contained
-        ///  \[CustomerRepricingConfig.repricing_config\]\[google.cloud.channel.v1.CustomerRepricingConfig.repricing_config\]
-        ///  value must be different from the value used in the current config for a
-        ///  \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\].
+        /// [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
+        /// value must be different from the value used in the current config for a
+        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
         ///
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        ///  request. Also displays if the updated config is for the current month or
-        ///  past months.
+        /// request. Also displays if the updated config is for the current month or
+        /// past months.
         /// * NOT_FOUND: The
-        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
-        ///  specified does not exist or is not associated with the given account.
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
         /// resource, otherwise returns an error.
         pub async fn create_customer_repricing_config(
             &mut self,
@@ -5738,8 +5712,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5762,11 +5735,11 @@ pub mod cloud_channel_service_client {
         /// CustomerRepricingConfig.
         ///
         /// You can only update configs if the
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
         /// is a future month. To make changes to configs for the current month, use
-        /// \[CreateCustomerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig\],
+        /// [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig],
         /// taking note of its restrictions. You cannot update the
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
         ///
         /// When updating a config in the future:
         ///
@@ -5775,19 +5748,19 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        ///  request. Also displays if the updated config is for the current month or
-        ///  past months.
+        /// request. Also displays if the updated config is for the current month or
+        /// past months.
         /// * NOT_FOUND: The
-        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
-        ///  specified does not exist or is not associated with the given account.
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
         /// resource, otherwise returns an error.
         pub async fn update_customer_repricing_config(
             &mut self,
@@ -5800,8 +5773,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5820,22 +5792,22 @@ pub mod cloud_channel_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given
-        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
         /// permanently. You can only delete configs if their
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
         /// is set to a date after the current month.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The account making the request does not own
-        ///  this customer.
+        /// this customer.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * FAILED_PRECONDITION: The
-        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
-        ///  is active or in the past.
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// is active or in the past.
         /// * NOT_FOUND: No
-        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
-        ///  found for the name in the request.
+        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// found for the name in the request.
         pub async fn delete_customer_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomerRepricingConfigRequest>,
@@ -5844,8 +5816,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5869,16 +5840,16 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * NOT_FOUND: The
-        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
-        ///  was not found.
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// was not found.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// resource, otherwise returns an error.
         pub async fn get_channel_partner_repricing_config(
             &mut self,
@@ -5893,8 +5864,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5918,22 +5888,22 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * NOT_FOUND: The
-        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
-        ///  specified does not exist or is not associated with the given account.
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// resources. The data for each resource is displayed in the ascending order
         /// of:
         ///
         /// * Channel Partner ID
-        /// * \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
-        /// * \[ChannelPartnerRepricingConfig.update_time\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time\]
+        /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_channel_partner_repricing_configs(
@@ -5949,8 +5919,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5971,45 +5940,45 @@ pub mod cloud_channel_service_client {
         /// Creates a ChannelPartnerRepricingConfig. Call this method to set
         /// modifications for a specific ChannelPartner's bill. You can only create
         /// configs if the
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
         /// is a future month. If needed, you can create a config for the current
         /// month, with some restrictions.
         ///
         /// When creating a config for a future month, make sure there are no existing
         /// configs for that
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
         ///
         /// The following restrictions are for creating configs in the current month.
         ///
         /// * This functionality is reserved for recovering from an erroneous config,
-        ///  and should not be used for regular business cases.
+        /// and should not be used for regular business cases.
         /// * The new config will not modify exports used with other configs.
-        ///  Changes to the config may be immediate, but may take up to 24 hours.
+        /// Changes to the config may be immediate, but may take up to 24 hours.
         /// * There is a limit of ten configs for any ChannelPartner or
-        ///  \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\],
-        ///  for any
-        ///  \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
+        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+        /// for any
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
         /// * The contained
-        ///  \[ChannelPartnerRepricingConfig.repricing_config\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config\]
-        ///  value must be different from the value used in the current config for a
-        ///  ChannelPartner.
+        /// [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
+        /// value must be different from the value used in the current config for a
+        /// ChannelPartner.
         ///
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        ///  request. Also displays if the updated config is for the current month or
-        ///  past months.
+        /// request. Also displays if the updated config is for the current month or
+        /// past months.
         /// * NOT_FOUND: The
-        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
-        ///  specified does not exist or is not associated with the given account.
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// resource, otherwise returns an error.
         pub async fn create_channel_partner_repricing_config(
             &mut self,
@@ -6024,8 +5993,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6048,11 +6016,11 @@ pub mod cloud_channel_service_client {
         /// the existing CustomerRepricingConfig.
         ///
         /// You can only update configs if the
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
         /// is a future month. To make changes to configs for the current month, use
-        /// \[CreateChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig\],
+        /// [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig],
         /// taking note of its restrictions. You cannot update the
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
         ///
         /// When updating a config in the future:
         ///
@@ -6061,19 +6029,19 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different.
+        /// being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        ///  request. Also displays if the updated config is for the current month or
-        ///  past months.
+        /// request. Also displays if the updated config is for the current month or
+        /// past months.
         /// * NOT_FOUND: The
-        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
-        ///  specified does not exist or is not associated with the given account.
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// resource, otherwise returns an error.
         pub async fn update_channel_partner_repricing_config(
             &mut self,
@@ -6088,8 +6056,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6108,22 +6075,22 @@ pub mod cloud_channel_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given
-        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
         /// permanently. You can only delete configs if their
-        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
         /// is set to a date after the current month.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The account making the request does not own
-        ///  this customer.
+        /// this customer.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * FAILED_PRECONDITION: The
-        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
-        ///  is active or in the past.
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// is active or in the past.
         /// * NOT_FOUND: No
-        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
-        ///  found for the name in the request.
+        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// found for the name in the request.
         pub async fn delete_channel_partner_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -6134,8 +6101,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6160,16 +6126,16 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        ///  being queried are different, or the account doesn't exist.
+        /// being queried are different, or the account doesn't exist.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        ///  backend. In this case, contact Cloud Channel support.
+        /// backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
-        /// If successful, the \[SkuGroup\]\[google.cloud.channel.v1.SkuGroup\] resources.
+        /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
         /// The data for each resource is displayed in the alphabetical order of SKU
         /// group display name.
         /// The data for each resource is displayed in the ascending order of
-        /// \[SkuGroup.display_name\]\[google.cloud.channel.v1.SkuGroup.display_name\]
+        /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_sku_groups(
@@ -6183,8 +6149,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6213,12 +6178,12 @@ pub mod cloud_channel_service_client {
         /// backend. In this case, contact cloud channel support.
         ///
         /// Return Value:
-        /// If successful, the \[BillableSku\]\[google.cloud.channel.v1.BillableSku\]
+        /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
         /// resources. The data for each resource is displayed in the ascending order
         /// of:
         ///
-        /// * \[BillableSku.service_display_name\]\[google.cloud.channel.v1.BillableSku.service_display_name\]
-        /// * \[BillableSku.sku_display_name\]\[google.cloud.channel.v1.BillableSku.sku_display_name\]
+        /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+        /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_sku_group_billable_skus(
@@ -6232,8 +6197,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6251,7 +6215,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the requested \[Offer\]\[google.cloud.channel.v1.Offer\] resource.
+        /// Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
         ///
         /// Possible error codes:
         ///
@@ -6260,7 +6224,7 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: Entitlement or offer was not found.
         ///
         /// Return value:
-        /// The \[Offer\]\[google.cloud.channel.v1.Offer\] resource.
+        /// The [Offer][google.cloud.channel.v1.Offer] resource.
         pub async fn lookup_offer(
             &mut self,
             request: impl tonic::IntoRequest<super::LookupOfferRequest>,
@@ -6269,8 +6233,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6304,8 +6267,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6339,8 +6301,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6374,8 +6335,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6413,8 +6373,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6440,9 +6399,9 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///  * The customer doesn't belong to the reseller
-        ///  * The reseller is not authorized to transact on this Product. See
-        ///    https://support.google.com/channelservices/answer/9759265
+        ///     * The customer doesn't belong to the reseller
+        ///     * The reseller is not authorized to transact on this Product. See
+        ///     https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         pub async fn list_purchasable_offers(
             &mut self,
@@ -6455,8 +6414,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6497,8 +6455,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6519,18 +6476,18 @@ pub mod cloud_channel_service_client {
         /// Registers a service account with subscriber privileges on the Cloud Pub/Sub
         /// topic for this Channel Services account. After you create a
         /// subscriber, you get the events through
-        /// \[SubscriberEvent\]\[google.cloud.channel.v1.SubscriberEvent\]
+        /// [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        ///  provided reseller account are different, or the impersonated user
-        ///  is not a super admin.
+        /// provided reseller account are different, or the impersonated user
+        /// is not a super admin.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The topic name with the registered service email address.
@@ -6545,8 +6502,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6572,14 +6528,14 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        ///  provided reseller account are different, or the impersonated user
-        ///  is not a super admin.
+        /// provided reseller account are different, or the impersonated user
+        /// is not a super admin.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The topic resource doesn't exist.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// The topic name that unregistered the service email address.
@@ -6596,8 +6552,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6621,14 +6576,14 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        ///  provided reseller account are different, or the impersonated user
-        ///  is not a super admin.
+        /// provided reseller account are different, or the impersonated user
+        /// is not a super admin.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The topic resource doesn't exist.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        ///  backend. Contact Cloud Channel support.
+        /// backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  Contact Cloud Channel support.
+        /// Contact Cloud Channel support.
         ///
         /// Return value:
         /// A list of service email addresses.
@@ -6643,8 +6598,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6667,17 +6621,17 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        ///  provided reseller account are different.
+        /// provided reseller account are different.
         /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
         /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
-        ///  invalid name parameter.
+        /// invalid name parameter.
         /// * INTERNAL: Any non-user error related to a technical issue in the backend.
-        ///  In this case, contact CloudChannel support.
+        /// In this case, contact CloudChannel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///  In this case, contact Cloud Channel support.
+        /// In this case, contact Cloud Channel support.
         ///
         /// Return value:
-        /// List of \[EntitlementChange\]\[google.cloud.channel.v1.EntitlementChange\]s.
+        /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
         pub async fn list_entitlement_changes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntitlementChangesRequest>,
@@ -6689,8 +6643,7 @@ pub mod cloud_channel_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6751,9 +6704,9 @@ pub mod customer_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::PrimaryDomainChanged => "PRIMARY_DOMAIN_CHANGED",
-                Type::PrimaryDomainVerified => "PRIMARY_DOMAIN_VERIFIED",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::PrimaryDomainChanged => "PRIMARY_DOMAIN_CHANGED",
+                Self::PrimaryDomainVerified => "PRIMARY_DOMAIN_VERIFIED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6831,19 +6784,19 @@ pub mod entitlement_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Created => "CREATED",
-                Type::PricePlanSwitched => "PRICE_PLAN_SWITCHED",
-                Type::CommitmentChanged => "COMMITMENT_CHANGED",
-                Type::Renewed => "RENEWED",
-                Type::Suspended => "SUSPENDED",
-                Type::Activated => "ACTIVATED",
-                Type::Cancelled => "CANCELLED",
-                Type::SkuChanged => "SKU_CHANGED",
-                Type::RenewalSettingChanged => "RENEWAL_SETTING_CHANGED",
-                Type::PaidServiceStarted => "PAID_SERVICE_STARTED",
-                Type::LicenseAssignmentChanged => "LICENSE_ASSIGNMENT_CHANGED",
-                Type::LicenseCapChanged => "LICENSE_CAP_CHANGED",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Created => "CREATED",
+                Self::PricePlanSwitched => "PRICE_PLAN_SWITCHED",
+                Self::CommitmentChanged => "COMMITMENT_CHANGED",
+                Self::Renewed => "RENEWED",
+                Self::Suspended => "SUSPENDED",
+                Self::Activated => "ACTIVATED",
+                Self::Cancelled => "CANCELLED",
+                Self::SkuChanged => "SKU_CHANGED",
+                Self::RenewalSettingChanged => "RENEWAL_SETTING_CHANGED",
+                Self::PaidServiceStarted => "PAID_SERVICE_STARTED",
+                Self::LicenseAssignmentChanged => "LICENSE_ASSIGNMENT_CHANGED",
+                Self::LicenseCapChanged => "LICENSE_CAP_CHANGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.

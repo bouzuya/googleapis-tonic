@@ -21,10 +21,9 @@ pub struct RelatedUrl {
 /// for quickly selecting a public key ALREADY CONFIGURED on the verifier through
 /// a trusted channel. Verification implementations MUST reject signatures in any
 /// of the following circumstances:
-///
-/// * The `public_key_id` is not recognized by the verifier.
-/// * The public key that `public_key_id` refers to does not verify the
-///   signature with respect to the payload.
+///    * The `public_key_id` is not recognized by the verifier.
+///    * The public key that `public_key_id` refers to does not verify the
+///      signature with respect to the payload.
 ///
 /// The `signature` contents SHOULD NOT be "attached" (where the payload is
 /// included with the serialized `signature` bytes). Verifiers MUST ignore any
@@ -43,25 +42,22 @@ pub struct Signature {
     #[prost(bytes = "bytes", tag = "1")]
     pub signature: ::prost::bytes::Bytes,
     /// The identifier for the public key that verifies this signature.
-    ///
-    /// * The `public_key_id` is required.
-    /// * The `public_key_id` MUST be an RFC3986 conformant URI.
-    /// * When possible, the `public_key_id` SHOULD be an immutable reference,
-    ///   such as a cryptographic digest.
+    ///    * The `public_key_id` is required.
+    ///    * The `public_key_id` MUST be an RFC3986 conformant URI.
+    ///    * When possible, the `public_key_id` SHOULD be an immutable reference,
+    ///      such as a cryptographic digest.
     ///
     /// Examples of valid `public_key_id`s:
     ///
     /// OpenPGP V4 public key fingerprint:
-    ///
-    /// * "openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA"
-    ///   See <https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr> for more
-    ///   details on this scheme.
+    ///    * "openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA"
+    /// See <https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr> for more
+    /// details on this scheme.
     ///
     /// RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER
     /// serialization):
-    ///
-    /// * "ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU"
-    /// * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5"
+    ///    * "ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU"
+    ///    * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5"
     #[prost(string, tag = "2")]
     pub public_key_id: ::prost::alloc::string::String,
 }
@@ -93,14 +89,14 @@ impl NoteKind {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NoteKind::Unspecified => "NOTE_KIND_UNSPECIFIED",
-            NoteKind::Vulnerability => "VULNERABILITY",
-            NoteKind::Build => "BUILD",
-            NoteKind::Image => "IMAGE",
-            NoteKind::Package => "PACKAGE",
-            NoteKind::Deployment => "DEPLOYMENT",
-            NoteKind::Discovery => "DISCOVERY",
-            NoteKind::Attestation => "ATTESTATION",
+            Self::Unspecified => "NOTE_KIND_UNSPECIFIED",
+            Self::Vulnerability => "VULNERABILITY",
+            Self::Build => "BUILD",
+            Self::Image => "IMAGE",
+            Self::Package => "PACKAGE",
+            Self::Deployment => "DEPLOYMENT",
+            Self::Discovery => "DISCOVERY",
+            Self::Attestation => "ATTESTATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -519,7 +515,13 @@ pub mod vulnerability_occurrences_summary {
 }
 /// Generated client implementations.
 pub mod grafeas_v1_beta1_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// [Grafeas](grafeas.io) API.
@@ -614,8 +616,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -642,8 +643,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -669,8 +669,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -694,8 +693,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -722,8 +720,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -750,8 +747,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -776,8 +772,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -804,8 +799,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -830,8 +824,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -853,8 +846,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -876,8 +868,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -902,8 +893,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -927,8 +917,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -955,8 +944,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -988,8 +976,7 @@ pub mod grafeas_v1_beta1_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

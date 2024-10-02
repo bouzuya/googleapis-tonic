@@ -41,17 +41,17 @@ pub struct MuxStream {
     ///
     /// Supported container formats:
     ///
-    /// * `fmp4` - the corresponding file extension is `.m4s`
-    /// * `ts` - the corresponding file extension is `.ts`
+    /// - `fmp4` - the corresponding file extension is `.m4s`
+    /// - `ts` - the corresponding file extension is `.ts`
     #[prost(string, tag = "3")]
     pub container: ::prost::alloc::string::String,
     /// List of `ElementaryStream`
-    /// \[key\]\[google.cloud.video.livestream.v1.ElementaryStream.key\]s multiplexed
+    /// [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
     /// in this stream.
     ///
-    /// * For `fmp4` container, must contain either one video or one audio stream.
-    /// * For `ts` container, must contain exactly one audio stream and up to one
-    ///   video stream.
+    /// - For `fmp4` container, must contain either one video or one audio stream.
+    /// - For `ts` container, must contain exactly one audio stream and up to one
+    /// video stream.
     #[prost(string, repeated, tag = "4")]
     pub elementary_streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Segment settings for `fmp4` and `ts`.
@@ -67,7 +67,7 @@ pub struct MuxStream {
 pub struct Manifest {
     /// The name of the generated file. The default is `manifest` with the
     /// extension suffix corresponding to the `Manifest`
-    /// \[type\]\[google.cloud.video.livestream.v1.Manifest.type\]. If multiple
+    /// [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
     /// manifests are added to the channel, each must have a unique file name.
     #[prost(string, tag = "1")]
     pub file_name: ::prost::alloc::string::String,
@@ -75,12 +75,12 @@ pub struct Manifest {
     #[prost(enumeration = "manifest::ManifestType", tag = "2")]
     pub r#type: i32,
     /// Required. List of `MuxStream`
-    /// \[key\]\[google.cloud.video.livestream.v1.MuxStream.key\]s that should appear
+    /// [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
     /// in this manifest.
     ///
-    /// * For HLS, either `fmp4` or `ts` mux streams can be specified but not
-    ///   mixed.
-    /// * For DASH, only `fmp4` mux streams can be specified.
+    /// - For HLS, either `fmp4` or `ts` mux streams can be specified but not
+    /// mixed.
+    /// - For DASH, only `fmp4` mux streams can be specified.
     #[prost(string, repeated, tag = "3")]
     pub mux_streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Maximum number of segments that this manifest holds. Once the manifest
@@ -97,16 +97,16 @@ pub struct Manifest {
     /// bucket. Default value is `60s`.
     ///
     /// If both segment_keep_duration and
-    /// \[RetentionConfig.retention_window_duration\]\[google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration\]
+    /// [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
     /// are set,
-    /// \[RetentionConfig.retention_window_duration\]\[google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration\]
+    /// [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
     /// is used and segment_keep_duration is ignored.
     #[prost(message, optional, tag = "5")]
     pub segment_keep_duration: ::core::option::Option<::prost_types::Duration>,
     /// Whether to use the timecode, as specified in timecode config, when setting:
     ///
-    /// * `availabilityStartTime` attribute in DASH manifests.
-    /// * `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
+    /// - `availabilityStartTime` attribute in DASH manifests.
+    /// - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
     ///
     /// If false, ignore the input timecode and use the time from system clock
     /// when the manifest is first generated. This is the default behavior.
@@ -146,9 +146,9 @@ pub mod manifest {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ManifestType::Unspecified => "MANIFEST_TYPE_UNSPECIFIED",
-                ManifestType::Hls => "HLS",
-                ManifestType::Dash => "DASH",
+                Self::Unspecified => "MANIFEST_TYPE_UNSPECIFIED",
+                Self::Hls => "HLS",
+                Self::Dash => "DASH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -169,7 +169,7 @@ pub struct SpriteSheet {
     ///
     /// Supported formats:
     ///
-    /// * `jpeg`
+    /// - `jpeg`
     #[prost(string, tag = "1")]
     pub format: ::prost::alloc::string::String,
     /// Required. File name prefix for the generated sprite sheets. If multiple
@@ -226,14 +226,14 @@ pub mod preprocessing_config {
         /// Specify audio loudness normalization in loudness units relative to full
         /// scale (LUFS). Enter a value between -24 and 0 according to the following:
         ///
-        /// * -24 is the Advanced Television Systems Committee (ATSC A/85)
-        /// * -23 is the EU R128 broadcast standard
-        /// * -19 is the prior standard for online mono audio
-        /// * -18 is the ReplayGain standard
-        /// * -16 is the prior standard for stereo audio
-        /// * -14 is the new online audio standard recommended by Spotify, as well as
-        ///   Amazon Echo
-        /// * 0 disables normalization. The default is 0.
+        /// - -24 is the Advanced Television Systems Committee (ATSC A/85)
+        /// - -23 is the EU R128 broadcast standard
+        /// - -19 is the prior standard for online mono audio
+        /// - -18 is the ReplayGain standard
+        /// - -16 is the prior standard for stereo audio
+        /// - -14 is the new online audio standard recommended by Spotify, as well as
+        /// Amazon Echo
+        /// - 0 disables normalization. The default is 0.
         #[prost(double, tag = "1")]
         pub lufs: f64,
     }
@@ -303,8 +303,8 @@ pub mod video_stream {
         pub frame_rate: f64,
         /// Required. The video bitrate in bits per second. Minimum value is 10,000.
         ///
-        /// * For SD resolution (\< 720p), must be \<= 3,000,000 (3 Mbps).
-        /// * For HD resolution (\<= 1080p), must be \<= 15,000,000 (15 Mbps).
+        /// - For SD resolution (< 720p), must be <= 3,000,000 (3 Mbps).
+        /// - For HD resolution (<= 1080p), must be <= 15,000,000 (15 Mbps).
         #[prost(int32, tag = "4")]
         pub bitrate_bps: i32,
         /// Specifies whether an open Group of Pictures (GOP) structure should be
@@ -313,20 +313,20 @@ pub mod video_stream {
         pub allow_open_gop: bool,
         /// Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
         /// greater than zero. The default is equal to
-        /// \[bitrate_bps\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps\].
+        /// [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
         #[prost(int32, tag = "9")]
         pub vbv_size_bits: i32,
         /// Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
         /// Must be greater than zero. The default is equal to 90% of
-        /// \[vbv_size_bits\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.vbv_size_bits\].
+        /// [vbv_size_bits][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.vbv_size_bits].
         #[prost(int32, tag = "10")]
         pub vbv_fullness_bits: i32,
         /// The entropy coder to use. The default is `cabac`.
         ///
         /// Supported entropy coders:
         ///
-        /// * `cavlc`
-        /// * `cabac`
+        /// - `cavlc`
+        /// - `cabac`
         #[prost(string, tag = "11")]
         pub entropy_coder: ::prost::alloc::string::String,
         /// Allow B-pyramid for reference frame selection. This may not be supported
@@ -335,7 +335,7 @@ pub mod video_stream {
         pub b_pyramid: bool,
         /// The number of consecutive B-frames. Must be greater than or equal to
         /// zero. Must be less than
-        /// \[gop_frame_count\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count\]
+        /// [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
         /// if set. The default is 0.
         #[prost(int32, tag = "13")]
         pub b_frame_count: i32,
@@ -347,15 +347,15 @@ pub mod video_stream {
         /// Enforces the specified codec profile. The following profiles are
         /// supported:
         ///
-        /// * `baseline`
-        /// * `main` (default)
-        /// * `high`
+        /// *   `baseline`
+        /// *   `main` (default)
+        /// *   `high`
         ///
         /// The available options are [FFmpeg-compatible Profile
         /// Options](<https://trac.ffmpeg.org/wiki/Encode/H.264#Profile>).
         /// Note that certain values for this field may cause the
         /// transcoder to override other fields you set in the
-        /// \[H264CodecSettings\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings\]
+        /// [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
         /// message.
         #[prost(string, tag = "15")]
         pub profile: ::prost::alloc::string::String,
@@ -364,7 +364,7 @@ pub mod video_stream {
         /// Options](<https://trac.ffmpeg.org/wiki/Encode/H.264#Tune>)
         /// Note that certain values for this field may cause the transcoder to
         /// override other fields you set in the
-        /// \[H264CodecSettings\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings\]
+        /// [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
         /// message.
         #[prost(string, tag = "16")]
         pub tune: ::prost::alloc::string::String,
@@ -386,9 +386,9 @@ pub mod video_stream {
             GopFrameCount(i32),
             /// Select the GOP size based on the specified duration. The default is
             /// `2s`. Note that `gopDuration` must be less than or equal to
-            /// \[segment_duration\]\[google.cloud.video.livestream.v1.SegmentSettings.segment_duration\],
+            /// [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration],
             /// and
-            /// \[segment_duration\]\[google.cloud.video.livestream.v1.SegmentSettings.segment_duration\]
+            /// [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration]
             /// must be divisible by `gopDuration`. Valid range is \[2s, 20s\].
             ///
             /// All video streams in the same channel must have the same GOP size.
@@ -416,7 +416,7 @@ pub struct AudioStream {
     ///
     /// Supported audio codecs:
     ///
-    /// * `aac`
+    /// - `aac`
     #[prost(string, tag = "1")]
     pub codec: ::prost::alloc::string::String,
     /// Required. Audio bitrate in bits per second. Must be between 1 and
@@ -432,12 +432,12 @@ pub struct AudioStream {
     ///
     /// Supported channel names:
     ///
-    /// * `fl` - Front left channel
-    /// * `fr` - Front right channel
-    /// * `sl` - Side left channel
-    /// * `sr` - Side right channel
-    /// * `fc` - Front center channel
-    /// * `lfe` - Low frequency
+    /// - `fl` - Front left channel
+    /// - `fr` - Front right channel
+    /// - `sl` - Side left channel
+    /// - `sr` - Side right channel
+    /// - `fc` - Front center channel
+    /// - `lfe` - Low frequency
     #[prost(string, repeated, tag = "4")]
     pub channel_layout: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The mapping for the input streams and audio channels.
@@ -453,15 +453,15 @@ pub mod audio_stream {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AudioMapping {
         /// Required. The `Channel`
-        /// \[InputAttachment.key\]\[google.cloud.video.livestream.v1.InputAttachment.key\]
+        /// [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
         /// that identifies the input that this audio mapping applies to. If an
         /// active input doesn't have an audio mapping, the primary audio track in
         /// the input stream will be selected.
         #[prost(string, tag = "6")]
         pub input_key: ::prost::alloc::string::String,
         /// Required. The zero-based index of the track in the input stream.
-        /// All \[mapping\]\[google.cloud.video.livestream.v1.AudioStream.mapping\]s in
-        /// the same \[AudioStream\]\[google.cloud.video.livestream.v1.AudioStream\] must
+        /// All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in
+        /// the same [AudioStream][google.cloud.video.livestream.v1.AudioStream] must
         /// have the same input track.
         #[prost(int32, tag = "2")]
         pub input_track: i32,
@@ -470,7 +470,7 @@ pub mod audio_stream {
         pub input_channel: i32,
         /// Required. The zero-based index of the channel in the output audio stream.
         /// Must be consistent with the
-        /// \[input_channel\]\[google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel\].
+        /// [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
         #[prost(int32, tag = "4")]
         pub output_channel: i32,
         /// Audio volume control in dB. Negative values decrease volume,
@@ -486,8 +486,8 @@ pub struct TextStream {
     ///
     /// Supported text codecs:
     ///
-    /// * `cea608`
-    /// * `cea708`
+    /// - `cea608`
+    /// - `cea708`
     #[prost(string, tag = "1")]
     pub codec: ::prost::alloc::string::String,
 }
@@ -496,12 +496,12 @@ pub struct TextStream {
 pub struct SegmentSettings {
     /// Duration of the segments in seconds. The default is `6s`. Note that
     /// `segmentDuration` must be greater than or equal to
-    /// \[gop_duration\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration\],
+    /// [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration],
     /// and `segmentDuration` must be divisible by
-    /// \[gop_duration\]\[google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration\].
+    /// [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration].
     /// Valid range is \[2s, 20s\].
     ///
-    /// All \[mux_streams\]\[google.cloud.video.livestream.v1.Manifest.mux_streams\] in
+    /// All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in
     /// the same manifest must have the same segment duration.
     #[prost(message, optional, tag = "1")]
     pub segment_duration: ::core::option::Option<::prost_types::Duration>,
@@ -550,9 +550,9 @@ pub mod timecode_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TimecodeSource::Unspecified => "TIMECODE_SOURCE_UNSPECIFIED",
-                TimecodeSource::MediaTimestamp => "MEDIA_TIMESTAMP",
-                TimecodeSource::EmbeddedTimecode => "EMBEDDED_TIMECODE",
+                Self::Unspecified => "TIMECODE_SOURCE_UNSPECIFIED",
+                Self::MediaTimestamp => "MEDIA_TIMESTAMP",
+                Self::EmbeddedTimecode => "EMBEDDED_TIMECODE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -609,10 +609,10 @@ pub struct Input {
     pub tier: i32,
     /// Output only. URI to push the input stream to.
     /// Its format depends on the input
-    /// \[type\]\[google.cloud.video.livestream.v1.Input.type\], for example:
+    /// [type][google.cloud.video.livestream.v1.Input.type], for example:
     ///
-    /// * `RTMP_PUSH`: `rtmp://1.2.3.4/live/{STREAM-ID}`
-    /// * `SRT_PUSH`: `srt://1.2.3.4:4201?streamid={STREAM-ID}`
+    /// *  `RTMP_PUSH`: `rtmp://1.2.3.4/live/{STREAM-ID}`
+    /// *  `SRT_PUSH`: `srt://1.2.3.4:4201?streamid={STREAM-ID}`
     #[prost(string, tag = "6")]
     pub uri: ::prost::alloc::string::String,
     /// Preprocessing configurations.
@@ -667,9 +667,9 @@ pub mod input {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::RtmpPush => "RTMP_PUSH",
-                Type::SrtPush => "SRT_PUSH",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::RtmpPush => "RTMP_PUSH",
+                Self::SrtPush => "SRT_PUSH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -698,11 +698,11 @@ pub mod input {
     pub enum Tier {
         /// Tier is not specified.
         Unspecified = 0,
-        /// Resolution \< 1280x720. Bitrate \<= 6 Mbps. FPS \<= 60.
+        /// Resolution < 1280x720. Bitrate <= 6 Mbps. FPS <= 60.
         Sd = 1,
-        /// Resolution \<= 1920x1080. Bitrate \<= 25 Mbps. FPS \<= 60.
+        /// Resolution <= 1920x1080. Bitrate <= 25 Mbps. FPS <= 60.
         Hd = 2,
-        /// Resolution \<= 4096x2160. Not supported yet.
+        /// Resolution <= 4096x2160. Not supported yet.
         Uhd = 3,
     }
     impl Tier {
@@ -712,10 +712,10 @@ pub mod input {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Tier::Unspecified => "TIER_UNSPECIFIED",
-                Tier::Sd => "SD",
-                Tier::Hd => "HD",
-                Tier::Uhd => "UHD",
+                Self::Unspecified => "TIER_UNSPECIFIED",
+                Self::Sd => "SD",
+                Self::Hd => "HD",
+                Self::Uhd => "UHD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -759,9 +759,9 @@ pub struct Channel {
     #[prost(message, repeated, tag = "16")]
     pub input_attachments: ::prost::alloc::vec::Vec<InputAttachment>,
     /// Output only. The
-    /// \[InputAttachment.key\]\[google.cloud.video.livestream.v1.InputAttachment.key\]
+    /// [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
     /// that serves as the current input source. The first input in the
-    /// \[input_attachments\]\[google.cloud.video.livestream.v1.Channel.input_attachments\]
+    /// [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments]
     /// is the initial input source.
     #[prost(string, tag = "6")]
     pub active_input: ::prost::alloc::string::String,
@@ -786,9 +786,9 @@ pub struct Channel {
     pub streaming_state: i32,
     /// Output only. A description of the reason for the streaming error. This
     /// property is always present when
-    /// \[streaming_state\]\[google.cloud.video.livestream.v1.Channel.streaming_state\]
+    /// [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state]
     /// is
-    /// \[STREAMING_ERROR\]\[google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR\].
+    /// [STREAMING_ERROR][google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR].
     #[prost(message, optional, tag = "18")]
     pub streaming_error: ::core::option::Option<super::super::super::super::rpc::Status>,
     /// Configuration of platform logs for this channel.
@@ -803,7 +803,7 @@ pub struct Channel {
     #[prost(message, repeated, tag = "24")]
     pub encryptions: ::prost::alloc::vec::Vec<Encryption>,
     /// The configuration for input sources defined in
-    /// \[input_attachments\]\[google.cloud.video.livestream.v1.Channel.input_attachments\].
+    /// [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
     #[prost(message, optional, tag = "25")]
     pub input_config: ::core::option::Option<InputConfig>,
     /// Optional. Configuration for retention of output files for this channel.
@@ -866,14 +866,14 @@ pub mod channel {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StreamingState::Unspecified => "STREAMING_STATE_UNSPECIFIED",
-                StreamingState::Streaming => "STREAMING",
-                StreamingState::AwaitingInput => "AWAITING_INPUT",
-                StreamingState::StreamingError => "STREAMING_ERROR",
-                StreamingState::StreamingNoInput => "STREAMING_NO_INPUT",
-                StreamingState::Stopped => "STOPPED",
-                StreamingState::Starting => "STARTING",
-                StreamingState::Stopping => "STOPPING",
+                Self::Unspecified => "STREAMING_STATE_UNSPECIFIED",
+                Self::Streaming => "STREAMING",
+                Self::AwaitingInput => "AWAITING_INPUT",
+                Self::StreamingError => "STREAMING_ERROR",
+                Self::StreamingNoInput => "STREAMING_NO_INPUT",
+                Self::Stopped => "STOPPED",
+                Self::Starting => "STARTING",
+                Self::Stopping => "STOPPING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -966,14 +966,14 @@ pub mod input_config {
         Unspecified = 0,
         /// Automatic failover is enabled. The primary input stream is always
         /// preferred over its backup input streams configured using the
-        /// \[AutomaticFailover\]\[google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover\]
+        /// [AutomaticFailover][google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover]
         /// field.
         FailoverPreferPrimary = 1,
         /// Automatic failover is disabled. You must use the
-        /// \[inputSwitch\]\[google.cloud.video.livestream.v1.Event.input_switch\] event
+        /// [inputSwitch][google.cloud.video.livestream.v1.Event.input_switch] event
         /// to switch the active input source for the channel to stream from. When
         /// this mode is chosen, the
-        /// \[AutomaticFailover\]\[google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover\]
+        /// [AutomaticFailover][google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover]
         /// field is ignored.
         Manual = 3,
     }
@@ -984,9 +984,9 @@ pub mod input_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InputSwitchMode::Unspecified => "INPUT_SWITCH_MODE_UNSPECIFIED",
-                InputSwitchMode::FailoverPreferPrimary => "FAILOVER_PREFER_PRIMARY",
-                InputSwitchMode::Manual => "MANUAL",
+                Self::Unspecified => "INPUT_SWITCH_MODE_UNSPECIFIED",
+                Self::FailoverPreferPrimary => "FAILOVER_PREFER_PRIMARY",
+                Self::Manual => "MANUAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1015,8 +1015,8 @@ pub mod log_config {
     /// The severity level of platform logging for this channel. Logs with a
     /// severity level higher than or equal to the chosen severity level will be
     /// logged and can be viewed through Cloud Logging.
-    /// The severity level of a log is ranked as followed from low to high: DEBUG \<
-    /// INFO \< NOTICE \< WARNING \< ERROR \< CRITICAL \< ALERT \< EMERGENCY.
+    /// The severity level of a log is ranked as followed from low to high: DEBUG <
+    /// INFO < NOTICE < WARNING < ERROR < CRITICAL < ALERT < EMERGENCY.
     /// See
     /// [LogSeverity](<https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#logseverity>)
     /// for more information.
@@ -1053,12 +1053,12 @@ pub mod log_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LogSeverity::Unspecified => "LOG_SEVERITY_UNSPECIFIED",
-                LogSeverity::Off => "OFF",
-                LogSeverity::Debug => "DEBUG",
-                LogSeverity::Info => "INFO",
-                LogSeverity::Warning => "WARNING",
-                LogSeverity::Error => "ERROR",
+                Self::Unspecified => "LOG_SEVERITY_UNSPECIFIED",
+                Self::Off => "OFF",
+                Self::Debug => "DEBUG",
+                Self::Info => "INFO",
+                Self::Warning => "WARNING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1087,13 +1087,13 @@ pub struct RetentionConfig {
     ///
     /// If omitted or set to zero, output files will remain in the output bucket
     /// based on
-    /// \[Manifest.segment_keep_duration\]\[google.cloud.video.livestream.v1.Manifest.segment_keep_duration\],
+    /// [Manifest.segment_keep_duration][google.cloud.video.livestream.v1.Manifest.segment_keep_duration],
     /// which defaults to 60s.
     ///
     /// If both retention_window_duration and
-    /// \[Manifest.segment_keep_duration\]\[google.cloud.video.livestream.v1.Manifest.segment_keep_duration\]
+    /// [Manifest.segment_keep_duration][google.cloud.video.livestream.v1.Manifest.segment_keep_duration]
     /// are set, retention_window_duration is used and
-    /// \[Manifest.segment_keep_duration\]\[google.cloud.video.livestream.v1.Manifest.segment_keep_duration\]
+    /// [Manifest.segment_keep_duration][google.cloud.video.livestream.v1.Manifest.segment_keep_duration]
     /// is ignored.
     #[prost(message, optional, tag = "1")]
     pub retention_window_duration: ::core::option::Option<::prost_types::Duration>,
@@ -1183,7 +1183,7 @@ pub mod input_attachment {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AutomaticFailover {
         /// The
-        /// \[InputAttachment.key\]\[google.cloud.video.livestream.v1.InputAttachment.key\]s
+        /// [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s
         /// of inputs to failover to when this input is disconnected. Currently, only
         /// up to one backup input is supported.
         #[prost(string, repeated, tag = "1")]
@@ -1212,16 +1212,16 @@ pub struct Event {
     >,
     /// When this field is set to true, the event will be executed at the earliest
     /// time that the server can schedule the event and
-    /// \[execution_time\]\[google.cloud.video.livestream.v1.Event.execution_time\]
+    /// [execution_time][google.cloud.video.livestream.v1.Event.execution_time]
     /// will be populated with the time that the server actually schedules the
     /// event.
     #[prost(bool, tag = "9")]
     pub execute_now: bool,
     /// The time to execute the event. If you set
-    /// \[execute_now\]\[google.cloud.video.livestream.v1.Event.execute_now\] to
+    /// [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
     /// `true`, then do not set this field in the `CreateEvent` request. In
     /// this case, the server schedules the event and populates this field. If you
-    /// set \[execute_now\]\[google.cloud.video.livestream.v1.Event.execute_now\] to
+    /// set [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
     /// `false`, then you must set this field to at least 10 seconds in the future
     /// or else the event can't be created.
     #[prost(message, optional, tag = "10")]
@@ -1243,7 +1243,7 @@ pub mod event {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct InputSwitchTask {
         /// The
-        /// \[InputAttachment.key\]\[google.cloud.video.livestream.v1.InputAttachment.key\]
+        /// [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
         /// of the input to switch to.
         #[prost(string, tag = "1")]
         pub input_key: ::prost::alloc::string::String,
@@ -1320,13 +1320,13 @@ pub mod event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Scheduled => "SCHEDULED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Pending => "PENDING",
-                State::Stopped => "STOPPED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Scheduled => "SCHEDULED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Pending => "PENDING",
+                Self::Stopped => "STOPPED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1377,7 +1377,7 @@ pub struct Clip {
     /// criteria:
     ///
     /// 1. 1 character minimum, 63 characters maximum
-    /// 1. Only contains letters, digits, underscores, and hyphens
+    /// 2. Only contains letters, digits, underscores, and hyphens
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The creation timestamp of the clip resource.
@@ -1502,11 +1502,11 @@ pub mod clip {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Creating => "CREATING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Creating => "CREATING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1546,12 +1546,12 @@ pub struct Asset {
     /// resource](<https://cloud.google.com/storage/docs/json_api/v1/objects>).
     /// If crc32c is omitted or left empty when the asset is created, this field is
     /// filled by the crc32c checksum of the Cloud Storage object indicated by
-    /// \[VideoAsset.uri\]\[google.cloud.video.livestream.v1.Asset.VideoAsset.uri\] or
-    /// \[ImageAsset.uri\]\[google.cloud.video.livestream.v1.Asset.ImageAsset.uri\]. If
+    /// [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+    /// [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri]. If
     /// crc32c is set, the asset can't be created if the crc32c value does not
     /// match with the crc32c checksum of the Cloud Storage object indicated by
-    /// \[VideoAsset.uri\]\[google.cloud.video.livestream.v1.Asset.VideoAsset.uri\] or
-    /// \[ImageAsset.uri\]\[google.cloud.video.livestream.v1.Asset.ImageAsset.uri\].
+    /// [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+    /// [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri].
     #[prost(string, tag = "7")]
     pub crc32c: ::prost::alloc::string::String,
     /// Output only. The state of the asset resource.
@@ -1616,11 +1616,11 @@ pub mod asset {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Deleting => "DELETING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1715,9 +1715,8 @@ pub mod encryption {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MpegCommonEncryption {
         /// Required. Specify the encryption scheme, supported schemes:
-        ///
-        /// * `cenc` - AES-CTR subsample
-        /// * `cbcs`- AES-CBC subsample pattern
+        /// - `cenc` - AES-CTR subsample
+        /// - `cbcs`- AES-CBC subsample pattern
         #[prost(string, tag = "1")]
         pub scheme: ::prost::alloc::string::String,
     }
@@ -1921,7 +1920,7 @@ pub struct ListChannelsRequest {
     /// The maximum number of items to return. If unspecified, server
     /// will pick an appropriate default. Server may return fewer items than
     /// requested. A caller should only rely on response's
-    /// \[next_page_token\]\[google.cloud.video.livestream.v1.ListChannelsResponse.next_page_token\]
+    /// [next_page_token][google.cloud.video.livestream.v1.ListChannelsResponse.next_page_token]
     /// to determine if there are more items left to be queried.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
@@ -2118,7 +2117,7 @@ pub struct ListInputsRequest {
     /// The maximum number of items to return. If unspecified, server
     /// will pick an appropriate default. Server may return fewer items than
     /// requested. A caller should only rely on response's
-    /// \[next_page_token\]\[google.cloud.video.livestream.v1.ListInputsResponse.next_page_token\]
+    /// [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token]
     /// to determine if there are more items left to be queried.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
@@ -2255,7 +2254,7 @@ pub struct ListEventsRequest {
     /// The maximum number of items to return. If unspecified, server
     /// will pick an appropriate default. Server may return fewer items than
     /// requested. A caller should only rely on response's
-    /// \[next_page_token\]\[google.cloud.video.livestream.v1.ListEventsResponse.next_page_token\]
+    /// [next_page_token][google.cloud.video.livestream.v1.ListEventsResponse.next_page_token]
     /// to determine if there are more items left to be queried.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
@@ -2369,7 +2368,7 @@ pub struct CreateClipRequest {
     /// Required. Id of the requesting object in the following form:
     ///
     /// 1. 1 character minimum, 63 characters maximum
-    /// 1. Only contains letters, digits, underscores, and hyphens
+    /// 2. Only contains letters, digits, underscores, and hyphens
     #[prost(string, tag = "2")]
     pub clip_id: ::prost::alloc::string::String,
     /// Required. The resource being created
@@ -2431,8 +2430,8 @@ pub struct OperationMetadata {
     pub verb: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "5")]
     pub requested_cancellation: bool,
@@ -2481,7 +2480,13 @@ pub struct UpdatePoolRequest {
 }
 /// Generated client implementations.
 pub mod livestream_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Using Live Stream API, you can generate live streams in the various
@@ -2571,8 +2576,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2602,8 +2606,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2630,8 +2633,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2661,8 +2663,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2692,8 +2693,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2724,8 +2724,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2756,8 +2755,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2787,8 +2785,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2818,8 +2815,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2846,8 +2842,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2877,8 +2872,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2908,8 +2902,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2936,8 +2929,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2967,8 +2959,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2995,8 +2986,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3023,8 +3013,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3054,8 +3043,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3082,8 +3070,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3113,8 +3100,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3145,8 +3131,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3177,8 +3162,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3208,8 +3192,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3236,8 +3219,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3267,8 +3249,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3295,8 +3276,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3326,8 +3306,7 @@ pub mod livestream_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

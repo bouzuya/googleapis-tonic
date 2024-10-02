@@ -15,7 +15,7 @@ pub struct BillingSettings {
     /// Output only. The absolute point in time when the subscription expires.
     ///
     /// If this field is populated and billing_tier is STANDARD, this is
-    /// indication of a point in the *past* when a PREMIUM access ended.
+    /// indication of a point in the _past_ when a PREMIUM access ended.
     #[prost(message, optional, tag = "4")]
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
@@ -37,9 +37,9 @@ impl BillingTier {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            BillingTier::Unspecified => "BILLING_TIER_UNSPECIFIED",
-            BillingTier::Standard => "STANDARD",
-            BillingTier::Premium => "PREMIUM",
+            Self::Unspecified => "BILLING_TIER_UNSPECIFIED",
+            Self::Standard => "STANDARD",
+            Self::Premium => "PREMIUM",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -72,10 +72,10 @@ impl BillingType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            BillingType::Unspecified => "BILLING_TYPE_UNSPECIFIED",
-            BillingType::Subscription => "SUBSCRIPTION",
-            BillingType::TrialSubscription => "TRIAL_SUBSCRIPTION",
-            BillingType::Alpha => "ALPHA",
+            Self::Unspecified => "BILLING_TYPE_UNSPECIFIED",
+            Self::Subscription => "SUBSCRIPTION",
+            Self::TrialSubscription => "TRIAL_SUBSCRIPTION",
+            Self::Alpha => "ALPHA",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -94,13 +94,12 @@ impl BillingType {
 pub struct ComponentSettings {
     /// The relative resource name of the component settings.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/components/{component}/settings`
-    /// * `folders/{folder}/components/{component}/settings`
-    /// * `projects/{project}/components/{component}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
+    ///   * `organizations/{organization}/components/{component}/settings`
+    ///   * `folders/{folder}/components/{component}/settings`
+    ///   * `projects/{project}/components/{component}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// ENABLE to enable component, DISABLE to disable and INHERIT to inherit
@@ -194,14 +193,13 @@ pub mod security_health_analytics_settings {
         /// permissions on a project or the organization. Otherwise a finding will
         /// be created.
         /// A valid identity can be:
-        ///
-        /// * a domain that starts with "@", e.g. "@yourdomain.com".
-        /// * a fully specified email address that does not start with "@", e.g.
-        ///   "abc@gmail.com"
-        ///   Regular expressions are not supported.
-        ///   Service accounts are not examined by the scanner and will be omitted if
-        ///   added to the list.
-        ///   If not specified, only Gmail accounts will be considered as non-approved.
+        ///    *  a domain that starts with "@", e.g. "@yourdomain.com".
+        ///    *  a fully specified email address that does not start with "@", e.g.
+        ///    "abc@gmail.com"
+        /// Regular expressions are not supported.
+        /// Service accounts are not examined by the scanner and will be omitted if
+        /// added to the list.
+        /// If not specified, only Gmail accounts will be considered as non-approved.
         #[prost(string, repeated, tag = "1")]
         pub approved_identities: ::prost::alloc::vec::Vec<
             ::prost::alloc::string::String,
@@ -214,13 +212,12 @@ pub mod security_health_analytics_settings {
         /// allowed to have Admin, Owner or Editor roles granted to them. Otherwise
         /// a finding will be created.
         /// A valid identity can be:
-        ///
-        /// * a partilly specified service account that starts with "@", e.g.
-        ///   "@myproject.iam.gserviceaccount.com". This approves all the service
-        ///   accounts suffixed with the specified identity.
-        /// * a fully specified service account that does not start with "@", e.g.
-        ///   "myadmin@myproject.iam.gserviceaccount.com".
-        ///   Google-created service accounts are all approved.
+        ///    *  a partilly specified service account that starts with "@", e.g.
+        ///    "@myproject.iam.gserviceaccount.com". This approves all the service
+        ///    accounts suffixed with the specified identity.
+        ///    *  a fully specified service account that does not start with "@", e.g.
+        ///    "myadmin@myproject.iam.gserviceaccount.com".
+        /// Google-created service accounts are all approved.
         #[prost(string, repeated, tag = "1")]
         pub approved_identities: ::prost::alloc::vec::Vec<
             ::prost::alloc::string::String,
@@ -247,12 +244,10 @@ impl ComponentEnablementState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ComponentEnablementState::Unspecified => {
-                "COMPONENT_ENABLEMENT_STATE_UNSPECIFIED"
-            }
-            ComponentEnablementState::Disable => "DISABLE",
-            ComponentEnablementState::Enable => "ENABLE",
-            ComponentEnablementState::Inherit => "INHERIT",
+            Self::Unspecified => "COMPONENT_ENABLEMENT_STATE_UNSPECIFIED",
+            Self::Disable => "DISABLE",
+            Self::Enable => "ENABLE",
+            Self::Inherit => "INHERIT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -310,13 +305,12 @@ pub struct SinkSettings {
 pub struct Settings {
     /// The relative resource name of the settings resource.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/settings`
-    /// * `folders/{folder}/settings`
-    /// * `projects/{project}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
+    ///   * `organizations/{organization}/settings`
+    ///   * `folders/{folder}/settings`
+    ///   * `projects/{project}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Billing settings
@@ -405,15 +399,13 @@ pub mod settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OnboardingState::Unspecified => "ONBOARDING_STATE_UNSPECIFIED",
-                OnboardingState::Enabled => "ENABLED",
-                OnboardingState::Disabled => "DISABLED",
-                OnboardingState::BillingSelected => "BILLING_SELECTED",
-                OnboardingState::ProvidersSelected => "PROVIDERS_SELECTED",
-                OnboardingState::ResourcesSelected => "RESOURCES_SELECTED",
-                OnboardingState::OrgServiceAccountCreated => {
-                    "ORG_SERVICE_ACCOUNT_CREATED"
-                }
+                Self::Unspecified => "ONBOARDING_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::BillingSelected => "BILLING_SELECTED",
+                Self::ProvidersSelected => "PROVIDERS_SELECTED",
+                Self::ResourcesSelected => "RESOURCES_SELECTED",
+                Self::OrgServiceAccountCreated => "ORG_SERVICE_ACCOUNT_CREATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -436,8 +428,7 @@ pub mod settings {
 pub struct GetServiceAccountRequest {
     /// Required. The relative resource name of the service account resource.
     /// Format:
-    ///
-    /// * `organizations/{organization}/serviceAccount`
+    ///   * `organizations/{organization}/serviceAccount`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -447,8 +438,7 @@ pub struct GetServiceAccountRequest {
 pub struct ServiceAccount {
     /// The relative resource name of the service account resource.
     /// Format:
-    ///
-    /// * `organizations/{organization}/serviceAccount`
+    ///   * `organizations/{organization}/serviceAccount`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Security Center managed service account for the organization
@@ -463,13 +453,12 @@ pub struct ServiceAccount {
 pub struct GetSettingsRequest {
     /// Required. The name of the settings to retrieve.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/settings`
-    /// * `folders/{folder}/settings`
-    /// * `projects/{project}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
+    ///   * `organizations/{organization}/settings`
+    ///   * `folders/{folder}/settings`
+    ///   * `projects/{project}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -480,13 +469,12 @@ pub struct UpdateSettingsRequest {
     ///
     /// The settings' `name` field is used to identify the settings to be updated.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/settings`
-    /// * `folders/{folder}/settings`
-    /// * `projects/{project}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
+    ///   * `organizations/{organization}/settings`
+    ///   * `folders/{folder}/settings`
+    ///   * `projects/{project}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
     #[prost(message, optional, tag = "1")]
     pub settings: ::core::option::Option<Settings>,
     /// The list of fields to be updated on the settings.
@@ -498,13 +486,12 @@ pub struct UpdateSettingsRequest {
 pub struct ResetSettingsRequest {
     /// Required. The name of the settings to reset.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/settings`
-    /// * `folders/{folder}/settings`
-    /// * `projects/{project}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
+    ///   * `organizations/{organization}/settings`
+    ///   * `folders/{folder}/settings`
+    ///   * `projects/{project}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A fingerprint used for optimistic concurrency. If none is provided,
@@ -518,20 +505,18 @@ pub struct BatchGetSettingsRequest {
     /// Required. The relative resource name of the organization shared by all of the
     /// settings being retrieved.
     /// Format:
-    ///
-    /// * `organizations/{organization}`
+    ///   * `organizations/{organization}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// The names of the settings to retrieve.
     /// A maximum of 1000 settings can be retrieved in a batch.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/settings`
-    /// * `folders/{folder}/settings`
-    /// * `projects/{project}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
+    ///   * `organizations/{organization}/settings`
+    ///   * `folders/{folder}/settings`
+    ///   * `projects/{project}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/settings`
     #[prost(string, repeated, tag = "2")]
     pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -547,13 +532,12 @@ pub struct BatchGetSettingsResponse {
 pub struct CalculateEffectiveSettingsRequest {
     /// Required. The name of the effective settings to retrieve.
     /// Formats:
-    ///
-    /// * `organizations/{organization}/effectiveSettings`
-    /// * `folders/{folder}/effectiveSettings`
-    /// * `projects/{project}/effectiveSettings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/effectiveSettings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/effectiveSettings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/effectiveSettings`
+    ///   * `organizations/{organization}/effectiveSettings`
+    ///   * `folders/{folder}/effectiveSettings`
+    ///   * `projects/{project}/effectiveSettings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/effectiveSettings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/effectiveSettings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/effectiveSettings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -563,8 +547,7 @@ pub struct BatchCalculateEffectiveSettingsRequest {
     /// Required. The relative resource name of the organization shared by all of the
     /// settings being retrieved.
     /// Format:
-    ///
-    /// * `organizations/{organization}`
+    ///   * `organizations/{organization}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// The requests specifying the effective settings to retrieve.
@@ -585,13 +568,12 @@ pub struct GetComponentSettingsRequest {
     /// Required. The component settings to retrieve.
     ///
     /// Formats:
-    ///
-    /// * `organizations/{organization}/components/{component}/settings`
-    /// * `folders/{folder}/components/{component}/settings`
-    /// * `projects/{project}/components/{component}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
+    ///   * `organizations/{organization}/components/{component}/settings`
+    ///   * `folders/{folder}/components/{component}/settings`
+    ///   * `projects/{project}/components/{component}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -602,13 +584,12 @@ pub struct UpdateComponentSettingsRequest {
     ///
     /// The component settings' `name` field is used to identify the component
     /// settings to be updated. Formats:
-    ///
-    /// * `organizations/{organization}/components/{component}/settings`
-    /// * `folders/{folder}/components/{component}/settings`
-    /// * `projects/{project}/components/{component}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
+    ///   * `organizations/{organization}/components/{component}/settings`
+    ///   * `folders/{folder}/components/{component}/settings`
+    ///   * `projects/{project}/components/{component}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
     #[prost(message, optional, tag = "1")]
     pub component_settings: ::core::option::Option<ComponentSettings>,
     /// The list of fields to be updated on the component settings resource.
@@ -621,13 +602,12 @@ pub struct ResetComponentSettingsRequest {
     /// Required. The component settings to reset.
     ///
     /// Formats:
-    ///
-    /// * `organizations/{organization}/components/{component}/settings`
-    /// * `folders/{folder}/components/{component}/settings`
-    /// * `projects/{project}/components/{component}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
+    ///   * `organizations/{organization}/components/{component}/settings`
+    ///   * `folders/{folder}/components/{component}/settings`
+    ///   * `projects/{project}/components/{component}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// An fingerprint used for optimistic concurrency. If none is provided,
@@ -641,13 +621,12 @@ pub struct CalculateEffectiveComponentSettingsRequest {
     /// Required. The effective component settings to retrieve.
     ///
     /// Formats:
-    ///
-    /// * `organizations/{organization}/components/{component}/settings`
-    /// * `folders/{folder}/components/{component}/settings`
-    /// * `projects/{project}/components/{component}/settings`
-    /// * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
-    /// * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
+    ///   * `organizations/{organization}/components/{component}/settings`
+    ///   * `folders/{folder}/components/{component}/settings`
+    ///   * `projects/{project}/components/{component}/settings`
+    ///   * `projects/{project}/locations/{location}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/regions/{region}/clusters/{cluster}/components/{component}/settings`
+    ///   * `projects/{project}/zones/{zone}/clusters/{cluster}/components/{component}/settings`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -656,15 +635,13 @@ pub struct CalculateEffectiveComponentSettingsRequest {
 pub struct ListDetectorsRequest {
     /// Required. The parent, which owns this collection of detectors.
     /// Format:
-    ///
-    /// * `organizations/{organization}`
+    ///   * `organizations/{organization}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Filters to apply on the response. Filters can be applied on:
-    ///
-    /// * components
-    /// * labels
-    /// * billing tiers
+    ///   * components
+    ///   * labels
+    ///   * billing tiers
     ///
     /// Component filters will retrieve only detectors for the components
     /// specified. Label filters will retrieve only detectors that match one of the
@@ -703,8 +680,7 @@ pub struct ListDetectorsResponse {
 pub struct ListComponentsRequest {
     /// Required. The parent, which owns this collection of components.
     /// Format:
-    ///
-    /// * `organizations/{organization}`
+    ///   * `organizations/{organization}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// The maximum number of components to return. The service may return fewer
@@ -733,7 +709,13 @@ pub struct ListComponentsResponse {
 }
 /// Generated client implementations.
 pub mod security_center_settings_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// ## API Overview
@@ -831,8 +813,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -859,8 +840,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -887,8 +867,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -924,8 +903,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -955,8 +933,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -977,15 +954,14 @@ pub mod security_center_settings_service_client {
         /// CalculateEffectiveSettings looks up all of the Security Center
         /// Settings resources in the GCP resource hierarchy, and calculates the
         /// effective settings on that resource by applying the following rules:
-        ///
-        /// * Settings provided closer to the target resource take precedence over
-        ///  those further away (e.g. folder will override organization level
-        ///  settings).
-        /// * Product defaults can be overridden at org, folder, project, and cluster
+        ///  * Settings provided closer to the target resource take precedence over
+        ///    those further away (e.g. folder will override organization level
+        ///    settings).
+        ///  * Product defaults can be overridden at org, folder, project, and cluster
         ///  levels.
-        /// * Detectors will be filtered out if they belong to a billing tier the
+        ///  * Detectors will be filtered out if they belong to a billing tier the
         ///  customer
-        ///  has not configured.
+        ///    has not configured.
         pub async fn calculate_effective_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::CalculateEffectiveSettingsRequest>,
@@ -994,8 +970,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1027,8 +1002,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1058,8 +1032,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1089,8 +1062,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1121,8 +1093,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1154,8 +1125,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1185,8 +1155,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1216,8 +1185,7 @@ pub mod security_center_settings_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

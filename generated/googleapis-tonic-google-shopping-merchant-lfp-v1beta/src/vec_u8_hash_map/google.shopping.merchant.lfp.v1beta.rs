@@ -82,7 +82,13 @@ pub struct InsertLfpInventoryRequest {
 }
 /// Generated client implementations.
 pub mod lfp_inventory_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for a [LFP
@@ -168,8 +174,7 @@ pub mod lfp_inventory_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -255,7 +260,13 @@ pub struct InsertLfpSaleRequest {
 }
 /// Generated client implementations.
 pub mod lfp_sale_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for a [LFP
@@ -339,8 +350,7 @@ pub mod lfp_sale_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -403,28 +413,28 @@ pub struct LfpStore {
     pub place_id: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. Output only. The state of matching to a Google Business Profile.
     /// See
-    /// \[matchingStateHint\]\[google.shopping.merchant.lfp.v1beta.LfpStore.matching_state_hint\]
+    /// [matchingStateHint][google.shopping.merchant.lfp.v1beta.LfpStore.matching_state_hint]
     /// for further details if no match is found.
     #[prost(enumeration = "lfp_store::StoreMatchingState", tag = "10")]
     pub matching_state: i32,
     /// Optional. Output only. The hint of why the matching has failed. This is
     /// only set when
-    /// \[matchingState\]\[google.shopping.merchant.lfp.v1beta.LfpStore.matching_state\]=`STORE_MATCHING_STATE_FAILED`.
+    /// [matchingState][google.shopping.merchant.lfp.v1beta.LfpStore.matching_state]=`STORE_MATCHING_STATE_FAILED`.
     ///
     /// Possible values are:
     ///
-    /// * "`linked-store-not-found`": There aren't any Google Business
-    ///   Profile stores available for matching.
-    /// * "`store-match-not-found`": The provided `LfpStore` couldn't be matched to
-    ///   any of the connected Google Business Profile stores. Merchant Center
-    ///   account is connected correctly and stores are available on Google Business
-    ///   Profile, but the `LfpStore` location address does not match with Google
-    ///   Business Profile stores' addresses. Update the `LfpStore` address or Google
-    ///   Business Profile store address to match correctly.
-    /// * "`store-match-unverified`": The provided `LfpStore` couldn't be matched
-    ///   to any of the connected Google Business Profile stores, as the matched
-    ///   Google Business Profile store is unverified. Go through the Google Business
-    ///   Profile verification process to match correctly.
+    /// - "`linked-store-not-found`": There aren't any Google Business
+    /// Profile stores available for matching.
+    /// - "`store-match-not-found`": The provided `LfpStore` couldn't be matched to
+    /// any of the connected Google Business Profile stores. Merchant Center
+    /// account is connected correctly and stores are available on Google Business
+    /// Profile, but the `LfpStore` location address does not match with Google
+    /// Business Profile stores' addresses. Update the `LfpStore` address or Google
+    /// Business Profile store address to match correctly.
+    /// - "`store-match-unverified`": The provided `LfpStore` couldn't be matched
+    /// to any of the connected Google Business Profile stores, as the matched
+    /// Google Business Profile store is unverified. Go through the Google Business
+    /// Profile verification process to match correctly.
     #[prost(string, optional, tag = "11")]
     pub matching_state_hint: ::core::option::Option<::prost::alloc::string::String>,
 }
@@ -459,9 +469,9 @@ pub mod lfp_store {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StoreMatchingState::Unspecified => "STORE_MATCHING_STATE_UNSPECIFIED",
-                StoreMatchingState::Matched => "STORE_MATCHING_STATE_MATCHED",
-                StoreMatchingState::Failed => "STORE_MATCHING_STATE_FAILED",
+                Self::Unspecified => "STORE_MATCHING_STATE_UNSPECIFIED",
+                Self::Matched => "STORE_MATCHING_STATE_MATCHED",
+                Self::Failed => "STORE_MATCHING_STATE_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -523,7 +533,7 @@ pub struct ListLfpStoresRequest {
     /// call. Provide the page token to retrieve the subsequent page. When
     /// paginating, all other parameters provided to `ListLfpStoresRequest` must
     /// match the call that provided the page token. The token returned as
-    /// \[nextPageToken\]\[google.shopping.merchant.lfp.v1beta.ListLfpStoresResponse.next_page_token\]
+    /// [nextPageToken][google.shopping.merchant.lfp.v1beta.ListLfpStoresResponse.next_page_token]
     /// in the response to the previous request.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
@@ -541,7 +551,13 @@ pub struct ListLfpStoresResponse {
 }
 /// Generated client implementations.
 pub mod lfp_store_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for a [LFP
@@ -625,8 +641,7 @@ pub mod lfp_store_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -654,8 +669,7 @@ pub mod lfp_store_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -682,8 +696,7 @@ pub mod lfp_store_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -714,8 +727,7 @@ pub mod lfp_store_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

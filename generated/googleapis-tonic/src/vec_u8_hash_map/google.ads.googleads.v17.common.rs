@@ -494,9 +494,8 @@ pub struct ImageAdInfo {
     pub name: ::core::option::Option<::prost::alloc::string::String>,
     /// The image to create the ImageAd from. This can be specified in one of
     /// two ways.
-    ///
     /// 1. An existing MediaFile resource.
-    /// 1. The raw image data as bytes.
+    /// 2. The raw image data as bytes.
     #[prost(oneof = "image_ad_info::Image", tags = "22, 13, 14")]
     pub image: ::core::option::Option<image_ad_info::Image>,
 }
@@ -504,9 +503,8 @@ pub struct ImageAdInfo {
 pub mod image_ad_info {
     /// The image to create the ImageAd from. This can be specified in one of
     /// two ways.
-    ///
     /// 1. An existing MediaFile resource.
-    /// 1. The raw image data as bytes.
+    /// 2. The raw image data as bytes.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Image {
         /// The image assets used for the ad.
@@ -2010,11 +2008,10 @@ pub struct LanguageInfo {
     pub language_constant: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// An IpBlock criterion used for IP exclusions. We allow:
-///
-/// * IPv4 and IPv6 addresses
-/// * individual addresses (192.168.0.1)
-/// * masks for individual addresses (192.168.0.1/32)
-/// * masks for Class C networks (192.168.0.1/24)
+///   - IPv4 and IPv6 addresses
+///   - individual addresses (192.168.0.1)
+///   - masks for individual addresses (192.168.0.1/32)
+///   - masks for Class C networks (192.168.0.1/24)
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IpBlockInfo {
     /// The IP address of this IP block.
@@ -3146,8 +3143,8 @@ pub struct DynamicFlightsAsset {
     >,
     /// A custom field which can be multiple key to values mapping separated by
     /// delimiters (",", "|" and ":"), in the forms of
-    /// "\<KEY_1>: \<VALUE_1>, \<VALUE_2>, ... ,\<VALUE_N> | \<KEY_2>: \<VALUE_1>, ...
-    /// ,\<VALUE_N> | ... | \<KEY_N>: \<VALUE_1>, ... ,\<VALUE_N>" for example, wifi:
+    /// "<KEY_1>: <VALUE_1>, <VALUE_2>, ... ,<VALUE_N> | <KEY_2>: <VALUE_1>, ...
+    /// ,<VALUE_N> | ... | <KEY_N>: <VALUE_1>, ... ,<VALUE_N>" for example, wifi:
     /// most | aircraft: 320, 77W | flights: 42 | legroom: 32".
     #[prost(string, tag = "15")]
     pub custom_mapping: ::prost::alloc::string::String,
@@ -4652,10 +4649,10 @@ pub struct MatchingFunction {
     /// Examples:
     ///
     /// 1. IDENTITY(true) or IDENTITY(false). All or no feed items served.
-    /// 1. EQUALS(CONTEXT.DEVICE,"Mobile")
-    /// 1. IN(FEED_ITEM_ID,{1000001,1000002,1000003})
-    /// 1. CONTAINS_ANY(FeedAttribute\[12345678,0\],{"Mars cruise","Venus cruise"})
-    /// 1. AND(IN(FEED_ITEM_ID,{10001,10002}),EQUALS(CONTEXT.DEVICE,"Mobile"))
+    /// 2. EQUALS(CONTEXT.DEVICE,"Mobile")
+    /// 3. IN(FEED_ITEM_ID,{1000001,1000002,1000003})
+    /// 4. CONTAINS_ANY(FeedAttribute\[12345678,0\],{"Mars cruise","Venus cruise"})
+    /// 5. AND(IN(FEED_ITEM_ID,{10001,10002}),EQUALS(CONTEXT.DEVICE,"Mobile"))
     ///
     /// For more details, visit
     /// <https://developers.google.com/google-ads/api/docs/extensions/feeds/matching-functions>
@@ -5295,7 +5292,9 @@ pub struct Metrics {
     pub optimization_score_uplift: ::core::option::Option<f64>,
     /// URL for the optimization score page in the Google Ads web interface.
     /// This metric can be selected from `customer` or `campaign`, and can be
-    /// segmented by `segments.recommendation_type`. For example, `SELECT metrics.optimization_score_url, segments.recommendation_type FROM customer` will return a URL for each unique (customer, recommendation_type)
+    /// segmented by `segments.recommendation_type`. For example, `SELECT
+    /// metrics.optimization_score_url, segments.recommendation_type FROM
+    /// customer` will return a URL for each unique (customer, recommendation_type)
     /// combination.
     #[prost(string, optional, tag = "248")]
     pub optimization_score_url: ::core::option::Option<::prost::alloc::string::String>,
@@ -7297,10 +7296,10 @@ pub mod target_restriction_operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Operator::Unspecified => "UNSPECIFIED",
-                Operator::Unknown => "UNKNOWN",
-                Operator::Add => "ADD",
-                Operator::Remove => "REMOVE",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Add => "ADD",
+                Self::Remove => "REMOVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7345,7 +7344,7 @@ pub struct UrlCollection {
     pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// LookalikeUserlist, composed of users similar to those
-/// of a configurable seed (set of UserLists)
+///    of a configurable seed (set of UserLists)
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookalikeUserListInfo {
     /// Seed UserList ID from which this list is derived, provided by user.
@@ -7437,8 +7436,8 @@ pub struct UserListRuleItemInfo {
     /// A name must begin with US-ascii letters or underscore or UTF8 code that is
     /// greater than 127 and consist of US-ascii letters or digits or underscore or
     /// UTF8 code that is greater than 127.
-    /// For websites, there are two built-in variable URL (name = 'url\_\_') and
-    /// referrer URL (name = 'ref_url\_\_').
+    /// For websites, there are two built-in variable URL (name = 'url__') and
+    /// referrer URL (name = 'ref_url__').
     /// This field must be populated when creating a new rule item.
     #[prost(string, optional, tag = "5")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,

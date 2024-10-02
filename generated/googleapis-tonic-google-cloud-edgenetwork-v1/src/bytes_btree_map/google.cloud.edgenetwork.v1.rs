@@ -132,9 +132,9 @@ pub mod subnet {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BondingType::Unspecified => "BONDING_TYPE_UNSPECIFIED",
-                BondingType::Bonded => "BONDED",
-                BondingType::NonBonded => "NON_BONDED",
+                Self::Unspecified => "BONDING_TYPE_UNSPECIFIED",
+                Self::Bonded => "BONDED",
+                Self::NonBonded => "NON_BONDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -213,8 +213,8 @@ pub mod interconnect {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InterconnectType::Unspecified => "INTERCONNECT_TYPE_UNSPECIFIED",
-                InterconnectType::Dedicated => "DEDICATED",
+                Self::Unspecified => "INTERCONNECT_TYPE_UNSPECIFIED",
+                Self::Dedicated => "DEDICATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -529,9 +529,9 @@ pub mod interconnect_diagnostics {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unknown => "UNKNOWN",
-                    State::Active => "ACTIVE",
-                    State::Detached => "DETACHED",
+                    Self::Unknown => "UNKNOWN",
+                    Self::Active => "ACTIVE",
+                    Self::Detached => "DETACHED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -604,7 +604,7 @@ pub mod router_status {
         pub state: ::prost::alloc::string::String,
         /// Time this session has been up.
         /// Format:
-        /// 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
+        ///   14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
         #[prost(string, tag = "6")]
         pub uptime: ::prost::alloc::string::String,
         /// Time this session has been up, in seconds.
@@ -644,9 +644,9 @@ pub mod router_status {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BgpStatus::Unknown => "UNKNOWN",
-                    BgpStatus::Up => "UP",
-                    BgpStatus::Down => "DOWN",
+                    Self::Unknown => "UNKNOWN",
+                    Self::Up => "UP",
+                    Self::Down => "DOWN",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -711,12 +711,12 @@ impl ResourceState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ResourceState::StateUnknown => "STATE_UNKNOWN",
-            ResourceState::StatePending => "STATE_PENDING",
-            ResourceState::StateProvisioning => "STATE_PROVISIONING",
-            ResourceState::StateRunning => "STATE_RUNNING",
-            ResourceState::StateSuspended => "STATE_SUSPENDED",
-            ResourceState::StateDeleting => "STATE_DELETING",
+            Self::StateUnknown => "STATE_UNKNOWN",
+            Self::StatePending => "STATE_PENDING",
+            Self::StateProvisioning => "STATE_PROVISIONING",
+            Self::StateRunning => "STATE_RUNNING",
+            Self::StateSuspended => "STATE_SUSPENDED",
+            Self::StateDeleting => "STATE_DELETING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1261,8 +1261,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -1330,9 +1330,9 @@ pub mod diagnose_network_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    MacsecStatus::Unspecified => "MACSEC_STATUS_UNSPECIFIED",
-                    MacsecStatus::Secure => "SECURE",
-                    MacsecStatus::Unsecure => "UNSECURE",
+                    Self::Unspecified => "MACSEC_STATUS_UNSPECIFIED",
+                    Self::Secure => "SECURE",
+                    Self::Unsecure => "UNSECURE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1395,7 +1395,13 @@ pub struct InitializeZoneRequest {
 pub struct InitializeZoneResponse {}
 /// Generated client implementations.
 pub mod edge_network_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// EdgeNetwork API provides managed, highly available cloud dynamic network
@@ -1483,8 +1489,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1504,6 +1509,7 @@ pub mod edge_network_client {
         }
         /// Deprecated: not implemented.
         /// Lists Zones in a given project and location.
+        #[deprecated]
         pub async fn list_zones(
             &mut self,
             request: impl tonic::IntoRequest<super::ListZonesRequest>,
@@ -1515,8 +1521,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1536,6 +1541,7 @@ pub mod edge_network_client {
         }
         /// Deprecated: not implemented.
         /// Gets details of a single Zone.
+        #[deprecated]
         pub async fn get_zone(
             &mut self,
             request: impl tonic::IntoRequest<super::GetZoneRequest>,
@@ -1544,8 +1550,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1572,8 +1577,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1600,8 +1604,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1631,8 +1634,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1662,8 +1664,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1693,8 +1694,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1724,8 +1724,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1752,8 +1751,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1783,8 +1781,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1814,8 +1811,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1845,8 +1841,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1876,8 +1871,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1904,8 +1898,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1935,8 +1928,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1966,8 +1958,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1997,8 +1988,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2028,8 +2018,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2059,8 +2048,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2090,8 +2078,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2118,8 +2105,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2149,8 +2135,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2180,8 +2165,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2211,8 +2195,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2242,8 +2225,7 @@ pub mod edge_network_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

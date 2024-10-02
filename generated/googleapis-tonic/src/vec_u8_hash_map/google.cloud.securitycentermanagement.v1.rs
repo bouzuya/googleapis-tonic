@@ -10,17 +10,17 @@ pub struct SecurityCenterService {
     ///
     /// Its format is:
     ///
-    /// * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-    /// * folders/{folder}/locations/{location}/securityCenterServices/{service}
-    /// * projects/{project}/locations/{location}/securityCenterServices/{service}
+    ///    * organizations/{organization}/locations/{location}/securityCenterServices/{service}
+    ///    * folders/{folder}/locations/{location}/securityCenterServices/{service}
+    ///    * projects/{project}/locations/{location}/securityCenterServices/{service}
     ///
     /// The possible values for id {service} are:
     ///
-    /// * container-threat-detection
-    /// * event-threat-detection
-    /// * security-health-analytics
-    /// * vm-threat-detection
-    /// * web-security-scanner
+    ///    * container-threat-detection
+    ///    * event-threat-detection
+    ///    * security-health-analytics
+    ///    * vm-threat-detection
+    ///    * web-security-scanner
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The intended state of enablement for the service at its level of
@@ -107,11 +107,11 @@ pub mod security_center_service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Inherited => "INHERITED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
-                EnablementState::IngestOnly => "INGEST_ONLY",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Inherited => "INHERITED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::IngestOnly => "INGEST_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -192,9 +192,9 @@ pub mod effective_security_health_analytics_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -214,11 +214,10 @@ pub mod effective_security_health_analytics_custom_module {
 pub struct ListEffectiveSecurityHealthAnalyticsCustomModulesRequest {
     /// Required. Name of parent to list effective custom modules. specified in one
     /// of the following formats:
-    ///
     /// * `organizations/{organization}/locations/{location}`
     /// * `folders/{folder}/locations/{location}`
-    ///   or
-    ///   `projects/{project}/locations/{location}`
+    /// or
+    /// `projects/{project}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return in a single response.
@@ -263,7 +262,6 @@ pub struct GetEffectiveSecurityHealthAnalyticsCustomModuleRequest {
 pub struct SecurityHealthAnalyticsCustomModule {
     /// Identifier. The full resource name of the custom module, specified in one
     /// of the following formats:
-    ///
     /// * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
     /// * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
     /// * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
@@ -334,10 +332,10 @@ pub mod security_health_analytics_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
-                EnablementState::Inherited => "INHERITED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::Inherited => "INHERITED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -454,11 +452,11 @@ pub mod custom_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -566,10 +564,9 @@ pub struct CreateSecurityHealthAnalyticsCustomModuleRequest {
     /// the request is valid while an error response indicates the request is
     /// invalid. Note that a subsequent request to actually create the module could
     /// still fail because:
-    ///
-    /// 1. the state could have changed (e.g. IAM permission lost) or
-    /// 1. A failure occurred during creation of the module.
-    ///    Defaults to false.
+    ///   1. the state could have changed (e.g. IAM permission lost) or
+    ///   2. A failure occurred during creation of the module.
+    /// Defaults to false.
     #[prost(bool, tag = "3")]
     pub validate_only: bool,
 }
@@ -604,9 +601,9 @@ pub struct DeleteSecurityHealthAnalyticsCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
-    /// * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
-    /// * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
+    ///    * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
+    ///    * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
+    ///    * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. When set to true, only validations (including IAM checks) will
@@ -753,9 +750,9 @@ pub mod simulated_finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Inactive => "INACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -842,11 +839,11 @@ pub mod simulated_finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -903,14 +900,14 @@ pub mod simulated_finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FindingClass::Unspecified => "FINDING_CLASS_UNSPECIFIED",
-                FindingClass::Threat => "THREAT",
-                FindingClass::Vulnerability => "VULNERABILITY",
-                FindingClass::Misconfiguration => "MISCONFIGURATION",
-                FindingClass::Observation => "OBSERVATION",
-                FindingClass::SccError => "SCC_ERROR",
-                FindingClass::PostureViolation => "POSTURE_VIOLATION",
-                FindingClass::ToxicCombination => "TOXIC_COMBINATION",
+                Self::Unspecified => "FINDING_CLASS_UNSPECIFIED",
+                Self::Threat => "THREAT",
+                Self::Vulnerability => "VULNERABILITY",
+                Self::Misconfiguration => "MISCONFIGURATION",
+                Self::Observation => "OBSERVATION",
+                Self::SccError => "SCC_ERROR",
+                Self::PostureViolation => "POSTURE_VIOLATION",
+                Self::ToxicCombination => "TOXIC_COMBINATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -977,9 +974,9 @@ pub struct EffectiveEventThreatDetectionCustomModule {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-    /// * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-    /// * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+    ///    * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+    ///    * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+    ///    * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Config for the effective module.
@@ -1032,9 +1029,9 @@ pub mod effective_event_threat_detection_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1087,9 +1084,9 @@ pub struct GetEffectiveEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-    /// * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-    /// * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+    ///    * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+    ///    * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+    ///    * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1102,9 +1099,9 @@ pub struct EventThreatDetectionCustomModule {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-    /// * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-    /// * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. Config for the module. For the resident module, its config value
@@ -1177,10 +1174,10 @@ pub mod event_threat_detection_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
-                EnablementState::Inherited => "INHERITED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::Inherited => "INHERITED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1272,9 +1269,9 @@ pub struct GetEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-    /// * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-    /// * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1337,9 +1334,9 @@ pub struct DeleteEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-    /// * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-    /// * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+    ///    * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. When set to true, only validations (including IAM checks) will
@@ -1359,7 +1356,7 @@ pub struct ValidateEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/locations/{location}`.
+    ///    * `organizations/{organization}/locations/{location}`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The raw text of the module's contents. Used to generate error
@@ -1422,17 +1419,17 @@ pub struct GetSecurityCenterServiceRequest {
     ///
     /// Formats:
     ///
-    /// * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-    /// * folders/{folder}/locations/{location}/securityCenterServices/{service}
-    /// * projects/{project}/locations/{location}/securityCenterServices/{service}
+    ///    * organizations/{organization}/locations/{location}/securityCenterServices/{service}
+    ///    * folders/{folder}/locations/{location}/securityCenterServices/{service}
+    ///    * projects/{project}/locations/{location}/securityCenterServices/{service}
     ///
     /// The possible values for id {service} are:
     ///
-    /// * container-threat-detection
-    /// * event-threat-detection
-    /// * security-health-analytics
-    /// * vm-threat-detection
-    /// * web-security-scanner
+    ///    * container-threat-detection
+    ///    * event-threat-detection
+    ///    * security-health-analytics
+    ///    * vm-threat-detection
+    ///    * web-security-scanner
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Flag that, when set, will be used to filter the ModuleSettings that are
@@ -1447,9 +1444,9 @@ pub struct ListSecurityCenterServicesRequest {
     ///
     /// Formats:
     ///
-    /// * organizations/{organization}/locations/{location}
-    /// * folders/{folder}/locations/{location}
-    /// * projects/{project}/locations/{location}
+    ///    * organizations/{organization}/locations/{location}
+    ///    * folders/{folder}/locations/{location}
+    ///    * projects/{project}/locations/{location}
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return in a single response.
@@ -1482,8 +1479,8 @@ pub struct UpdateSecurityCenterServiceRequest {
     pub security_center_service: ::core::option::Option<SecurityCenterService>,
     /// Required. The list of fields to be updated. Possible values:
     ///
-    /// * "intended_enablement_state"
-    /// * "modules"
+    ///    * "intended_enablement_state"
+    ///    * "modules"
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Optional. When set to true, only validations (including IAM checks) will be
@@ -1491,15 +1488,20 @@ pub struct UpdateSecurityCenterServiceRequest {
     /// indicates that the request is valid, while an error response indicates that
     /// the request is invalid. Note that a subsequent request to actually update
     /// the service could still fail for one of the following reasons:
-    ///
-    /// * The state could have changed (e.g. IAM permission lost).
-    /// * A failure occurred while trying to delete the module.
+    /// - The state could have changed (e.g. IAM permission lost).
+    /// - A failure occurred while trying to delete the module.
     #[prost(bool, tag = "3")]
     pub validate_only: bool,
 }
 /// Generated client implementations.
 pub mod security_center_management_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
@@ -1593,8 +1595,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1626,8 +1627,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1661,8 +1661,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1697,8 +1696,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1730,8 +1728,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1766,8 +1763,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1803,8 +1799,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1835,8 +1830,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1868,8 +1862,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1905,8 +1898,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1944,8 +1936,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1979,8 +1970,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2015,8 +2005,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2048,8 +2037,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2084,8 +2072,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2122,8 +2109,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2154,8 +2140,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2187,8 +2172,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2218,8 +2202,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2250,8 +2233,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2281,8 +2263,7 @@ pub mod security_center_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

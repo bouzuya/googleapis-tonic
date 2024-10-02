@@ -99,8 +99,8 @@ pub mod assist_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::EndOfUtterance => "END_OF_UTTERANCE",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::EndOfUtterance => "END_OF_UTTERANCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -152,7 +152,7 @@ pub mod assist_config {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Type {
         /// Specifies how to process the subsequent incoming audio. Required if
-        /// \[AssistRequest.audio_in\]\[google.assistant.embedded.v1alpha2.AssistRequest.audio_in\]
+        /// [AssistRequest.audio_in][google.assistant.embedded.v1alpha2.AssistRequest.audio_in]
         /// bytes will be provided in subsequent requests.
         #[prost(message, tag = "1")]
         AudioInConfig(super::AudioInConfig),
@@ -196,7 +196,7 @@ pub mod audio_in_config {
     )]
     #[repr(i32)]
     pub enum Encoding {
-        /// Not specified. Will return result \[google.rpc.Code.INVALID_ARGUMENT\]\[\].
+        /// Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
         Unspecified = 0,
         /// Uncompressed 16-bit signed little-endian samples (Linear PCM).
         /// This encoding includes no header, only the raw audio bytes.
@@ -217,9 +217,9 @@ pub mod audio_in_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-                Encoding::Linear16 => "LINEAR16",
-                Encoding::Flac => "FLAC",
+                Self::Unspecified => "ENCODING_UNSPECIFIED",
+                Self::Linear16 => "LINEAR16",
+                Self::Flac => "FLAC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -267,7 +267,7 @@ pub mod audio_out_config {
     )]
     #[repr(i32)]
     pub enum Encoding {
-        /// Not specified. Will return result \[google.rpc.Code.INVALID_ARGUMENT\]\[\].
+        /// Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
         Unspecified = 0,
         /// Uncompressed 16-bit signed little-endian samples (Linear PCM).
         Linear16 = 1,
@@ -286,10 +286,10 @@ pub mod audio_out_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-                Encoding::Linear16 => "LINEAR16",
-                Encoding::Mp3 => "MP3",
-                Encoding::OpusInOgg => "OPUS_IN_OGG",
+                Self::Unspecified => "ENCODING_UNSPECIFIED",
+                Self::Linear16 => "LINEAR16",
+                Self::Mp3 => "MP3",
+                Self::OpusInOgg => "OPUS_IN_OGG",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -346,9 +346,9 @@ pub mod screen_out_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ScreenMode::Unspecified => "SCREEN_MODE_UNSPECIFIED",
-                ScreenMode::Off => "OFF",
-                ScreenMode::Playing => "PLAYING",
+                Self::Unspecified => "SCREEN_MODE_UNSPECIFIED",
+                Self::Off => "OFF",
+                Self::Playing => "PLAYING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -366,7 +366,7 @@ pub mod screen_out_config {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DialogStateIn {
     /// *Required* This field must always be set to the
-    /// \[DialogStateOut.conversation_state\]\[google.assistant.embedded.v1alpha2.DialogStateOut.conversation_state\]
+    /// [DialogStateOut.conversation_state][google.assistant.embedded.v1alpha2.DialogStateOut.conversation_state]
     /// value that was returned in the prior `Assist` RPC. It should only be
     /// omitted (field not set) if there was no prior `Assist` RPC because this is
     /// the first `Assist` RPC made by this device after it was first setup and/or
@@ -398,12 +398,12 @@ pub struct DialogStateIn {
 ///
 /// See also:
 ///
-/// * [Register a Device - REST
-///   API](<https://developers.google.com/assistant/sdk/reference/device-registration/register-device-manual>)
-/// * [Device Model and Instance
-///   Schemas](<https://developers.google.com/assistant/sdk/reference/device-registration/model-and-instance-schemas>)
-/// * [Device
-///   Proto](<https://developers.google.com/assistant/sdk/reference/rpc/google.assistant.devices.v1alpha2#device>)
+/// *   [Register a Device - REST
+/// API](<https://developers.google.com/assistant/sdk/reference/device-registration/register-device-manual>)
+/// *   [Device Model and Instance
+/// Schemas](<https://developers.google.com/assistant/sdk/reference/device-registration/model-and-instance-schemas>)
+/// *   [Device
+/// Proto](<https://developers.google.com/assistant/sdk/reference/rpc/google.assistant.devices.v1alpha2#device>)
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceConfig {
     /// *Required* Unique identifier for the device. The id length must be 128
@@ -474,8 +474,8 @@ pub mod screen_out {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Format::Unspecified => "FORMAT_UNSPECIFIED",
-                Format::Html => "HTML",
+                Self::Unspecified => "FORMAT_UNSPECIFIED",
+                Self::Html => "HTML",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -582,9 +582,9 @@ pub mod dialog_state_out {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MicrophoneMode::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
-                MicrophoneMode::CloseMicrophone => "CLOSE_MICROPHONE",
-                MicrophoneMode::DialogFollowOn => "DIALOG_FOLLOW_ON",
+                Self::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
+                Self::CloseMicrophone => "CLOSE_MICROPHONE",
+                Self::DialogFollowOn => "DIALOG_FOLLOW_ON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -610,11 +610,11 @@ pub struct DebugConfig {
 /// There are three sources of locations. They are used with this precedence:
 ///
 /// 1. This `DeviceLocation`, which is primarily used for mobile devices with
-///    GPS .
-/// 1. Location specified by the user during device setup; this is per-user, per
-///    device. This location is used if `DeviceLocation` is not specified.
-/// 1. Inferred location based on IP address. This is used only if neither of the
-///    above are specified.
+///     GPS .
+/// 2. Location specified by the user during device setup; this is per-user, per
+///     device. This location is used if `DeviceLocation` is not specified.
+/// 3. Inferred location based on IP address. This is used only if neither of the
+///     above are specified.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeviceLocation {
     #[prost(oneof = "device_location::Type", tags = "1")]
@@ -631,7 +631,13 @@ pub mod device_location {
 }
 /// Generated client implementations.
 pub mod embedded_assistant_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements the Google Assistant API.
@@ -715,33 +721,34 @@ pub mod embedded_assistant_client {
         /// responds *What do you want to add?*. The sequence of streamed requests and
         /// responses in the first gRPC message could be:
         ///
-        /// * AssistRequest.config
-        /// * AssistRequest.audio_in
-        /// * AssistRequest.audio_in
-        /// * AssistRequest.audio_in
-        /// * AssistRequest.audio_in
-        /// * AssistResponse.event_type.END_OF_UTTERANCE
-        /// * AssistResponse.speech_results.transcript "add to my shopping list"
-        /// * AssistResponse.dialog_state_out.microphone_mode.DIALOG_FOLLOW_ON
-        /// * AssistResponse.audio_out
-        /// * AssistResponse.audio_out
-        /// * AssistResponse.audio_out
+        /// *   AssistRequest.config
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistResponse.event_type.END_OF_UTTERANCE
+        /// *   AssistResponse.speech_results.transcript "add to my shopping list"
+        /// *   AssistResponse.dialog_state_out.microphone_mode.DIALOG_FOLLOW_ON
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        ///
         ///
         /// The user then says *bagels* and the Assistant responds
         /// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
         /// connection call to the `Assist` method, again with streamed requests and
         /// responses, such as:
         ///
-        /// * AssistRequest.config
-        /// * AssistRequest.audio_in
-        /// * AssistRequest.audio_in
-        /// * AssistRequest.audio_in
-        /// * AssistResponse.event_type.END_OF_UTTERANCE
-        /// * AssistResponse.dialog_state_out.microphone_mode.CLOSE_MICROPHONE
-        /// * AssistResponse.audio_out
-        /// * AssistResponse.audio_out
-        /// * AssistResponse.audio_out
-        /// * AssistResponse.audio_out
+        /// *   AssistRequest.config
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistResponse.event_type.END_OF_UTTERANCE
+        /// *   AssistResponse.dialog_state_out.microphone_mode.CLOSE_MICROPHONE
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
         ///
         /// Although the precise order of responses is not guaranteed, sequential
         /// `AssistResponse.audio_out` messages will always contain sequential portions
@@ -757,8 +764,7 @@ pub mod embedded_assistant_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

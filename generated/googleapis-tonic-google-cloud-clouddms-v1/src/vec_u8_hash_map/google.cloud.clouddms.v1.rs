@@ -53,9 +53,9 @@ pub mod ssl_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SslType::Unspecified => "SSL_TYPE_UNSPECIFIED",
-                SslType::ServerOnly => "SERVER_ONLY",
-                SslType::ServerClient => "SERVER_CLIENT",
+                Self::Unspecified => "SSL_TYPE_UNSPECIFIED",
+                Self::ServerOnly => "SERVER_ONLY",
+                Self::ServerClient => "SERVER_CLIENT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -183,8 +183,8 @@ pub struct OracleConnectionProfile {
     pub database_service: ::prost::alloc::string::String,
     /// SSL configuration for the connection to the source Oracle database.
     ///
-    /// * Only `SERVER_ONLY` configuration is supported for Oracle SSL.
-    /// * SSL is supported for Oracle versions 12 and above.
+    ///   * Only `SERVER_ONLY` configuration is supported for Oracle SSL.
+    ///   * SSL is supported for Oracle versions 12 and above.
     #[prost(message, optional, tag = "7")]
     pub ssl: ::core::option::Option<SslConfig>,
     /// Connectivity options used to establish a connection to the database server.
@@ -392,11 +392,10 @@ pub struct CloudSqlSettings {
     #[prost(string, tag = "16")]
     pub cmek_key_name: ::prost::alloc::string::String,
     /// Optional. Availability type. Potential values:
-    ///
-    /// * `ZONAL`: The instance serves data from only one zone. Outages in that
-    ///   zone affect data availability.
-    /// * `REGIONAL`: The instance can serve data from more than one zone in a
-    ///   region (it is highly available).
+    /// *  `ZONAL`: The instance serves data from only one zone. Outages in that
+    /// zone affect data availability.
+    /// *  `REGIONAL`: The instance can serve data from more than one zone in a
+    /// region (it is highly available).
     #[prost(enumeration = "cloud_sql_settings::SqlAvailabilityType", tag = "17")]
     pub availability_type: i32,
     /// Optional. The edition of the given Cloud SQL instance.
@@ -433,9 +432,9 @@ pub mod cloud_sql_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SqlActivationPolicy::Unspecified => "SQL_ACTIVATION_POLICY_UNSPECIFIED",
-                SqlActivationPolicy::Always => "ALWAYS",
-                SqlActivationPolicy::Never => "NEVER",
+                Self::Unspecified => "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+                Self::Always => "ALWAYS",
+                Self::Never => "NEVER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -476,9 +475,9 @@ pub mod cloud_sql_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SqlDataDiskType::Unspecified => "SQL_DATA_DISK_TYPE_UNSPECIFIED",
-                SqlDataDiskType::PdSsd => "PD_SSD",
-                SqlDataDiskType::PdHdd => "PD_HDD",
+                Self::Unspecified => "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+                Self::PdSsd => "PD_SSD",
+                Self::PdHdd => "PD_HDD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -535,17 +534,17 @@ pub mod cloud_sql_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SqlDatabaseVersion::Unspecified => "SQL_DATABASE_VERSION_UNSPECIFIED",
-                SqlDatabaseVersion::Mysql56 => "MYSQL_5_6",
-                SqlDatabaseVersion::Mysql57 => "MYSQL_5_7",
-                SqlDatabaseVersion::Postgres96 => "POSTGRES_9_6",
-                SqlDatabaseVersion::Postgres11 => "POSTGRES_11",
-                SqlDatabaseVersion::Postgres10 => "POSTGRES_10",
-                SqlDatabaseVersion::Mysql80 => "MYSQL_8_0",
-                SqlDatabaseVersion::Postgres12 => "POSTGRES_12",
-                SqlDatabaseVersion::Postgres13 => "POSTGRES_13",
-                SqlDatabaseVersion::Postgres14 => "POSTGRES_14",
-                SqlDatabaseVersion::Postgres15 => "POSTGRES_15",
+                Self::Unspecified => "SQL_DATABASE_VERSION_UNSPECIFIED",
+                Self::Mysql56 => "MYSQL_5_6",
+                Self::Mysql57 => "MYSQL_5_7",
+                Self::Postgres96 => "POSTGRES_9_6",
+                Self::Postgres11 => "POSTGRES_11",
+                Self::Postgres10 => "POSTGRES_10",
+                Self::Mysql80 => "MYSQL_8_0",
+                Self::Postgres12 => "POSTGRES_12",
+                Self::Postgres13 => "POSTGRES_13",
+                Self::Postgres14 => "POSTGRES_14",
+                Self::Postgres15 => "POSTGRES_15",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -594,9 +593,9 @@ pub mod cloud_sql_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SqlAvailabilityType::Unspecified => "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
-                SqlAvailabilityType::Zonal => "ZONAL",
-                SqlAvailabilityType::Regional => "REGIONAL",
+                Self::Unspecified => "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
+                Self::Zonal => "ZONAL",
+                Self::Regional => "REGIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -638,9 +637,9 @@ pub mod cloud_sql_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Edition::Unspecified => "EDITION_UNSPECIFIED",
-                Edition::Enterprise => "ENTERPRISE",
-                Edition::EnterprisePlus => "ENTERPRISE_PLUS",
+                Self::Unspecified => "EDITION_UNSPECIFIED",
+                Self::Enterprise => "ENTERPRISE",
+                Self::EnterprisePlus => "ENTERPRISE_PLUS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -898,7 +897,7 @@ pub struct MigrationJob {
     #[prost(enumeration = "migration_job::Type", tag = "8")]
     pub r#type: i32,
     /// The path to the dump file in Google Cloud Storage,
-    /// in the format: (gs://\[BUCKET_NAME\]/\[OBJECT_NAME\]).
+    /// in the format: (gs://\[BUCKET_NAME\]/[OBJECT_NAME]).
     /// This field and the "dump_flags" field are mutually exclusive.
     #[prost(string, tag = "9")]
     pub dump_path: ::prost::alloc::string::String,
@@ -943,15 +942,14 @@ pub struct MigrationJob {
     /// The CMEK (customer-managed encryption key) fully qualified key name used
     /// for the migration job.
     /// This field supports all migration jobs types except for:
-    ///
     /// * Mysql to Mysql (use the cmek field in the cloudsql connection profile
-    ///   instead).
+    /// instead).
     /// * PostrgeSQL to PostgreSQL (use the cmek field in the cloudsql
-    ///   connection profile instead).
+    /// connection profile instead).
     /// * PostgreSQL to AlloyDB (use the kms_key_name field in the alloydb
-    ///   connection profile instead).
-    ///   Each Cloud CMEK key has the following format:
-    ///   projects/\[PROJECT\]/locations/\[REGION\]/keyRings/\[RING\]/cryptoKeys/\[KEY_NAME\]
+    /// connection profile instead).
+    /// Each Cloud CMEK key has the following format:
+    /// projects/\[PROJECT\]/locations/\[REGION\]/keyRings/\[RING\]/cryptoKeys/\[KEY_NAME\]
     #[prost(string, tag = "21")]
     pub cmek_key_name: ::prost::alloc::string::String,
     /// Optional. Data dump parallelism settings used by the migration.
@@ -1020,10 +1018,10 @@ pub mod migration_job {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DumpParallelLevel::Unspecified => "DUMP_PARALLEL_LEVEL_UNSPECIFIED",
-                    DumpParallelLevel::Min => "MIN",
-                    DumpParallelLevel::Optimal => "OPTIMAL",
-                    DumpParallelLevel::Max => "MAX",
+                    Self::Unspecified => "DUMP_PARALLEL_LEVEL_UNSPECIFIED",
+                    Self::Min => "MIN",
+                    Self::Optimal => "OPTIMAL",
+                    Self::Max => "MAX",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1092,22 +1090,22 @@ pub mod migration_job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Maintenance => "MAINTENANCE",
-                State::Draft => "DRAFT",
-                State::Creating => "CREATING",
-                State::NotStarted => "NOT_STARTED",
-                State::Running => "RUNNING",
-                State::Failed => "FAILED",
-                State::Completed => "COMPLETED",
-                State::Deleting => "DELETING",
-                State::Stopping => "STOPPING",
-                State::Stopped => "STOPPED",
-                State::Deleted => "DELETED",
-                State::Updating => "UPDATING",
-                State::Starting => "STARTING",
-                State::Restarting => "RESTARTING",
-                State::Resuming => "RESUMING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Maintenance => "MAINTENANCE",
+                Self::Draft => "DRAFT",
+                Self::Creating => "CREATING",
+                Self::NotStarted => "NOT_STARTED",
+                Self::Running => "RUNNING",
+                Self::Failed => "FAILED",
+                Self::Completed => "COMPLETED",
+                Self::Deleting => "DELETING",
+                Self::Stopping => "STOPPING",
+                Self::Stopped => "STOPPED",
+                Self::Deleted => "DELETED",
+                Self::Updating => "UPDATING",
+                Self::Starting => "STARTING",
+                Self::Restarting => "RESTARTING",
+                Self::Resuming => "RESUMING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1167,14 +1165,12 @@ pub mod migration_job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Phase::Unspecified => "PHASE_UNSPECIFIED",
-                Phase::FullDump => "FULL_DUMP",
-                Phase::Cdc => "CDC",
-                Phase::PromoteInProgress => "PROMOTE_IN_PROGRESS",
-                Phase::WaitingForSourceWritesToStop => {
-                    "WAITING_FOR_SOURCE_WRITES_TO_STOP"
-                }
-                Phase::PreparingTheDump => "PREPARING_THE_DUMP",
+                Self::Unspecified => "PHASE_UNSPECIFIED",
+                Self::FullDump => "FULL_DUMP",
+                Self::Cdc => "CDC",
+                Self::PromoteInProgress => "PROMOTE_IN_PROGRESS",
+                Self::WaitingForSourceWritesToStop => "WAITING_FOR_SOURCE_WRITES_TO_STOP",
+                Self::PreparingTheDump => "PREPARING_THE_DUMP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1220,9 +1216,9 @@ pub mod migration_job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::OneTime => "ONE_TIME",
-                Type::Continuous => "CONTINUOUS",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::OneTime => "ONE_TIME",
+                Self::Continuous => "CONTINUOUS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1348,14 +1344,14 @@ pub mod connection_profile {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Draft => "DRAFT",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Deleted => "DELETED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Draft => "DRAFT",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Deleted => "DELETED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1493,52 +1489,42 @@ pub mod migration_job_verification_error {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
-                ErrorCode::ConnectionFailure => "CONNECTION_FAILURE",
-                ErrorCode::AuthenticationFailure => "AUTHENTICATION_FAILURE",
-                ErrorCode::InvalidConnectionProfileConfig => {
+                Self::Unspecified => "ERROR_CODE_UNSPECIFIED",
+                Self::ConnectionFailure => "CONNECTION_FAILURE",
+                Self::AuthenticationFailure => "AUTHENTICATION_FAILURE",
+                Self::InvalidConnectionProfileConfig => {
                     "INVALID_CONNECTION_PROFILE_CONFIG"
                 }
-                ErrorCode::VersionIncompatibility => "VERSION_INCOMPATIBILITY",
-                ErrorCode::ConnectionProfileTypesIncompatibility => {
+                Self::VersionIncompatibility => "VERSION_INCOMPATIBILITY",
+                Self::ConnectionProfileTypesIncompatibility => {
                     "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY"
                 }
-                ErrorCode::NoPglogicalInstalled => "NO_PGLOGICAL_INSTALLED",
-                ErrorCode::PglogicalNodeAlreadyExists => "PGLOGICAL_NODE_ALREADY_EXISTS",
-                ErrorCode::InvalidWalLevel => "INVALID_WAL_LEVEL",
-                ErrorCode::InvalidSharedPreloadLibrary => {
-                    "INVALID_SHARED_PRELOAD_LIBRARY"
-                }
-                ErrorCode::InsufficientMaxReplicationSlots => {
+                Self::NoPglogicalInstalled => "NO_PGLOGICAL_INSTALLED",
+                Self::PglogicalNodeAlreadyExists => "PGLOGICAL_NODE_ALREADY_EXISTS",
+                Self::InvalidWalLevel => "INVALID_WAL_LEVEL",
+                Self::InvalidSharedPreloadLibrary => "INVALID_SHARED_PRELOAD_LIBRARY",
+                Self::InsufficientMaxReplicationSlots => {
                     "INSUFFICIENT_MAX_REPLICATION_SLOTS"
                 }
-                ErrorCode::InsufficientMaxWalSenders => "INSUFFICIENT_MAX_WAL_SENDERS",
-                ErrorCode::InsufficientMaxWorkerProcesses => {
+                Self::InsufficientMaxWalSenders => "INSUFFICIENT_MAX_WAL_SENDERS",
+                Self::InsufficientMaxWorkerProcesses => {
                     "INSUFFICIENT_MAX_WORKER_PROCESSES"
                 }
-                ErrorCode::UnsupportedExtensions => "UNSUPPORTED_EXTENSIONS",
-                ErrorCode::UnsupportedMigrationType => "UNSUPPORTED_MIGRATION_TYPE",
-                ErrorCode::InvalidRdsLogicalReplication => {
-                    "INVALID_RDS_LOGICAL_REPLICATION"
-                }
-                ErrorCode::UnsupportedGtidMode => "UNSUPPORTED_GTID_MODE",
-                ErrorCode::UnsupportedTableDefinition => "UNSUPPORTED_TABLE_DEFINITION",
-                ErrorCode::UnsupportedDefiner => "UNSUPPORTED_DEFINER",
-                ErrorCode::CantRestartRunningMigration => {
-                    "CANT_RESTART_RUNNING_MIGRATION"
-                }
-                ErrorCode::SourceAlreadySetup => "SOURCE_ALREADY_SETUP",
-                ErrorCode::TablesWithLimitedSupport => "TABLES_WITH_LIMITED_SUPPORT",
-                ErrorCode::UnsupportedDatabaseLocale => "UNSUPPORTED_DATABASE_LOCALE",
-                ErrorCode::UnsupportedDatabaseFdwConfig => {
-                    "UNSUPPORTED_DATABASE_FDW_CONFIG"
-                }
-                ErrorCode::ErrorRdbms => "ERROR_RDBMS",
-                ErrorCode::SourceSizeExceedsThreshold => "SOURCE_SIZE_EXCEEDS_THRESHOLD",
-                ErrorCode::ExistingConflictingDatabases => {
-                    "EXISTING_CONFLICTING_DATABASES"
-                }
-                ErrorCode::ParallelImportInsufficientPrivilege => {
+                Self::UnsupportedExtensions => "UNSUPPORTED_EXTENSIONS",
+                Self::UnsupportedMigrationType => "UNSUPPORTED_MIGRATION_TYPE",
+                Self::InvalidRdsLogicalReplication => "INVALID_RDS_LOGICAL_REPLICATION",
+                Self::UnsupportedGtidMode => "UNSUPPORTED_GTID_MODE",
+                Self::UnsupportedTableDefinition => "UNSUPPORTED_TABLE_DEFINITION",
+                Self::UnsupportedDefiner => "UNSUPPORTED_DEFINER",
+                Self::CantRestartRunningMigration => "CANT_RESTART_RUNNING_MIGRATION",
+                Self::SourceAlreadySetup => "SOURCE_ALREADY_SETUP",
+                Self::TablesWithLimitedSupport => "TABLES_WITH_LIMITED_SUPPORT",
+                Self::UnsupportedDatabaseLocale => "UNSUPPORTED_DATABASE_LOCALE",
+                Self::UnsupportedDatabaseFdwConfig => "UNSUPPORTED_DATABASE_FDW_CONFIG",
+                Self::ErrorRdbms => "ERROR_RDBMS",
+                Self::SourceSizeExceedsThreshold => "SOURCE_SIZE_EXCEEDS_THRESHOLD",
+                Self::ExistingConflictingDatabases => "EXISTING_CONFLICTING_DATABASES",
+                Self::ParallelImportInsufficientPrivilege => {
                     "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
                 }
             }
@@ -1671,13 +1657,13 @@ pub mod private_connection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Created => "CREATED",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
-                State::FailedToDelete => "FAILED_TO_DELETE",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Created => "CREATED",
+                Self::Failed => "FAILED",
+                Self::Deleting => "DELETING",
+                Self::FailedToDelete => "FAILED_TO_DELETE",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1729,13 +1715,9 @@ impl NetworkArchitecture {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NetworkArchitecture::Unspecified => "NETWORK_ARCHITECTURE_UNSPECIFIED",
-            NetworkArchitecture::OldCsqlProducer => {
-                "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER"
-            }
-            NetworkArchitecture::NewCsqlProducer => {
-                "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER"
-            }
+            Self::Unspecified => "NETWORK_ARCHITECTURE_UNSPECIFIED",
+            Self::OldCsqlProducer => "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER",
+            Self::NewCsqlProducer => "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1768,10 +1750,10 @@ impl DatabaseEngine {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatabaseEngine::Unspecified => "DATABASE_ENGINE_UNSPECIFIED",
-            DatabaseEngine::Mysql => "MYSQL",
-            DatabaseEngine::Postgresql => "POSTGRESQL",
-            DatabaseEngine::Oracle => "ORACLE",
+            Self::Unspecified => "DATABASE_ENGINE_UNSPECIFIED",
+            Self::Mysql => "MYSQL",
+            Self::Postgresql => "POSTGRESQL",
+            Self::Oracle => "ORACLE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1807,11 +1789,11 @@ impl DatabaseProvider {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatabaseProvider::Unspecified => "DATABASE_PROVIDER_UNSPECIFIED",
-            DatabaseProvider::Cloudsql => "CLOUDSQL",
-            DatabaseProvider::Rds => "RDS",
-            DatabaseProvider::Aurora => "AURORA",
-            DatabaseProvider::Alloydb => "ALLOYDB",
+            Self::Unspecified => "DATABASE_PROVIDER_UNSPECIFIED",
+            Self::Cloudsql => "CLOUDSQL",
+            Self::Rds => "RDS",
+            Self::Aurora => "AURORA",
+            Self::Alloydb => "ALLOYDB",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1974,9 +1956,9 @@ pub mod background_job_log_entry {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                JobCompletionState::Unspecified => "JOB_COMPLETION_STATE_UNSPECIFIED",
-                JobCompletionState::Succeeded => "SUCCEEDED",
-                JobCompletionState::Failed => "FAILED",
+                Self::Unspecified => "JOB_COMPLETION_STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2107,10 +2089,10 @@ pub mod mapping_rule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Enabled => "ENABLED",
-                State::Disabled => "DISABLED",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2194,7 +2176,7 @@ pub struct SingleEntityRename {
 pub struct MultiEntityRename {
     /// Optional. The pattern used to generate the new entity's name. This pattern
     /// must include the characters '{name}', which will be replaced with the name
-    /// of the original entity. For example, the pattern 't\_{name}' for an entity
+    /// of the original entity. For example, the pattern 't_{name}' for an entity
     /// name jobs would be converted to 't_jobs'.
     ///
     /// If unspecified, the default value for this field is '{name}'
@@ -2249,8 +2231,7 @@ pub struct SingleColumnChange {
     #[prost(int32, tag = "6")]
     pub scale: i32,
     /// Optional. Column fractional seconds precision - e.g. 2 as in timestamp (2)
-    ///
-    /// * when relevant.
+    /// - when relevant.
     #[prost(int32, tag = "7")]
     pub fractional_seconds_precision: i32,
     /// Optional. Is the column of array type.
@@ -2683,10 +2664,10 @@ pub mod database_entity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TreeType::Unspecified => "TREE_TYPE_UNSPECIFIED",
-                TreeType::Source => "SOURCE",
-                TreeType::Draft => "DRAFT",
-                TreeType::Destination => "DESTINATION",
+                Self::Unspecified => "TREE_TYPE_UNSPECIFIED",
+                Self::Source => "SOURCE",
+                Self::Draft => "DRAFT",
+                Self::Destination => "DESTINATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3163,10 +3144,10 @@ pub mod entity_issue {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IssueType::Unspecified => "ISSUE_TYPE_UNSPECIFIED",
-                IssueType::Ddl => "ISSUE_TYPE_DDL",
-                IssueType::Apply => "ISSUE_TYPE_APPLY",
-                IssueType::Convert => "ISSUE_TYPE_CONVERT",
+                Self::Unspecified => "ISSUE_TYPE_UNSPECIFIED",
+                Self::Ddl => "ISSUE_TYPE_DDL",
+                Self::Apply => "ISSUE_TYPE_APPLY",
+                Self::Convert => "ISSUE_TYPE_CONVERT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3210,10 +3191,10 @@ pub mod entity_issue {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IssueSeverity::Unspecified => "ISSUE_SEVERITY_UNSPECIFIED",
-                IssueSeverity::Info => "ISSUE_SEVERITY_INFO",
-                IssueSeverity::Warning => "ISSUE_SEVERITY_WARNING",
-                IssueSeverity::Error => "ISSUE_SEVERITY_ERROR",
+                Self::Unspecified => "ISSUE_SEVERITY_UNSPECIFIED",
+                Self::Info => "ISSUE_SEVERITY_INFO",
+                Self::Warning => "ISSUE_SEVERITY_WARNING",
+                Self::Error => "ISSUE_SEVERITY_ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3247,11 +3228,9 @@ impl ValuePresentInList {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ValuePresentInList::Unspecified => "VALUE_PRESENT_IN_LIST_UNSPECIFIED",
-            ValuePresentInList::IfValueList => "VALUE_PRESENT_IN_LIST_IF_VALUE_LIST",
-            ValuePresentInList::IfValueNotList => {
-                "VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST"
-            }
+            Self::Unspecified => "VALUE_PRESENT_IN_LIST_UNSPECIFIED",
+            Self::IfValueList => "VALUE_PRESENT_IN_LIST_IF_VALUE_LIST",
+            Self::IfValueNotList => "VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3308,28 +3287,22 @@ impl DatabaseEntityType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatabaseEntityType::Unspecified => "DATABASE_ENTITY_TYPE_UNSPECIFIED",
-            DatabaseEntityType::Schema => "DATABASE_ENTITY_TYPE_SCHEMA",
-            DatabaseEntityType::Table => "DATABASE_ENTITY_TYPE_TABLE",
-            DatabaseEntityType::Column => "DATABASE_ENTITY_TYPE_COLUMN",
-            DatabaseEntityType::Constraint => "DATABASE_ENTITY_TYPE_CONSTRAINT",
-            DatabaseEntityType::Index => "DATABASE_ENTITY_TYPE_INDEX",
-            DatabaseEntityType::Trigger => "DATABASE_ENTITY_TYPE_TRIGGER",
-            DatabaseEntityType::View => "DATABASE_ENTITY_TYPE_VIEW",
-            DatabaseEntityType::Sequence => "DATABASE_ENTITY_TYPE_SEQUENCE",
-            DatabaseEntityType::StoredProcedure => {
-                "DATABASE_ENTITY_TYPE_STORED_PROCEDURE"
-            }
-            DatabaseEntityType::Function => "DATABASE_ENTITY_TYPE_FUNCTION",
-            DatabaseEntityType::Synonym => "DATABASE_ENTITY_TYPE_SYNONYM",
-            DatabaseEntityType::DatabasePackage => {
-                "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE"
-            }
-            DatabaseEntityType::Udt => "DATABASE_ENTITY_TYPE_UDT",
-            DatabaseEntityType::MaterializedView => {
-                "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW"
-            }
-            DatabaseEntityType::Database => "DATABASE_ENTITY_TYPE_DATABASE",
+            Self::Unspecified => "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            Self::Schema => "DATABASE_ENTITY_TYPE_SCHEMA",
+            Self::Table => "DATABASE_ENTITY_TYPE_TABLE",
+            Self::Column => "DATABASE_ENTITY_TYPE_COLUMN",
+            Self::Constraint => "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            Self::Index => "DATABASE_ENTITY_TYPE_INDEX",
+            Self::Trigger => "DATABASE_ENTITY_TYPE_TRIGGER",
+            Self::View => "DATABASE_ENTITY_TYPE_VIEW",
+            Self::Sequence => "DATABASE_ENTITY_TYPE_SEQUENCE",
+            Self::StoredProcedure => "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            Self::Function => "DATABASE_ENTITY_TYPE_FUNCTION",
+            Self::Synonym => "DATABASE_ENTITY_TYPE_SYNONYM",
+            Self::DatabasePackage => "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            Self::Udt => "DATABASE_ENTITY_TYPE_UDT",
+            Self::MaterializedView => "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            Self::Database => "DATABASE_ENTITY_TYPE_DATABASE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3377,21 +3350,11 @@ impl EntityNameTransformation {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EntityNameTransformation::Unspecified => {
-                "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED"
-            }
-            EntityNameTransformation::NoTransformation => {
-                "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION"
-            }
-            EntityNameTransformation::LowerCase => {
-                "ENTITY_NAME_TRANSFORMATION_LOWER_CASE"
-            }
-            EntityNameTransformation::UpperCase => {
-                "ENTITY_NAME_TRANSFORMATION_UPPER_CASE"
-            }
-            EntityNameTransformation::CapitalizedCase => {
-                "ENTITY_NAME_TRANSFORMATION_CAPITALIZED_CASE"
-            }
+            Self::Unspecified => "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED",
+            Self::NoTransformation => "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION",
+            Self::LowerCase => "ENTITY_NAME_TRANSFORMATION_LOWER_CASE",
+            Self::UpperCase => "ENTITY_NAME_TRANSFORMATION_UPPER_CASE",
+            Self::CapitalizedCase => "ENTITY_NAME_TRANSFORMATION_CAPITALIZED_CASE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3432,13 +3395,11 @@ impl BackgroundJobType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            BackgroundJobType::Unspecified => "BACKGROUND_JOB_TYPE_UNSPECIFIED",
-            BackgroundJobType::SourceSeed => "BACKGROUND_JOB_TYPE_SOURCE_SEED",
-            BackgroundJobType::Convert => "BACKGROUND_JOB_TYPE_CONVERT",
-            BackgroundJobType::ApplyDestination => {
-                "BACKGROUND_JOB_TYPE_APPLY_DESTINATION"
-            }
-            BackgroundJobType::ImportRulesFile => "BACKGROUND_JOB_TYPE_IMPORT_RULES_FILE",
+            Self::Unspecified => "BACKGROUND_JOB_TYPE_UNSPECIFIED",
+            Self::SourceSeed => "BACKGROUND_JOB_TYPE_SOURCE_SEED",
+            Self::Convert => "BACKGROUND_JOB_TYPE_CONVERT",
+            Self::ApplyDestination => "BACKGROUND_JOB_TYPE_APPLY_DESTINATION",
+            Self::ImportRulesFile => "BACKGROUND_JOB_TYPE_IMPORT_RULES_FILE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3471,13 +3432,11 @@ impl ImportRulesFileFormat {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ImportRulesFileFormat::Unspecified => "IMPORT_RULES_FILE_FORMAT_UNSPECIFIED",
-            ImportRulesFileFormat::HarbourBridgeSessionFile => {
+            Self::Unspecified => "IMPORT_RULES_FILE_FORMAT_UNSPECIFIED",
+            Self::HarbourBridgeSessionFile => {
                 "IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE"
             }
-            ImportRulesFileFormat::OratopgConfigFile => {
-                "IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE"
-            }
+            Self::OratopgConfigFile => "IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3517,17 +3476,13 @@ impl ValueComparison {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ValueComparison::Unspecified => "VALUE_COMPARISON_UNSPECIFIED",
-            ValueComparison::IfValueSmallerThan => {
-                "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN"
-            }
-            ValueComparison::IfValueSmallerEqualThan => {
+            Self::Unspecified => "VALUE_COMPARISON_UNSPECIFIED",
+            Self::IfValueSmallerThan => "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN",
+            Self::IfValueSmallerEqualThan => {
                 "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN"
             }
-            ValueComparison::IfValueLargerThan => "VALUE_COMPARISON_IF_VALUE_LARGER_THAN",
-            ValueComparison::IfValueLargerEqualThan => {
-                "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN"
-            }
+            Self::IfValueLargerThan => "VALUE_COMPARISON_IF_VALUE_LARGER_THAN",
+            Self::IfValueLargerEqualThan => "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3568,10 +3523,10 @@ impl NumericFilterOption {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NumericFilterOption::Unspecified => "NUMERIC_FILTER_OPTION_UNSPECIFIED",
-            NumericFilterOption::All => "NUMERIC_FILTER_OPTION_ALL",
-            NumericFilterOption::Limit => "NUMERIC_FILTER_OPTION_LIMIT",
-            NumericFilterOption::Limitless => "NUMERIC_FILTER_OPTION_LIMITLESS",
+            Self::Unspecified => "NUMERIC_FILTER_OPTION_UNSPECIFIED",
+            Self::All => "NUMERIC_FILTER_OPTION_ALL",
+            Self::Limit => "NUMERIC_FILTER_OPTION_LIMIT",
+            Self::Limitless => "NUMERIC_FILTER_OPTION_LIMITLESS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3608,7 +3563,7 @@ pub struct ListMigrationJobsRequest {
     /// The expression must specify the field name, a comparison operator, and the
     /// value that you want to use for filtering. The value must be a string,
     /// a number, or a boolean. The comparison operator must be
-    /// either =, !=, >, or \<. For example, list migration jobs created this year
+    /// either =, !=, >, or <. For example, list migration jobs created this year
     /// by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.**
     /// You can also filter nested fields. For example, you could specify
     /// **reverseSshConnectivity.vmIp = "1.2.3.4"** to select all migration
@@ -3662,7 +3617,7 @@ pub struct CreateMigrationJobRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -3682,7 +3637,7 @@ pub struct UpdateMigrationJobRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -3698,7 +3653,7 @@ pub struct DeleteMigrationJobRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
     /// The destination CloudSQL connection profile is always deleted with the
@@ -3876,7 +3831,7 @@ pub struct ListConnectionProfilesRequest {
     /// response. The expression must specify the field name, a comparison
     /// operator, and the value that you want to use for filtering. The value must
     /// be a string, a number, or a boolean. The comparison operator must be either
-    /// =, !=, >, or \<. For example, list connection profiles created this year by
+    /// =, !=, >, or <. For example, list connection profiles created this year by
     /// specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can
     /// also filter nested fields. For example, you could specify **mySql.username
     /// = %lt;my_username%gt;** to list all connection profiles configured to
@@ -3926,7 +3881,7 @@ pub struct CreateConnectionProfileRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. Only validate the connection profile, but don't create any
@@ -3956,7 +3911,7 @@ pub struct UpdateConnectionProfileRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. Only validate the connection profile, but don't update any
@@ -3982,7 +3937,7 @@ pub struct DeleteConnectionProfileRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
     /// In case of force delete, the CloudSQL replica database is also deleted
@@ -4009,7 +3964,7 @@ pub struct CreatePrivateConnectionRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. If set to true, will skip validations.
@@ -4040,7 +3995,7 @@ pub struct ListPrivateConnectionsRequest {
     /// response. The expression must specify the field name, a comparison
     /// operator, and the value that you want to use for filtering. The value must
     /// be a string, a number, or a boolean. The comparison operator must be either
-    /// =, !=, >, or \<. For example, list private connections created this year by
+    /// =, !=, >, or <. For example, list private connections created this year by
     /// specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
@@ -4074,7 +4029,7 @@ pub struct DeletePrivateConnectionRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -4105,8 +4060,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -4135,7 +4090,7 @@ pub struct ListConversionWorkspacesRequest {
     /// response. The expression must specify the field name, a comparison
     /// operator, and the value that you want to use for filtering. The value must
     /// be a string, a number, or a boolean. The comparison operator must be either
-    /// =, !=, >, or \<. For example, list conversion workspaces created this year
+    /// =, !=, >, or <. For example, list conversion workspaces created this year
     /// by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can
     /// also filter nested fields. For example, you could specify
     /// **source.version = "12.c.1"** to select all conversion workspaces with
@@ -4183,7 +4138,7 @@ pub struct CreateConversionWorkspaceRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -4203,7 +4158,7 @@ pub struct UpdateConversionWorkspaceRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -4219,7 +4174,7 @@ pub struct DeleteConversionWorkspaceRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
     /// Force delete the conversion workspace, even if there's a running migration
@@ -4249,7 +4204,7 @@ pub struct RollbackConversionWorkspaceRequest {
 pub struct ApplyConversionWorkspaceRequest {
     /// Required. The name of the conversion workspace resource for which to apply
     /// the draft tree. Must be in the form of:
-    /// projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+    ///   projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter which entities to apply. Leaving this field empty will apply all of
@@ -4486,10 +4441,10 @@ pub mod describe_database_entities_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DbTreeType::Unspecified => "DB_TREE_TYPE_UNSPECIFIED",
-                DbTreeType::SourceTree => "SOURCE_TREE",
-                DbTreeType::DraftTree => "DRAFT_TREE",
-                DbTreeType::DestinationTree => "DESTINATION_TREE",
+                Self::Unspecified => "DB_TREE_TYPE_UNSPECIFIED",
+                Self::SourceTree => "SOURCE_TREE",
+                Self::DraftTree => "DRAFT_TREE",
+                Self::DestinationTree => "DESTINATION_TREE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4583,7 +4538,7 @@ pub struct CreateMappingRuleRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -4599,7 +4554,7 @@ pub struct DeleteMappingRuleRequest {
     /// It is recommended to always set this value to a UUID.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
-    /// (\_), and hyphens (-). The maximum length is 40 characters.
+    /// (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -4652,10 +4607,10 @@ impl DatabaseEntityView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatabaseEntityView::Unspecified => "DATABASE_ENTITY_VIEW_UNSPECIFIED",
-            DatabaseEntityView::Basic => "DATABASE_ENTITY_VIEW_BASIC",
-            DatabaseEntityView::Full => "DATABASE_ENTITY_VIEW_FULL",
-            DatabaseEntityView::RootSummary => "DATABASE_ENTITY_VIEW_ROOT_SUMMARY",
+            Self::Unspecified => "DATABASE_ENTITY_VIEW_UNSPECIFIED",
+            Self::Basic => "DATABASE_ENTITY_VIEW_BASIC",
+            Self::Full => "DATABASE_ENTITY_VIEW_FULL",
+            Self::RootSummary => "DATABASE_ENTITY_VIEW_ROOT_SUMMARY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4671,7 +4626,13 @@ impl DatabaseEntityView {
 }
 /// Generated client implementations.
 pub mod data_migration_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Database Migration service
@@ -4756,8 +4717,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4784,8 +4744,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4815,8 +4774,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4846,8 +4804,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4877,8 +4834,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4908,8 +4864,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4939,8 +4894,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4971,8 +4925,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5003,8 +4956,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5035,8 +4987,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5068,8 +5019,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5097,8 +5047,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5126,8 +5075,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5158,8 +5106,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5189,8 +5136,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5220,8 +5166,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5251,8 +5196,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5284,8 +5228,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5315,8 +5258,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5346,8 +5288,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5377,8 +5318,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5408,8 +5348,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5439,8 +5378,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5470,8 +5408,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5501,8 +5438,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5532,8 +5468,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5563,8 +5498,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5591,8 +5525,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5619,8 +5552,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5650,8 +5582,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5678,8 +5609,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5710,8 +5640,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5742,8 +5671,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5773,8 +5701,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5804,8 +5731,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5835,8 +5761,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5866,8 +5791,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5902,8 +5826,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5938,8 +5861,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5972,8 +5894,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6004,8 +5925,7 @@ pub mod data_migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

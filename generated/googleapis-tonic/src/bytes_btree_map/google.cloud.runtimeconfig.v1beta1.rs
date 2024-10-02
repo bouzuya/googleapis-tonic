@@ -6,9 +6,7 @@
 pub struct RuntimeConfig {
     /// The resource name of a runtime config. The name must have the format:
     ///
-    /// ```text
-    /// projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]
-    /// ```
+    ///      projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]
     ///
     /// The `\[PROJECT_ID\]` must be a valid project ID, and `\[CONFIG_NAME\]` is an
     /// arbitrary name that matches RFC 1035 segment specification. The length of
@@ -32,9 +30,7 @@ pub struct RuntimeConfig {
 pub struct Variable {
     /// The name of the variable resource, in the format:
     ///
-    /// ```text
-    /// projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]/variables/\[VARIABLE_NAME\]
-    /// ```
+    ///      projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]/variables/\[VARIABLE_NAME\]
     ///
     /// The `\[PROJECT_ID\]` must be a valid project ID, `\[CONFIG_NAME\]` must be a
     /// valid RuntimeConfig reource and `\[VARIABLE_NAME\]` follows Unix file system
@@ -99,9 +95,9 @@ pub mod end_condition {
     /// the `path` is set to `/foo` and the number of paths is set to 2, the
     /// following variables would meet the condition in a RuntimeConfig resource:
     ///
-    /// * `/foo/variable1 = "value1"`
-    /// * `/foo/variable2 = "value2"`
-    /// * `/bar/variable3 = "value3"`
+    /// + `/foo/variable1 = "value1"`
+    /// + `/foo/variable2 = "value2"`
+    /// + `/bar/variable3 = "value3"`
     ///
     /// It would not would not satisify the same condition with the `number` set to
     /// 3, however, because there is only 2 paths that start with `/foo`.
@@ -146,9 +142,7 @@ pub mod end_condition {
 pub struct Waiter {
     /// The name of the Waiter resource, in the format:
     ///
-    /// ```text
-    /// projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]/waiters/\[WAITER_NAME\]
-    /// ```
+    ///      projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]/waiters/\[WAITER_NAME\]
     ///
     /// The `\[PROJECT_ID\]` must be a valid Google Cloud project ID,
     /// the `\[CONFIG_NAME\]` must be a valid RuntimeConfig resource, the
@@ -214,9 +208,9 @@ impl VariableState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            VariableState::Unspecified => "VARIABLE_STATE_UNSPECIFIED",
-            VariableState::Updated => "UPDATED",
-            VariableState::Deleted => "DELETED",
+            Self::Unspecified => "VARIABLE_STATE_UNSPECIFIED",
+            Self::Updated => "UPDATED",
+            Self::Deleted => "DELETED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -509,13 +503,19 @@ pub struct CreateWaiterRequest {
 pub struct DeleteWaiterRequest {
     /// The Waiter resource to delete, in the format:
     ///
-    /// `projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]/waiters/\[WAITER_NAME\]`
+    ///   `projects/\[PROJECT_ID\]/configs/\[CONFIG_NAME\]/waiters/\[WAITER_NAME\]`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod runtime_config_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// RuntimeConfig API represents configuration objects and operations on those
@@ -609,8 +609,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -637,8 +636,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -666,8 +664,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -694,8 +691,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -722,8 +718,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -756,8 +751,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -784,8 +778,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -825,8 +818,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -860,8 +852,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -888,8 +879,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -921,8 +911,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -952,8 +941,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -980,8 +968,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1015,8 +1002,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1043,8 +1029,7 @@ pub mod runtime_config_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

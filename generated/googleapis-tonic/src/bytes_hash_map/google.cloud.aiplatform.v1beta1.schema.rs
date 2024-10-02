@@ -257,14 +257,13 @@ pub struct ImageDataItem {
     pub gcs_uri: ::prost::alloc::string::String,
     /// Output only. The mime type of the content of the image. Only the images in below listed
     /// mime types are supported.
-    ///
-    /// * image/jpeg
-    /// * image/gif
-    /// * image/png
-    /// * image/webp
-    /// * image/bmp
-    /// * image/tiff
-    /// * image/vnd.microsoft.icon
+    /// - image/jpeg
+    /// - image/gif
+    /// - image/png
+    /// - image/webp
+    /// - image/bmp
+    /// - image/tiff
+    /// - image/vnd.microsoft.icon
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }
@@ -278,10 +277,9 @@ pub struct VideoDataItem {
     /// Output only. The mime type of the content of the video. Only the videos in below listed
     /// mime types are supported.
     /// Supported mime_type:
-    ///
-    /// * video/mp4
-    /// * video/avi
-    /// * video/quicktime
+    /// - video/mp4
+    /// - video/avi
+    /// - video/quicktime
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
 }

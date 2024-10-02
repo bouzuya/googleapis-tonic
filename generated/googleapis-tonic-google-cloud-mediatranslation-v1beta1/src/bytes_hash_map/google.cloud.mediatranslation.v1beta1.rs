@@ -6,39 +6,39 @@ pub struct TranslateSpeechConfig {
     /// Required. Encoding of audio data.
     /// Supported formats:
     ///
-    /// * `linear16`
+    /// - `linear16`
     ///
-    ///   Uncompressed 16-bit signed little-endian samples (Linear PCM).
+    ///    Uncompressed 16-bit signed little-endian samples (Linear PCM).
     ///
-    /// * `flac`
+    /// - `flac`
     ///
-    ///   `flac` (Free Lossless Audio Codec) is the recommended encoding
-    ///   because it is lossless--therefore recognition is not compromised--and
-    ///   requires only about half the bandwidth of `linear16`.
+    ///    `flac` (Free Lossless Audio Codec) is the recommended encoding
+    ///    because it is lossless--therefore recognition is not compromised--and
+    ///    requires only about half the bandwidth of `linear16`.
     ///
-    /// * `mulaw`
+    /// - `mulaw`
     ///
-    ///   8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
+    ///    8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
     ///
-    /// * `amr`
+    /// - `amr`
     ///
-    ///   Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.
+    ///    Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.
     ///
-    /// * `amr-wb`
+    /// - `amr-wb`
     ///
-    ///   Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.
+    ///    Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.
     ///
-    /// * `ogg-opus`
+    /// - `ogg-opus`
     ///
-    ///   Opus encoded audio frames in [Ogg](<https://wikipedia.org/wiki/Ogg>)
-    ///   container. `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000,
-    ///   or 48000.
+    ///    Opus encoded audio frames in [Ogg](<https://wikipedia.org/wiki/Ogg>)
+    ///    container. `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000,
+    ///    or 48000.
     ///
-    /// * `mp3`
+    /// - `mp3`
     ///
-    ///   MP3 audio. Support all standard MP3 bitrates (which range from 32-320
-    ///   kbps). When using this encoding, `sample_rate_hertz` has to match the
-    ///   sample rate of the file being used.
+    ///    MP3 audio. Support all standard MP3 bitrates (which range from 32-320
+    ///    kbps). When using this encoding, `sample_rate_hertz` has to match the
+    ///    sample rate of the file being used.
     #[prost(string, tag = "1")]
     pub audio_encoding: ::prost::alloc::string::String,
     /// Required. Source language code (BCP-47) of the input audio.
@@ -157,7 +157,7 @@ pub mod streaming_translate_speech_result {
 /// the audio currently processed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingTranslateSpeechResponse {
-    /// Output only. If set, returns a \[google.rpc.Status\]\[google.rpc.Status\] message that
+    /// Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
     /// specifies the error for the operation.
     #[prost(message, optional, tag = "1")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
@@ -209,8 +209,8 @@ pub mod streaming_translate_speech_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SpeechEventType::Unspecified => "SPEECH_EVENT_TYPE_UNSPECIFIED",
-                SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
+                Self::Unspecified => "SPEECH_EVENT_TYPE_UNSPECIFIED",
+                Self::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -225,7 +225,13 @@ pub mod streaming_translate_speech_response {
 }
 /// Generated client implementations.
 pub mod speech_translation_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides translation from/to media types.
@@ -317,8 +323,7 @@ pub mod speech_translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

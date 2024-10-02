@@ -83,10 +83,10 @@ pub mod space_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AccessType::Unspecified => "ACCESS_TYPE_UNSPECIFIED",
-                AccessType::Open => "OPEN",
-                AccessType::Trusted => "TRUSTED",
-                AccessType::Restricted => "RESTRICTED",
+                Self::Unspecified => "ACCESS_TYPE_UNSPECIFIED",
+                Self::Open => "OPEN",
+                Self::Trusted => "TRUSTED",
+                Self::Restricted => "RESTRICTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -131,9 +131,9 @@ pub mod space_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EntryPointAccess::Unspecified => "ENTRY_POINT_ACCESS_UNSPECIFIED",
-                EntryPointAccess::All => "ALL",
-                EntryPointAccess::CreatorAppOnly => "CREATOR_APP_ONLY",
+                Self::Unspecified => "ENTRY_POINT_ACCESS_UNSPECIFIED",
+                Self::All => "ALL",
+                Self::CreatorAppOnly => "CREATOR_APP_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -311,10 +311,10 @@ pub mod recording {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Ended => "ENDED",
-                State::FileGenerated => "FILE_GENERATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Started => "STARTED",
+                Self::Ended => "ENDED",
+                Self::FileGenerated => "FILE_GENERATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -341,7 +341,8 @@ pub mod recording {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DriveDestination {
     /// Output only. The `fileId` for the underlying MP4 file. For example,
-    /// "1kuceFZohVoCh6FulBHxwy6I15Ogpc4hP". Use `$ GET <https://www.googleapis.com/drive/v3/files/{$fileId}?alt=media`> to download
+    /// "1kuceFZohVoCh6FulBHxwy6I15Ogpc4hP". Use `$ GET
+    /// <https://www.googleapis.com/drive/v3/files/{$fileId}?alt=media`> to download
     /// the blob. For more information, see
     /// <https://developers.google.com/drive/api/v3/reference/files/get.>
     #[prost(string, tag = "1")]
@@ -407,10 +408,10 @@ pub mod transcript {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Ended => "ENDED",
-                State::FileGenerated => "FILE_GENERATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Started => "STARTED",
+                Self::Ended => "ENDED",
+                Self::FileGenerated => "FILE_GENERATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -495,7 +496,7 @@ pub struct UpdateSpaceRequest {
     #[prost(message, optional, tag = "1")]
     pub space: ::core::option::Option<Space>,
     /// Optional. Field mask used to specify the fields to be updated in the space.
-    /// If update_mask isn't provided, it defaults to '\*' and updates all
+    /// If update_mask isn't provided, it defaults to '*' and updates all
     /// fields provided in the request, including deleting fields not set in the
     /// request.
     #[prost(message, optional, tag = "2")]
@@ -755,7 +756,13 @@ pub struct ListTranscriptEntriesResponse {
 }
 /// Generated client implementations.
 pub mod spaces_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// REST API for services dealing with spaces.
@@ -838,8 +845,7 @@ pub mod spaces_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -867,8 +873,7 @@ pub mod spaces_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -893,8 +898,7 @@ pub mod spaces_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -922,8 +926,7 @@ pub mod spaces_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -945,7 +948,13 @@ pub mod spaces_service_client {
 }
 /// Generated client implementations.
 pub mod conference_records_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// REST API for services dealing with conference records.
@@ -1033,8 +1042,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1065,8 +1073,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1094,8 +1101,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1117,7 +1123,8 @@ pub mod conference_records_service_client {
         /// Lists the participants in a conference record, by default ordered by join
         /// time and in descending order. This API supports `fields` as standard
         /// parameters like every other API. However, when the `fields` request
-        /// parameter is omitted, this API defaults to `'participants/*, next_page_token'`.
+        /// parameter is omitted, this API defaults to `'participants/*,
+        /// next_page_token'`.
         pub async fn list_participants(
             &mut self,
             request: impl tonic::IntoRequest<super::ListParticipantsRequest>,
@@ -1129,8 +1136,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1161,8 +1167,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1197,8 +1202,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1226,8 +1230,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1258,8 +1261,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1287,8 +1289,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1319,8 +1320,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1355,8 +1355,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1392,8 +1391,7 @@ pub mod conference_records_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

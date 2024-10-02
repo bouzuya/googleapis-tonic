@@ -4,26 +4,26 @@
 ///
 /// User Query:
 ///
-/// top countries by population in Africa
+///    top countries by population in Africa
 ///
-/// 0   4         14 17         28 31    37
+///    0   4         14 17         28 31    37
 ///
 /// Table Data:
 ///
-/// * "country" - dimension
-/// * "population" - metric
-/// * "Africa" - value in the "continent" column
+/// + "country" - dimension
+/// + "population" - metric
+/// + "Africa" - value in the "continent" column
 ///
 /// text_formatted = `"top countries by population in Africa"`
 ///
 /// html_formatted =
-/// `"top <b>countries</b> by <b>population</b> in <i>Africa</i>"`
+///    `"top <b>countries</b> by <b>population</b> in <i>Africa</i>"`
 ///
-/// ```text,
+/// ```
 /// markups = [
-///   {DIMENSION, 4, 12}, // 'countries'
-///   {METRIC, 17, 26}, // 'population'
-///   {FILTER, 31, 36}  // 'Africa'
+///    {DIMENSION, 4, 12}, // 'countries'
+///    {METRIC, 17, 26}, // 'population'
+///    {FILTER, 31, 36}  // 'Africa'
 /// ]
 /// ```
 ///
@@ -93,13 +93,13 @@ pub mod annotated_string {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SemanticMarkupType::MarkupTypeUnspecified => "MARKUP_TYPE_UNSPECIFIED",
-                SemanticMarkupType::Metric => "METRIC",
-                SemanticMarkupType::Dimension => "DIMENSION",
-                SemanticMarkupType::Filter => "FILTER",
-                SemanticMarkupType::Unused => "UNUSED",
-                SemanticMarkupType::Blocked => "BLOCKED",
-                SemanticMarkupType::Row => "ROW",
+                Self::MarkupTypeUnspecified => "MARKUP_TYPE_UNSPECIFIED",
+                Self::Metric => "METRIC",
+                Self::Dimension => "DIMENSION",
+                Self::Filter => "FILTER",
+                Self::Unused => "UNUSED",
+                Self::Blocked => "BLOCKED",
+                Self::Row => "ROW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -151,7 +151,7 @@ pub struct Suggestion {
     pub suggestion_info: ::core::option::Option<SuggestionInfo>,
     /// The score of the suggestion. This can be used to define ordering in UI.
     /// The score represents confidence in the suggestion where higher is better.
-    /// All score values must be in the range \[0, 1).
+    /// All score values must be in the range [0, 1).
     #[prost(double, tag = "2")]
     pub ranking_score: f64,
     /// The type of the suggestion.
@@ -180,19 +180,19 @@ pub mod suggestion_info {
     /// Example:
     /// user query: `top products`
     ///
-    /// ```text,
+    /// ```
     /// annotated_suggestion {
-    /// text_formatted = "top product_group"
-    /// html_formatted = "top <b>product_group</b>"
-    /// markups {
-    ///   {type: TEXT, start_char_index: 0, length: 3}
-    ///   {type: DIMENSION, start_char_index: 4, length: 13}
-    /// }
+    ///   text_formatted = "top product_group"
+    ///   html_formatted = "top <b>product_group</b>"
+    ///   markups {
+    ///    {type: TEXT, start_char_index: 0, length: 3}
+    ///    {type: DIMENSION, start_char_index: 4, length: 13}
+    ///   }
     /// }
     ///
     /// query_matches {
-    /// { start_char_index: 0, length: 3 }
-    /// { start_char_index: 4, length: 7}
+    ///   { start_char_index: 0, length: 3 }
+    ///   { start_char_index: 4, length: 7}
     /// }
     /// ```
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -230,9 +230,9 @@ impl SuggestionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SuggestionType::Unspecified => "SUGGESTION_TYPE_UNSPECIFIED",
-            SuggestionType::Entity => "ENTITY",
-            SuggestionType::Template => "TEMPLATE",
+            Self::Unspecified => "SUGGESTION_TYPE_UNSPECIFIED",
+            Self::Entity => "ENTITY",
+            Self::Template => "TEMPLATE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -247,7 +247,13 @@ impl SuggestionType {
 }
 /// Generated client implementations.
 pub mod auto_suggestion_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This stateless API provides automatic suggestions for natural language
@@ -261,61 +267,59 @@ pub mod auto_suggestion_service_client {
     /// and TEMPLATE for full sentences. By default, both types are returned.
     ///
     /// Example Request:
-    ///
-    /// ```text,
+    /// ```
     /// GetSuggestions({
-    ///  parent: "locations/us/projects/my-project"
-    ///  scopes:
-    ///  "//bigquery.googleapis.com/projects/my-project/datasets/my-dataset/tables/my-table"
-    ///  query: "top it"
+    ///   parent: "locations/us/projects/my-project"
+    ///   scopes:
+    ///   "//bigquery.googleapis.com/projects/my-project/datasets/my-dataset/tables/my-table"
+    ///   query: "top it"
     /// })
     /// ```
     ///
     /// The service will retrieve information based on the given scope(s) and give
     /// suggestions based on that (e.g. "top item" for "top it" if "item" is a known
     /// dimension for the provided scope).
-    ///
-    /// ```text,
+    /// ```
     /// suggestions {
-    ///  suggestion_info {
-    ///    annotated_suggestion {
-    ///      text_formatted: "top item by sum of usd_revenue_net"
-    ///      markups {
-    ///        type: DIMENSION
-    ///        start_char_index: 4
-    ///        length: 4
-    ///      }
-    ///      markups {
-    ///        type: METRIC
-    ///        start_char_index: 19
-    ///        length: 15
-    ///      }
-    ///    }
-    ///    query_matches {
-    ///      start_char_index: 0
-    ///      length: 6
-    ///    }
-    ///  }
-    ///  suggestion_type: TEMPLATE
-    ///  ranking_score: 0.9
+    ///   suggestion_info {
+    ///     annotated_suggestion {
+    ///       text_formatted: "top item by sum of usd_revenue_net"
+    ///       markups {
+    ///         type: DIMENSION
+    ///         start_char_index: 4
+    ///         length: 4
+    ///       }
+    ///       markups {
+    ///         type: METRIC
+    ///         start_char_index: 19
+    ///         length: 15
+    ///       }
+    ///     }
+    ///     query_matches {
+    ///       start_char_index: 0
+    ///       length: 6
+    ///     }
+    ///   }
+    ///   suggestion_type: TEMPLATE
+    ///   ranking_score: 0.9
     /// }
     /// suggestions {
-    ///  suggestion_info {
-    ///    annotated_suggestion {
-    ///      text_formatted: "item"
-    ///      markups {
-    ///        type: DIMENSION
-    ///        start_char_index: 4
-    ///        length: 2
-    ///      }
-    ///    }
-    ///    query_matches {
-    ///      start_char_index: 0
-    ///      length: 6
-    ///    }
-    ///  }
-    ///  suggestion_type: ENTITY
-    ///  ranking_score: 0.8
+    ///   suggestion_info {
+    ///     annotated_suggestion {
+    ///       text_formatted: "item"
+    ///       markups {
+    ///         type: DIMENSION
+    ///         start_char_index: 4
+    ///         length: 2
+    ///       }
+    ///     }
+    ///     query_matches {
+    ///       start_char_index: 0
+    ///       length: 6
+    ///     }
+    ///   }
+    ///   suggestion_type: ENTITY
+    ///   ranking_score: 0.8
     /// }
     /// ```
     #[derive(Debug, Clone)]
@@ -400,8 +404,7 @@ pub mod auto_suggestion_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -562,10 +565,10 @@ pub mod interpret_error {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InterpretErrorCode::Unspecified => "INTERPRET_ERROR_CODE_UNSPECIFIED",
-                InterpretErrorCode::InvalidQuery => "INVALID_QUERY",
-                InterpretErrorCode::FailedToUnderstand => "FAILED_TO_UNDERSTAND",
-                InterpretErrorCode::FailedToAnswer => "FAILED_TO_ANSWER",
+                Self::Unspecified => "INTERPRET_ERROR_CODE_UNSPECIFIED",
+                Self::InvalidQuery => "INVALID_QUERY",
+                Self::FailedToUnderstand => "FAILED_TO_UNDERSTAND",
+                Self::FailedToAnswer => "FAILED_TO_ANSWER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -632,11 +635,11 @@ pub mod execution_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                JobExecutionState::Unspecified => "JOB_EXECUTION_STATE_UNSPECIFIED",
-                JobExecutionState::NotExecuted => "NOT_EXECUTED",
-                JobExecutionState::Running => "RUNNING",
-                JobExecutionState::Succeeded => "SUCCEEDED",
-                JobExecutionState::Failed => "FAILED",
+                Self::Unspecified => "JOB_EXECUTION_STATE_UNSPECIFIED",
+                Self::NotExecuted => "NOT_EXECUTED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -679,7 +682,7 @@ pub struct Interpretation {
     #[prost(double, tag = "2")]
     pub confidence: f64,
     /// A list of unused phrases. Clients should display a Did You Mean (DYM)
-    /// dialog if this is non-empty, even if this is the only interpretation.
+    ///   dialog if this is non-empty, even if this is the only interpretation.
     #[prost(string, repeated, tag = "3")]
     pub unused_phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Human readable representation of the query.
@@ -811,19 +814,19 @@ pub mod interpretation_structure {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                VisualizationType::Unspecified => "VISUALIZATION_TYPE_UNSPECIFIED",
-                VisualizationType::Table => "TABLE",
-                VisualizationType::BarChart => "BAR_CHART",
-                VisualizationType::ColumnChart => "COLUMN_CHART",
-                VisualizationType::Timeline => "TIMELINE",
-                VisualizationType::ScatterPlot => "SCATTER_PLOT",
-                VisualizationType::PieChart => "PIE_CHART",
-                VisualizationType::LineChart => "LINE_CHART",
-                VisualizationType::AreaChart => "AREA_CHART",
-                VisualizationType::ComboChart => "COMBO_CHART",
-                VisualizationType::Histogram => "HISTOGRAM",
-                VisualizationType::GenericChart => "GENERIC_CHART",
-                VisualizationType::ChartNotUnderstood => "CHART_NOT_UNDERSTOOD",
+                Self::Unspecified => "VISUALIZATION_TYPE_UNSPECIFIED",
+                Self::Table => "TABLE",
+                Self::BarChart => "BAR_CHART",
+                Self::ColumnChart => "COLUMN_CHART",
+                Self::Timeline => "TIMELINE",
+                Self::ScatterPlot => "SCATTER_PLOT",
+                Self::PieChart => "PIE_CHART",
+                Self::LineChart => "LINE_CHART",
+                Self::AreaChart => "AREA_CHART",
+                Self::ComboChart => "COMBO_CHART",
+                Self::Histogram => "HISTOGRAM",
+                Self::GenericChart => "GENERIC_CHART",
+                Self::ChartNotUnderstood => "CHART_NOT_UNDERSTOOD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -866,7 +869,7 @@ pub struct DebugFlags {
     /// The time in milliseconds from Unix epoch to be used
     /// to process the query. This is useful for testing
     /// the queries at different time period.
-    /// If not set or time_override \<= 0, then the current
+    /// If not set or time_override <= 0, then the current
     /// time is used.
     #[prost(int64, tag = "5")]
     pub time_override: i64,
@@ -913,9 +916,9 @@ impl InterpretEntity {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            InterpretEntity::Unspecified => "INTERPRET_ENTITY_UNSPECIFIED",
-            InterpretEntity::Dimension => "DIMENSION",
-            InterpretEntity::Metric => "METRIC",
+            Self::Unspecified => "INTERPRET_ENTITY_UNSPECIFIED",
+            Self::Dimension => "DIMENSION",
+            Self::Metric => "METRIC",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -973,9 +976,9 @@ pub mod user_feedback {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UserFeedbackRating::Unspecified => "USER_FEEDBACK_RATING_UNSPECIFIED",
-                UserFeedbackRating::Positive => "POSITIVE",
-                UserFeedbackRating::Negative => "NEGATIVE",
+                Self::Unspecified => "USER_FEEDBACK_RATING_UNSPECIFIED",
+                Self::Positive => "POSITIVE",
+                Self::Negative => "NEGATIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1046,7 +1049,13 @@ pub struct UpdateUserFeedbackRequest {
 }
 /// Generated client implementations.
 pub mod question_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to interpret natural language queries.
@@ -1142,8 +1151,7 @@ pub mod question_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1170,8 +1178,7 @@ pub mod question_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1198,8 +1205,7 @@ pub mod question_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1226,8 +1232,7 @@ pub mod question_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1255,8 +1260,7 @@ pub mod question_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

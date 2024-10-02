@@ -201,12 +201,12 @@ pub mod entitlement {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Available => "AVAILABLE",
-                State::Deleting => "DELETING",
-                State::Deleted => "DELETED",
-                State::Updating => "UPDATING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Available => "AVAILABLE",
+                Self::Deleting => "DELETING",
+                Self::Deleted => "DELETED",
+                Self::Updating => "UPDATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -434,9 +434,9 @@ pub mod search_entitlements_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CallerAccessType::Unspecified => "CALLER_ACCESS_TYPE_UNSPECIFIED",
-                CallerAccessType::GrantRequester => "GRANT_REQUESTER",
-                CallerAccessType::GrantApprover => "GRANT_APPROVER",
+                Self::Unspecified => "CALLER_ACCESS_TYPE_UNSPECIFIED",
+                Self::GrantRequester => "GRANT_REQUESTER",
+                Self::GrantApprover => "GRANT_APPROVER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -549,7 +549,7 @@ pub struct UpdateEntitlementRequest {
     /// values. The fields specified in the update_mask are relative to the
     /// resource and not to the request.
     /// (e.g. `MaxRequestDuration`; *not* `entitlement.MaxRequestDuration`)
-    /// A value of '\*' for this field refers to full replacement of the resource.
+    /// A value of '*' for this field refers to full replacement of the resource.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -811,17 +811,17 @@ pub mod grant {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::ApprovalAwaited => "APPROVAL_AWAITED",
-                State::Denied => "DENIED",
-                State::Scheduled => "SCHEDULED",
-                State::Activating => "ACTIVATING",
-                State::Active => "ACTIVE",
-                State::ActivationFailed => "ACTIVATION_FAILED",
-                State::Expired => "EXPIRED",
-                State::Revoking => "REVOKING",
-                State::Revoked => "REVOKED",
-                State::Ended => "ENDED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::ApprovalAwaited => "APPROVAL_AWAITED",
+                Self::Denied => "DENIED",
+                Self::Scheduled => "SCHEDULED",
+                Self::Activating => "ACTIVATING",
+                Self::Active => "ACTIVE",
+                Self::ActivationFailed => "ACTIVATION_FAILED",
+                Self::Expired => "EXPIRED",
+                Self::Revoking => "REVOKING",
+                Self::Revoked => "REVOKED",
+                Self::Ended => "ENDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -946,12 +946,10 @@ pub mod search_grants_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CallerRelationshipType::Unspecified => {
-                    "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED"
-                }
-                CallerRelationshipType::HadCreated => "HAD_CREATED",
-                CallerRelationshipType::CanApprove => "CAN_APPROVE",
-                CallerRelationshipType::HadApproved => "HAD_APPROVED",
+                Self::Unspecified => "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED",
+                Self::HadCreated => "HAD_CREATED",
+                Self::CanApprove => "CAN_APPROVE",
+                Self::HadApproved => "HAD_APPROVED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1063,8 +1061,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -1074,7 +1072,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod privileged_access_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This API allows customers to manage temporary, request based privileged
@@ -1083,19 +1087,20 @@ pub mod privileged_access_manager_client {
     /// It defines the following resource model:
     ///
     /// * A collection of `Entitlement` resources. An entitlement allows configuring
-    ///  (among other things):
+    ///   (among other things):
     ///
-    ///  * Some kind of privileged access that users can request.
-    ///  * A set of users called *requesters* who can request this access.
-    ///  * A maximum duration for which the access can be requested.
-    ///  * An optional approval workflow which must be satisfied before access is
-    ///    granted.
+    ///   * Some kind of privileged access that users can request.
+    ///   * A set of users called _requesters_ who can request this access.
+    ///   * A maximum duration for which the access can be requested.
+    ///   * An optional approval workflow which must be satisfied before access is
+    ///     granted.
+    ///
     /// * A collection of `Grant` resources. A grant is a request by a requester to
-    ///  get the privileged access specified in an entitlement for some duration.
+    ///   get the privileged access specified in an entitlement for some duration.
     ///
-    ///  After the approval workflow as specified in the entitlement is satisfied,
-    ///  the specified access is given to the requester. The access is automatically
-    ///  taken back after the requested duration is over.
+    ///   After the approval workflow as specified in the entitlement is satisfied,
+    ///   the specified access is given to the requester. The access is automatically
+    ///   taken back after the requested duration is over.
     #[derive(Debug, Clone)]
     pub struct PrivilegedAccessManagerClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1181,8 +1186,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1212,8 +1216,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1244,8 +1247,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1272,8 +1274,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1304,8 +1305,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1337,8 +1337,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1364,15 +1363,15 @@ pub mod privileged_access_manager_client {
         ///
         /// The following fields are not supported for updates:
         ///
-        /// * All immutable fields
-        /// * Entitlement name
-        /// * Resource name
-        /// * Resource type
-        /// * Adding an approval workflow in an entitlement which previously had no
-        ///  approval workflow.
-        /// * Deleting the approval workflow from an entitlement.
-        /// * Adding or deleting a step in the approval workflow (only one step is
-        ///  supported)
+        ///  * All immutable fields
+        ///  * Entitlement name
+        ///  * Resource name
+        ///  * Resource type
+        ///  * Adding an approval workflow in an entitlement which previously had no
+        ///    approval workflow.
+        ///  * Deleting the approval workflow from an entitlement.
+        ///  * Adding or deleting a step in the approval workflow (only one step is
+        ///    supported)
         ///
         /// Note that updates are allowed on the list of approvers in an approval
         /// workflow step.
@@ -1387,8 +1386,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1418,8 +1416,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1450,8 +1447,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1478,8 +1474,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1506,8 +1501,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1536,8 +1530,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1566,8 +1559,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1598,8 +1590,7 @@ pub mod privileged_access_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

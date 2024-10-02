@@ -54,7 +54,8 @@ pub struct ServiceAccount {
     /// response messages to contain misleading error codes. For example, if you
     /// try to get the service account
     /// `projects/-/serviceAccounts/fake@example.com`, which does not exist, the
-    /// response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
+    /// response contains an HTTP `403 Forbidden` error instead of a `404 Not
+    /// Found` error.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The ID of the project that owns the service account.
@@ -103,7 +104,7 @@ pub struct CreateServiceAccountRequest {
     /// `[a-z](\[-a-z0-9\]*[a-z0-9])` to comply with RFC1035.
     #[prost(string, tag = "2")]
     pub account_id: ::prost::alloc::string::String,
-    /// The \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] resource to
+    /// The [ServiceAccount][google.iam.admin.v1.ServiceAccount] resource to
     /// create. Currently, only the following values are user assignable:
     /// `display_name` and `description`.
     #[prost(message, optional, tag = "3")]
@@ -118,14 +119,14 @@ pub struct ListServiceAccountsRequest {
     pub name: ::prost::alloc::string::String,
     /// Optional limit on the number of service accounts to include in the
     /// response. Further accounts can subsequently be obtained by including the
-    /// \[ListServiceAccountsResponse.next_page_token\]\[google.iam.admin.v1.ListServiceAccountsResponse.next_page_token\]
+    /// [ListServiceAccountsResponse.next_page_token][google.iam.admin.v1.ListServiceAccountsResponse.next_page_token]
     /// in a subsequent request.
     ///
     /// The default is 20, and the maximum is 100.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Optional pagination token returned in an earlier
-    /// \[ListServiceAccountsResponse.next_page_token\]\[google.iam.admin.v1.ListServiceAccountsResponse.next_page_token\].
+    /// [ListServiceAccountsResponse.next_page_token][google.iam.admin.v1.ListServiceAccountsResponse.next_page_token].
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
 }
@@ -136,7 +137,7 @@ pub struct ListServiceAccountsResponse {
     #[prost(message, repeated, tag = "1")]
     pub accounts: ::prost::alloc::vec::Vec<ServiceAccount>,
     /// To retrieve the next page of results, set
-    /// \[ListServiceAccountsRequest.page_token\]\[google.iam.admin.v1.ListServiceAccountsRequest.page_token\]
+    /// [ListServiceAccountsRequest.page_token][google.iam.admin.v1.ListServiceAccountsRequest.page_token]
     /// to this value.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
@@ -268,9 +269,9 @@ pub mod list_service_account_keys_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                KeyType::Unspecified => "KEY_TYPE_UNSPECIFIED",
-                KeyType::UserManaged => "USER_MANAGED",
-                KeyType::SystemManaged => "SYSTEM_MANAGED",
+                Self::Unspecified => "KEY_TYPE_UNSPECIFIED",
+                Self::UserManaged => "USER_MANAGED",
+                Self::SystemManaged => "SYSTEM_MANAGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -627,12 +628,12 @@ pub mod role {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RoleLaunchStage::Alpha => "ALPHA",
-                RoleLaunchStage::Beta => "BETA",
-                RoleLaunchStage::Ga => "GA",
-                RoleLaunchStage::Deprecated => "DEPRECATED",
-                RoleLaunchStage::Disabled => "DISABLED",
-                RoleLaunchStage::Eap => "EAP",
+                Self::Alpha => "ALPHA",
+                Self::Beta => "BETA",
+                Self::Ga => "GA",
+                Self::Deprecated => "DEPRECATED",
+                Self::Disabled => "DISABLED",
+                Self::Eap => "EAP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -694,26 +695,26 @@ pub struct ListRolesRequest {
     /// Each resource type's `parent` value format is described below:
     ///
     /// * [`roles.list()`](<https://cloud.google.com/iam/reference/rest/v1/roles/list>): An empty string.
-    ///   This method doesn't require a resource; it simply returns all
-    ///   [predefined
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-roles#predefined_roles>)
-    ///   in Cloud IAM. Example request URL: `<https://iam.googleapis.com/v1/roles`>
+    ///    This method doesn't require a resource; it simply returns all
+    ///    [predefined
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-roles#predefined_roles>)
+    ///    in Cloud IAM. Example request URL: `<https://iam.googleapis.com/v1/roles`>
     ///
     /// * [`projects.roles.list()`](<https://cloud.google.com/iam/reference/rest/v1/projects.roles/list>):
-    ///   `projects/{PROJECT_ID}`. This method lists all project-level
-    ///   [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
-    ///   Example request URL:
-    ///   `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`>
+    ///    `projects/{PROJECT_ID}`. This method lists all project-level
+    ///    [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
+    ///    Example request URL:
+    ///    `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`>
     ///
     /// * [`organizations.roles.list()`](<https://cloud.google.com/iam/reference/rest/v1/organizations.roles/list>):
-    ///   `organizations/{ORGANIZATION_ID}`. This method lists all
-    ///   organization-level [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
-    ///   Example request URL:
-    ///   `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`>
+    ///    `organizations/{ORGANIZATION_ID}`. This method lists all
+    ///    organization-level [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
+    ///    Example request URL:
+    ///    `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`>
     ///
-    /// Note: Wildcard (\*) values are invalid; you must specify a complete project
+    /// Note: Wildcard (*) values are invalid; you must specify a complete project
     /// ID or organization ID.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -758,27 +759,27 @@ pub struct GetRoleRequest {
     /// Each resource type's `name` value format is described below:
     ///
     /// * [`roles.get()`](<https://cloud.google.com/iam/reference/rest/v1/roles/get>): `roles/{ROLE_NAME}`.
-    ///   This method returns results from all
-    ///   [predefined
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-roles#predefined_roles>)
-    ///   in Cloud IAM. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/roles/{ROLE_NAME}`>
+    ///    This method returns results from all
+    ///    [predefined
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-roles#predefined_roles>)
+    ///    in Cloud IAM. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/roles/{ROLE_NAME}`>
     ///
     /// * [`projects.roles.get()`](<https://cloud.google.com/iam/reference/rest/v1/projects.roles/get>):
-    ///   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
-    ///   [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the project level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+    ///    [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the project level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
     /// * [`organizations.roles.get()`](<https://cloud.google.com/iam/reference/rest/v1/organizations.roles/get>):
-    ///   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
-    ///   returns only [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the organization level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+    ///    returns only [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the organization level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
-    /// Note: Wildcard (\*) values are invalid; you must specify a complete project
+    /// Note: Wildcard (*) values are invalid; you must specify a complete project
     /// ID or organization ID.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -794,20 +795,20 @@ pub struct CreateRoleRequest {
     /// Each resource type's `parent` value format is described below:
     ///
     /// * [`projects.roles.create()`](<https://cloud.google.com/iam/reference/rest/v1/projects.roles/create>):
-    ///   `projects/{PROJECT_ID}`. This method creates project-level
-    ///   [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
-    ///   Example request URL:
-    ///   `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`>
+    ///    `projects/{PROJECT_ID}`. This method creates project-level
+    ///    [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
+    ///    Example request URL:
+    ///    `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`>
     ///
     /// * [`organizations.roles.create()`](<https://cloud.google.com/iam/reference/rest/v1/organizations.roles/create>):
-    ///   `organizations/{ORGANIZATION_ID}`. This method creates organization-level
-    ///   [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
-    ///   Example request URL:
-    ///   `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`>
+    ///    `organizations/{ORGANIZATION_ID}`. This method creates organization-level
+    ///    [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>).
+    ///    Example request URL:
+    ///    `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`>
     ///
-    /// Note: Wildcard (\*) values are invalid; you must specify a complete project
+    /// Note: Wildcard (*) values are invalid; you must specify a complete project
     /// ID or organization ID.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -833,20 +834,20 @@ pub struct UpdateRoleRequest {
     /// Each resource type's `name` value format is described below:
     ///
     /// * [`projects.roles.patch()`](<https://cloud.google.com/iam/reference/rest/v1/projects.roles/patch>):
-    ///   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only
-    ///   [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the project level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only
+    ///    [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the project level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
     /// * [`organizations.roles.patch()`](<https://cloud.google.com/iam/reference/rest/v1/organizations.roles/patch>):
-    ///   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
-    ///   updates only [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the organization level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+    ///    updates only [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the organization level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
-    /// Note: Wildcard (\*) values are invalid; you must specify a complete project
+    /// Note: Wildcard (*) values are invalid; you must specify a complete project
     /// ID or organization ID.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -868,20 +869,20 @@ pub struct DeleteRoleRequest {
     /// Each resource type's `name` value format is described below:
     ///
     /// * [`projects.roles.delete()`](<https://cloud.google.com/iam/reference/rest/v1/projects.roles/delete>):
-    ///   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method deletes only
-    ///   [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the project level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method deletes only
+    ///    [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the project level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
     /// * [`organizations.roles.delete()`](<https://cloud.google.com/iam/reference/rest/v1/organizations.roles/delete>):
-    ///   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
-    ///   deletes only [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the organization level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+    ///    deletes only [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the organization level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
-    /// Note: Wildcard (\*) values are invalid; you must specify a complete project
+    /// Note: Wildcard (*) values are invalid; you must specify a complete project
     /// ID or organization ID.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -900,20 +901,20 @@ pub struct UndeleteRoleRequest {
     /// Each resource type's `name` value format is described below:
     ///
     /// * [`projects.roles.undelete()`](<https://cloud.google.com/iam/reference/rest/v1/projects.roles/undelete>):
-    ///   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes
-    ///   only [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the project level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes
+    ///    only [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the project level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
     /// * [`organizations.roles.undelete()`](<https://cloud.google.com/iam/reference/rest/v1/organizations.roles/undelete>):
-    ///   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
-    ///   undeletes only [custom
-    ///   roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
-    ///   have been created at the organization level. Example request URL:
-    ///   `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
+    ///    `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+    ///    undeletes only [custom
+    ///    roles](<https://cloud.google.com/iam/docs/understanding-custom-roles>) that
+    ///    have been created at the organization level. Example request URL:
+    ///    `<https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`>
     ///
-    /// Note: Wildcard (\*) values are invalid; you must specify a complete project
+    /// Note: Wildcard (*) values are invalid; you must specify a complete project
     /// ID or organization ID.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -983,10 +984,10 @@ pub mod permission {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PermissionLaunchStage::Alpha => "ALPHA",
-                PermissionLaunchStage::Beta => "BETA",
-                PermissionLaunchStage::Ga => "GA",
-                PermissionLaunchStage::Deprecated => "DEPRECATED",
+                Self::Alpha => "ALPHA",
+                Self::Beta => "BETA",
+                Self::Ga => "GA",
+                Self::Deprecated => "DEPRECATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1028,9 +1029,9 @@ pub mod permission {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomRolesSupportLevel::Supported => "SUPPORTED",
-                CustomRolesSupportLevel::Testing => "TESTING",
-                CustomRolesSupportLevel::NotSupported => "NOT_SUPPORTED",
+                Self::Supported => "SUPPORTED",
+                Self::Testing => "TESTING",
+                Self::NotSupported => "NOT_SUPPORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1131,7 +1132,7 @@ pub mod lint_policy_request {
     /// Required. The Cloud IAM object to be linted.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum LintObject {
-        /// \[google.iam.v1.Binding.condition\] \[google.iam.v1.Binding.condition\] object to be linted.
+        /// \[google.iam.v1.Binding.condition\] [google.iam.v1.Binding.condition] object to be linted.
         #[prost(message, tag = "5")]
         Condition(super::super::super::super::r#type::Expr),
     }
@@ -1197,8 +1198,8 @@ pub mod lint_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Level::Unspecified => "LEVEL_UNSPECIFIED",
-                Level::Condition => "CONDITION",
+                Self::Unspecified => "LEVEL_UNSPECIFIED",
+                Self::Condition => "CONDITION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1236,9 +1237,9 @@ pub mod lint_result {
         /// won't behave as expected during policy evaluation in `checkPolicy`.
         /// This includes the following common scenarios:
         ///
-        /// * Unsatisfiable condition: Expired timestamp in date/time condition.
-        /// * Ineffective condition: Condition on a \<principal, role> pair which is
-        ///   granted unconditionally in another binding of the same policy.
+        /// - Unsatisfiable condition: Expired timestamp in date/time condition.
+        /// - Ineffective condition: Condition on a <principal, role> pair which is
+        ///    granted unconditionally in another binding of the same policy.
         Warning = 2,
         /// Reserved for the issues that are not severe as `ERROR`/`WARNING`, but
         /// need special handling. For instance, messages about skipped validation
@@ -1259,12 +1260,12 @@ pub mod lint_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Error => "ERROR",
-                Severity::Warning => "WARNING",
-                Severity::Notice => "NOTICE",
-                Severity::Info => "INFO",
-                Severity::Deprecated => "DEPRECATED",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Error => "ERROR",
+                Self::Warning => "WARNING",
+                Self::Notice => "NOTICE",
+                Self::Info => "INFO",
+                Self::Deprecated => "DEPRECATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1307,9 +1308,9 @@ impl ServiceAccountKeyAlgorithm {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ServiceAccountKeyAlgorithm::KeyAlgUnspecified => "KEY_ALG_UNSPECIFIED",
-            ServiceAccountKeyAlgorithm::KeyAlgRsa1024 => "KEY_ALG_RSA_1024",
-            ServiceAccountKeyAlgorithm::KeyAlgRsa2048 => "KEY_ALG_RSA_2048",
+            Self::KeyAlgUnspecified => "KEY_ALG_UNSPECIFIED",
+            Self::KeyAlgRsa1024 => "KEY_ALG_RSA_1024",
+            Self::KeyAlgRsa2048 => "KEY_ALG_RSA_2048",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1342,11 +1343,9 @@ impl ServiceAccountPrivateKeyType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ServiceAccountPrivateKeyType::TypeUnspecified => "TYPE_UNSPECIFIED",
-            ServiceAccountPrivateKeyType::TypePkcs12File => "TYPE_PKCS12_FILE",
-            ServiceAccountPrivateKeyType::TypeGoogleCredentialsFile => {
-                "TYPE_GOOGLE_CREDENTIALS_FILE"
-            }
+            Self::TypeUnspecified => "TYPE_UNSPECIFIED",
+            Self::TypePkcs12File => "TYPE_PKCS12_FILE",
+            Self::TypeGoogleCredentialsFile => "TYPE_GOOGLE_CREDENTIALS_FILE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1377,9 +1376,9 @@ impl ServiceAccountPublicKeyType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ServiceAccountPublicKeyType::TypeNone => "TYPE_NONE",
-            ServiceAccountPublicKeyType::TypeX509PemFile => "TYPE_X509_PEM_FILE",
-            ServiceAccountPublicKeyType::TypeRawPublicKey => "TYPE_RAW_PUBLIC_KEY",
+            Self::TypeNone => "TYPE_NONE",
+            Self::TypeX509PemFile => "TYPE_X509_PEM_FILE",
+            Self::TypeRawPublicKey => "TYPE_RAW_PUBLIC_KEY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1410,9 +1409,9 @@ impl ServiceAccountKeyOrigin {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ServiceAccountKeyOrigin::OriginUnspecified => "ORIGIN_UNSPECIFIED",
-            ServiceAccountKeyOrigin::UserProvided => "USER_PROVIDED",
-            ServiceAccountKeyOrigin::GoogleProvided => "GOOGLE_PROVIDED",
+            Self::OriginUnspecified => "ORIGIN_UNSPECIFIED",
+            Self::UserProvided => "USER_PROVIDED",
+            Self::GoogleProvided => "GOOGLE_PROVIDED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1442,8 +1441,8 @@ impl RoleView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RoleView::Basic => "BASIC",
-            RoleView::Full => "FULL",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1457,7 +1456,13 @@ impl RoleView {
 }
 /// Generated client implementations.
 pub mod iam_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Creates and manages Identity and Access Management (IAM) resources.
@@ -1465,13 +1470,13 @@ pub mod iam_client {
     /// You can use this service to work with all of the following resources:
     ///
     /// * **Service accounts**, which identify an application or a virtual machine
-    ///  (VM) instance rather than a person
+    ///   (VM) instance rather than a person
     /// * **Service account keys**, which service accounts use to authenticate with
-    ///  Google APIs
+    ///   Google APIs
     /// * **IAM policies for service accounts**, which specify the roles that a
-    ///  principal has for the service account
+    ///   principal has for the service account
     /// * **IAM custom roles**, which help you limit the number of permissions that
-    ///  you grant to principals
+    ///   you grant to principals
     ///
     /// In addition, you can use this service to complete the following tasks, among
     /// others:
@@ -1558,7 +1563,7 @@ pub mod iam_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists every \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] that belongs to a specific project.
+        /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
         pub async fn list_service_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServiceAccountsRequest>,
@@ -1570,8 +1575,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1586,7 +1590,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Gets a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         pub async fn get_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceAccountRequest>,
@@ -1595,8 +1599,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1609,7 +1612,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetServiceAccount"));
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Creates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         pub async fn create_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceAccountRequest>,
@@ -1618,8 +1621,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1635,9 +1637,9 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// **Note:** We are in the process of deprecating this method. Use
-        /// \[PatchServiceAccount\]\[google.iam.admin.v1.IAM.PatchServiceAccount\] instead.
+        /// [PatchServiceAccount][google.iam.admin.v1.IAM.PatchServiceAccount] instead.
         ///
-        /// Updates a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Updates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         ///
         /// You can update only the `display_name` field.
         pub async fn update_service_account(
@@ -1648,8 +1650,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1664,7 +1665,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Patches a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Patches a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         pub async fn patch_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::PatchServiceAccountRequest>,
@@ -1673,8 +1674,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1689,18 +1689,18 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Deletes a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         ///
         /// **Warning:** After you delete a service account, you might not be able to
         /// undelete it. If you know that you need to re-enable the service account in
-        /// the future, use \[DisableServiceAccount\]\[google.iam.admin.v1.IAM.DisableServiceAccount\] instead.
+        /// the future, use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] instead.
         ///
         /// If you delete a service account, IAM permanently removes the service
         /// account 30 days later. Google Cloud cannot recover the service account
         /// after it is permanently removed, even if you file a support request.
         ///
         /// To help avoid unplanned outages, we recommend that you disable the service
-        /// account before you delete it. Use \[DisableServiceAccount\]\[google.iam.admin.v1.IAM.DisableServiceAccount\] to disable the
+        /// account before you delete it. Use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] to disable the
         /// service account, then wait at least 24 hours and watch for unintended
         /// consequences. If there are no unintended consequences, you can delete the
         /// service account.
@@ -1712,8 +1712,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1728,7 +1727,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Restores a deleted \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Restores a deleted [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         ///
         /// **Important:** It is not always possible to restore a deleted service
         /// account. Use this method only as a last resort.
@@ -1747,8 +1746,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1763,8 +1761,8 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Enables a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] that was disabled by
-        /// \[DisableServiceAccount\]\[google.iam.admin.v1.IAM.DisableServiceAccount\].
+        /// Enables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] that was disabled by
+        /// [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount].
         ///
         /// If the service account is already enabled, then this method has no effect.
         ///
@@ -1779,8 +1777,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1795,14 +1792,14 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Disables a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] immediately.
+        /// Disables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] immediately.
         ///
         /// If an application uses the service account to authenticate, that
         /// application can no longer call Google APIs or access Google Cloud
         /// resources. Existing access tokens for the service account are rejected, and
         /// requests for new access tokens will fail.
         ///
-        /// To re-enable the service account, use \[EnableServiceAccount\]\[google.iam.admin.v1.IAM.EnableServiceAccount\]. After you
+        /// To re-enable the service account, use [EnableServiceAccount][google.iam.admin.v1.IAM.EnableServiceAccount]. After you
         /// re-enable the service account, its existing access tokens will be accepted,
         /// and you can request new access tokens.
         ///
@@ -1810,7 +1807,7 @@ pub mod iam_client {
         /// account before you delete it. Use this method to disable the service
         /// account, then wait at least 24 hours and watch for unintended consequences.
         /// If there are no unintended consequences, you can delete the service account
-        /// with \[DeleteServiceAccount\]\[google.iam.admin.v1.IAM.DeleteServiceAccount\].
+        /// with [DeleteServiceAccount][google.iam.admin.v1.IAM.DeleteServiceAccount].
         pub async fn disable_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::DisableServiceAccountRequest>,
@@ -1819,8 +1816,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1835,7 +1831,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists every \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\] for a service account.
+        /// Lists every [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey] for a service account.
         pub async fn list_service_account_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServiceAccountKeysRequest>,
@@ -1847,8 +1843,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1863,7 +1858,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\].
+        /// Gets a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
         pub async fn get_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceAccountKeyRequest>,
@@ -1875,8 +1870,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1891,7 +1885,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\].
+        /// Creates a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
         pub async fn create_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceAccountKeyRequest>,
@@ -1903,8 +1897,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1920,7 +1913,7 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// Uploads the public key portion of a key pair that you manage, and
-        /// associates the public key with a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// associates the public key with a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         ///
         /// After you upload the public key, you can use the private key from the key
         /// pair as a service account key.
@@ -1935,8 +1928,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1951,7 +1943,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\]. Deleting a service account key does not
+        /// Deletes a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. Deleting a service account key does not
         /// revoke short-lived credentials that have been issued based on the service
         /// account key.
         pub async fn delete_service_account_key(
@@ -1962,8 +1954,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1978,8 +1969,8 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Disable a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\]. A disabled service account key can be
-        /// re-enabled with \[EnableServiceAccountKey\]\[google.iam.admin.v1.IAM.EnableServiceAccountKey\].
+        /// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
+        /// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
         pub async fn disable_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::DisableServiceAccountKeyRequest>,
@@ -1988,8 +1979,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2007,7 +1997,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Enable a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\].
+        /// Enable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
         pub async fn enable_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::EnableServiceAccountKeyRequest>,
@@ -2016,8 +2006,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2039,7 +2028,8 @@ pub mod iam_client {
         /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
         /// instructions.
         ///
-        /// Signs a blob using the system-managed private key for a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Signs a blob using the system-managed private key for a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        #[deprecated]
         pub async fn sign_blob(
             &mut self,
             request: impl tonic::IntoRequest<super::SignBlobRequest>,
@@ -2051,8 +2041,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2073,7 +2062,8 @@ pub mod iam_client {
         /// instructions.
         ///
         /// Signs a JSON Web Token (JWT) using the system-managed private key for a
-        /// \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        #[deprecated]
         pub async fn sign_jwt(
             &mut self,
             request: impl tonic::IntoRequest<super::SignJwtRequest>,
@@ -2085,8 +2075,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2099,7 +2088,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SignJwt"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the IAM policy that is attached to a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\]. This IAM
+        /// Gets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount]. This IAM
         /// policy specifies which principals have access to the service account.
         ///
         /// This method does not tell you whether the service account has been granted
@@ -2122,8 +2111,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2136,7 +2124,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetIamPolicy"));
             self.inner.unary(req, path, codec).await
         }
-        /// Sets the IAM policy that is attached to a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// Sets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         ///
         /// Use this method to grant or revoke access to the service account. For
         /// example, you could grant a principal the ability to impersonate the service
@@ -2146,9 +2134,9 @@ pub mod iam_client {
         /// To grant roles to a service account on a resource, follow these steps:
         ///
         /// 1. Call the resource's `getIamPolicy` method to get its current IAM policy.
-        /// 1. Edit the policy so that it binds the service account to an IAM role for
-        ///   the resource.
-        /// 1. Call the resource's `setIamPolicy` method to update its IAM policy.
+        /// 2. Edit the policy so that it binds the service account to an IAM role for
+        /// the resource.
+        /// 3. Call the resource's `setIamPolicy` method to update its IAM policy.
         ///
         /// For detailed instructions, see
         /// [Manage access to project, folders, and
@@ -2168,8 +2156,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2183,7 +2170,7 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// Tests whether the caller has the specified permissions on a
-        /// \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
+        /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
         pub async fn test_iam_permissions(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2197,8 +2184,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2227,8 +2213,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2243,7 +2228,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists every predefined \[Role\]\[google.iam.admin.v1.Role\] that IAM supports, or every custom role
+        /// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
         /// that is defined for an organization or project.
         pub async fn list_roles(
             &mut self,
@@ -2256,8 +2241,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2270,7 +2254,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "ListRoles"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the definition of a \[Role\]\[google.iam.admin.v1.Role\].
+        /// Gets the definition of a [Role][google.iam.admin.v1.Role].
         pub async fn get_role(
             &mut self,
             request: impl tonic::IntoRequest<super::GetRoleRequest>,
@@ -2279,8 +2263,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2293,7 +2276,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a new custom \[Role\]\[google.iam.admin.v1.Role\].
+        /// Creates a new custom [Role][google.iam.admin.v1.Role].
         pub async fn create_role(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateRoleRequest>,
@@ -2302,8 +2285,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2316,7 +2298,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "CreateRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Updates the definition of a custom \[Role\]\[google.iam.admin.v1.Role\].
+        /// Updates the definition of a custom [Role][google.iam.admin.v1.Role].
         pub async fn update_role(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateRoleRequest>,
@@ -2325,8 +2307,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2339,23 +2320,23 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UpdateRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a custom \[Role\]\[google.iam.admin.v1.Role\].
+        /// Deletes a custom [Role][google.iam.admin.v1.Role].
         ///
         /// When you delete a custom role, the following changes occur immediately:
         ///
         /// * You cannot bind a principal to the custom role in an IAM
-        ///  \[Policy\]\[google.iam.v1.Policy\].
+        /// [Policy][google.iam.v1.Policy].
         /// * Existing bindings to the custom role are not changed, but they have no
-        ///  effect.
-        /// * By default, the response from \[ListRoles\]\[google.iam.admin.v1.IAM.ListRoles\] does not include the custom
-        ///  role.
+        /// effect.
+        /// * By default, the response from [ListRoles][google.iam.admin.v1.IAM.ListRoles] does not include the custom
+        /// role.
         ///
         /// You have 7 days to undelete the custom role. After 7 days, the following
         /// changes occur:
         ///
         /// * The custom role is permanently deleted and cannot be recovered.
         /// * If an IAM policy contains a binding to the custom role, the binding is
-        ///  permanently removed.
+        /// permanently removed.
         pub async fn delete_role(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteRoleRequest>,
@@ -2364,8 +2345,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2378,7 +2358,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Undeletes a custom \[Role\]\[google.iam.admin.v1.Role\].
+        /// Undeletes a custom [Role][google.iam.admin.v1.Role].
         pub async fn undelete_role(
             &mut self,
             request: impl tonic::IntoRequest<super::UndeleteRoleRequest>,
@@ -2387,8 +2367,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2415,8 +2394,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2450,8 +2428,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2467,7 +2444,7 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lints, or validates, an IAM policy. Currently checks the
-        /// \[google.iam.v1.Binding.condition\]\[google.iam.v1.Binding.condition\] field, which contains a condition
+        /// [google.iam.v1.Binding.condition][google.iam.v1.Binding.condition] field, which contains a condition
         /// expression for a role binding.
         ///
         /// Successful calls to this method always return an HTTP `200 OK` status code,
@@ -2483,8 +2460,7 @@ pub mod iam_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

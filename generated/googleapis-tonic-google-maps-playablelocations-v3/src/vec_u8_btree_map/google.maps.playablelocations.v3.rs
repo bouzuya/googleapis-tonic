@@ -65,12 +65,12 @@ pub mod player_report {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BadLocationReason::Unspecified => "BAD_LOCATION_REASON_UNSPECIFIED",
-                BadLocationReason::Other => "OTHER",
-                BadLocationReason::NotPedestrianAccessible => "NOT_PEDESTRIAN_ACCESSIBLE",
-                BadLocationReason::NotOpenToPublic => "NOT_OPEN_TO_PUBLIC",
-                BadLocationReason::PermanentlyClosed => "PERMANENTLY_CLOSED",
-                BadLocationReason::TemporarilyInaccessible => "TEMPORARILY_INACCESSIBLE",
+                Self::Unspecified => "BAD_LOCATION_REASON_UNSPECIFIED",
+                Self::Other => "OTHER",
+                Self::NotPedestrianAccessible => "NOT_PEDESTRIAN_ACCESSIBLE",
+                Self::NotOpenToPublic => "NOT_OPEN_TO_PUBLIC",
+                Self::PermanentlyClosed => "PERMANENTLY_CLOSED",
+                Self::TemporarilyInaccessible => "TEMPORARILY_INACCESSIBLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -139,9 +139,9 @@ pub mod impression {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ImpressionType::Unspecified => "IMPRESSION_TYPE_UNSPECIFIED",
-                ImpressionType::Presented => "PRESENTED",
-                ImpressionType::Interacted => "INTERACTED",
+                Self::Unspecified => "IMPRESSION_TYPE_UNSPECIFIED",
+                Self::Presented => "PRESENTED",
+                Self::Interacted => "INTERACTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -155,20 +155,18 @@ pub mod impression {
         }
     }
 }
+///
 /// Life of a query:
 ///
-/// * When a game starts in a new location, your game server issues a
-///   \[SamplePlayableLocations\]\[google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations\]
-///   request. The request specifies the S2 cell, and contains one or more
-///   "criteria" for filtering:
+/// - When a game starts in a new location, your game server issues a
+/// [SamplePlayableLocations][google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations]
+/// request. The request specifies the S2 cell, and contains one or more
+/// "criteria" for filtering:
 ///
-/// * Criterion 0: i locations for long-lived bases, or level 0 monsters, or...
-///
-/// * Criterion 1: j locations for short-lived bases, or level 1 monsters, ...
-///
-/// * Criterion 2: k locations for random objects.
-///
-/// * etc (up to 5 criterion may be specified).
+/// - Criterion 0: i locations for long-lived bases, or level 0 monsters, or...
+/// - Criterion 1: j locations for short-lived bases, or level 1 monsters, ...
+/// - Criterion 2: k locations for random objects.
+/// - etc (up to 5 criterion may be specified).
 ///
 /// `PlayableLocationList` will then contain mutually
 /// exclusive lists of `PlayableLocation` objects that satisfy each of
@@ -191,8 +189,9 @@ pub struct SamplePlayableLocationsRequest {
     #[prost(message, repeated, tag = "2")]
     pub criteria: ::prost::alloc::vec::Vec<sample::Criterion>,
 }
+///
 /// Response for the
-/// \[SamplePlayableLocations\]\[google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations\]
+/// [SamplePlayableLocations][google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SamplePlayableLocationsResponse {
@@ -207,7 +206,7 @@ pub struct SamplePlayableLocationsResponse {
     /// You can use this value to determine how long to cache the set of playable
     /// locations. After this length of time, your back-end game server should
     /// issue a new
-    /// \[SamplePlayableLocations\]\[google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations\]
+    /// [SamplePlayableLocations][google.maps.playablelocations.v3.PlayableLocations.SamplePlayableLocations]
     /// request to get a fresh set of playable locations (because for example, they
     /// might have been removed, a park might have closed for the day, a
     /// business might have closed permanently).
@@ -236,7 +235,7 @@ pub struct LogPlayerReportsRequest {
     pub client_info: ::core::option::Option<super::super::unity::ClientInfo>,
 }
 /// A response for the
-/// \[LogPlayerReports\]\[google.maps.playablelocations.v3.PlayableLocations.LogPlayerReports\]
+/// [LogPlayerReports][google.maps.playablelocations.v3.PlayableLocations.LogPlayerReports]
 /// method.
 ///
 /// This method returns no data upon success.
@@ -264,13 +263,19 @@ pub struct LogImpressionsRequest {
     pub client_info: ::core::option::Option<super::super::unity::ClientInfo>,
 }
 /// A response for the
-/// \[LogImpressions\]\[google.maps.playablelocations.v3.PlayableLocations.LogImpressions\]
+/// [LogImpressions][google.maps.playablelocations.v3.PlayableLocations.LogImpressions]
 /// method. This method returns no data upon success.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LogImpressionsResponse {}
 /// Generated client implementations.
 pub mod playable_locations_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Playable Locations API for v3.
@@ -359,8 +364,7 @@ pub mod playable_locations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -393,8 +397,7 @@ pub mod playable_locations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -428,8 +431,7 @@ pub mod playable_locations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

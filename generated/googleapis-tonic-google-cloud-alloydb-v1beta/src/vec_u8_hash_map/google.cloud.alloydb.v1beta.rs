@@ -54,8 +54,8 @@ pub mod migration_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MigrationSourceType::Unspecified => "MIGRATION_SOURCE_TYPE_UNSPECIFIED",
-                MigrationSourceType::Dms => "DMS",
+                Self::Unspecified => "MIGRATION_SOURCE_TYPE_UNSPECIFIED",
+                Self::Dms => "DMS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -121,9 +121,9 @@ pub mod encryption_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::GoogleDefaultEncryption => "GOOGLE_DEFAULT_ENCRYPTION",
-                Type::CustomerManagedEncryption => "CUSTOMER_MANAGED_ENCRYPTION",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::GoogleDefaultEncryption => "GOOGLE_DEFAULT_ENCRYPTION",
+                Self::CustomerManagedEncryption => "CUSTOMER_MANAGED_ENCRYPTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -188,14 +188,12 @@ pub mod ssl_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SslMode::Unspecified => "SSL_MODE_UNSPECIFIED",
-                SslMode::Allow => "SSL_MODE_ALLOW",
-                SslMode::Require => "SSL_MODE_REQUIRE",
-                SslMode::VerifyCa => "SSL_MODE_VERIFY_CA",
-                SslMode::AllowUnencryptedAndEncrypted => {
-                    "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
-                }
-                SslMode::EncryptedOnly => "ENCRYPTED_ONLY",
+                Self::Unspecified => "SSL_MODE_UNSPECIFIED",
+                Self::Allow => "SSL_MODE_ALLOW",
+                Self::Require => "SSL_MODE_REQUIRE",
+                Self::VerifyCa => "SSL_MODE_VERIFY_CA",
+                Self::AllowUnencryptedAndEncrypted => "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
+                Self::EncryptedOnly => "ENCRYPTED_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -240,8 +238,8 @@ pub mod ssl_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CaSource::Unspecified => "CA_SOURCE_UNSPECIFIED",
-                CaSource::Managed => "CA_SOURCE_MANAGED",
+                Self::Unspecified => "CA_SOURCE_UNSPECIFIED",
+                Self::Managed => "CA_SOURCE_MANAGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -444,8 +442,7 @@ pub struct BackupSource {
     #[prost(string, tag = "2")]
     pub backup_uid: ::prost::alloc::string::String,
     /// Required. The name of the backup resource with the format:
-    ///
-    /// * projects/{project}/locations/{region}/backups/{backup_id}
+    ///   * projects/{project}/locations/{region}/backups/{backup_id}
     #[prost(string, tag = "1")]
     pub backup_name: ::prost::alloc::string::String,
 }
@@ -506,12 +503,11 @@ pub struct MaintenanceSchedule {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cluster {
     /// Output only. The name of the cluster resource with the format:
-    ///
-    /// * projects/{project}/locations/{region}/clusters/{cluster_id}
-    ///   where the cluster ID segment should satisfy the regex expression
-    ///   `\[a-z0-9-\]+`. For more details see <https://google.aip.dev/122.>
-    ///   The prefix of the cluster resource name is the name of the parent resource:
-    /// * projects/{project}/locations/{region}
+    ///   * projects/{project}/locations/{region}/clusters/{cluster_id}
+    /// where the cluster ID segment should satisfy the regex expression
+    /// `\[a-z0-9-\]+`. For more details see <https://google.aip.dev/122.>
+    /// The prefix of the cluster resource name is the name of the parent resource:
+    ///   * projects/{project}/locations/{region}
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// User-settable and human-readable display name for the Cluster.
@@ -662,7 +658,6 @@ pub mod cluster {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SecondaryConfig {
         /// The name of the primary cluster name with the format:
-        ///
         /// * projects/{project}/locations/{region}/clusters/{cluster_id}
         #[prost(string, tag = "1")]
         pub primary_cluster_name: ::prost::alloc::string::String,
@@ -729,16 +724,16 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Stopped => "STOPPED",
-                State::Empty => "EMPTY",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
-                State::Bootstrapping => "BOOTSTRAPPING",
-                State::Maintenance => "MAINTENANCE",
-                State::Promoting => "PROMOTING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Ready => "READY",
+                Self::Stopped => "STOPPED",
+                Self::Empty => "EMPTY",
+                Self::Creating => "CREATING",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
+                Self::Bootstrapping => "BOOTSTRAPPING",
+                Self::Maintenance => "MAINTENANCE",
+                Self::Promoting => "PROMOTING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -787,9 +782,9 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ClusterType::Unspecified => "CLUSTER_TYPE_UNSPECIFIED",
-                ClusterType::Primary => "PRIMARY",
-                ClusterType::Secondary => "SECONDARY",
+                Self::Unspecified => "CLUSTER_TYPE_UNSPECIFIED",
+                Self::Primary => "PRIMARY",
+                Self::Secondary => "SECONDARY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -819,15 +814,14 @@ pub mod cluster {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
     /// Output only. The name of the instance resource with the format:
-    ///
-    /// * projects/{project}/locations/{region}/clusters/{cluster_id}/instances/{instance_id}
-    ///   where the cluster and instance ID segments should satisfy the regex
-    ///   expression `[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?`, e.g. 1-63 characters of
-    ///   lowercase letters, numbers, and dashes, starting with a letter, and ending
-    ///   with a letter or number. For more details see <https://google.aip.dev/122.>
-    ///   The prefix of the instance resource name is the name of the parent
-    ///   resource:
-    /// * projects/{project}/locations/{region}/clusters/{cluster_id}
+    ///   * projects/{project}/locations/{region}/clusters/{cluster_id}/instances/{instance_id}
+    /// where the cluster and instance ID segments should satisfy the regex
+    /// expression `[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?`, e.g. 1-63 characters of
+    /// lowercase letters, numbers, and dashes, starting with a letter, and ending
+    /// with a letter or number. For more details see <https://google.aip.dev/122.>
+    /// The prefix of the instance resource name is the name of the parent
+    /// resource:
+    ///   * projects/{project}/locations/{region}/clusters/{cluster_id}
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// User-settable and human-readable display name for the Instance.
@@ -879,11 +873,11 @@ pub struct Instance {
     #[prost(string, tag = "12")]
     pub gce_zone: ::prost::alloc::string::String,
     /// Database flags. Set at instance level.
+    ///   * They are copied from primary instance on read instance creation.
+    ///   * Read instances can set new or override existing flags that are relevant
+    ///     for reads, e.g. for enabling columnar cache on a read instance. Flags
+    ///     set on read instance may or may not be present on primary.
     ///
-    /// * They are copied from primary instance on read instance creation.
-    /// * Read instances can set new or override existing flags that are relevant
-    ///   for reads, e.g. for enabling columnar cache on a read instance. Flags
-    ///   set on read instance may or may not be present on primary.
     ///
     /// This is a list of "key": "value" pairs.
     /// "key": The name of the flag. These flags are passed at instance setup time,
@@ -1064,9 +1058,9 @@ pub mod instance {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Mode::Unspecified => "MODE_UNSPECIFIED",
-                    Mode::Default => "DEFAULT",
-                    Mode::ForceApply => "FORCE_APPLY",
+                    Self::Unspecified => "MODE_UNSPECIFIED",
+                    Self::Default => "DEFAULT",
+                    Self::ForceApply => "FORCE_APPLY",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1225,15 +1219,15 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Stopped => "STOPPED",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Maintenance => "MAINTENANCE",
-                State::Failed => "FAILED",
-                State::Bootstrapping => "BOOTSTRAPPING",
-                State::Promoting => "PROMOTING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Ready => "READY",
+                Self::Stopped => "STOPPED",
+                Self::Creating => "CREATING",
+                Self::Deleting => "DELETING",
+                Self::Maintenance => "MAINTENANCE",
+                Self::Failed => "FAILED",
+                Self::Bootstrapping => "BOOTSTRAPPING",
+                Self::Promoting => "PROMOTING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1272,10 +1266,9 @@ pub mod instance {
         Primary = 1,
         /// READ POOL instances support read operations only. Each read pool instance
         /// consists of one or more homogeneous nodes.
-        ///
-        /// * Read pool of size 1 can only have zonal availability.
-        /// * Read pools with node count of 2 or more can have regional
-        ///   availability (nodes are present in 2 or more zones in a region).
+        ///   * Read pool of size 1 can only have zonal availability.
+        ///   * Read pools with node count of 2 or more can have regional
+        ///     availability (nodes are present in 2 or more zones in a region).
         ReadPool = 2,
         /// SECONDARY instances support read operations only. SECONDARY instance
         /// is a cross-region read replica
@@ -1288,10 +1281,10 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InstanceType::Unspecified => "INSTANCE_TYPE_UNSPECIFIED",
-                InstanceType::Primary => "PRIMARY",
-                InstanceType::ReadPool => "READ_POOL",
-                InstanceType::Secondary => "SECONDARY",
+                Self::Unspecified => "INSTANCE_TYPE_UNSPECIFIED",
+                Self::Primary => "PRIMARY",
+                Self::ReadPool => "READ_POOL",
+                Self::Secondary => "SECONDARY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1307,10 +1300,10 @@ pub mod instance {
     }
     /// The Availability type of an instance. Potential values:
     ///
-    /// * ZONAL: The instance serves data from only one zone. Outages in that
-    ///   zone affect instance availability.
-    /// * REGIONAL: The instance can serve data from more than one zone in a
-    ///   region (it is highly available).
+    /// - ZONAL: The instance serves data from only one zone. Outages in that
+    ///      zone affect instance availability.
+    /// - REGIONAL: The instance can serve data from more than one zone in a
+    ///      region (it is highly available).
     #[derive(
         Clone,
         Copy,
@@ -1338,9 +1331,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AvailabilityType::Unspecified => "AVAILABILITY_TYPE_UNSPECIFIED",
-                AvailabilityType::Zonal => "ZONAL",
-                AvailabilityType::Regional => "REGIONAL",
+                Self::Unspecified => "AVAILABILITY_TYPE_UNSPECIFIED",
+                Self::Zonal => "ZONAL",
+                Self::Regional => "REGIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1389,15 +1382,14 @@ pub struct ConnectionInfo {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Backup {
     /// Output only. The name of the backup resource with the format:
-    ///
-    /// * projects/{project}/locations/{region}/backups/{backup_id}
-    ///   where the cluster and backup ID segments should satisfy the regex
-    ///   expression `[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?`, e.g. 1-63 characters of
-    ///   lowercase letters, numbers, and dashes, starting with a letter, and ending
-    ///   with a letter or number. For more details see <https://google.aip.dev/122.>
-    ///   The prefix of the backup resource name is the name of the parent
-    ///   resource:
-    /// * projects/{project}/locations/{region}
+    ///   * projects/{project}/locations/{region}/backups/{backup_id}
+    /// where the cluster and backup ID segments should satisfy the regex
+    /// expression `[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?`, e.g. 1-63 characters of
+    /// lowercase letters, numbers, and dashes, starting with a letter, and ending
+    /// with a letter or number. For more details see <https://google.aip.dev/122.>
+    /// The prefix of the backup resource name is the name of the parent
+    /// resource:
+    ///   * projects/{project}/locations/{region}
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// User-settable and human-readable display name for the Backup.
@@ -1545,11 +1537,11 @@ pub mod backup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Ready => "READY",
+                Self::Creating => "CREATING",
+                Self::Failed => "FAILED",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1597,10 +1589,10 @@ pub mod backup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::OnDemand => "ON_DEMAND",
-                Type::Automated => "AUTOMATED",
-                Type::Continuous => "CONTINUOUS",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::OnDemand => "ON_DEMAND",
+                Self::Automated => "AUTOMATED",
+                Self::Continuous => "CONTINUOUS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1623,9 +1615,8 @@ pub mod backup {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SupportedDatabaseFlag {
     /// The name of the flag resource, following Google Cloud conventions, e.g.:
-    ///
-    /// * projects/{project}/locations/{location}/flags/{flag}
-    ///   This field currently has no semantic meaning.
+    ///   * projects/{project}/locations/{location}/flags/{flag}
+    /// This field currently has no semantic meaning.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The name of the database flag, e.g. "max_allowed_packets".
@@ -1705,11 +1696,11 @@ pub mod supported_database_flag {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ValueType::Unspecified => "VALUE_TYPE_UNSPECIFIED",
-                ValueType::String => "STRING",
-                ValueType::Integer => "INTEGER",
-                ValueType::Float => "FLOAT",
-                ValueType::None => "NONE",
+                Self::Unspecified => "VALUE_TYPE_UNSPECIFIED",
+                Self::String => "STRING",
+                Self::Integer => "INTEGER",
+                Self::Float => "FLOAT",
+                Self::None => "NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1784,9 +1775,9 @@ pub mod user {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UserType::Unspecified => "USER_TYPE_UNSPECIFIED",
-                UserType::AlloydbBuiltIn => "ALLOYDB_BUILT_IN",
-                UserType::AlloydbIamUser => "ALLOYDB_IAM_USER",
+                Self::Unspecified => "USER_TYPE_UNSPECIFIED",
+                Self::AlloydbBuiltIn => "ALLOYDB_BUILT_IN",
+                Self::AlloydbIamUser => "ALLOYDB_IAM_USER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1840,9 +1831,9 @@ impl InstanceView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            InstanceView::Unspecified => "INSTANCE_VIEW_UNSPECIFIED",
-            InstanceView::Basic => "INSTANCE_VIEW_BASIC",
-            InstanceView::Full => "INSTANCE_VIEW_FULL",
+            Self::Unspecified => "INSTANCE_VIEW_UNSPECIFIED",
+            Self::Basic => "INSTANCE_VIEW_BASIC",
+            Self::Full => "INSTANCE_VIEW_FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1878,9 +1869,9 @@ impl ClusterView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ClusterView::Unspecified => "CLUSTER_VIEW_UNSPECIFIED",
-            ClusterView::Basic => "CLUSTER_VIEW_BASIC",
-            ClusterView::ContinuousBackup => "CLUSTER_VIEW_CONTINUOUS_BACKUP",
+            Self::Unspecified => "CLUSTER_VIEW_UNSPECIFIED",
+            Self::Basic => "CLUSTER_VIEW_BASIC",
+            Self::ContinuousBackup => "CLUSTER_VIEW_CONTINUOUS_BACKUP",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1913,10 +1904,10 @@ impl DatabaseVersion {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatabaseVersion::Unspecified => "DATABASE_VERSION_UNSPECIFIED",
-            DatabaseVersion::Postgres13 => "POSTGRES_13",
-            DatabaseVersion::Postgres14 => "POSTGRES_14",
-            DatabaseVersion::Postgres15 => "POSTGRES_15",
+            Self::Unspecified => "DATABASE_VERSION_UNSPECIFIED",
+            Self::Postgres13 => "POSTGRES_13",
+            Self::Postgres14 => "POSTGRES_14",
+            Self::Postgres15 => "POSTGRES_15",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1936,8 +1927,7 @@ pub struct ListClustersRequest {
     /// Required. The name of the parent resource. For the required format, see the
     /// comment on the Cluster.name field. Additionally, you can perform an
     /// aggregated list operation by specifying a value with the following format:
-    ///
-    /// * projects/{project}/locations/-
+    ///   * projects/{project}/locations/-
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. Requested page size. Server may return fewer items than
@@ -2212,9 +2202,8 @@ pub struct ListInstancesRequest {
     /// comment on the Instance.name field. Additionally, you can perform an
     /// aggregated list operation by specifying a value with one of the following
     /// formats:
-    ///
-    /// * projects/{project}/locations/-/clusters/-
-    /// * projects/{project}/locations/{region}/clusters/-
+    ///   * projects/{project}/locations/-/clusters/-
+    ///   * projects/{project}/locations/{region}/clusters/-
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. Requested page size. Server may return fewer items than
@@ -2392,11 +2381,10 @@ pub struct BatchCreateInstancesMetadata {
 /// but the third failed to create and the 4th was never picked up for creation
 /// because of failure of the previous one. Then, resulting states would look
 /// something like:
-///
-/// 1. Instance1 = ROLLED_BACK
-/// 1. Instance2 = ROLLED_BACK
-/// 1. Instance3 = FAILED
-/// 1. Instance4 = FAILED
+///    1. Instance1 = ROLLED_BACK
+///    2. Instance2 = ROLLED_BACK
+///    3. Instance3 = FAILED
+///    4. Instance4 = FAILED
 ///
 /// However, while the operation is running, the instance might be in other
 /// states including PENDING_CREATE, ACTIVE, DELETING and CREATING. The states
@@ -2406,12 +2394,11 @@ pub struct BatchCreateInstanceStatus {
     /// The current state of an instance involved in the batch create operation.
     /// Once the operation is complete, the final state of the instances in the
     /// LRO can be one of:
-    ///
-    /// 1. ACTIVE, indicating that instances were created successfully
-    /// 1. FAILED, indicating that a particular instance failed creation
-    /// 1. ROLLED_BACK indicating that although the instance was created
-    ///    successfully, it had to be rolled back and deleted due to failure in
-    ///    other steps of the workflow.
+    ///    1. ACTIVE, indicating that instances were created successfully
+    ///    2. FAILED, indicating that a particular instance failed creation
+    ///    3. ROLLED_BACK indicating that although the instance was created
+    ///       successfully, it had to be rolled back and deleted due to failure in
+    ///       other steps of the workflow.
     #[prost(enumeration = "batch_create_instance_status::State", tag = "1")]
     pub state: i32,
     /// DEPRECATED - Use the error field instead.
@@ -2468,13 +2455,13 @@ pub mod batch_create_instance_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::PendingCreate => "PENDING_CREATE",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
-                State::RolledBack => "ROLLED_BACK",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::PendingCreate => "PENDING_CREATE",
+                Self::Ready => "READY",
+                Self::Creating => "CREATING",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
+                Self::RolledBack => "ROLLED_BACK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2649,8 +2636,8 @@ pub mod inject_fault_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FaultType::Unspecified => "FAULT_TYPE_UNSPECIFIED",
-                FaultType::StopVm => "STOP_VM",
+                Self::Unspecified => "FAULT_TYPE_UNSPECIFIED",
+                Self::StopVm => "STOP_VM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2834,8 +2821,7 @@ pub struct DeleteBackupRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSupportedDatabaseFlagsRequest {
     /// Required. The name of the parent resource. The required format is:
-    ///
-    /// * projects/{project}/locations/{location}
+    ///   * projects/{project}/locations/{location}
     ///
     /// Regardless of the parent specified here, as long it is contains a valid
     /// project and location, the service will return a static list of supported
@@ -2866,8 +2852,7 @@ pub struct ListSupportedDatabaseFlagsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateClientCertificateRequest {
     /// Required. The name of the parent resource. The required format is:
-    ///
-    /// * projects/{project}/locations/{location}/clusters/{cluster}
+    ///   * projects/{project}/locations/{location}/clusters/{cluster}
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. An optional request ID to identify requests. Specify a unique
@@ -2964,8 +2949,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -3157,7 +3142,13 @@ pub struct ListDatabasesResponse {
 }
 /// Generated client implementations.
 pub mod alloy_db_admin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
@@ -3242,8 +3233,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3270,8 +3260,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3301,8 +3290,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3332,8 +3320,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3363,8 +3350,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3397,8 +3383,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3430,8 +3415,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3462,8 +3446,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3493,8 +3476,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3521,8 +3503,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3552,8 +3533,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3583,8 +3563,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3623,8 +3602,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3654,8 +3632,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3685,8 +3662,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3718,8 +3694,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3750,8 +3725,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3782,8 +3756,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3813,8 +3786,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3841,8 +3813,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3872,8 +3843,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3903,8 +3873,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3934,8 +3903,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3965,8 +3933,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4000,8 +3967,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4028,8 +3994,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4059,8 +4024,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4087,8 +4051,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4115,8 +4078,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4143,8 +4105,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4171,8 +4132,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4202,8 +4162,7 @@ pub mod alloy_db_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

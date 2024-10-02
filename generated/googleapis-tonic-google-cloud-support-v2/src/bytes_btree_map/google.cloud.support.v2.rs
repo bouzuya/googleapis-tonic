@@ -74,7 +74,13 @@ pub struct ListAttachmentsResponse {
 }
 /// Generated client implementations.
 pub mod case_attachment_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service to manage file attachment for Google Cloud support cases.
@@ -159,8 +165,7 @@ pub mod case_attachment_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -282,12 +287,12 @@ pub mod case {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::New => "NEW",
-                State::InProgressGoogleSupport => "IN_PROGRESS_GOOGLE_SUPPORT",
-                State::ActionRequired => "ACTION_REQUIRED",
-                State::SolutionProvided => "SOLUTION_PROVIDED",
-                State::Closed => "CLOSED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::New => "NEW",
+                Self::InProgressGoogleSupport => "IN_PROGRESS_GOOGLE_SUPPORT",
+                Self::ActionRequired => "ACTION_REQUIRED",
+                Self::SolutionProvided => "SOLUTION_PROVIDED",
+                Self::Closed => "CLOSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -340,12 +345,12 @@ pub mod case {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Priority::Unspecified => "PRIORITY_UNSPECIFIED",
-                Priority::P0 => "P0",
-                Priority::P1 => "P1",
-                Priority::P2 => "P2",
-                Priority::P3 => "P3",
-                Priority::P4 => "P4",
+                Self::Unspecified => "PRIORITY_UNSPECIFIED",
+                Self::P0 => "P0",
+                Self::P1 => "P1",
+                Self::P2 => "P2",
+                Self::P3 => "P3",
+                Self::P4 => "P4",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -419,10 +424,10 @@ pub mod escalation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Reason::Unspecified => "REASON_UNSPECIFIED",
-                Reason::ResolutionTime => "RESOLUTION_TIME",
-                Reason::TechnicalExpertise => "TECHNICAL_EXPERTISE",
-                Reason::BusinessImpact => "BUSINESS_IMPACT",
+                Self::Unspecified => "REASON_UNSPECIFIED",
+                Self::ResolutionTime => "RESOLUTION_TIME",
+                Self::TechnicalExpertise => "TECHNICAL_EXPERTISE",
+                Self::BusinessImpact => "BUSINESS_IMPACT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -467,17 +472,17 @@ pub struct ListCasesRequest {
     /// Filter expressions use the following fields with the operators equals (`=`)
     /// and `AND`:
     ///
-    /// * `state`: The accepted values are `OPEN` or `CLOSED`.
-    /// * `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
-    ///   can specify multiple values for priority using the `OR` operator. For
-    ///   example, `priority=P1 OR priority=P2`.
-    /// * `creator.email`: The email address of the case creator.
+    /// - `state`: The accepted values are `OPEN` or `CLOSED`.
+    /// - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
+    /// can specify multiple values for priority using the `OR` operator. For
+    /// example, `priority=P1 OR priority=P2`.
+    /// - `creator.email`: The email address of the case creator.
     ///
     /// Examples:
     ///
-    /// * `state=CLOSED`
-    /// * `state=OPEN AND creator.email="tester@example.com"`
-    /// * `state=OPEN AND (priority=P0 OR priority=P1)`
+    /// - `state=CLOSED`
+    /// - `state=OPEN AND creator.email="tester@example.com"`
+    /// - `state=OPEN AND (priority=P0 OR priority=P1)`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// The maximum number of cases fetched with each request. Defaults to 10.
@@ -512,16 +517,16 @@ pub struct SearchCasesRequest {
     /// A query uses the following fields with the operators equals (`=`) and
     /// `AND`:
     ///
-    /// * `organization`: An organization name in the form
-    ///   `organizations/<organization_id>`.
-    /// * `project`: A project name in the form `projects/<project_id>`.
-    /// * `state`: The accepted values are `OPEN` or `CLOSED`.
-    /// * `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
-    ///   can specify multiple values for priority using the `OR` operator. For
-    ///   example, `priority=P1 OR priority=P2`.
-    /// * `creator.email`: The email address of the case creator.
-    /// * `billingAccount`: A billing account in the form
-    ///   `billingAccounts/<billing_account_id>`
+    /// - `organization`: An organization name in the form
+    /// `organizations/<organization_id>`.
+    /// - `project`: A project name in the form `projects/<project_id>`.
+    /// - `state`: The accepted values are `OPEN` or `CLOSED`.
+    /// - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
+    /// can specify multiple values for priority using the `OR` operator. For
+    /// example, `priority=P1 OR priority=P2`.
+    /// - `creator.email`: The email address of the case creator.
+    /// - `billingAccount`: A billing account in the form
+    /// `billingAccounts/<billing_account_id>`
     ///
     /// You must specify either `organization` or `project`.
     ///
@@ -535,13 +540,13 @@ pub struct SearchCasesRequest {
     ///
     /// Examples:
     ///
-    /// * `organization="organizations/123456789"`
-    /// * `project="projects/my-project-id"`
-    /// * `project="projects/123456789"`
-    /// * `billing_account="billingAccounts/123456-A0B0C0-CUZ789"`
-    /// * `organization="organizations/123456789" AND state=CLOSED`
-    /// * `project="projects/my-project-id" AND creator.email="tester@example.com"`
-    /// * `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
+    /// - `organization="organizations/123456789"`
+    /// - `project="projects/my-project-id"`
+    /// - `project="projects/123456789"`
+    /// - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"`
+    /// - `organization="organizations/123456789" AND state=CLOSED`
+    /// - `project="projects/my-project-id" AND creator.email="tester@example.com"`
+    /// - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
     #[prost(string, tag = "1")]
     pub query: ::prost::alloc::string::String,
     /// The maximum number of cases fetched with each request. The default page
@@ -631,7 +636,13 @@ pub struct SearchCaseClassificationsResponse {
 }
 /// Generated client implementations.
 pub mod case_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service to manage Google Cloud support cases.
@@ -713,8 +724,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -746,8 +756,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -774,8 +783,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -801,8 +809,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -826,8 +833,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -857,8 +863,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -885,8 +890,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -916,8 +920,7 @@ pub mod case_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -997,7 +1000,13 @@ pub struct CreateCommentRequest {
 }
 /// Generated client implementations.
 pub mod comment_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service to manage comments on cases.
@@ -1082,8 +1091,7 @@ pub mod comment_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1111,8 +1119,7 @@ pub mod comment_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -24,9 +24,7 @@ pub struct Feature {
     ///
     /// The keys indicate which Membership the configuration is for, in the form:
     ///
-    /// ```text
-    /// projects/{p}/locations/{l}/memberships/{m}
-    /// ```
+    ///      projects/{p}/locations/{l}/memberships/{m}
     ///
     /// Where {p} is the project, {l} is a valid location and {m} is a valid
     /// Membership in this project at that location. {p} WILL match the Feature's
@@ -51,9 +49,7 @@ pub struct Feature {
     ///
     /// The keys indicate which Membership the state is for, in the form:
     ///
-    /// ```text
-    /// projects/{p}/locations/{l}/memberships/{m}
-    /// ```
+    ///      projects/{p}/locations/{l}/memberships/{m}
     ///
     /// Where {p} is the project number, {l} is a valid location and {m} is a valid
     /// Membership in this project at that location. {p} MUST match the Feature's
@@ -121,12 +117,12 @@ pub mod feature_resource_state {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Enabling => "ENABLING",
-                State::Active => "ACTIVE",
-                State::Disabling => "DISABLING",
-                State::Updating => "UPDATING",
-                State::ServiceUpdating => "SERVICE_UPDATING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Enabling => "ENABLING",
+                Self::Active => "ACTIVE",
+                Self::Disabling => "DISABLING",
+                Self::Updating => "UPDATING",
+                Self::ServiceUpdating => "SERVICE_UPDATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -196,10 +192,10 @@ pub mod feature_state {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::Ok => "OK",
-                Code::Warning => "WARNING",
-                Code::Error => "ERROR",
+                Self::Unspecified => "CODE_UNSPECIFIED",
+                Self::Ok => "OK",
+                Self::Warning => "WARNING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -313,17 +309,17 @@ pub struct ListFeaturesRequest {
     ///
     /// Examples:
     ///
-    /// * Feature with the name "servicemesh" in project "foo-proj":
+    ///    - Feature with the name "servicemesh" in project "foo-proj":
     ///
-    ///   name = "projects/foo-proj/locations/global/features/servicemesh"
+    ///        name = "projects/foo-proj/locations/global/features/servicemesh"
     ///
-    /// * Features that have a label called `foo`:
+    ///    - Features that have a label called `foo`:
     ///
-    ///   labels.foo:\*
+    ///        labels.foo:*
     ///
-    /// * Features that have a label called `foo` whose value is `bar`:
+    ///    - Features that have a label called `foo` whose value is `bar`:
     ///
-    ///   labels.foo = bar
+    ///        labels.foo = bar
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// One or more fields to compare and use to sort the output.
@@ -424,7 +420,7 @@ pub struct UpdateFeatureRequest {
     /// If you are updating a map field, set the value of a key to null or empty
     /// string to delete the key from the map. It's not possible to update a key's
     /// value to the empty string.
-    /// If you specify the update_mask to be a special path "\*", fully replaces all
+    /// If you specify the update_mask to be a special path "*", fully replaces all
     /// user-modifiable fields to match `resource`.
     #[prost(message, optional, tag = "3")]
     pub resource: ::core::option::Option<Feature>,
@@ -464,7 +460,7 @@ pub struct OperationMetadata {
     pub status_detail: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub cancel_requested: bool,
@@ -474,7 +470,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod gke_hub_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The GKE Hub service handles the registration of many Kubernetes clusters to
@@ -483,8 +485,8 @@ pub mod gke_hub_client {
     ///
     /// The GKE Hub service operates on the following resources:
     ///
-    /// * \[Membership\]\[google.cloud.gkehub.v1alpha.Membership\]
-    /// * \[Feature\]\[google.cloud.gkehub.v1alpha.Feature\]
+    /// * [Membership][google.cloud.gkehub.v1alpha.Membership]
+    /// * [Feature][google.cloud.gkehub.v1alpha.Feature]
     ///
     /// GKE Hub is currently only available in the global region.
     ///
@@ -572,8 +574,7 @@ pub mod gke_hub_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -597,8 +598,7 @@ pub mod gke_hub_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -625,8 +625,7 @@ pub mod gke_hub_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -656,8 +655,7 @@ pub mod gke_hub_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -687,8 +685,7 @@ pub mod gke_hub_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

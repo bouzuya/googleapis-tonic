@@ -8,9 +8,9 @@ pub struct Membership {
     ///
     /// `membership_id` must be a valid RFC 1123 compliant DNS label:
     ///
-    /// 1. At most 63 characters in length
-    /// 1. It must consist of lower case alphanumeric characters or `-`
-    /// 1. It must start and end with an alphanumeric character
+    ///    1. At most 63 characters in length
+    ///    2. It must consist of lower case alphanumeric characters or `-`
+    ///    3. It must start and end with an alphanumeric character
     ///
     /// Which can be expressed as the regex: `[a-z0-9](\[-a-z0-9\]*[a-z0-9])?`,
     /// with a maximum length of 63 characters.
@@ -113,9 +113,9 @@ pub mod membership {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InfrastructureType::Unspecified => "INFRASTRUCTURE_TYPE_UNSPECIFIED",
-                InfrastructureType::OnPrem => "ON_PREM",
-                InfrastructureType::MultiCloud => "MULTI_CLOUD",
+                Self::Unspecified => "INFRASTRUCTURE_TYPE_UNSPECIFIED",
+                Self::OnPrem => "ON_PREM",
+                Self::MultiCloud => "MULTI_CLOUD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -146,11 +146,11 @@ pub struct MembershipEndpoint {
     /// Optional. The in-cluster Kubernetes Resources that should be applied for a
     /// correctly registered cluster, in the steady state. These resources:
     ///
-    /// * Ensure that the cluster is exclusively registered to one and only one
-    ///   Hub Membership.
-    /// * Propagate Workload Pool Information available in the Membership
-    ///   Authority field.
-    /// * Ensure proper initial configuration of default Hub Features.
+    ///    * Ensure that the cluster is exclusively registered to one and only one
+    ///      Hub Membership.
+    ///    * Propagate Workload Pool Information available in the Membership
+    ///      Authority field.
+    ///    * Ensure proper initial configuration of default Hub Features.
     #[prost(message, optional, tag = "6")]
     pub kubernetes_resource: ::core::option::Option<KubernetesResource>,
     /// Cluster information of the registered cluster.
@@ -229,7 +229,7 @@ pub struct ResourceOptions {
     /// Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for
     /// CustomResourceDefinition resources.
     /// This option should be set for clusters with Kubernetes apiserver versions
-    /// \<1.16.
+    /// <1.16.
     #[prost(bool, tag = "2")]
     pub v1beta1_crd: bool,
     /// Optional. Major version of the Kubernetes cluster. This is only used to
@@ -258,9 +258,7 @@ pub struct ResourceManifest {
 pub struct GkeCluster {
     /// Immutable. Self-link of the GCP resource for the GKE cluster. For example:
     ///
-    /// ```text
-    /// //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
-    /// ```
+    ///      //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
     ///
     /// Zonal clusters are also supported.
     #[prost(string, tag = "1")]
@@ -276,8 +274,8 @@ pub struct OnPremCluster {
     /// Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For
     /// example:
     ///
-    /// //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster
-    /// //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+    ///   //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster
+    ///   //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
     #[prost(string, tag = "1")]
     pub resource_link: ::prost::alloc::string::String,
     /// Output only. If cluster_missing is set then it denotes that
@@ -326,11 +324,11 @@ pub mod on_prem_cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ClusterType::ClustertypeUnspecified => "CLUSTERTYPE_UNSPECIFIED",
-                ClusterType::Bootstrap => "BOOTSTRAP",
-                ClusterType::Hybrid => "HYBRID",
-                ClusterType::Standalone => "STANDALONE",
-                ClusterType::User => "USER",
+                Self::ClustertypeUnspecified => "CLUSTERTYPE_UNSPECIFIED",
+                Self::Bootstrap => "BOOTSTRAP",
+                Self::Hybrid => "HYBRID",
+                Self::Standalone => "STANDALONE",
+                Self::User => "USER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -352,9 +350,9 @@ pub struct MultiCloudCluster {
     /// Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
     /// For example:
     ///
-    /// //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
-    /// //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
-    /// //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
+    ///   //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
+    ///   //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+    ///   //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
     #[prost(string, tag = "1")]
     pub resource_link: ::prost::alloc::string::String,
     /// Output only. If cluster_missing is set then it denotes that
@@ -420,7 +418,7 @@ pub struct KubernetesMetadata {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Authority {
     /// Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with
-    /// `<https://`> and be a valid URL with length \<2000 characters.
+    /// `<https://`> and be a valid URL with length <2000 characters.
     ///
     /// If set, then Google will allow valid OIDC tokens from this issuer to
     /// authenticate within the workload_identity_pool. OIDC discovery will be
@@ -533,12 +531,12 @@ pub mod membership_state {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::Creating => "CREATING",
-                Code::Ready => "READY",
-                Code::Deleting => "DELETING",
-                Code::Updating => "UPDATING",
-                Code::ServiceUpdating => "SERVICE_UPDATING",
+                Self::Unspecified => "CODE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Deleting => "DELETING",
+                Self::Updating => "UPDATING",
+                Self::ServiceUpdating => "SERVICE_UPDATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -578,21 +576,21 @@ pub struct ListMembershipsRequest {
     ///
     /// Examples:
     ///
-    /// * Name is `bar` in project `foo-proj` and location `global`:
+    ///    - Name is `bar` in project `foo-proj` and location `global`:
     ///
-    ///   name = "projects/foo-proj/locations/global/membership/bar"
+    ///        name = "projects/foo-proj/locations/global/membership/bar"
     ///
-    /// * Memberships that have a label called `foo`:
+    ///    - Memberships that have a label called `foo`:
     ///
-    ///   labels.foo:\*
+    ///        labels.foo:*
     ///
-    /// * Memberships that have a label called `foo` whose value is `bar`:
+    ///    - Memberships that have a label called `foo` whose value is `bar`:
     ///
-    ///   labels.foo = bar
+    ///        labels.foo = bar
     ///
-    /// * Memberships in the CREATING state:
+    ///    - Memberships in the CREATING state:
     ///
-    ///   state = CREATING
+    ///        state = CREATING
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. One or more fields to compare and use to sort the output.
@@ -633,9 +631,9 @@ pub struct CreateMembershipRequest {
     /// Required. Client chosen ID for the membership. `membership_id` must be a
     /// valid RFC 1123 compliant DNS label:
     ///
-    /// 1. At most 63 characters in length
-    /// 1. It must consist of lower case alphanumeric characters or `-`
-    /// 1. It must start and end with an alphanumeric character
+    ///    1. At most 63 characters in length
+    ///    2. It must consist of lower case alphanumeric characters or `-`
+    ///    3. It must start and end with an alphanumeric character
     ///
     /// Which can be expressed as the regex: `[a-z0-9](\[-a-z0-9\]*[a-z0-9])?`,
     /// with a maximum length of 63 characters.
@@ -705,7 +703,7 @@ pub struct UpdateMembershipRequest {
     /// If you are updating a map field, set the value of a key to null or empty
     /// string to delete the key from the map. It's not possible to update a key's
     /// value to the empty string.
-    /// If you specify the update_mask to be a special path "\*", fully replaces all
+    /// If you specify the update_mask to be a special path "*", fully replaces all
     /// user-modifiable fields to match `resource`.
     #[prost(message, optional, tag = "3")]
     pub resource: ::core::option::Option<Membership>,
@@ -830,9 +828,9 @@ pub struct ValidateExclusivityResponse {
     /// The validation result.
     ///
     /// * `OK` means that exclusivity is validated, assuming the manifest produced
-    ///   by GenerateExclusivityManifest is successfully applied.
+    ///     by GenerateExclusivityManifest is successfully applied.
     /// * `ALREADY_EXISTS` means that the Membership CRD is already owned by
-    ///   another Hub. See `status.message` for more information.
+    ///     another Hub. See `status.message` for more information.
     #[prost(message, optional, tag = "1")]
     pub status: ::core::option::Option<super::super::super::rpc::Status>,
 }
@@ -886,8 +884,8 @@ pub struct OperationMetadata {
     pub status_detail: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub cancel_requested: bool,
@@ -897,12 +895,18 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod gke_hub_membership_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The GKE Hub MembershipService handles the registration of many Kubernetes
     /// clusters to Google Cloud, represented with the
-    /// \[Membership\]\[google.cloud.gkehub.v1beta1.Membership\] resource.
+    /// [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
     ///
     /// GKE Hub is currently available in the global region and all regions in
     /// https://cloud.google.com/compute/docs/regions-zones.
@@ -993,8 +997,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1021,8 +1024,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1056,8 +1058,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1091,8 +1092,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1122,8 +1122,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1156,8 +1155,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1188,8 +1186,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1230,8 +1227,7 @@ pub mod gke_hub_membership_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

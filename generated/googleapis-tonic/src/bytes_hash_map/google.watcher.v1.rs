@@ -11,15 +11,15 @@ pub struct Request {
     /// implementation-specific. However, some have predefined meaning
     /// and are listed here:
     ///
-    /// * recursive = true|false \[default=false\]
-    ///   If set to true, indicates that the client wants to watch all elements
-    ///   of entities in the subtree rooted at the entity's name in `target`. For
-    ///   descendants that are not the immediate children of the target, the
-    ///   `Change.element` will contain slashes.
+    ///   * recursive = true|false \[default=false\]
+    ///     If set to true, indicates that the client wants to watch all elements
+    ///     of entities in the subtree rooted at the entity's name in `target`. For
+    ///     descendants that are not the immediate children of the target, the
+    ///     `Change.element` will contain slashes.
     ///
-    ///   Note that some namespaces and entities will not support recursive
-    ///   watching. When watching such an entity, a client must not set recursive
-    ///   to true. Otherwise, it will receive an `UNIMPLEMENTED` error.
+    ///     Note that some namespaces and entities will not support recursive
+    ///     watching. When watching such an entity, a client must not set recursive
+    ///     to true. Otherwise, it will receive an `UNIMPLEMENTED` error.
     ///
     /// Normal URL encoding must be used inside `target`.  For example, if a query
     /// parameter name or value, or the non-query parameter portion of `target`
@@ -33,26 +33,26 @@ pub struct Request {
     /// system. The client can set this marker in one of the following ways to get
     /// different semantics:
     ///
-    /// * Parameter is not specified or has the value "".
-    ///   Semantics: Fetch initial state.
-    ///   The client wants the entity's initial state to be delivered. See the
-    ///   description in "Initial State".
+    /// *   Parameter is not specified or has the value "".
+    ///      Semantics: Fetch initial state.
+    ///      The client wants the entity's initial state to be delivered. See the
+    ///      description in "Initial State".
     ///
-    /// * Parameter is set to the string "now" (UTF-8 encoding).
-    ///   Semantics: Fetch new changes only.
-    ///   The client just wants to get the changes received by the system after
-    ///   the watch point. The system may deliver changes from before the watch
-    ///   point as well.
+    /// *   Parameter is set to the string "now" (UTF-8 encoding).
+    ///      Semantics: Fetch new changes only.
+    ///      The client just wants to get the changes received by the system after
+    ///      the watch point. The system may deliver changes from before the watch
+    ///      point as well.
     ///
-    /// * Parameter is set to a value received in an earlier
-    ///   `Change.resume_marker` field while watching the same entity.
-    ///   Semantics: Resume from a specific point.
-    ///   The client wants to receive the changes from a specific point; this
-    ///   value must correspond to a value received in the `Change.resume_marker`
-    ///   field. The system may deliver changes from before the `resume_marker`
-    ///   as well. If the system cannot resume the stream from this point (e.g.,
-    ///   if it is too far behind in the stream), it can raise the
-    ///   `FAILED_PRECONDITION` error.
+    /// *   Parameter is set to a value received in an earlier
+    ///      `Change.resume_marker` field while watching the same entity.
+    ///      Semantics: Resume from a specific point.
+    ///      The client wants to receive the changes from a specific point; this
+    ///      value must correspond to a value received in the `Change.resume_marker`
+    ///      field. The system may deliver changes from before the `resume_marker`
+    ///      as well. If the system cannot resume the stream from this point (e.g.,
+    ///      if it is too far behind in the stream), it can raise the
+    ///      `FAILED_PRECONDITION` error.
     ///
     /// An implementation MUST support an unspecified parameter and the
     /// empty string "" marker (initial state fetching) and the "now" marker.
@@ -80,7 +80,7 @@ pub struct Change {
     pub state: i32,
     /// The actual change data. This field is present only when `state() == EXISTS`
     /// or `state() == ERROR`. Please see
-    /// \[google.protobuf.Any\]\[google.protobuf.Any\] about how to use the Any type.
+    /// [google.protobuf.Any][google.protobuf.Any] about how to use the Any type.
     #[prost(message, optional, tag = "6")]
     pub data: ::core::option::Option<::prost_types::Any>,
     /// If present, provides a compact representation of all the messages that have
@@ -121,7 +121,7 @@ pub mod change {
         InitialStateSkipped = 2,
         /// The element may exist, but some error has occurred. More information is
         /// available in the data field - the value is a serialized Status
-        /// proto (from \[google.rpc.Status\]\[\])
+        /// proto (from [google.rpc.Status][])
         Error = 3,
     }
     impl State {
@@ -131,10 +131,10 @@ pub mod change {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Exists => "EXISTS",
-                State::DoesNotExist => "DOES_NOT_EXIST",
-                State::InitialStateSkipped => "INITIAL_STATE_SKIPPED",
-                State::Error => "ERROR",
+                Self::Exists => "EXISTS",
+                Self::DoesNotExist => "DOES_NOT_EXIST",
+                Self::InitialStateSkipped => "INITIAL_STATE_SKIPPED",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -151,12 +151,18 @@ pub mod change {
 }
 /// Generated client implementations.
 pub mod watcher_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The service that a client uses to connect to the watcher system.
     /// The errors returned by the service are in the canonical error space,
-    /// see \[google.rpc.Code\]\[\].
+    /// see [google.rpc.Code][].
     #[derive(Debug, Clone)]
     pub struct WatcherClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -238,8 +244,7 @@ pub mod watcher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

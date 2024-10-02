@@ -183,8 +183,8 @@ pub mod execution {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::KmsError => "KMS_ERROR",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::KmsError => "KMS_ERROR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -234,13 +234,13 @@ pub mod execution {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
-                State::Unavailable => "UNAVAILABLE",
-                State::Queued => "QUEUED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
+                Self::Unavailable => "UNAVAILABLE",
+                Self::Queued => "QUEUED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -289,10 +289,10 @@ pub mod execution {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CallLogLevel::Unspecified => "CALL_LOG_LEVEL_UNSPECIFIED",
-                CallLogLevel::LogAllCalls => "LOG_ALL_CALLS",
-                CallLogLevel::LogErrorsOnly => "LOG_ERRORS_ONLY",
-                CallLogLevel::LogNone => "LOG_NONE",
+                Self::Unspecified => "CALL_LOG_LEVEL_UNSPECIFIED",
+                Self::LogAllCalls => "LOG_ALL_CALLS",
+                Self::LogErrorsOnly => "LOG_ERRORS_ONLY",
+                Self::LogNone => "LOG_NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -308,7 +308,7 @@ pub mod execution {
     }
 }
 /// Request for the
-/// \[ListExecutions\]\[\]
+/// [ListExecutions][]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExecutionsRequest {
@@ -351,7 +351,7 @@ pub struct ListExecutionsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for the
-/// \[ListExecutions\]\[google.cloud.workflows.executions.v1.Executions.ListExecutions\]
+/// [ListExecutions][google.cloud.workflows.executions.v1.Executions.ListExecutions]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExecutionsResponse {
@@ -364,7 +364,7 @@ pub struct ListExecutionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[CreateExecution\]\[google.cloud.workflows.executions.v1.Executions.CreateExecution\]
+/// [CreateExecution][google.cloud.workflows.executions.v1.Executions.CreateExecution]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateExecutionRequest {
@@ -378,7 +378,7 @@ pub struct CreateExecutionRequest {
     pub execution: ::core::option::Option<Execution>,
 }
 /// Request for the
-/// \[GetExecution\]\[google.cloud.workflows.executions.v1.Executions.GetExecution\]
+/// [GetExecution][google.cloud.workflows.executions.v1.Executions.GetExecution]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetExecutionRequest {
@@ -393,7 +393,7 @@ pub struct GetExecutionRequest {
     pub view: i32,
 }
 /// Request for the
-/// \[CancelExecution\]\[google.cloud.workflows.executions.v1.Executions.CancelExecution\]
+/// [CancelExecution][google.cloud.workflows.executions.v1.Executions.CancelExecution]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelExecutionRequest {
@@ -423,9 +423,9 @@ impl ExecutionView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ExecutionView::Unspecified => "EXECUTION_VIEW_UNSPECIFIED",
-            ExecutionView::Basic => "BASIC",
-            ExecutionView::Full => "FULL",
+            Self::Unspecified => "EXECUTION_VIEW_UNSPECIFIED",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -440,11 +440,17 @@ impl ExecutionView {
 }
 /// Generated client implementations.
 pub mod executions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Executions is used to start and manage running instances of
-    /// \[Workflows\]\[google.cloud.workflows.v1.Workflow\] called executions.
+    /// [Workflows][google.cloud.workflows.v1.Workflow] called executions.
     #[derive(Debug, Clone)]
     pub struct ExecutionsClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -529,8 +535,7 @@ pub mod executions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -557,8 +562,7 @@ pub mod executions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -585,8 +589,7 @@ pub mod executions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -613,8 +616,7 @@ pub mod executions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

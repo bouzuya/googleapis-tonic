@@ -89,7 +89,7 @@ pub struct Action {
     /// If the specified image is not public, the service account specified for
     /// the Virtual Machine must have access to pull the images from GCR, or
     /// appropriate credentials must be specified in the
-    /// \[google.cloud.lifesciences.v2beta.Action.credentials\]\[google.cloud.lifesciences.v2beta.Action.credentials\]
+    /// [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials]
     /// field.
     #[prost(string, tag = "2")]
     pub image_uri: ::prost::alloc::string::String,
@@ -104,7 +104,7 @@ pub struct Action {
     pub entrypoint: ::prost::alloc::string::String,
     /// The environment to pass into the container. This environment is merged
     /// with values specified in the
-    /// \[google.cloud.lifesciences.v2beta.Pipeline\]\[google.cloud.lifesciences.v2beta.Pipeline\]
+    /// [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
     /// message, overwriting any duplicate values.
     ///
     /// In addition to the values passed here, a few other values are
@@ -126,7 +126,7 @@ pub struct Action {
     >,
     /// The encrypted environment to pass into the container. This environment is
     /// merged with values specified in the
-    /// \[google.cloud.lifesciences.v2beta.Pipeline\]\[google.cloud.lifesciences.v2beta.Pipeline\]
+    /// [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
     /// message, overwriting any duplicate values.
     ///
     /// The secret must decrypt to a JSON-encoded dictionary where key-value pairs
@@ -452,8 +452,8 @@ pub struct Network {
 /// See <https://cloud.google.com/compute/docs/disks/performance> for more
 /// information about disk type, size, and performance considerations.
 ///
-/// Specify either \[`Volume`\]\[google.cloud.lifesciences.v2beta.Volume\] or
-/// \[`Disk`\]\[google.cloud.lifesciences.v2beta.Disk\], but not both.
+/// Specify either [`Volume`][google.cloud.lifesciences.v2beta.Volume] or
+/// [`Disk`][google.cloud.lifesciences.v2beta.Disk], but not both.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Disk {
     /// A user-supplied name for the disk. Used when mounting the disk into
@@ -479,12 +479,12 @@ pub struct Disk {
 }
 /// Carries information about storage that can be attached to a VM.
 ///
-/// Specify either \[`Volume`\]\[google.cloud.lifesciences.v2beta.Volume\] or
-/// \[`Disk`\]\[google.cloud.lifesciences.v2beta.Disk\], but not both.
+/// Specify either [`Volume`][google.cloud.lifesciences.v2beta.Volume] or
+/// [`Disk`][google.cloud.lifesciences.v2beta.Disk], but not both.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Volume {
     /// A user-supplied name for the volume. Used when mounting the volume into
-    /// \[`Actions`\]\[google.cloud.lifesciences.v2beta.Action\]. The name must contain
+    /// [`Actions`][google.cloud.lifesciences.v2beta.Action]. The name must contain
     /// only upper and lowercase alphanumeric characters and hyphens and cannot
     /// start with a hyphen.
     #[prost(string, tag = "1")]
@@ -548,7 +548,7 @@ pub struct ExistingDisk {
 /// Configuration for an `NFSMount` to be attached to the VM.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NfsMount {
-    /// A target NFS mount. The target must be specified as \`address:/mount".
+    /// A target NFS mount. The target must be specified as `address:/mount".
     #[prost(string, tag = "1")]
     pub target: ::prost::alloc::string::String,
 }
@@ -604,43 +604,43 @@ pub mod event {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Details {
         /// See
-        /// \[google.cloud.lifesciences.v2beta.DelayedEvent\]\[google.cloud.lifesciences.v2beta.DelayedEvent\].
+        /// [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
         #[prost(message, tag = "17")]
         Delayed(super::DelayedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.WorkerAssignedEvent\]\[google.cloud.lifesciences.v2beta.WorkerAssignedEvent\].
+        /// [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
         #[prost(message, tag = "18")]
         WorkerAssigned(super::WorkerAssignedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.WorkerReleasedEvent\]\[google.cloud.lifesciences.v2beta.WorkerReleasedEvent\].
+        /// [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
         #[prost(message, tag = "19")]
         WorkerReleased(super::WorkerReleasedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.PullStartedEvent\]\[google.cloud.lifesciences.v2beta.PullStartedEvent\].
+        /// [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
         #[prost(message, tag = "20")]
         PullStarted(super::PullStartedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.PullStoppedEvent\]\[google.cloud.lifesciences.v2beta.PullStoppedEvent\].
+        /// [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
         #[prost(message, tag = "21")]
         PullStopped(super::PullStoppedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.ContainerStartedEvent\]\[google.cloud.lifesciences.v2beta.ContainerStartedEvent\].
+        /// [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
         #[prost(message, tag = "22")]
         ContainerStarted(super::ContainerStartedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.ContainerStoppedEvent\]\[google.cloud.lifesciences.v2beta.ContainerStoppedEvent\].
+        /// [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
         #[prost(message, tag = "23")]
         ContainerStopped(super::ContainerStoppedEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.ContainerKilledEvent\]\[google.cloud.lifesciences.v2beta.ContainerKilledEvent\].
+        /// [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
         #[prost(message, tag = "24")]
         ContainerKilled(super::ContainerKilledEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent\]\[google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent\].
+        /// [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
         #[prost(message, tag = "25")]
         UnexpectedExitStatus(super::UnexpectedExitStatusEvent),
         /// See
-        /// \[google.cloud.lifesciences.v2beta.FailedEvent\]\[google.cloud.lifesciences.v2beta.FailedEvent\].
+        /// [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
         #[prost(message, tag = "26")]
         Failed(super::FailedEvent),
     }
@@ -773,7 +773,13 @@ pub struct FailedEvent {
 }
 /// Generated client implementations.
 pub mod workflows_service_v2_beta_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service for running workflows, such as pipelines consisting of Docker
@@ -849,12 +855,12 @@ pub mod workflows_service_v2_beta_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Runs a pipeline.  The returned Operation's \[metadata\]
-        /// \[google.longrunning.Operation.metadata\] field will contain a
-        /// \[google.cloud.lifesciences.v2beta.Metadata\]\[google.cloud.lifesciences.v2beta.Metadata\]
+        /// Runs a pipeline.  The returned Operation's [metadata]
+        /// [google.longrunning.Operation.metadata] field will contain a
+        /// [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata]
         /// object describing the status of the pipeline execution. The
-        /// \[response\]\[google.longrunning.Operation.response\] field will contain a
-        /// \[google.cloud.lifesciences.v2beta.RunPipelineResponse\]\[google.cloud.lifesciences.v2beta.RunPipelineResponse\]
+        /// [response][google.longrunning.Operation.response] field will contain a
+        /// [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse]
         /// object if the pipeline completes successfully.
         ///
         /// **Note:** Before you can use this method, the *Life Sciences Service Agent*
@@ -877,8 +883,7 @@ pub mod workflows_service_v2_beta_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

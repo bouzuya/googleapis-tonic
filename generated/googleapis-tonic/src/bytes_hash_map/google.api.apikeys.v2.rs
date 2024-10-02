@@ -145,12 +145,12 @@ pub struct ApiTarget {
     pub service: ::prost::alloc::string::String,
     /// Optional. List of one or more methods that can be called.
     /// If empty, all methods for the service are allowed. A wildcard
-    /// (\*) can be used as the last symbol.
+    /// (*) can be used as the last symbol.
     /// Valid examples:
-    /// `google.cloud.translate.v2.TranslateService.GetSupportedLanguage`
-    /// `TranslateText`
-    /// `Get*`
-    /// `translate.googleapis.com.Get*`
+    ///    `google.cloud.translate.v2.TranslateService.GetSupportedLanguage`
+    ///    `TranslateText`
+    ///    `Get*`
+    ///    `translate.googleapis.com.Get*`
     #[prost(string, repeated, tag = "2")]
     pub methods: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -238,7 +238,7 @@ pub struct UpdateKeyRequest {
     /// Mutable fields are: `display_name`, `restrictions`, and `annotations`.
     /// If an update mask is not provided, the service treats it as an implied mask
     /// equivalent to all allowed fields that are set on the wire. If the field
-    /// mask has a special value "\*", the service treats it equivalent to replace
+    /// mask has a special value "*", the service treats it equivalent to replace
     /// all allowed mutable fields.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -281,7 +281,13 @@ pub struct LookupKeyResponse {
 }
 /// Generated client implementations.
 pub mod api_keys_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages the API keys associated with projects.
@@ -369,8 +375,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -399,8 +404,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -426,8 +430,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -455,8 +458,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -487,8 +489,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -517,8 +518,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -546,8 +546,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -576,8 +575,7 @@ pub mod api_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

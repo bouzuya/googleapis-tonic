@@ -8,7 +8,8 @@ pub struct OperationMetadata {
     /// Output only. The type of operation being performed.
     #[prost(enumeration = "operation_metadata::Type", tag = "2")]
     pub operation_type: i32,
-    /// Output only. The resource being operated on, as a [relative resource name](/apis/design/resource_names#relative_resource_name).
+    /// Output only. The resource being operated on, as a [relative resource name](
+    /// /apis/design/resource_names#relative_resource_name).
     #[prost(string, tag = "3")]
     pub resource: ::prost::alloc::string::String,
     /// Output only. The UUID of the resource being operated on.
@@ -56,11 +57,11 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Successful => "SUCCESSFUL",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Successful => "SUCCESSFUL",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -114,14 +115,14 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Create => "CREATE",
-                Type::Delete => "DELETE",
-                Type::Update => "UPDATE",
-                Type::Check => "CHECK",
-                Type::SaveSnapshot => "SAVE_SNAPSHOT",
-                Type::LoadSnapshot => "LOAD_SNAPSHOT",
-                Type::DatabaseFailover => "DATABASE_FAILOVER",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Delete => "DELETE",
+                Self::Update => "UPDATE",
+                Self::Check => "CHECK",
+                Self::SaveSnapshot => "SAVE_SNAPSHOT",
+                Self::LoadSnapshot => "LOAD_SNAPSHOT",
+                Self::DatabaseFailover => "DATABASE_FAILOVER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -211,17 +212,15 @@ pub struct UpdateEnvironmentRequest {
     /// "config.softwareConfig.pypiPackages.argparse". The included patch
     /// environment would specify the scikit-learn version as follows:
     ///
-    /// ```text
-    /// {
-    ///    "config":{
-    ///      "softwareConfig":{
-    ///        "pypiPackages":{
-    ///          "scikit-learn":"==0.19.0"
+    ///      {
+    ///        "config":{
+    ///          "softwareConfig":{
+    ///            "pypiPackages":{
+    ///              "scikit-learn":"==0.19.0"
+    ///            }
+    ///          }
     ///        }
     ///      }
-    ///    }
-    /// }
-    /// ```
     ///
     /// Note that in the above example, any existing PyPI packages
     /// other than scikit-learn and argparse will be unaffected.
@@ -235,14 +234,12 @@ pub struct UpdateEnvironmentRequest {
     /// provide the paths "labels.label1", "labels.label2", and "labels.label3"
     /// and populate the patch environment as follows:
     ///
-    /// ```text
-    /// {
-    ///    "labels":{
-    ///      "label1":"new-label1-value"
-    ///      "label2":"new-label2-value"
-    ///    }
-    /// }
-    /// ```
+    ///      {
+    ///        "labels":{
+    ///          "label1":"new-label1-value"
+    ///          "label2":"new-label2-value"
+    ///        }
+    ///      }
     ///
     /// Note that in the above example, any existing labels that are not
     /// included in the `updateMask` will be unaffected.
@@ -255,103 +252,101 @@ pub struct UpdateEnvironmentRequest {
     /// the path "config.softwareConfig.pypiPackages", and
     /// the patch environment would be the following:
     ///
-    /// ```text
-    /// {
-    ///    "config":{
-    ///      "softwareConfig":{
-    ///        "pypiPackages":{
-    ///          "botocore":"==1.7.14"
+    ///      {
+    ///        "config":{
+    ///          "softwareConfig":{
+    ///            "pypiPackages":{
+    ///              "botocore":"==1.7.14"
+    ///            }
+    ///          }
     ///        }
     ///      }
-    ///    }
-    /// }
-    /// ```
     ///
     /// **Note:** Only the following fields can be updated:
     ///
     /// * `config.softwareConfig.pypiPackages`
-    ///   * Replace all custom custom PyPI packages. If a replacement
-    ///     package map is not included in `environment`, all custom
-    ///     PyPI packages are cleared. It is an error to provide both
-    ///     this mask and a mask specifying an individual package.
+    ///      * Replace all custom custom PyPI packages. If a replacement
+    ///        package map is not included in `environment`, all custom
+    ///        PyPI packages are cleared. It is an error to provide both
+    ///        this mask and a mask specifying an individual package.
     /// * `config.softwareConfig.pypiPackages.`packagename
-    ///   * Update the custom PyPI package *packagename*,
-    ///     preserving other packages. To delete the package, include it in
-    ///     `updateMask`, and omit the mapping for it in
-    ///     `environment.config.softwareConfig.pypiPackages`. It is an error
-    ///     to provide both a mask of this form and the
-    ///     `config.softwareConfig.pypiPackages` mask.
+    ///      * Update the custom PyPI package *packagename*,
+    ///        preserving other packages. To delete the package, include it in
+    ///        `updateMask`, and omit the mapping for it in
+    ///        `environment.config.softwareConfig.pypiPackages`. It is an error
+    ///        to provide both a mask of this form and the
+    ///        `config.softwareConfig.pypiPackages` mask.
     /// * `labels`
-    ///   * Replace all environment labels. If a replacement labels map is not
-    ///     included in `environment`, all labels are cleared. It is an error to
-    ///     provide both this mask and a mask specifying one or more individual
-    ///     labels.
+    ///      * Replace all environment labels. If a replacement labels map is not
+    ///        included in `environment`, all labels are cleared. It is an error to
+    ///        provide both this mask and a mask specifying one or more individual
+    ///        labels.
     /// * `labels.`labelName
-    ///   * Set the label named *labelName*, while preserving other
-    ///     labels. To delete the label, include it in `updateMask` and omit its
-    ///     mapping in `environment.labels`. It is an error to provide both a
-    ///     mask of this form and the `labels` mask.
+    ///      * Set the label named *labelName*, while preserving other
+    ///        labels. To delete the label, include it in `updateMask` and omit its
+    ///        mapping in `environment.labels`. It is an error to provide both a
+    ///        mask of this form and the `labels` mask.
     /// * `config.nodeCount`
-    ///   * Horizontally scale the number of nodes in the environment. An integer
-    ///     greater than or equal to 3 must be provided in the `config.nodeCount`
-    ///     field. Supported for Cloud Composer environments in versions
-    ///     composer-1.*.*-airflow-*.*.\*.
+    ///      * Horizontally scale the number of nodes in the environment. An integer
+    ///        greater than or equal to 3 must be provided in the `config.nodeCount`
+    ///        field. Supported for Cloud Composer environments in versions
+    ///        composer-1.*.*-airflow-*.*.*.
     /// * `config.webServerNetworkAccessControl`
-    ///   * Replace the environment's current WebServerNetworkAccessControl.
+    ///      * Replace the environment's current WebServerNetworkAccessControl.
     /// * `config.softwareConfig.airflowConfigOverrides`
-    ///   * Replace all Apache Airflow config overrides. If a replacement config
-    ///     overrides map is not included in `environment`, all config overrides
-    ///     are cleared.
-    ///     It is an error to provide both this mask and a mask specifying one or
-    ///     more individual config overrides.
+    ///      * Replace all Apache Airflow config overrides. If a replacement config
+    ///        overrides map is not included in `environment`, all config overrides
+    ///        are cleared.
+    ///        It is an error to provide both this mask and a mask specifying one or
+    ///        more individual config overrides.
     /// * `config.softwareConfig.airflowConfigOverrides.`section-name
-    ///   * Override the Apache Airflow config property *name* in the
-    ///     section named *section*, preserving other properties. To
-    ///     delete the property override, include it in `updateMask` and omit its
-    ///     mapping in
-    ///     `environment.config.softwareConfig.airflowConfigOverrides`.
-    ///     It is an error to provide both a mask of this form and the
-    ///     `config.softwareConfig.airflowConfigOverrides` mask.
+    ///      * Override the Apache Airflow config property *name* in the
+    ///        section named *section*, preserving other properties. To
+    ///        delete the property override, include it in `updateMask` and omit its
+    ///        mapping in
+    ///        `environment.config.softwareConfig.airflowConfigOverrides`.
+    ///        It is an error to provide both a mask of this form and the
+    ///        `config.softwareConfig.airflowConfigOverrides` mask.
     /// * `config.softwareConfig.envVariables`
-    ///   * Replace all environment variables. If a replacement environment
-    ///     variable map is not included in `environment`, all custom environment
-    ///     variables are cleared.
+    ///      * Replace all environment variables. If a replacement environment
+    ///        variable map is not included in `environment`, all custom environment
+    ///        variables are cleared.
     /// * `config.softwareConfig.imageVersion`
-    ///   * Upgrade the version of the environment in-place. Refer to
-    ///     `SoftwareConfig.image_version` for information on how to format the
-    ///     new image version. Additionally, the new image version cannot effect
-    ///     a version downgrade, and must match the current image version's
-    ///     Composer and Airflow major versions. Consult the [Cloud Composer
-    ///     version list](/composer/docs/concepts/versioning/composer-versions)
-    ///     for valid values.
+    ///      * Upgrade the version of the environment in-place. Refer to
+    ///        `SoftwareConfig.image_version` for information on how to format the
+    ///        new image version. Additionally, the new image version cannot effect
+    ///        a version downgrade, and must match the current image version's
+    ///        Composer and Airflow major versions. Consult the [Cloud Composer
+    ///        version list](/composer/docs/concepts/versioning/composer-versions)
+    ///        for valid values.
     /// * `config.softwareConfig.schedulerCount`
-    ///   * Horizontally scale the number of schedulers in Airflow. A positive
-    ///     integer not greater than the number of nodes must be provided in the
-    ///     `config.softwareConfig.schedulerCount` field. Supported for Cloud
-    ///     Composer environments in versions composer-1.*.*-airflow-2.*.*.
+    ///      * Horizontally scale the number of schedulers in Airflow. A positive
+    ///        integer not greater than the number of nodes must be provided in the
+    ///        `config.softwareConfig.schedulerCount` field. Supported for Cloud
+    ///        Composer environments in versions composer-1.*.*-airflow-2.*.*.
     /// * `config.softwareConfig.cloudDataLineageIntegration`
-    ///   * Configuration for Cloud Data Lineage integration.
+    ///      * Configuration for Cloud Data Lineage integration.
     /// * `config.databaseConfig.machineType`
-    ///   * Cloud SQL machine type used by Airflow database.
-    ///     It has to be one of: db-n1-standard-2, db-n1-standard-4,
-    ///     db-n1-standard-8 or db-n1-standard-16. Supported for Cloud Composer
-    ///     environments in versions composer-1.*.*-airflow-*.*.\*.
+    ///      * Cloud SQL machine type used by Airflow database.
+    ///        It has to be one of: db-n1-standard-2, db-n1-standard-4,
+    ///        db-n1-standard-8 or db-n1-standard-16. Supported for Cloud Composer
+    ///        environments in versions composer-1.*.*-airflow-*.*.*.
     /// * `config.webServerConfig.machineType`
-    ///   * Machine type on which Airflow web server is running.
-    ///     It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4
-    ///     or composer-n1-webserver-8. Supported for Cloud Composer environments
-    ///     in versions composer-1.*.*-airflow-*.*.\*.
+    ///      * Machine type on which Airflow web server is running.
+    ///        It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4
+    ///        or composer-n1-webserver-8. Supported for Cloud Composer environments
+    ///        in versions composer-1.*.*-airflow-*.*.*.
     /// * `config.maintenanceWindow`
-    ///   * Maintenance window during which Cloud Composer components may be
-    ///     under maintenance.
+    ///      * Maintenance window during which Cloud Composer components may be
+    ///        under maintenance.
     /// * `config.workloadsConfig`
-    ///   * The workloads configuration settings for the GKE cluster associated
-    ///     with the Cloud Composer environment. Supported for Cloud Composer
-    ///     environments in versions composer-2.*.*-airflow-*.*.\* and newer.
+    ///      * The workloads configuration settings for the GKE cluster associated
+    ///        with the Cloud Composer environment. Supported for Cloud Composer
+    ///        environments in versions composer-2.*.*-airflow-*.*.* and newer.
     /// * `config.environmentSize`
-    ///   * The size of the Cloud Composer environment. Supported for Cloud
-    ///     Composer environments in versions composer-2.*.*-airflow-*.*.\* and
-    ///     newer.
+    ///      * The size of the Cloud Composer environment. Supported for Cloud
+    ///        Composer environments in versions composer-2.*.*-airflow-*.*.* and
+    ///        newer.
     #[prost(message, optional, tag = "3")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -742,15 +737,15 @@ pub mod list_workloads_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ComposerWorkloadType::Unspecified => "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
-                ComposerWorkloadType::CeleryWorker => "CELERY_WORKER",
-                ComposerWorkloadType::KubernetesWorker => "KUBERNETES_WORKER",
-                ComposerWorkloadType::KubernetesOperatorPod => "KUBERNETES_OPERATOR_POD",
-                ComposerWorkloadType::Scheduler => "SCHEDULER",
-                ComposerWorkloadType::DagProcessor => "DAG_PROCESSOR",
-                ComposerWorkloadType::Triggerer => "TRIGGERER",
-                ComposerWorkloadType::WebServer => "WEB_SERVER",
-                ComposerWorkloadType::Redis => "REDIS",
+                Self::Unspecified => "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
+                Self::CeleryWorker => "CELERY_WORKER",
+                Self::KubernetesWorker => "KUBERNETES_WORKER",
+                Self::KubernetesOperatorPod => "KUBERNETES_OPERATOR_POD",
+                Self::Scheduler => "SCHEDULER",
+                Self::DagProcessor => "DAG_PROCESSOR",
+                Self::Triggerer => "TRIGGERER",
+                Self::WebServer => "WEB_SERVER",
+                Self::Redis => "REDIS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -805,15 +800,13 @@ pub mod list_workloads_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ComposerWorkloadState::Unspecified => {
-                    "COMPOSER_WORKLOAD_STATE_UNSPECIFIED"
-                }
-                ComposerWorkloadState::Pending => "PENDING",
-                ComposerWorkloadState::Ok => "OK",
-                ComposerWorkloadState::Warning => "WARNING",
-                ComposerWorkloadState::Error => "ERROR",
-                ComposerWorkloadState::Succeeded => "SUCCEEDED",
-                ComposerWorkloadState::Failed => "FAILED",
+                Self::Unspecified => "COMPOSER_WORKLOAD_STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Ok => "OK",
+                Self::Warning => "WARNING",
+                Self::Error => "ERROR",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -937,7 +930,7 @@ pub struct EnvironmentConfig {
     /// used to run this environment.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(int32, tag = "3")]
     pub node_count: i32,
     /// The configuration settings for software inside the environment.
@@ -964,7 +957,7 @@ pub struct EnvironmentConfig {
     /// instance.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(message, optional, tag = "11")]
     pub web_server_config: ::core::option::Option<WebServerConfig>,
     /// Output only. The URI of the Apache Airflow Web UI hosted within this
@@ -1005,21 +998,20 @@ pub struct EnvironmentConfig {
     /// Airflow scheduler, web server and workers workloads.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-2.*.*-airflow-*.*.\* and newer.
+    /// composer-2.*.*-airflow-*.*.* and newer.
     #[prost(message, optional, tag = "15")]
     pub workloads_config: ::core::option::Option<WorkloadsConfig>,
     /// Optional. The size of the Cloud Composer environment.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-2.*.*-airflow-*.*.\* and newer.
+    /// composer-2.*.*-airflow-*.*.* and newer.
     #[prost(enumeration = "environment_config::EnvironmentSize", tag = "16")]
     pub environment_size: i32,
     /// Optional. The configuration options for GKE cluster master authorized
     /// networks. By default master authorized networks feature is:
-    ///
-    /// * in case of private environment: enabled with no external networks
-    ///   allowlisted.
-    /// * in case of public environment: disabled.
+    /// - in case of private environment: enabled with no external networks
+    /// allowlisted.
+    /// - in case of public environment: disabled.
     #[prost(message, optional, tag = "17")]
     pub master_authorized_networks_config: ::core::option::Option<
         MasterAuthorizedNetworksConfig,
@@ -1027,7 +1019,7 @@ pub struct EnvironmentConfig {
     /// Optional. The Recovery settings configuration of an environment.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-2.*.*-airflow-*.*.\* and newer.
+    /// composer-2.*.*-airflow-*.*.* and newer.
     #[prost(message, optional, tag = "18")]
     pub recovery_config: ::core::option::Option<RecoveryConfig>,
     /// Optional. The configuration setting for Airflow database data retention
@@ -1037,7 +1029,7 @@ pub struct EnvironmentConfig {
     /// Optional. Resilience mode of the Cloud Composer Environment.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-2.2.0-airflow-*.*.\* and newer.
+    /// composer-2.2.0-airflow-*.*.* and newer.
     #[prost(enumeration = "environment_config::ResilienceMode", tag = "20")]
     pub resilience_mode: i32,
 }
@@ -1073,10 +1065,10 @@ pub mod environment_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnvironmentSize::Unspecified => "ENVIRONMENT_SIZE_UNSPECIFIED",
-                EnvironmentSize::Small => "ENVIRONMENT_SIZE_SMALL",
-                EnvironmentSize::Medium => "ENVIRONMENT_SIZE_MEDIUM",
-                EnvironmentSize::Large => "ENVIRONMENT_SIZE_LARGE",
+                Self::Unspecified => "ENVIRONMENT_SIZE_UNSPECIFIED",
+                Self::Small => "ENVIRONMENT_SIZE_SMALL",
+                Self::Medium => "ENVIRONMENT_SIZE_MEDIUM",
+                Self::Large => "ENVIRONMENT_SIZE_LARGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1116,8 +1108,8 @@ pub mod environment_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResilienceMode::Unspecified => "RESILIENCE_MODE_UNSPECIFIED",
-                ResilienceMode::HighResilience => "HIGH_RESILIENCE",
+                Self::Unspecified => "RESILIENCE_MODE_UNSPECIFIED",
+                Self::HighResilience => "HIGH_RESILIENCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1147,7 +1139,7 @@ pub mod web_server_network_access_control {
         /// IP address or range, defined using CIDR notation, of requests that this
         /// rule applies to.
         /// Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32`
-        /// or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
+        ///            or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
         ///
         /// IP range prefixes should be properly truncated. For example,
         /// `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6,
@@ -1193,8 +1185,8 @@ pub struct SoftwareConfig {
     ///
     /// Property keys contain the section and property names, separated by a
     /// hyphen, for example "core-dags_are_paused_at_creation". Section names must
-    /// not contain hyphens ("-"), opening square brackets ("\["),  or closing
-    /// square brackets ("\]"). The property name must not be empty and must not
+    /// not contain hyphens ("-"), opening square brackets ("["),  or closing
+    /// square brackets ("]"). The property name must not be empty and must not
     /// contain an equals sign ("=") or semicolon (";"). Section and property names
     /// must not contain a period ("."). Apache Airflow configuration property
     /// names must be written in
@@ -1214,7 +1206,7 @@ pub struct SoftwareConfig {
     ///
     /// Keys refer to the lowercase package name such as "numpy"
     /// and values are the lowercase extras and version specifier such as
-    /// "==1.12.0", "\[devel,gcp_api\]", or "\[devel\]\>=1.8.2, \<1.9.2". To specify a
+    /// "==1.12.0", "\[devel,gcp_api\]", or "\[devel\]>=1.8.2, <1.9.2". To specify a
     /// package without pinning it to a version specifier, use the empty string as
     /// the value.
     #[prost(map = "string, string", tag = "3")]
@@ -1256,7 +1248,7 @@ pub struct SoftwareConfig {
     /// updated.
     ///
     /// This field is only supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*. Environments in newer versions always use
+    /// composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
     /// Python major version 3.
     #[prost(string, tag = "6")]
     pub python_version: ::prost::alloc::string::String,
@@ -1275,7 +1267,7 @@ pub struct SoftwareConfig {
     /// If unspecified, the field defaults to `PLUGINS_ENABLED`.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.\* and newer.
+    /// composer-3.*.*-airflow-*.*.* and newer.
     #[prost(enumeration = "software_config::WebServerPluginsMode", tag = "10")]
     pub web_server_plugins_mode: i32,
 }
@@ -1309,11 +1301,9 @@ pub mod software_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                WebServerPluginsMode::Unspecified => {
-                    "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED"
-                }
-                WebServerPluginsMode::PluginsDisabled => "PLUGINS_DISABLED",
-                WebServerPluginsMode::PluginsEnabled => "PLUGINS_ENABLED",
+                Self::Unspecified => "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
+                Self::PluginsDisabled => "PLUGINS_DISABLED",
+                Self::PluginsEnabled => "PLUGINS_ENABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1335,7 +1325,7 @@ pub struct IpAllocationPolicy {
     /// If `true`, a VPC-native cluster is created.
     ///
     /// This field is only supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*. Environments in newer versions always use
+    /// composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
     /// VPC-native GKE clusters.
     #[prost(bool, tag = "1")]
     pub use_ip_aliases: bool,
@@ -1343,7 +1333,7 @@ pub struct IpAllocationPolicy {
     /// IP addresses to pods. Specify either `cluster_secondary_range_name`
     /// or `cluster_ipv4_cidr_block` but not both.
     ///
-    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.\*,
+    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
     /// this field is applicable only when `use_ip_aliases` is true.
     #[prost(string, tag = "2")]
     pub cluster_secondary_range_name: ::prost::alloc::string::String,
@@ -1351,14 +1341,14 @@ pub struct IpAllocationPolicy {
     /// IP addresses to the cluster. Specify either `services_secondary_range_name`
     /// or `services_ipv4_cidr_block` but not both.
     ///
-    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.\*,
+    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
     /// this field is applicable only when `use_ip_aliases` is true.
     #[prost(string, tag = "3")]
     pub services_secondary_range_name: ::prost::alloc::string::String,
     /// Optional. The IP address range used to allocate IP addresses to pods in
     /// the cluster.
     ///
-    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.\*,
+    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
     /// this field is applicable only when `use_ip_aliases` is true.
     ///
     /// Set to blank to have GKE choose a range with the default size.
@@ -1378,7 +1368,7 @@ pub struct IpAllocationPolicy {
     /// Optional. The IP address range of the services IP addresses in this
     /// cluster.
     ///
-    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.\*,
+    /// For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
     /// this field is applicable only when `use_ip_aliases` is true.
     ///
     /// Set to blank to have GKE choose a range with the default size.
@@ -1416,7 +1406,7 @@ pub struct NodeConfig {
     /// propagated to the unspecified field.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(string, tag = "1")]
     pub location: ::prost::alloc::string::String,
     /// Optional. The Compute Engine
@@ -1442,7 +1432,7 @@ pub struct NodeConfig {
     /// to "n1-standard-1".
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(string, tag = "2")]
     pub machine_type: ::prost::alloc::string::String,
     /// Optional. The Compute Engine network to be used for machine
@@ -1473,7 +1463,7 @@ pub struct NodeConfig {
     /// If unspecified, defaults to 100GB. Cannot be updated.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(int32, tag = "5")]
     pub disk_size_gb: i32,
     /// Optional. The set of Google API scopes to be made available on all
@@ -1481,7 +1471,7 @@ pub struct NodeConfig {
     /// \["<https://www.googleapis.com/auth/cloud-platform"\].> Cannot be updated.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(string, repeated, tag = "6")]
     pub oauth_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. The Google Cloud Platform Service Account to be used by the
@@ -1504,13 +1494,13 @@ pub struct NodeConfig {
     /// will be propagated both to the `default-pool` node pool of the newly
     /// created GKE cluster, and to the default "Maximum Pods per Node" value which
     /// is used for newly created node pools if their value is not explicitly set
-    /// during node pool creation. For more information, see \[Optimizing IP address
-    /// allocation\]
+    /// during node pool creation. For more information, see [Optimizing IP address
+    /// allocation]
     /// (<https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr>).
     /// Cannot be updated.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(int32, tag = "10")]
     pub max_pods_per_node: i32,
     /// Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines
@@ -1531,7 +1521,7 @@ pub struct NodeConfig {
     /// projects/{project}/regions/{region}/networkAttachments/{networkAttachment}.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.\* and newer.
+    /// composer-3.*.*-airflow-*.*.* and newer.
     #[prost(string, tag = "12")]
     pub composer_network_attachment: ::prost::alloc::string::String,
     /// Optional. The IP range in CIDR notation to use internally by Cloud
@@ -1541,7 +1531,7 @@ pub struct NodeConfig {
     /// If not specified, the default value of '100.64.128.0/20' is used.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.\* and newer.
+    /// composer-3.*.*-airflow-*.*.* and newer.
     #[prost(string, tag = "13")]
     pub composer_internal_ipv4_cidr_block: ::prost::alloc::string::String,
 }
@@ -1610,9 +1600,9 @@ pub mod networking_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConnectionType::Unspecified => "CONNECTION_TYPE_UNSPECIFIED",
-                ConnectionType::VpcPeering => "VPC_PEERING",
-                ConnectionType::PrivateServiceConnect => "PRIVATE_SERVICE_CONNECT",
+                Self::Unspecified => "CONNECTION_TYPE_UNSPECIFIED",
+                Self::VpcPeering => "VPC_PEERING",
+                Self::PrivateServiceConnect => "PRIVATE_SERVICE_CONNECT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1633,7 +1623,7 @@ pub struct PrivateEnvironmentConfig {
     /// Optional. If `true`, a Private IP Cloud Composer environment is created.
     /// If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be
     /// set to true for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(bool, tag = "1")]
     pub enable_private_environment: bool,
     /// Optional. If `true`, builds performed during operations that install Python
@@ -1644,7 +1634,7 @@ pub struct PrivateEnvironmentConfig {
     /// internet.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.\* and newer.
+    /// composer-3.*.*-airflow-*.*.* and newer.
     #[prost(bool, tag = "11")]
     pub enable_private_builds_only: bool,
     /// Optional. Configuration for the private GKE cluster for a Private IP
@@ -1657,7 +1647,7 @@ pub struct PrivateEnvironmentConfig {
     /// cloud_sql_ipv4_cidr_block.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(string, tag = "3")]
     pub web_server_ipv4_cidr_block: ::prost::alloc::string::String,
     /// Optional. The CIDR block from which IP range in tenant project will be
@@ -1668,7 +1658,7 @@ pub struct PrivateEnvironmentConfig {
     /// Output only. The IP range reserved for the tenant project's App Engine VMs.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(string, tag = "5")]
     pub web_server_ipv4_reserved_range: ::prost::alloc::string::String,
     /// Optional. The CIDR block from which IP range for Cloud Composer Network in
@@ -1677,14 +1667,14 @@ pub struct PrivateEnvironmentConfig {
     /// cloud_sql_ipv4_cidr_block.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-2.*.*-airflow-*.*.\* and newer.
+    /// composer-2.*.*-airflow-*.*.* and newer.
     #[prost(string, tag = "7")]
     pub cloud_composer_network_ipv4_cidr_block: ::prost::alloc::string::String,
     /// Output only. The IP range reserved for the tenant project's Cloud Composer
     /// network.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-2.*.*-airflow-*.*.\* and newer.
+    /// composer-2.*.*-airflow-*.*.* and newer.
     #[prost(string, tag = "8")]
     pub cloud_composer_network_ipv4_reserved_range: ::prost::alloc::string::String,
     /// Optional. When enabled, IPs from public (non-RFC1918) ranges can be used
@@ -1711,20 +1701,20 @@ pub struct DatabaseConfig {
     /// It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8
     /// or db-n1-standard-16. If not specified, db-n1-standard-2 will be used.
     /// Supported for Cloud Composer environments in versions
-    /// composer-1.*.*-airflow-*.*.\*.
+    /// composer-1.*.*-airflow-*.*.*.
     #[prost(string, tag = "1")]
     pub machine_type: ::prost::alloc::string::String,
     /// Optional. The Compute Engine zone where the Airflow database is created. If
     /// zone is provided, it must be in the region selected for the environment. If
     /// zone is not provided, a zone is automatically selected. The zone can only
     /// be set during environment creation. Supported for Cloud Composer
-    /// environments in versions composer-2.*.*-airflow-*.*.\*.
+    /// environments in versions composer-2.*.*-airflow-*.*.*.
     #[prost(string, tag = "2")]
     pub zone: ::prost::alloc::string::String,
 }
 /// The configuration settings for the Airflow web server App Engine instance.
 /// Supported for Cloud Composer environments in versions
-/// composer-1.*.*-airflow-*.*.\*.
+/// composer-1.*.*-airflow-*.*.*.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebServerConfig {
     /// Optional. Machine type on which Airflow web server is running.
@@ -1738,7 +1728,7 @@ pub struct WebServerConfig {
 }
 /// The encryption options for the Cloud Composer environment and its
 /// dependencies. Supported for Cloud Composer environments in versions
-/// composer-1.*.*-airflow-*.*.\*.
+/// composer-1.*.*-airflow-*.*.*.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptionConfig {
     /// Optional. Customer-managed Encryption Key available through Google's Key
@@ -1750,12 +1740,12 @@ pub struct EncryptionConfig {
 /// The configuration settings for Cloud Composer maintenance window.
 /// The following example:
 ///
-/// ```text,
-///    {
-///      "startTime":"2019-08-01T01:00:00Z"
-///      "endTime":"2019-08-01T07:00:00Z"
-///      "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE"
-///    }
+/// ```
+///     {
+///       "startTime":"2019-08-01T01:00:00Z"
+///       "endTime":"2019-08-01T07:00:00Z"
+///       "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE"
+///     }
 /// ```
 ///
 /// would define a maintenance window between 01 and 07 hours UTC during
@@ -1779,7 +1769,7 @@ pub struct MaintenanceWindow {
 }
 /// The Kubernetes workloads configuration for GKE cluster associated with the
 /// Cloud Composer environment. Supported for Cloud Composer environments in
-/// versions composer-2.*.*-airflow-*.*.\* and newer.
+/// versions composer-2.*.*-airflow-*.*.* and newer.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WorkloadsConfig {
     /// Optional. Resources used by Airflow schedulers.
@@ -1797,7 +1787,7 @@ pub struct WorkloadsConfig {
     /// Optional. Resources used by Airflow DAG processors.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.\* and newer.
+    /// composer-3.*.*-airflow-*.*.* and newer.
     #[prost(message, optional, tag = "5")]
     pub dag_processor: ::core::option::Option<workloads_config::DagProcessorResource>,
 }
@@ -1872,7 +1862,7 @@ pub mod workloads_config {
     /// Configuration for resources used by Airflow DAG processors.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.\* and newer.
+    /// composer-3.*.*-airflow-*.*.* and newer.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct DagProcessorResource {
         /// Optional. CPU request and limit for a single Airflow DAG processor
@@ -1949,11 +1939,9 @@ pub mod task_logs_retention_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TaskLogsStorageMode::Unspecified => "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
-                TaskLogsStorageMode::CloudLoggingAndCloudStorage => {
-                    "CLOUD_LOGGING_AND_CLOUD_STORAGE"
-                }
-                TaskLogsStorageMode::CloudLoggingOnly => "CLOUD_LOGGING_ONLY",
+                Self::Unspecified => "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
+                Self::CloudLoggingAndCloudStorage => "CLOUD_LOGGING_AND_CLOUD_STORAGE",
+                Self::CloudLoggingOnly => "CLOUD_LOGGING_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2012,9 +2000,9 @@ pub mod airflow_metadata_retention_policy_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RetentionMode::Unspecified => "RETENTION_MODE_UNSPECIFIED",
-                RetentionMode::Enabled => "RETENTION_MODE_ENABLED",
-                RetentionMode::Disabled => "RETENTION_MODE_DISABLED",
+                Self::Unspecified => "RETENTION_MODE_UNSPECIFIED",
+                Self::Enabled => "RETENTION_MODE_ENABLED",
+                Self::Disabled => "RETENTION_MODE_DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2129,10 +2117,10 @@ pub struct Environment {
     /// The labels map can contain no more than 64 entries. Entries of the labels
     /// map are UTF8 strings that comply with the following restrictions:
     ///
-    /// * Keys must conform to regexp: \[\\p{Ll}\p{Lo}\]\[\\p{Ll}\p{Lo}\p{N}\_-\]{0,62}
-    /// * Values must conform to regexp:  \[\\p{Ll}\p{Lo}\p{N}\_-\]{0,63}
-    /// * Both keys and values are additionally constrained to be \<= 128 bytes in
-    ///   size.
+    /// * Keys must conform to regexp: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+    /// * Values must conform to regexp:  \[\p{Ll}\p{Lo}\p{N}_-\]{0,63}
+    /// * Both keys and values are additionally constrained to be <= 128 bytes in
+    /// size.
     #[prost(map = "string, string", tag = "7")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -2185,12 +2173,12 @@ pub mod environment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Running => "RUNNING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Running => "RUNNING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2297,9 +2285,9 @@ pub mod check_upgrade_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConflictResult::Unspecified => "CONFLICT_RESULT_UNSPECIFIED",
-                ConflictResult::Conflict => "CONFLICT",
-                ConflictResult::NoConflict => "NO_CONFLICT",
+                Self::Unspecified => "CONFLICT_RESULT_UNSPECIFIED",
+                Self::Conflict => "CONFLICT",
+                Self::NoConflict => "NO_CONFLICT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2315,7 +2303,13 @@ pub mod check_upgrade_response {
 }
 /// Generated client implementations.
 pub mod environments_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Managed Apache Airflow Environments.
@@ -2402,8 +2396,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2430,8 +2423,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2461,8 +2453,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2494,8 +2485,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2527,8 +2517,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2560,8 +2549,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2595,8 +2583,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2626,8 +2613,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2657,8 +2643,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2688,8 +2673,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2711,7 +2695,7 @@ pub mod environments_client {
         /// runs a single Composer component.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn list_workloads(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
@@ -2723,8 +2707,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2745,7 +2728,7 @@ pub mod environments_client {
         /// Creates a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn create_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserWorkloadsSecretRequest>,
@@ -2757,8 +2740,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2780,7 +2762,7 @@ pub mod environments_client {
         /// Values of the "data" field in the response are cleared.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn get_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserWorkloadsSecretRequest>,
@@ -2792,8 +2774,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2814,7 +2795,7 @@ pub mod environments_client {
         /// Lists user workloads Secrets.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn list_user_workloads_secrets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUserWorkloadsSecretsRequest>,
@@ -2826,8 +2807,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2848,7 +2828,7 @@ pub mod environments_client {
         /// Updates a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn update_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserWorkloadsSecretRequest>,
@@ -2860,8 +2840,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2882,7 +2861,7 @@ pub mod environments_client {
         /// Deletes a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn delete_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserWorkloadsSecretRequest>,
@@ -2891,8 +2870,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2913,7 +2891,7 @@ pub mod environments_client {
         /// Creates a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn create_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserWorkloadsConfigMapRequest>,
@@ -2925,8 +2903,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2947,7 +2924,7 @@ pub mod environments_client {
         /// Gets an existing user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn get_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserWorkloadsConfigMapRequest>,
@@ -2959,8 +2936,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2981,7 +2957,7 @@ pub mod environments_client {
         /// Lists user workloads ConfigMaps.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn list_user_workloads_config_maps(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUserWorkloadsConfigMapsRequest>,
@@ -2993,8 +2969,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3015,7 +2990,7 @@ pub mod environments_client {
         /// Updates a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn update_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserWorkloadsConfigMapRequest>,
@@ -3027,8 +3002,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3049,7 +3023,7 @@ pub mod environments_client {
         /// Deletes a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.\* and newer.
+        /// composer-3.*.*-airflow-*.*.* and newer.
         pub async fn delete_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserWorkloadsConfigMapRequest>,
@@ -3058,8 +3032,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3094,8 +3067,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3130,8 +3102,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3163,8 +3134,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3194,8 +3164,7 @@ pub mod environments_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3273,7 +3242,13 @@ pub struct ImageVersion {
 }
 /// Generated client implementations.
 pub mod image_versions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Readonly service to query available ImageVersions.
@@ -3358,8 +3333,7 @@ pub mod image_versions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

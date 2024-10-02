@@ -75,8 +75,8 @@ pub mod channel {
         /// permanently. There are two possible cases this state can happen:
         ///
         /// 1. The SaaS provider disconnected from this Channel.
-        /// 1. The Channel activation token has expired but the SaaS provider
-        ///    wasn't connected.
+        /// 2. The Channel activation token has expired but the SaaS provider
+        ///     wasn't connected.
         ///
         /// To re-establish a Connection with a provider, the subscriber
         /// should create a new Channel and give it to the provider.
@@ -89,10 +89,10 @@ pub mod channel {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Active => "ACTIVE",
-                State::Inactive => "INACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -510,7 +510,7 @@ pub struct UpdateTriggerRequest {
     pub trigger: ::core::option::Option<Trigger>,
     /// The fields to be updated; only fields explicitly provided are updated.
     /// If no field mask is provided, all provided fields in the request are
-    /// updated. To update all fields, provide a field mask of "\*".
+    /// updated. To update all fields, provide a field mask of "*".
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// If set to true, and the trigger is not found, a new trigger will be
@@ -612,7 +612,7 @@ pub struct UpdateChannelRequest {
     pub channel: ::core::option::Option<Channel>,
     /// The fields to be updated; only fields explicitly provided are updated.
     /// If no field mask is provided, all provided fields in the request are
-    /// updated. To update all fields, provide a field mask of "\*".
+    /// updated. To update all fields, provide a field mask of "*".
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Required. If set, validate the request and preview the review, but do not
@@ -748,7 +748,7 @@ pub struct UpdateGoogleChannelConfigRequest {
     pub google_channel_config: ::core::option::Option<GoogleChannelConfig>,
     /// The fields to be updated; only fields explicitly provided are updated.
     /// If no field mask is provided, all provided fields in the request are
-    /// updated. To update all fields, provide a field mask of "\*".
+    /// updated. To update all fields, provide a field mask of "*".
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -779,7 +779,7 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -789,7 +789,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod eventarc_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Eventarc allows users to subscribe to various events that are provided by
@@ -872,8 +878,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -900,8 +905,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -928,8 +932,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -956,8 +959,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -984,8 +986,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1009,8 +1010,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1037,8 +1037,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1065,8 +1064,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1093,8 +1091,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1121,8 +1118,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1146,8 +1142,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1174,8 +1169,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1202,8 +1196,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1233,8 +1226,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1264,8 +1256,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1295,8 +1286,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1326,8 +1316,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1357,8 +1346,7 @@ pub mod eventarc_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

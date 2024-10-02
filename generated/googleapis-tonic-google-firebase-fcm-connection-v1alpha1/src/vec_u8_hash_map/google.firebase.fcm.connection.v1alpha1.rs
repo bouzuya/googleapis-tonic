@@ -68,7 +68,13 @@ pub struct Message {
 }
 /// Generated client implementations.
 pub mod connection_api_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// FCM's service to create client connections to send/receive messages.
@@ -147,8 +153,9 @@ pub mod connection_api_client {
         /// The client credentials need to be passed in the [gRPC
         /// Metadata](https://grpc.io/docs/guides/concepts.html#metadata). The Format
         /// of the header is:
-        /// Key: "authorization"
-        /// Value: "Checkin \[client_id:secret\]"
+        ///   Key: "authorization"
+        ///   Value: "Checkin [client_id:secret]"
+        ///
         ///
         /// The project's API key also needs to be sent to authorize the project.
         /// That can be set in the X-Goog-Api-Key Metadata header.
@@ -163,8 +170,7 @@ pub mod connection_api_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

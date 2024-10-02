@@ -164,10 +164,9 @@ pub struct VideoClassificationPredictionResult {
     pub display_name: ::prost::alloc::string::String,
     /// The type of the prediction. The requested types can be configured
     /// via parameters. This will be one of
-    ///
-    /// * segment-classification
-    /// * shot-classification
-    /// * one-sec-interval-classification
+    /// - segment-classification
+    /// - shot-classification
+    /// - one-sec-interval-classification
     #[prost(string, tag = "3")]
     pub r#type: ::prost::alloc::string::String,
     /// The beginning, inclusive, of the video's time segment in which the

@@ -57,9 +57,8 @@ pub struct Dimension {
 }
 /// Used to express a dimension which is the result of a formula of multiple
 /// dimensions. Example usages:
-///
-/// 1. lower_case(dimension)
-/// 1. concatenate(dimension1, symbol, dimension2).
+/// 1) lower_case(dimension)
+/// 2) concatenate(dimension1, symbol, dimension2).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionExpression {
     /// Specify one type of dimension expression for `DimensionExpression`.
@@ -262,13 +261,13 @@ pub mod string_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MatchType::Unspecified => "MATCH_TYPE_UNSPECIFIED",
-                MatchType::Exact => "EXACT",
-                MatchType::BeginsWith => "BEGINS_WITH",
-                MatchType::EndsWith => "ENDS_WITH",
-                MatchType::Contains => "CONTAINS",
-                MatchType::FullRegexp => "FULL_REGEXP",
-                MatchType::PartialRegexp => "PARTIAL_REGEXP",
+                Self::Unspecified => "MATCH_TYPE_UNSPECIFIED",
+                Self::Exact => "EXACT",
+                Self::BeginsWith => "BEGINS_WITH",
+                Self::EndsWith => "ENDS_WITH",
+                Self::Contains => "CONTAINS",
+                Self::FullRegexp => "FULL_REGEXP",
+                Self::PartialRegexp => "PARTIAL_REGEXP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -343,12 +342,12 @@ pub mod numeric_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Operation::Unspecified => "OPERATION_UNSPECIFIED",
-                Operation::Equal => "EQUAL",
-                Operation::LessThan => "LESS_THAN",
-                Operation::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-                Operation::GreaterThan => "GREATER_THAN",
-                Operation::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                Self::Unspecified => "OPERATION_UNSPECIFIED",
+                Self::Equal => "EQUAL",
+                Self::LessThan => "LESS_THAN",
+                Self::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+                Self::GreaterThan => "GREATER_THAN",
+                Self::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -414,14 +413,14 @@ pub mod order_by {
         pub enum OrderType {
             /// Unspecified.
             Unspecified = 0,
-            /// Alphanumeric sort by Unicode code point. For example, "2" \< "A" \< "X" \<
-            /// "b" \< "z".
+            /// Alphanumeric sort by Unicode code point. For example, "2" < "A" < "X" <
+            /// "b" < "z".
             Alphanumeric = 1,
             /// Case insensitive alphanumeric sort by lower case Unicode code point.
-            /// For example, "2" \< "A" \< "b" \< "X" \< "z".
+            /// For example, "2" < "A" < "b" < "X" < "z".
             CaseInsensitiveAlphanumeric = 2,
             /// Dimension values are converted to numbers before sorting. For example
-            /// in NUMERIC sort, "25" \< "100", and in `ALPHANUMERIC` sort, "100" \<
+            /// in NUMERIC sort, "25" < "100", and in `ALPHANUMERIC` sort, "100" <
             /// "25". Non-numeric dimension values all have equal ordering value below
             /// all numeric values.
             Numeric = 3,
@@ -433,12 +432,10 @@ pub mod order_by {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
-                    OrderType::Alphanumeric => "ALPHANUMERIC",
-                    OrderType::CaseInsensitiveAlphanumeric => {
-                        "CASE_INSENSITIVE_ALPHANUMERIC"
-                    }
-                    OrderType::Numeric => "NUMERIC",
+                    Self::Unspecified => "ORDER_TYPE_UNSPECIFIED",
+                    Self::Alphanumeric => "ALPHANUMERIC",
+                    Self::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
+                    Self::Numeric => "NUMERIC",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -637,10 +634,10 @@ pub mod cohorts_range {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
-                Granularity::Daily => "DAILY",
-                Granularity::Weekly => "WEEKLY",
-                Granularity::Monthly => "MONTHLY",
+                Self::Unspecified => "GRANULARITY_UNSPECIFIED",
+                Self::Daily => "DAILY",
+                Self::Weekly => "WEEKLY",
+                Self::Monthly => "MONTHLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -781,38 +778,38 @@ pub struct MetricHeader {
 /// Report data for each row.
 /// For example if RunReportRequest contains:
 ///
-/// ```text,none
+/// ```none
 /// "dimensions": [
-///   {
-///     "name": "eventName"
-///   },
-///   {
-///     "name": "countryId"
-///   }
+///    {
+///      "name": "eventName"
+///    },
+///    {
+///      "name": "countryId"
+///    }
 /// ],
 /// "metrics": [
-///   {
-///     "name": "eventCount"
-///   }
+///    {
+///      "name": "eventCount"
+///    }
 /// ]
 /// ```
 ///
 /// One row with 'in_app_purchase' as the eventName, 'JP' as the countryId, and
 /// 15 as the eventCount, would be:
 ///
-/// ```text,none
+/// ```none
 /// "dimensionValues": [
-///   {
-///     "value": "in_app_purchase"
-///   },
-///   {
-///     "value": "JP"
-///   }
+///    {
+///      "value": "in_app_purchase"
+///    },
+///    {
+///      "value": "JP"
+///    }
 /// ],
 /// "metricValues": [
-///   {
-///     "value": "15"
-///   }
+///    {
+///      "value": "15"
+///    }
 /// ]
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1052,9 +1049,11 @@ pub struct UserSegmentConditionGroup {
     /// Data is included or excluded from the segment based on if it matches
     /// the condition group. This scoping defines how many events the
     /// `segmentFilterExpression` is evaluated on before the condition group
-    /// is determined to be matched or not. For example if `conditionScoping = USER_CRITERIA_WITHIN_SAME_SESSION`, the expression is evaluated on all
+    /// is determined to be matched or not. For example if `conditionScoping =
+    /// USER_CRITERIA_WITHIN_SAME_SESSION`, the expression is evaluated on all
     /// events in a session, and then, the condition group is determined to be
-    /// matched or not for this user. For example if `conditionScoping = USER_CRITERIA_WITHIN_SAME_EVENT`, the expression is evaluated on a single
+    /// matched or not for this user. For example if `conditionScoping =
+    /// USER_CRITERIA_WITHIN_SAME_EVENT`, the expression is evaluated on a single
     /// event, and then, the condition group is determined to be matched or not for
     /// this user.
     ///
@@ -1073,8 +1072,10 @@ pub struct UserSegmentConditionGroup {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserSegmentSequenceGroup {
     /// All sequence steps must be satisfied in the scoping for the user to
-    /// match the sequence. For example if `sequenceScoping = USER_CRITERIA_WITHIN_SAME_SESSION`, all sequence steps must complete within
-    /// one session for the user to match the sequence. `sequenceScoping = USER_CRITERIA_WITHIN_SAME_EVENT` is not supported.
+    /// match the sequence. For example if `sequenceScoping =
+    /// USER_CRITERIA_WITHIN_SAME_SESSION`, all sequence steps must complete within
+    /// one session for the user to match the sequence. `sequenceScoping =
+    /// USER_CRITERIA_WITHIN_SAME_EVENT` is not supported.
     ///
     /// Optional. If unspecified, `conditionScoping = ACROSS_ALL_SESSIONS` is
     /// used.
@@ -1108,8 +1109,11 @@ pub struct UserSequenceStep {
     #[prost(bool, tag = "1")]
     pub is_directly_followed_by: bool,
     /// This sequence step must be satisfied in the scoping for the user to
-    /// match the sequence. For example if `sequenceScoping = WITHIN_SAME_SESSION`, this sequence steps must complete within one
-    /// session for the user to match the sequence. `stepScoping = ACROSS_ALL_SESSIONS` is only allowed if the `sequenceScoping = ACROSS_ALL_SESSIONS`.
+    /// match the sequence. For example if `sequenceScoping =
+    /// WITHIN_SAME_SESSION`, this sequence steps must complete within one
+    /// session for the user to match the sequence. `stepScoping =
+    /// ACROSS_ALL_SESSIONS` is only allowed if the `sequenceScoping =
+    /// ACROSS_ALL_SESSIONS`.
     ///
     /// Optional. If unspecified, `stepScoping` uses the same
     /// `UserCriteriaScoping` as the `sequenceScoping`.
@@ -1164,9 +1168,11 @@ pub struct SessionSegmentConditionGroup {
     /// Data is included or excluded from the segment based on if it matches
     /// the condition group. This scoping defines how many events the
     /// `segmentFilterExpression` is evaluated on before the condition group
-    /// is determined to be matched or not. For example if `conditionScoping = SESSION_CRITERIA_WITHIN_SAME_SESSION`, the expression is evaluated on all
+    /// is determined to be matched or not. For example if `conditionScoping =
+    /// SESSION_CRITERIA_WITHIN_SAME_SESSION`, the expression is evaluated on all
     /// events in a session, and then, the condition group is determined to be
-    /// matched or not for this session. For example if `conditionScoping = SESSION_CRITERIA_WITHIN_SAME_EVENT`, the expression is evaluated on a
+    /// matched or not for this session. For example if `conditionScoping =
+    /// SESSION_CRITERIA_WITHIN_SAME_EVENT`, the expression is evaluated on a
     /// single event, and then, the condition group is determined to be matched or
     /// not for this session.
     ///
@@ -1765,16 +1771,10 @@ impl UserCriteriaScoping {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            UserCriteriaScoping::Unspecified => "USER_CRITERIA_SCOPING_UNSPECIFIED",
-            UserCriteriaScoping::UserCriteriaWithinSameEvent => {
-                "USER_CRITERIA_WITHIN_SAME_EVENT"
-            }
-            UserCriteriaScoping::UserCriteriaWithinSameSession => {
-                "USER_CRITERIA_WITHIN_SAME_SESSION"
-            }
-            UserCriteriaScoping::UserCriteriaAcrossAllSessions => {
-                "USER_CRITERIA_ACROSS_ALL_SESSIONS"
-            }
+            Self::Unspecified => "USER_CRITERIA_SCOPING_UNSPECIFIED",
+            Self::UserCriteriaWithinSameEvent => "USER_CRITERIA_WITHIN_SAME_EVENT",
+            Self::UserCriteriaWithinSameSession => "USER_CRITERIA_WITHIN_SAME_SESSION",
+            Self::UserCriteriaAcrossAllSessions => "USER_CRITERIA_ACROSS_ALL_SESSIONS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1813,9 +1813,9 @@ impl UserExclusionDuration {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            UserExclusionDuration::Unspecified => "USER_EXCLUSION_DURATION_UNSPECIFIED",
-            UserExclusionDuration::UserExclusionTemporary => "USER_EXCLUSION_TEMPORARY",
-            UserExclusionDuration::UserExclusionPermanent => "USER_EXCLUSION_PERMANENT",
+            Self::Unspecified => "USER_EXCLUSION_DURATION_UNSPECIFIED",
+            Self::UserExclusionTemporary => "USER_EXCLUSION_TEMPORARY",
+            Self::UserExclusionPermanent => "USER_EXCLUSION_PERMANENT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1849,11 +1849,9 @@ impl SessionCriteriaScoping {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SessionCriteriaScoping::Unspecified => "SESSION_CRITERIA_SCOPING_UNSPECIFIED",
-            SessionCriteriaScoping::SessionCriteriaWithinSameEvent => {
-                "SESSION_CRITERIA_WITHIN_SAME_EVENT"
-            }
-            SessionCriteriaScoping::SessionCriteriaWithinSameSession => {
+            Self::Unspecified => "SESSION_CRITERIA_SCOPING_UNSPECIFIED",
+            Self::SessionCriteriaWithinSameEvent => "SESSION_CRITERIA_WITHIN_SAME_EVENT",
+            Self::SessionCriteriaWithinSameSession => {
                 "SESSION_CRITERIA_WITHIN_SAME_SESSION"
             }
         }
@@ -1893,15 +1891,9 @@ impl SessionExclusionDuration {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SessionExclusionDuration::Unspecified => {
-                "SESSION_EXCLUSION_DURATION_UNSPECIFIED"
-            }
-            SessionExclusionDuration::SessionExclusionTemporary => {
-                "SESSION_EXCLUSION_TEMPORARY"
-            }
-            SessionExclusionDuration::SessionExclusionPermanent => {
-                "SESSION_EXCLUSION_PERMANENT"
-            }
+            Self::Unspecified => "SESSION_EXCLUSION_DURATION_UNSPECIFIED",
+            Self::SessionExclusionTemporary => "SESSION_EXCLUSION_TEMPORARY",
+            Self::SessionExclusionPermanent => "SESSION_EXCLUSION_PERMANENT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1932,10 +1924,8 @@ impl EventCriteriaScoping {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EventCriteriaScoping::Unspecified => "EVENT_CRITERIA_SCOPING_UNSPECIFIED",
-            EventCriteriaScoping::EventCriteriaWithinSameEvent => {
-                "EVENT_CRITERIA_WITHIN_SAME_EVENT"
-            }
+            Self::Unspecified => "EVENT_CRITERIA_SCOPING_UNSPECIFIED",
+            Self::EventCriteriaWithinSameEvent => "EVENT_CRITERIA_WITHIN_SAME_EVENT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1967,10 +1957,8 @@ impl EventExclusionDuration {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EventExclusionDuration::Unspecified => "EVENT_EXCLUSION_DURATION_UNSPECIFIED",
-            EventExclusionDuration::EventExclusionPermanent => {
-                "EVENT_EXCLUSION_PERMANENT"
-            }
+            Self::Unspecified => "EVENT_EXCLUSION_DURATION_UNSPECIFIED",
+            Self::EventExclusionPermanent => "EVENT_EXCLUSION_PERMANENT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2004,11 +1992,11 @@ impl MetricAggregation {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            MetricAggregation::Unspecified => "METRIC_AGGREGATION_UNSPECIFIED",
-            MetricAggregation::Total => "TOTAL",
-            MetricAggregation::Minimum => "MINIMUM",
-            MetricAggregation::Maximum => "MAXIMUM",
-            MetricAggregation::Count => "COUNT",
+            Self::Unspecified => "METRIC_AGGREGATION_UNSPECIFIED",
+            Self::Total => "TOTAL",
+            Self::Minimum => "MINIMUM",
+            Self::Maximum => "MAXIMUM",
+            Self::Count => "COUNT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2061,19 +2049,19 @@ impl MetricType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            MetricType::Unspecified => "METRIC_TYPE_UNSPECIFIED",
-            MetricType::TypeInteger => "TYPE_INTEGER",
-            MetricType::TypeFloat => "TYPE_FLOAT",
-            MetricType::TypeSeconds => "TYPE_SECONDS",
-            MetricType::TypeMilliseconds => "TYPE_MILLISECONDS",
-            MetricType::TypeMinutes => "TYPE_MINUTES",
-            MetricType::TypeHours => "TYPE_HOURS",
-            MetricType::TypeStandard => "TYPE_STANDARD",
-            MetricType::TypeCurrency => "TYPE_CURRENCY",
-            MetricType::TypeFeet => "TYPE_FEET",
-            MetricType::TypeMiles => "TYPE_MILES",
-            MetricType::TypeMeters => "TYPE_METERS",
-            MetricType::TypeKilometers => "TYPE_KILOMETERS",
+            Self::Unspecified => "METRIC_TYPE_UNSPECIFIED",
+            Self::TypeInteger => "TYPE_INTEGER",
+            Self::TypeFloat => "TYPE_FLOAT",
+            Self::TypeSeconds => "TYPE_SECONDS",
+            Self::TypeMilliseconds => "TYPE_MILLISECONDS",
+            Self::TypeMinutes => "TYPE_MINUTES",
+            Self::TypeHours => "TYPE_HOURS",
+            Self::TypeStandard => "TYPE_STANDARD",
+            Self::TypeCurrency => "TYPE_CURRENCY",
+            Self::TypeFeet => "TYPE_FEET",
+            Self::TypeMiles => "TYPE_MILES",
+            Self::TypeMeters => "TYPE_METERS",
+            Self::TypeKilometers => "TYPE_KILOMETERS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2115,9 +2103,9 @@ impl RestrictedMetricType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RestrictedMetricType::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
-            RestrictedMetricType::CostData => "COST_DATA",
-            RestrictedMetricType::RevenueData => "REVENUE_DATA",
+            Self::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+            Self::CostData => "COST_DATA",
+            Self::RevenueData => "REVENUE_DATA",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2488,10 +2476,10 @@ pub mod audience_list {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2769,11 +2757,9 @@ pub mod run_funnel_report_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FunnelVisualizationType::Unspecified => {
-                    "FUNNEL_VISUALIZATION_TYPE_UNSPECIFIED"
-                }
-                FunnelVisualizationType::StandardFunnel => "STANDARD_FUNNEL",
-                FunnelVisualizationType::TrendedFunnel => "TRENDED_FUNNEL",
+                Self::Unspecified => "FUNNEL_VISUALIZATION_TYPE_UNSPECIFIED",
+                Self::StandardFunnel => "STANDARD_FUNNEL",
+                Self::TrendedFunnel => "TRENDED_FUNNEL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2892,7 +2878,7 @@ pub mod report_task {
         pub limit: i64,
         /// Optional. Aggregation of metrics. Aggregated metric values will be shown
         /// in rows where the dimension_values are set to
-        /// "RESERVED\_(MetricAggregation)".
+        /// "RESERVED_(MetricAggregation)".
         #[prost(
             enumeration = "super::MetricAggregation",
             repeated,
@@ -3002,10 +2988,10 @@ pub mod report_task {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Creating => "CREATING",
-                    State::Active => "ACTIVE",
-                    State::Failed => "FAILED",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Creating => "CREATING",
+                    Self::Active => "ACTIVE",
+                    Self::Failed => "FAILED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3138,7 +3124,13 @@ pub struct ListReportTasksResponse {
 }
 /// Generated client implementations.
 pub mod alpha_analytics_data_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Analytics reporting data service.
@@ -3238,8 +3230,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3292,8 +3283,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3340,8 +3330,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3389,8 +3378,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3428,8 +3416,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3472,8 +3459,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3520,8 +3506,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3561,8 +3546,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3603,8 +3587,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3635,8 +3618,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3675,8 +3657,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3710,8 +3691,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3740,8 +3720,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3771,8 +3750,7 @@ pub mod alpha_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

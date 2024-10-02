@@ -6,11 +6,11 @@ pub struct ReportBillableEventLog {
     /// Subject to the following restrictions:
     ///
     /// 1. IDs must be valid Unicode strings.
-    /// 1. IDs are limited to a maximum length of 64 characters.
-    /// 1. IDs must be normalized according to Unicode Normalization Form C
-    ///    (<http://www.unicode.org/reports/tr15/> ).
-    /// 1. IDs must not contain any of the following ASCII characters: '/', ':',
-    ///    '?', ',', or '#'.
+    /// 2. IDs are limited to a maximum length of 64 characters.
+    /// 3. IDs must be normalized according to Unicode Normalization Form C
+    /// (<http://www.unicode.org/reports/tr15/> ).
+    /// 4. IDs must not contain any of the following ASCII characters: '/', ':',
+    /// '?', ',', or '#'.
     #[prost(string, tag = "1")]
     pub billable_event_id: ::prost::alloc::string::String,
     /// Two-letter region code of the country or region where the event takes

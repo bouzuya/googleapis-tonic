@@ -212,19 +212,18 @@ pub enum Insight {
     ///
     /// When this insight is specified ComputeInsights returns the number of
     /// places that match the specified filter criteria.
-    ///
-    /// ```text,
+    /// ```
     /// For example if the request is:
     /// ComputeInsightsRequest {
-    ///   insights: INSIGHT_COUNT
-    ///   filter {
-    ///     location_filter {region: <PlaceId of state of CA>}
-    ///     type_filter {included_types: "restaurant"}
-    ///     operating_status: OPERATING_STATUS_OPERATIONAL
-    ///     price_levels: PRICE_LEVEL_FREE
-    ///     price_levels: PRICE_LEVEL_INEXPENSIVE
-    ///     min_rating: 4.0
-    ///   }
+    ///    insights: INSIGHT_COUNT
+    ///    filter {
+    ///      location_filter {region: <PlaceId of state of CA>}
+    ///      type_filter {included_types: "restaurant"}
+    ///      operating_status: OPERATING_STATUS_OPERATIONAL
+    ///      price_levels: PRICE_LEVEL_FREE
+    ///      price_levels: PRICE_LEVEL_INEXPENSIVE
+    ///      min_rating: 4.0
+    ///    }
     /// }
     ///
     /// The method will return the count of restaurants in California that are
@@ -233,7 +232,7 @@ pub enum Insight {
     ///
     /// Example response:
     /// ComputeInsightsResponse {
-    ///   count: <number of places>
+    ///    count: <number of places>
     /// }
     /// ```
     Count = 1,
@@ -241,19 +240,18 @@ pub enum Insight {
     ///
     /// When this insight is specified ComputeInsights returns Places
     /// that match the specified filter criteria.
-    ///
-    /// ```text,
+    /// ```
     /// For example if the request is:
     /// ComputeInsightsRequest {
-    ///   insights: INSIGHT_PLACES
-    ///   filter {
-    ///     location_filter {region: <PlaceId of state of CA>}
-    ///     type_filter {included_types: "restaurant"}
-    ///     operating_status: OPERATING_STATUS_OPERATIONAL
-    ///     price_levels: PRICE_LEVEL_FREE
-    ///     price_levels: PRICE_LEVEL_INEXPENSIVE
-    ///     min_rating: 4.0
-    ///   }
+    ///    insights: INSIGHT_PLACES
+    ///    filter {
+    ///      location_filter {region: <PlaceId of state of CA>}
+    ///      type_filter {included_types: "restaurant"}
+    ///      operating_status: OPERATING_STATUS_OPERATIONAL
+    ///      price_levels: PRICE_LEVEL_FREE
+    ///      price_levels: PRICE_LEVEL_INEXPENSIVE
+    ///      min_rating: 4.0
+    ///    }
     /// }
     ///
     /// The method will return list of places of restaurants in
@@ -262,9 +260,9 @@ pub enum Insight {
     ///
     /// Example response:
     /// ComputeInsightsResponse {
-    ///   place_insights { place: "places/ABC" }
-    ///   place_insights { place: "places/PQR" }
-    ///   place_insights { place: "places/XYZ" }
+    ///    place_insights { place: "places/ABC" }
+    ///    place_insights { place: "places/PQR" }
+    ///    place_insights { place: "places/XYZ" }
     /// }
     /// ```
     Places = 2,
@@ -276,9 +274,9 @@ impl Insight {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Insight::Unspecified => "INSIGHT_UNSPECIFIED",
-            Insight::Count => "INSIGHT_COUNT",
-            Insight::Places => "INSIGHT_PLACES",
+            Self::Unspecified => "INSIGHT_UNSPECIFIED",
+            Self::Count => "INSIGHT_COUNT",
+            Self::Places => "INSIGHT_PLACES",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -311,10 +309,10 @@ impl OperatingStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OperatingStatus::Unspecified => "OPERATING_STATUS_UNSPECIFIED",
-            OperatingStatus::Operational => "OPERATING_STATUS_OPERATIONAL",
-            OperatingStatus::PermanentlyClosed => "OPERATING_STATUS_PERMANENTLY_CLOSED",
-            OperatingStatus::TemporarilyClosed => "OPERATING_STATUS_TEMPORARILY_CLOSED",
+            Self::Unspecified => "OPERATING_STATUS_UNSPECIFIED",
+            Self::Operational => "OPERATING_STATUS_OPERATIONAL",
+            Self::PermanentlyClosed => "OPERATING_STATUS_PERMANENTLY_CLOSED",
+            Self::TemporarilyClosed => "OPERATING_STATUS_TEMPORARILY_CLOSED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -352,12 +350,12 @@ impl PriceLevel {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PriceLevel::Unspecified => "PRICE_LEVEL_UNSPECIFIED",
-            PriceLevel::Free => "PRICE_LEVEL_FREE",
-            PriceLevel::Inexpensive => "PRICE_LEVEL_INEXPENSIVE",
-            PriceLevel::Moderate => "PRICE_LEVEL_MODERATE",
-            PriceLevel::Expensive => "PRICE_LEVEL_EXPENSIVE",
-            PriceLevel::VeryExpensive => "PRICE_LEVEL_VERY_EXPENSIVE",
+            Self::Unspecified => "PRICE_LEVEL_UNSPECIFIED",
+            Self::Free => "PRICE_LEVEL_FREE",
+            Self::Inexpensive => "PRICE_LEVEL_INEXPENSIVE",
+            Self::Moderate => "PRICE_LEVEL_MODERATE",
+            Self::Expensive => "PRICE_LEVEL_EXPENSIVE",
+            Self::VeryExpensive => "PRICE_LEVEL_VERY_EXPENSIVE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -375,7 +373,13 @@ impl PriceLevel {
 }
 /// Generated client implementations.
 pub mod area_insights_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service definition for the Places Insights API.
@@ -470,8 +474,7 @@ pub mod area_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

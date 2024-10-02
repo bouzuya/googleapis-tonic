@@ -143,15 +143,15 @@ pub mod account {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AccountType::Unspecified => "ACCOUNT_TYPE_UNSPECIFIED",
-                AccountType::CssGroup => "CSS_GROUP",
-                AccountType::CssDomain => "CSS_DOMAIN",
-                AccountType::McPrimaryCssMca => "MC_PRIMARY_CSS_MCA",
-                AccountType::McCssMca => "MC_CSS_MCA",
-                AccountType::McMarketplaceMca => "MC_MARKETPLACE_MCA",
-                AccountType::McOtherMca => "MC_OTHER_MCA",
-                AccountType::McStandalone => "MC_STANDALONE",
-                AccountType::McMcaSubaccount => "MC_MCA_SUBACCOUNT",
+                Self::Unspecified => "ACCOUNT_TYPE_UNSPECIFIED",
+                Self::CssGroup => "CSS_GROUP",
+                Self::CssDomain => "CSS_DOMAIN",
+                Self::McPrimaryCssMca => "MC_PRIMARY_CSS_MCA",
+                Self::McCssMca => "MC_CSS_MCA",
+                Self::McMarketplaceMca => "MC_MARKETPLACE_MCA",
+                Self::McOtherMca => "MC_OTHER_MCA",
+                Self::McStandalone => "MC_STANDALONE",
+                Self::McMcaSubaccount => "MC_MCA_SUBACCOUNT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -173,7 +173,13 @@ pub mod account {
 }
 /// Generated client implementations.
 pub mod accounts_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for managing CSS/MC account information.
@@ -259,8 +265,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -287,8 +292,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -315,8 +319,7 @@ pub mod accounts_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -389,9 +392,9 @@ pub mod account_label {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LabelType::Unspecified => "LABEL_TYPE_UNSPECIFIED",
-                LabelType::Manual => "MANUAL",
-                LabelType::Automatic => "AUTOMATIC",
+                Self::Unspecified => "LABEL_TYPE_UNSPECIFIED",
+                Self::Manual => "MANUAL",
+                Self::Automatic => "AUTOMATIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -465,7 +468,13 @@ pub struct DeleteAccountLabelRequest {
 }
 /// Generated client implementations.
 pub mod account_labels_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages Merchant Center and CSS accounts labels.
@@ -550,8 +559,7 @@ pub mod account_labels_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -578,8 +586,7 @@ pub mod account_labels_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -606,8 +613,7 @@ pub mod account_labels_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -634,8 +640,7 @@ pub mod account_labels_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -761,7 +766,7 @@ pub struct Attributes {
     /// Size of the item. Only one value is allowed. For variants with different
     /// sizes, insert a separate product for each size with the same
     /// `itemGroupId` value (see
-    /// \[<https://support.google.com/merchants/answer/6324492\](size> definition)).
+    /// [<https://support.google.com/merchants/answer/6324492](size> definition)).
     #[prost(string, optional, tag = "26")]
     pub size: ::core::option::Option<::prost::alloc::string::String>,
     /// System in which the size is specified. Recommended for apparel items.
@@ -769,7 +774,7 @@ pub struct Attributes {
     pub size_system: ::core::option::Option<::prost::alloc::string::String>,
     /// The cut of the item. It can be used to represent combined size types for
     /// apparel items. Maximum two of size types can be provided (see
-    /// \[<https://support.google.com/merchants/answer/6324497\](size> type)).
+    /// [<https://support.google.com/merchants/answer/6324497](size> type)).
     #[prost(string, repeated, tag = "28")]
     pub size_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Shared identifier for all variants of the same product.
@@ -881,9 +886,8 @@ pub struct ProductDimension {
     pub value: f64,
     /// Required. The dimension units.
     /// Acceptable values are:
-    ///
-    /// * "`in`"
-    /// * "`cm`"
+    ///    * "`in`"
+    ///    * "`cm`"
     #[prost(string, tag = "2")]
     pub unit: ::prost::alloc::string::String,
 }
@@ -896,11 +900,10 @@ pub struct ProductWeight {
     pub value: f64,
     /// Required. The weight unit.
     /// Acceptable values are:
-    ///
-    /// * "`g`"
-    /// * "`kg`"
-    /// * "`oz`"
-    /// * "`lb`"
+    ///    * "`g`"
+    ///    * "`kg`"
+    ///    * "`oz`"
+    ///    * "`lb`"
     #[prost(string, tag = "2")]
     pub unit: ::prost::alloc::string::String,
 }
@@ -1089,7 +1092,13 @@ pub struct DeleteCssProductInputRequest {
 }
 /// Generated client implementations.
 pub mod css_product_inputs_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to use CssProductInput resource.
@@ -1182,8 +1191,7 @@ pub mod css_product_inputs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1213,8 +1221,7 @@ pub mod css_product_inputs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1313,7 +1320,13 @@ pub struct ListCssProductsResponse {
 }
 /// Generated client implementations.
 pub mod css_products_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for doing get and list on Css Products(a.k.a Aggregate Offers
@@ -1398,8 +1411,7 @@ pub mod css_products_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1435,8 +1447,7 @@ pub mod css_products_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

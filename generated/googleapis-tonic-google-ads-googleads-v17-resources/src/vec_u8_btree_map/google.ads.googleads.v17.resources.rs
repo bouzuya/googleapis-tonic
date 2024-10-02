@@ -155,10 +155,10 @@ pub mod accessible_bidding_strategy {
 /// as well as the most recently approved changes to the budget and proposed
 /// changes that are pending approval. The proposed changes that are pending
 /// approval, if any, are found in 'pending_proposal'.  Effective details about
-/// the budget are found in fields prefixed 'approved\_', 'adjusted\_' and those
+/// the budget are found in fields prefixed 'approved_', 'adjusted_' and those
 /// without a prefix.  Since some effective details may differ from what the user
 /// had originally requested (for example, spending limit), these differences are
-/// juxtaposed through 'proposed\_', 'approved\_', and possibly 'adjusted\_' fields.
+/// juxtaposed through 'proposed_', 'approved_', and possibly 'adjusted_' fields.
 ///
 /// This resource is mutated using AccountBudgetProposal and cannot be mutated
 /// directly. A budget may have at most one pending proposal at any given time.
@@ -944,7 +944,7 @@ pub struct AdGroup {
     #[prost(double, optional, tag = "44")]
     pub target_roas: ::core::option::Option<f64>,
     /// The percent cpc bid amount, expressed as a fraction of the advertised price
-    /// for some good or service. The valid range for the fraction is \[0,1) and the
+    /// for some good or service. The valid range for the fraction is [0,1) and the
     /// value stored here is 1,000,000 * \[fraction\].
     #[prost(int64, optional, tag = "45")]
     pub percent_cpc_bid_micros: ::core::option::Option<i64>,
@@ -1493,7 +1493,7 @@ pub struct AdGroupCriterion {
     #[prost(int64, optional, tag = "64")]
     pub cpv_bid_micros: ::core::option::Option<i64>,
     /// The CPC bid amount, expressed as a fraction of the advertised price
-    /// for some good or service. The valid range for the fraction is \[0,1) and the
+    /// for some good or service. The valid range for the fraction is [0,1) and the
     /// value stored here is 1,000,000 * \[fraction\].
     #[prost(int64, optional, tag = "65")]
     pub percent_cpc_bid_micros: ::core::option::Option<i64>,
@@ -1761,10 +1761,10 @@ pub struct AdGroupCriterionLabel {
 /// operations starting in V5.
 ///
 /// 1. DISPLAY - KEYWORD - CPC_BID - UNIFORM
-/// 1. SEARCH - KEYWORD - CPC_BID - UNIFORM
-/// 1. SHOPPING - LISTING_GROUP - CPC_BID - UNIFORM
-/// 1. HOTEL - LISTING_GROUP - CPC_BID - UNIFORM
-/// 1. HOTEL - LISTING_GROUP - PERCENT_CPC_BID - UNIFORM
+/// 2. SEARCH - KEYWORD - CPC_BID - UNIFORM
+/// 3. SHOPPING - LISTING_GROUP - CPC_BID - UNIFORM
+/// 4. HOTEL - LISTING_GROUP - CPC_BID - UNIFORM
+/// 5. HOTEL - LISTING_GROUP - PERCENT_CPC_BID - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupCriterionSimulation {
     /// Output only. The resource name of the ad group criterion simulation.
@@ -1881,7 +1881,7 @@ pub struct AdGroupFeed {
     /// Immutable. The resource name of the ad group feed.
     /// Ad group feed resource names have the form:
     ///
-    /// \`customers/{customer_id}/adGroupFeeds/{ad_group_id}~{feed_id}
+    /// `customers/{customer_id}/adGroupFeeds/{ad_group_id}~{feed_id}
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Immutable. The feed being linked to the ad group.
@@ -1931,12 +1931,12 @@ pub struct AdGroupLabel {
 /// detailed below respectively.
 ///
 /// 1. SEARCH - CPC_BID - DEFAULT
-/// 1. SEARCH - CPC_BID - UNIFORM
-/// 1. SEARCH - TARGET_CPA - UNIFORM
-/// 1. SEARCH - TARGET_ROAS - UNIFORM
-/// 1. DISPLAY - CPC_BID - DEFAULT
-/// 1. DISPLAY - CPC_BID - UNIFORM
-/// 1. DISPLAY - TARGET_CPA - UNIFORM
+/// 2. SEARCH - CPC_BID - UNIFORM
+/// 3. SEARCH - TARGET_CPA - UNIFORM
+/// 4. SEARCH - TARGET_ROAS - UNIFORM
+/// 5. DISPLAY - CPC_BID - DEFAULT
+/// 6. DISPLAY - CPC_BID - UNIFORM
+/// 7. DISPLAY - TARGET_CPA - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupSimulation {
     /// Output only. The resource name of the ad group simulation.
@@ -2012,19 +2012,18 @@ pub struct AdParameter {
     #[prost(int64, optional, tag = "6")]
     pub parameter_index: ::core::option::Option<i64>,
     /// Numeric value to insert into the ad text. The following restrictions
-    /// apply:
-    ///
-    /// * Can use comma or period as a separator, with an optional period or
-    ///   comma (respectively) for fractional values. For example, 1,000,000.00
-    ///   and 2.000.000,10 are valid.
-    /// * Can be prepended or appended with a currency symbol. For example,
-    ///   $99.99 is valid.
-    /// * Can be prepended or appended with a currency code. For example, 99.99USD
-    ///   and EUR200 are valid.
-    /// * Can use '%'. For example, 1.0% and 1,0% are valid.
-    /// * Can use plus or minus. For example, -10.99 and 25+ are valid.
-    /// * Can use '/' between two numbers. For example 4/1 and 0.95/0.45 are
-    ///   valid.
+    ///   apply:
+    ///   - Can use comma or period as a separator, with an optional period or
+    ///     comma (respectively) for fractional values. For example, 1,000,000.00
+    ///     and 2.000.000,10 are valid.
+    ///   - Can be prepended or appended with a currency symbol. For example,
+    ///     $99.99 is valid.
+    ///   - Can be prepended or appended with a currency code. For example, 99.99USD
+    ///     and EUR200 are valid.
+    ///   - Can use '%'. For example, 1.0% and 1,0% are valid.
+    ///   - Can use plus or minus. For example, -10.99 and 25+ are valid.
+    ///   - Can use '/' between two numbers. For example 4/1 and 0.95/0.45 are
+    ///     valid.
     #[prost(string, optional, tag = "7")]
     pub insertion_text: ::core::option::Option<::prost::alloc::string::String>,
 }
@@ -2777,7 +2776,7 @@ pub mod asset_group_signal {
 pub struct AssetGroupTopCombinationView {
     /// Output only. The resource name of the asset group top combination view.
     /// AssetGroup Top Combination view resource names have the form:
-    /// \`"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}"
+    /// `"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}"
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The top combinations of assets that served together.
@@ -3077,8 +3076,8 @@ pub struct BiddingDataExclusion {
     /// Required. The exclusive end time of the data exclusion in yyyy-MM-dd
     /// HH:mm:ss format.
     ///
-    /// The length of \[start_date_time, end_date_time) interval must be
-    /// within (0, 14 days\].
+    /// The length of [start_date_time, end_date_time) interval must be
+    /// within (0, 14 days].
     #[prost(string, tag = "6")]
     pub end_date_time: ::prost::alloc::string::String,
     /// The name of the data exclusion. The name can be at most 255
@@ -3151,8 +3150,8 @@ pub struct BiddingSeasonalityAdjustment {
     /// Required. The exclusive end time of the seasonality adjustment in
     /// yyyy-MM-dd HH:mm:ss format.
     ///
-    /// The length of \[start_date_time, end_date_time) interval must be
-    /// within (0, 14 days\].
+    /// The length of [start_date_time, end_date_time) interval must be
+    /// within (0, 14 days].
     #[prost(string, tag = "6")]
     pub end_date_time: ::prost::alloc::string::String,
     /// The name of the seasonality adjustment. The name can be at most 255
@@ -3317,7 +3316,7 @@ pub mod bidding_strategy {
 /// and simulation modification method are detailed below respectively.
 ///
 /// 1. TARGET_CPA - UNIFORM
-/// 1. TARGET_ROAS - UNIFORM
+/// 2. TARGET_ROAS - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BiddingStrategySimulation {
     /// Output only. The resource name of the bidding strategy simulation.
@@ -4834,7 +4833,7 @@ pub struct CampaignFeed {
     /// Immutable. The resource name of the campaign feed.
     /// Campaign feed resource names have the form:
     ///
-    /// \`customers/{customer_id}/campaignFeeds/{campaign_id}~{feed_id}
+    /// `customers/{customer_id}/campaignFeeds/{campaign_id}~{feed_id}
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Immutable. The feed to which the CampaignFeed belongs.
@@ -5335,9 +5334,9 @@ pub mod feed_attribute_operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Operator::Unspecified => "UNSPECIFIED",
-                Operator::Unknown => "UNKNOWN",
-                Operator::Add => "ADD",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Add => "ADD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6164,7 +6163,7 @@ pub struct ConversionValueRule {
     /// customer. When the value rule is inherited from a manager customer,
     /// owner_customer will be the resource name of the manager whereas the
     /// customer in the resource_name will be of the requesting serving customer.
-    /// \** Read-only **
+    /// ** Read-only **
     #[prost(string, tag = "7")]
     pub owner_customer: ::prost::alloc::string::String,
     /// The status of the conversion value rule.
@@ -6268,7 +6267,7 @@ pub struct ConversionValueRuleSet {
     /// customer. When the value rule set is inherited from a manager customer,
     /// owner_customer will be the resource name of the manager whereas the
     /// customer in the resource_name will be of the requesting serving customer.
-    /// \** Read-only **
+    /// ** Read-only **
     #[prost(string, tag = "5")]
     pub owner_customer: ::prost::alloc::string::String,
     /// Immutable. Defines the scope where the conversion value rule set is
@@ -6283,7 +6282,7 @@ pub struct ConversionValueRuleSet {
     #[prost(string, tag = "7")]
     pub campaign: ::prost::alloc::string::String,
     /// Output only. The status of the conversion value rule set.
-    /// \** Read-only **
+    /// ** Read-only **
     #[prost(
         enumeration = "super::enums::conversion_value_rule_set_status_enum::ConversionValueRuleSetStatus",
         tag = "8"
@@ -7131,7 +7130,7 @@ pub mod customer_sk_ad_network_conversion_value_schema {
         >,
         /// Output only. Per-postback conversion value mappings for postbacks in
         /// multiple conversion windows. Only applicable for SkAdNetwork versions
-        /// \>= 4.0.
+        /// >= 4.0.
         #[prost(message, repeated, tag = "4")]
         pub postback_mappings: ::prost::alloc::vec::Vec<
             sk_ad_network_conversion_value_schema::PostbackMapping,
@@ -10143,7 +10142,8 @@ pub struct PaidOrganicSearchTermView {
     /// Output only. The resource name of the search term view.
     /// Search term view resource names have the form:
     ///
-    /// `customers/{customer_id}/paidOrganicSearchTermViews/{campaign_id}~ {ad_group_id}~{URL-base64 search term}`
+    /// `customers/{customer_id}/paidOrganicSearchTermViews/{campaign_id}~
+    /// {ad_group_id}~{URL-base64 search term}`
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The search term.
@@ -11530,27 +11530,26 @@ pub struct ShoppingPerformanceView {
 ///
 /// Queries to this resource specify a scope:
 /// Account:
-///
-/// * Filters on campaigns or ad groups are not specified.
-/// * All products from the linked Google Merchant Center accounts are
-///   returned.
-/// * Metrics and some fields (see the per-field documentation) are aggregated
-///   across all Shopping and Performance Max campaigns that include a product.
-///   Campaign:
-/// * An equality filter on `campaign` is specified. Supported campaign types
-///   are Shopping, Performance Max, Demand Gen, Video.
-/// * Only products that are included by the specified campaign are returned.
-/// * Metrics and some fields (see the per-field documentation) are restricted
-///   to the specified campaign.
-///   Ad group:
-/// * An equality filter on `ad group` and `campaign` is specified. Supported
-///   campaign types are Shopping, Demand Gen, Video.
-/// * Only products that are included by the specified campaign are returned.
-/// * Metrics and some fields (see the per-field documentation) are restricted
-///   to the specified ad group.
-///   Note that segmentation by date segments is not permitted and will return
-///   UNSUPPORTED_DATE_SEGMENTATION error. On the other hand, filtering on date
-///   segments is allowed.
+///    - Filters on campaigns or ad groups are not specified.
+///    - All products from the linked Google Merchant Center accounts are
+///      returned.
+///    - Metrics and some fields (see the per-field documentation) are aggregated
+///      across all Shopping and Performance Max campaigns that include a product.
+/// Campaign:
+///    - An equality filter on `campaign` is specified. Supported campaign types
+///      are Shopping, Performance Max, Demand Gen, Video.
+///    - Only products that are included by the specified campaign are returned.
+///    - Metrics and some fields (see the per-field documentation) are restricted
+///      to the specified campaign.
+/// Ad group:
+///    - An equality filter on `ad group` and `campaign` is specified. Supported
+///      campaign types are Shopping, Demand Gen, Video.
+///    - Only products that are included by the specified campaign are returned.
+///    - Metrics and some fields (see the per-field documentation) are restricted
+///      to the specified ad group.
+/// Note that segmentation by date segments is not permitted and will return
+/// UNSUPPORTED_DATE_SEGMENTATION error. On the other hand, filtering on date
+/// segments is allowed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShoppingProduct {
     /// Output only. The resource name of the shopping product.

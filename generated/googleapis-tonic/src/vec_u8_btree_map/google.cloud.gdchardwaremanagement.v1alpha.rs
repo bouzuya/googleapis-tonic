@@ -31,12 +31,12 @@ pub struct Order {
     #[prost(message, optional, tag = "6")]
     pub organization_contact: ::core::option::Option<OrganizationContact>,
     /// Optional. Customer specified workloads of interest targeted by this order.
-    /// This must contain \<= 20 elements and the length of each element must be \<=
+    /// This must contain <= 20 elements and the length of each element must be <=
     /// 50 characters.
     #[prost(string, repeated, tag = "7")]
     pub target_workloads: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. Information about the customer's motivation for this order. The
-    /// length of this field must be \<= 1000 characters.
+    /// length of this field must be <= 1000 characters.
     #[prost(string, tag = "8")]
     pub customer_motivation: ::prost::alloc::string::String,
     /// Required. Customer specified deadline by when this order should be
@@ -120,19 +120,19 @@ pub mod order {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Draft => "DRAFT",
-                State::Submitted => "SUBMITTED",
-                State::InfoComplete => "INFO_COMPLETE",
-                State::Accepted => "ACCEPTED",
-                State::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
-                State::Building => "BUILDING",
-                State::Shipping => "SHIPPING",
-                State::Installing => "INSTALLING",
-                State::Failed => "FAILED",
-                State::PartiallyCompleted => "PARTIALLY_COMPLETED",
-                State::Completed => "COMPLETED",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Draft => "DRAFT",
+                Self::Submitted => "SUBMITTED",
+                Self::InfoComplete => "INFO_COMPLETE",
+                Self::Accepted => "ACCEPTED",
+                Self::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
+                Self::Building => "BUILDING",
+                Self::Shipping => "SHIPPING",
+                Self::Installing => "INSTALLING",
+                Self::Failed => "FAILED",
+                Self::PartiallyCompleted => "PARTIALLY_COMPLETED",
+                Self::Completed => "COMPLETED",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -183,9 +183,9 @@ pub mod order {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Paid => "PAID",
-                Type::Poc => "POC",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Paid => "PAID",
+                Self::Poc => "POC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -245,11 +245,10 @@ pub struct Site {
     pub access_times: ::prost::alloc::vec::Vec<TimePeriod>,
     /// Optional. Any additional notes for this Site. Please include information
     /// about:
-    ///
-    /// * security or access restrictions
-    /// * any regulations affecting the technicians visiting the site
-    /// * any special process or approval required to move the equipment
-    /// * whether a representative will be available during site visits
+    ///   - security or access restrictions
+    ///   - any regulations affecting the technicians visiting the site
+    ///   - any special process or approval required to move the equipment
+    ///   - whether a representative will be available during site visits
     #[prost(string, tag = "27")]
     pub notes: ::prost::alloc::string::String,
     /// Optional. Customer defined identifier for this Site. This can be used to
@@ -345,14 +344,14 @@ pub mod hardware_group {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
-                State::Building => "BUILDING",
-                State::Shipping => "SHIPPING",
-                State::Installing => "INSTALLING",
-                State::PartiallyInstalled => "PARTIALLY_INSTALLED",
-                State::Installed => "INSTALLED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
+                Self::Building => "BUILDING",
+                Self::Shipping => "SHIPPING",
+                Self::Installing => "INSTALLING",
+                Self::PartiallyInstalled => "PARTIALLY_INSTALLED",
+                Self::Installed => "INSTALLED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -485,13 +484,13 @@ pub mod hardware {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
-                State::Building => "BUILDING",
-                State::Shipping => "SHIPPING",
-                State::Installing => "INSTALLING",
-                State::Installed => "INSTALLED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
+                Self::Building => "BUILDING",
+                Self::Shipping => "SHIPPING",
+                Self::Installing => "INSTALLING",
+                Self::Installed => "INSTALLED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -532,7 +531,7 @@ pub struct Comment {
     /// from the credentials used during creation of the comment.
     #[prost(string, tag = "4")]
     pub author: ::prost::alloc::string::String,
-    /// Required. Text of this comment. The length of text must be \<= 1000
+    /// Required. Text of this comment. The length of text must be <= 1000
     /// characters.
     #[prost(string, tag = "5")]
     pub text: ::prost::alloc::string::String,
@@ -639,9 +638,9 @@ pub mod sku {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Rack => "RACK",
-                Type::Server => "SERVER",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Rack => "RACK",
+                Self::Server => "SERVER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -739,18 +738,18 @@ pub mod zone {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
-                State::Preparing => "PREPARING",
-                State::ReadyForCustomerFactoryTurnupChecks => {
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
+                Self::Preparing => "PREPARING",
+                Self::ReadyForCustomerFactoryTurnupChecks => {
                     "READY_FOR_CUSTOMER_FACTORY_TURNUP_CHECKS"
                 }
-                State::ReadyForSiteTurnup => "READY_FOR_SITE_TURNUP",
-                State::CustomerFactoryTurnupChecksFailed => {
+                Self::ReadyForSiteTurnup => "READY_FOR_SITE_TURNUP",
+                Self::CustomerFactoryTurnupChecksFailed => {
                     "CUSTOMER_FACTORY_TURNUP_CHECKS_FAILED"
                 }
-                State::Active => "ACTIVE",
-                State::Cancelled => "CANCELLED",
+                Self::Active => "ACTIVE",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -917,10 +916,10 @@ pub mod hardware_physical_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PowerReceptacleType::Unspecified => "POWER_RECEPTACLE_TYPE_UNSPECIFIED",
-                PowerReceptacleType::Nema515 => "NEMA_5_15",
-                PowerReceptacleType::C13 => "C_13",
-                PowerReceptacleType::StandardEu => "STANDARD_EU",
+                Self::Unspecified => "POWER_RECEPTACLE_TYPE_UNSPECIFIED",
+                Self::Nema515 => "NEMA_5_15",
+                Self::C13 => "C_13",
+                Self::StandardEu => "STANDARD_EU",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -960,8 +959,8 @@ pub mod hardware_physical_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NetworkUplinkType::Unspecified => "NETWORK_UPLINK_TYPE_UNSPECIFIED",
-                NetworkUplinkType::Rj45 => "RJ_45",
+                Self::Unspecified => "NETWORK_UPLINK_TYPE_UNSPECIFIED",
+                Self::Rj45 => "RJ_45",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1001,9 +1000,9 @@ pub mod hardware_physical_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Voltage::Unspecified => "VOLTAGE_UNSPECIFIED",
-                Voltage::Voltage110 => "VOLTAGE_110",
-                Voltage::Voltage220 => "VOLTAGE_220",
+                Self::Unspecified => "VOLTAGE_UNSPECIFIED",
+                Self::Voltage110 => "VOLTAGE_110",
+                Self::Voltage220 => "VOLTAGE_220",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1042,8 +1041,8 @@ pub mod hardware_physical_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Amperes::Unspecified => "AMPERES_UNSPECIFIED",
-                Amperes::Amperes15 => "AMPERES_15",
+                Self::Unspecified => "AMPERES_UNSPECIFIED",
+                Self::Amperes15 => "AMPERES_15",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1109,9 +1108,9 @@ pub mod hardware_installation_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RackType::Unspecified => "RACK_TYPE_UNSPECIFIED",
-                RackType::TwoPost => "TWO_POST",
-                RackType::FourPost => "FOUR_POST",
+                Self::Unspecified => "RACK_TYPE_UNSPECIFIED",
+                Self::TwoPost => "TWO_POST",
+                Self::FourPost => "FOUR_POST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1278,12 +1277,12 @@ pub mod subscription_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SubscriptionState::Unspecified => "SUBSCRIPTION_STATE_UNSPECIFIED",
-                SubscriptionState::Active => "ACTIVE",
-                SubscriptionState::Inactive => "INACTIVE",
-                SubscriptionState::Error => "ERROR",
-                SubscriptionState::FailedToRetrieve => "FAILED_TO_RETRIEVE",
-                SubscriptionState::Completed => "COMPLETED",
+                Self::Unspecified => "SUBSCRIPTION_STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
+                Self::Error => "ERROR",
+                Self::FailedToRetrieve => "FAILED_TO_RETRIEVE",
+                Self::Completed => "COMPLETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1318,9 +1317,9 @@ impl PowerSupply {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PowerSupply::Unspecified => "POWER_SUPPLY_UNSPECIFIED",
-            PowerSupply::Ac => "POWER_SUPPLY_AC",
-            PowerSupply::Dc => "POWER_SUPPLY_DC",
+            Self::Unspecified => "POWER_SUPPLY_UNSPECIFIED",
+            Self::Ac => "POWER_SUPPLY_AC",
+            Self::Dc => "POWER_SUPPLY_DC",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1353,10 +1352,10 @@ impl Entity {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Entity::Unspecified => "ENTITY_UNSPECIFIED",
-            Entity::Google => "GOOGLE",
-            Entity::Customer => "CUSTOMER",
-            Entity::Vendor => "VENDOR",
+            Self::Unspecified => "ENTITY_UNSPECIFIED",
+            Self::Google => "GOOGLE",
+            Self::Customer => "CUSTOMER",
+            Self::Vendor => "VENDOR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1529,9 +1528,9 @@ pub mod submit_order_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::InfoPending => "INFO_PENDING",
-                Type::InfoComplete => "INFO_COMPLETE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::InfoPending => "INFO_PENDING",
+                Self::InfoComplete => "INFO_COMPLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1930,9 +1929,9 @@ pub mod record_action_on_comment_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
-                ActionType::Read => "READ",
-                ActionType::Unread => "UNREAD",
+                Self::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+                Self::Read => "READ",
+                Self::Unread => "UNREAD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2172,9 +2171,9 @@ pub mod signal_zone_state_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StateSignal::Unspecified => "STATE_SIGNAL_UNSPECIFIED",
-                StateSignal::FactoryTurnupChecksPassed => "FACTORY_TURNUP_CHECKS_PASSED",
-                StateSignal::FactoryTurnupChecksFailed => "FACTORY_TURNUP_CHECKS_FAILED",
+                Self::Unspecified => "STATE_SIGNAL_UNSPECIFIED",
+                Self::FactoryTurnupChecksPassed => "FACTORY_TURNUP_CHECKS_PASSED",
+                Self::FactoryTurnupChecksFailed => "FACTORY_TURNUP_CHECKS_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2208,8 +2207,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -2219,7 +2218,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod gdc_hardware_management_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The GDC Hardware Management service.
@@ -2304,8 +2309,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2332,8 +2336,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2363,8 +2366,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2394,8 +2396,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2425,8 +2426,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2456,8 +2456,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2487,8 +2486,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2515,8 +2513,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2546,8 +2543,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2577,8 +2573,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2608,8 +2603,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2636,8 +2630,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2667,8 +2660,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2698,8 +2690,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2729,8 +2720,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2760,8 +2750,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2788,8 +2777,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2819,8 +2807,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2850,8 +2837,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2881,8 +2867,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2912,8 +2897,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2940,8 +2924,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2971,8 +2954,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3002,8 +2984,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3033,8 +3014,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3061,8 +3041,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3092,8 +3071,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3120,8 +3098,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3151,8 +3128,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3179,8 +3155,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3210,8 +3185,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3241,8 +3215,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3272,8 +3245,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3303,8 +3275,7 @@ pub mod gdc_hardware_management_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -57,20 +57,20 @@ pub struct Instance {
     /// Optional. Stripe level for files. Allowed values are:
     ///
     /// * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
-    ///   files.
+    ///    files.
     /// * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
-    ///   involving a mix of small and large files.
+    ///    involving a mix of small and large files.
     /// * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
     #[prost(enumeration = "FileStripeLevel", tag = "15")]
     pub file_stripe_level: i32,
     /// Optional. Stripe level for directories. Allowed values are:
     ///
     /// * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
-    ///   small number of files.
+    ///    small number of files.
     /// * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
-    ///   involving a mix of small and large directories.
+    ///    involving a mix of small and large directories.
     /// * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
-    ///   number of files.
+    ///    number of files.
     #[prost(enumeration = "DirectoryStripeLevel", tag = "16")]
     pub directory_stripe_level: i32,
 }
@@ -110,12 +110,12 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
-                State::Upgrading => "UPGRADING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
+                Self::Upgrading => "UPGRADING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -157,7 +157,7 @@ pub struct ListInstancesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response from
-/// \[ListInstances\]\[google.cloud.parallelstore.v1beta.Parallelstore.ListInstances\].
+/// [ListInstances][google.cloud.parallelstore.v1beta.Parallelstore.ListInstances].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
     /// The list of Parallelstore instances.
@@ -284,8 +284,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -355,7 +355,7 @@ pub struct ImportDataRequest {
     ///
     /// * {EMAIL_ADDRESS_OR_UNIQUE_ID}
     /// * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
-    /// * \`projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
+    /// * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
     ///
     /// If unspecified, the Parallelstore service agent is used:
     /// `service-<PROJECT_NUMBER>@gcp-sa-parallelstore.iam.gserviceaccount.com`
@@ -412,7 +412,7 @@ pub struct ExportDataRequest {
     ///
     /// * {EMAIL_ADDRESS_OR_UNIQUE_ID}
     /// * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
-    /// * \`projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
+    /// * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
     ///
     /// If unspecified, the Parallelstore service agent is used:
     /// `service-<PROJECT_NUMBER>@gcp-sa-parallelstore.iam.gserviceaccount.com`
@@ -468,8 +468,8 @@ pub struct ImportDataMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "7")]
     pub requested_cancellation: bool,
@@ -503,8 +503,8 @@ pub struct ExportDataMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "7")]
     pub requested_cancellation: bool,
@@ -597,9 +597,9 @@ impl TransferType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransferType::Unspecified => "TRANSFER_TYPE_UNSPECIFIED",
-            TransferType::Import => "IMPORT",
-            TransferType::Export => "EXPORT",
+            Self::Unspecified => "TRANSFER_TYPE_UNSPECIFIED",
+            Self::Import => "IMPORT",
+            Self::Export => "EXPORT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -632,10 +632,10 @@ impl FileStripeLevel {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            FileStripeLevel::Unspecified => "FILE_STRIPE_LEVEL_UNSPECIFIED",
-            FileStripeLevel::Min => "FILE_STRIPE_LEVEL_MIN",
-            FileStripeLevel::Balanced => "FILE_STRIPE_LEVEL_BALANCED",
-            FileStripeLevel::Max => "FILE_STRIPE_LEVEL_MAX",
+            Self::Unspecified => "FILE_STRIPE_LEVEL_UNSPECIFIED",
+            Self::Min => "FILE_STRIPE_LEVEL_MIN",
+            Self::Balanced => "FILE_STRIPE_LEVEL_BALANCED",
+            Self::Max => "FILE_STRIPE_LEVEL_MAX",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -669,10 +669,10 @@ impl DirectoryStripeLevel {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DirectoryStripeLevel::Unspecified => "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED",
-            DirectoryStripeLevel::Min => "DIRECTORY_STRIPE_LEVEL_MIN",
-            DirectoryStripeLevel::Balanced => "DIRECTORY_STRIPE_LEVEL_BALANCED",
-            DirectoryStripeLevel::Max => "DIRECTORY_STRIPE_LEVEL_MAX",
+            Self::Unspecified => "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED",
+            Self::Min => "DIRECTORY_STRIPE_LEVEL_MIN",
+            Self::Balanced => "DIRECTORY_STRIPE_LEVEL_BALANCED",
+            Self::Max => "DIRECTORY_STRIPE_LEVEL_MAX",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -688,7 +688,13 @@ impl DirectoryStripeLevel {
 }
 /// Generated client implementations.
 pub mod parallelstore_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
@@ -698,15 +704,13 @@ pub mod parallelstore_client {
     ///
     /// The `parallelstore.googleapis.com` service implements the parallelstore API
     /// and defines the following resource model for managing instances:
-    ///
     /// * The service works with a collection of cloud projects, named: `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
     /// * Each location has a collection of instances named `/instances/*`.
     /// * Parallelstore instances are resources of the form:
-    ///  `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     ///
     /// Note that location_id must be a Google Cloud `zone`; for example:
-    ///
     /// * `projects/12345/locations/us-central1-c/instances/my-parallelstore-share`
     #[derive(Debug, Clone)]
     pub struct ParallelstoreClient<T> {
@@ -789,8 +793,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -817,8 +820,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -848,8 +850,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -879,8 +880,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -910,8 +910,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -941,8 +940,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -972,8 +970,7 @@ pub mod parallelstore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

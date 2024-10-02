@@ -116,11 +116,11 @@ pub mod lake {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::None => "NONE",
-                    State::Ready => "READY",
-                    State::Updating => "UPDATING",
-                    State::Error => "ERROR",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::None => "NONE",
+                    Self::Ready => "READY",
+                    Self::Updating => "UPDATING",
+                    Self::Error => "ERROR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -241,9 +241,9 @@ pub mod zone {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    LocationType::Unspecified => "LOCATION_TYPE_UNSPECIFIED",
-                    LocationType::SingleRegion => "SINGLE_REGION",
-                    LocationType::MultiRegion => "MULTI_REGION",
+                    Self::Unspecified => "LOCATION_TYPE_UNSPECIFIED",
+                    Self::SingleRegion => "SINGLE_REGION",
+                    Self::MultiRegion => "MULTI_REGION",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -328,11 +328,8 @@ pub mod zone {
             /// discovery every 60 minutes. To explicitly set a timezone to the cron
             /// tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
             /// TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
-            /// from IANA time zone database. For example, \`CRON_TZ=America/New_York 1
-            ///
-            /// *
-            ///   *
-            ///     * \*`, or `TZ=America/New_York 1 * * * \*\`.
+            /// from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+            /// * * * *`, or `TZ=America/New_York 1 * * * *`.
             #[prost(string, tag = "10")]
             Schedule(::prost::alloc::string::String),
         }
@@ -369,9 +366,9 @@ pub mod zone {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Raw => "RAW",
-                Type::Curated => "CURATED",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Raw => "RAW",
+                Self::Curated => "CURATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -518,9 +515,9 @@ pub mod action {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SchemaChange::Unspecified => "SCHEMA_CHANGE_UNSPECIFIED",
-                    SchemaChange::Incompatible => "INCOMPATIBLE",
-                    SchemaChange::Modified => "MODIFIED",
+                    Self::Unspecified => "SCHEMA_CHANGE_UNSPECIFIED",
+                    Self::Incompatible => "INCOMPATIBLE",
+                    Self::Modified => "MODIFIED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -571,9 +568,9 @@ pub mod action {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    PartitionStructure::Unspecified => "PARTITION_STRUCTURE_UNSPECIFIED",
-                    PartitionStructure::ConsistentKeys => "CONSISTENT_KEYS",
-                    PartitionStructure::HiveStyleKeys => "HIVE_STYLE_KEYS",
+                    Self::Unspecified => "PARTITION_STRUCTURE_UNSPECIFIED",
+                    Self::ConsistentKeys => "CONSISTENT_KEYS",
+                    Self::HiveStyleKeys => "HIVE_STYLE_KEYS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -623,10 +620,10 @@ pub mod action {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::ResourceManagement => "RESOURCE_MANAGEMENT",
-                Category::SecurityPolicy => "SECURITY_POLICY",
-                Category::DataDiscovery => "DATA_DISCOVERY",
+                Self::Unspecified => "CATEGORY_UNSPECIFIED",
+                Self::ResourceManagement => "RESOURCE_MANAGEMENT",
+                Self::SecurityPolicy => "SECURITY_POLICY",
+                Self::DataDiscovery => "DATA_DISCOVERY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -776,10 +773,10 @@ pub mod asset {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Ready => "READY",
-                    State::Applying => "APPLYING",
-                    State::Error => "ERROR",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Ready => "READY",
+                    Self::Applying => "APPLYING",
+                    Self::Error => "ERROR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -865,11 +862,8 @@ pub mod asset {
             /// discovery every 60 minutes. To explicitly set a timezone to the cron
             /// tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
             /// TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
-            /// from IANA time zone database. For example, \`CRON_TZ=America/New_York 1
-            ///
-            /// *
-            ///   *
-            ///     * \*`, or `TZ=America/New_York 1 * * * \*\`.
+            /// from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+            /// * * * *`, or `TZ=America/New_York 1 * * * *`.
             #[prost(string, tag = "10")]
             Schedule(::prost::alloc::string::String),
         }
@@ -879,8 +873,8 @@ pub mod asset {
     pub struct ResourceSpec {
         /// Immutable. Relative name of the cloud resource that contains the data
         /// that is being managed within a lake. For example:
-        /// `projects/{project_number}/buckets/{bucket_id}`
-        /// `projects/{project_number}/datasets/{dataset_id}`
+        ///    `projects/{project_number}/buckets/{bucket_id}`
+        ///    `projects/{project_number}/datasets/{dataset_id}`
         #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Required. Immutable. Type of resource.
@@ -921,9 +915,9 @@ pub mod asset {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::StorageBucket => "STORAGE_BUCKET",
-                    Type::BigqueryDataset => "BIGQUERY_DATASET",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::StorageBucket => "STORAGE_BUCKET",
+                    Self::BigqueryDataset => "BIGQUERY_DATASET",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -965,9 +959,9 @@ pub mod asset {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    AccessMode::Unspecified => "ACCESS_MODE_UNSPECIFIED",
-                    AccessMode::Direct => "DIRECT",
-                    AccessMode::Managed => "MANAGED",
+                    Self::Unspecified => "ACCESS_MODE_UNSPECIFIED",
+                    Self::Direct => "DIRECT",
+                    Self::Managed => "MANAGED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1027,9 +1021,9 @@ pub mod asset {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Ready => "READY",
-                    State::Error => "ERROR",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Ready => "READY",
+                    Self::Error => "ERROR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1116,11 +1110,11 @@ pub mod asset {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Scheduled => "SCHEDULED",
-                    State::InProgress => "IN_PROGRESS",
-                    State::Paused => "PAUSED",
-                    State::Disabled => "DISABLED",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Scheduled => "SCHEDULED",
+                    Self::InProgress => "IN_PROGRESS",
+                    Self::Paused => "PAUSED",
+                    Self::Disabled => "DISABLED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1159,11 +1153,11 @@ impl State {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Active => "ACTIVE",
-            State::Creating => "CREATING",
-            State::Deleting => "DELETING",
-            State::ActionRequired => "ACTION_REQUIRED",
+            Self::Unspecified => "STATE_UNSPECIFIED",
+            Self::Active => "ACTIVE",
+            Self::Creating => "CREATING",
+            Self::Deleting => "DELETING",
+            Self::ActionRequired => "ACTION_REQUIRED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1409,8 +1403,8 @@ pub mod content {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    QueryEngine::Unspecified => "QUERY_ENGINE_UNSPECIFIED",
-                    QueryEngine::Spark => "SPARK",
+                    Self::Unspecified => "QUERY_ENGINE_UNSPECIFIED",
+                    Self::Spark => "SPARK",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1458,8 +1452,8 @@ pub mod content {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    KernelType::Unspecified => "KERNEL_TYPE_UNSPECIFIED",
-                    KernelType::Python3 => "PYTHON3",
+                    Self::Unspecified => "KERNEL_TYPE_UNSPECIFIED",
+                    Self::Python3 => "PYTHON3",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1712,9 +1706,9 @@ pub mod task {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::OnDemand => "ON_DEMAND",
-                    Type::Recurring => "RECURRING",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::OnDemand => "ON_DEMAND",
+                    Self::Recurring => "RECURRING",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1735,7 +1729,8 @@ pub mod task {
             /// tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
             /// "TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid
             /// string from IANA time zone database. For example,
-            /// `CRON_TZ=America/New_York 1 * * * *`, or `TZ=America/New_York 1 * * * *`. This field is required for RECURRING tasks.
+            /// `CRON_TZ=America/New_York 1 * * * *`, or `TZ=America/New_York 1 * * *
+            /// *`. This field is required for RECURRING tasks.
             #[prost(string, tag = "100")]
             Schedule(::prost::alloc::string::String),
         }
@@ -1747,15 +1742,14 @@ pub mod task {
         /// The args can use placeholders of the format ${placeholder} as
         /// part of key/value string. These will be interpolated before passing the
         /// args to the driver. Currently supported placeholders:
-        ///
-        /// * ${task_id}
-        /// * ${job_time}
-        ///   To pass positional args, set the key as TASK_ARGS. The value should be a
-        ///   comma-separated string of all the positional arguments. To use a
-        ///   delimiter other than comma, refer to
-        ///   <https://cloud.google.com/sdk/gcloud/reference/topic/escaping.> In case of
-        ///   other keys being present in the args, then TASK_ARGS will be passed as
-        ///   the last argument.
+        /// - ${task_id}
+        /// - ${job_time}
+        /// To pass positional args, set the key as TASK_ARGS. The value should be a
+        /// comma-separated string of all the positional arguments. To use a
+        /// delimiter other than comma, refer to
+        /// <https://cloud.google.com/sdk/gcloud/reference/topic/escaping.> In case of
+        /// other keys being present in the args, then TASK_ARGS will be passed as
+        /// the last argument.
         #[prost(btree_map = "string, string", tag = "4")]
         pub args: ::prost::alloc::collections::BTreeMap<
             ::prost::alloc::string::String,
@@ -1768,7 +1762,7 @@ pub mod task {
         pub service_account: ::prost::alloc::string::String,
         /// Optional. The project in which jobs are run. By default, the project
         /// containing the Lake is used. If a project is provided, the
-        /// \[ExecutionSpec.service_account\]\[google.cloud.dataplex.v1.Task.ExecutionSpec.service_account\]
+        /// [ExecutionSpec.service_account][google.cloud.dataplex.v1.Task.ExecutionSpec.service_account]
         /// must belong to this project.
         #[prost(string, tag = "7")]
         pub project: ::prost::alloc::string::String,
@@ -1954,8 +1948,8 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Service::Unspecified => "SERVICE_UNSPECIFIED",
-                Service::Dataproc => "DATAPROC",
+                Self::Unspecified => "SERVICE_UNSPECIFIED",
+                Self::Dataproc => "DATAPROC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2002,13 +1996,13 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Aborted => "ABORTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Aborted => "ABORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2054,9 +2048,9 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Trigger::Unspecified => "TRIGGER_UNSPECIFIED",
-                Trigger::TaskConfig => "TASK_CONFIG",
-                Trigger::RunRequest => "RUN_REQUEST",
+                Self::Unspecified => "TRIGGER_UNSPECIFIED",
+                Self::TaskConfig => "TASK_CONFIG",
+                Self::RunRequest => "RUN_REQUEST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2081,7 +2075,6 @@ pub struct CreateLakeRequest {
     /// Required. Lake identifier.
     /// This ID will be used to generate names such as database and dataset names
     /// when publishing metadata to Hive Metastore and BigQuery.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must end with a number or a letter.
@@ -2207,7 +2200,6 @@ pub struct CreateZoneRequest {
     /// Required. Zone identifier.
     /// This ID will be used to generate names such as database and dataset names
     /// when publishing metadata to Hive Metastore and BigQuery.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must end with a number or a letter.
@@ -2319,7 +2311,6 @@ pub struct CreateAssetRequest {
     /// Required. Asset identifier.
     /// This ID will be used to generate names such as table names when publishing
     /// metadata to Hive Metastore and BigQuery.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must end with a number or a letter.
@@ -2441,8 +2432,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -2628,7 +2619,6 @@ pub struct CreateEnvironmentRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. Environment identifier.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must be between 1-63 characters.
@@ -2755,7 +2745,13 @@ pub struct ListSessionsResponse {
 }
 /// Generated client implementations.
 pub mod dataplex_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Dataplex service provides data lakes as a service. The primary resources
@@ -2844,8 +2840,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2875,8 +2870,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2907,8 +2901,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2938,8 +2931,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2966,8 +2958,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2997,8 +2988,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3028,8 +3018,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3059,8 +3048,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3091,8 +3079,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3122,8 +3109,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3150,8 +3136,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3181,8 +3166,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3212,8 +3196,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3243,8 +3226,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3275,8 +3257,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3306,8 +3287,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3334,8 +3314,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3365,8 +3344,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3396,8 +3374,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3427,8 +3404,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3458,8 +3434,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3489,8 +3464,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3517,8 +3491,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3548,8 +3521,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3579,8 +3551,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3607,8 +3578,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3632,8 +3602,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3663,8 +3632,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3694,8 +3662,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3726,8 +3693,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3757,8 +3723,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3785,8 +3750,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3816,8 +3780,7 @@ pub mod dataplex_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4179,11 +4142,10 @@ pub struct Entry {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Optional. The Aspects attached to the Entry.
     /// The format for the key can be one of the following:
-    ///
     /// 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
-    ///    directly to the entry)
-    /// 1. {projectId}.{locationId}.{aspectTypeId}@{path} (if the aspect is
-    ///    attached to an entry's path)
+    /// directly to the entry)
+    /// 2. {projectId}.{locationId}.{aspectTypeId}@{path} (if the aspect is
+    /// attached to an entry's path)
     #[prost(btree_map = "string, message", tag = "9")]
     pub aspects: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -4610,12 +4572,11 @@ pub struct UpdateEntryRequest {
     pub delete_missing_aspects: bool,
     /// Optional. The map keys of the Aspects which should be modified. Supports
     /// the following syntaxes:
-    ///
-    /// * \<aspect_type_reference> - matches aspect on given type and empty path
-    /// * \<aspect_type_reference>@path - matches aspect on given type and specified
-    ///   path
-    /// * \<aspect_type_reference>\* - matches aspects on given type for all paths
-    /// * \*@path - matches aspects of all types on the given path
+    /// * <aspect_type_reference> - matches aspect on given type and empty path
+    /// * <aspect_type_reference>@path - matches aspect on given type and specified
+    /// path
+    /// * <aspect_type_reference>* - matches aspects on given type for all paths
+    /// * *@path - matches aspects of all types on the given path
     ///
     /// Existing aspects matching the syntax will not be removed unless
     /// `delete_missing_aspects` is set to true.
@@ -4647,7 +4608,7 @@ pub struct ListEntriesRequest {
     /// Filters are case-sensitive.
     /// The request can be filtered by the following fields:
     /// entry_type, entry_source.display_name.
-    /// The comparison operators are =, !=, \<, >, \<=, >= (strings are compared
+    /// The comparison operators are =, !=, <, >, <=, >= (strings are compared
     /// according to lexical order)
     /// The logical operators AND, OR, NOT can be used
     /// in the filter. Wildcard "*" can be used, but for entry_type the full
@@ -4655,7 +4616,7 @@ pub struct ListEntriesRequest {
     /// "entry_source.display_name=AnExampleDisplayName"
     /// "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
     /// "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-    /// entry_type=projects/another-project/locations/\*"
+    ///   entry_type=projects/another-project/locations/*"
     /// "NOT entry_source.display_name=AnotherExampleDisplayName"
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
@@ -4727,7 +4688,7 @@ pub struct SearchEntriesRequest {
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
     /// Optional. The scope under which the search should be operating. Should
-    /// either be organizations/\<org_id> or projects/\<project_ref>. If left
+    /// either be organizations/<org_id> or projects/<project_ref>. If left
     /// unspecified, it will default to the organization where the project provided
     /// in `name` is located.
     #[prost(string, tag = "7")]
@@ -4801,11 +4762,11 @@ impl EntryView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EntryView::Unspecified => "ENTRY_VIEW_UNSPECIFIED",
-            EntryView::Basic => "BASIC",
-            EntryView::Full => "FULL",
-            EntryView::Custom => "CUSTOM",
-            EntryView::All => "ALL",
+            Self::Unspecified => "ENTRY_VIEW_UNSPECIFIED",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
+            Self::Custom => "CUSTOM",
+            Self::All => "ALL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4843,9 +4804,9 @@ impl TransferStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransferStatus::Unspecified => "TRANSFER_STATUS_UNSPECIFIED",
-            TransferStatus::Migrated => "TRANSFER_STATUS_MIGRATED",
-            TransferStatus::Transferred => "TRANSFER_STATUS_TRANSFERRED",
+            Self::Unspecified => "TRANSFER_STATUS_UNSPECIFIED",
+            Self::Migrated => "TRANSFER_STATUS_MIGRATED",
+            Self::Transferred => "TRANSFER_STATUS_TRANSFERRED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4860,7 +4821,13 @@ impl TransferStatus {
 }
 /// Generated client implementations.
 pub mod catalog_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The primary resources offered by this service are EntryGroups, EntryTypes,
@@ -4949,8 +4916,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4980,8 +4946,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5011,8 +4976,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5042,8 +5006,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5070,8 +5033,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5101,8 +5063,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5132,8 +5093,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5163,8 +5123,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5194,8 +5153,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5222,8 +5180,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5253,8 +5210,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5284,8 +5240,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5315,8 +5270,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5346,8 +5300,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5374,8 +5327,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5402,8 +5354,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5430,8 +5381,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5458,8 +5408,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5489,8 +5438,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5517,8 +5465,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5545,8 +5492,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5576,8 +5522,7 @@ pub mod catalog_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5719,9 +5664,9 @@ pub mod get_content_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ContentView::Unspecified => "CONTENT_VIEW_UNSPECIFIED",
-                ContentView::Basic => "BASIC",
-                ContentView::Full => "FULL",
+                Self::Unspecified => "CONTENT_VIEW_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5737,7 +5682,13 @@ pub mod get_content_request {
 }
 /// Generated client implementations.
 pub mod content_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// ContentService manages Notebook and SQL Scripts for Dataplex.
@@ -5819,8 +5770,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5847,8 +5797,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5875,8 +5824,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5903,8 +5851,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5941,8 +5888,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5978,8 +5924,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6022,8 +5967,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6053,8 +5997,7 @@ pub mod content_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6184,16 +6127,15 @@ pub struct DataProfileSpec {
     /// DataScan.
     ///
     /// * Value can range between 0.0 and 100.0 with up to 3 significant decimal
-    ///   digits.
+    /// digits.
     /// * Sampling is not applied if `sampling_percent` is not specified, 0 or
-    ///
     /// 100.
     #[prost(float, tag = "2")]
     pub sampling_percent: f32,
     /// Optional. A filter applied to all rows in a single DataScan job.
     /// The filter needs to be a valid SQL expression for a WHERE clause in
     /// BigQuery standard SQL syntax.
-    /// Example: col1 >= 0 AND col2 \< 10
+    /// Example: col1 >= 0 AND col2 < 10
     #[prost(string, tag = "3")]
     pub row_filter: ::prost::alloc::string::String,
     /// Optional. Actions to take upon job completion..
@@ -6494,10 +6436,10 @@ pub mod data_profile_result {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        State::Unspecified => "STATE_UNSPECIFIED",
-                        State::Succeeded => "SUCCEEDED",
-                        State::Failed => "FAILED",
-                        State::Skipped => "SKIPPED",
+                        Self::Unspecified => "STATE_UNSPECIFIED",
+                        Self::Succeeded => "SUCCEEDED",
+                        Self::Failed => "FAILED",
+                        Self::Skipped => "SKIPPED",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6525,16 +6467,15 @@ pub struct DataQualitySpec {
     /// DataScan.
     ///
     /// * Value can range between 0.0 and 100.0 with up to 3 significant decimal
-    ///   digits.
+    /// digits.
     /// * Sampling is not applied if `sampling_percent` is not specified, 0 or
-    ///
     /// 100.
     #[prost(float, tag = "4")]
     pub sampling_percent: f32,
     /// Optional. A filter applied to all rows in a single DataScan job.
     /// The filter needs to be a valid SQL expression for a WHERE clause in
     /// BigQuery standard SQL syntax.
-    /// Example: col1 >= 0 AND col2 \< 10
+    /// Example: col1 >= 0 AND col2 < 10
     #[prost(string, tag = "5")]
     pub row_filter: ::prost::alloc::string::String,
     /// Optional. Actions to take upon job completion.
@@ -6705,10 +6646,10 @@ pub mod data_quality_result {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        State::Unspecified => "STATE_UNSPECIFIED",
-                        State::Succeeded => "SUCCEEDED",
-                        State::Failed => "FAILED",
-                        State::Skipped => "SKIPPED",
+                        Self::Unspecified => "STATE_UNSPECIFIED",
+                        Self::Succeeded => "SUCCEEDED",
+                        Self::Failed => "FAILED",
+                        Self::Skipped => "SKIPPED",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6741,9 +6682,9 @@ pub struct DataQualityRuleResult {
     /// Evaluated count can be configured to either
     ///
     /// * include all rows (default) - with `null` rows automatically failing rule
-    ///   evaluation, or
+    /// evaluation, or
     /// * exclude `null` rows from the `evaluated_count`, by setting
-    ///   `ignore_nulls = true`.
+    /// `ignore_nulls = true`.
     #[prost(int64, tag = "9")]
     pub evaluated_count: i64,
     /// The number of rows which passed a rule evaluation.
@@ -6794,8 +6735,8 @@ pub struct DataQualityDimensionResult {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataQualityDimension {
     /// The dimension name a rule belongs to. Supported dimensions are
-    /// \["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-    /// "INTEGRITY"\]
+    /// ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
+    /// "INTEGRITY"]
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -6818,8 +6759,8 @@ pub struct DataQualityRule {
     #[prost(bool, tag = "501")]
     pub ignore_null: bool,
     /// Required. The dimension a rule belongs to. Results are also aggregated at
-    /// the dimension level. Supported dimensions are **\["COMPLETENESS",
-    /// "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"\]**
+    /// the dimension level. Supported dimensions are **["COMPLETENESS",
+    /// "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
     #[prost(string, tag = "502")]
     pub dimension: ::prost::alloc::string::String,
     /// Optional. The minimum ratio of **passing_rows / total_rows** required to
@@ -6833,7 +6774,7 @@ pub struct DataQualityRule {
     /// Optional. A mutable name for the rule.
     ///
     /// * The name must contain only letters (a-z, A-Z), numbers (0-9), or
-    ///   hyphens (-).
+    /// hyphens (-).
     /// * The maximum length is 63 characters.
     /// * Must start with a letter.
     /// * Must end with a number or a letter.
@@ -6872,7 +6813,7 @@ pub mod data_quality_rule {
         /// Only relevant if a `min_value` has been defined. Default = false.
         #[prost(bool, tag = "3")]
         pub strict_min_enabled: bool,
-        /// Optional. Whether each value needs to be strictly lesser than ('\<') the
+        /// Optional. Whether each value needs to be strictly lesser than ('<') the
         /// maximum, or if equality is allowed.
         ///
         /// Only relevant if a `max_value` has been defined. Default = false.
@@ -6924,7 +6865,7 @@ pub mod data_quality_rule {
         /// Only relevant if a `min_value` has been defined. Default = false.
         #[prost(bool, tag = "4")]
         pub strict_min_enabled: bool,
-        /// Optional. Whether column statistic needs to be strictly lesser than ('\<')
+        /// Optional. Whether column statistic needs to be strictly lesser than ('<')
         /// the maximum, or if equality is allowed.
         ///
         /// Only relevant if a `max_value` has been defined. Default = false.
@@ -6963,10 +6904,10 @@ pub mod data_quality_rule {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ColumnStatistic::StatisticUndefined => "STATISTIC_UNDEFINED",
-                    ColumnStatistic::Mean => "MEAN",
-                    ColumnStatistic::Min => "MIN",
-                    ColumnStatistic::Max => "MAX",
+                    Self::StatisticUndefined => "STATISTIC_UNDEFINED",
+                    Self::Mean => "MEAN",
+                    Self::Min => "MIN",
+                    Self::Max => "MAX",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6986,7 +6927,7 @@ pub mod data_quality_rule {
     /// The SQL expression needs to use BigQuery standard SQL syntax and should
     /// produce a boolean value per row as the result.
     ///
-    /// Example: col1 >= 0 AND col2 \< 10
+    /// Example: col1 >= 0 AND col2 < 10
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RowConditionExpectation {
         /// Optional. The SQL expression.
@@ -7157,12 +7098,12 @@ pub struct DataTaxonomy {
 /// DataAttribute resources can be defined in a hierarchy.
 /// A single dataAttribute resource can contain specs of multiple types
 ///
-/// ```text,
+/// ```
 /// PII
-///   - ResourceAccessSpec :
-///                 - readers :foo@bar.com
-///   - DataAccessSpec :
-///                 - readers :bar@foo.com
+///    - ResourceAccessSpec :
+///                  - readers :foo@bar.com
+///    - DataAccessSpec :
+///                  - readers :bar@foo.com
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataAttribute {
@@ -7310,7 +7251,6 @@ pub struct CreateDataTaxonomyRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. DataTaxonomy identifier.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must be between 1-63 characters.
@@ -7409,7 +7349,6 @@ pub struct CreateDataAttributeRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. DataAttribute identifier.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must be between 1-63 characters.
@@ -7507,7 +7446,6 @@ pub struct CreateDataAttributeBindingRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. DataAttributeBinding identifier.
-    ///
     /// * Must contain only lowercase letters, numbers and hyphens.
     /// * Must start with a letter.
     /// * Must be between 1-63 characters.
@@ -7605,7 +7543,13 @@ pub struct DeleteDataAttributeBindingRequest {
 }
 /// Generated client implementations.
 pub mod data_taxonomy_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// DataTaxonomyService enables attribute-based governance. The resources
@@ -7691,8 +7635,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7722,8 +7665,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7754,8 +7696,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7785,8 +7726,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7813,8 +7753,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7844,8 +7783,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7875,8 +7813,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7908,8 +7845,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7939,8 +7875,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7970,8 +7905,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8001,8 +7935,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8032,8 +7965,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8063,8 +7995,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8094,8 +8025,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8122,8 +8052,7 @@ pub mod data_taxonomy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8238,9 +8167,9 @@ pub mod get_data_scan_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataScanView::Unspecified => "DATA_SCAN_VIEW_UNSPECIFIED",
-                DataScanView::Basic => "BASIC",
-                DataScanView::Full => "FULL",
+                Self::Unspecified => "DATA_SCAN_VIEW_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8358,9 +8287,9 @@ pub mod get_data_scan_job_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataScanJobView::Unspecified => "DATA_SCAN_JOB_VIEW_UNSPECIFIED",
-                DataScanJobView::Basic => "BASIC",
-                DataScanJobView::Full => "FULL",
+                Self::Unspecified => "DATA_SCAN_JOB_VIEW_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8403,13 +8332,13 @@ pub struct ListDataScanJobsRequest {
     ///
     /// Allowed fields are:
     ///
-    /// * `start_time`
-    /// * `end_time`
+    /// - `start_time`
+    /// - `end_time`
     ///
     /// `start_time` and `end_time` expect RFC-3339 formatted strings (e.g.
     /// 2018-10-08T18:30:00-07:00).
     ///
-    /// For instance, 'start_time > 2018-10-08T00:00:00.123456789Z AND end_time \<
+    /// For instance, 'start_time > 2018-10-08T00:00:00.123456789Z AND end_time <
     /// 2018-10-09T00:00:00.123456789Z' limits results to DataScanJobs between
     /// specified start and end times.
     #[prost(string, tag = "4")]
@@ -8432,9 +8361,9 @@ pub struct GenerateDataQualityRulesRequest {
     /// Required. The name must be one of the following:
     ///
     /// * The name of a data scan with at least one successful, completed data
-    ///   profiling job
+    /// profiling job
     /// * The name of a successful, completed data profiling job (a data scan job
-    ///   where the job type is data profiling)
+    /// where the job type is data profiling)
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -8452,10 +8381,10 @@ pub struct GenerateDataQualityRulesResponse {
 /// For example:
 ///
 /// * Data Quality: generates queries based on the rules and runs against the
-///   data to get data quality check results.
+///    data to get data quality check results.
 /// * Data Profile: analyzes the data in table(s) and generates insights about
-///   the structure, content and relationships (such as null percent,
-///   cardinality, min/max/mean, etc).
+///    the structure, content and relationships (such as null percent,
+///    cardinality, min/max/mean, etc).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataScan {
     /// Output only. The relative resource name of the scan, of the form:
@@ -8660,13 +8589,13 @@ pub mod data_scan_job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Canceling => "CANCELING",
-                State::Cancelled => "CANCELLED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Pending => "PENDING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Canceling => "CANCELING",
+                Self::Cancelled => "CANCELLED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Pending => "PENDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8722,9 +8651,9 @@ impl DataScanType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DataScanType::Unspecified => "DATA_SCAN_TYPE_UNSPECIFIED",
-            DataScanType::DataQuality => "DATA_QUALITY",
-            DataScanType::DataProfile => "DATA_PROFILE",
+            Self::Unspecified => "DATA_SCAN_TYPE_UNSPECIFIED",
+            Self::DataQuality => "DATA_QUALITY",
+            Self::DataProfile => "DATA_PROFILE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8739,7 +8668,13 @@ impl DataScanType {
 }
 /// Generated client implementations.
 pub mod data_scan_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// DataScanService manages DataScan resources which can be configured to run
@@ -8826,8 +8761,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8857,8 +8791,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8888,8 +8821,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8916,8 +8848,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8947,8 +8878,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8978,8 +8908,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9006,8 +8935,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9037,8 +8965,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9071,8 +8998,7 @@ pub mod data_scan_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9210,14 +9136,14 @@ pub mod discovery_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::Config => "CONFIG",
-                EventType::EntityCreated => "ENTITY_CREATED",
-                EventType::EntityUpdated => "ENTITY_UPDATED",
-                EventType::EntityDeleted => "ENTITY_DELETED",
-                EventType::PartitionCreated => "PARTITION_CREATED",
-                EventType::PartitionUpdated => "PARTITION_UPDATED",
-                EventType::PartitionDeleted => "PARTITION_DELETED",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::Config => "CONFIG",
+                Self::EntityCreated => "ENTITY_CREATED",
+                Self::EntityUpdated => "ENTITY_UPDATED",
+                Self::EntityDeleted => "ENTITY_DELETED",
+                Self::PartitionCreated => "PARTITION_CREATED",
+                Self::PartitionUpdated => "PARTITION_UPDATED",
+                Self::PartitionDeleted => "PARTITION_DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9263,9 +9189,9 @@ pub mod discovery_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EntityType::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
-                EntityType::Table => "TABLE",
-                EntityType::Fileset => "FILESET",
+                Self::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
+                Self::Table => "TABLE",
+                Self::Fileset => "FILESET",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9360,9 +9286,9 @@ pub mod job_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Spark => "SPARK",
-                Type::Notebook => "NOTEBOOK",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Spark => "SPARK",
+                Self::Notebook => "NOTEBOOK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9407,11 +9333,11 @@ pub mod job_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
-                State::Aborted => "ABORTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
+                Self::Aborted => "ABORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9452,8 +9378,8 @@ pub mod job_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Service::Unspecified => "SERVICE_UNSPECIFIED",
-                Service::Dataproc => "DATAPROC",
+                Self::Unspecified => "SERVICE_UNSPECIFIED",
+                Self::Dataproc => "DATAPROC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9494,9 +9420,9 @@ pub mod job_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ExecutionTrigger::Unspecified => "EXECUTION_TRIGGER_UNSPECIFIED",
-                ExecutionTrigger::TaskConfig => "TASK_CONFIG",
-                ExecutionTrigger::RunRequest => "RUN_REQUEST",
+                Self::Unspecified => "EXECUTION_TRIGGER_UNSPECIFIED",
+                Self::TaskConfig => "TASK_CONFIG",
+                Self::RunRequest => "RUN_REQUEST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9595,9 +9521,9 @@ pub mod session_event {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Engine::Unspecified => "ENGINE_UNSPECIFIED",
-                    Engine::SparkSql => "SPARK_SQL",
-                    Engine::Bigquery => "BIGQUERY",
+                    Self::Unspecified => "ENGINE_UNSPECIFIED",
+                    Self::SparkSql => "SPARK_SQL",
+                    Self::Bigquery => "BIGQUERY",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9644,11 +9570,11 @@ pub mod session_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::Start => "START",
-                EventType::Stop => "STOP",
-                EventType::Query => "QUERY",
-                EventType::Create => "CREATE",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::Start => "START",
+                Self::Stop => "STOP",
+                Self::Query => "QUERY",
+                Self::Create => "CREATE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9729,9 +9655,9 @@ pub mod governance_event {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    EntityType::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
-                    EntityType::Table => "TABLE",
-                    EntityType::Fileset => "FILESET",
+                    Self::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
+                    Self::Table => "TABLE",
+                    Self::Fileset => "FILESET",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9801,29 +9727,29 @@ pub mod governance_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::ResourceIamPolicyUpdate => "RESOURCE_IAM_POLICY_UPDATE",
-                EventType::BigqueryTableCreate => "BIGQUERY_TABLE_CREATE",
-                EventType::BigqueryTableUpdate => "BIGQUERY_TABLE_UPDATE",
-                EventType::BigqueryTableDelete => "BIGQUERY_TABLE_DELETE",
-                EventType::BigqueryConnectionCreate => "BIGQUERY_CONNECTION_CREATE",
-                EventType::BigqueryConnectionUpdate => "BIGQUERY_CONNECTION_UPDATE",
-                EventType::BigqueryConnectionDelete => "BIGQUERY_CONNECTION_DELETE",
-                EventType::BigqueryTaxonomyCreate => "BIGQUERY_TAXONOMY_CREATE",
-                EventType::BigqueryPolicyTagCreate => "BIGQUERY_POLICY_TAG_CREATE",
-                EventType::BigqueryPolicyTagDelete => "BIGQUERY_POLICY_TAG_DELETE",
-                EventType::BigqueryPolicyTagSetIamPolicy => {
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::ResourceIamPolicyUpdate => "RESOURCE_IAM_POLICY_UPDATE",
+                Self::BigqueryTableCreate => "BIGQUERY_TABLE_CREATE",
+                Self::BigqueryTableUpdate => "BIGQUERY_TABLE_UPDATE",
+                Self::BigqueryTableDelete => "BIGQUERY_TABLE_DELETE",
+                Self::BigqueryConnectionCreate => "BIGQUERY_CONNECTION_CREATE",
+                Self::BigqueryConnectionUpdate => "BIGQUERY_CONNECTION_UPDATE",
+                Self::BigqueryConnectionDelete => "BIGQUERY_CONNECTION_DELETE",
+                Self::BigqueryTaxonomyCreate => "BIGQUERY_TAXONOMY_CREATE",
+                Self::BigqueryPolicyTagCreate => "BIGQUERY_POLICY_TAG_CREATE",
+                Self::BigqueryPolicyTagDelete => "BIGQUERY_POLICY_TAG_DELETE",
+                Self::BigqueryPolicyTagSetIamPolicy => {
                     "BIGQUERY_POLICY_TAG_SET_IAM_POLICY"
                 }
-                EventType::AccessPolicyUpdate => "ACCESS_POLICY_UPDATE",
-                EventType::GovernanceRuleMatchedResources => {
+                Self::AccessPolicyUpdate => "ACCESS_POLICY_UPDATE",
+                Self::GovernanceRuleMatchedResources => {
                     "GOVERNANCE_RULE_MATCHED_RESOURCES"
                 }
-                EventType::GovernanceRuleSearchLimitExceeds => {
+                Self::GovernanceRuleSearchLimitExceeds => {
                     "GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS"
                 }
-                EventType::GovernanceRuleErrors => "GOVERNANCE_RULE_ERRORS",
-                EventType::GovernanceRuleProcessing => "GOVERNANCE_RULE_PROCESSING",
+                Self::GovernanceRuleErrors => "GOVERNANCE_RULE_ERRORS",
+                Self::GovernanceRuleProcessing => "GOVERNANCE_RULE_PROCESSING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10047,10 +9973,10 @@ pub mod data_scan_event {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        State::Unspecified => "STATE_UNSPECIFIED",
-                        State::Succeeded => "SUCCEEDED",
-                        State::Failed => "FAILED",
-                        State::Skipped => "SKIPPED",
+                        Self::Unspecified => "STATE_UNSPECIFIED",
+                        Self::Succeeded => "SUCCEEDED",
+                        Self::Failed => "FAILED",
+                        Self::Skipped => "SKIPPED",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10094,9 +10020,9 @@ pub mod data_scan_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ScanType::Unspecified => "SCAN_TYPE_UNSPECIFIED",
-                ScanType::DataProfile => "DATA_PROFILE",
-                ScanType::DataQuality => "DATA_QUALITY",
+                Self::Unspecified => "SCAN_TYPE_UNSPECIFIED",
+                Self::DataProfile => "DATA_PROFILE",
+                Self::DataQuality => "DATA_QUALITY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10143,12 +10069,12 @@ pub mod data_scan_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
-                State::Created => "CREATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Started => "STARTED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
+                Self::Created => "CREATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10192,9 +10118,9 @@ pub mod data_scan_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Trigger::Unspecified => "TRIGGER_UNSPECIFIED",
-                Trigger::OnDemand => "ON_DEMAND",
-                Trigger::Schedule => "SCHEDULE",
+                Self::Unspecified => "TRIGGER_UNSPECIFIED",
+                Self::OnDemand => "ON_DEMAND",
+                Self::Schedule => "SCHEDULE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10235,9 +10161,9 @@ pub mod data_scan_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Scope::Unspecified => "SCOPE_UNSPECIFIED",
-                Scope::Full => "FULL",
-                Scope::Incremental => "INCREMENTAL",
+                Self::Unspecified => "SCOPE_UNSPECIFIED",
+                Self::Full => "FULL",
+                Self::Incremental => "INCREMENTAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10337,31 +10263,31 @@ pub mod data_quality_scan_rule_result {
         /// An unspecified rule type.
         Unspecified = 0,
         /// See
-        /// \[DataQualityRule.NonNullExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.NonNullExpectation\].
+        /// [DataQualityRule.NonNullExpectation][google.cloud.dataplex.v1.DataQualityRule.NonNullExpectation].
         NonNullExpectation = 1,
         /// See
-        /// \[DataQualityRule.RangeExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.RangeExpectation\].
+        /// [DataQualityRule.RangeExpectation][google.cloud.dataplex.v1.DataQualityRule.RangeExpectation].
         RangeExpectation = 2,
         /// See
-        /// \[DataQualityRule.RegexExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.RegexExpectation\].
+        /// [DataQualityRule.RegexExpectation][google.cloud.dataplex.v1.DataQualityRule.RegexExpectation].
         RegexExpectation = 3,
         /// See
-        /// \[DataQualityRule.RowConditionExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.RowConditionExpectation\].
+        /// [DataQualityRule.RowConditionExpectation][google.cloud.dataplex.v1.DataQualityRule.RowConditionExpectation].
         RowConditionExpectation = 4,
         /// See
-        /// \[DataQualityRule.SetExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.SetExpectation\].
+        /// [DataQualityRule.SetExpectation][google.cloud.dataplex.v1.DataQualityRule.SetExpectation].
         SetExpectation = 5,
         /// See
-        /// \[DataQualityRule.StatisticRangeExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation\].
+        /// [DataQualityRule.StatisticRangeExpectation][google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation].
         StatisticRangeExpectation = 6,
         /// See
-        /// \[DataQualityRule.TableConditionExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.TableConditionExpectation\].
+        /// [DataQualityRule.TableConditionExpectation][google.cloud.dataplex.v1.DataQualityRule.TableConditionExpectation].
         TableConditionExpectation = 7,
         /// See
-        /// \[DataQualityRule.UniquenessExpectation\]\[google.cloud.dataplex.v1.DataQualityRule.UniquenessExpectation\].
+        /// [DataQualityRule.UniquenessExpectation][google.cloud.dataplex.v1.DataQualityRule.UniquenessExpectation].
         UniquenessExpectation = 8,
         /// See
-        /// \[DataQualityRule.SqlAssertion\]\[google.cloud.dataplex.v1.DataQualityRule.SqlAssertion\].
+        /// [DataQualityRule.SqlAssertion][google.cloud.dataplex.v1.DataQualityRule.SqlAssertion].
         SqlAssertion = 9,
     }
     impl RuleType {
@@ -10371,16 +10297,16 @@ pub mod data_quality_scan_rule_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RuleType::Unspecified => "RULE_TYPE_UNSPECIFIED",
-                RuleType::NonNullExpectation => "NON_NULL_EXPECTATION",
-                RuleType::RangeExpectation => "RANGE_EXPECTATION",
-                RuleType::RegexExpectation => "REGEX_EXPECTATION",
-                RuleType::RowConditionExpectation => "ROW_CONDITION_EXPECTATION",
-                RuleType::SetExpectation => "SET_EXPECTATION",
-                RuleType::StatisticRangeExpectation => "STATISTIC_RANGE_EXPECTATION",
-                RuleType::TableConditionExpectation => "TABLE_CONDITION_EXPECTATION",
-                RuleType::UniquenessExpectation => "UNIQUENESS_EXPECTATION",
-                RuleType::SqlAssertion => "SQL_ASSERTION",
+                Self::Unspecified => "RULE_TYPE_UNSPECIFIED",
+                Self::NonNullExpectation => "NON_NULL_EXPECTATION",
+                Self::RangeExpectation => "RANGE_EXPECTATION",
+                Self::RegexExpectation => "REGEX_EXPECTATION",
+                Self::RowConditionExpectation => "ROW_CONDITION_EXPECTATION",
+                Self::SetExpectation => "SET_EXPECTATION",
+                Self::StatisticRangeExpectation => "STATISTIC_RANGE_EXPECTATION",
+                Self::TableConditionExpectation => "TABLE_CONDITION_EXPECTATION",
+                Self::UniquenessExpectation => "UNIQUENESS_EXPECTATION",
+                Self::SqlAssertion => "SQL_ASSERTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10428,9 +10354,9 @@ pub mod data_quality_scan_rule_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EvaluationType::Unspecified => "EVALUATION_TYPE_UNSPECIFIED",
-                EvaluationType::PerRow => "PER_ROW",
-                EvaluationType::Aggregate => "AGGREGATE",
+                Self::Unspecified => "EVALUATION_TYPE_UNSPECIFIED",
+                Self::PerRow => "PER_ROW",
+                Self::Aggregate => "AGGREGATE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10471,9 +10397,9 @@ pub mod data_quality_scan_rule_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Result::Unspecified => "RESULT_UNSPECIFIED",
-                Result::Passed => "PASSED",
-                Result::Failed => "FAILED",
+                Self::Unspecified => "RESULT_UNSPECIFIED",
+                Self::Passed => "PASSED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10524,7 +10450,7 @@ pub struct DeleteEntityRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The etag associated with the entity, which can be retrieved with
-    /// a \[GetEntity\]\[\] request.
+    /// a [GetEntity][] request.
     #[prost(string, tag = "2")]
     pub etag: ::prost::alloc::string::String,
 }
@@ -10553,11 +10479,11 @@ pub struct ListEntitiesRequest {
     /// Optional. The following filter parameters can be added to the URL to limit
     /// the entities returned by the API:
     ///
-    /// * Entity ID: ?filter="id=entityID"
-    /// * Asset ID: ?filter="asset=assetID"
-    /// * Data path ?filter="data_path=gs://my-bucket"
-    /// * Is HIVE compatible: ?filter="hive_compatible=true"
-    /// * Is BigQuery compatible: ?filter="bigquery_compatible=true"
+    /// - Entity ID: ?filter="id=entityID"
+    /// - Asset ID: ?filter="asset=assetID"
+    /// - Data path ?filter="data_path=gs://my-bucket"
+    /// - Is HIVE compatible: ?filter="hive_compatible=true"
+    /// - Is BigQuery compatible: ?filter="bigquery_compatible=true"
     #[prost(string, tag = "5")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -10592,9 +10518,9 @@ pub mod list_entities_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EntityView::Unspecified => "ENTITY_VIEW_UNSPECIFIED",
-                EntityView::Tables => "TABLES",
-                EntityView::Filesets => "FILESETS",
+                Self::Unspecified => "ENTITY_VIEW_UNSPECIFIED",
+                Self::Tables => "TABLES",
+                Self::Filesets => "FILESETS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10663,10 +10589,10 @@ pub mod get_entity_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EntityView::Unspecified => "ENTITY_VIEW_UNSPECIFIED",
-                EntityView::Basic => "BASIC",
-                EntityView::Schema => "SCHEMA",
-                EntityView::Full => "FULL",
+                Self::Unspecified => "ENTITY_VIEW_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::Schema => "SCHEMA",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10703,22 +10629,22 @@ pub struct ListPartitionsRequest {
     /// Optional. Filter the partitions returned to the caller using a key value
     /// pair expression. Supported operators and syntax:
     ///
-    /// * logic operators: AND, OR
-    /// * comparison operators: \<, >, >=, \<= ,=, !=
-    /// * LIKE operators:
-    ///   * The right hand of a LIKE operator supports "." and
-    ///     "\*" for wildcard searches, for example "value1 LIKE ".*oo.*"
-    /// * parenthetical grouping: ( )
+    /// - logic operators: AND, OR
+    /// - comparison operators: <, >, >=, <= ,=, !=
+    /// - LIKE operators:
+    ///    - The right hand of a LIKE operator supports "." and
+    ///      "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
+    /// - parenthetical grouping: ( )
     ///
-    /// Sample filter expression: \`?filter="key1 \< value1 OR key2 > value2"
+    /// Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
     ///
     /// **Notes:**
     ///
-    /// * Keys to the left of operators are case insensitive.
-    /// * Partition results are sorted first by creation time, then by
-    ///   lexicographic order.
-    /// * Up to 20 key value filter pairs are allowed, but due to performance
-    ///   considerations, only the first 10 will be used as a filter.
+    /// - Keys to the left of operators are case insensitive.
+    /// - Partition results are sorted first by creation time, then by
+    ///    lexicographic order.
+    /// - Up to 20 key value filter pairs are allowed, but due to performance
+    ///    considerations, only the first 10 will be used as a filter.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -10801,7 +10727,7 @@ pub struct Entity {
     #[prost(string, tag = "7")]
     pub id: ::prost::alloc::string::String,
     /// Optional. The etag associated with the entity, which can be retrieved with
-    /// a \[GetEntity\]\[\] request. Required for update and delete requests.
+    /// a [GetEntity][] request. Required for update and delete requests.
     #[prost(string, tag = "8")]
     pub etag: ::prost::alloc::string::String,
     /// Required. Immutable. The type of entity.
@@ -10906,9 +10832,9 @@ pub mod entity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Table => "TABLE",
-                Type::Fileset => "FILESET",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Table => "TABLE",
+                Self::Fileset => "FILESET",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10952,16 +10878,16 @@ pub struct Schema {
     /// Required. Set to `true` if user-managed or `false` if managed by Dataplex.
     /// The default is `false` (managed by Dataplex).
     ///
-    /// * Set to `false`to enable Dataplex discovery to update the schema.
-    ///   including new data discovery, schema inference, and schema evolution.
-    ///   Users retain the ability to input and edit the schema. Dataplex
-    ///   treats schema input by the user as though produced
-    ///   by a previous Dataplex discovery operation, and it will
-    ///   evolve the schema and take action based on that treatment.
+    /// - Set to `false`to enable Dataplex discovery to update the schema.
+    ///    including new data discovery, schema inference, and schema evolution.
+    ///    Users retain the ability to input and edit the schema. Dataplex
+    ///    treats schema input by the user as though produced
+    ///    by a previous Dataplex discovery operation, and it will
+    ///    evolve the schema and take action based on that treatment.
     ///
-    /// * Set to `true` to fully manage the entity
-    ///   schema. This setting guarantees that Dataplex will not
-    ///   change schema fields.
+    /// - Set to `true` to fully manage the entity
+    ///    schema. This setting guarantees that Dataplex will not
+    ///    change schema fields.
     #[prost(bool, tag = "1")]
     pub user_managed: bool,
     /// Optional. The sequence of fields describing data in table entities.
@@ -11071,22 +10997,22 @@ pub mod schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Boolean => "BOOLEAN",
-                Type::Byte => "BYTE",
-                Type::Int16 => "INT16",
-                Type::Int32 => "INT32",
-                Type::Int64 => "INT64",
-                Type::Float => "FLOAT",
-                Type::Double => "DOUBLE",
-                Type::Decimal => "DECIMAL",
-                Type::String => "STRING",
-                Type::Binary => "BINARY",
-                Type::Timestamp => "TIMESTAMP",
-                Type::Date => "DATE",
-                Type::Time => "TIME",
-                Type::Record => "RECORD",
-                Type::Null => "NULL",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Boolean => "BOOLEAN",
+                Self::Byte => "BYTE",
+                Self::Int16 => "INT16",
+                Self::Int32 => "INT32",
+                Self::Int64 => "INT64",
+                Self::Float => "FLOAT",
+                Self::Double => "DOUBLE",
+                Self::Decimal => "DECIMAL",
+                Self::String => "STRING",
+                Self::Binary => "BINARY",
+                Self::Timestamp => "TIMESTAMP",
+                Self::Date => "DATE",
+                Self::Time => "TIME",
+                Self::Record => "RECORD",
+                Self::Null => "NULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11142,10 +11068,10 @@ pub mod schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Required => "REQUIRED",
-                Mode::Nullable => "NULLABLE",
-                Mode::Repeated => "REPEATED",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Required => "REQUIRED",
+                Self::Nullable => "NULLABLE",
+                Self::Repeated => "REPEATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11187,8 +11113,8 @@ pub mod schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PartitionStyle::Unspecified => "PARTITION_STYLE_UNSPECIFIED",
-                PartitionStyle::HiveCompatible => "HIVE_COMPATIBLE",
+                Self::Unspecified => "PARTITION_STYLE_UNSPECIFIED",
+                Self::HiveCompatible => "HIVE_COMPATIBLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11215,20 +11141,20 @@ pub struct StorageFormat {
     /// Required. The mime type descriptor for the data. Must match the pattern
     /// {type}/{subtype}. Supported values:
     ///
-    /// * application/x-parquet
-    /// * application/x-avro
-    /// * application/x-orc
-    /// * application/x-tfrecord
-    /// * application/x-parquet+iceberg
-    /// * application/x-avro+iceberg
-    /// * application/x-orc+iceberg
-    /// * application/json
-    /// * application/{subtypes}
-    /// * text/csv
-    /// * text/<subtypes>
-    /// * image/{image subtype}
-    /// * video/{video subtype}
-    /// * audio/{audio subtype}
+    /// - application/x-parquet
+    /// - application/x-avro
+    /// - application/x-orc
+    /// - application/x-tfrecord
+    /// - application/x-parquet+iceberg
+    /// - application/x-avro+iceberg
+    /// - application/x-orc+iceberg
+    /// - application/json
+    /// - application/{subtypes}
+    /// - text/csv
+    /// - text/<subtypes>
+    /// - image/{image subtype}
+    /// - video/{video subtype}
+    /// - audio/{audio subtype}
     #[prost(string, tag = "3")]
     pub mime_type: ::prost::alloc::string::String,
     /// Additional format-specific options.
@@ -11321,19 +11247,19 @@ pub mod storage_format {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Format::Unspecified => "FORMAT_UNSPECIFIED",
-                Format::Parquet => "PARQUET",
-                Format::Avro => "AVRO",
-                Format::Orc => "ORC",
-                Format::Csv => "CSV",
-                Format::Json => "JSON",
-                Format::Image => "IMAGE",
-                Format::Audio => "AUDIO",
-                Format::Video => "VIDEO",
-                Format::Text => "TEXT",
-                Format::Tfrecord => "TFRECORD",
-                Format::Other => "OTHER",
-                Format::Unknown => "UNKNOWN",
+                Self::Unspecified => "FORMAT_UNSPECIFIED",
+                Self::Parquet => "PARQUET",
+                Self::Avro => "AVRO",
+                Self::Orc => "ORC",
+                Self::Csv => "CSV",
+                Self::Json => "JSON",
+                Self::Image => "IMAGE",
+                Self::Audio => "AUDIO",
+                Self::Video => "VIDEO",
+                Self::Text => "TEXT",
+                Self::Tfrecord => "TFRECORD",
+                Self::Other => "OTHER",
+                Self::Unknown => "UNKNOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11384,9 +11310,9 @@ pub mod storage_format {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CompressionFormat::Unspecified => "COMPRESSION_FORMAT_UNSPECIFIED",
-                CompressionFormat::Gzip => "GZIP",
-                CompressionFormat::Bzip2 => "BZIP2",
+                Self::Unspecified => "COMPRESSION_FORMAT_UNSPECIFIED",
+                Self::Gzip => "GZIP",
+                Self::Bzip2 => "BZIP2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11451,9 +11377,9 @@ pub mod storage_access {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AccessMode::Unspecified => "ACCESS_MODE_UNSPECIFIED",
-                AccessMode::Direct => "DIRECT",
-                AccessMode::Managed => "MANAGED",
+                Self::Unspecified => "ACCESS_MODE_UNSPECIFIED",
+                Self::Direct => "DIRECT",
+                Self::Managed => "MANAGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11485,9 +11411,9 @@ impl StorageSystem {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            StorageSystem::Unspecified => "STORAGE_SYSTEM_UNSPECIFIED",
-            StorageSystem::CloudStorage => "CLOUD_STORAGE",
-            StorageSystem::Bigquery => "BIGQUERY",
+            Self::Unspecified => "STORAGE_SYSTEM_UNSPECIFIED",
+            Self::CloudStorage => "CLOUD_STORAGE",
+            Self::Bigquery => "BIGQUERY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11502,7 +11428,13 @@ impl StorageSystem {
 }
 /// Generated client implementations.
 pub mod metadata_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Metadata service manages metadata resources such as tables, filesets and
@@ -11585,8 +11517,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11613,8 +11544,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11641,8 +11571,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11669,8 +11598,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11700,8 +11628,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11728,8 +11655,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11756,8 +11682,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11784,8 +11709,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -11815,8 +11739,7 @@ pub mod metadata_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

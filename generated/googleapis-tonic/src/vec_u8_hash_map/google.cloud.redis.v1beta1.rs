@@ -14,13 +14,13 @@ pub struct NodeInfo {
 pub struct Instance {
     /// Required. Unique name of the resource in this scope including project and
     /// location using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     ///
     /// Note: Redis instances are managed and addressed at regional level so
     /// location_id here refers to a GCP region; however, users may choose which
     /// specific zone (or collection of zones for cross-zone instances) an instance
-    /// should be provisioned in. Refer to \[location_id\]\[google.cloud.redis.v1beta1.Instance.location_id\] and
-    /// \[alternative_location_id\]\[google.cloud.redis.v1beta1.Instance.alternative_location_id\] fields for more details.
+    /// should be provisioned in. Refer to [location_id][google.cloud.redis.v1beta1.Instance.location_id] and
+    /// [alternative_location_id][google.cloud.redis.v1beta1.Instance.alternative_location_id] fields for more details.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// An arbitrary and optional user-provided name for the instance.
@@ -50,10 +50,10 @@ pub struct Instance {
     /// If not provided, latest supported version will be used. Currently, the
     /// supported values are:
     ///
-    /// * `REDIS_3_2` for Redis 3.2 compatibility
-    /// * `REDIS_4_0` for Redis 4.0 compatibility (default)
-    /// * `REDIS_5_0` for Redis 5.0 compatibility
-    /// * `REDIS_6_X` for Redis 6.x compatibility
+    ///   *   `REDIS_3_2` for Redis 3.2 compatibility
+    ///   *   `REDIS_4_0` for Redis 4.0 compatibility (default)
+    ///   *   `REDIS_5_0` for Redis 5.0 compatibility
+    ///   *   `REDIS_6_X` for Redis 6.x compatibility
     #[prost(string, tag = "7")]
     pub redis_version: ::prost::alloc::string::String,
     /// Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses
@@ -74,7 +74,7 @@ pub struct Instance {
     #[prost(string, tag = "30")]
     pub secondary_ip_range: ::prost::alloc::string::String,
     /// Output only. Hostname or IP address of the exposed Redis endpoint used by
-    /// clients to connect to the service.
+    ///   clients to connect to the service.
     #[prost(string, tag = "10")]
     pub host: ::prost::alloc::string::String,
     /// Output only. The port number of the exposed Redis endpoint.
@@ -99,22 +99,22 @@ pub struct Instance {
     /// <http://redis.io/topics/config.> Currently, the only supported parameters
     /// are:
     ///
-    /// Redis version 3.2 and newer:
+    ///   Redis version 3.2 and newer:
     ///
-    /// * maxmemory-policy
-    /// * notify-keyspace-events
+    ///   *   maxmemory-policy
+    ///   *   notify-keyspace-events
     ///
-    /// Redis version 4.0 and newer:
+    ///   Redis version 4.0 and newer:
     ///
-    /// * activedefrag
-    /// * lfu-decay-time
-    /// * lfu-log-factor
-    /// * maxmemory-gb
+    ///   *   activedefrag
+    ///   *   lfu-decay-time
+    ///   *   lfu-log-factor
+    ///   *   maxmemory-gb
     ///
-    /// Redis version 5.0 and newer:
+    ///   Redis version 5.0 and newer:
     ///
-    /// * stream-node-max-bytes
-    /// * stream-node-max-entries
+    ///   *   stream-node-max-bytes
+    ///   *   stream-node-max-entries
     #[prost(map = "string, string", tag = "16")]
     pub redis_configs: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -134,7 +134,7 @@ pub struct Instance {
     pub authorized_network: ::prost::alloc::string::String,
     /// Output only. Cloud IAM identity used by import / export operations to
     /// transfer data to/from Cloud Storage. Format is
-    /// "serviceAccount:\<service_account_email>". The value may change over time
+    /// "serviceAccount:<service_account_email>". The value may change over time
     /// for a given instance so should be checked before each import/export
     /// operation.
     #[prost(string, tag = "21")]
@@ -234,15 +234,15 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Repairing => "REPAIRING",
-                State::Maintenance => "MAINTENANCE",
-                State::Importing => "IMPORTING",
-                State::FailingOver => "FAILING_OVER",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Repairing => "REPAIRING",
+                Self::Maintenance => "MAINTENANCE",
+                Self::Importing => "IMPORTING",
+                Self::FailingOver => "FAILING_OVER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -289,9 +289,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Tier::Unspecified => "TIER_UNSPECIFIED",
-                Tier::Basic => "BASIC",
-                Tier::StandardHa => "STANDARD_HA",
+                Self::Unspecified => "TIER_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::StandardHa => "STANDARD_HA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -334,9 +334,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConnectMode::Unspecified => "CONNECT_MODE_UNSPECIFIED",
-                ConnectMode::DirectPeering => "DIRECT_PEERING",
-                ConnectMode::PrivateServiceAccess => "PRIVATE_SERVICE_ACCESS",
+                Self::Unspecified => "CONNECT_MODE_UNSPECIFIED",
+                Self::DirectPeering => "DIRECT_PEERING",
+                Self::PrivateServiceAccess => "PRIVATE_SERVICE_ACCESS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -377,11 +377,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TransitEncryptionMode::Unspecified => {
-                    "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED"
-                }
-                TransitEncryptionMode::ServerAuthentication => "SERVER_AUTHENTICATION",
-                TransitEncryptionMode::Disabled => "DISABLED",
+                Self::Unspecified => "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+                Self::ServerAuthentication => "SERVER_AUTHENTICATION",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -425,9 +423,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReadReplicasMode::Unspecified => "READ_REPLICAS_MODE_UNSPECIFIED",
-                ReadReplicasMode::ReadReplicasDisabled => "READ_REPLICAS_DISABLED",
-                ReadReplicasMode::ReadReplicasEnabled => "READ_REPLICAS_ENABLED",
+                Self::Unspecified => "READ_REPLICAS_MODE_UNSPECIFIED",
+                Self::ReadReplicasDisabled => "READ_REPLICAS_DISABLED",
+                Self::ReadReplicasEnabled => "READ_REPLICAS_ENABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -496,9 +494,9 @@ pub mod persistence_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PersistenceMode::Unspecified => "PERSISTENCE_MODE_UNSPECIFIED",
-                PersistenceMode::Disabled => "DISABLED",
-                PersistenceMode::Rdb => "RDB",
+                Self::Unspecified => "PERSISTENCE_MODE_UNSPECIFIED",
+                Self::Disabled => "DISABLED",
+                Self::Rdb => "RDB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -543,11 +541,11 @@ pub mod persistence_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SnapshotPeriod::Unspecified => "SNAPSHOT_PERIOD_UNSPECIFIED",
-                SnapshotPeriod::OneHour => "ONE_HOUR",
-                SnapshotPeriod::SixHours => "SIX_HOURS",
-                SnapshotPeriod::TwelveHours => "TWELVE_HOURS",
-                SnapshotPeriod::TwentyFourHours => "TWENTY_FOUR_HOURS",
+                Self::Unspecified => "SNAPSHOT_PERIOD_UNSPECIFIED",
+                Self::OneHour => "ONE_HOUR",
+                Self::SixHours => "SIX_HOURS",
+                Self::TwelveHours => "TWELVE_HOURS",
+                Self::TwentyFourHours => "TWENTY_FOUR_HOURS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -563,11 +561,11 @@ pub mod persistence_config {
         }
     }
 }
-/// Request for \[RescheduleMaintenance\]\[google.cloud.redis.v1beta1.CloudRedis.RescheduleMaintenance\].
+/// Request for [RescheduleMaintenance][google.cloud.redis.v1beta1.CloudRedis.RescheduleMaintenance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RescheduleMaintenanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -613,10 +611,10 @@ pub mod reschedule_maintenance_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
-                RescheduleType::Immediate => "IMMEDIATE",
-                RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
-                RescheduleType::SpecificTime => "SPECIFIC_TIME",
+                Self::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
+                Self::Immediate => "IMMEDIATE",
+                Self::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
+                Self::SpecificTime => "SPECIFIC_TIME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -683,11 +681,11 @@ pub struct MaintenanceSchedule {
     #[prost(message, optional, tag = "5")]
     pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// Request for \[ListInstances\]\[google.cloud.redis.v1beta1.CloudRedis.ListInstances\].
+/// Request for [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
     /// Required. The resource name of the instance location using the form:
-    /// `projects/{project_id}/locations/{location_id}`
+    ///      `projects/{project_id}/locations/{location_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -696,16 +694,16 @@ pub struct ListInstancesRequest {
     /// If not specified, a default value of 1000 will be used by the service.
     /// Regardless of the page_size value, the response may include a partial list
     /// and a caller should only rely on response's
-    /// \[`next_page_token`\]\[google.cloud.redis.v1beta1.ListInstancesResponse.next_page_token\]
+    /// [`next_page_token`][google.cloud.redis.v1beta1.ListInstancesResponse.next_page_token]
     /// to determine if there are more instances left to be queried.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// The `next_page_token` value returned from a previous
-    /// \[ListInstances\]\[google.cloud.redis.v1beta1.CloudRedis.ListInstances\] request, if any.
+    /// [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// Response for \[ListInstances\]\[google.cloud.redis.v1beta1.CloudRedis.ListInstances\].
+/// Response for [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
     /// A list of Redis instances in the project in the specified location,
@@ -729,20 +727,20 @@ pub struct ListInstancesResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Request for \[GetInstance\]\[google.cloud.redis.v1beta1.CloudRedis.GetInstance\].
+/// Request for [GetInstance][google.cloud.redis.v1beta1.CloudRedis.GetInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request for \[GetInstanceAuthString\]\[google.cloud.redis.v1beta1.CloudRedis.GetInstanceAuthString\].
+/// Request for [GetInstanceAuthString][google.cloud.redis.v1beta1.CloudRedis.GetInstanceAuthString].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceAuthStringRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -754,11 +752,11 @@ pub struct InstanceAuthString {
     #[prost(string, tag = "1")]
     pub auth_string: ::prost::alloc::string::String,
 }
-/// Request for \[CreateInstance\]\[google.cloud.redis.v1beta1.CloudRedis.CreateInstance\].
+/// Request for [CreateInstance][google.cloud.redis.v1beta1.CloudRedis.CreateInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceRequest {
     /// Required. The resource name of the instance location using the form:
-    /// `projects/{project_id}/locations/{location_id}`
+    ///      `projects/{project_id}/locations/{location_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -776,18 +774,18 @@ pub struct CreateInstanceRequest {
     #[prost(message, optional, tag = "3")]
     pub instance: ::core::option::Option<Instance>,
 }
-/// Request for \[UpdateInstance\]\[google.cloud.redis.v1beta1.CloudRedis.UpdateInstance\].
+/// Request for [UpdateInstance][google.cloud.redis.v1beta1.CloudRedis.UpdateInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceRequest {
     /// Required. Mask of fields to update. At least one path must be supplied in
     /// this field. The elements of the repeated paths field may only include these
-    /// fields from \[Instance\]\[google.cloud.redis.v1beta1.Instance\]:
+    /// fields from [Instance][google.cloud.redis.v1beta1.Instance]:
     ///
-    /// * `displayName`
-    /// * `labels`
-    /// * `memorySizeGb`
-    /// * `redisConfig`
-    /// * `replica_count`
+    ///   *   `displayName`
+    ///   *   `labels`
+    ///   *   `memorySizeGb`
+    ///   *   `redisConfig`
+    ///   *   `replica_count`
     #[prost(message, optional, tag = "1")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Required. Update description.
@@ -795,11 +793,11 @@ pub struct UpdateInstanceRequest {
     #[prost(message, optional, tag = "2")]
     pub instance: ::core::option::Option<Instance>,
 }
-/// Request for \[UpgradeInstance\]\[google.cloud.redis.v1beta1.CloudRedis.UpgradeInstance\].
+/// Request for [UpgradeInstance][google.cloud.redis.v1beta1.CloudRedis.UpgradeInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeInstanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -807,11 +805,11 @@ pub struct UpgradeInstanceRequest {
     #[prost(string, tag = "2")]
     pub redis_version: ::prost::alloc::string::String,
 }
-/// Request for \[DeleteInstance\]\[google.cloud.redis.v1beta1.CloudRedis.DeleteInstance\].
+/// Request for [DeleteInstance][google.cloud.redis.v1beta1.CloudRedis.DeleteInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteInstanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -840,11 +838,11 @@ pub mod input_config {
         GcsSource(super::GcsSource),
     }
 }
-/// Request for \[Import\]\[google.cloud.redis.v1beta1.CloudRedis.ImportInstance\].
+/// Request for [Import][google.cloud.redis.v1beta1.CloudRedis.ImportInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportInstanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -877,11 +875,11 @@ pub mod output_config {
         GcsDestination(super::GcsDestination),
     }
 }
-/// Request for \[Export\]\[google.cloud.redis.v1beta1.CloudRedis.ExportInstance\].
+/// Request for [Export][google.cloud.redis.v1beta1.CloudRedis.ExportInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportInstanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -889,11 +887,11 @@ pub struct ExportInstanceRequest {
     #[prost(message, optional, tag = "3")]
     pub output_config: ::core::option::Option<OutputConfig>,
 }
-/// Request for \[Failover\]\[google.cloud.redis.v1beta1.CloudRedis.FailoverInstance\].
+/// Request for [Failover][google.cloud.redis.v1beta1.CloudRedis.FailoverInstance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FailoverInstanceRequest {
     /// Required. Redis instance resource name using the form:
-    /// `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///      `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     /// where `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -936,9 +934,9 @@ pub mod failover_instance_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DataProtectionMode::Unspecified => "DATA_PROTECTION_MODE_UNSPECIFIED",
-                DataProtectionMode::LimitedDataLoss => "LIMITED_DATA_LOSS",
-                DataProtectionMode::ForceDataLoss => "FORCE_DATA_LOSS",
+                Self::Unspecified => "DATA_PROTECTION_MODE_UNSPECIFIED",
+                Self::LimitedDataLoss => "LIMITED_DATA_LOSS",
+                Self::ForceDataLoss => "FORCE_DATA_LOSS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -997,7 +995,13 @@ pub struct TlsCertificate {
 }
 /// Generated client implementations.
 pub mod cloud_redis_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Configures and manages Cloud Memorystore for Redis instances
@@ -1007,15 +1011,13 @@ pub mod cloud_redis_client {
     /// The `redis.googleapis.com` service implements the Google Cloud Memorystore
     /// for Redis API and defines the following resource model for managing Redis
     /// instances:
-    ///
     /// * The service works with a collection of cloud projects, named: `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
     /// * Each location has a collection of Redis instances, named: `/instances/*`
     /// * As such, Redis instances are resources of the form:
-    ///  `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     ///
     /// Note that location_id must be referring to a GCP `region`; for example:
-    ///
     /// * `projects/redpepper-1290/locations/us-central1/instances/my-redis`
     #[derive(Debug, Clone)]
     pub struct CloudRedisClient<T> {
@@ -1106,8 +1108,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1134,8 +1135,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1167,8 +1167,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1209,8 +1208,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1244,8 +1242,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1276,8 +1273,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1314,8 +1310,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1350,8 +1345,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1382,8 +1376,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1414,8 +1407,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1446,8 +1438,7 @@ pub mod cloud_redis_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

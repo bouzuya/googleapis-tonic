@@ -222,7 +222,7 @@ pub struct UpdateProductRequest {
     /// product.name is immutable.
     #[prost(message, optional, tag = "1")]
     pub product: ::core::option::Option<Product>,
-    /// The \[FieldMask\]\[google.protobuf.FieldMask\] that specifies which fields
+    /// The [FieldMask][google.protobuf.FieldMask] that specifies which fields
     /// to update.
     /// If update_mask isn't specified, all mutable fields are to be updated.
     /// Valid mask paths include `product_labels`, `display_name`, and
@@ -300,7 +300,7 @@ pub struct UpdateProductSetRequest {
     /// Required. The ProductSet resource which replaces the one on the server.
     #[prost(message, optional, tag = "1")]
     pub product_set: ::core::option::Option<ProductSet>,
-    /// The \[FieldMask\]\[google.protobuf.FieldMask\] that specifies which fields to
+    /// The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
     /// update.
     /// If update_mask isn't specified, all mutable fields are to be updated.
     /// Valid mask path is `display_name`.
@@ -460,15 +460,14 @@ pub struct ImportProductSetsGcsSource {
     ///
     /// The format of the input csv file should be one image per line.
     /// In each line, there are 6 columns.
-    ///
     /// 1. image_uri
-    ///    2, image_id
-    /// 1. product_set_id
-    /// 1. product_id
-    ///    5, product_category
-    ///    6, product_display_name
-    ///    7, labels
-    /// 1. bounding_poly
+    /// 2, image_id
+    /// 3. product_set_id
+    /// 4. product_id
+    /// 5, product_category
+    /// 6, product_display_name
+    /// 7, labels
+    /// 8. bounding_poly
     ///
     /// Columns 1, 3, 4, and 5 are required, other columns are optional. A new
     /// ProductSet/Product with the same id will be created on the fly
@@ -487,14 +486,14 @@ pub struct ImportProductSetsGcsSource {
     ///
     /// If a Product doesn't exist and needs to be created on the fly, the
     /// product_display_name field refers to
-    /// \[Product.display_name\]\[google.cloud.vision.v1p3beta1.Product.display_name\],
+    /// [Product.display_name][google.cloud.vision.v1p3beta1.Product.display_name],
     /// the product_category field refers to
-    /// \[Product.product_category\]\[google.cloud.vision.v1p3beta1.Product.product_category\],
-    /// and the labels field refers to \[Product.labels\]\[\].
+    /// [Product.product_category][google.cloud.vision.v1p3beta1.Product.product_category],
+    /// and the labels field refers to [Product.labels][].
     ///
     /// Labels (optional) should be a line containing a list of comma-separated
     /// key-value pairs, with the format
-    /// "key_1=value_1,key_2=value_2,...,key_n=value_n".
+    ///      "key_1=value_1,key_2=value_2,...,key_n=value_n".
     ///
     /// The bounding_poly (optional) field is used to identify one region of
     /// interest from the image in the same manner as CreateReferenceImage. If no
@@ -548,9 +547,9 @@ pub struct ImportProductSetsRequest {
 /// Response message for the `ImportProductSets` method.
 ///
 /// This message is returned by the
-/// \[google.longrunning.Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
+/// [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
 /// method in the returned
-/// \[google.longrunning.Operation.response\]\[google.longrunning.Operation.response\]
+/// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportProductSetsResponse {
@@ -579,7 +578,7 @@ pub struct BatchOperationMetadata {
     #[prost(message, optional, tag = "2")]
     pub submit_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The time when the batch request is finished and
-    /// \[google.longrunning.Operation.done\]\[google.longrunning.Operation.done\] is
+    /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
     /// set to true.
     #[prost(message, optional, tag = "3")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -621,11 +620,11 @@ pub mod batch_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Processing => "PROCESSING",
-                State::Successful => "SUCCESSFUL",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Processing => "PROCESSING",
+                Self::Successful => "SUCCESSFUL",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -643,23 +642,29 @@ pub mod batch_operation_metadata {
 }
 /// Generated client implementations.
 pub mod product_search_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages Products and ProductSets of reference images for use in product
     /// search. It uses the following resource model:
     ///
-    /// * The API has a collection of \[ProductSet\]\[google.cloud.vision.v1p3beta1.ProductSet\] resources, named
-    ///  `projects/*/locations/*/productSets/*`, which acts as a way to put different
-    ///  products into groups to limit identification.
+    /// - The API has a collection of [ProductSet][google.cloud.vision.v1p3beta1.ProductSet] resources, named
+    /// `projects/*/locations/*/productSets/*`, which acts as a way to put different
+    /// products into groups to limit identification.
     ///
     /// In parallel,
     ///
-    /// * The API has a collection of \[Product\]\[google.cloud.vision.v1p3beta1.Product\] resources, named
-    ///  `projects/*/locations/*/products/*`
+    /// - The API has a collection of [Product][google.cloud.vision.v1p3beta1.Product] resources, named
+    ///   `projects/*/locations/*/products/*`
     ///
-    /// * Each \[Product\]\[google.cloud.vision.v1p3beta1.Product\] has a collection of \[ReferenceImage\]\[google.cloud.vision.v1p3beta1.ReferenceImage\] resources, named
-    ///  `projects/*/locations/*/products/*/referenceImages/*`
+    /// - Each [Product][google.cloud.vision.v1p3beta1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1p3beta1.ReferenceImage] resources, named
+    ///   `projects/*/locations/*/products/*/referenceImages/*`
     #[derive(Debug, Clone)]
     pub struct ProductSearchClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -734,7 +739,7 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
-        ///  4096 characters.
+        ///   4096 characters.
         pub async fn create_product_set(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductSetRequest>,
@@ -743,8 +748,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -767,7 +771,7 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
-        ///  than 1.
+        ///   than 1.
         pub async fn list_product_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductSetsRequest>,
@@ -779,8 +783,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -811,8 +814,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -837,7 +839,7 @@ pub mod product_search_client {
         ///
         /// * Returns NOT_FOUND if the ProductSet does not exist.
         /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but
-        ///  missing from the request or longer than 4096 characters.
+        ///   missing from the request or longer than 4096 characters.
         pub async fn update_product_set(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProductSetRequest>,
@@ -846,8 +848,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -881,8 +882,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -905,7 +905,7 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096
-        ///  characters.
+        ///   characters.
         /// * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
         /// * Returns INVALID_ARGUMENT if product_category is missing or invalid.
         pub async fn create_product(
@@ -916,8 +916,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -951,8 +950,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -983,8 +981,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1012,9 +1009,9 @@ pub mod product_search_client {
         ///
         /// * Returns NOT_FOUND if the Product does not exist.
         /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but is
-        ///  missing from the request or longer than 4096 characters.
+        ///   missing from the request or longer than 4096 characters.
         /// * Returns INVALID_ARGUMENT if description is present in update_mask but is
-        ///  longer than 4096 characters.
+        ///   longer than 4096 characters.
         /// * Returns INVALID_ARGUMENT if product_category is present in update_mask.
         pub async fn update_product(
             &mut self,
@@ -1024,8 +1021,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1060,8 +1056,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1093,10 +1088,10 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
-        ///  characters.
+        ///   characters.
         /// * Returns INVALID_ARGUMENT if the product does not exist.
         /// * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
-        ///  compatible with the parent product's product_category is detected.
+        ///   compatible with the parent product's product_category is detected.
         /// * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
         pub async fn create_reference_image(
             &mut self,
@@ -1106,8 +1101,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1144,8 +1138,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1169,7 +1162,7 @@ pub mod product_search_client {
         ///
         /// * Returns NOT_FOUND if the parent product does not exist.
         /// * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
-        ///  than 1.
+        ///   than 1.
         pub async fn list_reference_images(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReferenceImagesRequest>,
@@ -1181,8 +1174,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1213,8 +1205,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1248,8 +1239,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1280,8 +1270,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1317,8 +1306,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1339,14 +1327,14 @@ pub mod product_search_client {
         /// Asynchronous API that imports a list of reference images to specified
         /// product sets based on a list of image information.
         ///
-        /// The \[google.longrunning.Operation\]\[google.longrunning.Operation\] API can be
+        /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
         /// used to keep track of the progress and results of the request.
         /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
         /// `Operation.response` contains `ImportProductSetsResponse`. (results)
         ///
         /// The input source of this method is a csv file on Google Cloud Storage.
         /// For the format of the csv file please see
-        /// \[ImportProductSetsGcsSource.csv_file_uri\]\[google.cloud.vision.v1p3beta1.ImportProductSetsGcsSource.csv_file_uri\].
+        /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1p3beta1.ImportProductSetsGcsSource.csv_file_uri].
         pub async fn import_product_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportProductSetsRequest>,
@@ -1358,8 +1346,7 @@ pub mod product_search_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1386,7 +1373,7 @@ pub struct ProductSearchParams {
     /// If it is not specified, system discretion will be applied.
     #[prost(message, optional, tag = "9")]
     pub bounding_poly: ::core::option::Option<BoundingPoly>,
-    /// The resource name of a \[ProductSet\]\[google.cloud.vision.v1p3beta1.ProductSet\] to be searched for similar images.
+    /// The resource name of a [ProductSet][google.cloud.vision.v1p3beta1.ProductSet] to be searched for similar images.
     ///
     /// Format is:
     /// `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
@@ -1484,11 +1471,11 @@ pub mod product_search_results {
 }
 /// TextAnnotation contains a structured representation of OCR extracted text.
 /// The hierarchy of an OCR extracted text structure is like this:
-/// TextAnnotation -> Page -> Block -> Paragraph -> Word -> Symbol
+///      TextAnnotation -> Page -> Block -> Paragraph -> Word -> Symbol
 /// Each structural component, starting from Page, may further have their own
 /// properties. Properties describe detected languages, breaks etc.. Please refer
 /// to the
-/// \[TextAnnotation.TextProperty\]\[google.cloud.vision.v1p3beta1.TextAnnotation.TextProperty\]
+/// [TextAnnotation.TextProperty][google.cloud.vision.v1p3beta1.TextAnnotation.TextProperty]
 /// message definition below for more detail.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextAnnotation {
@@ -1560,12 +1547,12 @@ pub mod text_annotation {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BreakType::Unknown => "UNKNOWN",
-                    BreakType::Space => "SPACE",
-                    BreakType::SureSpace => "SURE_SPACE",
-                    BreakType::EolSureSpace => "EOL_SURE_SPACE",
-                    BreakType::Hyphen => "HYPHEN",
-                    BreakType::LineBreak => "LINE_BREAK",
+                    Self::Unknown => "UNKNOWN",
+                    Self::Space => "SPACE",
+                    Self::SureSpace => "SURE_SPACE",
+                    Self::EolSureSpace => "EOL_SURE_SPACE",
+                    Self::Hyphen => "HYPHEN",
+                    Self::LineBreak => "LINE_BREAK",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1629,21 +1616,17 @@ pub struct Block {
     ///
     /// * when the text is horizontal it might look like:
     ///
-    ///   ```text
-    ///     0----1
-    ///     |    |
-    ///     3----2
-    ///   ```
+    ///          0----1
+    ///          |    |
+    ///          3----2
     ///
     /// * when it's rotated 180 degrees around the top-left corner it becomes:
     ///
-    ///   ```text
-    ///     2----3
-    ///     |    |
-    ///     1----0
-    ///   ```
+    ///          2----3
+    ///          |    |
+    ///          1----0
     ///
-    ///   and the vertice order will still be (0, 1, 2, 3).
+    ///    and the vertice order will still be (0, 1, 2, 3).
     #[prost(message, optional, tag = "2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// List of paragraphs in this block (if this blocks is of type text).
@@ -1692,12 +1675,12 @@ pub mod block {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BlockType::Unknown => "UNKNOWN",
-                BlockType::Text => "TEXT",
-                BlockType::Table => "TABLE",
-                BlockType::Picture => "PICTURE",
-                BlockType::Ruler => "RULER",
-                BlockType::Barcode => "BARCODE",
+                Self::Unknown => "UNKNOWN",
+                Self::Text => "TEXT",
+                Self::Table => "TABLE",
+                Self::Picture => "PICTURE",
+                Self::Ruler => "RULER",
+                Self::Barcode => "BARCODE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1726,16 +1709,15 @@ pub struct Paragraph {
     /// is represented as around the top-left corner as defined when the text is
     /// read in the 'natural' orientation.
     /// For example:
-    ///
-    /// * when the text is horizontal it might look like:
-    ///   0----1
-    ///   \|    |
-    ///   3----2
-    /// * when it's rotated 180 degrees around the top-left corner it becomes:
-    ///   2----3
-    ///   \|    |
-    ///   1----0
-    ///   and the vertice order will still be (0, 1, 2, 3).
+    ///    * when the text is horizontal it might look like:
+    ///       0----1
+    ///       |    |
+    ///       3----2
+    ///    * when it's rotated 180 degrees around the top-left corner it becomes:
+    ///       2----3
+    ///       |    |
+    ///       1----0
+    ///    and the vertice order will still be (0, 1, 2, 3).
     #[prost(message, optional, tag = "2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// List of words in this paragraph.
@@ -1757,16 +1739,15 @@ pub struct Word {
     /// is represented as around the top-left corner as defined when the text is
     /// read in the 'natural' orientation.
     /// For example:
-    ///
-    /// * when the text is horizontal it might look like:
-    ///   0----1
-    ///   \|    |
-    ///   3----2
-    /// * when it's rotated 180 degrees around the top-left corner it becomes:
-    ///   2----3
-    ///   \|    |
-    ///   1----0
-    ///   and the vertice order will still be (0, 1, 2, 3).
+    ///    * when the text is horizontal it might look like:
+    ///       0----1
+    ///       |    |
+    ///       3----2
+    ///    * when it's rotated 180 degrees around the top-left corner it becomes:
+    ///       2----3
+    ///       |    |
+    ///       1----0
+    ///    and the vertice order will still be (0, 1, 2, 3).
     #[prost(message, optional, tag = "2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// List of symbols in the word.
@@ -1789,16 +1770,15 @@ pub struct Symbol {
     /// is represented as around the top-left corner as defined when the text is
     /// read in the 'natural' orientation.
     /// For example:
-    ///
-    /// * when the text is horizontal it might look like:
-    ///   0----1
-    ///   \|    |
-    ///   3----2
-    /// * when it's rotated 180 degrees around the top-left corner it becomes:
-    ///   2----3
-    ///   \|    |
-    ///   1----0
-    ///   and the vertice order will still be (0, 1, 2, 3).
+    ///    * when the text is horizontal it might look like:
+    ///       0----1
+    ///       |    |
+    ///       3----2
+    ///    * when it's rotated 180 degrees around the top-left corner it becomes:
+    ///       2----3
+    ///       |    |
+    ///       1----0
+    ///    and the vertice order will still be (0, 1, 2, 3).
     #[prost(message, optional, tag = "2")]
     pub bounding_box: ::core::option::Option<BoundingPoly>,
     /// The actual UTF-8 representation of the symbol.
@@ -1969,19 +1949,19 @@ pub mod feature {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::FaceDetection => "FACE_DETECTION",
-                Type::LandmarkDetection => "LANDMARK_DETECTION",
-                Type::LogoDetection => "LOGO_DETECTION",
-                Type::LabelDetection => "LABEL_DETECTION",
-                Type::TextDetection => "TEXT_DETECTION",
-                Type::DocumentTextDetection => "DOCUMENT_TEXT_DETECTION",
-                Type::SafeSearchDetection => "SAFE_SEARCH_DETECTION",
-                Type::ImageProperties => "IMAGE_PROPERTIES",
-                Type::CropHints => "CROP_HINTS",
-                Type::WebDetection => "WEB_DETECTION",
-                Type::ProductSearch => "PRODUCT_SEARCH",
-                Type::ObjectLocalization => "OBJECT_LOCALIZATION",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::FaceDetection => "FACE_DETECTION",
+                Self::LandmarkDetection => "LANDMARK_DETECTION",
+                Self::LogoDetection => "LOGO_DETECTION",
+                Self::LabelDetection => "LABEL_DETECTION",
+                Self::TextDetection => "TEXT_DETECTION",
+                Self::DocumentTextDetection => "DOCUMENT_TEXT_DETECTION",
+                Self::SafeSearchDetection => "SAFE_SEARCH_DETECTION",
+                Self::ImageProperties => "IMAGE_PROPERTIES",
+                Self::CropHints => "CROP_HINTS",
+                Self::WebDetection => "WEB_DETECTION",
+                Self::ProductSearch => "PRODUCT_SEARCH",
+                Self::ObjectLocalization => "OBJECT_LOCALIZATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2019,17 +1999,17 @@ pub struct ImageSource {
     /// The URI of the source image. Can be either:
     ///
     /// 1. A Google Cloud Storage URI of the form
-    ///    `gs://bucket_name/object_name`. Object versioning is not supported. See
-    ///    [Google Cloud Storage Request
-    ///    URIs](<https://cloud.google.com/storage/docs/reference-uris>) for more
-    ///    info.
+    ///     `gs://bucket_name/object_name`. Object versioning is not supported. See
+    ///     [Google Cloud Storage Request
+    ///     URIs](<https://cloud.google.com/storage/docs/reference-uris>) for more
+    ///     info.
     ///
-    /// 1. A publicly-accessible image HTTP/HTTPS URL. When fetching images from
-    ///    HTTP/HTTPS URLs, Google cannot guarantee that the request will be
-    ///    completed. Your request may fail if the specified host denies the
-    ///    request (e.g. due to request throttling or DOS prevention), or if Google
-    ///    throttles requests to the site for abuse prevention. You should not
-    ///    depend on externally-hosted images for production applications.
+    /// 2. A publicly-accessible image HTTP/HTTPS URL. When fetching images from
+    ///     HTTP/HTTPS URLs, Google cannot guarantee that the request will be
+    ///     completed. Your request may fail if the specified host denies the
+    ///     request (e.g. due to request throttling or DOS prevention), or if Google
+    ///     throttles requests to the site for abuse prevention. You should not
+    ///     depend on externally-hosted images for production applications.
     ///
     /// When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
     /// precedence.
@@ -2224,41 +2204,41 @@ pub mod face_annotation {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::UnknownLandmark => "UNKNOWN_LANDMARK",
-                    Type::LeftEye => "LEFT_EYE",
-                    Type::RightEye => "RIGHT_EYE",
-                    Type::LeftOfLeftEyebrow => "LEFT_OF_LEFT_EYEBROW",
-                    Type::RightOfLeftEyebrow => "RIGHT_OF_LEFT_EYEBROW",
-                    Type::LeftOfRightEyebrow => "LEFT_OF_RIGHT_EYEBROW",
-                    Type::RightOfRightEyebrow => "RIGHT_OF_RIGHT_EYEBROW",
-                    Type::MidpointBetweenEyes => "MIDPOINT_BETWEEN_EYES",
-                    Type::NoseTip => "NOSE_TIP",
-                    Type::UpperLip => "UPPER_LIP",
-                    Type::LowerLip => "LOWER_LIP",
-                    Type::MouthLeft => "MOUTH_LEFT",
-                    Type::MouthRight => "MOUTH_RIGHT",
-                    Type::MouthCenter => "MOUTH_CENTER",
-                    Type::NoseBottomRight => "NOSE_BOTTOM_RIGHT",
-                    Type::NoseBottomLeft => "NOSE_BOTTOM_LEFT",
-                    Type::NoseBottomCenter => "NOSE_BOTTOM_CENTER",
-                    Type::LeftEyeTopBoundary => "LEFT_EYE_TOP_BOUNDARY",
-                    Type::LeftEyeRightCorner => "LEFT_EYE_RIGHT_CORNER",
-                    Type::LeftEyeBottomBoundary => "LEFT_EYE_BOTTOM_BOUNDARY",
-                    Type::LeftEyeLeftCorner => "LEFT_EYE_LEFT_CORNER",
-                    Type::RightEyeTopBoundary => "RIGHT_EYE_TOP_BOUNDARY",
-                    Type::RightEyeRightCorner => "RIGHT_EYE_RIGHT_CORNER",
-                    Type::RightEyeBottomBoundary => "RIGHT_EYE_BOTTOM_BOUNDARY",
-                    Type::RightEyeLeftCorner => "RIGHT_EYE_LEFT_CORNER",
-                    Type::LeftEyebrowUpperMidpoint => "LEFT_EYEBROW_UPPER_MIDPOINT",
-                    Type::RightEyebrowUpperMidpoint => "RIGHT_EYEBROW_UPPER_MIDPOINT",
-                    Type::LeftEarTragion => "LEFT_EAR_TRAGION",
-                    Type::RightEarTragion => "RIGHT_EAR_TRAGION",
-                    Type::LeftEyePupil => "LEFT_EYE_PUPIL",
-                    Type::RightEyePupil => "RIGHT_EYE_PUPIL",
-                    Type::ForeheadGlabella => "FOREHEAD_GLABELLA",
-                    Type::ChinGnathion => "CHIN_GNATHION",
-                    Type::ChinLeftGonion => "CHIN_LEFT_GONION",
-                    Type::ChinRightGonion => "CHIN_RIGHT_GONION",
+                    Self::UnknownLandmark => "UNKNOWN_LANDMARK",
+                    Self::LeftEye => "LEFT_EYE",
+                    Self::RightEye => "RIGHT_EYE",
+                    Self::LeftOfLeftEyebrow => "LEFT_OF_LEFT_EYEBROW",
+                    Self::RightOfLeftEyebrow => "RIGHT_OF_LEFT_EYEBROW",
+                    Self::LeftOfRightEyebrow => "LEFT_OF_RIGHT_EYEBROW",
+                    Self::RightOfRightEyebrow => "RIGHT_OF_RIGHT_EYEBROW",
+                    Self::MidpointBetweenEyes => "MIDPOINT_BETWEEN_EYES",
+                    Self::NoseTip => "NOSE_TIP",
+                    Self::UpperLip => "UPPER_LIP",
+                    Self::LowerLip => "LOWER_LIP",
+                    Self::MouthLeft => "MOUTH_LEFT",
+                    Self::MouthRight => "MOUTH_RIGHT",
+                    Self::MouthCenter => "MOUTH_CENTER",
+                    Self::NoseBottomRight => "NOSE_BOTTOM_RIGHT",
+                    Self::NoseBottomLeft => "NOSE_BOTTOM_LEFT",
+                    Self::NoseBottomCenter => "NOSE_BOTTOM_CENTER",
+                    Self::LeftEyeTopBoundary => "LEFT_EYE_TOP_BOUNDARY",
+                    Self::LeftEyeRightCorner => "LEFT_EYE_RIGHT_CORNER",
+                    Self::LeftEyeBottomBoundary => "LEFT_EYE_BOTTOM_BOUNDARY",
+                    Self::LeftEyeLeftCorner => "LEFT_EYE_LEFT_CORNER",
+                    Self::RightEyeTopBoundary => "RIGHT_EYE_TOP_BOUNDARY",
+                    Self::RightEyeRightCorner => "RIGHT_EYE_RIGHT_CORNER",
+                    Self::RightEyeBottomBoundary => "RIGHT_EYE_BOTTOM_BOUNDARY",
+                    Self::RightEyeLeftCorner => "RIGHT_EYE_LEFT_CORNER",
+                    Self::LeftEyebrowUpperMidpoint => "LEFT_EYEBROW_UPPER_MIDPOINT",
+                    Self::RightEyebrowUpperMidpoint => "RIGHT_EYEBROW_UPPER_MIDPOINT",
+                    Self::LeftEarTragion => "LEFT_EAR_TRAGION",
+                    Self::RightEarTragion => "RIGHT_EAR_TRAGION",
+                    Self::LeftEyePupil => "LEFT_EYE_PUPIL",
+                    Self::RightEyePupil => "RIGHT_EYE_PUPIL",
+                    Self::ForeheadGlabella => "FOREHEAD_GLABELLA",
+                    Self::ChinGnathion => "CHIN_GNATHION",
+                    Self::ChinLeftGonion => "CHIN_LEFT_GONION",
+                    Self::ChinRightGonion => "CHIN_RIGHT_GONION",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2740,9 +2720,9 @@ pub struct GcsDestination {
     ///
     /// Examples:
     ///
-    /// * File: gs://bucket-name/filename.json
-    /// * Prefix: gs://bucket-name/prefix/here/
-    /// * File: gs://bucket-name/prefix/here
+    /// *    File: gs://bucket-name/filename.json
+    /// *    Prefix: gs://bucket-name/prefix/here/
+    /// *    File: gs://bucket-name/prefix/here
     ///
     /// If multiple outputs, each response is still AnnotateFileResponse, each of
     /// which contains some subset of the full list of AnnotateImageResponse.
@@ -2798,11 +2778,11 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Created => "CREATED",
-                State::Running => "RUNNING",
-                State::Done => "DONE",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Created => "CREATED",
+                Self::Running => "RUNNING",
+                Self::Done => "DONE",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2843,12 +2823,12 @@ impl Likelihood {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Likelihood::Unknown => "UNKNOWN",
-            Likelihood::VeryUnlikely => "VERY_UNLIKELY",
-            Likelihood::Unlikely => "UNLIKELY",
-            Likelihood::Possible => "POSSIBLE",
-            Likelihood::Likely => "LIKELY",
-            Likelihood::VeryLikely => "VERY_LIKELY",
+            Self::Unknown => "UNKNOWN",
+            Self::VeryUnlikely => "VERY_UNLIKELY",
+            Self::Unlikely => "UNLIKELY",
+            Self::Possible => "POSSIBLE",
+            Self::Likely => "LIKELY",
+            Self::VeryLikely => "VERY_LIKELY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2866,7 +2846,13 @@ impl Likelihood {
 }
 /// Generated client implementations.
 pub mod image_annotator_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that performs Google Cloud Vision API detection tasks over client
@@ -2953,8 +2939,7 @@ pub mod image_annotator_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2989,8 +2974,7 @@ pub mod image_annotator_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

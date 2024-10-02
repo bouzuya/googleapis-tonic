@@ -51,9 +51,9 @@ pub mod schema {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::ProtocolBuffer => "PROTOCOL_BUFFER",
-                Type::Avro => "AVRO",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::ProtocolBuffer => "PROTOCOL_BUFFER",
+                Self::Avro => "AVRO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -183,7 +183,7 @@ pub struct RollbackSchemaRequest {
     /// Required. The revision ID to roll back to.
     /// It must be a revision of the same schema.
     ///
-    /// Example: c7cfa2a8
+    ///    Example: c7cfa2a8
     #[prost(string, tag = "2")]
     pub revision_id: ::prost::alloc::string::String,
 }
@@ -279,9 +279,9 @@ impl SchemaView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SchemaView::Unspecified => "SCHEMA_VIEW_UNSPECIFIED",
-            SchemaView::Basic => "BASIC",
-            SchemaView::Full => "FULL",
+            Self::Unspecified => "SCHEMA_VIEW_UNSPECIFIED",
+            Self::Basic => "BASIC",
+            Self::Full => "FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -313,9 +313,9 @@ impl Encoding {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-            Encoding::Json => "JSON",
-            Encoding::Binary => "BINARY",
+            Self::Unspecified => "ENCODING_UNSPECIFIED",
+            Self::Json => "JSON",
+            Self::Binary => "BINARY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -330,7 +330,13 @@ impl Encoding {
 }
 /// Generated client implementations.
 pub mod schema_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for doing schema-related operations.
@@ -412,8 +418,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -437,8 +442,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -463,8 +467,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -491,8 +494,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -519,8 +521,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -544,8 +545,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -569,8 +569,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -597,8 +596,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -625,8 +623,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -653,8 +650,7 @@ pub mod schema_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -776,14 +772,13 @@ pub mod ingestion_data_source_settings {
             Active = 1,
             /// Permission denied encountered while consuming data from Kinesis.
             /// This can happen if:
-            ///
-            /// * The provided `aws_role_arn` does not exist or does not have the
-            ///   appropriate permissions attached.
-            /// * The provided `aws_role_arn` is not set up properly for Identity
-            ///   Federation using `gcp_service_account`.
-            /// * The Pub/Sub SA is not granted the
-            ///   `iam.serviceAccounts.getOpenIdToken` permission on
-            ///   `gcp_service_account`.
+            ///    - The provided `aws_role_arn` does not exist or does not have the
+            ///      appropriate permissions attached.
+            ///    - The provided `aws_role_arn` is not set up properly for Identity
+            ///      Federation using `gcp_service_account`.
+            ///    - The Pub/Sub SA is not granted the
+            ///      `iam.serviceAccounts.getOpenIdToken` permission on
+            ///      `gcp_service_account`.
             KinesisPermissionDenied = 2,
             /// Permission denied encountered while publishing to the topic. This can
             /// happen if the Pub/Sub SA has not been granted the [appropriate publish
@@ -801,12 +796,12 @@ pub mod ingestion_data_source_settings {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Active => "ACTIVE",
-                    State::KinesisPermissionDenied => "KINESIS_PERMISSION_DENIED",
-                    State::PublishPermissionDenied => "PUBLISH_PERMISSION_DENIED",
-                    State::StreamNotFound => "STREAM_NOT_FOUND",
-                    State::ConsumerNotFound => "CONSUMER_NOT_FOUND",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Active => "ACTIVE",
+                    Self::KinesisPermissionDenied => "KINESIS_PERMISSION_DENIED",
+                    Self::PublishPermissionDenied => "PUBLISH_PERMISSION_DENIED",
+                    Self::StreamNotFound => "STREAM_NOT_FOUND",
+                    Self::ConsumerNotFound => "CONSUMER_NOT_FOUND",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -892,10 +887,9 @@ pub mod ingestion_data_source_settings {
             /// can happen if the Pub/Sub SA has not been granted the
             /// [appropriate
             /// permissions](<https://cloud.google.com/storage/docs/access-control/iam-permissions>):
-            ///
-            /// * storage.objects.list: to list the objects in a bucket.
-            /// * storage.objects.get: to read the objects in a bucket.
-            /// * storage.buckets.get: to verify the bucket exists.
+            /// - storage.objects.list: to list the objects in a bucket.
+            /// - storage.objects.get: to read the objects in a bucket.
+            /// - storage.buckets.get: to verify the bucket exists.
             CloudStoragePermissionDenied = 2,
             /// Permission denied encountered while publishing to the topic. This can
             /// happen if the Pub/Sub SA has not been granted the [appropriate publish
@@ -914,14 +908,14 @@ pub mod ingestion_data_source_settings {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Active => "ACTIVE",
-                    State::CloudStoragePermissionDenied => {
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Active => "ACTIVE",
+                    Self::CloudStoragePermissionDenied => {
                         "CLOUD_STORAGE_PERMISSION_DENIED"
                     }
-                    State::PublishPermissionDenied => "PUBLISH_PERMISSION_DENIED",
-                    State::BucketNotFound => "BUCKET_NOT_FOUND",
-                    State::TooManyObjects => "TOO_MANY_OBJECTS",
+                    Self::PublishPermissionDenied => "PUBLISH_PERMISSION_DENIED",
+                    Self::BucketNotFound => "BUCKET_NOT_FOUND",
+                    Self::TooManyObjects => "TOO_MANY_OBJECTS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1009,12 +1003,12 @@ pub mod platform_logs_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Disabled => "DISABLED",
-                Severity::Debug => "DEBUG",
-                Severity::Info => "INFO",
-                Severity::Warning => "WARNING",
-                Severity::Error => "ERROR",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Disabled => "DISABLED",
+                Self::Debug => "DEBUG",
+                Self::Info => "INFO",
+                Self::Warning => "WARNING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1119,9 +1113,9 @@ pub mod topic {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::IngestionResourceError => "INGESTION_RESOURCE_ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::IngestionResourceError => "INGESTION_RESOURCE_ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1358,7 +1352,7 @@ pub struct Subscription {
     /// Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
     /// waits for the subscriber to acknowledge receipt before resending the
     /// message. In the interval after the message is delivered and before it is
-    /// acknowledged, it is considered to be *outstanding*. During that time
+    /// acknowledged, it is considered to be _outstanding_. During that time
     /// period, the message will not be redelivered (on a best-effort basis).
     ///
     /// For pull subscriptions, this value is used as the initial value for the ack
@@ -1452,7 +1446,7 @@ pub struct Subscription {
     /// subscription:
     ///
     /// * The message sent to a subscriber is guaranteed not to be resent
-    ///   before the message's acknowledgement deadline expires.
+    /// before the message's acknowledgement deadline expires.
     /// * An acknowledged message will not be resent to a subscriber.
     ///
     /// Note that subscribers may still receive multiple copies of a message
@@ -1529,9 +1523,9 @@ pub mod subscription {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::ResourceError => "RESOURCE_ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::ResourceError => "RESOURCE_ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1791,11 +1785,10 @@ pub mod big_query_config {
         Active = 1,
         /// Cannot write to the BigQuery table because of permission denied errors.
         /// This can happen if
-        ///
-        /// * Pub/Sub SA has not been granted the [appropriate BigQuery IAM
-        ///   permissions](<https://cloud.google.com/pubsub/docs/create-subscription#assign_bigquery_service_account>)
-        /// * bigquery.googleapis.com API is not enabled for the project
-        ///   ([instructions](<https://cloud.google.com/service-usage/docs/enable-disable>))
+        /// - Pub/Sub SA has not been granted the [appropriate BigQuery IAM
+        /// permissions](<https://cloud.google.com/pubsub/docs/create-subscription#assign_bigquery_service_account>)
+        /// - bigquery.googleapis.com API is not enabled for the project
+        /// ([instructions](<https://cloud.google.com/service-usage/docs/enable-disable>))
         PermissionDenied = 2,
         /// Cannot write to the BigQuery table because it does not exist.
         NotFound = 3,
@@ -1812,12 +1805,12 @@ pub mod big_query_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::PermissionDenied => "PERMISSION_DENIED",
-                State::NotFound => "NOT_FOUND",
-                State::SchemaMismatch => "SCHEMA_MISMATCH",
-                State::InTransitLocationRestriction => "IN_TRANSIT_LOCATION_RESTRICTION",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::PermissionDenied => "PERMISSION_DENIED",
+                Self::NotFound => "NOT_FOUND",
+                Self::SchemaMismatch => "SCHEMA_MISMATCH",
+                Self::InTransitLocationRestriction => "IN_TRANSIT_LOCATION_RESTRICTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1841,8 +1834,8 @@ pub mod big_query_config {
 pub struct CloudStorageConfig {
     /// Required. User-provided name for the Cloud Storage bucket.
     /// The bucket must be created by the user. The bucket name must be without
-    /// any prefix like "gs://". See the \[bucket naming
-    /// requirements\] (<https://cloud.google.com/storage/docs/buckets#naming>).
+    /// any prefix like "gs://". See the [bucket naming
+    /// requirements] (<https://cloud.google.com/storage/docs/buckets#naming>).
     #[prost(string, tag = "1")]
     pub bucket: ::prost::alloc::string::String,
     /// Optional. User-provided prefix for Cloud Storage filename. See the [object
@@ -1950,12 +1943,12 @@ pub mod cloud_storage_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::PermissionDenied => "PERMISSION_DENIED",
-                State::NotFound => "NOT_FOUND",
-                State::InTransitLocationRestriction => "IN_TRANSIT_LOCATION_RESTRICTION",
-                State::SchemaMismatch => "SCHEMA_MISMATCH",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::PermissionDenied => "PERMISSION_DENIED",
+                Self::NotFound => "NOT_FOUND",
+                Self::InTransitLocationRestriction => "IN_TRANSIT_LOCATION_RESTRICTION",
+                Self::SchemaMismatch => "SCHEMA_MISMATCH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2182,7 +2175,7 @@ pub struct StreamingPullRequest {
     /// system. Must be >= 0. For example, if the value is 10, the new ack deadline
     /// will expire 10 seconds after this request is received. If the value is 0,
     /// the message is immediately made available for another streaming or
-    /// non-streaming pull request. If the value is \< 0 (an error), the stream will
+    /// non-streaming pull request. If the value is < 0 (an error), the stream will
     /// be aborted with status `INVALID_ARGUMENT`.
     #[prost(int32, repeated, packed = "false", tag = "3")]
     pub modify_deadline_seconds: ::prost::alloc::vec::Vec<i32>,
@@ -2214,7 +2207,7 @@ pub struct StreamingPullRequest {
     /// streaming pull client that have not yet been acked or nacked, the server
     /// stops sending more messages. The sending of messages resumes once the
     /// number of outstanding messages is less than this value. If the value is
-    /// \<= 0, there is no limit to the number of outstanding messages. This
+    /// <= 0, there is no limit to the number of outstanding messages. This
     /// property can only be set on the initial StreamingPullRequest. If it is set
     /// on a subsequent request, the stream will be aborted with status
     /// `INVALID_ARGUMENT`.
@@ -2225,7 +2218,7 @@ pub struct StreamingPullRequest {
     /// currently sent to the streaming pull client that have not yet been acked or
     /// nacked, the server will stop sending more messages. The sending of messages
     /// resumes once the number of outstanding bytes is less than this value. If
-    /// the value is \<= 0, there is no limit to the number of outstanding bytes.
+    /// the value is <= 0, there is no limit to the number of outstanding bytes.
     /// This property can only be set on the initial StreamingPullRequest. If it is
     /// set on a subsequent request, the stream will be aborted with status
     /// `INVALID_ARGUMENT`.
@@ -2323,12 +2316,12 @@ pub struct CreateSnapshotRequest {
     pub name: ::prost::alloc::string::String,
     /// Required. The subscription whose backlog the snapshot retains.
     /// Specifically, the created snapshot is guaranteed to retain:
-    /// (a) The existing backlog on the subscription. More precisely, this is
-    /// defined as the messages in the subscription's backlog that are
-    /// unacknowledged upon the successful completion of the
-    /// `CreateSnapshot` request; as well as:
-    /// (b) Any messages published to the subscription's topic following the
-    /// successful completion of the CreateSnapshot request.
+    ///   (a) The existing backlog on the subscription. More precisely, this is
+    ///       defined as the messages in the subscription's backlog that are
+    ///       unacknowledged upon the successful completion of the
+    ///       `CreateSnapshot` request; as well as:
+    ///   (b) Any messages published to the subscription's topic following the
+    ///       successful completion of the CreateSnapshot request.
     /// Format is `projects/{project}/subscriptions/{sub}`.
     #[prost(string, tag = "2")]
     pub subscription: ::prost::alloc::string::String,
@@ -2467,7 +2460,13 @@ pub mod seek_request {
 pub struct SeekResponse {}
 /// Generated client implementations.
 pub mod publisher_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The service that an application uses to manipulate topics, and to send
@@ -2541,7 +2540,7 @@ pub mod publisher_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates the given topic with the given name. See the \[resource name rules\]
+        /// Creates the given topic with the given name. See the [resource name rules]
         /// (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
         pub async fn create_topic(
             &mut self,
@@ -2551,8 +2550,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2575,8 +2573,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2602,8 +2599,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2625,8 +2621,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2651,8 +2646,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2677,8 +2671,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2712,8 +2705,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2741,8 +2733,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2770,8 +2761,7 @@ pub mod publisher_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2790,7 +2780,13 @@ pub mod publisher_client {
 }
 /// Generated client implementations.
 pub mod subscriber_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The service that an application uses to manipulate subscriptions and to
@@ -2865,14 +2861,14 @@ pub mod subscriber_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a subscription to a given topic. See the \[resource name rules\]
+        /// Creates a subscription to a given topic. See the [resource name rules]
         /// (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
         /// If the subscription already exists, returns `ALREADY_EXISTS`.
         /// If the corresponding topic doesn't exist, returns `NOT_FOUND`.
         ///
         /// If the name is not provided in the request, the server will assign a random
         /// name for this subscription on the same project as the topic, conforming
-        /// to the \[resource name format\]
+        /// to the [resource name format]
         /// (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The
         /// generated name is populated in the returned Subscription object. Note that
         /// for REST API requests, you must specify a name in the request.
@@ -2884,8 +2880,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2909,8 +2904,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2936,8 +2930,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2964,8 +2957,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2993,8 +2985,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3022,8 +3013,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3053,8 +3043,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3076,8 +3065,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3110,8 +3098,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3138,8 +3125,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3167,8 +3153,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3181,7 +3166,8 @@ pub mod subscriber_client {
                 .insert(GrpcMethod::new("google.pubsub.v1.Subscriber", "GetSnapshot"));
             self.inner.unary(req, path, codec).await
         }
-        /// Lists the existing snapshots. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which
+        /// Lists the existing snapshots. Snapshots are used in [Seek](
+        /// https://cloud.google.com/pubsub/docs/replay-overview) operations, which
         /// allow you to manage message acknowledgments in bulk. That is, you can set
         /// the acknowledgment state of messages in an existing subscription to the
         /// state captured by a snapshot.
@@ -3196,8 +3182,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3222,7 +3207,7 @@ pub mod subscriber_client {
         /// See also the `Snapshot.expire_time` field. If the name is not provided in
         /// the request, the server will assign a random
         /// name for this snapshot on the same project as the subscription, conforming
-        /// to the \[resource name format\]
+        /// to the [resource name format]
         /// (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The
         /// generated name is populated in the returned Snapshot object. Note that for
         /// REST API requests, you must specify a name in the request.
@@ -3234,8 +3219,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3264,8 +3248,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3280,7 +3263,7 @@ pub mod subscriber_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Removes an existing snapshot. Snapshots are used in \[Seek\]
+        /// Removes an existing snapshot. Snapshots are used in [Seek]
         /// (https://cloud.google.com/pubsub/docs/replay-overview) operations, which
         /// allow you to manage message acknowledgments in bulk. That is, you can set
         /// the acknowledgment state of messages in an existing subscription to the
@@ -3297,8 +3280,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3314,7 +3296,7 @@ pub mod subscriber_client {
             self.inner.unary(req, path, codec).await
         }
         /// Seeks an existing subscription to a point in time or to a given snapshot,
-        /// whichever is provided in the request. Snapshots are used in \[Seek\]
+        /// whichever is provided in the request. Snapshots are used in [Seek]
         /// (https://cloud.google.com/pubsub/docs/replay-overview) operations, which
         /// allow you to manage message acknowledgments in bulk. That is, you can set
         /// the acknowledgment state of messages in an existing subscription to the
@@ -3328,8 +3310,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

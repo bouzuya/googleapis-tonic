@@ -49,10 +49,10 @@ pub mod export_status_log {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unknown => "UNKNOWN",
-                Status::Complete => "COMPLETE",
-                Status::Incomplete => "INCOMPLETE",
-                Status::Failed => "FAILED",
+                Self::Unknown => "UNKNOWN",
+                Self::Complete => "COMPLETE",
+                Self::Incomplete => "INCOMPLETE",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.

@@ -26,42 +26,38 @@ pub struct PublisherAccount {
 /// For example, the specification to get clicks and estimated earnings for only
 /// the 'US' and 'CN' countries can look like the following example:
 ///
-/// ```text
-/// {
-///    'date_range': {
-///      'start_date': {'year': 2018, 'month': 9, 'day': 1},
-///      'end_date': {'year': 2018, 'month': 9, 'day': 30}
-///    },
-///    'dimensions': \['DATE', 'APP', 'COUNTRY'\],
-///    'metrics': \['CLICKS', 'ESTIMATED_EARNINGS'\],
-///    'dimension_filters': [
 ///      {
-///        'dimension': 'COUNTRY',
-///        'matches_any': {'values': \[{'value': 'US', 'value': 'CN'}\]}
+///        'date_range': {
+///          'start_date': {'year': 2018, 'month': 9, 'day': 1},
+///          'end_date': {'year': 2018, 'month': 9, 'day': 30}
+///        },
+///        'dimensions': \['DATE', 'APP', 'COUNTRY'\],
+///        'metrics': \['CLICKS', 'ESTIMATED_EARNINGS'\],
+///        'dimension_filters': [
+///          {
+///            'dimension': 'COUNTRY',
+///            'matches_any': {'values': \[{'value': 'US', 'value': 'CN'}\]}
+///          }
+///        ],
+///        'sort_conditions': [
+///          {'dimension':'APP', order: 'ASCENDING'},
+///          {'metric':'CLICKS', order: 'DESCENDING'}
+///        ],
+///        'localization_settings': {
+///          'currency_code': 'USD',
+///          'language_code': 'en-US'
+///        }
 ///      }
-///    ],
-///    'sort_conditions': [
-///      {'dimension':'APP', order: 'ASCENDING'},
-///      {'metric':'CLICKS', order: 'DESCENDING'}
-///    ],
-///    'localization_settings': {
-///      'currency_code': 'USD',
-///      'language_code': 'en-US'
-///    }
-/// }
-/// ```
 ///
 /// For a better understanding, you can treat the preceding specification like
 /// the following pseudo SQL:
 ///
-/// ```text
-/// SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS
-/// FROM NETWORK_REPORT
-/// WHERE DATE >= '2018-09-01' AND DATE <= '2018-09-30'
-///      AND COUNTRY IN ('US', 'CN')
-/// GROUP BY DATE, APP, COUNTRY
-/// ORDER BY APP ASC, CLICKS DESC;
-/// ```
+///      SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS
+///      FROM NETWORK_REPORT
+///      WHERE DATE >= '2018-09-01' AND DATE <= '2018-09-30'
+///          AND COUNTRY IN ('US', 'CN')
+///      GROUP BY DATE, APP, COUNTRY
+///      ORDER BY APP ASC, CLICKS DESC;
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkReportSpec {
     /// The date range for which the report is generated.
@@ -207,16 +203,16 @@ pub mod network_report_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Dimension::Unspecified => "DIMENSION_UNSPECIFIED",
-                Dimension::Date => "DATE",
-                Dimension::Month => "MONTH",
-                Dimension::Week => "WEEK",
-                Dimension::AdUnit => "AD_UNIT",
-                Dimension::App => "APP",
-                Dimension::AdType => "AD_TYPE",
-                Dimension::Country => "COUNTRY",
-                Dimension::Format => "FORMAT",
-                Dimension::Platform => "PLATFORM",
+                Self::Unspecified => "DIMENSION_UNSPECIFIED",
+                Self::Date => "DATE",
+                Self::Month => "MONTH",
+                Self::Week => "WEEK",
+                Self::AdUnit => "AD_UNIT",
+                Self::App => "APP",
+                Self::AdType => "AD_TYPE",
+                Self::Country => "COUNTRY",
+                Self::Format => "FORMAT",
+                Self::Platform => "PLATFORM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -299,16 +295,16 @@ pub mod network_report_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Metric::Unspecified => "METRIC_UNSPECIFIED",
-                Metric::AdRequests => "AD_REQUESTS",
-                Metric::Clicks => "CLICKS",
-                Metric::EstimatedEarnings => "ESTIMATED_EARNINGS",
-                Metric::Impressions => "IMPRESSIONS",
-                Metric::ImpressionCtr => "IMPRESSION_CTR",
-                Metric::ImpressionRpm => "IMPRESSION_RPM",
-                Metric::MatchedRequests => "MATCHED_REQUESTS",
-                Metric::MatchRate => "MATCH_RATE",
-                Metric::ShowRate => "SHOW_RATE",
+                Self::Unspecified => "METRIC_UNSPECIFIED",
+                Self::AdRequests => "AD_REQUESTS",
+                Self::Clicks => "CLICKS",
+                Self::EstimatedEarnings => "ESTIMATED_EARNINGS",
+                Self::Impressions => "IMPRESSIONS",
+                Self::ImpressionCtr => "IMPRESSION_CTR",
+                Self::ImpressionRpm => "IMPRESSION_RPM",
+                Self::MatchedRequests => "MATCHED_REQUESTS",
+                Self::MatchRate => "MATCH_RATE",
+                Self::ShowRate => "SHOW_RATE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -333,41 +329,37 @@ pub mod network_report_spec {
 /// For example, the specification to get observed ECPM sliced by ad source and
 /// app for the 'US' and 'CN' countries can look like the following example:
 ///
-/// ```text
-/// {
-///    "date_range": {
-///      "start_date": {"year": 2018, "month": 9, "day": 1},
-///      "end_date": {"year": 2018, "month": 9, "day": 30}
-///    },
-///    "dimensions": \["AD_SOURCE", "APP", "COUNTRY"\],
-///    "metrics": \["OBSERVED_ECPM"\],
-///    "dimension_filters": [
 ///      {
-///        "dimension": "COUNTRY",
-///        "matches_any": {"values": \[{"value": "US", "value": "CN"}\]}
+///        "date_range": {
+///          "start_date": {"year": 2018, "month": 9, "day": 1},
+///          "end_date": {"year": 2018, "month": 9, "day": 30}
+///        },
+///        "dimensions": \["AD_SOURCE", "APP", "COUNTRY"\],
+///        "metrics": \["OBSERVED_ECPM"\],
+///        "dimension_filters": [
+///          {
+///            "dimension": "COUNTRY",
+///            "matches_any": {"values": \[{"value": "US", "value": "CN"}\]}
+///          }
+///        ],
+///        "sort_conditions": [
+///          {"dimension":"APP", order: "ASCENDING"}
+///        ],
+///        "localization_settings": {
+///          "currency_code": "USD",
+///          "language_code": "en-US"
+///        }
 ///      }
-///    ],
-///    "sort_conditions": [
-///      {"dimension":"APP", order: "ASCENDING"}
-///    ],
-///    "localization_settings": {
-///      "currency_code": "USD",
-///      "language_code": "en-US"
-///    }
-/// }
-/// ```
 ///
 /// For a better understanding, you can treat the preceding specification like
 /// the following pseudo SQL:
 ///
-/// ```text
-/// SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM
-/// FROM MEDIATION_REPORT
-/// WHERE DATE >= '2018-09-01' AND DATE <= '2018-09-30'
-///      AND COUNTRY IN ('US', 'CN')
-/// GROUP BY AD_SOURCE, APP, COUNTRY
-/// ORDER BY APP ASC;
-/// ```
+///      SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM
+///      FROM MEDIATION_REPORT
+///      WHERE DATE >= '2018-09-01' AND DATE <= '2018-09-30'
+///          AND COUNTRY IN ('US', 'CN')
+///      GROUP BY AD_SOURCE, APP, COUNTRY
+///      ORDER BY APP ASC;
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MediationReportSpec {
     /// The date range for which the report is generated.
@@ -514,18 +506,18 @@ pub mod mediation_report_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Dimension::Unspecified => "DIMENSION_UNSPECIFIED",
-                Dimension::Date => "DATE",
-                Dimension::Month => "MONTH",
-                Dimension::Week => "WEEK",
-                Dimension::AdSource => "AD_SOURCE",
-                Dimension::AdSourceInstance => "AD_SOURCE_INSTANCE",
-                Dimension::AdUnit => "AD_UNIT",
-                Dimension::App => "APP",
-                Dimension::MediationGroup => "MEDIATION_GROUP",
-                Dimension::Country => "COUNTRY",
-                Dimension::Format => "FORMAT",
-                Dimension::Platform => "PLATFORM",
+                Self::Unspecified => "DIMENSION_UNSPECIFIED",
+                Self::Date => "DATE",
+                Self::Month => "MONTH",
+                Self::Week => "WEEK",
+                Self::AdSource => "AD_SOURCE",
+                Self::AdSourceInstance => "AD_SOURCE_INSTANCE",
+                Self::AdUnit => "AD_UNIT",
+                Self::App => "APP",
+                Self::MediationGroup => "MEDIATION_GROUP",
+                Self::Country => "COUNTRY",
+                Self::Format => "FORMAT",
+                Self::Platform => "PLATFORM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -607,15 +599,15 @@ pub mod mediation_report_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Metric::Unspecified => "METRIC_UNSPECIFIED",
-                Metric::AdRequests => "AD_REQUESTS",
-                Metric::Clicks => "CLICKS",
-                Metric::EstimatedEarnings => "ESTIMATED_EARNINGS",
-                Metric::Impressions => "IMPRESSIONS",
-                Metric::ImpressionCtr => "IMPRESSION_CTR",
-                Metric::MatchedRequests => "MATCHED_REQUESTS",
-                Metric::MatchRate => "MATCH_RATE",
-                Metric::ObservedEcpm => "OBSERVED_ECPM",
+                Self::Unspecified => "METRIC_UNSPECIFIED",
+                Self::AdRequests => "AD_REQUESTS",
+                Self::Clicks => "CLICKS",
+                Self::EstimatedEarnings => "ESTIMATED_EARNINGS",
+                Self::Impressions => "IMPRESSIONS",
+                Self::ImpressionCtr => "IMPRESSION_CTR",
+                Self::MatchedRequests => "MATCHED_REQUESTS",
+                Self::MatchRate => "MATCH_RATE",
+                Self::ObservedEcpm => "OBSERVED_ECPM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -750,13 +742,13 @@ pub mod report_warning {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::DataBeforeAccountTimezoneChange => {
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::DataBeforeAccountTimezoneChange => {
                     "DATA_BEFORE_ACCOUNT_TIMEZONE_CHANGE"
                 }
-                Type::DataDelayed => "DATA_DELAYED",
-                Type::Other => "OTHER",
-                Type::ReportCurrencyNotAccountCurrency => {
+                Self::DataDelayed => "DATA_DELAYED",
+                Self::Other => "OTHER",
+                Self::ReportCurrencyNotAccountCurrency => {
                     "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY"
                 }
             }
@@ -861,9 +853,9 @@ impl SortOrder {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SortOrder::Unspecified => "SORT_ORDER_UNSPECIFIED",
-            SortOrder::Ascending => "ASCENDING",
-            SortOrder::Descending => "DESCENDING",
+            Self::Unspecified => "SORT_ORDER_UNSPECIFIED",
+            Self::Ascending => "ASCENDING",
+            Self::Descending => "DESCENDING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -925,37 +917,35 @@ pub struct GenerateMediationReportRequest {
 ///
 /// For example:
 ///
-/// ```text
-/// [{
-///    "header": {
-///      "date_range": {
-///        "start_date": {"year": 2018, "month": 9, "day": 1},
-///        "end_date": {"year": 2018, "month": 9, "day": 1}
-///      },
-///      "localization_settings": {
-///        "currency_code": "USD",
-///        "language_code": "en-US"
-///      }
-///    }
-/// },
-/// {
-///    "row": {
-///      "dimension_values": {
-///        "DATE": {"value": "20180918"},
-///        "APP": {
-///          "value": "ca-app-pub-8123415297019784~1001342552",
-///           "display_label": "My app name!"
+///      [{
+///        "header": {
+///          "date_range": {
+///            "start_date": {"year": 2018, "month": 9, "day": 1},
+///            "end_date": {"year": 2018, "month": 9, "day": 1}
+///          },
+///          "localization_settings": {
+///            "currency_code": "USD",
+///            "language_code": "en-US"
+///          }
 ///        }
 ///      },
-///      "metric_values": {
-///        "ESTIMATED_EARNINGS": {"decimal_value": "1324746"}
-///      }
-///    }
-/// },
-/// {
-///    "footer": {"matching_row_count": 1}
-/// }]
-/// ```
+///      {
+///        "row": {
+///          "dimension_values": {
+///            "DATE": {"value": "20180918"},
+///            "APP": {
+///              "value": "ca-app-pub-8123415297019784~1001342552",
+///               "display_label": "My app name!"
+///            }
+///          },
+///          "metric_values": {
+///            "ESTIMATED_EARNINGS": {"decimal_value": "1324746"}
+///          }
+///        }
+///      },
+///      {
+///        "footer": {"matching_row_count": 1}
+///      }]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateMediationReportResponse {
     /// Each stream response message contains one type of payload.
@@ -997,37 +987,35 @@ pub struct GenerateNetworkReportRequest {
 ///
 /// For example:
 ///
-/// ```text
-/// [{
-///    "header": {
-///      "dateRange": {
-///        "startDate": {"year": 2018, "month": 9, "day": 1},
-///        "endDate": {"year": 2018, "month": 9, "day": 1}
-///      },
-///      "localizationSettings": {
-///        "currencyCode": "USD",
-///        "languageCode": "en-US"
-///      }
-///    }
-/// },
-/// {
-///    "row": {
-///      "dimensionValues": {
-///        "DATE": {"value": "20180918"},
-///        "APP": {
-///          "value": "ca-app-pub-8123415297019784~1001342552",
-///           displayLabel: "My app name!"
+///      [{
+///        "header": {
+///          "dateRange": {
+///            "startDate": {"year": 2018, "month": 9, "day": 1},
+///            "endDate": {"year": 2018, "month": 9, "day": 1}
+///          },
+///          "localizationSettings": {
+///            "currencyCode": "USD",
+///            "languageCode": "en-US"
+///          }
 ///        }
 ///      },
-///      "metricValues": {
-///        "ESTIMATED_EARNINGS": {"microsValue": 6500000}
-///      }
-///    }
-/// },
-/// {
-///    "footer": {"matchingRowCount": 1}
-/// }]
-/// ```
+///      {
+///        "row": {
+///          "dimensionValues": {
+///            "DATE": {"value": "20180918"},
+///            "APP": {
+///              "value": "ca-app-pub-8123415297019784~1001342552",
+///               displayLabel: "My app name!"
+///            }
+///          },
+///          "metricValues": {
+///            "ESTIMATED_EARNINGS": {"microsValue": 6500000}
+///          }
+///        }
+///      },
+///      {
+///        "footer": {"matchingRowCount": 1}
+///      }]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateNetworkReportResponse {
     /// Each stream response message contains one type of payload.
@@ -1054,7 +1042,13 @@ pub mod generate_network_report_response {
 }
 /// Generated client implementations.
 pub mod ad_mob_api_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The AdMob API allows AdMob publishers programmatically get information about
@@ -1140,8 +1134,7 @@ pub mod ad_mob_api_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1172,8 +1165,7 @@ pub mod ad_mob_api_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1206,8 +1198,7 @@ pub mod ad_mob_api_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1240,8 +1231,7 @@ pub mod ad_mob_api_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

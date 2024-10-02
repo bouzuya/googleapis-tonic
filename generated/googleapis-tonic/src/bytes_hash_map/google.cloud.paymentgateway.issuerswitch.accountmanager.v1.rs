@@ -117,9 +117,9 @@ pub mod account_manager_transaction_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -190,9 +190,9 @@ pub mod account_manager_participant {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Persona::Unspecified => "PERSONA_UNSPECIFIED",
-                Persona::Entity => "ENTITY",
-                Persona::Person => "PERSON",
+                Self::Unspecified => "PERSONA_UNSPECIFIED",
+                Self::Entity => "ENTITY",
+                Self::Person => "PERSON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -260,9 +260,9 @@ pub mod account_manager_transaction_reconciliation_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReconciliationState::Unspecified => "RECONCILIATION_STATE_UNSPECIFIED",
-                ReconciliationState::Succeeded => "SUCCEEDED",
-                ReconciliationState::Failed => "FAILED",
+                Self::Unspecified => "RECONCILIATION_STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -339,18 +339,18 @@ pub struct ListAccountManagerTransactionsRequest {
     ///
     /// The following fields in the `Transaction` are eligible for filtering:
     ///
-    /// * `accountID` - The account ID. Allowed comparison operators: `=`. When
-    ///   account manager is used for managing UPI Lite transactions, accountID
-    ///   should be the Lite Reference Number (LRN).
-    /// * `accountNumber` - Bank account number associated with the
-    ///   account. Allowed comparison operators: `=`.
-    /// * `IFSC` - Bank IFSC code associated with the account.
-    ///   Allowed comparison operators: `=`.
-    /// * `RRN` - The retrieval reference number of the transaction. Allowed
-    ///   comparison operators: `=`.
-    /// * `transactionTime` - The timestamp (in UTC) at which the transaction
-    ///   took place. The value should be in the format `YYYY-MM-DDTHH:MM:SSZ`.
-    ///   Allowed comparison operators: `>`, `<`.
+    ///    * `accountID` - The account ID. Allowed comparison operators: `=`. When
+    ///    account manager is used for managing UPI Lite transactions, accountID
+    ///    should be the Lite Reference Number (LRN).
+    ///    * `accountNumber` - Bank account number associated with the
+    ///    account. Allowed comparison operators: `=`.
+    ///    * `IFSC` - Bank IFSC code associated with the account.
+    ///    Allowed comparison operators: `=`.
+    ///    * `RRN` - The retrieval reference number of the transaction. Allowed
+    ///    comparison operators: `=`.
+    ///    * `transactionTime` - The timestamp (in UTC) at which the transaction
+    ///    took place. The value should be in the format `YYYY-MM-DDTHH:MM:SSZ`.
+    ///    Allowed comparison operators: `>`, `<`.
     ///
     /// You can combine multiple expressions by enclosing each expression in
     /// parentheses. Expressions are combined with AND logic. No other logical
@@ -358,14 +358,13 @@ pub struct ListAccountManagerTransactionsRequest {
     ///
     /// Here are a few examples:
     ///
-    /// * `rrn = 123456789123` - The RRN is *123456789123*.
-    /// * `(accountID = 12345678) AND (transactionTime < "2021-08-15T14:50:00Z")`
-    ///
-    /// * The accountID is 12345678 and the transaction was received
-    ///   before *2021-08-15 14:50:00 UTC*.
-    ///
-    /// * `transactionTime > "2021-08-15T14:50:00Z" AND transactionTime < "2021-08-16T14:50:00Z"` - The transaction was received between
-    ///   *2021-08-15 14:50:00 UTC* and *2021-08-16 14:50:00 UTC*.
+    ///    * `rrn = 123456789123` - The RRN is _123456789123_.
+    ///    * `(accountID = 12345678) AND (transactionTime < "2021-08-15T14:50:00Z")`
+    ///    - The accountID is 12345678 and the transaction was received
+    ///    before _2021-08-15 14:50:00 UTC_.
+    ///    * `transactionTime > "2021-08-15T14:50:00Z" AND transactionTime <
+    ///    "2021-08-16T14:50:00Z"` - The transaction was received between
+    ///    _2021-08-15 14:50:00 UTC_ and _2021-08-16 14:50:00 UTC_.
     #[prost(string, tag = "5")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -434,13 +433,11 @@ impl AccountManagerTransactionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AccountManagerTransactionType::Unspecified => {
-                "ACCOUNT_MANAGER_TRANSACTION_TYPE_UNSPECIFIED"
-            }
-            AccountManagerTransactionType::Credit => "CREDIT",
-            AccountManagerTransactionType::CreditReversal => "CREDIT_REVERSAL",
-            AccountManagerTransactionType::Debit => "DEBIT",
-            AccountManagerTransactionType::DebitReversal => "DEBIT_REVERSAL",
+            Self::Unspecified => "ACCOUNT_MANAGER_TRANSACTION_TYPE_UNSPECIFIED",
+            Self::Credit => "CREDIT",
+            Self::CreditReversal => "CREDIT_REVERSAL",
+            Self::Debit => "DEBIT",
+            Self::DebitReversal => "DEBIT_REVERSAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -457,7 +454,13 @@ impl AccountManagerTransactionType {
 }
 /// Generated client implementations.
 pub mod account_manager_transactions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Lists and exports transactions processed by the account manager.
@@ -536,22 +539,22 @@ pub mod account_manager_transactions_client {
         /// file into a configured target location. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ExportAccountManagerTransactionsMetadata\]\[google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsMetadata\]
-        /// * `response`:
-        ///  \[ExportAccountManagerTransactionsResponse\]\[google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsResponse\]
+        /// - `metadata`:
+        /// [ExportAccountManagerTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsMetadata]
+        /// - `response`:
+        /// [ExportAccountManagerTransactionsResponse][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsResponse]
         ///
         /// The exported file will be in the standard CSV format where each row in the
         /// file represents a transaction. The file has the following fields in order:
         ///
         /// 1. `TransactionID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Account manager transaction ID.
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Account manager transaction ID.
         /// 1. `TransactionType`
-        ///   * **Min Length** - 22 characters
-        ///   * **Max Length** - 25 characters
-        ///   * **Description** - Type of the transaction. This will be one of
+        ///     * **Min Length** - 22 characters
+        ///     * **Max Length** - 25 characters
+        ///     * **Description** - Type of the transaction. This will be one of
         ///     `TRANSACTION_TYPE_CREDIT`, `TRANSACTION_TYPE_CREDIT_REVERSAL`,
         ///     `TRANSACTION_TYPE_DEBIT` or `TRANSACTION_TYPE_DEBIT_REVERSAL`. When
         ///     account manager is used for managing UPI Lite transactions, the CREDIT
@@ -560,75 +563,75 @@ pub mod account_manager_transactions_client {
         ///     transferred back the underlying bank account or for a Lite account
         ///     financial transaction which happened offline.
         /// 1. `AccountID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Account ID. When account manager is used for
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Account ID. When account manager is used for
         ///     managing UPI Lite transactions, this column will contain the Lite
         ///     Reference Number (LRN) of the UPI Lite account.
         /// 1. `State`
-        ///   * **Min Length** - 6 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - State of the transaction. This will be one of
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - State of the transaction. This will be one of
         ///     `SUCCEEDED` or `FAILED`.
         /// 1. `RRN`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Retrieval reference number associated with the
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Retrieval reference number associated with the
         ///     transaction.
         /// 1. `PayerVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the payer.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payer.
         /// 1. `PayerIFSC`
-        ///   * **Min Length** - 11 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - IFSC of the payer's bank account.
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payer's bank account.
         /// 1. `PayerAccountNumber`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payer's bank account number.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payer's bank account number.
         /// 1. `PayeeVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the payee.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payee.
         /// 1. `PayeeIFSC`
-        ///   * **Min Length** - 11 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - IFSC of the payee's bank account.
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payee's bank account.
         /// 1. `PayeeAccountNumber`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payee's bank account number.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payee's bank account number.
         /// 1. `PayeeMCC`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 4 characters
-        ///   * **Description** - Payee's Merchant Category Code (MCC), only if the
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Payee's Merchant Category Code (MCC), only if the
         ///     payee is a merchant.
         /// 1. `PayeeMerchantID`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 4 characters
-        ///   * **Description** - Payee's merchant ID, only if the payee is a
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Payee's merchant ID, only if the payee is a
         ///     merchant.
         /// 1. `Currency`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 3 characters
-        ///   * **Description** - Currency of the amount involved in the transaction.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Currency of the amount involved in the transaction.
         ///     The currency codes are defined in ISO 4217.
         /// 1. `Amount`
-        ///   * **Description** - Amount involved in the transaction.
+        ///     * **Description** - Amount involved in the transaction.
         /// 1. `Purpose`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 4 characters
-        ///   * **Description** - Purpose code associated with the transaction. When
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Purpose code associated with the transaction. When
         ///     account manager is used for managing UPI Lite transactions, this column
         ///     will contain one of the values from `41` (Lite account creation with
         ///     initial topup), `42` (Lite account topup), `43` (Lite account
         ///     disablement with balance transfer) or `44` (Lite account online
         ///     transaction).
         /// 1. `TransactionTime`
-        ///   * **Min Length** - 20 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Timestamp (in UTC) indicating the timestamp at
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating the timestamp at
         ///     which the transaction took place. The format will be as per RFC-3339.
         ///     Example : 2022-11-22T23:00:05Z
         pub async fn export_account_manager_transactions(
@@ -646,8 +649,7 @@ pub mod account_manager_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -679,8 +681,7 @@ pub mod account_manager_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -713,8 +714,7 @@ pub mod account_manager_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -800,9 +800,9 @@ pub mod managed_account {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deactivated => "DEACTIVATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Deactivated => "DEACTIVATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -843,11 +843,9 @@ pub mod managed_account {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AccountReconciliationState::Unspecified => {
-                    "ACCOUNT_RECONCILIATION_STATE_UNSPECIFIED"
-                }
-                AccountReconciliationState::Succeeded => "SUCCEEDED",
-                AccountReconciliationState::Failed => "FAILED",
+                Self::Unspecified => "ACCOUNT_RECONCILIATION_STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -909,7 +907,13 @@ pub struct GetManagedAccountRequest {
 }
 /// Generated client implementations.
 pub mod managed_accounts_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Reconciles and provide balance information for an account within the account
@@ -997,8 +1001,7 @@ pub mod managed_accounts_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1025,8 +1028,7 @@ pub mod managed_accounts_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

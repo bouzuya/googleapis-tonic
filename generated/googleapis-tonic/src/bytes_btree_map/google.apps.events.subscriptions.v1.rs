@@ -56,7 +56,7 @@ pub struct Subscription {
     /// Output only. The error that suspended the subscription.
     ///
     /// To reactivate the subscription, resolve the error and call the
-    /// \[`ReactivateSubscription`\]\[google.apps.events.subscriptions.v1.SubscriptionsService.ReactivateSubscription\]
+    /// [`ReactivateSubscription`][google.apps.events.subscriptions.v1.SubscriptionsService.ReactivateSubscription]
     /// method.
     #[prost(enumeration = "subscription::ErrorType", tag = "18")]
     pub suspension_reason: i32,
@@ -89,24 +89,24 @@ pub struct Subscription {
     ///
     /// The maximum expiration time depends on whether your subscription includes
     /// resource data in event payloads (specified in the
-    /// \[PayloadOptions\]\[google.apps.events.subscriptions.v1.PayloadOptions\]
+    /// [PayloadOptions][google.apps.events.subscriptions.v1.PayloadOptions]
     /// field):
     ///
     /// * If payloads omit resource data, up to 7 days.
     /// * If payloads include resource data, up to 4 hours. If your Google
-    ///   Workspace organization grants access to the resource through [domain-wide
-    ///   delegation](<https://support.google.com/a/answer/162106>), you can extend the
-    ///   subscription's expiration time to up to 24 hours.
+    /// Workspace organization grants access to the resource through [domain-wide
+    /// delegation](<https://support.google.com/a/answer/162106>), you can extend the
+    /// subscription's expiration time to up to 24 hours.
     ///
     /// After a subscription expires, it's deleted automatically. You receive
     /// lifecycle events to the
-    /// \[notification_endpoint\]\[google.apps.events.subscriptions.v1.Subscription.notification_endpoint\]
+    /// [notification_endpoint][google.apps.events.subscriptions.v1.Subscription.notification_endpoint]
     /// 12 hours and one hour before the subscription expires. For details, see
     /// [Receive and respond to lifecycle
     /// events](<https://developers.google.com/workspace/events/guides/events-lifecycle>).
     ///
     /// To prevent a subscription from expiring, you can use the
-    /// \[`UpdateSubscription`\]\[google.apps.events.subscriptions.v1.SubscriptionsService.UpdateSubscription\]
+    /// [`UpdateSubscription`][google.apps.events.subscriptions.v1.SubscriptionsService.UpdateSubscription]
     /// method to extend its expiration date. For details, see [Update or renew a
     /// subscription](<https://developers.google.com/workspace/events/guides/update-subscription>).
     #[prost(oneof = "subscription::Expiration", tags = "13, 14")]
@@ -135,7 +135,7 @@ pub mod subscription {
         Active = 1,
         /// The subscription is unable to receive events due to an error.
         /// To identify the error, see the
-        /// \[`suspension_reason`\]\[google.apps.events.subscriptions.v1.Subscription.suspension_reason\]
+        /// [`suspension_reason`][google.apps.events.subscriptions.v1.Subscription.suspension_reason]
         /// field.
         Suspended = 2,
         /// The subscription is deleted.
@@ -148,10 +148,10 @@ pub mod subscription {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Suspended => "SUSPENDED",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Suspended => "SUSPENDED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -211,14 +211,14 @@ pub mod subscription {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ErrorType::Unspecified => "ERROR_TYPE_UNSPECIFIED",
-                ErrorType::UserScopeRevoked => "USER_SCOPE_REVOKED",
-                ErrorType::ResourceDeleted => "RESOURCE_DELETED",
-                ErrorType::UserAuthorizationFailure => "USER_AUTHORIZATION_FAILURE",
-                ErrorType::EndpointPermissionDenied => "ENDPOINT_PERMISSION_DENIED",
-                ErrorType::EndpointNotFound => "ENDPOINT_NOT_FOUND",
-                ErrorType::EndpointResourceExhausted => "ENDPOINT_RESOURCE_EXHAUSTED",
-                ErrorType::Other => "OTHER",
+                Self::Unspecified => "ERROR_TYPE_UNSPECIFIED",
+                Self::UserScopeRevoked => "USER_SCOPE_REVOKED",
+                Self::ResourceDeleted => "RESOURCE_DELETED",
+                Self::UserAuthorizationFailure => "USER_AUTHORIZATION_FAILURE",
+                Self::EndpointPermissionDenied => "ENDPOINT_PERMISSION_DENIED",
+                Self::EndpointNotFound => "ENDPOINT_NOT_FOUND",
+                Self::EndpointResourceExhausted => "ENDPOINT_RESOURCE_EXHAUSTED",
+                Self::Other => "OTHER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -240,24 +240,24 @@ pub mod subscription {
     ///
     /// The maximum expiration time depends on whether your subscription includes
     /// resource data in event payloads (specified in the
-    /// \[PayloadOptions\]\[google.apps.events.subscriptions.v1.PayloadOptions\]
+    /// [PayloadOptions][google.apps.events.subscriptions.v1.PayloadOptions]
     /// field):
     ///
     /// * If payloads omit resource data, up to 7 days.
     /// * If payloads include resource data, up to 4 hours. If your Google
-    ///   Workspace organization grants access to the resource through [domain-wide
-    ///   delegation](<https://support.google.com/a/answer/162106>), you can extend the
-    ///   subscription's expiration time to up to 24 hours.
+    /// Workspace organization grants access to the resource through [domain-wide
+    /// delegation](<https://support.google.com/a/answer/162106>), you can extend the
+    /// subscription's expiration time to up to 24 hours.
     ///
     /// After a subscription expires, it's deleted automatically. You receive
     /// lifecycle events to the
-    /// \[notification_endpoint\]\[google.apps.events.subscriptions.v1.Subscription.notification_endpoint\]
+    /// [notification_endpoint][google.apps.events.subscriptions.v1.Subscription.notification_endpoint]
     /// 12 hours and one hour before the subscription expires. For details, see
     /// [Receive and respond to lifecycle
     /// events](<https://developers.google.com/workspace/events/guides/events-lifecycle>).
     ///
     /// To prevent a subscription from expiring, you can use the
-    /// \[`UpdateSubscription`\]\[google.apps.events.subscriptions.v1.SubscriptionsService.UpdateSubscription\]
+    /// [`UpdateSubscription`][google.apps.events.subscriptions.v1.SubscriptionsService.UpdateSubscription]
     /// method to extend its expiration date. For details, see [Update or renew a
     /// subscription](<https://developers.google.com/workspace/events/guides/update-subscription>).
     #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
@@ -310,6 +310,7 @@ pub mod notification_endpoint {
         ///
         /// Format: `projects/{project}/topics/{topic}`
         ///
+        ///
         /// You must create the topic in the same Google Cloud project where
         /// you create this subscription.
         ///
@@ -321,7 +322,7 @@ pub mod notification_endpoint {
     }
 }
 /// The request message for
-/// \[SubscriptionsService.CreateSubscription\]\[google.apps.events.subscriptions.v1.SubscriptionsService.CreateSubscription\].
+/// [SubscriptionsService.CreateSubscription][google.apps.events.subscriptions.v1.SubscriptionsService.CreateSubscription].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSubscriptionRequest {
     /// Required. The subscription resource to create.
@@ -333,7 +334,7 @@ pub struct CreateSubscriptionRequest {
     pub validate_only: bool,
 }
 /// The request message for
-/// \[SubscriptionsService.DeleteSubscription\]\[google.apps.events.subscriptions.v1.SubscriptionsService.DeleteSubscription\].
+/// [SubscriptionsService.DeleteSubscription][google.apps.events.subscriptions.v1.SubscriptionsService.DeleteSubscription].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSubscriptionRequest {
     /// Required. Resource name of the subscription to delete.
@@ -357,7 +358,7 @@ pub struct DeleteSubscriptionRequest {
     pub etag: ::prost::alloc::string::String,
 }
 /// The request message for
-/// \[SubscriptionsService.GetSubscription\]\[google.apps.events.subscriptions.v1.SubscriptionsService.GetSubscription\].
+/// [SubscriptionsService.GetSubscription][google.apps.events.subscriptions.v1.SubscriptionsService.GetSubscription].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSubscriptionRequest {
     /// Required. Resource name of the subscription.
@@ -367,7 +368,7 @@ pub struct GetSubscriptionRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request message for
-/// \[SubscriptionsService.UpdateSubscription\]\[google.apps.events.subscriptions.v1.SubscriptionsService.UpdateSubscription\].
+/// [SubscriptionsService.UpdateSubscription][google.apps.events.subscriptions.v1.SubscriptionsService.UpdateSubscription].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSubscriptionRequest {
     /// Required. The subscription to update.
@@ -380,11 +381,11 @@ pub struct UpdateSubscriptionRequest {
     ///
     /// You can update one of the following fields in a subscription:
     ///
-    /// * \[`expire_time`\]\[google.apps.events.subscriptions.v1.Subscription.expire_time\]: The timestamp when the
-    ///   subscription expires.
-    /// * \[`ttl`\]\[google.apps.events.subscriptions.v1.Subscription.ttl\]: The
-    ///   time-to-live (TTL) or duration of the
-    ///   subscription.
+    /// * [`expire_time`][google.apps.events.subscriptions.v1.Subscription.expire_time]: The timestamp when the
+    ///    subscription expires.
+    /// * [`ttl`][google.apps.events.subscriptions.v1.Subscription.ttl]: The
+    /// time-to-live (TTL) or duration of the
+    ///    subscription.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Optional. If set to `true`, validates and previews the request, but doesn't
@@ -393,7 +394,7 @@ pub struct UpdateSubscriptionRequest {
     pub validate_only: bool,
 }
 /// The request message for
-/// \[SubscriptionsService.ReactivateSubscription\]\[google.apps.events.subscriptions.v1.SubscriptionsService.ReactivateSubscription\].
+/// [SubscriptionsService.ReactivateSubscription][google.apps.events.subscriptions.v1.SubscriptionsService.ReactivateSubscription].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReactivateSubscriptionRequest {
     /// Required. Resource name of the subscription.
@@ -403,7 +404,7 @@ pub struct ReactivateSubscriptionRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request message for
-/// \[SubscriptionsService.ListSubscriptions\]\[google.apps.events.subscriptions.v1.SubscriptionsService.ListSubscriptions\].
+/// [SubscriptionsService.ListSubscriptions][google.apps.events.subscriptions.v1.SubscriptionsService.ListSubscriptions].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSubscriptionsRequest {
     /// Optional. The maximum number of subscriptions to return. The service might
@@ -436,16 +437,16 @@ pub struct ListSubscriptionsRequest {
     ///
     /// For example, the following queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// event_types:"google.workspace.chat.membership.v1.updated" OR
-    ///   event_types:"google.workspace.chat.message.v1.created"
+    ///    event_types:"google.workspace.chat.message.v1.created"
     ///
     /// event_types:"google.workspace.chat.message.v1.created" AND
-    ///   target_resource="//chat.googleapis.com/spaces/{space}"
+    ///    target_resource="//chat.googleapis.com/spaces/{space}"
     ///
     /// ( event_types:"google.workspace.chat.membership.v1.updated" OR
-    ///   event_types:"google.workspace.chat.message.v1.created" ) AND
-    ///   target_resource="//chat.googleapis.com/spaces/{space}"
+    ///    event_types:"google.workspace.chat.message.v1.created" ) AND
+    ///    target_resource="//chat.googleapis.com/spaces/{space}"
     /// ```
     ///
     /// The server rejects invalid queries with an `INVALID_ARGUMENT`
@@ -454,7 +455,7 @@ pub struct ListSubscriptionsRequest {
     pub filter: ::prost::alloc::string::String,
 }
 /// The response message for
-/// \[SubscriptionsService.ListSubscriptions\]\[google.apps.events.subscriptions.v1.SubscriptionsService.ListSubscriptions\].
+/// [SubscriptionsService.ListSubscriptions][google.apps.events.subscriptions.v1.SubscriptionsService.ListSubscriptions].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSubscriptionsResponse {
     /// List of subscriptions.
@@ -479,7 +480,13 @@ pub struct DeleteSubscriptionMetadata {}
 pub struct ReactivateSubscriptionMetadata {}
 /// Generated client implementations.
 pub mod subscriptions_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service that manages subscriptions to Google Workspace events.
@@ -566,8 +573,7 @@ pub mod subscriptions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -599,8 +605,7 @@ pub mod subscriptions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -629,8 +634,7 @@ pub mod subscriptions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -662,8 +666,7 @@ pub mod subscriptions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -695,8 +698,7 @@ pub mod subscriptions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -732,8 +734,7 @@ pub mod subscriptions_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

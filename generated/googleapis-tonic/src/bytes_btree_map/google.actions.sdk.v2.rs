@@ -104,10 +104,10 @@ pub mod account_linking {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LinkingType::Unspecified => "LINKING_TYPE_UNSPECIFIED",
-                LinkingType::GoogleSignIn => "GOOGLE_SIGN_IN",
-                LinkingType::OauthAndGoogleSignIn => "OAUTH_AND_GOOGLE_SIGN_IN",
-                LinkingType::Oauth => "OAUTH",
+                Self::Unspecified => "LINKING_TYPE_UNSPECIFIED",
+                Self::GoogleSignIn => "GOOGLE_SIGN_IN",
+                Self::OauthAndGoogleSignIn => "OAUTH_AND_GOOGLE_SIGN_IN",
+                Self::Oauth => "OAUTH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -152,9 +152,9 @@ pub mod account_linking {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AuthGrantType::Unspecified => "AUTH_GRANT_TYPE_UNSPECIFIED",
-                AuthGrantType::AuthCode => "AUTH_CODE",
-                AuthGrantType::Implicit => "IMPLICIT",
+                Self::Unspecified => "AUTH_GRANT_TYPE_UNSPECIFIED",
+                Self::AuthCode => "AUTH_CODE",
+                Self::Implicit => "IMPLICIT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -301,18 +301,17 @@ pub struct ThemeCustomization {
     pub primary_color: ::prost::alloc::string::String,
     /// The font family that will be used for title of cards.
     /// Supported fonts:
-    ///
-    /// * Sans Serif
-    /// * Sans Serif Medium
-    /// * Sans Serif Bold
-    /// * Sans Serif Black
-    /// * Sans Serif Condensed
-    /// * Sans Serif Condensed Medium
-    /// * Serif
-    /// * Serif Bold
-    /// * Monospace
-    /// * Cursive
-    /// * Sans Serif Smallcaps
+    /// - Sans Serif
+    /// - Sans Serif Medium
+    /// - Sans Serif Bold
+    /// - Sans Serif Black
+    /// - Sans Serif Condensed
+    /// - Sans Serif Condensed Medium
+    /// - Serif
+    /// - Serif Bold
+    /// - Monospace
+    /// - Cursive
+    /// - Sans Serif Smallcaps
     #[prost(string, tag = "3")]
     pub font_family: ::prost::alloc::string::String,
     /// Border style of foreground image of cards. For example, can be applied on
@@ -366,9 +365,9 @@ pub mod theme_customization {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ImageCornerStyle::Unspecified => "IMAGE_CORNER_STYLE_UNSPECIFIED",
-                ImageCornerStyle::Curved => "CURVED",
-                ImageCornerStyle::Angled => "ANGLED",
+                Self::Unspecified => "IMAGE_CORNER_STYLE_UNSPECIFIED",
+                Self::Curved => "CURVED",
+                Self::Angled => "ANGLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -507,14 +506,14 @@ pub mod capability_requirement {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SurfaceCapability::Unspecified => "SURFACE_CAPABILITY_UNSPECIFIED",
-                SurfaceCapability::AudioOutput => "AUDIO_OUTPUT",
-                SurfaceCapability::ScreenOutput => "SCREEN_OUTPUT",
-                SurfaceCapability::MediaResponseAudio => "MEDIA_RESPONSE_AUDIO",
-                SurfaceCapability::WebBrowser => "WEB_BROWSER",
-                SurfaceCapability::AccountLinking => "ACCOUNT_LINKING",
-                SurfaceCapability::InteractiveCanvas => "INTERACTIVE_CANVAS",
-                SurfaceCapability::HomeStorage => "HOME_STORAGE",
+                Self::Unspecified => "SURFACE_CAPABILITY_UNSPECIFIED",
+                Self::AudioOutput => "AUDIO_OUTPUT",
+                Self::ScreenOutput => "SCREEN_OUTPUT",
+                Self::MediaResponseAudio => "MEDIA_RESPONSE_AUDIO",
+                Self::WebBrowser => "WEB_BROWSER",
+                Self::AccountLinking => "ACCOUNT_LINKING",
+                Self::InteractiveCanvas => "INTERACTIVE_CANVAS",
+                Self::HomeStorage => "HOME_STORAGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -552,15 +551,14 @@ pub struct Settings {
     /// region is represented using the Canonical Name of Adwords geotargets. See
     /// <https://developers.google.com/adwords/api/docs/appendix/geotargeting>
     /// Examples include:
-    ///
-    /// * "Germany"
-    /// * "Ghana"
-    /// * "Greece"
-    /// * "Grenada"
-    /// * "United Kingdom"
-    /// * "United States"
-    /// * "United States Minor Outlying Islands"
-    /// * "Uruguay"
+    /// - "Germany"
+    /// - "Ghana"
+    /// - "Greece"
+    /// - "Grenada"
+    /// - "United Kingdom"
+    /// - "United States"
+    /// - "United States Minor Outlying Islands"
+    /// - "Uruguay"
     #[prost(string, repeated, tag = "3")]
     pub enabled_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Represents the regions where your Actions are blocked, based on the user's
@@ -568,15 +566,14 @@ pub struct Settings {
     /// Each region is represented using the Canonical Name of Adwords geotargets.
     /// See <https://developers.google.com/adwords/api/docs/appendix/geotargeting>
     /// Examples include:
-    ///
-    /// * "Germany"
-    /// * "Ghana"
-    /// * "Greece"
-    /// * "Grenada"
-    /// * "United Kingdom"
-    /// * "United States"
-    /// * "United States Minor Outlying Islands"
-    /// * "Uruguay"
+    /// - "Germany"
+    /// - "Ghana"
+    /// - "Greece"
+    /// - "Grenada"
+    /// - "United Kingdom"
+    /// - "United States"
+    /// - "United States Minor Outlying Islands"
+    /// - "Uruguay"
     #[prost(string, repeated, tag = "4")]
     pub disabled_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The category for this Actions project.
@@ -696,27 +693,27 @@ pub mod settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::BusinessAndFinance => "BUSINESS_AND_FINANCE",
-                Category::EducationAndReference => "EDUCATION_AND_REFERENCE",
-                Category::FoodAndDrink => "FOOD_AND_DRINK",
-                Category::GamesAndTrivia => "GAMES_AND_TRIVIA",
-                Category::HealthAndFitness => "HEALTH_AND_FITNESS",
-                Category::KidsAndFamily => "KIDS_AND_FAMILY",
-                Category::Lifestyle => "LIFESTYLE",
-                Category::Local => "LOCAL",
-                Category::MoviesAndTv => "MOVIES_AND_TV",
-                Category::MusicAndAudio => "MUSIC_AND_AUDIO",
-                Category::News => "NEWS",
-                Category::NoveltyAndHumor => "NOVELTY_AND_HUMOR",
-                Category::Productivity => "PRODUCTIVITY",
-                Category::Shopping => "SHOPPING",
-                Category::Social => "SOCIAL",
-                Category::Sports => "SPORTS",
-                Category::TravelAndTransportation => "TRAVEL_AND_TRANSPORTATION",
-                Category::Utilities => "UTILITIES",
-                Category::Weather => "WEATHER",
-                Category::HomeControl => "HOME_CONTROL",
+                Self::Unspecified => "CATEGORY_UNSPECIFIED",
+                Self::BusinessAndFinance => "BUSINESS_AND_FINANCE",
+                Self::EducationAndReference => "EDUCATION_AND_REFERENCE",
+                Self::FoodAndDrink => "FOOD_AND_DRINK",
+                Self::GamesAndTrivia => "GAMES_AND_TRIVIA",
+                Self::HealthAndFitness => "HEALTH_AND_FITNESS",
+                Self::KidsAndFamily => "KIDS_AND_FAMILY",
+                Self::Lifestyle => "LIFESTYLE",
+                Self::Local => "LOCAL",
+                Self::MoviesAndTv => "MOVIES_AND_TV",
+                Self::MusicAndAudio => "MUSIC_AND_AUDIO",
+                Self::News => "NEWS",
+                Self::NoveltyAndHumor => "NOVELTY_AND_HUMOR",
+                Self::Productivity => "PRODUCTIVITY",
+                Self::Shopping => "SHOPPING",
+                Self::Social => "SOCIAL",
+                Self::Sports => "SPORTS",
+                Self::TravelAndTransportation => "TRAVEL_AND_TRANSPORTATION",
+                Self::Utilities => "UTILITIES",
+                Self::Weather => "WEATHER",
+                Self::HomeControl => "HOME_CONTROL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -753,10 +750,9 @@ pub mod settings {
 /// name as the value for the `executeFunction` key.
 /// For example, a value of `my_webhook` for the`executeFunction` key would have
 /// a code structure like this:
-///
-/// * `/webhooks/my_webhook.yaml`
-/// * `/webhooks/my_webhook/index.js`
-/// * `/webhooks/my_webhook/package.json`
+///   - `/webhooks/my_webhook.yaml`
+///   - `/webhooks/my_webhook/index.js`
+///   - `/webhooks/my_webhook/package.json`
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Webhook {
     /// List of handlers for this webhook.
@@ -904,7 +900,8 @@ pub mod config_file {
         /// Single resource bundle, which is a map from a string to a string or list
         /// of strings. Resource bundles could be used for localizing strings in
         /// static prompts.
-        /// Allowed file paths: `resources/strings/{language}?/{multiple directories}?/{BundleName}.yaml`
+        /// Allowed file paths: `resources/strings/{language}?/{multiple
+        /// directories}?/{BundleName}.yaml`
         #[prost(message, tag = "12")]
         ResourceBundle(::prost_types::Struct),
     }
@@ -923,13 +920,15 @@ pub struct DataFile {
     /// Relative path of the data file from the project root in the SDK file
     /// structure.
     /// Allowed file paths:
-    /// - Images: `resources/images/{multiple directories}?/{ImageName}.{extension}`
-    /// - Audio: `resources/audio/{multiple directories}?/{AudioFileName}.{extension}`
-    /// - Inline Cloud Function Code: `webhooks/{WebhookName}.zip`
+    ///      - Images: `resources/images/{multiple
+    ///      directories}?/{ImageName}.{extension}`
+    ///      - Audio: `resources/audio/{multiple
+    ///      directories}?/{AudioFileName}.{extension}`
+    ///      - Inline Cloud Function Code: `webhooks/{WebhookName}.zip`
     /// Allowed extensions:
-    /// - Images: `png`, `jpg`, `jpeg`
-    /// - Audio: `mp3`, `mpeg`
-    /// - Inline Cloud Functions: `zip`
+    ///      - Images: `png`, `jpg`, `jpeg`
+    ///      - Audio: `mp3`, `mpeg`
+    ///      - Inline Cloud Functions: `zip`
     #[prost(string, tag = "1")]
     pub file_path: ::prost::alloc::string::String,
     /// Required. The content type of this asset. Example: `text/html`. The content
@@ -1092,16 +1091,16 @@ pub mod version {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::CreationInProgress => "CREATION_IN_PROGRESS",
-                    State::CreationFailed => "CREATION_FAILED",
-                    State::Created => "CREATED",
-                    State::ReviewInProgress => "REVIEW_IN_PROGRESS",
-                    State::Approved => "APPROVED",
-                    State::ConditionallyApproved => "CONDITIONALLY_APPROVED",
-                    State::Denied => "DENIED",
-                    State::UnderTakedown => "UNDER_TAKEDOWN",
-                    State::Deleted => "DELETED",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::CreationInProgress => "CREATION_IN_PROGRESS",
+                    Self::CreationFailed => "CREATION_FAILED",
+                    Self::Created => "CREATED",
+                    Self::ReviewInProgress => "REVIEW_IN_PROGRESS",
+                    Self::Approved => "APPROVED",
+                    Self::ConditionallyApproved => "CONDITIONALLY_APPROVED",
+                    Self::Denied => "DENIED",
+                    Self::UnderTakedown => "UNDER_TAKEDOWN",
+                    Self::Deleted => "DELETED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1132,12 +1131,11 @@ pub struct WriteDraftRequest {
     pub parent: ::prost::alloc::string::String,
     /// Required. List of files sent to the server at a time. This is a list of config files
     /// or data files.
-    ///
     /// 1. The first request must be a ConfigFiles.
-    /// 1. The first request must have a ConfigFile with 'settings'.
-    /// 1. The first request must have a ConfigFile with 'manifest'.
-    /// 1. The webhook ConfigFile corresponding to inline cloud function must be
-    ///    streamed before the DataFile corresponding to its source code.
+    /// 2. The first request must have a ConfigFile with 'settings'.
+    /// 3. The first request must have a ConfigFile with 'manifest'.
+    /// 4. The webhook ConfigFile corresponding to inline cloud function must be
+    ///     streamed before the DataFile corresponding to its source code.
     #[prost(message, optional, tag = "4")]
     pub files: ::core::option::Option<Files>,
 }
@@ -1195,12 +1193,11 @@ pub mod write_preview_request {
     pub enum Source {
         /// List of files sent to the server at a time. This is a list of config
         /// files or data files.
-        ///
         /// 1. The first request must be a ConfigFiles.
-        /// 1. The first request must have a ConfigFile with 'settings'.
-        /// 1. The first request must have a ConfigFile with 'manifest'.
-        /// 1. The webhook ConfigFile corresponding to inline cloud function must be
-        ///    streamed before the DataFile corresponding to its source code.
+        /// 2. The first request must have a ConfigFile with 'settings'.
+        /// 3. The first request must have a ConfigFile with 'manifest'.
+        /// 4. The webhook ConfigFile corresponding to inline cloud function must be
+        ///     streamed before the DataFile corresponding to its source code.
         #[prost(message, tag = "5")]
         Files(super::Files),
         /// Content sourced from the project draft.
@@ -1234,12 +1231,11 @@ pub struct CreateVersionRequest {
     pub parent: ::prost::alloc::string::String,
     /// Required. List of files sent to the server at a time. This is a list of config files
     /// or data files.
-    ///
     /// 1. The first request must be a ConfigFiles.
-    /// 1. The first request must have a ConfigFile with 'settings'.
-    /// 1. The first request must have a ConfigFile with 'manifest'.
-    /// 1. The webhook ConfigFile corresponding to inline cloud function must be
-    ///    streamed before the DataFile corresponding to its source code.
+    /// 2. The first request must have a ConfigFile with 'settings'.
+    /// 3. The first request must have a ConfigFile with 'manifest'.
+    /// 4. The webhook ConfigFile corresponding to inline cloud function must be
+    ///     streamed before the DataFile corresponding to its source code.
     #[prost(message, optional, tag = "5")]
     pub files: ::core::option::Option<Files>,
     /// Optional. The release channel to deploy the version, if specified. The supported
@@ -1423,7 +1419,13 @@ pub struct ListVersionsResponse {
 }
 /// Generated client implementations.
 pub mod actions_sdk_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Actions SDK API which allows developers to build projects using the SDK.
@@ -1505,8 +1507,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1532,8 +1533,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1560,8 +1560,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1588,8 +1587,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1616,8 +1614,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1648,8 +1645,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1677,8 +1673,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1705,8 +1700,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1736,8 +1730,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1767,8 +1760,7 @@ pub mod actions_sdk_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2092,11 +2084,11 @@ pub mod user_input {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InputType::Unspecified => "INPUT_TYPE_UNSPECIFIED",
-                InputType::Touch => "TOUCH",
-                InputType::Voice => "VOICE",
-                InputType::Keyboard => "KEYBOARD",
-                InputType::Url => "URL",
+                Self::Unspecified => "INPUT_TYPE_UNSPECIFIED",
+                Self::Touch => "TOUCH",
+                Self::Voice => "VOICE",
+                Self::Keyboard => "KEYBOARD",
+                Self::Url => "URL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2170,12 +2162,12 @@ pub mod device_properties {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Surface::Unspecified => "SURFACE_UNSPECIFIED",
-                Surface::Speaker => "SPEAKER",
-                Surface::Phone => "PHONE",
-                Surface::Allo => "ALLO",
-                Surface::SmartDisplay => "SMART_DISPLAY",
-                Surface::KaiOs => "KAI_OS",
+                Self::Unspecified => "SURFACE_UNSPECIFIED",
+                Self::Speaker => "SPEAKER",
+                Self::Phone => "PHONE",
+                Self::Allo => "ALLO",
+                Self::SmartDisplay => "SMART_DISPLAY",
+                Self::KaiOs => "KAI_OS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2296,7 +2288,13 @@ pub struct SetWebAndAppActivityControlRequest {
 }
 /// Generated client implementations.
 pub mod actions_testing_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Actions Testing API which allows developers to run automated tests.
@@ -2381,8 +2379,7 @@ pub mod actions_testing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2412,8 +2409,7 @@ pub mod actions_testing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2450,8 +2446,7 @@ pub mod actions_testing_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

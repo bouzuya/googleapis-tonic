@@ -18,7 +18,7 @@ pub struct ExternalAccountKey {
     #[prost(bytes = "bytes", tag = "3")]
     pub b64_mac_key: ::prost::bytes::Bytes,
 }
-/// Creates a new \[ExternalAccountKey\]\[google.cloud.security.publicca.v1beta1.ExternalAccountKey\] in a given project.
+/// Creates a new [ExternalAccountKey][google.cloud.security.publicca.v1beta1.ExternalAccountKey] in a given project.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateExternalAccountKeyRequest {
     /// Required. The parent resource where this external_account_key will be created.
@@ -35,7 +35,13 @@ pub struct CreateExternalAccountKeyRequest {
 }
 /// Generated client implementations.
 pub mod public_certificate_authority_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages the resources required for ACME [external account
@@ -112,7 +118,7 @@ pub mod public_certificate_authority_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a new \[ExternalAccountKey\]\[google.cloud.security.publicca.v1beta1.ExternalAccountKey\] bound to the project.
+        /// Creates a new [ExternalAccountKey][google.cloud.security.publicca.v1beta1.ExternalAccountKey] bound to the project.
         pub async fn create_external_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateExternalAccountKeyRequest>,
@@ -124,8 +130,7 @@ pub mod public_certificate_authority_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

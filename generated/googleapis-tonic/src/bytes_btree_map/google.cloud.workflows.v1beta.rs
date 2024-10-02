@@ -16,12 +16,11 @@ pub struct Workflow {
     /// Output only. The revision of the workflow.
     /// A new revision of a workflow is created as a result of updating the
     /// following fields of a workflow:
-    ///
-    /// * `source_code`
-    /// * `service_account`
-    ///   The format is "000001-a4d", where the first 6 characters define
-    ///   the zero-padded revision ordinal number. They are followed by a hyphen and
-    ///   3 hexadecimal random characters.
+    /// - `source_code`
+    /// - `service_account`
+    /// The format is "000001-a4d", where the first 6 characters define
+    /// the zero-padded revision ordinal number. They are followed by a hyphen and
+    /// 3 hexadecimal random characters.
     #[prost(string, tag = "4")]
     pub revision_id: ::prost::alloc::string::String,
     /// Output only. The timestamp of when the workflow was created.
@@ -93,8 +92,8 @@ pub mod workflow {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -117,7 +116,7 @@ pub mod workflow {
     }
 }
 /// Request for the
-/// \[ListWorkflows\]\[google.cloud.workflows.v1beta.Workflows.ListWorkflows\]
+/// [ListWorkflows][google.cloud.workflows.v1beta.Workflows.ListWorkflows]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowsRequest {
@@ -149,7 +148,7 @@ pub struct ListWorkflowsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for the
-/// \[ListWorkflows\]\[google.cloud.workflows.v1beta.Workflows.ListWorkflows\]
+/// [ListWorkflows][google.cloud.workflows.v1beta.Workflows.ListWorkflows]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowsResponse {
@@ -165,7 +164,7 @@ pub struct ListWorkflowsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for the
-/// \[GetWorkflow\]\[google.cloud.workflows.v1beta.Workflows.GetWorkflow\] method.
+/// [GetWorkflow][google.cloud.workflows.v1beta.Workflows.GetWorkflow] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkflowRequest {
     /// Required. Name of the workflow which information should be retrieved.
@@ -174,7 +173,7 @@ pub struct GetWorkflowRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[CreateWorkflow\]\[google.cloud.workflows.v1beta.Workflows.CreateWorkflow\]
+/// [CreateWorkflow][google.cloud.workflows.v1beta.Workflows.CreateWorkflow]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkflowRequest {
@@ -197,7 +196,7 @@ pub struct CreateWorkflowRequest {
     pub workflow_id: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[DeleteWorkflow\]\[google.cloud.workflows.v1beta.Workflows.DeleteWorkflow\]
+/// [DeleteWorkflow][google.cloud.workflows.v1beta.Workflows.DeleteWorkflow]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkflowRequest {
@@ -207,7 +206,7 @@ pub struct DeleteWorkflowRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[UpdateWorkflow\]\[google.cloud.workflows.v1beta.Workflows.UpdateWorkflow\]
+/// [UpdateWorkflow][google.cloud.workflows.v1beta.Workflows.UpdateWorkflow]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkflowRequest {
@@ -240,7 +239,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod workflows_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Workflows is used to deploy and execute workflow programs.
@@ -328,8 +333,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -356,8 +360,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -377,7 +380,7 @@ pub mod workflows_client {
         }
         /// Creates a new workflow. If a workflow with the specified name already
         /// exists in the specified project and location, the long running operation
-        /// will return \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
+        /// will return [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
         pub async fn create_workflow(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateWorkflowRequest>,
@@ -389,8 +392,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -422,8 +424,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -457,8 +458,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

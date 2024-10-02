@@ -38,7 +38,8 @@ pub struct Access {
     /// principals. For most identities, the format is
     /// `principal://iam.googleapis.com/{identity pool name}/subject/{subject}`.
     /// Some GKE identities, such as GKE_WORKLOAD, FREEFORM, and GKE_HUB_WORKLOAD,
-    /// still use the legacy format `serviceAccount:{identity pool name}\[{subject}\]`.
+    /// still use the legacy format `serviceAccount:{identity pool
+    /// name}\[{subject}\]`.
     #[prost(string, tag = "7")]
     pub principal_subject: ::prost::alloc::string::String,
     /// The name of the service account key that was used to create or exchange
@@ -46,6 +47,7 @@ pub struct Access {
     /// This is a scheme-less URI full resource name. For example:
     ///
     /// "//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}".
+    ///
     #[prost(string, tag = "8")]
     pub service_account_key_name: ::prost::alloc::string::String,
     /// The identity delegation history of an authenticated service account that
@@ -74,7 +76,8 @@ pub struct ServiceAccountDelegationInfo {
     /// A string representing the principal_subject associated with the identity.
     /// As compared to `principal_email`, supports principals that aren't
     /// associated with email addresses, such as third party principals. For most
-    /// identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subjects/{subject}` except for some GKE identities
+    /// identities, the format will be `principal://iam.googleapis.com/{identity
+    /// pool name}/subjects/{subject}` except for some GKE identities
     /// (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy
     /// format `serviceAccount:{identity pool name}\[{subject}\]`
     #[prost(string, tag = "2")]
@@ -127,11 +130,11 @@ pub struct SecurityMarks {
     /// Mutable user specified security marks belonging to the parent resource.
     /// Constraints are as follows:
     ///
-    /// * Keys and values are treated as case insensitive
-    /// * Keys must be between 1 - 256 characters (inclusive)
-    /// * Keys must be letters, numbers, underscores, or dashes
-    /// * Values have leading and trailing whitespace trimmed, remaining
-    ///   characters must be between 1 - 4096 characters (inclusive)
+    ///    * Keys and values are treated as case insensitive
+    ///    * Keys must be between 1 - 256 characters (inclusive)
+    ///    * Keys must be letters, numbers, underscores, or dashes
+    ///    * Values have leading and trailing whitespace trimmed, remaining
+    ///      characters must be between 1 - 4096 characters (inclusive)
     #[prost(btree_map = "string, string", tag = "2")]
     pub marks: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -319,9 +322,9 @@ pub mod attack_exposure {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Calculated => "CALCULATED",
-                State::NotCalculated => "NOT_CALCULATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Calculated => "CALCULATED",
+                Self::NotCalculated => "NOT_CALCULATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -339,7 +342,7 @@ pub mod attack_exposure {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttackPath {
     /// The attack path name, for example,
-    /// `organizations/12/simulation/34/valuedResources/56/attackPaths/78`
+    ///   `organizations/12/simulation/34/valuedResources/56/attackPaths/78`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A list of nodes that exist in this attack path.
@@ -449,11 +452,11 @@ pub mod attack_path {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    NodeType::Unspecified => "NODE_TYPE_UNSPECIFIED",
-                    NodeType::And => "NODE_TYPE_AND",
-                    NodeType::Or => "NODE_TYPE_OR",
-                    NodeType::Defense => "NODE_TYPE_DEFENSE",
-                    NodeType::Attacker => "NODE_TYPE_ATTACKER",
+                    Self::Unspecified => "NODE_TYPE_UNSPECIFIED",
+                    Self::And => "NODE_TYPE_AND",
+                    Self::Or => "NODE_TYPE_OR",
+                    Self::Defense => "NODE_TYPE_DEFENSE",
+                    Self::Attacker => "NODE_TYPE_ATTACKER",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -584,7 +587,7 @@ pub struct BigQueryExport {
     /// The dataset to write findings' updates to. Its format is
     /// "projects/\[project_id\]/datasets/\[bigquery_dataset_id\]".
     /// BigQuery Dataset unique ID  must contain only letters (a-z, A-Z), numbers
-    /// (0-9), or underscores (\_).
+    /// (0-9), or underscores (_).
     #[prost(string, tag = "4")]
     pub dataset: ::prost::alloc::string::String,
     /// Output only. The time at which the BigQuery export was created.
@@ -741,9 +744,9 @@ pub mod cloud_dlp_data_profile {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ParentType::Unspecified => "PARENT_TYPE_UNSPECIFIED",
-                ParentType::Organization => "ORGANIZATION",
-                ParentType::Project => "PROJECT",
+                Self::Unspecified => "PARENT_TYPE_UNSPECIFIED",
+                Self::Organization => "ORGANIZATION",
+                Self::Project => "PROJECT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -851,12 +854,12 @@ pub mod connection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Protocol::Unspecified => "PROTOCOL_UNSPECIFIED",
-                Protocol::Icmp => "ICMP",
-                Protocol::Tcp => "TCP",
-                Protocol::Udp => "UDP",
-                Protocol::Gre => "GRE",
-                Protocol::Esp => "ESP",
+                Self::Unspecified => "PROTOCOL_UNSPECIFIED",
+                Self::Icmp => "ICMP",
+                Self::Tcp => "TCP",
+                Self::Udp => "UDP",
+                Self::Gre => "GRE",
+                Self::Esp => "ESP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -975,9 +978,9 @@ pub struct EffectiveEventThreatDetectionCustomModule {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
-    /// * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
-    /// * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+    ///    * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Config for the effective module.
@@ -1030,9 +1033,9 @@ pub mod effective_event_threat_detection_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1145,11 +1148,11 @@ pub mod custom_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1231,9 +1234,9 @@ pub mod effective_security_health_analytics_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1258,9 +1261,9 @@ pub struct EventThreatDetectionCustomModule {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
-    /// * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
-    /// * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
+    ///    * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Config for the module. For the resident module, its config value is defined
@@ -1327,10 +1330,10 @@ pub mod event_threat_detection_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
-                EnablementState::Inherited => "INHERITED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::Inherited => "INHERITED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1571,8 +1574,8 @@ pub mod group_membership {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                GroupType::Unspecified => "GROUP_TYPE_UNSPECIFIED",
-                GroupType::ToxicCombination => "GROUP_TYPE_TOXIC_COMBINATION",
+                Self::Unspecified => "GROUP_TYPE_UNSPECIFIED",
+                Self::ToxicCombination => "GROUP_TYPE_TOXIC_COMBINATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1631,9 +1634,9 @@ pub mod iam_binding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Add => "ADD",
-                Action::Remove => "REMOVE",
+                Self::Unspecified => "ACTION_UNSPECIFIED",
+                Self::Add => "ADD",
+                Self::Remove => "REMOVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1647,7 +1650,7 @@ pub mod iam_binding {
         }
     }
 }
-/// Represents what's commonly known as an *indicator of compromise* (IoC) in
+/// Represents what's commonly known as an _indicator of compromise_ (IoC) in
 /// computer forensics. This is an artifact observed on a network or in an
 /// operating system that, with high confidence, indicates a computer intrusion.
 /// For more information, see [Indicator of
@@ -1742,9 +1745,9 @@ pub mod indicator {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SignatureType::Unspecified => "SIGNATURE_TYPE_UNSPECIFIED",
-                    SignatureType::Process => "SIGNATURE_TYPE_PROCESS",
-                    SignatureType::File => "SIGNATURE_TYPE_FILE",
+                    Self::Unspecified => "SIGNATURE_TYPE_UNSPECIFIED",
+                    Self::Process => "SIGNATURE_TYPE_PROCESS",
+                    Self::File => "SIGNATURE_TYPE_FILE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1923,9 +1926,9 @@ pub mod kubernetes {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Kind::Unspecified => "KIND_UNSPECIFIED",
-                    Kind::Role => "ROLE",
-                    Kind::ClusterRole => "CLUSTER_ROLE",
+                    Self::Unspecified => "KIND_UNSPECIFIED",
+                    Self::Role => "ROLE",
+                    Self::ClusterRole => "CLUSTER_ROLE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2001,10 +2004,10 @@ pub mod kubernetes {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    AuthType::Unspecified => "AUTH_TYPE_UNSPECIFIED",
-                    AuthType::User => "USER",
-                    AuthType::Serviceaccount => "SERVICEACCOUNT",
-                    AuthType::Group => "GROUP",
+                    Self::Unspecified => "AUTH_TYPE_UNSPECIFIED",
+                    Self::User => "USER",
+                    Self::Serviceaccount => "SERVICEACCOUNT",
+                    Self::Group => "GROUP",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2020,11 +2023,12 @@ pub mod kubernetes {
         }
     }
     /// Conveys information about a Kubernetes access review (such as one returned
-    /// by a [`kubectl auth can-i`](<https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access>)
+    /// by a [`kubectl auth
+    /// can-i`](<https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access>)
     /// command) that was involved in a finding.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AccessReview {
-        /// The API group of the resource. "\*" means all.
+        /// The API group of the resource. "*" means all.
         #[prost(string, tag = "1")]
         pub group: ::prost::alloc::string::String,
         /// Namespace of the action being requested. Currently, there is no
@@ -2035,17 +2039,17 @@ pub mod kubernetes {
         /// The name of the resource being requested. Empty means all.
         #[prost(string, tag = "3")]
         pub name: ::prost::alloc::string::String,
-        /// The optional resource type requested. "\*" means all.
+        /// The optional resource type requested. "*" means all.
         #[prost(string, tag = "4")]
         pub resource: ::prost::alloc::string::String,
         /// The optional subresource type.
         #[prost(string, tag = "5")]
         pub subresource: ::prost::alloc::string::String,
         /// A Kubernetes resource API verb, like get, list, watch, create, update,
-        /// delete, proxy. "\*" means all.
+        /// delete, proxy. "*" means all.
         #[prost(string, tag = "6")]
         pub verb: ::prost::alloc::string::String,
-        /// The API version of the resource. "\*" means all.
+        /// The API version of the resource. "*" means all.
         #[prost(string, tag = "7")]
         pub version: ::prost::alloc::string::String,
     }
@@ -2199,21 +2203,21 @@ pub mod mitre_attack {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Tactic::Unspecified => "TACTIC_UNSPECIFIED",
-                Tactic::Reconnaissance => "RECONNAISSANCE",
-                Tactic::ResourceDevelopment => "RESOURCE_DEVELOPMENT",
-                Tactic::InitialAccess => "INITIAL_ACCESS",
-                Tactic::Execution => "EXECUTION",
-                Tactic::Persistence => "PERSISTENCE",
-                Tactic::PrivilegeEscalation => "PRIVILEGE_ESCALATION",
-                Tactic::DefenseEvasion => "DEFENSE_EVASION",
-                Tactic::CredentialAccess => "CREDENTIAL_ACCESS",
-                Tactic::Discovery => "DISCOVERY",
-                Tactic::LateralMovement => "LATERAL_MOVEMENT",
-                Tactic::Collection => "COLLECTION",
-                Tactic::CommandAndControl => "COMMAND_AND_CONTROL",
-                Tactic::Exfiltration => "EXFILTRATION",
-                Tactic::Impact => "IMPACT",
+                Self::Unspecified => "TACTIC_UNSPECIFIED",
+                Self::Reconnaissance => "RECONNAISSANCE",
+                Self::ResourceDevelopment => "RESOURCE_DEVELOPMENT",
+                Self::InitialAccess => "INITIAL_ACCESS",
+                Self::Execution => "EXECUTION",
+                Self::Persistence => "PERSISTENCE",
+                Self::PrivilegeEscalation => "PRIVILEGE_ESCALATION",
+                Self::DefenseEvasion => "DEFENSE_EVASION",
+                Self::CredentialAccess => "CREDENTIAL_ACCESS",
+                Self::Discovery => "DISCOVERY",
+                Self::LateralMovement => "LATERAL_MOVEMENT",
+                Self::Collection => "COLLECTION",
+                Self::CommandAndControl => "COMMAND_AND_CONTROL",
+                Self::Exfiltration => "EXFILTRATION",
+                Self::Impact => "IMPACT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2392,99 +2396,89 @@ pub mod mitre_attack {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Technique::Unspecified => "TECHNIQUE_UNSPECIFIED",
-                Technique::Masquerading => "MASQUERADING",
-                Technique::MatchLegitimateNameOrLocation => {
+                Self::Unspecified => "TECHNIQUE_UNSPECIFIED",
+                Self::Masquerading => "MASQUERADING",
+                Self::MatchLegitimateNameOrLocation => {
                     "MATCH_LEGITIMATE_NAME_OR_LOCATION"
                 }
-                Technique::BootOrLogonInitializationScripts => {
+                Self::BootOrLogonInitializationScripts => {
                     "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS"
                 }
-                Technique::StartupItems => "STARTUP_ITEMS",
-                Technique::NetworkServiceDiscovery => "NETWORK_SERVICE_DISCOVERY",
-                Technique::ProcessDiscovery => "PROCESS_DISCOVERY",
-                Technique::CommandAndScriptingInterpreter => {
+                Self::StartupItems => "STARTUP_ITEMS",
+                Self::NetworkServiceDiscovery => "NETWORK_SERVICE_DISCOVERY",
+                Self::ProcessDiscovery => "PROCESS_DISCOVERY",
+                Self::CommandAndScriptingInterpreter => {
                     "COMMAND_AND_SCRIPTING_INTERPRETER"
                 }
-                Technique::UnixShell => "UNIX_SHELL",
-                Technique::Python => "PYTHON",
-                Technique::ExploitationForPrivilegeEscalation => {
+                Self::UnixShell => "UNIX_SHELL",
+                Self::Python => "PYTHON",
+                Self::ExploitationForPrivilegeEscalation => {
                     "EXPLOITATION_FOR_PRIVILEGE_ESCALATION"
                 }
-                Technique::PermissionGroupsDiscovery => "PERMISSION_GROUPS_DISCOVERY",
-                Technique::CloudGroups => "CLOUD_GROUPS",
-                Technique::IndicatorRemovalFileDeletion => {
-                    "INDICATOR_REMOVAL_FILE_DELETION"
-                }
-                Technique::ApplicationLayerProtocol => "APPLICATION_LAYER_PROTOCOL",
-                Technique::Dns => "DNS",
-                Technique::SoftwareDeploymentTools => "SOFTWARE_DEPLOYMENT_TOOLS",
-                Technique::ValidAccounts => "VALID_ACCOUNTS",
-                Technique::DefaultAccounts => "DEFAULT_ACCOUNTS",
-                Technique::LocalAccounts => "LOCAL_ACCOUNTS",
-                Technique::CloudAccounts => "CLOUD_ACCOUNTS",
-                Technique::Proxy => "PROXY",
-                Technique::ExternalProxy => "EXTERNAL_PROXY",
-                Technique::MultiHopProxy => "MULTI_HOP_PROXY",
-                Technique::AccountManipulation => "ACCOUNT_MANIPULATION",
-                Technique::AdditionalCloudCredentials => "ADDITIONAL_CLOUD_CREDENTIALS",
-                Technique::SshAuthorizedKeys => "SSH_AUTHORIZED_KEYS",
-                Technique::AdditionalContainerClusterRoles => {
+                Self::PermissionGroupsDiscovery => "PERMISSION_GROUPS_DISCOVERY",
+                Self::CloudGroups => "CLOUD_GROUPS",
+                Self::IndicatorRemovalFileDeletion => "INDICATOR_REMOVAL_FILE_DELETION",
+                Self::ApplicationLayerProtocol => "APPLICATION_LAYER_PROTOCOL",
+                Self::Dns => "DNS",
+                Self::SoftwareDeploymentTools => "SOFTWARE_DEPLOYMENT_TOOLS",
+                Self::ValidAccounts => "VALID_ACCOUNTS",
+                Self::DefaultAccounts => "DEFAULT_ACCOUNTS",
+                Self::LocalAccounts => "LOCAL_ACCOUNTS",
+                Self::CloudAccounts => "CLOUD_ACCOUNTS",
+                Self::Proxy => "PROXY",
+                Self::ExternalProxy => "EXTERNAL_PROXY",
+                Self::MultiHopProxy => "MULTI_HOP_PROXY",
+                Self::AccountManipulation => "ACCOUNT_MANIPULATION",
+                Self::AdditionalCloudCredentials => "ADDITIONAL_CLOUD_CREDENTIALS",
+                Self::SshAuthorizedKeys => "SSH_AUTHORIZED_KEYS",
+                Self::AdditionalContainerClusterRoles => {
                     "ADDITIONAL_CONTAINER_CLUSTER_ROLES"
                 }
-                Technique::IngressToolTransfer => "INGRESS_TOOL_TRANSFER",
-                Technique::NativeApi => "NATIVE_API",
-                Technique::BruteForce => "BRUTE_FORCE",
-                Technique::SharedModules => "SHARED_MODULES",
-                Technique::AccessTokenManipulation => "ACCESS_TOKEN_MANIPULATION",
-                Technique::TokenImpersonationOrTheft => "TOKEN_IMPERSONATION_OR_THEFT",
-                Technique::ExploitPublicFacingApplication => {
+                Self::IngressToolTransfer => "INGRESS_TOOL_TRANSFER",
+                Self::NativeApi => "NATIVE_API",
+                Self::BruteForce => "BRUTE_FORCE",
+                Self::SharedModules => "SHARED_MODULES",
+                Self::AccessTokenManipulation => "ACCESS_TOKEN_MANIPULATION",
+                Self::TokenImpersonationOrTheft => "TOKEN_IMPERSONATION_OR_THEFT",
+                Self::ExploitPublicFacingApplication => {
                     "EXPLOIT_PUBLIC_FACING_APPLICATION"
                 }
-                Technique::DomainPolicyModification => "DOMAIN_POLICY_MODIFICATION",
-                Technique::DataDestruction => "DATA_DESTRUCTION",
-                Technique::ServiceStop => "SERVICE_STOP",
-                Technique::InhibitSystemRecovery => "INHIBIT_SYSTEM_RECOVERY",
-                Technique::ResourceHijacking => "RESOURCE_HIJACKING",
-                Technique::NetworkDenialOfService => "NETWORK_DENIAL_OF_SERVICE",
-                Technique::CloudServiceDiscovery => "CLOUD_SERVICE_DISCOVERY",
-                Technique::StealApplicationAccessToken => {
-                    "STEAL_APPLICATION_ACCESS_TOKEN"
-                }
-                Technique::AccountAccessRemoval => "ACCOUNT_ACCESS_REMOVAL",
-                Technique::StealWebSessionCookie => "STEAL_WEB_SESSION_COOKIE",
-                Technique::CreateOrModifySystemProcess => {
-                    "CREATE_OR_MODIFY_SYSTEM_PROCESS"
-                }
-                Technique::AbuseElevationControlMechanism => {
+                Self::DomainPolicyModification => "DOMAIN_POLICY_MODIFICATION",
+                Self::DataDestruction => "DATA_DESTRUCTION",
+                Self::ServiceStop => "SERVICE_STOP",
+                Self::InhibitSystemRecovery => "INHIBIT_SYSTEM_RECOVERY",
+                Self::ResourceHijacking => "RESOURCE_HIJACKING",
+                Self::NetworkDenialOfService => "NETWORK_DENIAL_OF_SERVICE",
+                Self::CloudServiceDiscovery => "CLOUD_SERVICE_DISCOVERY",
+                Self::StealApplicationAccessToken => "STEAL_APPLICATION_ACCESS_TOKEN",
+                Self::AccountAccessRemoval => "ACCOUNT_ACCESS_REMOVAL",
+                Self::StealWebSessionCookie => "STEAL_WEB_SESSION_COOKIE",
+                Self::CreateOrModifySystemProcess => "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+                Self::AbuseElevationControlMechanism => {
                     "ABUSE_ELEVATION_CONTROL_MECHANISM"
                 }
-                Technique::UnsecuredCredentials => "UNSECURED_CREDENTIALS",
-                Technique::ModifyAuthenticationProcess => "MODIFY_AUTHENTICATION_PROCESS",
-                Technique::ImpairDefenses => "IMPAIR_DEFENSES",
-                Technique::DisableOrModifyTools => "DISABLE_OR_MODIFY_TOOLS",
-                Technique::ExfiltrationOverWebService => "EXFILTRATION_OVER_WEB_SERVICE",
-                Technique::ExfiltrationToCloudStorage => "EXFILTRATION_TO_CLOUD_STORAGE",
-                Technique::DynamicResolution => "DYNAMIC_RESOLUTION",
-                Technique::LateralToolTransfer => "LATERAL_TOOL_TRANSFER",
-                Technique::ModifyCloudComputeInfrastructure => {
+                Self::UnsecuredCredentials => "UNSECURED_CREDENTIALS",
+                Self::ModifyAuthenticationProcess => "MODIFY_AUTHENTICATION_PROCESS",
+                Self::ImpairDefenses => "IMPAIR_DEFENSES",
+                Self::DisableOrModifyTools => "DISABLE_OR_MODIFY_TOOLS",
+                Self::ExfiltrationOverWebService => "EXFILTRATION_OVER_WEB_SERVICE",
+                Self::ExfiltrationToCloudStorage => "EXFILTRATION_TO_CLOUD_STORAGE",
+                Self::DynamicResolution => "DYNAMIC_RESOLUTION",
+                Self::LateralToolTransfer => "LATERAL_TOOL_TRANSFER",
+                Self::ModifyCloudComputeInfrastructure => {
                     "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE"
                 }
-                Technique::CreateSnapshot => "CREATE_SNAPSHOT",
-                Technique::CloudInfrastructureDiscovery => {
-                    "CLOUD_INFRASTRUCTURE_DISCOVERY"
-                }
-                Technique::ObtainCapabilities => "OBTAIN_CAPABILITIES",
-                Technique::ActiveScanning => "ACTIVE_SCANNING",
-                Technique::ScanningIpBlocks => "SCANNING_IP_BLOCKS",
-                Technique::ContainerAdministrationCommand => {
+                Self::CreateSnapshot => "CREATE_SNAPSHOT",
+                Self::CloudInfrastructureDiscovery => "CLOUD_INFRASTRUCTURE_DISCOVERY",
+                Self::ObtainCapabilities => "OBTAIN_CAPABILITIES",
+                Self::ActiveScanning => "ACTIVE_SCANNING",
+                Self::ScanningIpBlocks => "SCANNING_IP_BLOCKS",
+                Self::ContainerAdministrationCommand => {
                     "CONTAINER_ADMINISTRATION_COMMAND"
                 }
-                Technique::EscapeToHost => "ESCAPE_TO_HOST",
-                Technique::ContainerAndResourceDiscovery => {
-                    "CONTAINER_AND_RESOURCE_DISCOVERY"
-                }
-                Technique::StealOrForgeAuthenticationCertificates => {
+                Self::EscapeToHost => "ESCAPE_TO_HOST",
+                Self::ContainerAndResourceDiscovery => "CONTAINER_AND_RESOURCE_DISCOVERY",
+                Self::StealOrForgeAuthenticationCertificates => {
                     "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
                 }
             }
@@ -2838,11 +2832,11 @@ pub mod cve {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RiskRating::Unspecified => "RISK_RATING_UNSPECIFIED",
-                RiskRating::Low => "LOW",
-                RiskRating::Medium => "MEDIUM",
-                RiskRating::High => "HIGH",
-                RiskRating::Critical => "CRITICAL",
+                Self::Unspecified => "RISK_RATING_UNSPECIFIED",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
+                Self::Critical => "CRITICAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2893,12 +2887,12 @@ pub mod cve {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ExploitationActivity::Unspecified => "EXPLOITATION_ACTIVITY_UNSPECIFIED",
-                ExploitationActivity::Wide => "WIDE",
-                ExploitationActivity::Confirmed => "CONFIRMED",
-                ExploitationActivity::Available => "AVAILABLE",
-                ExploitationActivity::Anticipated => "ANTICIPATED",
-                ExploitationActivity::NoKnown => "NO_KNOWN",
+                Self::Unspecified => "EXPLOITATION_ACTIVITY_UNSPECIFIED",
+                Self::Wide => "WIDE",
+                Self::Confirmed => "CONFIRMED",
+                Self::Available => "AVAILABLE",
+                Self::Anticipated => "ANTICIPATED",
+                Self::NoKnown => "NO_KNOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3010,11 +3004,11 @@ pub mod cvssv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
-                AttackVector::Network => "ATTACK_VECTOR_NETWORK",
-                AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
-                AttackVector::Local => "ATTACK_VECTOR_LOCAL",
-                AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
+                Self::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
+                Self::Network => "ATTACK_VECTOR_NETWORK",
+                Self::Adjacent => "ATTACK_VECTOR_ADJACENT",
+                Self::Local => "ATTACK_VECTOR_LOCAL",
+                Self::Physical => "ATTACK_VECTOR_PHYSICAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3064,9 +3058,9 @@ pub mod cvssv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
-                AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
-                AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
+                Self::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
+                Self::Low => "ATTACK_COMPLEXITY_LOW",
+                Self::High => "ATTACK_COMPLEXITY_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3117,10 +3111,10 @@ pub mod cvssv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
-                PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
-                PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
-                PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
+                Self::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
+                Self::None => "PRIVILEGES_REQUIRED_NONE",
+                Self::Low => "PRIVILEGES_REQUIRED_LOW",
+                Self::High => "PRIVILEGES_REQUIRED_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3165,9 +3159,9 @@ pub mod cvssv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
-                UserInteraction::None => "USER_INTERACTION_NONE",
-                UserInteraction::Required => "USER_INTERACTION_REQUIRED",
+                Self::Unspecified => "USER_INTERACTION_UNSPECIFIED",
+                Self::None => "USER_INTERACTION_NONE",
+                Self::Required => "USER_INTERACTION_REQUIRED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3211,9 +3205,9 @@ pub mod cvssv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Scope::Unspecified => "SCOPE_UNSPECIFIED",
-                Scope::Unchanged => "SCOPE_UNCHANGED",
-                Scope::Changed => "SCOPE_CHANGED",
+                Self::Unspecified => "SCOPE_UNSPECIFIED",
+                Self::Unchanged => "SCOPE_UNCHANGED",
+                Self::Changed => "SCOPE_CHANGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3258,10 +3252,10 @@ pub mod cvssv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Impact::Unspecified => "IMPACT_UNSPECIFIED",
-                Impact::High => "IMPACT_HIGH",
-                Impact::Low => "IMPACT_LOW",
-                Impact::None => "IMPACT_NONE",
+                Self::Unspecified => "IMPACT_UNSPECIFIED",
+                Self::High => "IMPACT_HIGH",
+                Self::Low => "IMPACT_LOW",
+                Self::None => "IMPACT_NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3446,20 +3440,18 @@ pub struct Finding {
     /// all the contacts that pertain. Please refer to:
     /// <https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories>
     ///
-    /// ```text
-    /// {
-    ///    "security": {
-    ///      "contacts": [
-    ///        {
-    ///          "email": "person1@company.com"
-    ///        },
-    ///        {
-    ///          "email": "person2@company.com"
+    ///      {
+    ///        "security": {
+    ///          "contacts": [
+    ///            {
+    ///              "email": "person1@company.com"
+    ///            },
+    ///            {
+    ///              "email": "person2@company.com"
+    ///            }
+    ///          ]
     ///        }
-    ///      ]
-    ///    }
-    /// }
-    /// ```
+    ///      }
     #[prost(btree_map = "string, message", tag = "33")]
     pub contacts: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -3625,9 +3617,9 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Inactive => "INACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3714,11 +3706,11 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3763,10 +3755,10 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mute::Unspecified => "MUTE_UNSPECIFIED",
-                Mute::Muted => "MUTED",
-                Mute::Unmuted => "UNMUTED",
-                Mute::Undefined => "UNDEFINED",
+                Self::Unspecified => "MUTE_UNSPECIFIED",
+                Self::Muted => "MUTED",
+                Self::Unmuted => "UNMUTED",
+                Self::Undefined => "UNDEFINED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3824,14 +3816,14 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FindingClass::Unspecified => "FINDING_CLASS_UNSPECIFIED",
-                FindingClass::Threat => "THREAT",
-                FindingClass::Vulnerability => "VULNERABILITY",
-                FindingClass::Misconfiguration => "MISCONFIGURATION",
-                FindingClass::Observation => "OBSERVATION",
-                FindingClass::SccError => "SCC_ERROR",
-                FindingClass::PostureViolation => "POSTURE_VIOLATION",
-                FindingClass::ToxicCombination => "TOXIC_COMBINATION",
+                Self::Unspecified => "FINDING_CLASS_UNSPECIFIED",
+                Self::Threat => "THREAT",
+                Self::Vulnerability => "VULNERABILITY",
+                Self::Misconfiguration => "MISCONFIGURATION",
+                Self::Observation => "OBSERVATION",
+                Self::SccError => "SCC_ERROR",
+                Self::PostureViolation => "POSTURE_VIOLATION",
+                Self::ToxicCombination => "TOXIC_COMBINATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3956,9 +3948,9 @@ pub mod mute_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MuteConfigType::Unspecified => "MUTE_CONFIG_TYPE_UNSPECIFIED",
-                MuteConfigType::Static => "STATIC",
-                MuteConfigType::Dynamic => "DYNAMIC",
+                Self::Unspecified => "MUTE_CONFIG_TYPE_UNSPECIFIED",
+                Self::Static => "STATIC",
+                Self::Dynamic => "DYNAMIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4286,18 +4278,16 @@ pub mod resource_path {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResourcePathNodeType::Unspecified => {
-                    "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED"
-                }
-                ResourcePathNodeType::GcpOrganization => "GCP_ORGANIZATION",
-                ResourcePathNodeType::GcpFolder => "GCP_FOLDER",
-                ResourcePathNodeType::GcpProject => "GCP_PROJECT",
-                ResourcePathNodeType::AwsOrganization => "AWS_ORGANIZATION",
-                ResourcePathNodeType::AwsOrganizationalUnit => "AWS_ORGANIZATIONAL_UNIT",
-                ResourcePathNodeType::AwsAccount => "AWS_ACCOUNT",
-                ResourcePathNodeType::AzureManagementGroup => "AZURE_MANAGEMENT_GROUP",
-                ResourcePathNodeType::AzureSubscription => "AZURE_SUBSCRIPTION",
-                ResourcePathNodeType::AzureResourceGroup => "AZURE_RESOURCE_GROUP",
+                Self::Unspecified => "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
+                Self::GcpOrganization => "GCP_ORGANIZATION",
+                Self::GcpFolder => "GCP_FOLDER",
+                Self::GcpProject => "GCP_PROJECT",
+                Self::AwsOrganization => "AWS_ORGANIZATION",
+                Self::AwsOrganizationalUnit => "AWS_ORGANIZATIONAL_UNIT",
+                Self::AwsAccount => "AWS_ACCOUNT",
+                Self::AzureManagementGroup => "AZURE_MANAGEMENT_GROUP",
+                Self::AzureSubscription => "AZURE_SUBSCRIPTION",
+                Self::AzureResourceGroup => "AZURE_RESOURCE_GROUP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4339,10 +4329,10 @@ impl CloudProvider {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            CloudProvider::Unspecified => "CLOUD_PROVIDER_UNSPECIFIED",
-            CloudProvider::GoogleCloudPlatform => "GOOGLE_CLOUD_PLATFORM",
-            CloudProvider::AmazonWebServices => "AMAZON_WEB_SERVICES",
-            CloudProvider::MicrosoftAzure => "MICROSOFT_AZURE",
+            Self::Unspecified => "CLOUD_PROVIDER_UNSPECIFIED",
+            Self::GoogleCloudPlatform => "GOOGLE_CLOUD_PLATFORM",
+            Self::AmazonWebServices => "AMAZON_WEB_SERVICES",
+            Self::MicrosoftAzure => "MICROSOFT_AZURE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4458,9 +4448,9 @@ pub mod organization_settings {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    InclusionMode::Unspecified => "INCLUSION_MODE_UNSPECIFIED",
-                    InclusionMode::IncludeOnly => "INCLUDE_ONLY",
-                    InclusionMode::Exclude => "EXCLUDE",
+                    Self::Unspecified => "INCLUSION_MODE_UNSPECIFIED",
+                    Self::IncludeOnly => "INCLUDE_ONLY",
+                    Self::Exclude => "EXCLUDE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4573,11 +4563,11 @@ impl ResourceValue {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ResourceValue::Unspecified => "RESOURCE_VALUE_UNSPECIFIED",
-            ResourceValue::High => "HIGH",
-            ResourceValue::Medium => "MEDIUM",
-            ResourceValue::Low => "LOW",
-            ResourceValue::None => "NONE",
+            Self::Unspecified => "RESOURCE_VALUE_UNSPECIFIED",
+            Self::High => "HIGH",
+            Self::Medium => "MEDIUM",
+            Self::Low => "LOW",
+            Self::None => "NONE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4635,10 +4625,10 @@ pub mod run_asset_discovery_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Completed => "COMPLETED",
-                State::Superseded => "SUPERSEDED",
-                State::Terminated => "TERMINATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Completed => "COMPLETED",
+                Self::Superseded => "SUPERSEDED",
+                Self::Terminated => "TERMINATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4735,10 +4725,10 @@ pub mod security_health_analytics_custom_module {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-                EnablementState::Enabled => "ENABLED",
-                EnablementState::Disabled => "DISABLED",
-                EnablementState::Inherited => "INHERITED",
+                Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::Inherited => "INHERITED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4757,8 +4747,8 @@ pub mod security_health_analytics_custom_module {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValuedResource {
     /// Valued resource name, for example,
-    /// e.g.:
-    /// `organizations/123/simulations/456/valuedResources/789`
+    ///   e.g.:
+    ///   `organizations/123/simulations/456/valuedResources/789`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The
@@ -4821,10 +4811,10 @@ pub mod valued_resource {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResourceValue::Unspecified => "RESOURCE_VALUE_UNSPECIFIED",
-                ResourceValue::Low => "RESOURCE_VALUE_LOW",
-                ResourceValue::Medium => "RESOURCE_VALUE_MEDIUM",
-                ResourceValue::High => "RESOURCE_VALUE_HIGH",
+                Self::Unspecified => "RESOURCE_VALUE_UNSPECIFIED",
+                Self::Low => "RESOURCE_VALUE_LOW",
+                Self::Medium => "RESOURCE_VALUE_MEDIUM",
+                Self::High => "RESOURCE_VALUE_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4906,10 +4896,9 @@ pub struct Source {
 /// Request message for bulk findings update.
 ///
 /// Note:
-///
 /// 1. If multiple bulk update requests match the same resource, the order in
-///    which they get executed is not defined.
-/// 1. Once a bulk operation is started, there is no way to stop it.
+/// which they get executed is not defined.
+/// 2. Once a bulk operation is started, there is no way to stop it.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BulkMuteFindingsRequest {
     /// Required. The parent, at which bulk action needs to be applied. Its format
@@ -4980,9 +4969,9 @@ pub mod bulk_mute_findings_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MuteState::Unspecified => "MUTE_STATE_UNSPECIFIED",
-                MuteState::Muted => "MUTED",
-                MuteState::Undefined => "UNDEFINED",
+                Self::Unspecified => "MUTE_STATE_UNSPECIFIED",
+                Self::Muted => "MUTED",
+                Self::Undefined => "UNDEFINED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5317,41 +5306,30 @@ pub struct GroupAssetsRequest {
     /// The following field and operator combinations are supported:
     ///
     /// * name: `=`
-    ///
     /// * update_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `update_time = "2019-06-10T16:07:18-07:00"`
-    ///   `update_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `update_time = "2019-06-10T16:07:18-07:00"`
+    ///      `update_time = 1560208038000`
     ///
     /// * create_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `create_time = "2019-06-10T16:07:18-07:00"`
-    ///   `create_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `create_time = "2019-06-10T16:07:18-07:00"`
+    ///      `create_time = 1560208038000`
     ///
     /// * iam_policy.policy_blob: `=`, `:`
-    ///
     /// * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-    ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * security_center_properties.resource_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_type: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_project: `=`, `:`
-    ///
     /// * security_center_properties.resource_project_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_owners: `=`, `:`
     ///
     /// For example, `resource_properties.size = 100` is a valid filter string.
@@ -5397,12 +5375,12 @@ pub struct GroupAssetsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "ADDED":   indicates that the asset was not present at the start of
-    ///   compare_duration, but present at reference_time.
+    ///                 compare_duration, but present at reference_time.
     /// * "REMOVED": indicates that the asset was present at the start of
-    ///   compare_duration, but not present at reference_time.
+    ///                 compare_duration, but not present at reference_time.
     /// * "ACTIVE":  indicates that the asset was present at both the
-    ///   start and the end of the time period defined by
-    ///   compare_duration and reference_time.
+    ///                 start and the end of the time period defined by
+    ///                 compare_duration and reference_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED", which will be the state_change set for all assets present at
@@ -5467,9 +5445,9 @@ pub struct GroupFindingsRequest {
     /// Restrictions have the form `<field> <operator> <value>` and may have a `-`
     /// character in front of them to indicate negation. Examples include:
     ///
-    /// * name
-    /// * source_properties.a_property
-    /// * security_marks.marks.marka
+    ///   * name
+    ///   * source_properties.a_property
+    ///   * security_marks.marks.marka
     ///
     /// The supported operators are:
     ///
@@ -5486,48 +5464,38 @@ pub struct GroupFindingsRequest {
     /// The following field and operator combinations are supported:
     ///
     /// * name: `=`
-    ///
     /// * parent: `=`, `:`
-    ///
     /// * resource_name: `=`, `:`
-    ///
     /// * state: `=`, `:`
-    ///
     /// * category: `=`, `:`
-    ///
     /// * external_uri: `=`, `:`
-    ///
     /// * event_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `event_time = "2019-06-10T16:07:18-07:00"`
-    ///   `event_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `event_time = "2019-06-10T16:07:18-07:00"`
+    ///      `event_time = 1560208038000`
     ///
     /// * severity: `=`, `:`
-    ///
     /// * workflow_state: `=`, `:`
-    ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
     ///
-    ///   For example, `source_properties.size = 100` is a valid filter string.
+    ///    For example, `source_properties.size = 100` is a valid filter string.
     ///
-    ///   Use a partial match on the empty string to filter based on a property
-    ///   existing: `source_properties.my_property : ""`
+    ///    Use a partial match on the empty string to filter based on a property
+    ///    existing: `source_properties.my_property : ""`
     ///
-    ///   Use a negated partial match on the empty string to filter based on a
-    ///   property not existing: `-source_properties.my_property : ""`
+    ///    Use a negated partial match on the empty string to filter based on a
+    ///    property not existing: `-source_properties.my_property : ""`
     ///
     /// * resource:
-    ///
-    ///   * resource.name: `=`, `:`
-    ///   * resource.parent_name: `=`, `:`
-    ///   * resource.parent_display_name: `=`, `:`
-    ///   * resource.project_name: `=`, `:`
-    ///   * resource.project_display_name: `=`, `:`
-    ///   * resource.type: `=`, `:`
+    ///    * resource.name: `=`, `:`
+    ///    * resource.parent_name: `=`, `:`
+    ///    * resource.parent_display_name: `=`, `:`
+    ///    * resource.project_name: `=`, `:`
+    ///    * resource.project_display_name: `=`, `:`
+    ///    * resource.type: `=`, `:`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Required. Expression that defines what assets fields to use for grouping
@@ -5559,17 +5527,17 @@ pub struct GroupFindingsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "CHANGED":   indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration, but changed its
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration, but changed its
+    ///                   state at read_time.
     /// * "UNCHANGED": indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration and did not change
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration and did not change
+    ///                   state at read_time.
     /// * "ADDED":     indicates that the finding did not match the given filter or
-    ///   was not present at the start of compare_duration, but was
-    ///   present at read_time.
+    ///                   was not present at the start of compare_duration, but was
+    ///                   present at read_time.
     /// * "REMOVED":   indicates that the finding was present and matched the
-    ///   filter at the start of compare_duration, but did not match
-    ///   the filter at read_time.
+    ///                   filter at the start of compare_duration, but did not match
+    ///                   the filter at read_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED",  which will be the state_change set for all findings present
@@ -5667,8 +5635,8 @@ pub struct ListValuedResourcesRequest {
     /// The filter expression that filters the valued resources in the response.
     /// Supported fields:
     ///
-    /// * `resource_value` supports =
-    /// * `resource_type` supports =
+    ///    * `resource_value` supports =
+    ///    * `resource_type` supports =
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// The value returned by the last `ListValuedResourcesResponse`; indicates
@@ -5684,15 +5652,15 @@ pub struct ListValuedResourcesRequest {
     ///
     /// Supported fields:
     ///
-    /// * `exposed_score`
+    ///    * `exposed_score`
     ///
-    /// * `resource_value`
+    ///    * `resource_value`
     ///
-    /// * `resource_type`
+    ///    * `resource_type`
     ///
-    /// * `resource`
+    ///    * `resource`
     ///
-    /// * `display_name`
+    ///    * `display_name`
     ///
     /// Values should be a comma separated list of fields. For example:
     /// `exposed_score,resource_value`.
@@ -5733,7 +5701,7 @@ pub struct ListAttackPathsRequest {
     /// The filter expression that filters the attack path in the response.
     /// Supported fields:
     ///
-    /// * `valued_resources` supports =
+    ///    * `valued_resources` supports =
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// The value returned by the last `ListAttackPathsResponse`; indicates
@@ -5974,41 +5942,30 @@ pub struct ListAssetsRequest {
     /// The following are the allowed field and operator combinations:
     ///
     /// * name: `=`
-    ///
     /// * update_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `update_time = "2019-06-10T16:07:18-07:00"`
-    ///   `update_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `update_time = "2019-06-10T16:07:18-07:00"`
+    ///      `update_time = 1560208038000`
     ///
     /// * create_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `create_time = "2019-06-10T16:07:18-07:00"`
-    ///   `create_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `create_time = "2019-06-10T16:07:18-07:00"`
+    ///      `create_time = 1560208038000`
     ///
     /// * iam_policy.policy_blob: `=`, `:`
-    ///
     /// * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-    ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * security_center_properties.resource_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_type: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_project: `=`, `:`
-    ///
     /// * security_center_properties.resource_project_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_owners: `=`, `:`
     ///
     /// For example, `resource_properties.size = 100` is a valid filter string.
@@ -6063,12 +6020,12 @@ pub struct ListAssetsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "ADDED":   indicates that the asset was not present at the start of
-    ///   compare_duration, but present at read_time.
+    ///                 compare_duration, but present at read_time.
     /// * "REMOVED": indicates that the asset was present at the start of
-    ///   compare_duration, but not present at read_time.
+    ///                 compare_duration, but not present at read_time.
     /// * "ACTIVE":  indicates that the asset was present at both the
-    ///   start and the end of the time period defined by
-    ///   compare_duration and read_time.
+    ///                 start and the end of the time period defined by
+    ///                 compare_duration and read_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED",  which will be the state_change set for all assets present at
@@ -6158,10 +6115,10 @@ pub mod list_assets_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    StateChange::Unused => "UNUSED",
-                    StateChange::Added => "ADDED",
-                    StateChange::Removed => "REMOVED",
-                    StateChange::Active => "ACTIVE",
+                    Self::Unused => "UNUSED",
+                    Self::Added => "ADDED",
+                    Self::Removed => "REMOVED",
+                    Self::Active => "ACTIVE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6197,9 +6154,9 @@ pub struct ListFindingsRequest {
     /// Restrictions have the form `<field> <operator> <value>` and may have a `-`
     /// character in front of them to indicate negation. Examples include:
     ///
-    /// * name
-    /// * source_properties.a_property
-    /// * security_marks.marks.marka
+    ///   * name
+    ///   * source_properties.a_property
+    ///   * security_marks.marks.marka
     ///
     /// The supported operators are:
     ///
@@ -6216,50 +6173,40 @@ pub struct ListFindingsRequest {
     /// The following field and operator combinations are supported:
     ///
     /// * name: `=`
-    ///
     /// * parent: `=`, `:`
-    ///
     /// * resource_name: `=`, `:`
-    ///
     /// * state: `=`, `:`
-    ///
     /// * category: `=`, `:`
-    ///
     /// * external_uri: `=`, `:`
-    ///
     /// * event_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `event_time = "2019-06-10T16:07:18-07:00"`
-    ///   `event_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `event_time = "2019-06-10T16:07:18-07:00"`
+    ///      `event_time = 1560208038000`
     ///
     /// * severity: `=`, `:`
-    ///
     /// * workflow_state: `=`, `:`
-    ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
     ///
-    ///   For example, `source_properties.size = 100` is a valid filter string.
+    ///    For example, `source_properties.size = 100` is a valid filter string.
     ///
-    ///   Use a partial match on the empty string to filter based on a property
-    ///   existing: `source_properties.my_property : ""`
+    ///    Use a partial match on the empty string to filter based on a property
+    ///    existing: `source_properties.my_property : ""`
     ///
-    ///   Use a negated partial match on the empty string to filter based on a
-    ///   property not existing: `-source_properties.my_property : ""`
+    ///    Use a negated partial match on the empty string to filter based on a
+    ///    property not existing: `-source_properties.my_property : ""`
     ///
     /// * resource:
-    ///
-    ///   * resource.name: `=`, `:`
-    ///   * resource.parent_name: `=`, `:`
-    ///   * resource.parent_display_name: `=`, `:`
-    ///   * resource.project_name: `=`, `:`
-    ///   * resource.project_display_name: `=`, `:`
-    ///   * resource.type: `=`, `:`
-    ///   * resource.folders.resource_folder: `=`, `:`
-    ///   * resource.display_name: `=`, `:`
+    ///    * resource.name: `=`, `:`
+    ///    * resource.parent_name: `=`, `:`
+    ///    * resource.parent_display_name: `=`, `:`
+    ///    * resource.project_name: `=`, `:`
+    ///    * resource.project_display_name: `=`, `:`
+    ///    * resource.type: `=`, `:`
+    ///    * resource.folders.resource_folder: `=`, `:`
+    ///    * resource.display_name: `=`, `:`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Expression that defines what fields and order to use for sorting. The
@@ -6303,17 +6250,17 @@ pub struct ListFindingsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "CHANGED":   indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration, but changed its
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration, but changed its
+    ///                   state at read_time.
     /// * "UNCHANGED": indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration and did not change
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration and did not change
+    ///                   state at read_time.
     /// * "ADDED":     indicates that the finding did not match the given filter or
-    ///   was not present at the start of compare_duration, but was
-    ///   present at read_time.
+    ///                   was not present at the start of compare_duration, but was
+    ///                   present at read_time.
     /// * "REMOVED":   indicates that the finding was present and matched the
-    ///   filter at the start of compare_duration, but did not match
-    ///   the filter at read_time.
+    ///                   filter at the start of compare_duration, but did not match
+    ///                   the filter at read_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED", which will be the state_change set for all findings present at
@@ -6487,11 +6434,11 @@ pub mod list_findings_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    StateChange::Unused => "UNUSED",
-                    StateChange::Changed => "CHANGED",
-                    StateChange::Unchanged => "UNCHANGED",
-                    StateChange::Added => "ADDED",
-                    StateChange::Removed => "REMOVED",
+                    Self::Unused => "UNUSED",
+                    Self::Changed => "CHANGED",
+                    Self::Unchanged => "UNCHANGED",
+                    Self::Added => "ADDED",
+                    Self::Removed => "REMOVED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6730,7 +6677,7 @@ pub struct UpdateSecurityMarksRequest {
     ///
     /// The field mask must not contain duplicate fields.
     /// If empty or set to "marks", all marks will be replaced.  Individual
-    /// marks can be updated using "marks.\<mark_key>".
+    /// marks can be updated using "marks.<mark_key>".
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// The time at which the updated SecurityMarks take effect.
@@ -6819,9 +6766,9 @@ pub struct CreateEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings`.
-    /// * `folders/{folder}/eventThreatDetectionSettings`.
-    /// * `projects/{project}/eventThreatDetectionSettings`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings`.
+    ///    * `projects/{project}/eventThreatDetectionSettings`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The module to create. The
@@ -6839,9 +6786,9 @@ pub struct ValidateEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings`.
-    /// * `folders/{folder}/eventThreatDetectionSettings`.
-    /// * `projects/{project}/eventThreatDetectionSettings`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings`.
+    ///    * `projects/{project}/eventThreatDetectionSettings`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The raw text of the module's contents. Used to generate error
@@ -6894,9 +6841,9 @@ pub struct ListDescendantEventThreatDetectionCustomModulesRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings`.
-    /// * `folders/{folder}/eventThreatDetectionSettings`.
-    /// * `projects/{project}/eventThreatDetectionSettings`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings`.
+    ///    * `projects/{project}/eventThreatDetectionSettings`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// A page token, received from a previous
@@ -6936,9 +6883,9 @@ pub struct ListEventThreatDetectionCustomModulesRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings`.
-    /// * `folders/{folder}/eventThreatDetectionSettings`.
-    /// * `projects/{project}/eventThreatDetectionSettings`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings`.
+    ///    * `projects/{project}/eventThreatDetectionSettings`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// A page token, received from a previous
@@ -6991,9 +6938,9 @@ pub struct GetEffectiveEventThreatDetectionCustomModuleRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
-    /// * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
-    /// * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+    ///    * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -7004,9 +6951,9 @@ pub struct ListEffectiveEventThreatDetectionCustomModulesRequest {
     ///
     /// Its format is:
     ///
-    /// * `organizations/{organization}/eventThreatDetectionSettings`.
-    /// * `folders/{folder}/eventThreatDetectionSettings`.
-    /// * `projects/{project}/eventThreatDetectionSettings`.
+    ///    * `organizations/{organization}/eventThreatDetectionSettings`.
+    ///    * `folders/{folder}/eventThreatDetectionSettings`.
+    ///    * `projects/{project}/eventThreatDetectionSettings`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// A page token, received from a previous
@@ -7040,7 +6987,13 @@ pub struct ListEffectiveEventThreatDetectionCustomModulesResponse {
 }
 /// Generated client implementations.
 pub mod security_center_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// V1 APIs for Security Center service.
@@ -7127,8 +7080,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7163,8 +7115,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7191,8 +7142,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7220,8 +7170,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7248,8 +7197,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7279,8 +7227,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7307,8 +7254,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7335,8 +7281,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7367,8 +7312,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7396,8 +7340,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7424,8 +7367,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7452,8 +7394,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7485,8 +7426,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7513,8 +7453,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7544,8 +7483,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7575,8 +7513,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7608,8 +7545,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7641,8 +7577,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7669,8 +7604,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7690,6 +7624,7 @@ pub mod security_center_client {
         }
         /// Filters an organization's assets and  groups them by their specified
         /// properties.
+        #[deprecated]
         pub async fn group_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::GroupAssetsRequest>,
@@ -7701,8 +7636,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7738,8 +7672,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7758,6 +7691,7 @@ pub mod security_center_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists an organization's assets.
+        #[deprecated]
         pub async fn list_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAssetsRequest>,
@@ -7769,8 +7703,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7805,8 +7738,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7839,8 +7771,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7870,8 +7801,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7901,8 +7831,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7938,8 +7867,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7973,8 +7901,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8004,8 +7931,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8029,6 +7955,7 @@ pub mod security_center_client {
         /// This API can only be called with limited frequency for an organization. If
         /// it is called too frequently the caller will receive a TOO_MANY_REQUESTS
         /// error.
+        #[deprecated]
         pub async fn run_asset_discovery(
             &mut self,
             request: impl tonic::IntoRequest<super::RunAssetDiscoveryRequest>,
@@ -8040,8 +7967,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8068,8 +7994,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8096,8 +8021,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8129,8 +8053,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8164,8 +8087,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8197,8 +8119,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8225,8 +8146,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8254,8 +8174,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8282,8 +8201,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8301,6 +8219,7 @@ pub mod security_center_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        ///
         /// Updates a notification config. The following update
         /// fields are allowed: description, pubsub_topic, streaming_config.filter
         pub async fn update_notification_config(
@@ -8314,8 +8233,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8345,8 +8263,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8382,8 +8299,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8410,8 +8326,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8438,8 +8353,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8466,8 +8380,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8494,8 +8407,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8522,8 +8434,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8557,8 +8468,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8593,8 +8503,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8625,8 +8534,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8658,8 +8566,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8694,8 +8601,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8729,8 +8635,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8767,8 +8672,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8800,8 +8704,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8833,8 +8736,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8870,8 +8772,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8904,8 +8805,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8932,8 +8832,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8963,8 +8862,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8994,8 +8892,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9025,8 +8922,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9056,8 +8952,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -9088,8 +8983,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

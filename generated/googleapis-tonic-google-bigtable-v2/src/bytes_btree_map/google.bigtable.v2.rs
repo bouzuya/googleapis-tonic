@@ -8,21 +8,21 @@
 ///
 /// Each encoding also defines the following properties:
 ///
-/// * Order-preserving: Does the encoded value sort consistently with the
-///   original typed value? Note that Bigtable will always sort data based on
-///   the raw encoded value, *not* the decoded type.
-///   * Example: BYTES values sort in the same order as their raw encodings.
-///   * Counterexample: Encoding INT64 as a fixed-width decimal string does
-///     *not* preserve sort order when dealing with negative numbers.
-///     `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
-/// * Self-delimiting: If we concatenate two encoded values, can we always tell
-///   where the first one ends and the second one begins?
-///   * Example: If we encode INT64s to fixed-width STRINGs, the first value
-///     will always contain exactly N digits, possibly preceded by a sign.
-///   * Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
-///     no way to tell where the first one ends.
-/// * Compatibility: Which other systems have matching encoding schemes? For
-///   example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+///   * Order-preserving: Does the encoded value sort consistently with the
+///     original typed value? Note that Bigtable will always sort data based on
+///     the raw encoded value, *not* the decoded type.
+///      - Example: BYTES values sort in the same order as their raw encodings.
+///      - Counterexample: Encoding INT64 as a fixed-width decimal string does
+///        *not* preserve sort order when dealing with negative numbers.
+///        `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
+///   * Self-delimiting: If we concatenate two encoded values, can we always tell
+///     where the first one ends and the second one begins?
+///      - Example: If we encode INT64s to fixed-width STRINGs, the first value
+///        will always contain exactly N digits, possibly preceded by a sign.
+///      - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
+///        no way to tell where the first one ends.
+///   * Compatibility: Which other systems have matching encoding schemes? For
+///     example, does this encoding have a GoogleSQL equivalent? HBase? Java?
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Type {
     /// The kind of type that this represents.
@@ -51,7 +51,6 @@ pub mod r#type {
         /// Nested message and enum types in `Encoding`.
         pub mod encoding {
             /// Leaves the value "as-is"
-            ///
             /// * Order-preserving? Yes
             /// * Self-delimiting? No
             /// * Compatibility? N/A
@@ -89,13 +88,12 @@ pub mod r#type {
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Utf8Raw {}
             /// UTF-8 encoding
-            ///
             /// * Order-preserving? Yes (code point order)
             /// * Self-delimiting? No
             /// * Compatibility?
-            ///   * BigQuery Federation `TEXT` encoding
-            ///   * HBase `Bytes.toBytes`
-            ///   * Java `String#getBytes(StandardCharsets.UTF_8)`
+            ///     - BigQuery Federation `TEXT` encoding
+            ///     - HBase `Bytes.toBytes`
+            ///     - Java `String#getBytes(StandardCharsets.UTF_8)`
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Utf8Bytes {}
             /// Which encoding to use.
@@ -131,13 +129,12 @@ pub mod r#type {
         pub mod encoding {
             /// Encodes the value as an 8-byte big endian twos complement `Bytes`
             /// value.
-            ///
             /// * Order-preserving? No (positive values only)
             /// * Self-delimiting? Yes
             /// * Compatibility?
-            ///   * BigQuery Federation `BINARY` encoding
-            ///   * HBase `Bytes.toBytes`
-            ///   * Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+            ///     - BigQuery Federation `BINARY` encoding
+            ///     - HBase `Bytes.toBytes`
+            ///     - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct BigEndianBytes {
                 /// Deprecated: ignored if set.
@@ -213,7 +210,7 @@ pub mod r#type {
     /// in that order).
     /// Normally encoded Map values won't have repeated keys, however, clients are
     /// expected to handle the case in which they do. If the same key appears
-    /// multiple times, the *last* value takes precedence.
+    /// multiple times, the _last_ value takes precedence.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Map {
         /// The type of a map key.
@@ -390,7 +387,7 @@ pub struct Cell {
     /// length.
     #[prost(bytes = "bytes", tag = "2")]
     pub value: ::prost::bytes::Bytes,
-    /// Labels applied to the cell by a \[RowFilter\]\[google.bigtable.v2.RowFilter\].
+    /// Labels applied to the cell by a [RowFilter][google.bigtable.v2.RowFilter].
     #[prost(string, repeated, tag = "3")]
     pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -410,7 +407,8 @@ pub struct Value {
     ///
     /// When using composite types (Struct, Array, Map) only the outermost `Value`
     /// will specify the `type`. This top-level `type` will define the types for
-    /// any nested `Struct' fields, `Array`elements, or`Map`key/value pairs. If a nested`Value`provides a`type\` on write, the request will be
+    /// any nested `Struct' fields, `Array` elements, or `Map` key/value pairs.
+    /// If a nested `Value` provides a `type` on write, the request will be
     /// rejected with INVALID_ARGUMENT.
     #[prost(message, optional, tag = "7")]
     pub r#type: ::core::option::Option<Type>,
@@ -526,8 +524,8 @@ pub struct RowSet {
     pub row_ranges: ::prost::alloc::vec::Vec<RowRange>,
 }
 /// Specifies a contiguous range of columns within a single column family.
-/// The range spans from \<column_family\>:\<start_qualifier\> to
-/// \<column_family\>:\<end_qualifier\>, where both bounds can be either
+/// The range spans from &lt;column_family&gt;:&lt;start_qualifier&gt; to
+/// &lt;column_family&gt;:&lt;end_qualifier&gt;, where both bounds can be either
 /// inclusive or exclusive.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnRange {
@@ -628,22 +626,22 @@ pub mod value_range {
 /// (chains and interleaves). They work as follows:
 ///
 /// * True filters alter the input row by excluding some of its cells wholesale
-///   from the output row. An example of a true filter is the `value_regex_filter`,
-///   which excludes cells whose values don't match the specified pattern. All
-///   regex true filters use RE2 syntax (<https://github.com/google/re2/wiki/Syntax>)
-///   in raw byte mode (RE2::Latin1), and are evaluated as full matches. An
-///   important point to keep in mind is that `RE2(.)` is equivalent by default to
-///   `RE2(\[^\n\])`, meaning that it does not match newlines. When attempting to
-///   match an arbitrary byte, you should therefore use the escape sequence `\C`,
-///   which may need to be further escaped as `\\C` in your client language.
+/// from the output row. An example of a true filter is the `value_regex_filter`,
+/// which excludes cells whose values don't match the specified pattern. All
+/// regex true filters use RE2 syntax (<https://github.com/google/re2/wiki/Syntax>)
+/// in raw byte mode (RE2::Latin1), and are evaluated as full matches. An
+/// important point to keep in mind is that `RE2(.)` is equivalent by default to
+/// `RE2(\[^\n\])`, meaning that it does not match newlines. When attempting to
+/// match an arbitrary byte, you should therefore use the escape sequence `\C`,
+/// which may need to be further escaped as `\\C` in your client language.
 ///
 /// * Transformers alter the input row by changing the values of some of its
-///   cells in the output, without excluding them completely. Currently, the only
-///   supported transformer is the `strip_value_transformer`, which replaces every
-///   cell's value with the empty string.
+/// cells in the output, without excluding them completely. Currently, the only
+/// supported transformer is the `strip_value_transformer`, which replaces every
+/// cell's value with the empty string.
 ///
 /// * Chains and interleaves are described in more detail in the
-///   RowFilter.Chain and RowFilter.Interleave documentation.
+/// RowFilter.Chain and RowFilter.Interleave documentation.
 ///
 /// The total serialized size of a RowFilter message must not
 /// exceed 20480 bytes, and RowFilters may not be nested within each other
@@ -679,25 +677,23 @@ pub mod row_filter {
         /// they will all appear in the output row in an unspecified mutual order.
         /// Consider the following example, with three filters:
         ///
-        /// ```text
-        ///                               input row
-        ///                                   |
-        ///         -----------------------------------------------------
-        ///         |                         |                         |
-        ///        f(0)                      f(1)                      f(2)
-        ///         |                         |                         |
-        /// 1: foo,bar,10,x             foo,bar,10,z              far,bar,7,a
-        /// 2: foo,blah,11,z            far,blah,5,x              far,blah,5,x
-        ///         |                         |                         |
-        ///         -----------------------------------------------------
-        ///                                   |
-        /// 1:                      foo,bar,10,z   // could have switched with #2
-        /// 2:                      foo,bar,10,x   // could have switched with #1
-        /// 3:                      foo,blah,11,z
-        /// 4:                      far,bar,7,a
-        /// 5:                      far,blah,5,x   // identical to #6
-        /// 6:                      far,blah,5,x   // identical to #5
-        /// ```
+        ///                                   input row
+        ///                                       |
+        ///             -----------------------------------------------------
+        ///             |                         |                         |
+        ///            f(0)                      f(1)                      f(2)
+        ///             |                         |                         |
+        ///      1: foo,bar,10,x             foo,bar,10,z              far,bar,7,a
+        ///      2: foo,blah,11,z            far,blah,5,x              far,blah,5,x
+        ///             |                         |                         |
+        ///             -----------------------------------------------------
+        ///                                       |
+        ///      1:                      foo,bar,10,z   // could have switched with #2
+        ///      2:                      foo,bar,10,x   // could have switched with #1
+        ///      3:                      foo,blah,11,z
+        ///      4:                      far,bar,7,a
+        ///      5:                      far,blah,5,x   // identical to #6
+        ///      6:                      far,blah,5,x   // identical to #5
         ///
         /// All interleaved filters are executed atomically.
         #[prost(message, repeated, tag = "1")]
@@ -753,54 +749,52 @@ pub mod row_filter {
         /// the output of the read rather than to any parent filter. Consider the
         /// following example:
         ///
-        /// ```text
-        /// Chain(
-        ///    FamilyRegex("A"),
-        ///    Interleave(
-        ///      All(),
-        ///      Chain(Label("foo"), Sink())
-        ///    ),
-        ///    QualifierRegex("B")
-        /// )
+        ///      Chain(
+        ///        FamilyRegex("A"),
+        ///        Interleave(
+        ///          All(),
+        ///          Chain(Label("foo"), Sink())
+        ///        ),
+        ///        QualifierRegex("B")
+        ///      )
         ///
-        ///                      A,A,1,w
-        ///                      A,B,2,x
-        ///                      B,B,4,z
-        ///                         |
-        ///                  FamilyRegex("A")
-        ///                         |
-        ///                      A,A,1,w
-        ///                      A,B,2,x
-        ///                         |
-        ///            +------------+-------------+
-        ///            |                          |
-        ///          All()                    Label(foo)
-        ///            |                          |
-        ///         A,A,1,w              A,A,1,w,labels:\[foo\]
-        ///         A,B,2,x              A,B,2,x,labels:\[foo\]
-        ///            |                          |
-        ///            |                        Sink() --------------+
-        ///            |                          |                  |
-        ///            +------------+      x------+          A,A,1,w,labels:\[foo\]
-        ///                         |                        A,B,2,x,labels:\[foo\]
-        ///                      A,A,1,w                             |
-        ///                      A,B,2,x                             |
-        ///                         |                                |
-        ///                 QualifierRegex("B")                      |
-        ///                         |                                |
-        ///                      A,B,2,x                             |
-        ///                         |                                |
-        ///                         +--------------------------------+
-        ///                         |
-        ///                      A,A,1,w,labels:\[foo\]
-        ///                      A,B,2,x,labels:\[foo\]  // could be switched
-        ///                      A,B,2,x               // could be switched
-        /// ```
+        ///                          A,A,1,w
+        ///                          A,B,2,x
+        ///                          B,B,4,z
+        ///                             |
+        ///                      FamilyRegex("A")
+        ///                             |
+        ///                          A,A,1,w
+        ///                          A,B,2,x
+        ///                             |
+        ///                +------------+-------------+
+        ///                |                          |
+        ///              All()                    Label(foo)
+        ///                |                          |
+        ///             A,A,1,w              A,A,1,w,labels:\[foo\]
+        ///             A,B,2,x              A,B,2,x,labels:\[foo\]
+        ///                |                          |
+        ///                |                        Sink() --------------+
+        ///                |                          |                  |
+        ///                +------------+      x------+          A,A,1,w,labels:\[foo\]
+        ///                             |                        A,B,2,x,labels:\[foo\]
+        ///                          A,A,1,w                             |
+        ///                          A,B,2,x                             |
+        ///                             |                                |
+        ///                     QualifierRegex("B")                      |
+        ///                             |                                |
+        ///                          A,B,2,x                             |
+        ///                             |                                |
+        ///                             +--------------------------------+
+        ///                             |
+        ///                          A,A,1,w,labels:\[foo\]
+        ///                          A,B,2,x,labels:\[foo\]  // could be switched
+        ///                          A,B,2,x               // could be switched
         ///
         /// Despite being excluded by the qualifier filter, a copy of every cell
         /// that reaches the sink is present in the final result.
         ///
-        /// As with an \[Interleave\]\[google.bigtable.v2.RowFilter.Interleave\],
+        /// As with an [Interleave][google.bigtable.v2.RowFilter.Interleave],
         /// duplicate cells are possible, and appear in an unspecified mutual order.
         /// In this case we have a duplicate with column "A:B" and timestamp 2,
         /// because one copy passed through the all filter while the other was
@@ -808,7 +802,7 @@ pub mod row_filter {
         /// while the other does not.
         ///
         /// Cannot be used within the `predicate_filter`, `true_filter`, or
-        /// `false_filter` of a \[Condition\]\[google.bigtable.v2.RowFilter.Condition\].
+        /// `false_filter` of a [Condition][google.bigtable.v2.RowFilter.Condition].
         #[prost(bool, tag = "16")]
         Sink(bool),
         /// Matches all cells, regardless of input. Functionally equivalent to
@@ -1069,7 +1063,7 @@ pub mod read_modify_write_rule {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamPartition {
     /// The row range covered by this partition and is specified by
-    /// \[`start_key_closed`, `end_key_open`).
+    /// [`start_key_closed`, `end_key_open`).
     #[prost(message, optional, tag = "1")]
     pub row_range: ::core::option::Option<RowRange>,
 }
@@ -1274,8 +1268,7 @@ pub struct FullReadStatsView {
 /// RequestStats is the container for additional information pertaining to a
 /// single request, helpful for evaluating the performance of the sent request.
 /// Currently, there are the following supported methods:
-///
-/// * google.bigtable.v2.ReadRows
+///    * google.bigtable.v2.ReadRows
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RequestStats {
     /// Information pertaining to each request type received. The type is chosen
@@ -1341,12 +1334,10 @@ pub struct ReadRowsRequest {
     ///
     /// Example result set:
     ///
-    /// ```text
-    /// [
-    ///    {key: "k2", "f:col1": "v1", "f:col2": "v1"},
-    ///    {key: "k1", "f:col1": "v2", "f:col2": "v2"}
-    /// ]
-    /// ```
+    ///      [
+    ///        {key: "k2", "f:col1": "v1", "f:col2": "v1"},
+    ///        {key: "k1", "f:col1": "v2", "f:col2": "v2"}
+    ///      ]
     #[prost(bool, tag = "7")]
     pub reversed: bool,
 }
@@ -1384,9 +1375,9 @@ pub mod read_rows_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RequestStatsView::Unspecified => "REQUEST_STATS_VIEW_UNSPECIFIED",
-                RequestStatsView::RequestStatsNone => "REQUEST_STATS_NONE",
-                RequestStatsView::RequestStatsFull => "REQUEST_STATS_FULL",
+                Self::Unspecified => "REQUEST_STATS_VIEW_UNSPECIFIED",
+                Self::RequestStatsNone => "REQUEST_STATS_NONE",
+                Self::RequestStatsFull => "REQUEST_STATS_FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1415,26 +1406,26 @@ pub struct ReadRowsResponse {
     /// key, allowing the client to skip that work on a retry.
     #[prost(bytes = "bytes", tag = "2")]
     pub last_scanned_row_key: ::prost::bytes::Bytes,
+    ///
     /// If requested, provide enhanced query performance statistics. The semantics
     /// dictate:
-    ///
-    /// * request_stats is empty on every (streamed) response, except
-    /// * request_stats has non-empty information after all chunks have been
-    ///   streamed, where the ReadRowsResponse message only contains
-    ///   request_stats.
-    ///   * For example, if a read request would have returned an empty
-    ///     response instead a single ReadRowsResponse is streamed with empty
-    ///     chunks and request_stats filled.
+    ///    * request_stats is empty on every (streamed) response, except
+    ///    * request_stats has non-empty information after all chunks have been
+    ///      streamed, where the ReadRowsResponse message only contains
+    ///      request_stats.
+    ///        * For example, if a read request would have returned an empty
+    ///          response instead a single ReadRowsResponse is streamed with empty
+    ///          chunks and request_stats filled.
     ///
     /// Visually, response messages will stream as follows:
-    /// ... -> {chunks: \[...\]} -> {chunks: \[\], request_stats: {...}}
-    /// \_*********************/  \_*********************\_\_\_\_\_\_\_\_\_\_/
-    /// Primary response         Trailer of RequestStats info
+    ///     ... -> {chunks: \[...\]} -> {chunks: \[\], request_stats: {...}}
+    ///    \______________________/  \________________________________/
+    ///        Primary response         Trailer of RequestStats info
     ///
     /// Or if the read did not return any values:
-    /// {chunks: \[\], request_stats: {...}}
-    /// \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_/
-    /// Trailer of RequestStats info
+    ///    {chunks: \[\], request_stats: {...}}
+    ///    \________________________________/
+    ///       Trailer of RequestStats info
     #[prost(message, optional, tag = "3")]
     pub request_stats: ::core::option::Option<RequestStats>,
 }
@@ -1476,7 +1467,7 @@ pub mod read_rows_response {
         #[prost(int64, tag = "4")]
         pub timestamp_micros: i64,
         /// Labels applied to the cell by a
-        /// \[RowFilter\]\[google.bigtable.v2.RowFilter\].  Labels are only set
+        /// [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
         /// on the first CellChunk per cell.
         #[prost(string, repeated, tag = "5")]
         pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -1999,10 +1990,10 @@ pub mod read_change_stream_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::User => "USER",
-                    Type::GarbageCollection => "GARBAGE_COLLECTION",
-                    Type::Continuation => "CONTINUATION",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::User => "USER",
+                    Self::GarbageCollection => "GARBAGE_COLLECTION",
+                    Self::Continuation => "CONTINUATION",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2040,20 +2031,20 @@ pub mod read_change_stream_response {
     /// If `continuation_tokens` & `new_partitions` are present, then a change in
     /// partitioning requires the client to open a new stream for each token to
     /// resume reading. Example:
-    /// \[B,      D) ends
-    /// \|
-    /// v
-    /// new_partitions:  \[A,  C) \[C,  E)
-    /// continuation_tokens.partitions:  \[B,C) \[C,D)
-    /// ^---^ ^---^
-    /// ^     ^
-    /// \|     |
-    /// \|     StreamContinuationToken 2
-    /// \|
-    /// StreamContinuationToken 1
-    /// To read the new partition \[A,C), supply the continuation tokens whose
-    /// ranges cover the new partition, for example ContinuationToken\[A,B) &
-    /// ContinuationToken\[B,C).
+    ///                                   [B,      D) ends
+    ///                                        |
+    ///                                        v
+    ///                new_partitions:  [A,  C) [C,  E)
+    /// continuation_tokens.partitions:  [B,C) [C,D)
+    ///                                   ^---^ ^---^
+    ///                                   ^     ^
+    ///                                   |     |
+    ///                                   |     StreamContinuationToken 2
+    ///                                   |
+    ///                                   StreamContinuationToken 1
+    /// To read the new partition [A,C), supply the continuation tokens whose
+    /// ranges cover the new partition, for example ContinuationToken[A,B) &
+    /// ContinuationToken[B,C).
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CloseStream {
         /// The status of the stream.
@@ -2117,13 +2108,13 @@ pub struct ExecuteQueryRequest {
     ///
     /// For example, if
     /// `params\["firstName"\] = bytes_value: "foo" type {bytes_type {}}`
-    /// then `@firstName` will be replaced with googlesql bytes value "foo" in the
-    /// query string during query evaluation.
+    ///   then `@firstName` will be replaced with googlesql bytes value "foo" in the
+    ///   query string during query evaluation.
     ///
     /// In case of Value.kind is not set, it will be set to corresponding null
     /// value in googlesql.
-    /// `params\["firstName"\] =  type {string_type {}}`
-    /// then `@firstName` will be replaced with googlesql null string.
+    ///   `params\["firstName"\] =  type {string_type {}}`
+    ///   then `@firstName` will be replaced with googlesql null string.
     ///
     /// Value.type should always be set and no inference of type will be made from
     /// Value.kind. If Value.type is not set, we will return INVALID_ARGUMENT
@@ -2183,7 +2174,13 @@ pub mod execute_query_response {
 }
 /// Generated client implementations.
 pub mod bigtable_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for reading from and writing to existing Bigtable tables.
@@ -2272,8 +2269,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2301,8 +2297,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2328,8 +2323,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2356,8 +2350,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2382,8 +2375,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2411,8 +2403,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2441,8 +2432,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2478,8 +2468,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2512,8 +2501,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2540,8 +2528,7 @@ pub mod bigtable_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

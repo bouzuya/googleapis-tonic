@@ -33,9 +33,9 @@ impl StorageType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
-            StorageType::Ssd => "SSD",
-            StorageType::Hdd => "HDD",
+            Self::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
+            Self::Ssd => "SSD",
+            Self::Hdd => "HDD",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -48,10 +48,10 @@ impl StorageType {
         }
     }
 }
-/// A collection of Bigtable \[Tables\]\[google.bigtable.admin.v2.Table\] and
+/// A collection of Bigtable [Tables][google.bigtable.admin.v2.Table] and
 /// the resources that serve them.
 /// All tables in an instance are served from all
-/// \[Clusters\]\[google.bigtable.admin.v2.Cluster\] in the instance.
+/// [Clusters][google.bigtable.admin.v2.Cluster] in the instance.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
     /// The unique name of the instance. Values are of the form
@@ -76,9 +76,9 @@ pub struct Instance {
     /// metrics.
     ///
     /// * Label keys must be between 1 and 63 characters long and must conform to
-    ///   the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
+    ///    the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
     /// * Label values must be between 0 and 63 characters long and must conform to
-    ///   the regular expression: `\[\p{Ll}\p{Lo}\p{N}_-\]{0,63}`.
+    ///    the regular expression: `\[\p{Ll}\p{Lo}\p{N}_-\]{0,63}`.
     /// * No more than 64 labels can be associated with a given resource.
     /// * Keys and values must both be under 128 bytes.
     #[prost(map = "string, string", tag = "5")]
@@ -127,9 +127,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::NotKnown => "STATE_NOT_KNOWN",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
+                Self::NotKnown => "STATE_NOT_KNOWN",
+                Self::Ready => "READY",
+                Self::Creating => "CREATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -174,9 +174,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Production => "PRODUCTION",
-                Type::Development => "DEVELOPMENT",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Production => "PRODUCTION",
+                Self::Development => "DEVELOPMENT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -219,8 +219,8 @@ pub struct AutoscalingLimits {
     pub max_serve_nodes: i32,
 }
 /// A resizable group of nodes in a particular cloud location, capable
-/// of serving all \[Tables\]\[google.bigtable.admin.v2.Table\] in the parent
-/// \[Instance\]\[google.bigtable.admin.v2.Instance\].
+/// of serving all [Tables][google.bigtable.admin.v2.Table] in the parent
+/// [Instance][google.bigtable.admin.v2.Instance].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cluster {
     /// The unique name of the cluster. Values are of the form
@@ -278,15 +278,14 @@ pub mod cluster {
     pub struct EncryptionConfig {
         /// Describes the Cloud KMS encryption key that will be used to protect the
         /// destination Bigtable cluster. The requirements for this key are:
-        ///
-        /// 1. The Cloud Bigtable service account associated with the project that
-        ///    contains this cluster must be granted the
-        ///    `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
-        /// 1. Only regional keys can be used and the region of the CMEK key must
-        ///    match the region of the cluster.
-        /// 1. All clusters within an instance must use the same CMEK key.
-        ///    Values are of the form
-        ///    `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
+        ///   1) The Cloud Bigtable service account associated with the project that
+        ///   contains this cluster must be granted the
+        ///   `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
+        ///   2) Only regional keys can be used and the region of the CMEK key must
+        ///   match the region of the cluster.
+        ///   3) All clusters within an instance must use the same CMEK key.
+        /// Values are of the form
+        /// `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
         #[prost(string, tag = "1")]
         pub kms_key_name: ::prost::alloc::string::String,
     }
@@ -329,11 +328,11 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::NotKnown => "STATE_NOT_KNOWN",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Resizing => "RESIZING",
-                State::Disabled => "DISABLED",
+                Self::NotKnown => "STATE_NOT_KNOWN",
+                Self::Ready => "READY",
+                Self::Creating => "CREATING",
+                Self::Resizing => "RESIZING",
+                Self::Disabled => "DISABLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -379,9 +378,9 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NodeScalingFactor::Unspecified => "NODE_SCALING_FACTOR_UNSPECIFIED",
-                NodeScalingFactor::NodeScalingFactor1x => "NODE_SCALING_FACTOR_1X",
-                NodeScalingFactor::NodeScalingFactor2x => "NODE_SCALING_FACTOR_2X",
+                Self::Unspecified => "NODE_SCALING_FACTOR_UNSPECIFIED",
+                Self::NodeScalingFactor1x => "NODE_SCALING_FACTOR_1X",
+                Self::NodeScalingFactor2x => "NODE_SCALING_FACTOR_2X",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -558,10 +557,8 @@ pub mod app_profile {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ComputeBillingOwner::Unspecified => {
-                        "COMPUTE_BILLING_OWNER_UNSPECIFIED"
-                    }
-                    ComputeBillingOwner::HostPays => "HOST_PAYS",
+                    Self::Unspecified => "COMPUTE_BILLING_OWNER_UNSPECIFIED",
+                    Self::HostPays => "HOST_PAYS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -603,10 +600,10 @@ pub mod app_profile {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Priority::Unspecified => "PRIORITY_UNSPECIFIED",
-                Priority::Low => "PRIORITY_LOW",
-                Priority::Medium => "PRIORITY_MEDIUM",
-                Priority::High => "PRIORITY_HIGH",
+                Self::Unspecified => "PRIORITY_UNSPECIFIED",
+                Self::Low => "PRIORITY_LOW",
+                Self::Medium => "PRIORITY_MEDIUM",
+                Self::High => "PRIORITY_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -930,11 +927,11 @@ pub mod create_cluster_metadata {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Pending => "PENDING",
-                    State::Copying => "COPYING",
-                    State::Completed => "COMPLETED",
-                    State::Cancelled => "CANCELLED",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Pending => "PENDING",
+                    Self::Copying => "COPYING",
+                    Self::Completed => "COMPLETED",
+                    Self::Cancelled => "CANCELLED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1140,7 +1137,13 @@ pub struct ListHotTabletsResponse {
 }
 /// Generated client implementations.
 pub mod bigtable_instance_admin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for creating, configuring, and deleting Cloud Bigtable Instances and
@@ -1233,8 +1236,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1261,8 +1263,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1292,8 +1293,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1322,8 +1322,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1354,8 +1353,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1382,8 +1380,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1419,8 +1416,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1447,8 +1443,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1478,8 +1473,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1513,8 +1507,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1555,8 +1548,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1583,8 +1575,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1611,8 +1602,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1639,8 +1629,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1670,8 +1659,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1701,8 +1689,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1729,8 +1716,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1763,8 +1749,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1797,8 +1782,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1832,8 +1816,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1864,8 +1847,7 @@ pub mod bigtable_instance_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1894,21 +1876,21 @@ pub mod bigtable_instance_admin_client {
 ///
 /// Each encoding also defines the following properties:
 ///
-/// * Order-preserving: Does the encoded value sort consistently with the
-///   original typed value? Note that Bigtable will always sort data based on
-///   the raw encoded value, *not* the decoded type.
-///   * Example: BYTES values sort in the same order as their raw encodings.
-///   * Counterexample: Encoding INT64 as a fixed-width decimal string does
-///     *not* preserve sort order when dealing with negative numbers.
-///     `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
-/// * Self-delimiting: If we concatenate two encoded values, can we always tell
-///   where the first one ends and the second one begins?
-///   * Example: If we encode INT64s to fixed-width STRINGs, the first value
-///     will always contain exactly N digits, possibly preceded by a sign.
-///   * Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
-///     no way to tell where the first one ends.
-/// * Compatibility: Which other systems have matching encoding schemes? For
-///   example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+///   * Order-preserving: Does the encoded value sort consistently with the
+///     original typed value? Note that Bigtable will always sort data based on
+///     the raw encoded value, *not* the decoded type.
+///      - Example: BYTES values sort in the same order as their raw encodings.
+///      - Counterexample: Encoding INT64 as a fixed-width decimal string does
+///        *not* preserve sort order when dealing with negative numbers.
+///        `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
+///   * Self-delimiting: If we concatenate two encoded values, can we always tell
+///     where the first one ends and the second one begins?
+///      - Example: If we encode INT64s to fixed-width STRINGs, the first value
+///        will always contain exactly N digits, possibly preceded by a sign.
+///      - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
+///        no way to tell where the first one ends.
+///   * Compatibility: Which other systems have matching encoding schemes? For
+///     example, does this encoding have a GoogleSQL equivalent? HBase? Java?
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Type {
     /// The kind of type that this represents.
@@ -1937,7 +1919,6 @@ pub mod r#type {
         /// Nested message and enum types in `Encoding`.
         pub mod encoding {
             /// Leaves the value "as-is"
-            ///
             /// * Order-preserving? Yes
             /// * Self-delimiting? No
             /// * Compatibility? N/A
@@ -1975,13 +1956,12 @@ pub mod r#type {
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Utf8Raw {}
             /// UTF-8 encoding
-            ///
             /// * Order-preserving? Yes (code point order)
             /// * Self-delimiting? No
             /// * Compatibility?
-            ///   * BigQuery Federation `TEXT` encoding
-            ///   * HBase `Bytes.toBytes`
-            ///   * Java `String#getBytes(StandardCharsets.UTF_8)`
+            ///     - BigQuery Federation `TEXT` encoding
+            ///     - HBase `Bytes.toBytes`
+            ///     - Java `String#getBytes(StandardCharsets.UTF_8)`
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Utf8Bytes {}
             /// Which encoding to use.
@@ -2017,13 +1997,12 @@ pub mod r#type {
         pub mod encoding {
             /// Encodes the value as an 8-byte big endian twos complement `Bytes`
             /// value.
-            ///
             /// * Order-preserving? No (positive values only)
             /// * Self-delimiting? Yes
             /// * Compatibility?
-            ///   * BigQuery Federation `BINARY` encoding
-            ///   * HBase `Bytes.toBytes`
-            ///   * Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+            ///     - BigQuery Federation `BINARY` encoding
+            ///     - HBase `Bytes.toBytes`
+            ///     - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct BigEndianBytes {
                 /// Deprecated: ignored if set.
@@ -2099,7 +2078,7 @@ pub mod r#type {
     /// in that order).
     /// Normally encoded Map values won't have repeated keys, however, clients are
     /// expected to handle the case in which they do. If the same key appears
-    /// multiple times, the *last* value takes precedence.
+    /// multiple times, the _last_ value takes precedence.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Map {
         /// The type of a map key.
@@ -2361,12 +2340,12 @@ pub mod table {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ReplicationState::StateNotKnown => "STATE_NOT_KNOWN",
-                    ReplicationState::Initializing => "INITIALIZING",
-                    ReplicationState::PlannedMaintenance => "PLANNED_MAINTENANCE",
-                    ReplicationState::UnplannedMaintenance => "UNPLANNED_MAINTENANCE",
-                    ReplicationState::Ready => "READY",
-                    ReplicationState::ReadyOptimizing => "READY_OPTIMIZING",
+                    Self::StateNotKnown => "STATE_NOT_KNOWN",
+                    Self::Initializing => "INITIALIZING",
+                    Self::PlannedMaintenance => "PLANNED_MAINTENANCE",
+                    Self::UnplannedMaintenance => "UNPLANNED_MAINTENANCE",
+                    Self::Ready => "READY",
+                    Self::ReadyOptimizing => "READY_OPTIMIZING",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2423,8 +2402,8 @@ pub mod table {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TimestampGranularity::Unspecified => "TIMESTAMP_GRANULARITY_UNSPECIFIED",
-                TimestampGranularity::Millis => "MILLIS",
+                Self::Unspecified => "TIMESTAMP_GRANULARITY_UNSPECIFIED",
+                Self::Millis => "MILLIS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2471,12 +2450,12 @@ pub mod table {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                View::Unspecified => "VIEW_UNSPECIFIED",
-                View::NameOnly => "NAME_ONLY",
-                View::SchemaView => "SCHEMA_VIEW",
-                View::ReplicationView => "REPLICATION_VIEW",
-                View::EncryptionView => "ENCRYPTION_VIEW",
-                View::Full => "FULL",
+                Self::Unspecified => "VIEW_UNSPECIFIED",
+                Self::NameOnly => "NAME_ONLY",
+                Self::SchemaView => "SCHEMA_VIEW",
+                Self::ReplicationView => "REPLICATION_VIEW",
+                Self::EncryptionView => "ENCRYPTION_VIEW",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2586,10 +2565,10 @@ pub mod authorized_view {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResponseView::Unspecified => "RESPONSE_VIEW_UNSPECIFIED",
-                ResponseView::NameOnly => "NAME_ONLY",
-                ResponseView::Basic => "BASIC",
-                ResponseView::Full => "FULL",
+                Self::Unspecified => "RESPONSE_VIEW_UNSPECIFIED",
+                Self::NameOnly => "NAME_ONLY",
+                Self::Basic => "BASIC",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2629,9 +2608,9 @@ pub struct ColumnFamily {
     ///
     /// `Aggregate` can only be set at family creation and is immutable afterwards.
     ///
-    /// If `value_type` is `Aggregate`, written data must be compatible with:
     ///
-    /// * `value_type.input_type` for `AddInput` mutations
+    /// If `value_type` is `Aggregate`, written data must be compatible with:
+    ///   * `value_type.input_type` for `AddInput` mutations
     #[prost(message, optional, tag = "3")]
     pub value_type: ::core::option::Option<Type>,
 }
@@ -2734,11 +2713,9 @@ pub mod encryption_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EncryptionType::Unspecified => "ENCRYPTION_TYPE_UNSPECIFIED",
-                EncryptionType::GoogleDefaultEncryption => "GOOGLE_DEFAULT_ENCRYPTION",
-                EncryptionType::CustomerManagedEncryption => {
-                    "CUSTOMER_MANAGED_ENCRYPTION"
-                }
+                Self::Unspecified => "ENCRYPTION_TYPE_UNSPECIFIED",
+                Self::GoogleDefaultEncryption => "GOOGLE_DEFAULT_ENCRYPTION",
+                Self::CustomerManagedEncryption => "CUSTOMER_MANAGED_ENCRYPTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2822,9 +2799,9 @@ pub mod snapshot {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::NotKnown => "STATE_NOT_KNOWN",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
+                Self::NotKnown => "STATE_NOT_KNOWN",
+                Self::Ready => "READY",
+                Self::Creating => "CREATING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2843,7 +2820,8 @@ pub mod snapshot {
 pub struct Backup {
     /// A globally unique identifier for the backup which cannot be
     /// changed. Values are of the form
-    /// `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
+    /// `projects/{project}/instances/{instance}/clusters/{cluster}/
+    ///     backups/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
     /// The final segment of the name must be between 1 and 50 characters
     /// in length.
     ///
@@ -2866,16 +2844,15 @@ pub struct Backup {
     /// Required. The expiration time of the backup.
     /// When creating a backup or updating its `expire_time`, the value must be
     /// greater than the backup creation time by:
-    ///
-    /// * At least 6 hours
-    /// * At most 90 days
+    /// - At least 6 hours
+    /// - At most 90 days
     ///
     /// Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
     #[prost(message, optional, tag = "3")]
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. `start_time` is the time that the backup was started
     /// (i.e. approximately the time the
-    /// \[CreateBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup\]
+    /// [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]
     /// request is received).  The row data in this backup will be no older than
     /// this timestamp.
     #[prost(message, optional, tag = "4")]
@@ -2900,8 +2877,7 @@ pub struct Backup {
     /// Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the
     /// hot backup to a standard backup. This value must be greater than the backup
     /// creation time by:
-    ///
-    /// * At least 24 hours
+    /// - At least 24 hours
     ///
     /// This field only applies for hot backups. When creating or updating a
     /// standard backup, attempting to set this field will fail the request.
@@ -2939,9 +2915,9 @@ pub mod backup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2987,9 +2963,9 @@ pub mod backup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BackupType::Unspecified => "BACKUP_TYPE_UNSPECIFIED",
-                BackupType::Standard => "STANDARD",
-                BackupType::Hot => "HOT",
+                Self::Unspecified => "BACKUP_TYPE_UNSPECIFIED",
+                Self::Standard => "STANDARD",
+                Self::Hot => "HOT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3043,8 +3019,8 @@ impl RestoreSourceType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RestoreSourceType::Unspecified => "RESTORE_SOURCE_TYPE_UNSPECIFIED",
-            RestoreSourceType::Backup => "BACKUP",
+            Self::Unspecified => "RESTORE_SOURCE_TYPE_UNSPECIFIED",
+            Self::Backup => "BACKUP",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3057,7 +3033,7 @@ impl RestoreSourceType {
     }
 }
 /// The request for
-/// \[RestoreTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable\].
+/// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreTableRequest {
     /// Required. The name of the instance in which to create the restored
@@ -3086,7 +3062,7 @@ pub mod restore_table_request {
     }
 }
 /// Metadata type for the long-running operation returned by
-/// \[RestoreTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable\].
+/// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreTableMetadata {
     /// Name of the table being created and restored to.
@@ -3098,8 +3074,8 @@ pub struct RestoreTableMetadata {
     /// If exists, the name of the long-running operation that will be used to
     /// track the post-restore optimization process to optimize the performance of
     /// the restored table. The metadata type of the long-running operation is
-    /// \[OptimizeRestoreTableMetadata\]\[\]. The response type is
-    /// \[Empty\]\[google.protobuf.Empty\]. This long-running operation may be
+    /// [OptimizeRestoreTableMetadata][]. The response type is
+    /// [Empty][google.protobuf.Empty]. This long-running operation may be
     /// automatically created by the system if applicable after the
     /// RestoreTable long-running operation completes successfully. This operation
     /// may not be created if the table is already optimized or the restore was
@@ -3107,13 +3083,13 @@ pub struct RestoreTableMetadata {
     #[prost(string, tag = "4")]
     pub optimize_table_operation_name: ::prost::alloc::string::String,
     /// The progress of the
-    /// \[RestoreTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable\]
+    /// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
     /// operation.
     #[prost(message, optional, tag = "5")]
     pub progress: ::core::option::Option<OperationProgress>,
     /// Information about the source used to restore the table, as specified by
     /// `source` in
-    /// \[RestoreTableRequest\]\[google.bigtable.admin.v2.RestoreTableRequest\].
+    /// [RestoreTableRequest][google.bigtable.admin.v2.RestoreTableRequest].
     #[prost(oneof = "restore_table_metadata::SourceInfo", tags = "3")]
     pub source_info: ::core::option::Option<restore_table_metadata::SourceInfo>,
 }
@@ -3121,7 +3097,7 @@ pub struct RestoreTableMetadata {
 pub mod restore_table_metadata {
     /// Information about the source used to restore the table, as specified by
     /// `source` in
-    /// \[RestoreTableRequest\]\[google.bigtable.admin.v2.RestoreTableRequest\].
+    /// [RestoreTableRequest][google.bigtable.admin.v2.RestoreTableRequest].
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum SourceInfo {
         #[prost(message, tag = "3")]
@@ -3142,7 +3118,7 @@ pub struct OptimizeRestoredTableMetadata {
     pub progress: ::core::option::Option<OperationProgress>,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.CreateTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.CreateTable\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateTable][google.bigtable.admin.v2.BigtableTableAdmin.CreateTable]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTableRequest {
     /// Required. The unique name of the instance in which to create the table.
@@ -3165,14 +3141,14 @@ pub struct CreateTableRequest {
     /// Example:
     ///
     /// * Row keys := `["a", "apple", "custom", "customer_1", "customer_2",`
-    ///   `"other", "zz"]`
+    ///                 `"other", "zz"]`
     /// * initial_split_keys := `\["apple", "customer_1", "customer_2", "other"\]`
     /// * Key assignment:
-    ///   * Tablet 1 `[, apple)                => {"a"}.`
-    ///   * Tablet 2 `[apple, customer_1)      => {"apple", "custom"}.`
-    ///   * Tablet 3 `[customer_1, customer_2) => {"customer_1"}.`
-    ///   * Tablet 4 `[customer_2, other)      => {"customer_2"}.`
-    ///   * Tablet 5 `[other, )                => {"other", "zz"}.`
+    ///      - Tablet 1 `[, apple)                => {"a"}.`
+    ///      - Tablet 2 `[apple, customer_1)      => {"apple", "custom"}.`
+    ///      - Tablet 3 `[customer_1, customer_2) => {"customer_1"}.`
+    ///      - Tablet 4 `[customer_2, other)      => {"customer_2"}.`
+    ///      - Tablet 5 `[other, )                => {"other", "zz"}.`
     #[prost(message, repeated, tag = "4")]
     pub initial_splits: ::prost::alloc::vec::Vec<create_table_request::Split>,
 }
@@ -3187,7 +3163,7 @@ pub mod create_table_request {
     }
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.CreateTableFromSnapshot\]\[google.bigtable.admin.v2.BigtableTableAdmin.CreateTableFromSnapshot\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateTableFromSnapshot][google.bigtable.admin.v2.BigtableTableAdmin.CreateTableFromSnapshot]
 ///
 /// Note: This is a private alpha release of Cloud Bigtable snapshots. This
 /// feature is not currently available to most Cloud Bigtable customers. This
@@ -3211,7 +3187,7 @@ pub struct CreateTableFromSnapshotRequest {
     pub source_snapshot: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange\]\[google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange][google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DropRowRangeRequest {
     /// Required. The unique name of the table on which to drop a range of rows.
@@ -3238,7 +3214,7 @@ pub mod drop_row_range_request {
     }
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ListTables\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListTables\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListTables][google.bigtable.admin.v2.BigtableTableAdmin.ListTables]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTablesRequest {
     /// Required. The unique name of the instance for which tables should be
@@ -3265,7 +3241,7 @@ pub struct ListTablesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ListTables\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListTables\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListTables][google.bigtable.admin.v2.BigtableTableAdmin.ListTables]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTablesResponse {
     /// The tables present in the requested instance.
@@ -3278,7 +3254,7 @@ pub struct ListTablesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.GetTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.GetTable\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GetTable][google.bigtable.admin.v2.BigtableTableAdmin.GetTable]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTableRequest {
     /// Required. The unique name of the requested table.
@@ -3292,7 +3268,7 @@ pub struct GetTableRequest {
     pub view: i32,
 }
 /// The request for
-/// \[UpdateTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable\].
+/// [UpdateTable][google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTableRequest {
     /// Required. The table to update.
@@ -3302,7 +3278,7 @@ pub struct UpdateTableRequest {
     /// Required. The list of fields to update.
     /// A mask specifying which fields (e.g. `change_stream_config`) in the `table`
     /// field should be updated. This mask is relative to the `table` field, not to
-    /// the request message. The wildcard (\*) path is currently not supported.
+    /// the request message. The wildcard (*) path is currently not supported.
     /// Currently UpdateTable is only supported for the following fields:
     ///
     /// * `change_stream_config`
@@ -3315,7 +3291,7 @@ pub struct UpdateTableRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Metadata type for the operation returned by
-/// \[UpdateTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable\].
+/// [UpdateTable][google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTableMetadata {
     /// The name of the table being updated.
@@ -3329,7 +3305,7 @@ pub struct UpdateTableMetadata {
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTableRequest {
     /// Required. The unique name of the table to be deleted.
@@ -3339,7 +3315,7 @@ pub struct DeleteTableRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteTableRequest {
     /// Required. The unique name of the table to be restored.
@@ -3349,7 +3325,7 @@ pub struct UndeleteTableRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Metadata type for the operation returned by
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable\].
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteTableMetadata {
     /// The name of the table being restored.
@@ -3363,7 +3339,7 @@ pub struct UndeleteTableMetadata {
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies\]\[google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies][google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModifyColumnFamiliesRequest {
     /// Required. The unique name of the table whose families should be modified.
@@ -3421,7 +3397,7 @@ pub mod modify_column_families_request {
     }
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken\]\[google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken][google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateConsistencyTokenRequest {
     /// Required. The unique name of the Table for which to create a consistency
@@ -3431,7 +3407,7 @@ pub struct GenerateConsistencyTokenRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken\]\[google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken][google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateConsistencyTokenResponse {
     /// The generated consistency token.
@@ -3439,7 +3415,7 @@ pub struct GenerateConsistencyTokenResponse {
     pub consistency_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency\]\[google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency][google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckConsistencyRequest {
     /// Required. The unique name of the Table for which to check replication
@@ -3482,7 +3458,7 @@ pub struct StandardReadRemoteWrites {}
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DataBoostReadLocalWrites {}
 /// Response message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency\]\[google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency][google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CheckConsistencyResponse {
     /// True only if the token is consistent. A token is consistent if replication
@@ -3491,7 +3467,7 @@ pub struct CheckConsistencyResponse {
     pub consistent: bool,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable\]\[google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable][google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable]
 ///
 /// Note: This is a private alpha release of Cloud Bigtable snapshots. This
 /// feature is not currently available to most Cloud Bigtable customers. This
@@ -3526,7 +3502,7 @@ pub struct SnapshotTableRequest {
     pub description: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.GetSnapshot\]\[google.bigtable.admin.v2.BigtableTableAdmin.GetSnapshot\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GetSnapshot][google.bigtable.admin.v2.BigtableTableAdmin.GetSnapshot]
 ///
 /// Note: This is a private alpha release of Cloud Bigtable snapshots. This
 /// feature is not currently available to most Cloud Bigtable customers. This
@@ -3541,7 +3517,7 @@ pub struct GetSnapshotRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots][google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots]
 ///
 /// Note: This is a private alpha release of Cloud Bigtable snapshots. This
 /// feature is not currently available to most Cloud Bigtable customers. This
@@ -3565,7 +3541,7 @@ pub struct ListSnapshotsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots][google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots]
 ///
 /// Note: This is a private alpha release of Cloud Bigtable snapshots. This
 /// feature is not currently available to most Cloud Bigtable customers. This
@@ -3583,7 +3559,7 @@ pub struct ListSnapshotsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.DeleteSnapshot\]\[google.bigtable.admin.v2.BigtableTableAdmin.DeleteSnapshot\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteSnapshot][google.bigtable.admin.v2.BigtableTableAdmin.DeleteSnapshot]
 ///
 /// Note: This is a private alpha release of Cloud Bigtable snapshots. This
 /// feature is not currently available to most Cloud Bigtable customers. This
@@ -3635,7 +3611,7 @@ pub struct CreateTableFromSnapshotMetadata {
     pub finish_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The request for
-/// \[CreateBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup\].
+/// [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBackupRequest {
     /// Required. This must be one of the clusters in the instance in which this
@@ -3648,7 +3624,7 @@ pub struct CreateBackupRequest {
     /// the full backup name, of the form:
     /// `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
     /// This string must be between 1 and 50 characters in length and match the
-    /// regex \[*a-zA-Z0-9\]\[-*.a-zA-Z0-9\]\*.
+    /// regex [_a-zA-Z0-9][-_.a-zA-Z0-9]*.
     #[prost(string, tag = "2")]
     pub backup_id: ::prost::alloc::string::String,
     /// Required. The backup to create.
@@ -3656,7 +3632,7 @@ pub struct CreateBackupRequest {
     pub backup: ::core::option::Option<Backup>,
 }
 /// Metadata type for the operation returned by
-/// \[CreateBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup\].
+/// [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBackupMetadata {
     /// The name of the backup being created.
@@ -3673,14 +3649,14 @@ pub struct CreateBackupMetadata {
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The request for
-/// \[UpdateBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.UpdateBackup\].
+/// [UpdateBackup][google.bigtable.admin.v2.BigtableTableAdmin.UpdateBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBackupRequest {
     /// Required. The backup to update. `backup.name`, and the fields to be updated
     /// as specified by `update_mask` are required. Other fields are ignored.
     /// Update is only supported for the following fields:
     ///
-    /// * `backup.expire_time`.
+    ///   * `backup.expire_time`.
     #[prost(message, optional, tag = "1")]
     pub backup: ::core::option::Option<Backup>,
     /// Required. A mask specifying which fields (e.g. `expire_time`) in the
@@ -3692,7 +3668,7 @@ pub struct UpdateBackupRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request for
-/// \[GetBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.GetBackup\].
+/// [GetBackup][google.bigtable.admin.v2.BigtableTableAdmin.GetBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBackupRequest {
     /// Required. Name of the backup.
@@ -3702,7 +3678,7 @@ pub struct GetBackupRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[DeleteBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.DeleteBackup\].
+/// [DeleteBackup][google.bigtable.admin.v2.BigtableTableAdmin.DeleteBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBackupRequest {
     /// Required. Name of the backup to delete.
@@ -3712,7 +3688,7 @@ pub struct DeleteBackupRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[ListBackups\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListBackups\].
+/// [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsRequest {
     /// Required. The cluster to list backups from.  Values are of the
@@ -3725,7 +3701,7 @@ pub struct ListBackupsRequest {
     /// The expression must specify the field name, a comparison operator,
     /// and the value that you want to use for filtering. The value must be a
     /// string, a number, or a boolean. The comparison operator must be
-    /// \<, >, \<=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
+    /// <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
     /// roughly synonymous with equality. Filter rules are case insensitive.
     ///
     /// The fields eligible for filtering are:
@@ -3747,18 +3723,18 @@ pub struct ListBackupsRequest {
     /// * `name:"exact"` --> The backup's name is the string "exact".
     /// * `name:howl` --> The backup's name contains the string "howl".
     /// * `source_table:prod`
-    ///   --> The source_table's name contains the string "prod".
+    ///         --> The source_table's name contains the string "prod".
     /// * `state:CREATING` --> The backup is pending creation.
     /// * `state:READY` --> The backup is fully created and ready for use.
     /// * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
-    ///   --> The backup name contains the string "howl" and start_time
-    ///   of the backup is before 2018-03-28T14:50:00Z.
+    ///         --> The backup name contains the string "howl" and start_time
+    ///             of the backup is before 2018-03-28T14:50:00Z.
     /// * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// An expression for specifying the sort order of the results of the request.
     /// The string value should specify one or more fields in
-    /// \[Backup\]\[google.bigtable.admin.v2.Backup\]. The full syntax is described at
+    /// [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
     /// <https://aip.dev/132#ordering.>
     ///
     /// Fields supported are:
@@ -3785,28 +3761,28 @@ pub struct ListBackupsRequest {
     #[prost(int32, tag = "4")]
     pub page_size: i32,
     /// If non-empty, `page_token` should contain a
-    /// \[next_page_token\]\[google.bigtable.admin.v2.ListBackupsResponse.next_page_token\]
+    /// [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
     /// from a previous
-    /// \[ListBackupsResponse\]\[google.bigtable.admin.v2.ListBackupsResponse\] to the
+    /// [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
     /// same `parent` and with the same `filter`.
     #[prost(string, tag = "5")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// The response for
-/// \[ListBackups\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListBackups\].
+/// [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsResponse {
     /// The list of matching backups.
     #[prost(message, repeated, tag = "1")]
     pub backups: ::prost::alloc::vec::Vec<Backup>,
     /// `next_page_token` can be sent in a subsequent
-    /// \[ListBackups\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListBackups\] call
+    /// [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call
     /// to fetch more of the matching backups.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[CopyBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup\].
+/// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CopyBackupRequest {
     /// Required. The name of the destination cluster that will contain the backup
@@ -3819,7 +3795,7 @@ pub struct CopyBackupRequest {
     /// name, of the form:
     /// `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
     /// This string must be between 1 and 50 characters in length and match the
-    /// regex \[*a-zA-Z0-9\]\[-*.a-zA-Z0-9\]\*.
+    /// regex [_a-zA-Z0-9][-_.a-zA-Z0-9]*.
     #[prost(string, tag = "2")]
     pub backup_id: ::prost::alloc::string::String,
     /// Required. The source backup to be copied from.
@@ -3840,7 +3816,7 @@ pub struct CopyBackupRequest {
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Metadata type for the google.longrunning.Operation returned by
-/// \[CopyBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup\].
+/// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CopyBackupMetadata {
     /// The name of the backup being created through the copy operation.
@@ -3852,13 +3828,13 @@ pub struct CopyBackupMetadata {
     #[prost(message, optional, tag = "2")]
     pub source_backup_info: ::core::option::Option<BackupInfo>,
     /// The progress of the
-    /// \[CopyBackup\]\[google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup\]
+    /// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]
     /// operation.
     #[prost(message, optional, tag = "3")]
     pub progress: ::core::option::Option<OperationProgress>,
 }
 /// The request for
-/// \[CreateAuthorizedView\]\[google.bigtable.admin.v2.BigtableTableAdmin.CreateAuthorizedView\]
+/// [CreateAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.CreateAuthorizedView]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAuthorizedViewRequest {
     /// Required. This is the name of the table the AuthorizedView belongs to.
@@ -3890,7 +3866,7 @@ pub struct CreateAuthorizedViewMetadata {
     pub finish_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews][google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAuthorizedViewsRequest {
     /// Required. The unique name of the table for which AuthorizedViews should be
@@ -3918,7 +3894,7 @@ pub struct ListAuthorizedViewsRequest {
     pub view: i32,
 }
 /// Response message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews\]\[google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews][google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAuthorizedViewsResponse {
     /// The AuthorizedViews present in the requested table.
@@ -3931,7 +3907,7 @@ pub struct ListAuthorizedViewsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.GetAuthorizedView\]\[google.bigtable.admin.v2.BigtableTableAdmin.GetAuthorizedView\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GetAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.GetAuthorizedView]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAuthorizedViewRequest {
     /// Required. The unique name of the requested AuthorizedView.
@@ -3945,13 +3921,13 @@ pub struct GetAuthorizedViewRequest {
     pub view: i32,
 }
 /// The request for
-/// \[UpdateAuthorizedView\]\[google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView\].
+/// [UpdateAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAuthorizedViewRequest {
     /// Required. The AuthorizedView to update. The `name` in `authorized_view` is
     /// used to identify the AuthorizedView. AuthorizedView name must in this
     /// format
-    /// projects/<project>/instances/<instance>/tables/<table>/authorizedViews/\<authorized_view>
+    /// projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
     #[prost(message, optional, tag = "1")]
     pub authorized_view: ::core::option::Option<AuthorizedView>,
     /// Optional. The list of fields to update.
@@ -3969,7 +3945,7 @@ pub struct UpdateAuthorizedViewRequest {
     pub ignore_warnings: bool,
 }
 /// Metadata for the google.longrunning.Operation returned by
-/// \[UpdateAuthorizedView\]\[google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView\].
+/// [UpdateAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAuthorizedViewMetadata {
     /// The request that prompted the initiation of this UpdateAuthorizedView
@@ -3984,7 +3960,7 @@ pub struct UpdateAuthorizedViewMetadata {
     pub finish_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Request message for
-/// \[google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView\]\[google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView\]
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAuthorizedViewRequest {
     /// Required. The unique name of the AuthorizedView to be deleted.
@@ -4001,10 +3977,17 @@ pub struct DeleteAuthorizedViewRequest {
 }
 /// Generated client implementations.
 pub mod bigtable_table_admin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for creating, configuring, and deleting Cloud Bigtable tables.
+    ///
     ///
     /// Provides access to the table schemas only, not the data stored within
     /// the tables.
@@ -4088,8 +4071,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4126,8 +4108,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4157,8 +4138,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4185,8 +4165,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4216,8 +4195,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4244,8 +4222,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4275,8 +4252,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4306,8 +4282,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4337,8 +4312,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4365,8 +4339,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4396,8 +4369,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4424,8 +4396,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4455,8 +4426,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4485,8 +4455,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4519,8 +4488,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4552,8 +4520,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4590,8 +4557,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4624,8 +4590,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4661,8 +4626,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4695,8 +4659,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4715,12 +4678,12 @@ pub mod bigtable_table_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Starts creating a new Cloud Bigtable Backup.  The returned backup
-        /// \[long-running operation\]\[google.longrunning.Operation\] can be used to
+        /// [long-running operation][google.longrunning.Operation] can be used to
         /// track creation of the backup. The
-        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
-        /// \[CreateBackupMetadata\]\[google.bigtable.admin.v2.CreateBackupMetadata\]. The
-        /// \[response\]\[google.longrunning.Operation.response\] field type is
-        /// \[Backup\]\[google.bigtable.admin.v2.Backup\], if successful. Cancelling the
+        /// [metadata][google.longrunning.Operation.metadata] field type is
+        /// [CreateBackupMetadata][google.bigtable.admin.v2.CreateBackupMetadata]. The
+        /// [response][google.longrunning.Operation.response] field type is
+        /// [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the
         /// returned operation will stop the creation and delete the backup.
         pub async fn create_backup(
             &mut self,
@@ -4733,8 +4696,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4761,8 +4723,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4789,8 +4750,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4817,8 +4777,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4849,8 +4808,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4869,12 +4827,12 @@ pub mod bigtable_table_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Create a new table by restoring from a completed backup.  The
-        /// returned table \[long-running operation\]\[google.longrunning.Operation\] can
+        /// returned table [long-running operation][google.longrunning.Operation] can
         /// be used to track the progress of the operation, and to cancel it.  The
-        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
-        /// \[RestoreTableMetadata\]\[google.bigtable.admin.v2.RestoreTableMetadata\].  The
-        /// \[response\]\[google.longrunning.Operation.response\] type is
-        /// \[Table\]\[google.bigtable.admin.v2.Table\], if successful.
+        /// [metadata][google.longrunning.Operation.metadata] field type is
+        /// [RestoreTableMetadata][google.bigtable.admin.v2.RestoreTableMetadata].  The
+        /// [response][google.longrunning.Operation.response] type is
+        /// [Table][google.bigtable.admin.v2.Table], if successful.
         pub async fn restore_table(
             &mut self,
             request: impl tonic::IntoRequest<super::RestoreTableRequest>,
@@ -4886,8 +4844,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4918,8 +4875,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4953,8 +4909,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4987,8 +4942,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5023,8 +4977,7 @@ pub mod bigtable_table_admin_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

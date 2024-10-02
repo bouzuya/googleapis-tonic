@@ -29,18 +29,18 @@ pub struct AccessTuple {
     #[prost(string, tag = "3")]
     pub permission: ::prost::alloc::string::String,
 }
-/// Details about how a specific IAM \[Policy\]\[google.iam.v1.Policy\] contributed
+/// Details about how a specific IAM [Policy][google.iam.v1.Policy] contributed
 /// to the access check.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplainedPolicy {
-    /// Indicates whether *this policy* provides the specified permission to the
+    /// Indicates whether _this policy_ provides the specified permission to the
     /// specified principal for the specified resource.
     ///
-    /// This field does *not* indicate whether the principal actually has the
+    /// This field does _not_ indicate whether the principal actually has the
     /// permission for the resource. There might be another policy that overrides
     /// this policy. To determine whether the principal actually has the
     /// permission, use the `access` field in the
-    /// \[TroubleshootIamPolicyResponse\]\[IamChecker.TroubleshootIamPolicyResponse\].
+    /// [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
     #[prost(enumeration = "AccessState", tag = "1")]
     pub access: i32,
     /// The full resource name that identifies the resource. For example,
@@ -67,7 +67,7 @@ pub struct ExplainedPolicy {
     #[prost(message, repeated, tag = "4")]
     pub binding_explanations: ::prost::alloc::vec::Vec<BindingExplanation>,
     /// The relevance of this policy to the overall determination in the
-    /// \[TroubleshootIamPolicyResponse\]\[IamChecker.TroubleshootIamPolicyResponse\].
+    /// [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
     ///
     /// If the sender of the request does not have access to the policy, this field
     /// is omitted.
@@ -78,14 +78,14 @@ pub struct ExplainedPolicy {
 /// a permission.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BindingExplanation {
-    /// Required. Indicates whether *this binding* provides the specified
+    /// Required. Indicates whether _this binding_ provides the specified
     /// permission to the specified principal for the specified resource.
     ///
-    /// This field does *not* indicate whether the principal actually has the
+    /// This field does _not_ indicate whether the principal actually has the
     /// permission for the resource. There might be another binding that overrides
     /// this binding. To determine whether the principal actually has the
     /// permission, use the `access` field in the
-    /// \[TroubleshootIamPolicyResponse\]\[IamChecker.TroubleshootIamPolicyResponse\].
+    /// [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
     #[prost(enumeration = "AccessState", tag = "1")]
     pub access: i32,
     /// The role that this binding grants. For example,
@@ -183,12 +183,10 @@ pub mod binding_explanation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RolePermission::Unspecified => "ROLE_PERMISSION_UNSPECIFIED",
-                RolePermission::Included => "ROLE_PERMISSION_INCLUDED",
-                RolePermission::NotIncluded => "ROLE_PERMISSION_NOT_INCLUDED",
-                RolePermission::UnknownInfoDenied => {
-                    "ROLE_PERMISSION_UNKNOWN_INFO_DENIED"
-                }
+                Self::Unspecified => "ROLE_PERMISSION_UNSPECIFIED",
+                Self::Included => "ROLE_PERMISSION_INCLUDED",
+                Self::NotIncluded => "ROLE_PERMISSION_NOT_INCLUDED",
+                Self::UnknownInfoDenied => "ROLE_PERMISSION_UNKNOWN_INFO_DENIED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -222,9 +220,9 @@ pub mod binding_explanation {
         /// directly or indirectly. For example:
         ///
         /// * A principal is included directly if that principal is listed in the
-        ///   binding.
+        ///    binding.
         /// * A principal is included indirectly if that principal is in a Google
-        ///   group or Google Workspace domain that is listed in the binding.
+        ///    group or Google Workspace domain that is listed in the binding.
         Included = 1,
         /// The binding does not include the principal.
         NotIncluded = 2,
@@ -241,11 +239,11 @@ pub mod binding_explanation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Membership::Unspecified => "MEMBERSHIP_UNSPECIFIED",
-                Membership::Included => "MEMBERSHIP_INCLUDED",
-                Membership::NotIncluded => "MEMBERSHIP_NOT_INCLUDED",
-                Membership::UnknownInfoDenied => "MEMBERSHIP_UNKNOWN_INFO_DENIED",
-                Membership::UnknownUnsupported => "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
+                Self::Unspecified => "MEMBERSHIP_UNSPECIFIED",
+                Self::Included => "MEMBERSHIP_INCLUDED",
+                Self::NotIncluded => "MEMBERSHIP_NOT_INCLUDED",
+                Self::UnknownInfoDenied => "MEMBERSHIP_UNKNOWN_INFO_DENIED",
+                Self::UnknownUnsupported => "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -285,11 +283,11 @@ impl AccessState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AccessState::Unspecified => "ACCESS_STATE_UNSPECIFIED",
-            AccessState::Granted => "GRANTED",
-            AccessState::NotGranted => "NOT_GRANTED",
-            AccessState::UnknownConditional => "UNKNOWN_CONDITIONAL",
-            AccessState::UnknownInfoDenied => "UNKNOWN_INFO_DENIED",
+            Self::Unspecified => "ACCESS_STATE_UNSPECIFIED",
+            Self::Granted => "GRANTED",
+            Self::NotGranted => "NOT_GRANTED",
+            Self::UnknownConditional => "UNKNOWN_CONDITIONAL",
+            Self::UnknownInfoDenied => "UNKNOWN_INFO_DENIED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -326,9 +324,9 @@ impl HeuristicRelevance {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            HeuristicRelevance::Unspecified => "HEURISTIC_RELEVANCE_UNSPECIFIED",
-            HeuristicRelevance::Normal => "NORMAL",
-            HeuristicRelevance::High => "HIGH",
+            Self::Unspecified => "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            Self::Normal => "NORMAL",
+            Self::High => "HIGH",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -342,7 +340,7 @@ impl HeuristicRelevance {
     }
 }
 /// Request for
-/// \[TroubleshootIamPolicy\]\[google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy\].
+/// [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TroubleshootIamPolicyRequest {
     /// The information to use for checking whether a principal has a permission
@@ -351,7 +349,7 @@ pub struct TroubleshootIamPolicyRequest {
     pub access_tuple: ::core::option::Option<AccessTuple>,
 }
 /// Response for
-/// \[TroubleshootIamPolicy\]\[google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy\].
+/// [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TroubleshootIamPolicyResponse {
     /// Indicates whether the principal has the specified permission for the
@@ -376,7 +374,13 @@ pub struct TroubleshootIamPolicyResponse {
 }
 /// Generated client implementations.
 pub mod iam_checker_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// IAM Policy Troubleshooter service.
@@ -465,8 +469,7 @@ pub mod iam_checker_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -8,9 +8,7 @@
 /// filter expression will match log entries with severities `INFO`, `NOTICE`,
 /// and `WARNING`:
 ///
-/// ```text
-/// severity > DEBUG AND severity <= WARNING
-/// ```
+///      severity > DEBUG AND severity <= WARNING
 ///
 /// If you are writing log entries, you should map other severity encodings to
 /// one of these standard levels. For example, you might map all of Java's FINE,
@@ -46,15 +44,15 @@ impl LogSeverity {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LogSeverity::Default => "DEFAULT",
-            LogSeverity::Debug => "DEBUG",
-            LogSeverity::Info => "INFO",
-            LogSeverity::Notice => "NOTICE",
-            LogSeverity::Warning => "WARNING",
-            LogSeverity::Error => "ERROR",
-            LogSeverity::Critical => "CRITICAL",
-            LogSeverity::Alert => "ALERT",
-            LogSeverity::Emergency => "EMERGENCY",
+            Self::Default => "DEFAULT",
+            Self::Debug => "DEBUG",
+            Self::Info => "INFO",
+            Self::Notice => "NOTICE",
+            Self::Warning => "WARNING",
+            Self::Error => "ERROR",
+            Self::Critical => "CRITICAL",
+            Self::Alert => "ALERT",
+            Self::Emergency => "EMERGENCY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -99,7 +97,8 @@ pub struct HttpRequest {
     #[prost(int64, tag = "5")]
     pub response_size: i64,
     /// The user agent sent by the client. Example:
-    /// `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
+    /// `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET
+    /// CLR 1.0.3705)"`.
     #[prost(string, tag = "6")]
     pub user_agent: ::prost::alloc::string::String,
     /// The IP address (IPv4 or IPv6) of the client that issued the HTTP

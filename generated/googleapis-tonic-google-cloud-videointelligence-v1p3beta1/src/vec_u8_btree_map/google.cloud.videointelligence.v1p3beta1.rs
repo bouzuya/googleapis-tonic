@@ -6,11 +6,11 @@ pub struct AnnotateVideoRequest {
     /// [Cloud Storage](<https://cloud.google.com/storage/>) URIs are
     /// supported. URIs must be specified in the following format:
     /// `gs://bucket-id/object-id` (other URI formats return
-    /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\]). For
+    /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
     /// more information, see [Request
     /// URIs](<https://cloud.google.com/storage/docs/request-endpoints>). To identify
     /// multiple videos, a video URI may include wildcards in the `object-id`.
-    /// Supported wildcards: '\*' to match 0 or more characters;
+    /// Supported wildcards: '*' to match 0 or more characters;
     /// '?' to match 1 character. If unset, the input video should be embedded
     /// in the request as `input_content`. If set, `input_content` must be unset.
     #[prost(string, tag = "1")]
@@ -30,7 +30,7 @@ pub struct AnnotateVideoRequest {
     /// Currently, only [Cloud Storage](<https://cloud.google.com/storage/>)
     /// URIs are supported. These must be specified in the following format:
     /// `gs://bucket-id/object-id` (other URI formats return
-    /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\]). For
+    /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
     /// more information, see [Request
     /// URIs](<https://cloud.google.com/storage/docs/request-endpoints>).
     #[prost(string, tag = "4")]
@@ -565,7 +565,7 @@ pub struct SpeechTranscriptionConfig {
     pub max_alternatives: i32,
     /// Optional. If set to `true`, the server will attempt to filter out
     /// profanities, replacing all but the initial character in each filtered word
-    /// with asterisks, e.g. "f\*\*\*". If set to `false` or omitted, profanities
+    /// with asterisks, e.g. "f***". If set to `false` or omitted, profanities
     /// won't be filtered out.
     #[prost(bool, tag = "3")]
     pub filter_profanity: bool,
@@ -703,15 +703,15 @@ pub struct NormalizedVertex {
 /// Contains list of the corner points in clockwise order starting from
 /// top-left corner. For example, for a rectangular bounding box:
 /// When the text is horizontal it might look like:
-/// 0----1
-/// \|    |
-/// 3----2
+///          0----1
+///          |    |
+///          3----2
 ///
 /// When it's clockwise rotated 180 degrees around the top-left corner it
 /// becomes:
-/// 2----3
-/// \|    |
-/// 1----0
+///          2----3
+///          |    |
+///          1----0
 ///
 /// and the vertex order will still be (0, 1, 2, 3). Note that values can be less
 /// than 0, or greater than 1 due to trignometric calculations for location of
@@ -914,7 +914,7 @@ pub mod streaming_video_config {
 /// `StreamingAnnotateVideoResponse` messages are streamed back to the client.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingAnnotateVideoResponse {
-    /// If set, returns a \[google.rpc.Status\]\[google.rpc.Status\] message that
+    /// If set, returns a [google.rpc.Status][google.rpc.Status] message that
     /// specifies the error for the operation.
     #[prost(message, optional, tag = "1")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
@@ -1027,10 +1027,10 @@ impl LabelDetectionMode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LabelDetectionMode::Unspecified => "LABEL_DETECTION_MODE_UNSPECIFIED",
-            LabelDetectionMode::ShotMode => "SHOT_MODE",
-            LabelDetectionMode::FrameMode => "FRAME_MODE",
-            LabelDetectionMode::ShotAndFrameMode => "SHOT_AND_FRAME_MODE",
+            Self::Unspecified => "LABEL_DETECTION_MODE_UNSPECIFIED",
+            Self::ShotMode => "SHOT_MODE",
+            Self::FrameMode => "FRAME_MODE",
+            Self::ShotAndFrameMode => "SHOT_AND_FRAME_MODE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1068,12 +1068,12 @@ impl Likelihood {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Likelihood::Unspecified => "LIKELIHOOD_UNSPECIFIED",
-            Likelihood::VeryUnlikely => "VERY_UNLIKELY",
-            Likelihood::Unlikely => "UNLIKELY",
-            Likelihood::Possible => "POSSIBLE",
-            Likelihood::Likely => "LIKELY",
-            Likelihood::VeryLikely => "VERY_LIKELY",
+            Self::Unspecified => "LIKELIHOOD_UNSPECIFIED",
+            Self::VeryUnlikely => "VERY_UNLIKELY",
+            Self::Unlikely => "UNLIKELY",
+            Self::Possible => "POSSIBLE",
+            Self::Likely => "LIKELY",
+            Self::VeryLikely => "VERY_LIKELY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1117,24 +1117,18 @@ impl StreamingFeature {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            StreamingFeature::Unspecified => "STREAMING_FEATURE_UNSPECIFIED",
-            StreamingFeature::StreamingLabelDetection => "STREAMING_LABEL_DETECTION",
-            StreamingFeature::StreamingShotChangeDetection => {
-                "STREAMING_SHOT_CHANGE_DETECTION"
-            }
-            StreamingFeature::StreamingExplicitContentDetection => {
+            Self::Unspecified => "STREAMING_FEATURE_UNSPECIFIED",
+            Self::StreamingLabelDetection => "STREAMING_LABEL_DETECTION",
+            Self::StreamingShotChangeDetection => "STREAMING_SHOT_CHANGE_DETECTION",
+            Self::StreamingExplicitContentDetection => {
                 "STREAMING_EXPLICIT_CONTENT_DETECTION"
             }
-            StreamingFeature::StreamingObjectTracking => "STREAMING_OBJECT_TRACKING",
-            StreamingFeature::StreamingAutomlActionRecognition => {
+            Self::StreamingObjectTracking => "STREAMING_OBJECT_TRACKING",
+            Self::StreamingAutomlActionRecognition => {
                 "STREAMING_AUTOML_ACTION_RECOGNITION"
             }
-            StreamingFeature::StreamingAutomlClassification => {
-                "STREAMING_AUTOML_CLASSIFICATION"
-            }
-            StreamingFeature::StreamingAutomlObjectTracking => {
-                "STREAMING_AUTOML_OBJECT_TRACKING"
-            }
+            Self::StreamingAutomlClassification => "STREAMING_AUTOML_CLASSIFICATION",
+            Self::StreamingAutomlObjectTracking => "STREAMING_AUTOML_OBJECT_TRACKING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1194,17 +1188,17 @@ impl Feature {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Feature::Unspecified => "FEATURE_UNSPECIFIED",
-            Feature::LabelDetection => "LABEL_DETECTION",
-            Feature::ShotChangeDetection => "SHOT_CHANGE_DETECTION",
-            Feature::ExplicitContentDetection => "EXPLICIT_CONTENT_DETECTION",
-            Feature::FaceDetection => "FACE_DETECTION",
-            Feature::SpeechTranscription => "SPEECH_TRANSCRIPTION",
-            Feature::TextDetection => "TEXT_DETECTION",
-            Feature::ObjectTracking => "OBJECT_TRACKING",
-            Feature::LogoRecognition => "LOGO_RECOGNITION",
-            Feature::CelebrityRecognition => "CELEBRITY_RECOGNITION",
-            Feature::PersonDetection => "PERSON_DETECTION",
+            Self::Unspecified => "FEATURE_UNSPECIFIED",
+            Self::LabelDetection => "LABEL_DETECTION",
+            Self::ShotChangeDetection => "SHOT_CHANGE_DETECTION",
+            Self::ExplicitContentDetection => "EXPLICIT_CONTENT_DETECTION",
+            Self::FaceDetection => "FACE_DETECTION",
+            Self::SpeechTranscription => "SPEECH_TRANSCRIPTION",
+            Self::TextDetection => "TEXT_DETECTION",
+            Self::ObjectTracking => "OBJECT_TRACKING",
+            Self::LogoRecognition => "LOGO_RECOGNITION",
+            Self::CelebrityRecognition => "CELEBRITY_RECOGNITION",
+            Self::PersonDetection => "PERSON_DETECTION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1227,7 +1221,13 @@ impl Feature {
 }
 /// Generated client implementations.
 pub mod video_intelligence_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements the Video Intelligence API.
@@ -1317,8 +1317,7 @@ pub mod video_intelligence_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1340,7 +1339,13 @@ pub mod video_intelligence_service_client {
 }
 /// Generated client implementations.
 pub mod streaming_video_intelligence_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements streaming Video Intelligence API.
@@ -1433,8 +1438,7 @@ pub mod streaming_video_intelligence_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

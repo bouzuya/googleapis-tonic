@@ -28,7 +28,7 @@ pub struct GetBucketRequest {
     #[prost(int64, optional, tag = "3")]
     pub if_metageneration_not_match: ::core::option::Option<i64>,
     /// Mask specifying which fields to read.
-    /// A "\*" field may be used to indicate all fields.
+    /// A "*" field may be used to indicate all fields.
     /// If no mask is specified, will default to all fields.
     #[prost(message, optional, tag = "5")]
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -86,7 +86,6 @@ pub struct ListBucketsRequest {
     /// Mask specifying which fields to read from each result.
     /// If no mask is specified, will default to all fields except items.owner,
     /// items.acl, and items.default_object_acl.
-    ///
     /// * may be used to mean "all fields".
     #[prost(message, optional, tag = "5")]
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -369,7 +368,6 @@ pub struct ReadObjectRequest {
     /// The checksummed_data field and its children will always be present.
     /// If no mask is specified, will default to all fields except metadata.owner
     /// and metadata.acl.
-    ///
     /// * may be used to mean "all fields".
     #[prost(message, optional, tag = "12")]
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -415,7 +413,6 @@ pub struct GetObjectRequest {
     /// Mask specifying which fields to read.
     /// If no mask is specified, will default to all fields except metadata.acl and
     /// metadata.owner.
-    ///
     /// * may be used to mean "all fields".
     #[prost(message, optional, tag = "10")]
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -716,7 +713,6 @@ pub struct ListObjectsRequest {
     /// Mask specifying which fields to read from each result.
     /// If no mask is specified, will default to all fields except items.acl and
     /// items.owner.
-    ///
     /// * may be used to mean "all fields".
     #[prost(message, optional, tag = "8")]
     pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -1245,37 +1241,37 @@ pub mod service_constants {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Values::Unspecified => "VALUES_UNSPECIFIED",
-                Values::MaxReadChunkBytes => "MAX_READ_CHUNK_BYTES",
-                Values::MaxObjectSizeMb => "MAX_OBJECT_SIZE_MB",
-                Values::MaxCustomMetadataFieldNameBytes => {
+                Self::Unspecified => "VALUES_UNSPECIFIED",
+                Self::MaxReadChunkBytes => "MAX_READ_CHUNK_BYTES",
+                Self::MaxObjectSizeMb => "MAX_OBJECT_SIZE_MB",
+                Self::MaxCustomMetadataFieldNameBytes => {
                     "MAX_CUSTOM_METADATA_FIELD_NAME_BYTES"
                 }
-                Values::MaxCustomMetadataFieldValueBytes => {
+                Self::MaxCustomMetadataFieldValueBytes => {
                     "MAX_CUSTOM_METADATA_FIELD_VALUE_BYTES"
                 }
-                Values::MaxCustomMetadataTotalSizeBytes => {
+                Self::MaxCustomMetadataTotalSizeBytes => {
                     "MAX_CUSTOM_METADATA_TOTAL_SIZE_BYTES"
                 }
-                Values::MaxBucketMetadataTotalSizeBytes => {
+                Self::MaxBucketMetadataTotalSizeBytes => {
                     "MAX_BUCKET_METADATA_TOTAL_SIZE_BYTES"
                 }
-                Values::MaxNotificationConfigsPerBucket => {
+                Self::MaxNotificationConfigsPerBucket => {
                     "MAX_NOTIFICATION_CONFIGS_PER_BUCKET"
                 }
-                Values::MaxNotificationCustomAttributes => {
+                Self::MaxNotificationCustomAttributes => {
                     "MAX_NOTIFICATION_CUSTOM_ATTRIBUTES"
                 }
-                Values::MaxNotificationCustomAttributeKeyLength => {
+                Self::MaxNotificationCustomAttributeKeyLength => {
                     "MAX_NOTIFICATION_CUSTOM_ATTRIBUTE_KEY_LENGTH"
                 }
-                Values::MaxLabelsEntriesCount => "MAX_LABELS_ENTRIES_COUNT",
-                Values::MaxLabelsKeyValueLength => "MAX_LABELS_KEY_VALUE_LENGTH",
-                Values::MaxLabelsKeyValueBytes => "MAX_LABELS_KEY_VALUE_BYTES",
-                Values::MaxObjectIdsPerDeleteObjectsRequest => {
+                Self::MaxLabelsEntriesCount => "MAX_LABELS_ENTRIES_COUNT",
+                Self::MaxLabelsKeyValueLength => "MAX_LABELS_KEY_VALUE_LENGTH",
+                Self::MaxLabelsKeyValueBytes => "MAX_LABELS_KEY_VALUE_BYTES",
+                Self::MaxObjectIdsPerDeleteObjectsRequest => {
                     "MAX_OBJECT_IDS_PER_DELETE_OBJECTS_REQUEST"
                 }
-                Values::SplitTokenMaxValidDays => "SPLIT_TOKEN_MAX_VALID_DAYS",
+                Self::SplitTokenMaxValidDays => "SPLIT_TOKEN_MAX_VALID_DAYS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1345,8 +1341,8 @@ pub struct Bucket {
     /// Immutable. The location of the bucket. Object data for objects in the
     /// bucket resides in physical storage within this region.  Defaults to `US`.
     /// See the
-    /// \[<https://developers.google.com/storage/docs/concepts-techniques#specifyinglocations"\]\[developer's>
-    /// guide\] for the authoritative list. Attempting to update this field after
+    /// [<https://developers.google.com/storage/docs/concepts-techniques#specifyinglocations"][developer's>
+    /// guide] for the authoritative list. Attempting to update this field after
     /// the bucket is created will result in an error.
     #[prost(string, tag = "5")]
     pub location: ::prost::alloc::string::String,
@@ -1381,14 +1377,14 @@ pub struct Bucket {
     #[prost(message, repeated, tag = "9")]
     pub default_object_acl: ::prost::alloc::vec::Vec<ObjectAccessControl>,
     /// The bucket's lifecycle config. See
-    /// \[<https://developers.google.com/storage/docs/lifecycle\]Lifecycle> Management\]
+    /// \[<https://developers.google.com/storage/docs/lifecycle\]Lifecycle> Management]
     /// for more information.
     #[prost(message, optional, tag = "10")]
     pub lifecycle: ::core::option::Option<bucket::Lifecycle>,
     /// Output only. The creation time of the bucket.
     #[prost(message, optional, tag = "11")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// The bucket's \[<https://www.w3.org/TR/cors/\]\[Cross-Origin> Resource Sharing\]
+    /// The bucket's [<https://www.w3.org/TR/cors/][Cross-Origin> Resource Sharing]
     /// (CORS) config.
     #[prost(message, repeated, tag = "12")]
     pub cors: ::prost::alloc::vec::Vec<bucket::Cors>,
@@ -1418,8 +1414,8 @@ pub struct Bucket {
     >,
     /// The bucket's website config, controlling how the service behaves
     /// when accessing bucket contents as a web site. See the
-    /// \[<https://cloud.google.com/storage/docs/static-website\]\[Static> Website
-    /// Examples\] for more information.
+    /// [<https://cloud.google.com/storage/docs/static-website][Static> Website
+    /// Examples] for more information.
     #[prost(message, optional, tag = "16")]
     pub website: ::core::option::Option<bucket::Website>,
     /// The bucket's versioning config.
@@ -1457,8 +1453,8 @@ pub struct Bucket {
     #[prost(bool, tag = "25")]
     pub satisfies_pzs: bool,
     /// Configuration that, if present, specifies the data placement for a
-    /// \[<https://cloud.google.com/storage/docs/locations#location-dr\]\[configurable>
-    /// dual-region\].
+    /// [<https://cloud.google.com/storage/docs/locations#location-dr][configurable>
+    /// dual-region].
     #[prost(message, optional, tag = "26")]
     pub custom_placement_config: ::core::option::Option<bucket::CustomPlacementConfig>,
     /// The bucket's Autoclass configuration. If there is no configuration, the
@@ -1491,23 +1487,23 @@ pub mod bucket {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Cors {
         /// The list of Origins eligible to receive CORS response headers. See
-        /// \[<https://tools.ietf.org/html/rfc6454\]\[RFC> 6454\] for more on origins.
-        /// Note: "\*" is permitted in the list of origins, and means "any Origin".
+        /// [<https://tools.ietf.org/html/rfc6454][RFC> 6454] for more on origins.
+        /// Note: "*" is permitted in the list of origins, and means "any Origin".
         #[prost(string, repeated, tag = "1")]
         pub origin: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         /// The list of HTTP methods on which to include CORS response headers,
-        /// (`GET`, `OPTIONS`, `POST`, etc) Note: "\*" is permitted in the list of
+        /// (`GET`, `OPTIONS`, `POST`, etc) Note: "*" is permitted in the list of
         /// methods, and means "any method".
         #[prost(string, repeated, tag = "2")]
         pub method: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         /// The list of HTTP headers other than the
-        /// \[<https://www.w3.org/TR/cors/#simple-response-header\]\[simple> response
-        /// headers\] to give permission for the user-agent to share across domains.
+        /// [<https://www.w3.org/TR/cors/#simple-response-header][simple> response
+        /// headers] to give permission for the user-agent to share across domains.
         #[prost(string, repeated, tag = "3")]
         pub response_header: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         /// The value, in seconds, to return in the
-        /// \[<https://www.w3.org/TR/cors/#access-control-max-age-response-header\]\[Access-Control-Max-Age>
-        /// header\] used in preflight responses.
+        /// [<https://www.w3.org/TR/cors/#access-control-max-age-response-header][Access-Control-Max-Age>
+        /// header] used in preflight responses.
         #[prost(int32, tag = "4")]
         pub max_age_seconds: i32,
     }
@@ -1722,14 +1718,14 @@ pub mod bucket {
         /// If the requested object path is missing, and any
         /// `mainPageSuffix` object is missing, if applicable, the service
         /// will return the named object from this bucket as the content for a
-        /// \[<https://tools.ietf.org/html/rfc7231#section-6.5.4\]\[404> Not Found\]
+        /// [<https://tools.ietf.org/html/rfc7231#section-6.5.4][404> Not Found]
         /// result.
         #[prost(string, tag = "2")]
         pub not_found_page: ::prost::alloc::string::String,
     }
     /// Configuration for Custom Dual Regions.  It should specify precisely two
     /// eligible regions within the same Multiregion. More information on regions
-    /// may be found \[<https://cloud.google.com/storage/docs/locations\]\[here\].>
+    /// may be found [<https://cloud.google.com/storage/docs/locations][here].>
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CustomPlacementConfig {
         /// List of locations to use for data placement.
@@ -1780,7 +1776,6 @@ pub struct BucketAccessControl {
     #[prost(string, tag = "2")]
     pub id: ::prost::alloc::string::String,
     /// The entity holding the permission, in one of the following forms:
-    ///
     /// * `user-{userid}`
     /// * `user-{email}`
     /// * `group-{groupid}`
@@ -1790,14 +1785,14 @@ pub struct BucketAccessControl {
     /// * `project-{team}-{projectid}`
     /// * `allUsers`
     /// * `allAuthenticatedUsers`
-    ///   Examples:
+    /// Examples:
     /// * The user `liz@example.com` would be `user-liz@example.com`.
     /// * The group `example@googlegroups.com` would be
-    ///   `group-example@googlegroups.com`
+    /// `group-example@googlegroups.com`
     /// * All members of the Google Apps for Business domain `example.com` would be
-    ///   `domain-example.com`
-    ///   For project entities, `project-{team}-{projectnumber}` format will be
-    ///   returned on response.
+    /// `domain-example.com`
+    /// For project entities, `project-{team}-{projectnumber}` format will be
+    /// returned on response.
     #[prost(string, tag = "3")]
     pub entity: ::prost::alloc::string::String,
     /// Output only. The alternative entity format, if exists. For project
@@ -1845,10 +1840,11 @@ pub struct ObjectChecksums {
     pub crc32c: ::core::option::Option<u32>,
     /// 128 bit MD5 hash of the object data.
     /// For more information about using the MD5 hash, see
-    /// \[<https://cloud.google.com/storage/docs/hashes-etags#json-api\]\[Hashes> and
-    /// ETags: Best Practices\].
+    /// [<https://cloud.google.com/storage/docs/hashes-etags#json-api][Hashes> and
+    /// ETags: Best Practices].
     /// Not all objects will provide an MD5 hash. For example, composite objects
-    /// provide only crc32c hashes. This value is equivalent to running `cat object.txt | openssl md5 -binary`
+    /// provide only crc32c hashes. This value is equivalent to running `cat
+    /// object.txt | openssl md5 -binary`
     #[prost(bytes = "vec", tag = "2")]
     pub md5_hash: ::prost::alloc::vec::Vec<u8>,
 }
@@ -1899,19 +1895,19 @@ pub struct Object {
     #[prost(string, tag = "5")]
     pub storage_class: ::prost::alloc::string::String,
     /// Output only. Content-Length of the object data in bytes, matching
-    /// \[<https://tools.ietf.org/html/rfc7230#section-3.3.2\]\[RFC> 7230 §3.3.2\].
+    /// [<https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC> 7230 §3.3.2].
     #[prost(int64, tag = "6")]
     pub size: i64,
     /// Content-Encoding of the object data, matching
-    /// \[<https://tools.ietf.org/html/rfc7231#section-3.1.2.2\]\[RFC> 7231 §3.1.2.2\]
+    /// [<https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC> 7231 §3.1.2.2]
     #[prost(string, tag = "7")]
     pub content_encoding: ::prost::alloc::string::String,
     /// Content-Disposition of the object data, matching
-    /// \[<https://tools.ietf.org/html/rfc6266\]\[RFC> 6266\].
+    /// [<https://tools.ietf.org/html/rfc6266][RFC> 6266].
     #[prost(string, tag = "8")]
     pub content_disposition: ::prost::alloc::string::String,
     /// Cache-Control directive for the object data, matching
-    /// \[<https://tools.ietf.org/html/rfc7234#section-5.2"\]\[RFC> 7234 §5.2\].
+    /// [<https://tools.ietf.org/html/rfc7234#section-5.2"][RFC> 7234 §5.2].
     /// If omitted, and the object is accessible to all anonymous users, the
     /// default will be `public, max-age=3600`.
     #[prost(string, tag = "9")]
@@ -1922,7 +1918,7 @@ pub struct Object {
     #[prost(message, repeated, tag = "10")]
     pub acl: ::prost::alloc::vec::Vec<ObjectAccessControl>,
     /// Content-Language of the object data, matching
-    /// \[<https://tools.ietf.org/html/rfc7231#section-3.1.3.2\]\[RFC> 7231 §3.1.3.2\].
+    /// [<https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC> 7231 §3.1.3.2].
     #[prost(string, tag = "11")]
     pub content_language: ::prost::alloc::string::String,
     /// Output only. If this object is noncurrent, this is the time when the object
@@ -1930,7 +1926,7 @@ pub struct Object {
     #[prost(message, optional, tag = "12")]
     pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Content-Type of the object data, matching
-    /// \[<https://tools.ietf.org/html/rfc7231#section-3.1.1.5\]\[RFC> 7231 §3.1.1.5\].
+    /// [<https://tools.ietf.org/html/rfc7231#section-3.1.1.5][RFC> 7231 §3.1.1.5].
     /// If an object is stored without a Content-Type, it is served as
     /// `application/octet-stream`.
     #[prost(string, tag = "13")]
@@ -2028,7 +2024,6 @@ pub struct Object {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectAccessControl {
     /// The access permission for the entity. One of the following values:
-    ///
     /// * `READER`
     /// * `WRITER`
     /// * `OWNER`
@@ -2038,7 +2033,6 @@ pub struct ObjectAccessControl {
     #[prost(string, tag = "2")]
     pub id: ::prost::alloc::string::String,
     /// The entity holding the permission, in one of the following forms:
-    ///
     /// * `user-{userid}`
     /// * `user-{email}`
     /// * `group-{groupid}`
@@ -2048,14 +2042,14 @@ pub struct ObjectAccessControl {
     /// * `project-{team}-{projectid}`
     /// * `allUsers`
     /// * `allAuthenticatedUsers`
-    ///   Examples:
+    /// Examples:
     /// * The user `liz@example.com` would be `user-liz@example.com`.
     /// * The group `example@googlegroups.com` would be
-    ///   `group-example@googlegroups.com`.
+    /// `group-example@googlegroups.com`.
     /// * All members of the Google Apps for Business domain `example.com` would be
-    ///   `domain-example.com`.
-    ///   For project entities, `project-{team}-{projectnumber}` format will be
-    ///   returned on response.
+    /// `domain-example.com`.
+    /// For project entities, `project-{team}-{projectnumber}` format will be
+    /// returned on response.
     #[prost(string, tag = "3")]
     pub entity: ::prost::alloc::string::String,
     /// Output only. The alternative entity format, if exists. For project
@@ -2225,7 +2219,13 @@ pub struct NotificationConfig {
 }
 /// Generated client implementations.
 pub mod storage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// ## API Overview and Naming Syntax
@@ -2235,23 +2235,20 @@ pub mod storage_client {
     /// abstractions please see https://cloud.google.com/storage/docs.
     ///
     /// Resources are named as follows:
+    ///   - Projects are referred to as they are defined by the Resource Manager API,
+    ///     using strings like `projects/123456` or `projects/my-string-id`.
+    ///   - Buckets are named using string names of the form:
+    ///     `projects/{project}/buckets/{bucket}`
+    ///     For globally unique buckets, `_` may be substituted for the project.
+    ///   - Objects are uniquely identified by their name along with the name of the
+    ///     bucket they belong to, as separate strings in this API. For example:
     ///
-    /// * Projects are referred to as they are defined by the Resource Manager API,
-    ///  using strings like `projects/123456` or `projects/my-string-id`.
-    ///
-    /// * Buckets are named using string names of the form:
-    ///  `projects/{project}/buckets/{bucket}`
-    ///  For globally unique buckets, `_` may be substituted for the project.
-    ///
-    /// * Objects are uniquely identified by their name along with the name of the
-    ///  bucket they belong to, as separate strings in this API. For example:
-    ///
-    ///  ReadObjectRequest {
-    ///  bucket: 'projects/\_/buckets/my-bucket'
-    ///  object: 'my-object'
-    ///  }
-    ///  Note that object names can contain `/` characters, which are treated as
-    ///  any other character (no special directory semantics).
+    ///       ReadObjectRequest {
+    ///         bucket: 'projects/_/buckets/my-bucket'
+    ///         object: 'my-object'
+    ///       }
+    ///     Note that object names can contain `/` characters, which are treated as
+    ///     any other character (no special directory semantics).
     #[derive(Debug, Clone)]
     pub struct StorageClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -2330,8 +2327,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2353,8 +2349,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2376,8 +2371,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2402,8 +2396,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2425,8 +2418,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2460,8 +2452,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2490,8 +2481,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2524,8 +2514,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2549,8 +2538,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2573,8 +2561,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2601,8 +2588,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2624,8 +2610,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2657,8 +2642,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2682,8 +2666,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2708,8 +2691,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2732,8 +2714,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2762,35 +2743,34 @@ pub mod storage_client {
         /// finishing the upload (either explicitly by the client or due to a network
         /// error or an error response from the server), the client should do as
         /// follows:
-        ///
-        /// * Check the result Status of the stream, to determine if writing can be
-        ///  resumed on this stream or must be restarted from scratch (by calling
-        ///  `StartResumableWrite()`). The resumable errors are DEADLINE_EXCEEDED,
-        ///  INTERNAL, and UNAVAILABLE. For each case, the client should use binary
-        ///  exponential backoff before retrying.  Additionally, writes can be
-        ///  resumed after RESOURCE_EXHAUSTED errors, but only after taking
-        ///  appropriate measures, which may include reducing aggregate send rate
-        ///  across clients and/or requesting a quota increase for your project.
-        /// * If the call to `WriteObject` returns `ABORTED`, that indicates
-        ///  concurrent attempts to update the resumable write, caused either by
-        ///  multiple racing clients or by a single client where the previous
-        ///  request was timed out on the client side but nonetheless reached the
-        ///  server. In this case the client should take steps to prevent further
-        ///  concurrent writes (e.g., increase the timeouts, stop using more than
-        ///  one process to perform the upload, etc.), and then should follow the
-        ///  steps below for resuming the upload.
-        /// * For resumable errors, the client should call `QueryWriteStatus()` and
-        ///  then continue writing from the returned `persisted_size`. This may be
-        ///  less than the amount of data the client previously sent. Note also that
-        ///  it is acceptable to send data starting at an offset earlier than the
-        ///  returned `persisted_size`; in this case, the service will skip data at
-        ///  offsets that were already persisted (without checking that it matches
-        ///  the previously written data), and write only the data starting from the
-        ///  persisted offset. Even though the data isn't written, it may still
-        ///  incur a performance cost over resuming at the correct write offset.
-        ///  This behavior can make client-side handling simpler in some cases.
-        /// * Clients must only send data that is a multiple of 256 KiB per message,
-        ///  unless the object is being finished with `finish_write` set to `true`.
+        ///   - Check the result Status of the stream, to determine if writing can be
+        ///     resumed on this stream or must be restarted from scratch (by calling
+        ///     `StartResumableWrite()`). The resumable errors are DEADLINE_EXCEEDED,
+        ///     INTERNAL, and UNAVAILABLE. For each case, the client should use binary
+        ///     exponential backoff before retrying.  Additionally, writes can be
+        ///     resumed after RESOURCE_EXHAUSTED errors, but only after taking
+        ///     appropriate measures, which may include reducing aggregate send rate
+        ///     across clients and/or requesting a quota increase for your project.
+        ///   - If the call to `WriteObject` returns `ABORTED`, that indicates
+        ///     concurrent attempts to update the resumable write, caused either by
+        ///     multiple racing clients or by a single client where the previous
+        ///     request was timed out on the client side but nonetheless reached the
+        ///     server. In this case the client should take steps to prevent further
+        ///     concurrent writes (e.g., increase the timeouts, stop using more than
+        ///     one process to perform the upload, etc.), and then should follow the
+        ///     steps below for resuming the upload.
+        ///   - For resumable errors, the client should call `QueryWriteStatus()` and
+        ///     then continue writing from the returned `persisted_size`. This may be
+        ///     less than the amount of data the client previously sent. Note also that
+        ///     it is acceptable to send data starting at an offset earlier than the
+        ///     returned `persisted_size`; in this case, the service will skip data at
+        ///     offsets that were already persisted (without checking that it matches
+        ///     the previously written data), and write only the data starting from the
+        ///     persisted offset. Even though the data isn't written, it may still
+        ///     incur a performance cost over resuming at the correct write offset.
+        ///     This behavior can make client-side handling simpler in some cases.
+        ///   - Clients must only send data that is a multiple of 256 KiB per message,
+        ///     unless the object is being finished with `finish_write` set to `true`.
         ///
         /// The service will not view the object as complete until the client has
         /// sent a `WriteObjectRequest` with `finish_write` set to `true`. Sending any
@@ -2819,8 +2799,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2861,8 +2840,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2887,8 +2865,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2914,8 +2891,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2942,8 +2918,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2982,8 +2957,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2999,6 +2973,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves the name of a project's Google Cloud Storage service account.
+        #[deprecated]
         pub async fn get_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceAccountRequest>,
@@ -3007,8 +2982,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3024,6 +2998,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new HMAC key for the given service account.
+        #[deprecated]
         pub async fn create_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateHmacKeyRequest>,
@@ -3035,8 +3010,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3050,6 +3024,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a given HMAC key.  Key must be in an INACTIVE state.
+        #[deprecated]
         pub async fn delete_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteHmacKeyRequest>,
@@ -3058,8 +3033,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3073,6 +3047,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an existing HMAC key metadata for the given id.
+        #[deprecated]
         pub async fn get_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::GetHmacKeyRequest>,
@@ -3084,8 +3059,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3099,6 +3073,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists HMAC keys under a given project with the additional filters provided.
+        #[deprecated]
         pub async fn list_hmac_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListHmacKeysRequest>,
@@ -3110,8 +3085,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3125,6 +3099,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates a given HMAC key state between ACTIVE and INACTIVE.
+        #[deprecated]
         pub async fn update_hmac_key(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateHmacKeyRequest>,
@@ -3136,8 +3111,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3151,6 +3125,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes a NotificationConfig.
+        #[deprecated]
         pub async fn delete_notification_config(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteNotificationConfigRequest>,
@@ -3159,8 +3134,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3179,6 +3153,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// View a NotificationConfig.
+        #[deprecated]
         pub async fn get_notification_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetNotificationConfigRequest>,
@@ -3190,8 +3165,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3210,6 +3184,7 @@ pub mod storage_client {
         /// These NotificationConfigs, when triggered, publish messages to the
         /// specified Pub/Sub topics. See
         /// https://cloud.google.com/storage/docs/pubsub-notifications.
+        #[deprecated]
         pub async fn create_notification_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateNotificationConfigRequest>,
@@ -3221,8 +3196,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3241,6 +3215,7 @@ pub mod storage_client {
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves a list of NotificationConfigs for a given bucket.
+        #[deprecated]
         pub async fn list_notification_configs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListNotificationConfigsRequest>,
@@ -3252,8 +3227,7 @@ pub mod storage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

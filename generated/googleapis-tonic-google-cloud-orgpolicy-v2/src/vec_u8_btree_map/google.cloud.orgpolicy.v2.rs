@@ -8,7 +8,7 @@
 /// locations in the organization's resource hierarchy. Policies are inherited
 /// down the resource hierarchy from higher levels, but can also be overridden.
 /// For details about the inheritance rules please read about
-/// \[`policies`\]\[google.cloud.OrgPolicy.v2.Policy\].
+/// [`policies`][google.cloud.OrgPolicy.v2.Policy].
 ///
 /// Constraints have a default behavior determined by the `constraint_default`
 /// field, which is the enforcement behavior that is used in the absence of a
@@ -107,9 +107,9 @@ pub mod constraint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConstraintDefault::Unspecified => "CONSTRAINT_DEFAULT_UNSPECIFIED",
-                ConstraintDefault::Allow => "ALLOW",
-                ConstraintDefault::Deny => "DENY",
+                Self::Unspecified => "CONSTRAINT_DEFAULT_UNSPECIFIED",
+                Self::Allow => "ALLOW",
+                Self::Deny => "DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -157,7 +157,7 @@ pub struct CustomConstraint {
     /// Immutable. The resource instance type on which this policy applies. Format
     /// will be of the form : `<canonical service name>/<type>` Example:
     ///
-    /// * `compute.googleapis.com/Instance`.
+    ///   * `compute.googleapis.com/Instance`.
     #[prost(string, repeated, tag = "2")]
     pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// All the operations being applied for this constraint.
@@ -230,12 +230,12 @@ pub mod custom_constraint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MethodType::Unspecified => "METHOD_TYPE_UNSPECIFIED",
-                MethodType::Create => "CREATE",
-                MethodType::Update => "UPDATE",
-                MethodType::Delete => "DELETE",
-                MethodType::RemoveGrant => "REMOVE_GRANT",
-                MethodType::GovernTags => "GOVERN_TAGS",
+                Self::Unspecified => "METHOD_TYPE_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Update => "UPDATE",
+                Self::Delete => "DELETE",
+                Self::RemoveGrant => "REMOVE_GRANT",
+                Self::GovernTags => "GOVERN_TAGS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -279,9 +279,9 @@ pub mod custom_constraint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
-                ActionType::Allow => "ALLOW",
-                ActionType::Deny => "DENY",
+                Self::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+                Self::Allow => "ALLOW",
+                Self::Deny => "DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -370,11 +370,11 @@ pub struct PolicySpec {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     /// In policies for boolean constraints, the following requirements apply:
     ///
-    /// * There must be one and only one policy rule where condition is unset.
-    /// * Boolean policy rules with conditions must set `enforced` to the
-    ///   opposite of the policy rule without a condition.
-    /// * During policy evaluation, policy rules with conditions that are
-    ///   true for a target resource take precedence.
+    ///    - There must be one and only one policy rule where condition is unset.
+    ///    - Boolean policy rules with conditions must set `enforced` to the
+    ///      opposite of the policy rule without a condition.
+    ///    - During policy evaluation, policy rules with conditions that are
+    ///      true for a target resource take precedence.
     #[prost(message, repeated, tag = "3")]
     pub rules: ::prost::alloc::vec::Vec<policy_spec::PolicyRule>,
     /// Determines the inheritance behavior for this policy.
@@ -402,9 +402,9 @@ pub mod policy_spec {
     pub struct PolicyRule {
         /// A condition which determines whether this rule is used
         /// in the evaluation of the policy. When set, the `expression` field in
-        /// the \`Expr' must include from 1 to 10 subexpressions, joined by the "||"
+        /// the `Expr' must include from 1 to 10 subexpressions, joined by the "||"
         /// or "&&" operators. Each subexpression must be of the form
-        /// "resource.matchTag('\<ORG_ID>/tag_key_short_name,
+        /// "resource.matchTag('<ORG_ID>/tag_key_short_name,
         /// 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id',
         /// 'tagValues/value_id')". where key_name and value_name are the resource
         /// names for Label Keys and Values. These names are available from the Tag
@@ -430,9 +430,9 @@ pub mod policy_spec {
         /// same as values with no prefix.
         /// Ancestry subtrees must be in one of the following formats:
         ///
-        /// * `projects/<project-id>` (for example, `projects/tokyo-rain-123`)
-        /// * `folders/<folder-id>` (for example, `folders/1234`)
-        /// * `organizations/<organization-id>` (for example, `organizations/1234`)
+        /// - `projects/<project-id>` (for example, `projects/tokyo-rain-123`)
+        /// - `folders/<folder-id>` (for example, `folders/1234`)
+        /// - `organizations/<organization-id>` (for example, `organizations/1234`)
         ///
         /// The `supports_under` field of the associated `Constraint`  defines
         /// whether ancestry prefixes can be used.
@@ -544,7 +544,7 @@ pub struct ListPoliciesResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPolicyRequest {
     /// Required. Resource name of the policy. See
-    /// \[Policy\]\[google.cloud.orgpolicy.v2.Policy\] for naming requirements.
+    /// [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -553,7 +553,7 @@ pub struct GetPolicyRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEffectivePolicyRequest {
     /// Required. The effective policy to compute. See
-    /// \[Policy\]\[google.cloud.orgpolicy.v2.Policy\] for naming requirements.
+    /// [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -677,7 +677,13 @@ pub struct DeleteCustomConstraintRequest {
 }
 /// Generated client implementations.
 pub mod org_policy_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An interface for managing organization policies.
@@ -781,8 +787,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -812,8 +817,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -844,8 +848,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -874,8 +877,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -907,8 +909,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -943,8 +944,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -974,8 +974,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1010,8 +1009,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1047,8 +1045,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1081,8 +1078,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1113,8 +1109,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1144,8 +1139,7 @@ pub mod org_policy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

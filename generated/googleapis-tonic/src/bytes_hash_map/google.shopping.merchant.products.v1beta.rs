@@ -42,7 +42,8 @@ pub struct Attributes {
     pub expiration_date: ::core::option::Option<::prost_types::Timestamp>,
     /// The date time when an offer becomes visible in search results across
     /// Google’s YouTube surfaces, in [ISO
-    /// 8601](<http://en.wikipedia.org/wiki/ISO_8601>) format. See [Disclosure date](<https://support.google.com/merchants/answer/13034208>) for more information.
+    /// 8601](<http://en.wikipedia.org/wiki/ISO_8601>) format. See [Disclosure date](
+    /// <https://support.google.com/merchants/answer/13034208>) for more information.
     #[prost(message, optional, tag = "79")]
     pub disclosure_date: ::core::option::Option<::prost_types::Timestamp>,
     /// Set to true if the item is targeted towards adults.
@@ -184,7 +185,7 @@ pub struct Attributes {
     /// Size of the item. Only one value is allowed. For variants with different
     /// sizes, insert a separate product for each size with the same
     /// `itemGroupId` value (see
-    /// \[<https://support.google.com/merchants/answer/6324492\](size> definition)).
+    /// [<https://support.google.com/merchants/answer/6324492](size> definition)).
     #[prost(string, optional, tag = "48")]
     pub size: ::core::option::Option<::prost::alloc::string::String>,
     /// System in which the size is specified. Recommended for apparel items.
@@ -192,7 +193,7 @@ pub struct Attributes {
     pub size_system: ::core::option::Option<::prost::alloc::string::String>,
     /// The cut of the item. It can be used to represent combined size types for
     /// apparel items. Maximum two of size types can be provided (see
-    /// \[<https://support.google.com/merchants/answer/6324497\](size> type)).
+    /// [<https://support.google.com/merchants/answer/6324497](size> type)).
     #[prost(string, repeated, tag = "50")]
     pub size_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Tax information.
@@ -384,7 +385,7 @@ pub struct Tax {
     /// The postal code range that the tax rate applies to, represented by
     /// a ZIP code, a ZIP code prefix using * wildcard, a range between two ZIP
     /// codes or two ZIP code prefixes of equal length.
-    /// Examples: 94114, 94\*, 94002-95460, 94\*-95\*.
+    /// Examples: 94114, 94*, 94002-95460, 94*-95*.
     #[prost(string, tag = "6")]
     pub postal_code: ::prost::alloc::string::String,
 }
@@ -435,9 +436,8 @@ pub struct UnitPricingMeasure {
 pub struct SubscriptionCost {
     /// The type of subscription period.
     /// Supported values are:
-    ///
-    /// * "`month`"
-    /// * "`year`"
+    ///    * "`month`"
+    ///    * "`year`"
     #[prost(enumeration = "SubscriptionPeriod", tag = "1")]
     pub period: i32,
     /// The number of subscription periods the buyer has to pay.
@@ -461,9 +461,8 @@ pub struct Installment {
     pub downpayment: ::core::option::Option<super::super::super::r#type::Price>,
     /// Type of installment payments.
     /// Supported values are:
-    ///
-    /// * "`finance`"
-    /// * "`lease`"
+    ///    * "`finance`"
+    ///    * "`lease`"
     #[prost(string, optional, tag = "4")]
     pub credit_type: ::core::option::Option<::prost::alloc::string::String>,
 }
@@ -546,48 +545,48 @@ pub struct Shipping {
     /// Minimum handling time (inclusive) between when the order is received and
     /// shipped in business days. 0 means that the order is shipped on the same
     /// day as it is received if it happens before the cut-off time.
-    /// \[minHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.min_handling_time\]
+    /// [minHandlingTime][google.shopping.content.bundles.Products.Shipping.min_handling_time]
     /// can only be present together with
-    /// \[maxHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.max_handling_time\];
+    /// [maxHandlingTime][google.shopping.content.bundles.Products.Shipping.max_handling_time];
     /// but it is not required if
-    /// \[maxHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.max_handling_time\]
+    /// [maxHandlingTime][google.shopping.content.bundles.Products.Shipping.max_handling_time]
     /// is present.
     #[prost(int64, optional, tag = "8")]
     pub min_handling_time: ::core::option::Option<i64>,
     /// Maximum handling time (inclusive) between when the order is received and
     /// shipped in business days. 0 means that the order is shipped on the same
     /// day as it is received if it happens before the cut-off time. Both
-    /// \[maxHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.max_handling_time\]
+    /// [maxHandlingTime][google.shopping.content.bundles.Products.Shipping.max_handling_time]
     /// and
-    /// \[maxTransitTime\]\[google.shopping.content.bundles.Products.Shipping.max_transit_time\]
+    /// [maxTransitTime][google.shopping.content.bundles.Products.Shipping.max_transit_time]
     /// are required if providing shipping speeds.
-    /// \[minHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.min_handling_time\]
+    /// [minHandlingTime][google.shopping.content.bundles.Products.Shipping.min_handling_time]
     /// is optional if
-    /// \[maxHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.max_handling_time\]
+    /// [maxHandlingTime][google.shopping.content.bundles.Products.Shipping.max_handling_time]
     /// is present.
     #[prost(int64, optional, tag = "9")]
     pub max_handling_time: ::core::option::Option<i64>,
     /// Minimum transit time (inclusive) between when the order has shipped and
     /// when it is delivered in business days. 0 means that the order is
     /// delivered on the same day as it ships.
-    /// \[minTransitTime\]\[google.shopping.content.bundles.Products.Shipping.min_transit_time\]
+    /// [minTransitTime][google.shopping.content.bundles.Products.Shipping.min_transit_time]
     /// can only be present together with
-    /// \[maxTransitTime\]\[google.shopping.content.bundles.Products.Shipping.max_transit_time\];
+    /// [maxTransitTime][google.shopping.content.bundles.Products.Shipping.max_transit_time];
     /// but it is not required if
-    /// \[maxTransitTime\]\[google.shopping.content.bundles.Products.Shipping.max_transit_time\]
+    /// [maxTransitTime][google.shopping.content.bundles.Products.Shipping.max_transit_time]
     /// is present.
     #[prost(int64, optional, tag = "10")]
     pub min_transit_time: ::core::option::Option<i64>,
     /// Maximum transit time (inclusive) between when the order has shipped and
     /// when it is delivered in business days. 0 means that the order is
     /// delivered on the same day as it ships. Both
-    /// \[maxHandlingTime\]\[google.shopping.content.bundles.Products.Shipping.max_handling_time\]
+    /// [maxHandlingTime][google.shopping.content.bundles.Products.Shipping.max_handling_time]
     /// and
-    /// \[maxTransitTime\]\[google.shopping.content.bundles.Products.Shipping.max_transit_time\]
+    /// [maxTransitTime][google.shopping.content.bundles.Products.Shipping.max_transit_time]
     /// are required if providing shipping speeds.
-    /// \[minTransitTime\]\[google.shopping.content.bundles.Products.Shipping.min_transit_time\]
+    /// [minTransitTime][google.shopping.content.bundles.Products.Shipping.min_transit_time]
     /// is optional if
-    /// \[maxTransitTime\]\[google.shopping.content.bundles.Products.Shipping.max_transit_time\]
+    /// [maxTransitTime][google.shopping.content.bundles.Products.Shipping.max_transit_time]
     /// is present.
     #[prost(int64, optional, tag = "11")]
     pub max_transit_time: ::core::option::Option<i64>,
@@ -677,9 +676,8 @@ pub struct ProductDimension {
     pub value: f64,
     /// Required. The dimension units.
     /// Acceptable values are:
-    ///
-    /// * "`in`"
-    /// * "`cm`"
+    ///    * "`in`"
+    ///    * "`cm`"
     #[prost(string, tag = "2")]
     pub unit: ::prost::alloc::string::String,
 }
@@ -692,11 +690,10 @@ pub struct ProductWeight {
     pub value: f64,
     /// Required. The weight unit.
     /// Acceptable values are:
-    ///
-    /// * "`g`"
-    /// * "`kg`"
-    /// * "`oz`"
-    /// * "`lb`"
+    ///    * "`g`"
+    ///    * "`kg`"
+    ///    * "`oz`"
+    ///    * "`lb`"
     #[prost(string, tag = "2")]
     pub unit: ::prost::alloc::string::String,
 }
@@ -821,10 +818,10 @@ pub mod product_status {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                    Severity::NotImpacted => "NOT_IMPACTED",
-                    Severity::Demoted => "DEMOTED",
-                    Severity::Disapproved => "DISAPPROVED",
+                    Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                    Self::NotImpacted => "NOT_IMPACTED",
+                    Self::Demoted => "DEMOTED",
+                    Self::Disapproved => "DISAPPROVED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -901,9 +898,9 @@ impl SubscriptionPeriod {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SubscriptionPeriod::Unspecified => "SUBSCRIPTION_PERIOD_UNSPECIFIED",
-            SubscriptionPeriod::Month => "MONTH",
-            SubscriptionPeriod::Year => "YEAR",
+            Self::Unspecified => "SUBSCRIPTION_PERIOD_UNSPECIFIED",
+            Self::Month => "MONTH",
+            Self::Year => "YEAR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -920,16 +917,16 @@ impl SubscriptionPeriod {
 /// processed product that you see in Merchant Center, in Shopping ads, or across
 /// Google surfaces. Product inputs, rules and supplemental data source data are
 /// combined to create the processed
-/// \[product\]\[google.shopping.content.bundles.Products.Product\].
+/// [product][google.shopping.content.bundles.Products.Product].
 ///
 /// Required product input attributes to pass data validation checks are
 /// primarily defined in the [Products Data
 /// Specification](<https://support.google.com/merchants/answer/188494>).
 ///
 /// The following attributes are required:
-/// \[feedLabel\]\[google.shopping.content.bundles.Products.feed_label\],
-/// \[contentLanguage\]\[google.shopping.content.bundles.Products.content_language\]
-/// and \[offerId\]\[google.shopping.content.bundles.Products.offer_id\].
+/// [feedLabel][google.shopping.content.bundles.Products.feed_label],
+/// [contentLanguage][google.shopping.content.bundles.Products.content_language]
+/// and [offerId][google.shopping.content.bundles.Products.offer_id].
 ///
 /// After inserting, updating, or deleting a product input, it may take several
 /// minutes before the processed product can be retrieved.
@@ -1041,7 +1038,13 @@ pub struct DeleteProductInputRequest {
 }
 /// Generated client implementations.
 pub mod product_inputs_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to use ProductInput resource.
@@ -1129,8 +1132,7 @@ pub mod product_inputs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1160,8 +1162,7 @@ pub mod product_inputs_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1181,8 +1182,8 @@ pub mod product_inputs_service_client {
         }
     }
 }
-/// The processed product, built from multiple \[product
-/// inputs\]\[\[google.shopping.content.bundles.Products.ProductInput\] after
+/// The processed product, built from multiple [product
+/// inputs][\[google.shopping.content.bundles.Products.ProductInput\] after
 /// applying rules and supplemental data sources. This processed product matches
 /// what is shown in your Merchant Center account and in Shopping ads and other
 /// surfaces across Google. Each product is built from exactly one primary
@@ -1304,7 +1305,13 @@ pub struct ListProductsResponse {
 }
 /// Generated client implementations.
 pub mod products_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to use Product resource.
@@ -1390,8 +1397,7 @@ pub mod products_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1426,8 +1432,7 @@ pub mod products_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

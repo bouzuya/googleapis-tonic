@@ -20,7 +20,7 @@ pub struct Device {
     pub name: ::core::option::Option<DeviceNames>,
     /// Indicates whether your smart home Action will report state of this device
     /// to Google via
-    /// \[ReportStateAndNotification\]\[google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification\].
+    /// [ReportStateAndNotification][google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification].
     #[prost(bool, tag = "5")]
     pub will_report_state: bool,
     /// Suggested name for the room where this device is installed.
@@ -54,11 +54,11 @@ pub struct Device {
     pub other_device_ids: ::prost::alloc::vec::Vec<AgentOtherDeviceId>,
     /// Indicates whether your smart home Action will report notifications
     /// to Google for this device via
-    /// \[ReportStateAndNotification\]\[google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification\].
+    /// [ReportStateAndNotification][google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification].
     ///
     /// If your smart home Action enables users to control device notifications,
     /// you should update this field and call
-    /// \[RequestSyncDevices\]\[google.home.graph.v1.HomeGraphApiService.RequestSyncDevices\].
+    /// [RequestSyncDevices][google.home.graph.v1.HomeGraphApiService.RequestSyncDevices].
     #[prost(bool, tag = "12")]
     pub notification_supported_by_agent: bool,
 }
@@ -132,23 +132,23 @@ pub struct RequestSyncDevicesResponse {}
 ///
 /// Example:
 ///
-/// ```text,json
+/// ```json
 /// {
-///   "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf",
-///   "agentUserId": "1234",
-///   "payload": {
-///     "devices": {
-///       "states": {
-///         "123": {
-///           "on": true
-///         },
-///         "456": {
-///           "on": true,
-///           "brightness": 10
-///         }
-///       },
-///     }
-///   }
+///    "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf",
+///    "agentUserId": "1234",
+///    "payload": {
+///      "devices": {
+///        "states": {
+///          "123": {
+///            "on": true
+///          },
+///          "456": {
+///            "on": true,
+///            "brightness": 10
+///          }
+///        },
+///      }
+///    }
 /// }
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -176,7 +176,7 @@ pub struct ReportStateAndNotificationRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportStateAndNotificationResponse {
     /// Request ID copied from
-    /// \[ReportStateAndNotificationRequest\]\[google.home.graph.v1.ReportStateAndNotificationRequest\].
+    /// [ReportStateAndNotificationRequest][google.home.graph.v1.ReportStateAndNotificationRequest].
     #[prost(string, tag = "1")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -228,7 +228,7 @@ pub struct QueryRequest {
     #[prost(message, repeated, tag = "3")]
     pub inputs: ::prost::alloc::vec::Vec<QueryRequestInput>,
 }
-/// Device ID inputs to \[QueryRequest\]\[google.home.graph.v1.QueryRequest\].
+/// Device ID inputs to [QueryRequest][google.home.graph.v1.QueryRequest].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryRequestInput {
     /// Payload containing third-party device IDs.
@@ -257,26 +257,26 @@ pub struct AgentDeviceId {
 ///
 /// Example:
 ///
-/// ```text,json
+/// ```json
 /// {
-///   "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf",
-///   "payload": {
-///     "devices": {
-///       "123": {
-///         "on": true,
-///         "online": true
-///       },
-///       "456": {
-///         "on": true,
-///         "online": true,
-///         "brightness": 80,
-///         "color": {
-///           "name": "cerulean",
-///           "spectrumRGB": 31655
-///         }
-///       }
-///     }
-///   }
+///    "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf",
+///    "payload": {
+///      "devices": {
+///        "123": {
+///          "on": true,
+///          "online": true
+///        },
+///        "456": {
+///          "on": true,
+///          "online": true,
+///          "brightness": 80,
+///          "color": {
+///            "name": "cerulean",
+///            "spectrumRGB": 31655
+///          }
+///        }
+///      }
+///    }
 /// }
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -318,36 +318,36 @@ pub struct SyncRequest {
 ///
 /// Example:
 ///
-/// ```text,json
+/// ```json
 /// {
-///   "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf",
-///   "payload": {
-///     "agentUserId": "1836.15267389",
-///     "devices": [{
-///       "id": "123",
-///       "type": "action.devices.types.OUTLET",
-///       "traits": [
-///         "action.devices.traits.OnOff"
-///       ],
-///       "name": {
-///         "defaultNames": \["My Outlet 1234"\],
-///         "name": "Night light",
-///         "nicknames": \["wall plug"\]
-///       },
-///       "willReportState": false,
-///       "deviceInfo": {
-///         "manufacturer": "lights-out-inc",
-///         "model": "hs1234",
-///         "hwVersion": "3.2",
-///         "swVersion": "11.4"
-///       },
-///       "customData": {
-///         "fooValue": 74,
-///         "barValue": true,
-///         "bazValue": "foo"
-///       }
-///     }]
-///   }
+///    "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf",
+///    "payload": {
+///      "agentUserId": "1836.15267389",
+///      "devices": [{
+///        "id": "123",
+///        "type": "action.devices.types.OUTLET",
+///        "traits": [
+///          "action.devices.traits.OnOff"
+///        ],
+///        "name": {
+///          "defaultNames": \["My Outlet 1234"\],
+///          "name": "Night light",
+///          "nicknames": \["wall plug"\]
+///        },
+///        "willReportState": false,
+///        "deviceInfo": {
+///          "manufacturer": "lights-out-inc",
+///          "model": "hs1234",
+///          "hwVersion": "3.2",
+///          "swVersion": "11.4"
+///        },
+///        "customData": {
+///          "fooValue": 74,
+///          "barValue": true,
+///          "bazValue": "foo"
+///        }
+///      }]
+///    }
 /// }
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -371,7 +371,13 @@ pub struct SyncResponsePayload {
 }
 /// Generated client implementations.
 pub mod home_graph_api_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Home Graph API service. The Home Graph service provides support for
@@ -454,9 +460,10 @@ pub mod home_graph_api_service_client {
         /// [intent](https://developers.home.google.com/cloud-to-cloud/intents/sync)
         /// to your smart home Action to update device metadata for the given user.
         ///
+        ///
         /// The third-party user's identity is passed via the `agent_user_id`
         /// (see
-        /// \[RequestSyncDevicesRequest\]\[google.home.graph.v1.RequestSyncDevicesRequest\]).
+        /// [RequestSyncDevicesRequest][google.home.graph.v1.RequestSyncDevicesRequest]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn request_sync_devices(
@@ -470,8 +477,7 @@ pub mod home_graph_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -503,7 +509,7 @@ pub mod home_graph_api_service_client {
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
         /// (see
-        /// \[ReportStateAndNotificationRequest\]\[google.home.graph.v1.ReportStateAndNotificationRequest\]).
+        /// [ReportStateAndNotificationRequest][google.home.graph.v1.ReportStateAndNotificationRequest]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn report_state_and_notification(
@@ -517,8 +523,7 @@ pub mod home_graph_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -545,7 +550,7 @@ pub mod home_graph_api_service_client {
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
         /// (see
-        /// \[DeleteAgentUserRequest\]\[google.home.graph.v1.DeleteAgentUserRequest\]).
+        /// [DeleteAgentUserRequest][google.home.graph.v1.DeleteAgentUserRequest]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn delete_agent_user(
@@ -556,8 +561,7 @@ pub mod home_graph_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -579,7 +583,7 @@ pub mod home_graph_api_service_client {
         /// user's devices.
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see \[QueryRequest\]\[google.home.graph.v1.QueryRequest\]).
+        /// (see [QueryRequest][google.home.graph.v1.QueryRequest]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn query(
@@ -590,8 +594,7 @@ pub mod home_graph_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -609,7 +612,7 @@ pub mod home_graph_api_service_client {
         /// Gets all the devices associated with the given third-party user.
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see \[SyncRequest\]\[google.home.graph.v1.SyncRequest\]).
+        /// (see [SyncRequest][google.home.graph.v1.SyncRequest]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn sync(
@@ -620,8 +623,7 @@ pub mod home_graph_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

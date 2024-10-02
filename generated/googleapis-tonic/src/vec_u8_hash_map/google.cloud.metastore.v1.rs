@@ -129,14 +129,14 @@ pub mod service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Suspending => "SUSPENDING",
-                State::Suspended => "SUSPENDED",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Suspending => "SUSPENDING",
+                Self::Suspended => "SUSPENDED",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -184,9 +184,9 @@ pub mod service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Tier::Unspecified => "TIER_UNSPECIFIED",
-                Tier::Developer => "DEVELOPER",
-                Tier::Enterprise => "ENTERPRISE",
+                Self::Unspecified => "TIER_UNSPECIFIED",
+                Self::Developer => "DEVELOPER",
+                Self::Enterprise => "ENTERPRISE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -232,9 +232,9 @@ pub mod service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReleaseChannel::Unspecified => "RELEASE_CHANNEL_UNSPECIFIED",
-                ReleaseChannel::Canary => "CANARY",
-                ReleaseChannel::Stable => "STABLE",
+                Self::Unspecified => "RELEASE_CHANNEL_UNSPECIFIED",
+                Self::Canary => "CANARY",
+                Self::Stable => "STABLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -275,9 +275,9 @@ pub mod service {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DatabaseType::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
-                DatabaseType::Mysql => "MYSQL",
-                DatabaseType::Spanner => "SPANNER",
+                Self::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
+                Self::Mysql => "MYSQL",
+                Self::Spanner => "SPANNER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -383,9 +383,9 @@ pub mod hive_metastore_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EndpointProtocol::Unspecified => "ENDPOINT_PROTOCOL_UNSPECIFIED",
-                EndpointProtocol::Thrift => "THRIFT",
-                EndpointProtocol::Grpc => "GRPC",
+                Self::Unspecified => "ENDPOINT_PROTOCOL_UNSPECIFIED",
+                Self::Thrift => "THRIFT",
+                Self::Grpc => "GRPC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -548,9 +548,9 @@ pub mod telemetry_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LogFormat::Unspecified => "LOG_FORMAT_UNSPECIFIED",
-                LogFormat::Legacy => "LEGACY",
-                LogFormat::Json => "JSON",
+                Self::Unspecified => "LOG_FORMAT_UNSPECIFIED",
+                Self::Legacy => "LEGACY",
+                Self::Json => "JSON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -652,8 +652,8 @@ pub mod metadata_import {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DatabaseType::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
-                    DatabaseType::Mysql => "MYSQL",
+                    Self::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
+                    Self::Mysql => "MYSQL",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -699,11 +699,11 @@ pub mod metadata_import {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Updating => "UPDATING",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Updating => "UPDATING",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -778,11 +778,11 @@ pub mod metadata_export {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -870,12 +870,12 @@ pub mod backup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-                State::Restoring => "RESTORING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Deleting => "DELETING",
+                Self::Active => "ACTIVE",
+                Self::Failed => "FAILED",
+                Self::Restoring => "RESTORING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -952,11 +952,11 @@ pub mod restore {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -999,9 +999,9 @@ pub mod restore {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RestoreType::Unspecified => "RESTORE_TYPE_UNSPECIFIED",
-                RestoreType::Full => "FULL",
-                RestoreType::MetadataOnly => "METADATA_ONLY",
+                Self::Unspecified => "RESTORE_TYPE_UNSPECIFIED",
+                Self::Full => "FULL",
+                Self::MetadataOnly => "METADATA_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1059,12 +1059,12 @@ pub mod scaling_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InstanceSize::Unspecified => "INSTANCE_SIZE_UNSPECIFIED",
-                InstanceSize::ExtraSmall => "EXTRA_SMALL",
-                InstanceSize::Small => "SMALL",
-                InstanceSize::Medium => "MEDIUM",
-                InstanceSize::Large => "LARGE",
-                InstanceSize::ExtraLarge => "EXTRA_LARGE",
+                Self::Unspecified => "INSTANCE_SIZE_UNSPECIFIED",
+                Self::ExtraSmall => "EXTRA_SMALL",
+                Self::Small => "SMALL",
+                Self::Medium => "MEDIUM",
+                Self::Large => "LARGE",
+                Self::ExtraLarge => "EXTRA_LARGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1095,7 +1095,7 @@ pub mod scaling_config {
     }
 }
 /// Request message for
-/// \[DataprocMetastore.ListServices\]\[google.cloud.metastore.v1.DataprocMetastore.ListServices\].
+/// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesRequest {
     /// Required. The relative resource name of the location of metastore services
@@ -1111,13 +1111,13 @@ pub struct ListServicesRequest {
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Optional. A page token, received from a previous
-    /// \[DataprocMetastore.ListServices\]\[google.cloud.metastore.v1.DataprocMetastore.ListServices\]
+    /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices]
     /// call. Provide this token to retrieve the subsequent page.
     ///
     /// To retrieve the first page, supply an empty page token.
     ///
     /// When paginating, other parameters provided to
-    /// \[DataprocMetastore.ListServices\]\[google.cloud.metastore.v1.DataprocMetastore.ListServices\]
+    /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices]
     /// must match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -1131,7 +1131,7 @@ pub struct ListServicesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[DataprocMetastore.ListServices\]\[google.cloud.metastore.v1.DataprocMetastore.ListServices\].
+/// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesResponse {
     /// The services in the specified location.
@@ -1146,7 +1146,7 @@ pub struct ListServicesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[DataprocMetastore.GetService\]\[google.cloud.metastore.v1.DataprocMetastore.GetService\].
+/// [DataprocMetastore.GetService][google.cloud.metastore.v1.DataprocMetastore.GetService].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceRequest {
     /// Required. The relative resource name of the metastore service to retrieve,
@@ -1157,7 +1157,7 @@ pub struct GetServiceRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.CreateService\]\[google.cloud.metastore.v1.DataprocMetastore.CreateService\].
+/// [DataprocMetastore.CreateService][google.cloud.metastore.v1.DataprocMetastore.CreateService].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceRequest {
     /// Required. The relative resource name of the location in which to create a
@@ -1195,7 +1195,7 @@ pub struct CreateServiceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.UpdateService\]\[google.cloud.metastore.v1.DataprocMetastore.UpdateService\].
+/// [DataprocMetastore.UpdateService][google.cloud.metastore.v1.DataprocMetastore.UpdateService].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateServiceRequest {
     /// Required. A field mask used to specify the fields to be overwritten in the
@@ -1227,7 +1227,7 @@ pub struct UpdateServiceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.DeleteService\]\[google.cloud.metastore.v1.DataprocMetastore.DeleteService\].
+/// [DataprocMetastore.DeleteService][google.cloud.metastore.v1.DataprocMetastore.DeleteService].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceRequest {
     /// Required. The relative resource name of the metastore service to delete, in
@@ -1252,7 +1252,7 @@ pub struct DeleteServiceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.ListMetadataImports\]\[google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports\].
+/// [DataprocMetastore.ListMetadataImports][google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMetadataImportsRequest {
     /// Required. The relative resource name of the service whose metadata imports
@@ -1267,13 +1267,13 @@ pub struct ListMetadataImportsRequest {
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Optional. A page token, received from a previous
-    /// \[DataprocMetastore.ListServices\]\[google.cloud.metastore.v1.DataprocMetastore.ListServices\]
+    /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices]
     /// call. Provide this token to retrieve the subsequent page.
     ///
     /// To retrieve the first page, supply an empty page token.
     ///
     /// When paginating, other parameters provided to
-    /// \[DataprocMetastore.ListServices\]\[google.cloud.metastore.v1.DataprocMetastore.ListServices\]
+    /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices]
     /// must match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -1287,7 +1287,7 @@ pub struct ListMetadataImportsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[DataprocMetastore.ListMetadataImports\]\[google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports\].
+/// [DataprocMetastore.ListMetadataImports][google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMetadataImportsResponse {
     /// The imports in the specified service.
@@ -1302,7 +1302,7 @@ pub struct ListMetadataImportsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[DataprocMetastore.GetMetadataImport\]\[google.cloud.metastore.v1.DataprocMetastore.GetMetadataImport\].
+/// [DataprocMetastore.GetMetadataImport][google.cloud.metastore.v1.DataprocMetastore.GetMetadataImport].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMetadataImportRequest {
     /// Required. The relative resource name of the metadata import to retrieve, in
@@ -1313,7 +1313,7 @@ pub struct GetMetadataImportRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.CreateMetadataImport\]\[google.cloud.metastore.v1.DataprocMetastore.CreateMetadataImport\].
+/// [DataprocMetastore.CreateMetadataImport][google.cloud.metastore.v1.DataprocMetastore.CreateMetadataImport].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateMetadataImportRequest {
     /// Required. The relative resource name of the service in which to create a
@@ -1351,7 +1351,7 @@ pub struct CreateMetadataImportRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.UpdateMetadataImport\]\[google.cloud.metastore.v1.DataprocMetastore.UpdateMetadataImport\].
+/// [DataprocMetastore.UpdateMetadataImport][google.cloud.metastore.v1.DataprocMetastore.UpdateMetadataImport].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateMetadataImportRequest {
     /// Required. A field mask used to specify the fields to be overwritten in the
@@ -1383,7 +1383,7 @@ pub struct UpdateMetadataImportRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.ListBackups\]\[google.cloud.metastore.v1.DataprocMetastore.ListBackups\].
+/// [DataprocMetastore.ListBackups][google.cloud.metastore.v1.DataprocMetastore.ListBackups].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsRequest {
     /// Required. The relative resource name of the service whose backups to
@@ -1398,13 +1398,13 @@ pub struct ListBackupsRequest {
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Optional. A page token, received from a previous
-    /// \[DataprocMetastore.ListBackups\]\[google.cloud.metastore.v1.DataprocMetastore.ListBackups\]
+    /// [DataprocMetastore.ListBackups][google.cloud.metastore.v1.DataprocMetastore.ListBackups]
     /// call. Provide this token to retrieve the subsequent page.
     ///
     /// To retrieve the first page, supply an empty page token.
     ///
     /// When paginating, other parameters provided to
-    /// \[DataprocMetastore.ListBackups\]\[google.cloud.metastore.v1.DataprocMetastore.ListBackups\]
+    /// [DataprocMetastore.ListBackups][google.cloud.metastore.v1.DataprocMetastore.ListBackups]
     /// must match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -1418,7 +1418,7 @@ pub struct ListBackupsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[DataprocMetastore.ListBackups\]\[google.cloud.metastore.v1.DataprocMetastore.ListBackups\].
+/// [DataprocMetastore.ListBackups][google.cloud.metastore.v1.DataprocMetastore.ListBackups].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsResponse {
     /// The backups of the specified service.
@@ -1433,7 +1433,7 @@ pub struct ListBackupsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[DataprocMetastore.GetBackup\]\[google.cloud.metastore.v1.DataprocMetastore.GetBackup\].
+/// [DataprocMetastore.GetBackup][google.cloud.metastore.v1.DataprocMetastore.GetBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBackupRequest {
     /// Required. The relative resource name of the backup to retrieve, in the
@@ -1444,7 +1444,7 @@ pub struct GetBackupRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.CreateBackup\]\[google.cloud.metastore.v1.DataprocMetastore.CreateBackup\].
+/// [DataprocMetastore.CreateBackup][google.cloud.metastore.v1.DataprocMetastore.CreateBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBackupRequest {
     /// Required. The relative resource name of the service in which to create a
@@ -1481,7 +1481,7 @@ pub struct CreateBackupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.DeleteBackup\]\[google.cloud.metastore.v1.DataprocMetastore.DeleteBackup\].
+/// [DataprocMetastore.DeleteBackup][google.cloud.metastore.v1.DataprocMetastore.DeleteBackup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBackupRequest {
     /// Required. The relative resource name of the backup to delete, in the
@@ -1506,7 +1506,7 @@ pub struct DeleteBackupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DataprocMetastore.ExportMetadata\]\[google.cloud.metastore.v1.DataprocMetastore.ExportMetadata\].
+/// [DataprocMetastore.ExportMetadata][google.cloud.metastore.v1.DataprocMetastore.ExportMetadata].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportMetadataRequest {
     /// Required. The relative resource name of the metastore service to run
@@ -1549,7 +1549,7 @@ pub mod export_metadata_request {
         DestinationGcsFolder(::prost::alloc::string::String),
     }
 }
-/// Request message for \[DataprocMetastore.Restore\]\[\].
+/// Request message for [DataprocMetastore.Restore][].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreServiceRequest {
     /// Required. The relative resource name of the metastore service to run
@@ -1602,8 +1602,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the caller has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -1669,9 +1669,9 @@ pub mod database_dump_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Mysql => "MYSQL",
-                Type::Avro => "AVRO",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Mysql => "MYSQL",
+                Self::Avro => "AVRO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1686,7 +1686,7 @@ pub mod database_dump_spec {
     }
 }
 /// Request message for
-/// \[DataprocMetastore.QueryMetadata\]\[google.cloud.metastore.v1.DataprocMetastore.QueryMetadata\].
+/// [DataprocMetastore.QueryMetadata][google.cloud.metastore.v1.DataprocMetastore.QueryMetadata].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryMetadataRequest {
     /// Required. The relative resource name of the metastore service to query
@@ -1701,7 +1701,7 @@ pub struct QueryMetadataRequest {
     pub query: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[DataprocMetastore.QueryMetadata\]\[google.cloud.metastore.v1.DataprocMetastore.QueryMetadata\].
+/// [DataprocMetastore.QueryMetadata][google.cloud.metastore.v1.DataprocMetastore.QueryMetadata].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryMetadataResponse {
     /// The manifest URI  is link to a JSON instance in Cloud Storage.
@@ -1712,7 +1712,7 @@ pub struct QueryMetadataResponse {
     pub result_manifest_uri: ::prost::alloc::string::String,
 }
 /// Error details in public error message for
-/// \[DataprocMetastore.QueryMetadata\]\[google.cloud.metastore.v1.DataprocMetastore.QueryMetadata\].
+/// [DataprocMetastore.QueryMetadata][google.cloud.metastore.v1.DataprocMetastore.QueryMetadata].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorDetails {
     /// Additional structured details about this error.
@@ -1726,7 +1726,7 @@ pub struct ErrorDetails {
     >,
 }
 /// Request message for
-/// \[DataprocMetastore.MoveTableToDatabase\]\[google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase\].
+/// [DataprocMetastore.MoveTableToDatabase][google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MoveTableToDatabaseRequest {
     /// Required. The relative resource name of the metastore service to mutate
@@ -1746,11 +1746,11 @@ pub struct MoveTableToDatabaseRequest {
     pub destination_db_name: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[DataprocMetastore.MoveTableToDatabase\]\[google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase\].
+/// [DataprocMetastore.MoveTableToDatabase][google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MoveTableToDatabaseResponse {}
 /// Request message for
-/// \[DataprocMetastore.AlterMetadataResourceLocation\]\[google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation\].
+/// [DataprocMetastore.AlterMetadataResourceLocation][google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AlterMetadataResourceLocationRequest {
     /// Required. The relative resource name of the metastore service to mutate
@@ -1773,12 +1773,18 @@ pub struct AlterMetadataResourceLocationRequest {
     pub location_uri: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[DataprocMetastore.AlterMetadataResourceLocation\]\[google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation\].
+/// [DataprocMetastore.AlterMetadataResourceLocation][google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AlterMetadataResourceLocationResponse {}
 /// Generated client implementations.
 pub mod dataproc_metastore_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Configures and manages metastore services.
@@ -1791,16 +1797,13 @@ pub mod dataproc_metastore_client {
     /// The Dataproc Metastore API defines the following resource model:
     ///
     /// * The service works with a collection of Google Cloud projects, named:
-    ///  `/projects/*`
-    ///
+    /// `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
-    ///  (a location must refer to a Google Cloud `region`)
-    ///
+    ///   (a location must refer to a Google Cloud `region`)
     /// * Each location has a collection of services, named: `/services/*`
-    ///
     /// * Dataproc Metastore services are resources with names of the form:
     ///
-    ///  `/projects/{project_number}/locations/{location_id}/services/{service_id}`.
+    ///   `/projects/{project_number}/locations/{location_id}/services/{service_id}`.
     #[derive(Debug, Clone)]
     pub struct DataprocMetastoreClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1882,8 +1885,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1910,8 +1912,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1941,8 +1942,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1972,8 +1972,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2003,8 +2002,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2034,8 +2032,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2062,8 +2059,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2093,8 +2089,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2125,8 +2120,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2156,8 +2150,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2187,8 +2180,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2218,8 +2210,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2246,8 +2237,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2277,8 +2267,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2308,8 +2297,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2339,8 +2327,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2370,8 +2357,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2404,8 +2390,7 @@ pub mod dataproc_metastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2430,7 +2415,7 @@ pub mod dataproc_metastore_client {
 pub struct Federation {
     /// Immutable. The relative resource name of the federation, of the
     /// form:
-    /// projects/{project_number}/locations/{location_id}/federations/{federation_id}\`.
+    /// projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time when the metastore federation was created.
@@ -2510,12 +2495,12 @@ pub mod federation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2540,9 +2525,9 @@ pub struct BackendMetastore {
     /// metastores are listed below:
     ///
     /// * BigQuery
-    ///   * `projects/{project_id}`
+    ///      * `projects/{project_id}`
     /// * Dataproc Metastore
-    ///   * `projects/{project_id}/locations/{location}/services/{service_id}`
+    ///      * `projects/{project_id}/locations/{location}/services/{service_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The type of the backend metastore.
@@ -2579,9 +2564,9 @@ pub mod backend_metastore {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MetastoreType::Unspecified => "METASTORE_TYPE_UNSPECIFIED",
-                MetastoreType::Bigquery => "BIGQUERY",
-                MetastoreType::DataprocMetastore => "DATAPROC_METASTORE",
+                Self::Unspecified => "METASTORE_TYPE_UNSPECIFIED",
+                Self::Bigquery => "BIGQUERY",
+                Self::DataprocMetastore => "DATAPROC_METASTORE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2746,7 +2731,13 @@ pub struct DeleteFederationRequest {
 }
 /// Generated client implementations.
 pub mod dataproc_metastore_federation_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Configures and manages metastore federation services.
@@ -2756,13 +2747,12 @@ pub mod dataproc_metastore_federation_client {
     /// from the backend metastores are served at query time.
     ///
     /// The Dataproc Metastore Federation API defines the following resource model:
-    ///
     /// * The service works with a collection of Google Cloud projects.
     /// * Each project has a collection of available locations.
     /// * Each location has a collection of federations.
     /// * Dataproc Metastore Federations are resources with names of the
-    ///  form:
-    ///  `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
+    /// form:
+    /// `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
     #[derive(Debug, Clone)]
     pub struct DataprocMetastoreFederationClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -2846,8 +2836,7 @@ pub mod dataproc_metastore_federation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2874,8 +2863,7 @@ pub mod dataproc_metastore_federation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2905,8 +2893,7 @@ pub mod dataproc_metastore_federation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2936,8 +2923,7 @@ pub mod dataproc_metastore_federation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2967,8 +2953,7 @@ pub mod dataproc_metastore_federation_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

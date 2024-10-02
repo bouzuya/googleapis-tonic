@@ -20,9 +20,9 @@ pub struct ExportAssetsRequest {
     ///
     /// Regular expressions are also supported. For example:
     ///
-    /// * "compute.googleapis.com.\*" snapshots resources whose asset type starts
-    ///   with "compute.googleapis.com".
-    /// * ".\*Instance" snapshots resources whose asset type ends with "Instance".
+    /// * "compute.googleapis.com.*" snapshots resources whose asset type starts
+    /// with "compute.googleapis.com".
+    /// * ".*Instance" snapshots resources whose asset type ends with "Instance".
     /// * ".*Instance.*" snapshots resources whose asset type contains "Instance".
     ///
     /// See [RE2](<https://github.com/google/re2/wiki/Syntax>) for all supported
@@ -57,9 +57,9 @@ pub struct ExportAssetsRequest {
     pub relationship_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The export asset response. This message is returned by the
-/// \[google.longrunning.Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
+/// [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
 /// method in the returned
-/// \[google.longrunning.Operation.response\]\[google.longrunning.Operation.response\]
+/// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportAssetsResponse {
@@ -198,11 +198,11 @@ pub struct BigQueryDestination {
     /// multiple tables, each of which contains results of one asset type. The
     /// \[force\] and \[partition_spec\] fields will apply to each of them.
     ///
-    /// Field \[table\] will be concatenated with "*" and the asset type names (see
+    /// Field \[table\] will be concatenated with "_" and the asset type names (see
     /// <https://cloud.google.com/asset-inventory/docs/supported-asset-types> for
     /// supported asset types) to construct per-asset-type table names, in which
     /// all non-alphanumeric characters like "." and "/" will be substituted by
-    /// "*". Example: if field \[table\] is "mytable" and snapshot results
+    /// "_". Example: if field \[table\] is "mytable" and snapshot results
     /// contain "storage.googleapis.com/Bucket" assets, the corresponding table
     /// name will be "mytable_storage_googleapis_com_Bucket". If any of these
     /// tables does not exist, a new table with the concatenated name will be
@@ -272,9 +272,9 @@ pub mod partition_spec {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PartitionKey::Unspecified => "PARTITION_KEY_UNSPECIFIED",
-                PartitionKey::ReadTime => "READ_TIME",
-                PartitionKey::RequestTime => "REQUEST_TIME",
+                Self::Unspecified => "PARTITION_KEY_UNSPECIFIED",
+                Self::ReadTime => "READ_TIME",
+                Self::RequestTime => "REQUEST_TIME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -312,12 +312,12 @@ impl ContentType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-            ContentType::Resource => "RESOURCE",
-            ContentType::IamPolicy => "IAM_POLICY",
-            ContentType::OrgPolicy => "ORG_POLICY",
-            ContentType::AccessPolicy => "ACCESS_POLICY",
-            ContentType::Relationship => "RELATIONSHIP",
+            Self::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+            Self::Resource => "RESOURCE",
+            Self::IamPolicy => "IAM_POLICY",
+            Self::OrgPolicy => "ORG_POLICY",
+            Self::AccessPolicy => "ACCESS_POLICY",
+            Self::Relationship => "RELATIONSHIP",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -335,7 +335,13 @@ impl ContentType {
 }
 /// Generated client implementations.
 pub mod asset_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Asset service definition.
@@ -411,10 +417,10 @@ pub mod asset_service_client {
         /// Exports assets with time and resource types to a given Cloud Storage
         /// location/BigQuery table. For Cloud Storage location destinations, the
         /// output format is newline-delimited JSON. Each line represents a
-        /// \[google.cloud.asset.v1p7beta1.Asset\]\[google.cloud.asset.v1p7beta1.Asset\] in
+        /// [google.cloud.asset.v1p7beta1.Asset][google.cloud.asset.v1p7beta1.Asset] in
         /// the JSON format; for BigQuery table destinations, the output table stores
         /// the fields in asset proto as columns. This API implements the
-        /// \[google.longrunning.Operation\]\[google.longrunning.Operation\] API , which
+        /// [google.longrunning.Operation][google.longrunning.Operation] API , which
         /// allows you to keep track of the export. We recommend intervals of at least
         /// 2 seconds with exponential retry to poll the export operation result. For
         /// regular-size resource parent, the export operation usually finishes within
@@ -430,8 +436,7 @@ pub mod asset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

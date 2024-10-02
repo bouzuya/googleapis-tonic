@@ -210,20 +210,18 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FindingType::Unspecified => "FINDING_TYPE_UNSPECIFIED",
-                FindingType::MixedContent => "MIXED_CONTENT",
-                FindingType::OutdatedLibrary => "OUTDATED_LIBRARY",
-                FindingType::RosettaFlash => "ROSETTA_FLASH",
-                FindingType::XssCallback => "XSS_CALLBACK",
-                FindingType::XssError => "XSS_ERROR",
-                FindingType::ClearTextPassword => "CLEAR_TEXT_PASSWORD",
-                FindingType::InvalidContentType => "INVALID_CONTENT_TYPE",
-                FindingType::XssAngularCallback => "XSS_ANGULAR_CALLBACK",
-                FindingType::InvalidHeader => "INVALID_HEADER",
-                FindingType::MisspelledSecurityHeaderName => {
-                    "MISSPELLED_SECURITY_HEADER_NAME"
-                }
-                FindingType::MismatchingSecurityHeaderValues => {
+                Self::Unspecified => "FINDING_TYPE_UNSPECIFIED",
+                Self::MixedContent => "MIXED_CONTENT",
+                Self::OutdatedLibrary => "OUTDATED_LIBRARY",
+                Self::RosettaFlash => "ROSETTA_FLASH",
+                Self::XssCallback => "XSS_CALLBACK",
+                Self::XssError => "XSS_ERROR",
+                Self::ClearTextPassword => "CLEAR_TEXT_PASSWORD",
+                Self::InvalidContentType => "INVALID_CONTENT_TYPE",
+                Self::XssAngularCallback => "XSS_ANGULAR_CALLBACK",
+                Self::InvalidHeader => "INVALID_HEADER",
+                Self::MisspelledSecurityHeaderName => "MISSPELLED_SECURITY_HEADER_NAME",
+                Self::MismatchingSecurityHeaderValues => {
                     "MISMATCHING_SECURITY_HEADER_VALUES"
                 }
             }
@@ -338,10 +336,10 @@ pub mod scan_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ExecutionState::Unspecified => "EXECUTION_STATE_UNSPECIFIED",
-                ExecutionState::Queued => "QUEUED",
-                ExecutionState::Scanning => "SCANNING",
-                ExecutionState::Finished => "FINISHED",
+                Self::Unspecified => "EXECUTION_STATE_UNSPECIFIED",
+                Self::Queued => "QUEUED",
+                Self::Scanning => "SCANNING",
+                Self::Finished => "FINISHED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -386,10 +384,10 @@ pub mod scan_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResultState::Unspecified => "RESULT_STATE_UNSPECIFIED",
-                ResultState::Success => "SUCCESS",
-                ResultState::Error => "ERROR",
-                ResultState::Killed => "KILLED",
+                Self::Unspecified => "RESULT_STATE_UNSPECIFIED",
+                Self::Success => "SUCCESS",
+                Self::Error => "ERROR",
+                Self::Killed => "KILLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -539,10 +537,10 @@ pub mod scan_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UserAgent::Unspecified => "USER_AGENT_UNSPECIFIED",
-                UserAgent::ChromeLinux => "CHROME_LINUX",
-                UserAgent::ChromeAndroid => "CHROME_ANDROID",
-                UserAgent::SafariIphone => "SAFARI_IPHONE",
+                Self::Unspecified => "USER_AGENT_UNSPECIFIED",
+                Self::ChromeLinux => "CHROME_LINUX",
+                Self::ChromeAndroid => "CHROME_ANDROID",
+                Self::SafariIphone => "SAFARI_IPHONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -585,9 +583,9 @@ pub mod scan_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TargetPlatform::Unspecified => "TARGET_PLATFORM_UNSPECIFIED",
-                TargetPlatform::AppEngine => "APP_ENGINE",
-                TargetPlatform::Compute => "COMPUTE",
+                Self::Unspecified => "TARGET_PLATFORM_UNSPECIFIED",
+                Self::AppEngine => "APP_ENGINE",
+                Self::Compute => "COMPUTE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -819,7 +817,13 @@ pub struct ListFindingTypeStatsResponse {
 }
 /// Generated client implementations.
 pub mod web_security_scanner_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Cloud Web Security Scanner Service identifies security vulnerabilities in web
@@ -903,8 +907,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -931,8 +934,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -959,8 +961,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -990,8 +991,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1018,8 +1018,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1046,8 +1045,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1074,8 +1072,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1106,8 +1103,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1134,8 +1130,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1165,8 +1160,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1193,8 +1187,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1224,8 +1217,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1255,8 +1247,7 @@ pub mod web_security_scanner_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

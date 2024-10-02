@@ -76,12 +76,12 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Done => "DONE",
-                Status::NotStarted => "NOT_STARTED",
-                Status::InProgress => "IN_PROGRESS",
-                Status::Failed => "FAILED",
-                Status::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Done => "DONE",
+                Self::NotStarted => "NOT_STARTED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Failed => "FAILED",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -139,8 +139,8 @@ pub mod diagnostic {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Kind::Warning => "WARNING",
-                Kind::Error => "ERROR",
+                Self::Warning => "WARNING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -225,12 +225,12 @@ pub mod config_file {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FileType::Unspecified => "FILE_TYPE_UNSPECIFIED",
-                FileType::ServiceConfigYaml => "SERVICE_CONFIG_YAML",
-                FileType::OpenApiJson => "OPEN_API_JSON",
-                FileType::OpenApiYaml => "OPEN_API_YAML",
-                FileType::FileDescriptorSetProto => "FILE_DESCRIPTOR_SET_PROTO",
-                FileType::ProtoFile => "PROTO_FILE",
+                Self::Unspecified => "FILE_TYPE_UNSPECIFIED",
+                Self::ServiceConfigYaml => "SERVICE_CONFIG_YAML",
+                Self::OpenApiJson => "OPEN_API_JSON",
+                Self::OpenApiYaml => "OPEN_API_YAML",
+                Self::FileDescriptorSetProto => "FILE_DESCRIPTOR_SET_PROTO",
+                Self::ProtoFile => "PROTO_FILE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -275,7 +275,7 @@ pub struct ChangeReport {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Rollout {
     /// Optional. Unique identifier of this Rollout. Must be no longer than 63
-    /// characters and only lower case letters, digits, '.', '\_' and '-' are
+    /// characters and only lower case letters, digits, '.', '_' and '-' are
     /// allowed.
     ///
     /// If not specified by client, the server will generate one. The generated id
@@ -317,30 +317,26 @@ pub mod rollout {
     /// strategy:
     /// Day 1
     ///
-    /// ```text
-    /// Rollout {
-    ///    id: "example.googleapis.com/rollout_20160206"
-    ///    traffic_percent_strategy {
-    ///      percentages: {
-    ///        "example.googleapis.com/20160201": 70.00
-    ///        "example.googleapis.com/20160206": 30.00
+    ///      Rollout {
+    ///        id: "example.googleapis.com/rollout_20160206"
+    ///        traffic_percent_strategy {
+    ///          percentages: {
+    ///            "example.googleapis.com/20160201": 70.00
+    ///            "example.googleapis.com/20160206": 30.00
+    ///          }
+    ///        }
     ///      }
-    ///    }
-    /// }
-    /// ```
     ///
     /// Day 2
     ///
-    /// ```text
-    /// Rollout {
-    ///    id: "example.googleapis.com/rollout_20160207"
-    ///    traffic_percent_strategy: {
-    ///      percentages: {
-    ///        "example.googleapis.com/20160206": 100.00
+    ///      Rollout {
+    ///        id: "example.googleapis.com/rollout_20160207"
+    ///        traffic_percent_strategy: {
+    ///          percentages: {
+    ///            "example.googleapis.com/20160206": 100.00
+    ///          }
+    ///        }
     ///      }
-    ///    }
-    /// }
-    /// ```
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TrafficPercentStrategy {
         /// Maps service configuration IDs to their corresponding traffic percentage.
@@ -394,13 +390,13 @@ pub mod rollout {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RolloutStatus::Unspecified => "ROLLOUT_STATUS_UNSPECIFIED",
-                RolloutStatus::InProgress => "IN_PROGRESS",
-                RolloutStatus::Success => "SUCCESS",
-                RolloutStatus::Cancelled => "CANCELLED",
-                RolloutStatus::Failed => "FAILED",
-                RolloutStatus::Pending => "PENDING",
-                RolloutStatus::FailedRolledBack => "FAILED_ROLLED_BACK",
+                Self::Unspecified => "ROLLOUT_STATUS_UNSPECIFIED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Success => "SUCCESS",
+                Self::Cancelled => "CANCELLED",
+                Self::Failed => "FAILED",
+                Self::Pending => "PENDING",
+                Self::FailedRolledBack => "FAILED_ROLLED_BACK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -450,8 +446,7 @@ pub struct ListServicesRequest {
     ///
     /// The Google Service Management implementation accepts the following
     /// forms:
-    ///
-    /// * project:\<project_id>
+    /// - project:<project_id>
     #[deprecated]
     #[prost(string, tag = "7")]
     pub consumer_id: ::prost::alloc::string::String,
@@ -555,8 +550,8 @@ pub mod get_service_config_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConfigView::Basic => "BASIC",
-                ConfigView::Full => "FULL",
+                Self::Basic => "BASIC",
+                Self::Full => "FULL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -631,6 +626,7 @@ pub struct SubmitConfigSourceResponse {
     #[prost(message, optional, tag = "1")]
     pub service_config: ::core::option::Option<super::super::Service>,
 }
+///
 /// Request message for 'CreateServiceRollout'
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceRolloutRequest {
@@ -661,13 +657,13 @@ pub struct ListServiceRolloutsRequest {
     /// Required. Use `filter` to return subset of rollouts.
     /// The following filters are supported:
     ///
-    /// -- By \[status\]
-    /// \[google.api.servicemanagement.v1.Rollout.RolloutStatus\]. For example,
-    /// `filter='status=SUCCESS'`
+    ///   -- By \[status\]
+    ///   \[google.api.servicemanagement.v1.Rollout.RolloutStatus\]. For example,
+    ///   `filter='status=SUCCESS'`
     ///
-    /// -- By \[strategy\]
-    /// \[google.api.servicemanagement.v1.Rollout.strategy\]. For example,
-    /// `filter='strategy=TrafficPercentStrategy'`
+    ///   -- By \[strategy\]
+    ///   \[google.api.servicemanagement.v1.Rollout.strategy\]. For example,
+    ///   `filter='strategy=TrafficPercentStrategy'`
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -701,16 +697,16 @@ pub struct EnableServiceResponse {}
 pub struct GenerateConfigReportRequest {
     /// Required. Service configuration for which we want to generate the report.
     /// For this version of API, the supported types are
-    /// \[google.api.servicemanagement.v1.ConfigRef\]\[google.api.servicemanagement.v1.ConfigRef\],
-    /// \[google.api.servicemanagement.v1.ConfigSource\]\[google.api.servicemanagement.v1.ConfigSource\],
-    /// and \[google.api.Service\]\[google.api.Service\]
+    /// [google.api.servicemanagement.v1.ConfigRef][google.api.servicemanagement.v1.ConfigRef],
+    /// [google.api.servicemanagement.v1.ConfigSource][google.api.servicemanagement.v1.ConfigSource],
+    /// and [google.api.Service][google.api.Service]
     #[prost(message, optional, tag = "1")]
     pub new_config: ::core::option::Option<::prost_types::Any>,
     /// Optional. Service configuration against which the comparison will be done.
     /// For this version of API, the supported types are
-    /// \[google.api.servicemanagement.v1.ConfigRef\]\[google.api.servicemanagement.v1.ConfigRef\],
-    /// \[google.api.servicemanagement.v1.ConfigSource\]\[google.api.servicemanagement.v1.ConfigSource\],
-    /// and \[google.api.Service\]\[google.api.Service\]
+    /// [google.api.servicemanagement.v1.ConfigRef][google.api.servicemanagement.v1.ConfigRef],
+    /// [google.api.servicemanagement.v1.ConfigSource][google.api.servicemanagement.v1.ConfigSource],
+    /// and [google.api.Service][google.api.Service]
     #[prost(message, optional, tag = "2")]
     pub old_config: ::core::option::Option<::prost_types::Any>,
 }
@@ -735,7 +731,13 @@ pub struct GenerateConfigReportResponse {
 }
 /// Generated client implementations.
 pub mod service_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// [Google Service Management
@@ -825,8 +827,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -854,8 +855,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -883,7 +883,7 @@ pub mod service_manager_client {
         /// reliability purposes, a production service should be hosted in a
         /// dedicated producer project.
         ///
-        /// Operation\<response: ManagedService>
+        /// Operation<response: ManagedService>
         pub async fn create_service(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceRequest>,
@@ -895,8 +895,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -917,11 +916,11 @@ pub mod service_manager_client {
         /// Deletes a managed service. This method will change the service to the
         /// `Soft-Delete` state for 30 days. Within this period, service producers may
         /// call
-        /// \[UndeleteService\]\[google.api.servicemanagement.v1.ServiceManager.UndeleteService\]
+        /// [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
         /// to restore the service. After 30 days, the service will be permanently
         /// deleted.
         ///
-        /// Operation\<response: google.protobuf.Empty>
+        /// Operation<response: google.protobuf.Empty>
         pub async fn delete_service(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteServiceRequest>,
@@ -933,8 +932,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -957,7 +955,7 @@ pub mod service_manager_client {
         /// The target service must exist and must have been deleted within the
         /// last 30 days.
         ///
-        /// Operation\<response: UndeleteServiceResponse>
+        /// Operation<response: UndeleteServiceResponse>
         pub async fn undelete_service(
             &mut self,
             request: impl tonic::IntoRequest<super::UndeleteServiceRequest>,
@@ -969,8 +967,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1001,8 +998,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1032,8 +1028,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1054,7 +1049,7 @@ pub mod service_manager_client {
         /// Creates a new service configuration (version) for a managed service.
         /// This method only stores the service configuration. To roll out the service
         /// configuration to backend systems please call
-        /// \[CreateServiceRollout\]\[google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout\].
+        /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
         ///
         /// Only the 100 most recent service configurations and ones referenced by
         /// existing rollouts are kept for each service. The rest will be deleted
@@ -1070,8 +1065,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1096,13 +1090,13 @@ pub mod service_manager_client {
         /// generated service configuration. To rollout the service configuration to
         /// other services,
         /// please call
-        /// \[CreateServiceRollout\]\[google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout\].
+        /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
         ///
         /// Only the 100 most recent configuration sources and ones referenced by
         /// existing service configurtions are kept for each service. The rest will be
         /// deleted eventually.
         ///
-        /// Operation\<response: SubmitConfigSourceResponse>
+        /// Operation<response: SubmitConfigSourceResponse>
         pub async fn submit_config_source(
             &mut self,
             request: impl tonic::IntoRequest<super::SubmitConfigSourceRequest>,
@@ -1114,8 +1108,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1146,8 +1139,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1166,7 +1158,7 @@ pub mod service_manager_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets a service configuration
-        /// \[rollout\]\[google.api.servicemanagement.v1.Rollout\].
+        /// [rollout][google.api.servicemanagement.v1.Rollout].
         pub async fn get_service_rollout(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceRolloutRequest>,
@@ -1175,8 +1167,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1207,7 +1198,7 @@ pub mod service_manager_client {
         /// already part of the set of 100 most recent) rollouts are kept for each
         /// service. The rest will be deleted eventually.
         ///
-        /// Operation\<response: Rollout>
+        /// Operation<response: Rollout>
         pub async fn create_service_rollout(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceRolloutRequest>,
@@ -1219,8 +1210,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1260,8 +1250,7 @@ pub mod service_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

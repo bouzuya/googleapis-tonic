@@ -263,13 +263,13 @@ pub mod translation_task_details {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FileEncoding::Unspecified => "FILE_ENCODING_UNSPECIFIED",
-                FileEncoding::Utf8 => "UTF_8",
-                FileEncoding::Iso88591 => "ISO_8859_1",
-                FileEncoding::UsAscii => "US_ASCII",
-                FileEncoding::Utf16 => "UTF_16",
-                FileEncoding::Utf16le => "UTF_16LE",
-                FileEncoding::Utf16be => "UTF_16BE",
+                Self::Unspecified => "FILE_ENCODING_UNSPECIFIED",
+                Self::Utf8 => "UTF_8",
+                Self::Iso88591 => "ISO_8859_1",
+                Self::UsAscii => "US_ASCII",
+                Self::Utf16 => "UTF_16",
+                Self::Utf16le => "UTF_16LE",
+                Self::Utf16be => "UTF_16BE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -324,14 +324,14 @@ pub mod translation_task_details {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TokenType::Unspecified => "TOKEN_TYPE_UNSPECIFIED",
-                TokenType::String => "STRING",
-                TokenType::Int64 => "INT64",
-                TokenType::Numeric => "NUMERIC",
-                TokenType::Bool => "BOOL",
-                TokenType::Float64 => "FLOAT64",
-                TokenType::Date => "DATE",
-                TokenType::Timestamp => "TIMESTAMP",
+                Self::Unspecified => "TOKEN_TYPE_UNSPECIFIED",
+                Self::String => "STRING",
+                Self::Int64 => "INT64",
+                Self::Numeric => "NUMERIC",
+                Self::Bool => "BOOL",
+                Self::Float64 => "FLOAT64",
+                Self::Date => "DATE",
+                Self::Timestamp => "TIMESTAMP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -411,10 +411,10 @@ pub mod identifier_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IdentifierCase::Unspecified => "IDENTIFIER_CASE_UNSPECIFIED",
-                IdentifierCase::Original => "ORIGINAL",
-                IdentifierCase::Upper => "UPPER",
-                IdentifierCase::Lower => "LOWER",
+                Self::Unspecified => "IDENTIFIER_CASE_UNSPECIFIED",
+                Self::Original => "ORIGINAL",
+                Self::Upper => "UPPER",
+                Self::Lower => "LOWER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -456,11 +456,9 @@ pub mod identifier_settings {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IdentifierRewriteMode::Unspecified => {
-                    "IDENTIFIER_REWRITE_MODE_UNSPECIFIED"
-                }
-                IdentifierRewriteMode::None => "NONE",
-                IdentifierRewriteMode::RewriteAll => "REWRITE_ALL",
+                Self::Unspecified => "IDENTIFIER_REWRITE_MODE_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::RewriteAll => "REWRITE_ALL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -501,7 +499,7 @@ pub struct BteqOptions {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatasetReference {
     /// A unique ID for this dataset, without the project name. The ID
-    /// must contain only letters (a-z, A-Z), numbers (0-9), or underscores (\_).
+    /// must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
     /// The maximum length is 1,024 characters.
     #[prost(string, tag = "1")]
     pub dataset_id: ::prost::alloc::string::String,
@@ -579,11 +577,11 @@ pub mod migration_workflow {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Draft => "DRAFT",
-                State::Running => "RUNNING",
-                State::Paused => "PAUSED",
-                State::Completed => "COMPLETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Draft => "DRAFT",
+                Self::Running => "RUNNING",
+                Self::Paused => "PAUSED",
+                Self::Completed => "COMPLETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -674,13 +672,13 @@ pub mod migration_task {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Orchestrating => "ORCHESTRATING",
-                State::Running => "RUNNING",
-                State::Paused => "PAUSED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Orchestrating => "ORCHESTRATING",
+                Self::Running => "RUNNING",
+                Self::Paused => "PAUSED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -793,12 +791,12 @@ pub mod migration_subtask {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Paused => "PAUSED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Paused => "PAUSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -955,7 +953,13 @@ pub struct ListMigrationSubtasksResponse {
 }
 /// Generated client implementations.
 pub mod migration_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to handle EDW migrations.
@@ -1040,8 +1044,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1071,8 +1074,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1102,8 +1104,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1130,8 +1131,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1161,8 +1161,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1192,8 +1191,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1223,8 +1221,7 @@ pub mod migration_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1289,10 +1286,8 @@ pub mod translate_query_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SqlTranslationSourceDialect::Unspecified => {
-                    "SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED"
-                }
-                SqlTranslationSourceDialect::Teradata => "TERADATA",
+                Self::Unspecified => "SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED",
+                Self::Teradata => "TERADATA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1379,13 +1374,9 @@ pub mod sql_translation_error {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SqlTranslationErrorType::Unspecified => {
-                    "SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED"
-                }
-                SqlTranslationErrorType::SqlParseError => "SQL_PARSE_ERROR",
-                SqlTranslationErrorType::UnsupportedSqlFunction => {
-                    "UNSUPPORTED_SQL_FUNCTION"
-                }
+                Self::Unspecified => "SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED",
+                Self::SqlParseError => "SQL_PARSE_ERROR",
+                Self::UnsupportedSqlFunction => "UNSUPPORTED_SQL_FUNCTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1410,7 +1401,13 @@ pub struct SqlTranslationWarning {
 }
 /// Generated client implementations.
 pub mod sql_translation_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides other SQL dialects to GoogleSQL translation operations.
@@ -1495,8 +1492,7 @@ pub mod sql_translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -51,9 +51,9 @@ pub mod document {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::PlainText => "PLAIN_TEXT",
-                Type::Html => "HTML",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::PlainText => "PLAIN_TEXT",
+                Self::Html => "HTML",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -88,8 +88,8 @@ pub struct Sentence {
     /// The sentence text.
     #[prost(message, optional, tag = "1")]
     pub text: ::core::option::Option<TextSpan>,
-    /// For calls to \[AnalyzeSentiment\]\[\] or if
-    /// \[AnnotateTextRequest.Features.extract_document_sentiment\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment\]
+    /// For calls to [AnalyzeSentiment][] or if
+    /// [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment]
     /// is set to true, this field will contain the sentiment for the sentence.
     #[prost(message, optional, tag = "2")]
     pub sentiment: ::core::option::Option<Sentiment>,
@@ -118,8 +118,8 @@ pub struct Entity {
     /// supports proper noun mentions.
     #[prost(message, repeated, tag = "5")]
     pub mentions: ::prost::alloc::vec::Vec<EntityMention>,
-    /// For calls to \[AnalyzeEntitySentiment\]\[\] or if
-    /// \[AnnotateTextRequest.Features.extract_entity_sentiment\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment\]
+    /// For calls to [AnalyzeEntitySentiment][] or if
+    /// [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment]
     /// is set to true, this field will contain the aggregate sentiment expressed
     /// for this entity in the provided document.
     #[prost(message, optional, tag = "6")]
@@ -165,11 +165,11 @@ pub mod entity {
         /// convention, plus whichever additional elements appear in the text:
         ///
         /// * `number` - the actual number, broken down into sections as per local
-        ///   convention
+        /// convention
         /// * `national_prefix` - country code, if detected
         /// * `area_code` - region or area code, if detected
         /// * `extension` - phone extension (to be dialed after connection), if
-        ///   detected
+        /// detected
         PhoneNumber = 9,
         /// Address
         ///
@@ -183,9 +183,9 @@ pub mod entity {
         /// * `country` - country, if detected
         /// * `broad_region` - administrative area, such as the state, if detected
         /// * `narrow_region` - smaller administrative area, such as county, if
-        ///   detected
+        /// detected
         /// * `sublocality` - used in Asian addresses to demark a district within a
-        ///   city, if detected
+        /// city, if detected
         Address = 10,
         /// Date
         ///
@@ -211,19 +211,19 @@ pub mod entity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unknown => "UNKNOWN",
-                Type::Person => "PERSON",
-                Type::Location => "LOCATION",
-                Type::Organization => "ORGANIZATION",
-                Type::Event => "EVENT",
-                Type::WorkOfArt => "WORK_OF_ART",
-                Type::ConsumerGood => "CONSUMER_GOOD",
-                Type::Other => "OTHER",
-                Type::PhoneNumber => "PHONE_NUMBER",
-                Type::Address => "ADDRESS",
-                Type::Date => "DATE",
-                Type::Number => "NUMBER",
-                Type::Price => "PRICE",
+                Self::Unknown => "UNKNOWN",
+                Self::Person => "PERSON",
+                Self::Location => "LOCATION",
+                Self::Organization => "ORGANIZATION",
+                Self::Event => "EVENT",
+                Self::WorkOfArt => "WORK_OF_ART",
+                Self::ConsumerGood => "CONSUMER_GOOD",
+                Self::Other => "OTHER",
+                Self::PhoneNumber => "PHONE_NUMBER",
+                Self::Address => "ADDRESS",
+                Self::Date => "DATE",
+                Self::Number => "NUMBER",
+                Self::Price => "PRICE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -251,7 +251,7 @@ pub mod entity {
 /// the text.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Sentiment {
-    /// A non-negative number in the \[0, +inf) range, which represents
+    /// A non-negative number in the [0, +inf) range, which represents
     /// the absolute magnitude of sentiment regardless of score (positive or
     /// negative).
     #[prost(float, tag = "1")]
@@ -271,8 +271,8 @@ pub struct EntityMention {
     /// The type of the entity mention.
     #[prost(enumeration = "entity_mention::Type", tag = "2")]
     pub r#type: i32,
-    /// For calls to \[AnalyzeEntitySentiment\]\[\] or if
-    /// \[AnnotateTextRequest.Features.extract_entity_sentiment\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment\]
+    /// For calls to [AnalyzeEntitySentiment][] or if
+    /// [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment]
     /// is set to true, this field will contain the sentiment expressed for this
     /// mention of the entity in the provided document.
     #[prost(message, optional, tag = "3")]
@@ -280,7 +280,7 @@ pub struct EntityMention {
     /// Probability score associated with the entity.
     ///
     /// The score shows the probability of the entity mention being the entity
-    /// type. The score is in (0, 1\] range.
+    /// type. The score is in (0, 1] range.
     #[prost(float, tag = "4")]
     pub probability: f32,
 }
@@ -314,9 +314,9 @@ pub mod entity_mention {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unknown => "TYPE_UNKNOWN",
-                Type::Proper => "PROPER",
-                Type::Common => "COMMON",
+                Self::Unknown => "TYPE_UNKNOWN",
+                Self::Proper => "PROPER",
+                Self::Common => "COMMON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -338,7 +338,7 @@ pub struct TextSpan {
     pub content: ::prost::alloc::string::String,
     /// The API calculates the beginning offset of the content in the original
     /// document according to the
-    /// \[EncodingType\]\[google.cloud.language.v2.EncodingType\] specified in the API
+    /// [EncodingType][google.cloud.language.v2.EncodingType] specified in the API
     /// request.
     #[prost(int32, tag = "2")]
     pub begin_offset: i32,
@@ -377,7 +377,7 @@ pub struct AnalyzeSentimentResponse {
     pub document_sentiment: ::core::option::Option<Sentiment>,
     /// The language of the text, which will be the same as the language specified
     /// in the request or, if not specified, the automatically-detected language.
-    /// See \[Document.language\]\[\] field for more details.
+    /// See [Document.language][] field for more details.
     #[prost(string, tag = "2")]
     pub language_code: ::prost::alloc::string::String,
     /// The sentiment for all the sentences in the document.
@@ -407,7 +407,7 @@ pub struct AnalyzeEntitiesResponse {
     pub entities: ::prost::alloc::vec::Vec<Entity>,
     /// The language of the text, which will be the same as the language specified
     /// in the request or, if not specified, the automatically-detected language.
-    /// See \[Document.language\]\[\] field for more details.
+    /// See [Document.language][] field for more details.
     #[prost(string, tag = "2")]
     pub language_code: ::prost::alloc::string::String,
     /// Whether the language is officially supported. The API may still return a
@@ -431,7 +431,7 @@ pub struct ClassifyTextResponse {
     pub categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
     /// The language of the text, which will be the same as the language specified
     /// in the request or, if not specified, the automatically-detected language.
-    /// See \[Document.language\]\[\] field for more details.
+    /// See [Document.language][] field for more details.
     #[prost(string, tag = "2")]
     pub language_code: ::prost::alloc::string::String,
     /// Whether the language is officially supported. The API may still return a
@@ -484,9 +484,9 @@ pub mod moderate_text_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ModelVersion::Unspecified => "MODEL_VERSION_UNSPECIFIED",
-                ModelVersion::ModelVersion1 => "MODEL_VERSION_1",
-                ModelVersion::ModelVersion2 => "MODEL_VERSION_2",
+                Self::Unspecified => "MODEL_VERSION_UNSPECIFIED",
+                Self::ModelVersion1 => "MODEL_VERSION_1",
+                Self::ModelVersion2 => "MODEL_VERSION_2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -508,7 +508,7 @@ pub struct ModerateTextResponse {
     pub moderation_categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
     /// The language of the text, which will be the same as the language specified
     /// in the request or, if not specified, the automatically-detected language.
-    /// See \[Document.language\]\[\] field for more details.
+    /// See [Document.language][] field for more details.
     #[prost(string, tag = "2")]
     pub language_code: ::prost::alloc::string::String,
     /// Whether the language is officially supported. The API may still return a
@@ -555,23 +555,23 @@ pub mod annotate_text_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateTextResponse {
     /// Sentences in the input document. Populated if the user enables
-    /// \[AnnotateTextRequest.Features.extract_document_sentiment\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment\].
+    /// [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment].
     #[prost(message, repeated, tag = "1")]
     pub sentences: ::prost::alloc::vec::Vec<Sentence>,
     /// Entities, along with their semantic information, in the input document.
     /// Populated if the user enables
-    /// \[AnnotateTextRequest.Features.extract_entities\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_entities\]
+    /// [AnnotateTextRequest.Features.extract_entities][google.cloud.language.v2.AnnotateTextRequest.Features.extract_entities]
     /// or
-    /// \[AnnotateTextRequest.Features.extract_entity_sentiment\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment\].
+    /// [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment].
     #[prost(message, repeated, tag = "2")]
     pub entities: ::prost::alloc::vec::Vec<Entity>,
     /// The overall sentiment for the document. Populated if the user enables
-    /// \[AnnotateTextRequest.Features.extract_document_sentiment\]\[google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment\].
+    /// [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment].
     #[prost(message, optional, tag = "3")]
     pub document_sentiment: ::core::option::Option<Sentiment>,
     /// The language of the text, which will be the same as the language specified
     /// in the request or, if not specified, the automatically-detected language.
-    /// See \[Document.language\]\[\] field for more details.
+    /// See [Document.language][] field for more details.
     #[prost(string, tag = "4")]
     pub language_code: ::prost::alloc::string::String,
     /// Categories identified in the input document.
@@ -617,10 +617,10 @@ impl EncodingType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EncodingType::None => "NONE",
-            EncodingType::Utf8 => "UTF8",
-            EncodingType::Utf16 => "UTF16",
-            EncodingType::Utf32 => "UTF32",
+            Self::None => "NONE",
+            Self::Utf8 => "UTF8",
+            Self::Utf16 => "UTF16",
+            Self::Utf32 => "UTF32",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -636,7 +636,13 @@ impl EncodingType {
 }
 /// Generated client implementations.
 pub mod language_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides text analysis operations such as sentiment analysis and entity
@@ -722,8 +728,7 @@ pub mod language_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -755,8 +760,7 @@ pub mod language_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -786,8 +790,7 @@ pub mod language_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -817,8 +820,7 @@ pub mod language_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -848,8 +850,7 @@ pub mod language_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

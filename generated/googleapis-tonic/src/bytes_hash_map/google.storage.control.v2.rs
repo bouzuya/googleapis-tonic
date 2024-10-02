@@ -202,8 +202,8 @@ pub struct CommonLongRunningOperationMetadata {
     /// Output only. Identifies whether the user has requested cancellation.
     #[prost(bool, tag = "5")]
     pub requested_cancellation: bool,
-    /// Output only. The estimated progress of the operation in percentage \[0,
-    /// 100\]. The value -1 means the progress is unknown.
+    /// Output only. The estimated progress of the operation in percentage [0,
+    /// 100]. The value -1 means the progress is unknown.
     #[prost(int32, tag = "6")]
     pub progress_percent: i32,
 }
@@ -252,7 +252,7 @@ pub struct StorageLayout {
 pub mod storage_layout {
     /// Configuration for Custom Dual Regions.  It should specify precisely two
     /// eligible regions within the same Multiregion. More information on regions
-    /// may be found \[<https://cloud.google.com/storage/docs/locations\]\[here\].>
+    /// may be found [<https://cloud.google.com/storage/docs/locations][here].>
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CustomPlacementConfig {
         /// List of locations to use for data placement.
@@ -408,7 +408,13 @@ pub struct ListManagedFoldersResponse {
 }
 /// Generated client implementations.
 pub mod storage_control_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// StorageControl service includes selected control plane operations.
@@ -491,8 +497,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -520,8 +525,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -549,8 +553,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -581,8 +584,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -615,8 +617,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -643,8 +644,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -671,8 +671,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -699,8 +698,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -727,8 +725,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -758,8 +755,7 @@ pub mod storage_control_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

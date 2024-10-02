@@ -138,7 +138,7 @@ pub struct SolarPotential {
     /// Size and sunlight quantiles for each roof segment.
     #[prost(message, repeated, tag = "6")]
     pub roof_segment_stats: ::prost::alloc::vec::Vec<RoofSegmentSizeAndSunshineStats>,
-    /// Each \[SolarPanel\] \[google.maps.solar.v1.SolarPanel\]
+    /// Each \[SolarPanel\] [google.maps.solar.v1.SolarPanel]
     /// describes a single solar panel. They are listed in the order that
     /// the panel layout algorithm placed this. This is usually, though
     /// not always, in decreasing order of annual energy production.
@@ -492,9 +492,9 @@ pub struct GetDataLayersRequest {
     ///
     /// * Any value up to 100m can always be specified.
     /// * Values over 100m can be specified, as long as
-    ///   `radius_meters` \<= `pixel_size_meters * 1000`.
+    ///    `radius_meters` <= `pixel_size_meters * 1000`.
     /// * However, for values over 175m, the `DataLayerView` in the
-    ///   request must not include monthly flux or hourly shade.
+    ///    request must not include monthly flux or hourly shade.
     #[prost(float, tag = "2")]
     pub radius_meters: f32,
     /// Optional. The desired subset of the data to return.
@@ -594,11 +594,9 @@ pub struct DataLayers {
     /// Given `month` (1-12), `day` (1...month max; February has 28 days)
     /// and `hour` (0-23), the shade/sun for that month/day/hour at a
     /// position `(x, y)` is the bit
-    ///
-    /// ```text,
+    /// ```
     /// (hourly_shade\[month - 1\])(x, y)\[hour\] & (1 << (day - 1))
     /// ```
-    ///
     /// where `(x, y)` is spatial indexing, `\[month - 1\]` refers to
     /// fetching the `month - 1`st URL (indexing from zero), `\[hour\]` is
     /// indexing into the channels, and a final non-zero result means
@@ -641,12 +639,12 @@ impl DataLayerView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DataLayerView::Unspecified => "DATA_LAYER_VIEW_UNSPECIFIED",
-            DataLayerView::DsmLayer => "DSM_LAYER",
-            DataLayerView::ImageryLayers => "IMAGERY_LAYERS",
-            DataLayerView::ImageryAndAnnualFluxLayers => "IMAGERY_AND_ANNUAL_FLUX_LAYERS",
-            DataLayerView::ImageryAndAllFluxLayers => "IMAGERY_AND_ALL_FLUX_LAYERS",
-            DataLayerView::FullLayers => "FULL_LAYERS",
+            Self::Unspecified => "DATA_LAYER_VIEW_UNSPECIFIED",
+            Self::DsmLayer => "DSM_LAYER",
+            Self::ImageryLayers => "IMAGERY_LAYERS",
+            Self::ImageryAndAnnualFluxLayers => "IMAGERY_AND_ANNUAL_FLUX_LAYERS",
+            Self::ImageryAndAllFluxLayers => "IMAGERY_AND_ALL_FLUX_LAYERS",
+            Self::FullLayers => "FULL_LAYERS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -686,10 +684,10 @@ impl ImageryQuality {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ImageryQuality::Unspecified => "IMAGERY_QUALITY_UNSPECIFIED",
-            ImageryQuality::High => "HIGH",
-            ImageryQuality::Medium => "MEDIUM",
-            ImageryQuality::Low => "LOW",
+            Self::Unspecified => "IMAGERY_QUALITY_UNSPECIFIED",
+            Self::High => "HIGH",
+            Self::Medium => "MEDIUM",
+            Self::Low => "LOW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -724,9 +722,9 @@ impl SolarPanelOrientation {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SolarPanelOrientation::Unspecified => "SOLAR_PANEL_ORIENTATION_UNSPECIFIED",
-            SolarPanelOrientation::Landscape => "LANDSCAPE",
-            SolarPanelOrientation::Portrait => "PORTRAIT",
+            Self::Unspecified => "SOLAR_PANEL_ORIENTATION_UNSPECIFIED",
+            Self::Landscape => "LANDSCAPE",
+            Self::Portrait => "PORTRAIT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -741,7 +739,13 @@ impl SolarPanelOrientation {
 }
 /// Generated client implementations.
 pub mod solar_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service definition for the Solar API.
@@ -828,8 +832,7 @@ pub mod solar_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -858,8 +861,7 @@ pub mod solar_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -884,8 +886,7 @@ pub mod solar_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

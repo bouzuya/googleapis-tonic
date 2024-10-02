@@ -17,9 +17,9 @@ pub struct Workflow {
     /// A new revision of a workflow is created as a result of updating the
     /// following properties of a workflow:
     ///
-    /// * \[Service account\]\[google.cloud.workflows.v1.Workflow.service_account\]
-    /// * \[Workflow code to be
-    ///   executed\]\[google.cloud.workflows.v1.Workflow.source_contents\]
+    /// - [Service account][google.cloud.workflows.v1.Workflow.service_account]
+    /// - [Workflow code to be
+    /// executed][google.cloud.workflows.v1.Workflow.source_contents]
     ///
     /// The format is "000001-a4d", where the first six characters define
     /// the zero-padded revision ordinal number. They are followed by a hyphen and
@@ -139,8 +139,8 @@ pub mod workflow {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::KmsError => "KMS_ERROR",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::KmsError => "KMS_ERROR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -181,9 +181,9 @@ pub mod workflow {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Unavailable => "UNAVAILABLE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Unavailable => "UNAVAILABLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -228,10 +228,10 @@ pub mod workflow {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CallLogLevel::Unspecified => "CALL_LOG_LEVEL_UNSPECIFIED",
-                CallLogLevel::LogAllCalls => "LOG_ALL_CALLS",
-                CallLogLevel::LogErrorsOnly => "LOG_ERRORS_ONLY",
-                CallLogLevel::LogNone => "LOG_NONE",
+                Self::Unspecified => "CALL_LOG_LEVEL_UNSPECIFIED",
+                Self::LogAllCalls => "LOG_ALL_CALLS",
+                Self::LogErrorsOnly => "LOG_ERRORS_ONLY",
+                Self::LogNone => "LOG_NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -256,7 +256,7 @@ pub mod workflow {
     }
 }
 /// Request for the
-/// \[ListWorkflows\]\[google.cloud.workflows.v1.Workflows.ListWorkflows\]
+/// [ListWorkflows][google.cloud.workflows.v1.Workflows.ListWorkflows]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowsRequest {
@@ -288,7 +288,7 @@ pub struct ListWorkflowsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for the
-/// \[ListWorkflows\]\[google.cloud.workflows.v1.Workflows.ListWorkflows\]
+/// [ListWorkflows][google.cloud.workflows.v1.Workflows.ListWorkflows]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowsResponse {
@@ -304,7 +304,7 @@ pub struct ListWorkflowsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for the
-/// \[GetWorkflow\]\[google.cloud.workflows.v1.Workflows.GetWorkflow\] method.
+/// [GetWorkflow][google.cloud.workflows.v1.Workflows.GetWorkflow] method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkflowRequest {
     /// Required. Name of the workflow for which information should be retrieved.
@@ -320,7 +320,7 @@ pub struct GetWorkflowRequest {
     pub revision_id: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[CreateWorkflow\]\[google.cloud.workflows.v1.Workflows.CreateWorkflow\]
+/// [CreateWorkflow][google.cloud.workflows.v1.Workflows.CreateWorkflow]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkflowRequest {
@@ -343,7 +343,7 @@ pub struct CreateWorkflowRequest {
     pub workflow_id: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[DeleteWorkflow\]\[google.cloud.workflows.v1.Workflows.DeleteWorkflow\]
+/// [DeleteWorkflow][google.cloud.workflows.v1.Workflows.DeleteWorkflow]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkflowRequest {
@@ -353,7 +353,7 @@ pub struct DeleteWorkflowRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for the
-/// \[UpdateWorkflow\]\[google.cloud.workflows.v1.Workflows.UpdateWorkflow\]
+/// [UpdateWorkflow][google.cloud.workflows.v1.Workflows.UpdateWorkflow]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkflowRequest {
@@ -386,7 +386,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod workflows_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Workflows is used to deploy and execute workflow programs.
@@ -474,8 +480,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -502,8 +507,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -520,7 +524,7 @@ pub mod workflows_client {
         }
         /// Creates a new workflow. If a workflow with the specified name already
         /// exists in the specified project and location, the long running operation
-        /// returns a \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
+        /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
         pub async fn create_workflow(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateWorkflowRequest>,
@@ -532,8 +536,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -565,8 +568,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -600,8 +602,7 @@ pub mod workflows_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

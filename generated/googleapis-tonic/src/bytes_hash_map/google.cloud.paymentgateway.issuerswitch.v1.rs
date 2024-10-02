@@ -146,9 +146,9 @@ pub mod participant {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Persona::Unspecified => "PERSONA_UNSPECIFIED",
-                Persona::Entity => "ENTITY",
-                Persona::Person => "PERSON",
+                Self::Unspecified => "PERSONA_UNSPECIFIED",
+                Self::Entity => "ENTITY",
+                Self::Person => "PERSON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -248,9 +248,9 @@ pub mod merchant_additional_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Large => "LARGE",
-                Type::Small => "SMALL",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Large => "LARGE",
+                Self::Small => "SMALL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -291,9 +291,9 @@ pub mod merchant_additional_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Genre::Unspecified => "GENRE_UNSPECIFIED",
-                Genre::Offline => "OFFLINE",
-                Genre::Online => "ONLINE",
+                Self::Unspecified => "GENRE_UNSPECIFIED",
+                Self::Offline => "OFFLINE",
+                Self::Online => "ONLINE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -339,11 +339,11 @@ pub mod merchant_additional_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OnboardingType::Unspecified => "ONBOARDING_TYPE_UNSPECIFIED",
-                OnboardingType::Aggregator => "AGGREGATOR",
-                OnboardingType::Bank => "BANK",
-                OnboardingType::Network => "NETWORK",
-                OnboardingType::Tpap => "TPAP",
+                Self::Unspecified => "ONBOARDING_TYPE_UNSPECIFIED",
+                Self::Aggregator => "AGGREGATOR",
+                Self::Bank => "BANK",
+                Self::Network => "NETWORK",
+                Self::Tpap => "TPAP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -392,12 +392,12 @@ pub mod merchant_additional_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OwnershipType::Unspecified => "OWNERSHIP_TYPE_UNSPECIFIED",
-                OwnershipType::Proprietary => "PROPRIETARY",
-                OwnershipType::Partnership => "PARTNERSHIP",
-                OwnershipType::Public => "PUBLIC",
-                OwnershipType::Private => "PRIVATE",
-                OwnershipType::Others => "OTHERS",
+                Self::Unspecified => "OWNERSHIP_TYPE_UNSPECIFIED",
+                Self::Proprietary => "PROPRIETARY",
+                Self::Partnership => "PARTNERSHIP",
+                Self::Public => "PUBLIC",
+                Self::Private => "PRIVATE",
+                Self::Others => "OTHERS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -471,22 +471,22 @@ impl ApiType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ApiType::Unspecified => "API_TYPE_UNSPECIFIED",
-            ApiType::Balance => "BALANCE",
-            ApiType::CheckStatus => "CHECK_STATUS",
-            ApiType::Complaint => "COMPLAINT",
-            ApiType::HeartBeat => "HEART_BEAT",
-            ApiType::InitiateRegistration => "INITIATE_REGISTRATION",
-            ApiType::ListAccounts => "LIST_ACCOUNTS",
-            ApiType::Mandate => "MANDATE",
-            ApiType::MandateConfirmation => "MANDATE_CONFIRMATION",
-            ApiType::SettlePayment => "SETTLE_PAYMENT",
-            ApiType::UpdateCredentials => "UPDATE_CREDENTIALS",
-            ApiType::ValidateRegistration => "VALIDATE_REGISTRATION",
-            ApiType::ValidateCustomer => "VALIDATE_CUSTOMER",
-            ApiType::Voucher => "VOUCHER",
-            ApiType::VoucherConfirmation => "VOUCHER_CONFIRMATION",
-            ApiType::Activation => "ACTIVATION",
+            Self::Unspecified => "API_TYPE_UNSPECIFIED",
+            Self::Balance => "BALANCE",
+            Self::CheckStatus => "CHECK_STATUS",
+            Self::Complaint => "COMPLAINT",
+            Self::HeartBeat => "HEART_BEAT",
+            Self::InitiateRegistration => "INITIATE_REGISTRATION",
+            Self::ListAccounts => "LIST_ACCOUNTS",
+            Self::Mandate => "MANDATE",
+            Self::MandateConfirmation => "MANDATE_CONFIRMATION",
+            Self::SettlePayment => "SETTLE_PAYMENT",
+            Self::UpdateCredentials => "UPDATE_CREDENTIALS",
+            Self::ValidateRegistration => "VALIDATE_REGISTRATION",
+            Self::ValidateCustomer => "VALIDATE_CUSTOMER",
+            Self::Voucher => "VOUCHER",
+            Self::VoucherConfirmation => "VOUCHER_CONFIRMATION",
+            Self::Activation => "ACTIVATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -609,40 +609,34 @@ impl TransactionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransactionType::Unspecified => "TRANSACTION_TYPE_UNSPECIFIED",
-            TransactionType::Autoupdate => "TRANSACTION_TYPE_AUTOUPDATE",
-            TransactionType::BalanceCheck => "TRANSACTION_TYPE_BALANCE_CHECK",
-            TransactionType::BalanceEnquiry => "TRANSACTION_TYPE_BALANCE_ENQUIRY",
-            TransactionType::CheckStatus => "TRANSACTION_TYPE_CHECK_STATUS",
-            TransactionType::CheckTransaction => "TRANSACTION_TYPE_CHECK_TRANSACTION",
-            TransactionType::Complaint => "TRANSACTION_TYPE_COMPLAINT",
-            TransactionType::Create => "TRANSACTION_TYPE_CREATE",
-            TransactionType::Credit => "TRANSACTION_TYPE_CREDIT",
-            TransactionType::Debit => "TRANSACTION_TYPE_DEBIT",
-            TransactionType::Dispute => "TRANSACTION_TYPE_DISPUTE",
-            TransactionType::HeartBeat => "TRANSACTION_TYPE_HEART_BEAT",
-            TransactionType::ListAccounts => "TRANSACTION_TYPE_LIST_ACCOUNTS",
-            TransactionType::MandateNotification => {
-                "TRANSACTION_TYPE_MANDATE_NOTIFICATION"
-            }
-            TransactionType::Otp => "TRANSACTION_TYPE_OTP",
-            TransactionType::Pause => "TRANSACTION_TYPE_PAUSE",
-            TransactionType::Redeem => "TRANSACTION_TYPE_REDEEM",
-            TransactionType::Refund => "TRANSACTION_TYPE_REFUND",
-            TransactionType::RegisterMobile => "TRANSACTION_TYPE_REGISTER_MOBILE",
-            TransactionType::Reversal => "TRANSACTION_TYPE_REVERSAL",
-            TransactionType::Revoke => "TRANSACTION_TYPE_REVOKE",
-            TransactionType::StatusUpdate => "TRANSACTION_TYPE_STATUS_UPDATE",
-            TransactionType::Unpause => "TRANSACTION_TYPE_UNPAUSE",
-            TransactionType::Update => "TRANSACTION_TYPE_UPDATE",
-            TransactionType::UpdateCredentials => "TRANSACTION_TYPE_UPDATE_CREDENTIALS",
-            TransactionType::ValidateCustomer => "TRANSACTION_TYPE_VALIDATE_CUSTOMER",
-            TransactionType::ActivationInternational => {
-                "TRANSACTION_TYPE_ACTIVATION_INTERNATIONAL"
-            }
-            TransactionType::ActivationUpiServices => {
-                "TRANSACTION_TYPE_ACTIVATION_UPI_SERVICES"
-            }
+            Self::Unspecified => "TRANSACTION_TYPE_UNSPECIFIED",
+            Self::Autoupdate => "TRANSACTION_TYPE_AUTOUPDATE",
+            Self::BalanceCheck => "TRANSACTION_TYPE_BALANCE_CHECK",
+            Self::BalanceEnquiry => "TRANSACTION_TYPE_BALANCE_ENQUIRY",
+            Self::CheckStatus => "TRANSACTION_TYPE_CHECK_STATUS",
+            Self::CheckTransaction => "TRANSACTION_TYPE_CHECK_TRANSACTION",
+            Self::Complaint => "TRANSACTION_TYPE_COMPLAINT",
+            Self::Create => "TRANSACTION_TYPE_CREATE",
+            Self::Credit => "TRANSACTION_TYPE_CREDIT",
+            Self::Debit => "TRANSACTION_TYPE_DEBIT",
+            Self::Dispute => "TRANSACTION_TYPE_DISPUTE",
+            Self::HeartBeat => "TRANSACTION_TYPE_HEART_BEAT",
+            Self::ListAccounts => "TRANSACTION_TYPE_LIST_ACCOUNTS",
+            Self::MandateNotification => "TRANSACTION_TYPE_MANDATE_NOTIFICATION",
+            Self::Otp => "TRANSACTION_TYPE_OTP",
+            Self::Pause => "TRANSACTION_TYPE_PAUSE",
+            Self::Redeem => "TRANSACTION_TYPE_REDEEM",
+            Self::Refund => "TRANSACTION_TYPE_REFUND",
+            Self::RegisterMobile => "TRANSACTION_TYPE_REGISTER_MOBILE",
+            Self::Reversal => "TRANSACTION_TYPE_REVERSAL",
+            Self::Revoke => "TRANSACTION_TYPE_REVOKE",
+            Self::StatusUpdate => "TRANSACTION_TYPE_STATUS_UPDATE",
+            Self::Unpause => "TRANSACTION_TYPE_UNPAUSE",
+            Self::Update => "TRANSACTION_TYPE_UPDATE",
+            Self::UpdateCredentials => "TRANSACTION_TYPE_UPDATE_CREDENTIALS",
+            Self::ValidateCustomer => "TRANSACTION_TYPE_VALIDATE_CUSTOMER",
+            Self::ActivationInternational => "TRANSACTION_TYPE_ACTIVATION_INTERNATIONAL",
+            Self::ActivationUpiServices => "TRANSACTION_TYPE_ACTIVATION_UPI_SERVICES",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -769,39 +763,39 @@ impl XmlApiType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            XmlApiType::Unspecified => "XML_API_TYPE_UNSPECIFIED",
-            XmlApiType::ReqBalEnq => "REQ_BAL_ENQ",
-            XmlApiType::ReqChkTxn => "REQ_CHK_TXN",
-            XmlApiType::ReqComplaint => "REQ_COMPLAINT",
-            XmlApiType::ReqHbt => "REQ_HBT",
-            XmlApiType::ReqListAccount => "REQ_LIST_ACCOUNT",
-            XmlApiType::ReqMandate => "REQ_MANDATE",
-            XmlApiType::ReqMandateConfirmation => "REQ_MANDATE_CONFIRMATION",
-            XmlApiType::ReqOtp => "REQ_OTP",
-            XmlApiType::ReqPay => "REQ_PAY",
-            XmlApiType::ReqRegMob => "REQ_REG_MOB",
-            XmlApiType::ReqSetCre => "REQ_SET_CRE",
-            XmlApiType::ReqValCust => "REQ_VAL_CUST",
-            XmlApiType::ReqVoucher => "REQ_VOUCHER",
-            XmlApiType::ReqVoucherConfirmation => "REQ_VOUCHER_CONFIRMATION",
-            XmlApiType::ReqTxnConfirmation => "REQ_TXN_CONFIRMATION",
-            XmlApiType::RespBalEnq => "RESP_BAL_ENQ",
-            XmlApiType::RespChkTxn => "RESP_CHK_TXN",
-            XmlApiType::RespComplaint => "RESP_COMPLAINT",
-            XmlApiType::RespHbt => "RESP_HBT",
-            XmlApiType::RespListAccount => "RESP_LIST_ACCOUNT",
-            XmlApiType::RespMandate => "RESP_MANDATE",
-            XmlApiType::RespMandateConfirmation => "RESP_MANDATE_CONFIRMATION",
-            XmlApiType::RespOtp => "RESP_OTP",
-            XmlApiType::RespPay => "RESP_PAY",
-            XmlApiType::RespRegMob => "RESP_REG_MOB",
-            XmlApiType::RespSetCre => "RESP_SET_CRE",
-            XmlApiType::RespValCust => "RESP_VAL_CUST",
-            XmlApiType::RespVoucher => "RESP_VOUCHER",
-            XmlApiType::RespVoucherConfirmation => "RESP_VOUCHER_CONFIRMATION",
-            XmlApiType::RespTxnConfirmation => "RESP_TXN_CONFIRMATION",
-            XmlApiType::ReqActivation => "REQ_ACTIVATION",
-            XmlApiType::RespActivation => "RESP_ACTIVATION",
+            Self::Unspecified => "XML_API_TYPE_UNSPECIFIED",
+            Self::ReqBalEnq => "REQ_BAL_ENQ",
+            Self::ReqChkTxn => "REQ_CHK_TXN",
+            Self::ReqComplaint => "REQ_COMPLAINT",
+            Self::ReqHbt => "REQ_HBT",
+            Self::ReqListAccount => "REQ_LIST_ACCOUNT",
+            Self::ReqMandate => "REQ_MANDATE",
+            Self::ReqMandateConfirmation => "REQ_MANDATE_CONFIRMATION",
+            Self::ReqOtp => "REQ_OTP",
+            Self::ReqPay => "REQ_PAY",
+            Self::ReqRegMob => "REQ_REG_MOB",
+            Self::ReqSetCre => "REQ_SET_CRE",
+            Self::ReqValCust => "REQ_VAL_CUST",
+            Self::ReqVoucher => "REQ_VOUCHER",
+            Self::ReqVoucherConfirmation => "REQ_VOUCHER_CONFIRMATION",
+            Self::ReqTxnConfirmation => "REQ_TXN_CONFIRMATION",
+            Self::RespBalEnq => "RESP_BAL_ENQ",
+            Self::RespChkTxn => "RESP_CHK_TXN",
+            Self::RespComplaint => "RESP_COMPLAINT",
+            Self::RespHbt => "RESP_HBT",
+            Self::RespListAccount => "RESP_LIST_ACCOUNT",
+            Self::RespMandate => "RESP_MANDATE",
+            Self::RespMandateConfirmation => "RESP_MANDATE_CONFIRMATION",
+            Self::RespOtp => "RESP_OTP",
+            Self::RespPay => "RESP_PAY",
+            Self::RespRegMob => "RESP_REG_MOB",
+            Self::RespSetCre => "RESP_SET_CRE",
+            Self::RespValCust => "RESP_VAL_CUST",
+            Self::RespVoucher => "RESP_VOUCHER",
+            Self::RespVoucherConfirmation => "RESP_VOUCHER_CONFIRMATION",
+            Self::RespTxnConfirmation => "RESP_TXN_CONFIRMATION",
+            Self::ReqActivation => "REQ_ACTIVATION",
+            Self::RespActivation => "RESP_ACTIVATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1050,9 +1044,9 @@ pub mod case_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Result::Unspecified => "RESULT_UNSPECIFIED",
-                Result::Success => "SUCCESS",
-                Result::Failure => "FAILURE",
+                Self::Unspecified => "RESULT_UNSPECIFIED",
+                Self::Success => "SUCCESS",
+                Self::Failure => "FAILURE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1118,8 +1112,8 @@ pub mod raise_complaint_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AdjustmentFlag::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
-                AdjustmentFlag::Raise => "RAISE",
+                Self::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
+                Self::Raise => "RAISE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1182,22 +1176,20 @@ pub mod raise_complaint_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReasonCode::Unspecified => "REASON_CODE_UNSPECIFIED",
-                ReasonCode::CustomerAccountNotReversed => "CUSTOMER_ACCOUNT_NOT_REVERSED",
-                ReasonCode::GoodsServicesNotProvided => "GOODS_SERVICES_NOT_PROVIDED",
-                ReasonCode::CustomerAccountNotCreditedBack => {
+                Self::Unspecified => "REASON_CODE_UNSPECIFIED",
+                Self::CustomerAccountNotReversed => "CUSTOMER_ACCOUNT_NOT_REVERSED",
+                Self::GoodsServicesNotProvided => "GOODS_SERVICES_NOT_PROVIDED",
+                Self::CustomerAccountNotCreditedBack => {
                     "CUSTOMER_ACCOUNT_NOT_CREDITED_BACK"
                 }
-                ReasonCode::BeneficiaryAccountNotCredited => {
-                    "BENEFICIARY_ACCOUNT_NOT_CREDITED"
-                }
-                ReasonCode::GoodsServicesCreditNotProcessed => {
+                Self::BeneficiaryAccountNotCredited => "BENEFICIARY_ACCOUNT_NOT_CREDITED",
+                Self::GoodsServicesCreditNotProcessed => {
                     "GOODS_SERVICES_CREDIT_NOT_PROCESSED"
                 }
-                ReasonCode::MerchantNotReceivedConfirmation => {
+                Self::MerchantNotReceivedConfirmation => {
                     "MERCHANT_NOT_RECEIVED_CONFIRMATION"
                 }
-                ReasonCode::PaidByAlternateMeans => "PAID_BY_ALTERNATE_MEANS",
+                Self::PaidByAlternateMeans => "PAID_BY_ALTERNATE_MEANS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1275,17 +1267,11 @@ pub mod resolve_complaint_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AdjustmentFlag::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
-                AdjustmentFlag::DebitReversalConfirmation => {
-                    "DEBIT_REVERSAL_CONFIRMATION"
-                }
-                AdjustmentFlag::Return => "RETURN",
-                AdjustmentFlag::RefundReversalConfirmation => {
-                    "REFUND_REVERSAL_CONFIRMATION"
-                }
-                AdjustmentFlag::TransactionCreditConfirmation => {
-                    "TRANSACTION_CREDIT_CONFIRMATION"
-                }
+                Self::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
+                Self::DebitReversalConfirmation => "DEBIT_REVERSAL_CONFIRMATION",
+                Self::Return => "RETURN",
+                Self::RefundReversalConfirmation => "REFUND_REVERSAL_CONFIRMATION",
+                Self::TransactionCreditConfirmation => "TRANSACTION_CREDIT_CONFIRMATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1371,26 +1357,24 @@ pub mod resolve_complaint_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReasonCode::Unspecified => "REASON_CODE_UNSPECIFIED",
-                ReasonCode::ComplaintResolvedOnline => "COMPLAINT_RESOLVED_ONLINE",
-                ReasonCode::ComplaintResolvedNowOrManually => {
+                Self::Unspecified => "REASON_CODE_UNSPECIFIED",
+                Self::ComplaintResolvedOnline => "COMPLAINT_RESOLVED_ONLINE",
+                Self::ComplaintResolvedNowOrManually => {
                     "COMPLAINT_RESOLVED_NOW_OR_MANUALLY"
                 }
-                ReasonCode::OriginalTransactionNotDone => "ORIGINAL_TRANSACTION_NOT_DONE",
-                ReasonCode::RetAccountClosed => "RET_ACCOUNT_CLOSED",
-                ReasonCode::RetAccountDoesNotExist => "RET_ACCOUNT_DOES_NOT_EXIST",
-                ReasonCode::RetPartyInstructions => "RET_PARTY_INSTRUCTIONS",
-                ReasonCode::RetNriAccount => "RET_NRI_ACCOUNT",
-                ReasonCode::RetCreditFreezed => "RET_CREDIT_FREEZED",
-                ReasonCode::RetInvalidBeneficiaryDetails => {
-                    "RET_INVALID_BENEFICIARY_DETAILS"
-                }
-                ReasonCode::RetAnyOtherReason => "RET_ANY_OTHER_REASON",
-                ReasonCode::RetBeneficiaryCannotCredit => "RET_BENEFICIARY_CANNOT_CREDIT",
-                ReasonCode::RetMerchantNotReceivedConfirmation => {
+                Self::OriginalTransactionNotDone => "ORIGINAL_TRANSACTION_NOT_DONE",
+                Self::RetAccountClosed => "RET_ACCOUNT_CLOSED",
+                Self::RetAccountDoesNotExist => "RET_ACCOUNT_DOES_NOT_EXIST",
+                Self::RetPartyInstructions => "RET_PARTY_INSTRUCTIONS",
+                Self::RetNriAccount => "RET_NRI_ACCOUNT",
+                Self::RetCreditFreezed => "RET_CREDIT_FREEZED",
+                Self::RetInvalidBeneficiaryDetails => "RET_INVALID_BENEFICIARY_DETAILS",
+                Self::RetAnyOtherReason => "RET_ANY_OTHER_REASON",
+                Self::RetBeneficiaryCannotCredit => "RET_BENEFICIARY_CANNOT_CREDIT",
+                Self::RetMerchantNotReceivedConfirmation => {
                     "RET_MERCHANT_NOT_RECEIVED_CONFIRMATION"
                 }
-                ReasonCode::RrcCustomerAccountCredited => "RRC_CUSTOMER_ACCOUNT_CREDITED",
+                Self::RrcCustomerAccountCredited => "RRC_CUSTOMER_ACCOUNT_CREDITED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1484,19 +1468,15 @@ pub mod raise_dispute_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AdjustmentFlag::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
-                AdjustmentFlag::ChargebackRaise => "CHARGEBACK_RAISE",
-                AdjustmentFlag::FraudChargebackRaise => "FRAUD_CHARGEBACK_RAISE",
-                AdjustmentFlag::WrongCreditChargebackRaise => {
-                    "WRONG_CREDIT_CHARGEBACK_RAISE"
-                }
-                AdjustmentFlag::DeferredChargebackRaise => "DEFERRED_CHARGEBACK_RAISE",
-                AdjustmentFlag::PreArbitrationRaise => "PRE_ARBITRATION_RAISE",
-                AdjustmentFlag::DeferredPreArbitrationRaise => {
-                    "DEFERRED_PRE_ARBITRATION_RAISE"
-                }
-                AdjustmentFlag::ArbitrationRaise => "ARBITRATION_RAISE",
-                AdjustmentFlag::DeferredArbitrationRaise => "DEFERRED_ARBITRATION_RAISE",
+                Self::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
+                Self::ChargebackRaise => "CHARGEBACK_RAISE",
+                Self::FraudChargebackRaise => "FRAUD_CHARGEBACK_RAISE",
+                Self::WrongCreditChargebackRaise => "WRONG_CREDIT_CHARGEBACK_RAISE",
+                Self::DeferredChargebackRaise => "DEFERRED_CHARGEBACK_RAISE",
+                Self::PreArbitrationRaise => "PRE_ARBITRATION_RAISE",
+                Self::DeferredPreArbitrationRaise => "DEFERRED_PRE_ARBITRATION_RAISE",
+                Self::ArbitrationRaise => "ARBITRATION_RAISE",
+                Self::DeferredArbitrationRaise => "DEFERRED_ARBITRATION_RAISE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1604,42 +1584,42 @@ pub mod raise_dispute_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReasonCode::Unspecified => "REASON_CODE_UNSPECIFIED",
-                ReasonCode::ChargebackRaiseRemitterDebitedBeneficiaryNotCredited => {
+                Self::Unspecified => "REASON_CODE_UNSPECIFIED",
+                Self::ChargebackRaiseRemitterDebitedBeneficiaryNotCredited => {
                     "CHARGEBACK_RAISE_REMITTER_DEBITED_BENEFICIARY_NOT_CREDITED"
                 }
-                ReasonCode::PreArbitrationRaiseBeneficiaryNotCredited => {
+                Self::PreArbitrationRaiseBeneficiaryNotCredited => {
                     "PRE_ARBITRATION_RAISE_BENEFICIARY_NOT_CREDITED"
                 }
-                ReasonCode::DeferredChargebackRaiseBeneficiaryNotCredited => {
+                Self::DeferredChargebackRaiseBeneficiaryNotCredited => {
                     "DEFERRED_CHARGEBACK_RAISE_BENEFICIARY_NOT_CREDITED"
                 }
-                ReasonCode::DeferredPreArbitrationRaiseBeneficiaryNotCredited => {
+                Self::DeferredPreArbitrationRaiseBeneficiaryNotCredited => {
                     "DEFERRED_PRE_ARBITRATION_RAISE_BENEFICIARY_NOT_CREDITED"
                 }
-                ReasonCode::DeferredArbitrationRaiseDeferredChargebackPreArbitrationRejected => {
+                Self::DeferredArbitrationRaiseDeferredChargebackPreArbitrationRejected => {
                     "DEFERRED_ARBITRATION_RAISE_DEFERRED_CHARGEBACK_PRE_ARBITRATION_REJECTED"
                 }
-                ReasonCode::ChargebackOnFraud => "CHARGEBACK_ON_FRAUD",
-                ReasonCode::GoodsServicesCreditNotProcessed => {
+                Self::ChargebackOnFraud => "CHARGEBACK_ON_FRAUD",
+                Self::GoodsServicesCreditNotProcessed => {
                     "GOODS_SERVICES_CREDIT_NOT_PROCESSED"
                 }
-                ReasonCode::GoodsServicesDefective => "GOODS_SERVICES_DEFECTIVE",
-                ReasonCode::PaidByAlternateMeans => "PAID_BY_ALTERNATE_MEANS",
-                ReasonCode::GoodsServicesNotReceived => "GOODS_SERVICES_NOT_RECEIVED",
-                ReasonCode::MerchantNotReceivedConfirmation => {
+                Self::GoodsServicesDefective => "GOODS_SERVICES_DEFECTIVE",
+                Self::PaidByAlternateMeans => "PAID_BY_ALTERNATE_MEANS",
+                Self::GoodsServicesNotReceived => "GOODS_SERVICES_NOT_RECEIVED",
+                Self::MerchantNotReceivedConfirmation => {
                     "MERCHANT_NOT_RECEIVED_CONFIRMATION"
                 }
-                ReasonCode::TransactionNotSteeled => "TRANSACTION_NOT_STEELED",
-                ReasonCode::DuplicateTransaction => "DUPLICATE_TRANSACTION",
-                ReasonCode::ChargebackCardHolderChargedMore => {
+                Self::TransactionNotSteeled => "TRANSACTION_NOT_STEELED",
+                Self::DuplicateTransaction => "DUPLICATE_TRANSACTION",
+                Self::ChargebackCardHolderChargedMore => {
                     "CHARGEBACK_CARD_HOLDER_CHARGED_MORE"
                 }
-                ReasonCode::CustomerClaimingGoodsServicesNotDelivered => {
+                Self::CustomerClaimingGoodsServicesNotDelivered => {
                     "CUSTOMER_CLAIMING_GOODS_SERVICES_NOT_DELIVERED"
                 }
-                ReasonCode::PartiesDenied => "PARTIES_DENIED",
-                ReasonCode::FundsTransferredToUnintendedBeneficiary => {
+                Self::PartiesDenied => "PARTIES_DENIED",
+                Self::FundsTransferredToUnintendedBeneficiary => {
                     "FUNDS_TRANSFERRED_TO_UNINTENDED_BENEFICIARY"
                 }
             }
@@ -1785,37 +1765,31 @@ pub mod resolve_dispute_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AdjustmentFlag::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
-                AdjustmentFlag::RePresentmentRaise => "RE_PRESENTMENT_RAISE",
-                AdjustmentFlag::DeferredRePresentmentRaise => {
-                    "DEFERRED_RE_PRESENTMENT_RAISE"
-                }
-                AdjustmentFlag::ChargebackAcceptance => "CHARGEBACK_ACCEPTANCE",
-                AdjustmentFlag::DeferredChargebackAcceptance => {
-                    "DEFERRED_CHARGEBACK_ACCEPTANCE"
-                }
-                AdjustmentFlag::PreArbitrationAcceptance => "PRE_ARBITRATION_ACCEPTANCE",
-                AdjustmentFlag::DeferredPreArbitrationAcceptance => {
+                Self::Unspecified => "ADJUSTMENT_FLAG_UNSPECIFIED",
+                Self::RePresentmentRaise => "RE_PRESENTMENT_RAISE",
+                Self::DeferredRePresentmentRaise => "DEFERRED_RE_PRESENTMENT_RAISE",
+                Self::ChargebackAcceptance => "CHARGEBACK_ACCEPTANCE",
+                Self::DeferredChargebackAcceptance => "DEFERRED_CHARGEBACK_ACCEPTANCE",
+                Self::PreArbitrationAcceptance => "PRE_ARBITRATION_ACCEPTANCE",
+                Self::DeferredPreArbitrationAcceptance => {
                     "DEFERRED_PRE_ARBITRATION_ACCEPTANCE"
                 }
-                AdjustmentFlag::PreArbitrationDeclined => "PRE_ARBITRATION_DECLINED",
-                AdjustmentFlag::DeferredPreArbitrationDeclined => {
+                Self::PreArbitrationDeclined => "PRE_ARBITRATION_DECLINED",
+                Self::DeferredPreArbitrationDeclined => {
                     "DEFERRED_PRE_ARBITRATION_DECLINED"
                 }
-                AdjustmentFlag::ArbitrationAcceptance => "ARBITRATION_ACCEPTANCE",
-                AdjustmentFlag::ArbitrationContinuation => "ARBITRATION_CONTINUATION",
-                AdjustmentFlag::ArbitrationWithdrawn => "ARBITRATION_WITHDRAWN",
-                AdjustmentFlag::ArbitrationVerdict => "ARBITRATION_VERDICT",
-                AdjustmentFlag::CreditAdjustment => "CREDIT_ADJUSTMENT",
-                AdjustmentFlag::FraudChargebackRepresentment => {
-                    "FRAUD_CHARGEBACK_REPRESENTMENT"
-                }
-                AdjustmentFlag::FraudChargebackAccept => "FRAUD_CHARGEBACK_ACCEPT",
-                AdjustmentFlag::WrongCreditRepresentment => "WRONG_CREDIT_REPRESENTMENT",
-                AdjustmentFlag::WrongCreditChargebackAcceptance => {
+                Self::ArbitrationAcceptance => "ARBITRATION_ACCEPTANCE",
+                Self::ArbitrationContinuation => "ARBITRATION_CONTINUATION",
+                Self::ArbitrationWithdrawn => "ARBITRATION_WITHDRAWN",
+                Self::ArbitrationVerdict => "ARBITRATION_VERDICT",
+                Self::CreditAdjustment => "CREDIT_ADJUSTMENT",
+                Self::FraudChargebackRepresentment => "FRAUD_CHARGEBACK_REPRESENTMENT",
+                Self::FraudChargebackAccept => "FRAUD_CHARGEBACK_ACCEPT",
+                Self::WrongCreditRepresentment => "WRONG_CREDIT_REPRESENTMENT",
+                Self::WrongCreditChargebackAcceptance => {
                     "WRONG_CREDIT_CHARGEBACK_ACCEPTANCE"
                 }
-                AdjustmentFlag::ManualAdjustment => "MANUAL_ADJUSTMENT",
+                Self::ManualAdjustment => "MANUAL_ADJUSTMENT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2017,116 +1991,114 @@ pub mod resolve_dispute_adjustment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReasonCode::Unspecified => "REASON_CODE_UNSPECIFIED",
-                ReasonCode::ChargebackBeneficiaryCannotCreditOrPreArbitrationDuplicateProcess => {
+                Self::Unspecified => "REASON_CODE_UNSPECIFIED",
+                Self::ChargebackBeneficiaryCannotCreditOrPreArbitrationDuplicateProcess => {
                     "CHARGEBACK_BENEFICIARY_CANNOT_CREDIT_OR_PRE_ARBITRATION_DUPLICATE_PROCESS"
                 }
-                ReasonCode::PreArbitrationDeclinedBeneficiaryCreditedOnline => {
+                Self::PreArbitrationDeclinedBeneficiaryCreditedOnline => {
                     "PRE_ARBITRATION_DECLINED_BENEFICIARY_CREDITED_ONLINE"
                 }
-                ReasonCode::PreArbitrationDeclinedBeneficiaryCreditedManually => {
+                Self::PreArbitrationDeclinedBeneficiaryCreditedManually => {
                     "PRE_ARBITRATION_DECLINED_BENEFICIARY_CREDITED_MANUALLY"
                 }
-                ReasonCode::DeferredChargebackAcceptanceAccountNotCreditedTccRaised => {
+                Self::DeferredChargebackAcceptanceAccountNotCreditedTccRaised => {
                     "DEFERRED_CHARGEBACK_ACCEPTANCE_ACCOUNT_NOT_CREDITED_TCC_RAISED"
                 }
-                ReasonCode::DeferredRePresentmentRaiseAccountCreditedTccRaised => {
+                Self::DeferredRePresentmentRaiseAccountCreditedTccRaised => {
                     "DEFERRED_RE_PRESENTMENT_RAISE_ACCOUNT_CREDITED_TCC_RAISED"
                 }
-                ReasonCode::DeferredPreArbitrationAcceptanceAccountNotCredited => {
+                Self::DeferredPreArbitrationAcceptanceAccountNotCredited => {
                     "DEFERRED_PRE_ARBITRATION_ACCEPTANCE_ACCOUNT_NOT_CREDITED"
                 }
-                ReasonCode::DeferredPreArbitrationDeclinedAccountCredited => {
+                Self::DeferredPreArbitrationDeclinedAccountCredited => {
                     "DEFERRED_PRE_ARBITRATION_DECLINED_ACCOUNT_CREDITED"
                 }
-                ReasonCode::FraudChargebackAcceptAmountRecoveredFromFraudulentAccount => {
+                Self::FraudChargebackAcceptAmountRecoveredFromFraudulentAccount => {
                     "FRAUD_CHARGEBACK_ACCEPT_AMOUNT_RECOVERED_FROM_FRAUDULENT_ACCOUNT"
                 }
-                ReasonCode::FraudChargebackRepresentmentLienMarkedInsufficientBalance => {
+                Self::FraudChargebackRepresentmentLienMarkedInsufficientBalance => {
                     "FRAUD_CHARGEBACK_REPRESENTMENT_LIEN_MARKED_INSUFFICIENT_BALANCE"
                 }
-                ReasonCode::FraudChargebackRepresentmentFirNotProvided => {
+                Self::FraudChargebackRepresentmentFirNotProvided => {
                     "FRAUD_CHARGEBACK_REPRESENTMENT_FIR_NOT_PROVIDED"
                 }
-                ReasonCode::FraudChargebackRepresentmentReasonOthers => {
+                Self::FraudChargebackRepresentmentReasonOthers => {
                     "FRAUD_CHARGEBACK_REPRESENTMENT_REASON_OTHERS"
                 }
-                ReasonCode::RePresentmentRaiseBeneficiaryCreditedOnline => {
+                Self::RePresentmentRaiseBeneficiaryCreditedOnline => {
                     "RE_PRESENTMENT_RAISE_BENEFICIARY_CREDITED_ONLINE"
                 }
-                ReasonCode::RePresentmentRaiseBeneficiaryCreditedManually => {
+                Self::RePresentmentRaiseBeneficiaryCreditedManually => {
                     "RE_PRESENTMENT_RAISE_BENEFICIARY_CREDITED_MANUALLY"
                 }
-                ReasonCode::CreditAdjustmentGoodsServicesCreditNotProcessed => {
+                Self::CreditAdjustmentGoodsServicesCreditNotProcessed => {
                     "CREDIT_ADJUSTMENT_GOODS_SERVICES_CREDIT_NOT_PROCESSED"
                 }
-                ReasonCode::CreditAdjustmentGoodsServicesDefective => {
+                Self::CreditAdjustmentGoodsServicesDefective => {
                     "CREDIT_ADJUSTMENT_GOODS_SERVICES_DEFECTIVE"
                 }
-                ReasonCode::CreditAdjustmentPaidByAlternateMeans => {
+                Self::CreditAdjustmentPaidByAlternateMeans => {
                     "CREDIT_ADJUSTMENT_PAID_BY_ALTERNATE_MEANS"
                 }
-                ReasonCode::CreditAdjustmentGoodsServicesNotReceived => {
+                Self::CreditAdjustmentGoodsServicesNotReceived => {
                     "CREDIT_ADJUSTMENT_GOODS_SERVICES_NOT_RECEIVED"
                 }
-                ReasonCode::CreditAdjustmentMerchantNotReceivedConfirmation => {
+                Self::CreditAdjustmentMerchantNotReceivedConfirmation => {
                     "CREDIT_ADJUSTMENT_MERCHANT_NOT_RECEIVED_CONFIRMATION"
                 }
-                ReasonCode::CreditAdjustmentDuplicateTransaction => {
+                Self::CreditAdjustmentDuplicateTransaction => {
                     "CREDIT_ADJUSTMENT_DUPLICATE_TRANSACTION"
                 }
-                ReasonCode::CreditAdjustmentReasonOthers => {
-                    "CREDIT_ADJUSTMENT_REASON_OTHERS"
-                }
-                ReasonCode::CreditAdjustmentNonMatchingAccountNumber => {
+                Self::CreditAdjustmentReasonOthers => "CREDIT_ADJUSTMENT_REASON_OTHERS",
+                Self::CreditAdjustmentNonMatchingAccountNumber => {
                     "CREDIT_ADJUSTMENT_NON_MATCHING_ACCOUNT_NUMBER"
                 }
-                ReasonCode::CreditAdjustmentCardHolderChargedMore => {
+                Self::CreditAdjustmentCardHolderChargedMore => {
                     "CREDIT_ADJUSTMENT_CARD_HOLDER_CHARGED_MORE"
                 }
-                ReasonCode::CreditAdjustmentCreditNotProcessed => {
+                Self::CreditAdjustmentCreditNotProcessed => {
                     "CREDIT_ADJUSTMENT_CREDIT_NOT_PROCESSED"
                 }
-                ReasonCode::CreditAdjustmentBeneficiaryCannotCredit => {
+                Self::CreditAdjustmentBeneficiaryCannotCredit => {
                     "CREDIT_ADJUSTMENT_BENEFICIARY_CANNOT_CREDIT"
                 }
-                ReasonCode::ChargebackAcceptanceMerchantCannotProvideService => {
+                Self::ChargebackAcceptanceMerchantCannotProvideService => {
                     "CHARGEBACK_ACCEPTANCE_MERCHANT_CANNOT_PROVIDE_SERVICE"
                 }
-                ReasonCode::RePresentmentRaiseGoodsServicesProvided => {
+                Self::RePresentmentRaiseGoodsServicesProvided => {
                     "RE_PRESENTMENT_RAISE_GOODS_SERVICES_PROVIDED"
                 }
-                ReasonCode::PreArbitrationDeclinedServicesProvidedLater => {
+                Self::PreArbitrationDeclinedServicesProvidedLater => {
                     "PRE_ARBITRATION_DECLINED_SERVICES_PROVIDED_LATER"
                 }
-                ReasonCode::PreArbitrationAcceptanceServicesNotProvidedByMerchant => {
+                Self::PreArbitrationAcceptanceServicesNotProvidedByMerchant => {
                     "PRE_ARBITRATION_ACCEPTANCE_SERVICES_NOT_PROVIDED_BY_MERCHANT"
                 }
-                ReasonCode::ArbitrationAcceptanceIllegibleFulfilment => {
+                Self::ArbitrationAcceptanceIllegibleFulfilment => {
                     "ARBITRATION_ACCEPTANCE_ILLEGIBLE_FULFILMENT"
                 }
-                ReasonCode::ArbitrationContinuationCustomerStillNotReceivedService => {
+                Self::ArbitrationContinuationCustomerStillNotReceivedService => {
                     "ARBITRATION_CONTINUATION_CUSTOMER_STILL_NOT_RECEIVED_SERVICE"
                 }
-                ReasonCode::ArbitrationWithdrawnCustomerReceivedServiceLater => {
+                Self::ArbitrationWithdrawnCustomerReceivedServiceLater => {
                     "ARBITRATION_WITHDRAWN_CUSTOMER_RECEIVED_SERVICE_LATER"
                 }
-                ReasonCode::ArbitrationVerdictPanelVerdict => {
+                Self::ArbitrationVerdictPanelVerdict => {
                     "ARBITRATION_VERDICT_PANEL_VERDICT"
                 }
-                ReasonCode::ManualAdjustmentReason => "MANUAL_ADJUSTMENT_REASON",
-                ReasonCode::AttributingCustomer => "ATTRIBUTING_CUSTOMER",
-                ReasonCode::AttributingTechnicalIssue => "ATTRIBUTING_TECHNICAL_ISSUE",
-                ReasonCode::WrongCreditChargebackAcceptanceAmountRecovered => {
+                Self::ManualAdjustmentReason => "MANUAL_ADJUSTMENT_REASON",
+                Self::AttributingCustomer => "ATTRIBUTING_CUSTOMER",
+                Self::AttributingTechnicalIssue => "ATTRIBUTING_TECHNICAL_ISSUE",
+                Self::WrongCreditChargebackAcceptanceAmountRecovered => {
                     "WRONG_CREDIT_CHARGEBACK_ACCEPTANCE_AMOUNT_RECOVERED"
                 }
-                ReasonCode::WrongCreditRepresentmentLienMarkedInsufficientBalance => {
+                Self::WrongCreditRepresentmentLienMarkedInsufficientBalance => {
                     "WRONG_CREDIT_REPRESENTMENT_LIEN_MARKED_INSUFFICIENT_BALANCE"
                 }
-                ReasonCode::WrongCreditRepresentmentCustomerInaccessible => {
+                Self::WrongCreditRepresentmentCustomerInaccessible => {
                     "WRONG_CREDIT_REPRESENTMENT_CUSTOMER_INACCESSIBLE"
                 }
-                ReasonCode::WrongCreditRepresentmentReasonOthers => {
+                Self::WrongCreditRepresentmentReasonOthers => {
                     "WRONG_CREDIT_REPRESENTMENT_REASON_OTHERS"
                 }
             }
@@ -2283,9 +2255,9 @@ impl TransactionSubType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TransactionSubType::Unspecified => "TRANSACTION_SUB_TYPE_UNSPECIFIED",
-            TransactionSubType::Beneficiary => "TRANSACTION_SUB_TYPE_BENEFICIARY",
-            TransactionSubType::Remitter => "TRANSACTION_SUB_TYPE_REMITTER",
+            Self::Unspecified => "TRANSACTION_SUB_TYPE_UNSPECIFIED",
+            Self::Beneficiary => "TRANSACTION_SUB_TYPE_BENEFICIARY",
+            Self::Remitter => "TRANSACTION_SUB_TYPE_REMITTER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2300,7 +2272,13 @@ impl TransactionSubType {
 }
 /// Generated client implementations.
 pub mod issuer_switch_resolutions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Creates and resolves UPI complaints and disputes.
@@ -2378,10 +2356,10 @@ pub mod issuer_switch_resolutions_client {
         /// Create a complaint. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[CreateComplaintMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.CreateComplaintMetadata\]
-        /// * `response`:
-        ///  \[Complaint\]\[google.cloud.paymentgateway.issuerswitch.v1.Complaint\]
+        /// - `metadata`:
+        /// [CreateComplaintMetadata][google.cloud.paymentgateway.issuerswitch.v1.CreateComplaintMetadata]
+        /// - `response`:
+        /// [Complaint][google.cloud.paymentgateway.issuerswitch.v1.Complaint]
         pub async fn create_complaint(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateComplaintRequest>,
@@ -2393,8 +2371,7 @@ pub mod issuer_switch_resolutions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2415,10 +2392,10 @@ pub mod issuer_switch_resolutions_client {
         /// Resolve a complaint. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ResolveComplaintMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.ResolveComplaintMetadata\]
-        /// * `response`:
-        ///  \[Complaint\]\[google.cloud.paymentgateway.issuerswitch.v1.Complaint\]
+        /// - `metadata`:
+        /// [ResolveComplaintMetadata][google.cloud.paymentgateway.issuerswitch.v1.ResolveComplaintMetadata]
+        /// - `response`:
+        /// [Complaint][google.cloud.paymentgateway.issuerswitch.v1.Complaint]
         pub async fn resolve_complaint(
             &mut self,
             request: impl tonic::IntoRequest<super::ResolveComplaintRequest>,
@@ -2430,8 +2407,7 @@ pub mod issuer_switch_resolutions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2452,10 +2428,10 @@ pub mod issuer_switch_resolutions_client {
         /// Create a dispute. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[CreateDisputeMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.CreateDisputeMetadata\]
-        /// * `response`:
-        ///  \[Dispute\]\[google.cloud.paymentgateway.issuerswitch.v1.Dispute\]
+        /// - `metadata`:
+        /// [CreateDisputeMetadata][google.cloud.paymentgateway.issuerswitch.v1.CreateDisputeMetadata]
+        /// - `response`:
+        /// [Dispute][google.cloud.paymentgateway.issuerswitch.v1.Dispute]
         pub async fn create_dispute(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDisputeRequest>,
@@ -2467,8 +2443,7 @@ pub mod issuer_switch_resolutions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2489,10 +2464,10 @@ pub mod issuer_switch_resolutions_client {
         /// Resolve a dispute. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ResolveDisputeMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.ResolveDisputeMetadata\]
-        /// * `response`:
-        ///  \[Dispute\]\[google.cloud.paymentgateway.issuerswitch.v1.Dispute\]
+        /// - `metadata`:
+        /// [ResolveDisputeMetadata][google.cloud.paymentgateway.issuerswitch.v1.ResolveDisputeMetadata]
+        /// - `response`:
+        /// [Dispute][google.cloud.paymentgateway.issuerswitch.v1.Dispute]
         pub async fn resolve_dispute(
             &mut self,
             request: impl tonic::IntoRequest<super::ResolveDisputeRequest>,
@@ -2504,8 +2479,7 @@ pub mod issuer_switch_resolutions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2683,10 +2657,10 @@ pub mod transaction_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::TimedOut => "TIMED_OUT",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::TimedOut => "TIMED_OUT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2754,14 +2728,14 @@ pub mod transaction_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TransactionSubType::Unspecified => "TRANSACTION_SUB_TYPE_UNSPECIFIED",
-                TransactionSubType::Collect => "COLLECT",
-                TransactionSubType::Debit => "DEBIT",
-                TransactionSubType::Pay => "PAY",
-                TransactionSubType::Beneficiary => "BENEFICIARY",
-                TransactionSubType::Remitter => "REMITTER",
-                TransactionSubType::Refund => "REFUND",
-                TransactionSubType::Credit => "CREDIT",
+                Self::Unspecified => "TRANSACTION_SUB_TYPE_UNSPECIFIED",
+                Self::Collect => "COLLECT",
+                Self::Debit => "DEBIT",
+                Self::Pay => "PAY",
+                Self::Beneficiary => "BENEFICIARY",
+                Self::Remitter => "REMITTER",
+                Self::Refund => "REFUND",
+                Self::Credit => "CREDIT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2869,9 +2843,9 @@ pub mod financial_transaction {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    PaymentRuleName::Unspecified => "PAYMENT_RULE_NAME_UNSPECIFIED",
-                    PaymentRuleName::ExpireAfter => "EXPIRE_AFTER",
-                    PaymentRuleName::MinAmount => "MIN_AMOUNT",
+                    Self::Unspecified => "PAYMENT_RULE_NAME_UNSPECIFIED",
+                    Self::ExpireAfter => "EXPIRE_AFTER",
+                    Self::MinAmount => "MIN_AMOUNT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2990,19 +2964,17 @@ pub mod mandate_transaction {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RecurrencePatternType::Unspecified => {
-                    "RECURRENCE_PATTERN_TYPE_UNSPECIFIED"
-                }
-                RecurrencePatternType::AsPresented => "AS_PRESENTED",
-                RecurrencePatternType::Bimonthly => "BIMONTHLY",
-                RecurrencePatternType::Daily => "DAILY",
-                RecurrencePatternType::Fortnightly => "FORTNIGHTLY",
-                RecurrencePatternType::HalfYearly => "HALF_YEARLY",
-                RecurrencePatternType::Monthly => "MONTHLY",
-                RecurrencePatternType::OneTime => "ONE_TIME",
-                RecurrencePatternType::Quarterly => "QUARTERLY",
-                RecurrencePatternType::Weekly => "WEEKLY",
-                RecurrencePatternType::Yearly => "YEARLY",
+                Self::Unspecified => "RECURRENCE_PATTERN_TYPE_UNSPECIFIED",
+                Self::AsPresented => "AS_PRESENTED",
+                Self::Bimonthly => "BIMONTHLY",
+                Self::Daily => "DAILY",
+                Self::Fortnightly => "FORTNIGHTLY",
+                Self::HalfYearly => "HALF_YEARLY",
+                Self::Monthly => "MONTHLY",
+                Self::OneTime => "ONE_TIME",
+                Self::Quarterly => "QUARTERLY",
+                Self::Weekly => "WEEKLY",
+                Self::Yearly => "YEARLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3053,10 +3025,10 @@ pub mod mandate_transaction {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RecurrenceRuleType::Unspecified => "RECURRENCE_RULE_TYPE_UNSPECIFIED",
-                RecurrenceRuleType::After => "AFTER",
-                RecurrenceRuleType::Before => "BEFORE",
-                RecurrenceRuleType::On => "ON",
+                Self::Unspecified => "RECURRENCE_RULE_TYPE_UNSPECIFIED",
+                Self::After => "AFTER",
+                Self::Before => "BEFORE",
+                Self::On => "ON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3101,9 +3073,9 @@ pub mod mandate_transaction {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AmountRuleType::Unspecified => "AMOUNT_RULE_TYPE_UNSPECIFIED",
-                AmountRuleType::Exact => "EXACT",
-                AmountRuleType::Max => "MAX",
+                Self::Unspecified => "AMOUNT_RULE_TYPE_UNSPECIFIED",
+                Self::Exact => "EXACT",
+                Self::Max => "MAX",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3184,19 +3156,19 @@ pub struct ListMetadataTransactionsRequest {
     /// The following fields in the `MetadataTransaction` are eligible for
     /// filtering:
     ///
-    /// * `apiType` - The API type of the metadata transaction. Must be one of
-    ///   \[ApiType\]\[google.cloud.paymentgateway.issuerswitch.v1.ApiType\] values.
-    ///   Allowed comparison operators: `=`.
-    /// * `transactionType` - The transaction type of the metadata transaction.
-    ///   Must be one of
-    ///   \[TransactionType\]\[google.cloud.paymentgateway.issuerswitch.v1.TransactionType\]
-    ///   values. Allowed comparison operators: `=`.
-    /// * `transactionID` - The UPI transaction ID of the metadata transaction.
-    ///   Allowed comparison operators: `=`.
-    /// * `createTime` - The time at which the transaction was created
-    ///   (received) by the issuer switch. The value should be in
-    ///   the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison operators: `>`,
-    ///   `<`.
+    ///    * `apiType` - The API type of the metadata transaction. Must be one of
+    ///    [ApiType][google.cloud.paymentgateway.issuerswitch.v1.ApiType] values.
+    ///    Allowed comparison operators: `=`.
+    ///    * `transactionType` - The transaction type of the metadata transaction.
+    ///    Must be one of
+    ///    [TransactionType][google.cloud.paymentgateway.issuerswitch.v1.TransactionType]
+    ///    values. Allowed comparison operators: `=`.
+    ///    * `transactionID` - The UPI transaction ID of the metadata transaction.
+    ///    Allowed comparison operators: `=`.
+    ///    * `createTime` - The time at which the transaction was created
+    ///    (received) by the issuer switch. The value should be in
+    ///    the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison operators: `>`,
+    ///    `<`.
     ///
     /// You can combine multiple expressions by enclosing each expression in
     /// parentheses. Expressions are combined with AND logic. No other logical
@@ -3204,10 +3176,11 @@ pub struct ListMetadataTransactionsRequest {
     ///
     /// Here are a few examples:
     ///
-    /// * `apiType = LIST_ACCOUNTS` -  - The API type is *LIST_ACCOUNTS*.
-    /// * `state = SUCCEEDED` - The transaction's state is *SUCCEEDED*.
-    /// * `(apiType = LIST_ACCOUNTS) AND (create_time < "2021-08-15T14:50:00Z")` - The API type is *LIST_ACCOUNTS* and
-    ///   the transaction was received before *2021-08-15 14:50:00 UTC*.
+    ///    * `apiType = LIST_ACCOUNTS` -  - The API type is _LIST_ACCOUNTS_.
+    ///    * `state = SUCCEEDED` - The transaction's state is _SUCCEEDED_.
+    ///    * `(apiType = LIST_ACCOUNTS) AND (create_time <
+    ///    \"2021-08-15T14:50:00Z\")` - The API type is _LIST_ACCOUNTS_ and
+    ///    the transaction was received before _2021-08-15 14:50:00 UTC_.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -3245,22 +3218,22 @@ pub struct ListFinancialTransactionsRequest {
     /// The following fields in the `FinancialTransaction` are eligible for
     /// filtering:
     ///
-    /// * `transactionID` - The UPI transaction ID of the financial
-    ///   transaction. Allowed comparison operators: `=`.
-    /// * `RRN` - The retrieval reference number of the transaction. Allowed
-    ///   comparison operators: `=`.
-    /// * `payerVPA` - The VPA of the payer in a financial transaction. Allowed
-    ///   comparison operators: `=`.
-    /// * `payeeVPA` - The VPA of the payee in a financial transaction. Allowed
-    ///   comparison operators: `=`.
-    /// * `payerMobileNumber` - The mobile number of the payer in a financial
-    ///   transaction. Allowed comparison operators: `=`.
-    /// * `payeeMobileNumber` - The mobile number of the payee in a financial
-    ///   transaction. Allowed comparison operators: `=`.
-    /// * `createTime` - The time at which the transaction was created
-    ///   (received) by the issuer switch. The value should be in
-    ///   the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison operators: `>`,
-    ///   `<`.
+    ///    * `transactionID` - The UPI transaction ID of the financial
+    ///    transaction. Allowed comparison operators: `=`.
+    ///    * `RRN` - The retrieval reference number of the transaction. Allowed
+    ///    comparison operators: `=`.
+    ///    * `payerVPA` - The VPA of the payer in a financial transaction. Allowed
+    ///    comparison operators: `=`.
+    ///    * `payeeVPA` - The VPA of the payee in a financial transaction. Allowed
+    ///    comparison operators: `=`.
+    ///    * `payerMobileNumber` - The mobile number of the payer in a financial
+    ///       transaction. Allowed comparison operators: `=`.
+    ///    * `payeeMobileNumber` - The mobile number of the payee in a financial
+    ///       transaction. Allowed comparison operators: `=`.
+    ///    * `createTime` - The time at which the transaction was created
+    ///    (received) by the issuer switch. The value should be in
+    ///    the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison operators: `>`,
+    ///    `<`.
     ///
     /// You can combine multiple expressions by enclosing each expression in
     /// parentheses. Expressions are combined with AND logic. No other logical
@@ -3268,16 +3241,15 @@ pub struct ListFinancialTransactionsRequest {
     ///
     /// Here are a few examples:
     ///
-    /// * `rrn = 123456789123` - The RRN is *123456789123*.
-    /// * `payerVpa = example@goog` - The VPA of the payer is the string
-    ///   *example@goog*.
-    /// * `(payeeVpa = example@goog) AND (createTime < "2021-08-15T14:50:00Z")`
-    ///
-    /// * The VPA of the payee is *example@goog* and the transaction was received
-    ///   before *2021-08-15 14:50:00 UTC*.
-    ///
-    /// * `createTime > "2021-08-15T14:50:00Z" AND createTime < "2021-08-16T14:50:00Z"` - The transaction was received between
-    ///   *2021-08-15 14:50:00 UTC* and *2021-08-16 14:50:00 UTC*.
+    ///    * `rrn = 123456789123` - The RRN is _123456789123_.
+    ///    * `payerVpa = example@goog` - The VPA of the payer is the string
+    ///    _example@goog_.
+    ///    * `(payeeVpa = example@goog) AND (createTime < "2021-08-15T14:50:00Z")`
+    ///    - The VPA of the payee is _example@goog_ and the transaction was received
+    ///    before _2021-08-15 14:50:00 UTC_.
+    ///    * `createTime > "2021-08-15T14:50:00Z" AND createTime <
+    ///    "2021-08-16T14:50:00Z"` - The transaction was received between
+    ///    _2021-08-15 14:50:00 UTC_ and _2021-08-16 14:50:00 UTC_.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -3315,40 +3287,39 @@ pub struct ListMandateTransactionsRequest {
     /// The following fields in the `Mandate` are eligible for
     /// filtering:
     ///
-    /// * `uniqueMandateNumber` - UPI Unique Mandate Number (UMN). Allowed
-    ///   comparison operators: `=`.
-    /// * `transactionID` - The transaction ID of the mandate transaction.
-    ///   Allowed comparison operators: `=`.
-    /// * `transactionType` - The transaction type of the mandate
-    ///   transaction. Must be one of
-    ///   \[TransactionType\]\[google.cloud.paymentgateway.issuerswitch.v1.TransactionType\]
-    ///   values. For mandate transactions, only valid transaction types are
-    ///   `TRANSACTION_TYPE_CREATE`, `TRANSACTION_TYPE_REVOKE` and
-    ///   `TRANSACTION_TYPE_UPDATE`. Allowed comparison operators: `=`.
-    /// * `createTime` - The time at which the transaction was created
-    ///   (received) by the issuer switch. The value should be in
-    ///   the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison
-    ///   operators: `>`, `<`.
-    ///   You can combine multiple expressions by enclosing each expression in
-    ///   parentheses. Expressions are combined with AND logic. No other logical
-    ///   operators are supported.
+    ///    * `uniqueMandateNumber` - UPI Unique Mandate Number (UMN). Allowed
+    ///    comparison operators: `=`.
+    ///    * `transactionID` - The transaction ID of the mandate transaction.
+    ///    Allowed comparison operators: `=`.
+    ///    * `transactionType` - The transaction type of the mandate
+    ///    transaction. Must be one of
+    ///    [TransactionType][google.cloud.paymentgateway.issuerswitch.v1.TransactionType]
+    ///    values. For mandate transactions, only valid transaction types are
+    ///    `TRANSACTION_TYPE_CREATE`, `TRANSACTION_TYPE_REVOKE` and
+    ///    `TRANSACTION_TYPE_UPDATE`. Allowed comparison operators: `=`.
+    ///    * `createTime` - The time at which the transaction was created
+    ///    (received) by the issuer switch. The value should be in
+    ///    the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison
+    ///    operators: `>`, `<`.
+    /// You can combine multiple expressions by enclosing each expression in
+    /// parentheses. Expressions are combined with AND logic. No other logical
+    /// operators are supported.
     ///
     /// Here are a few examples:
-    ///
-    /// * `recurrencePattern = MONTHLY` - The recurrence pattern type is
-    ///   monthly.
-    /// * `state = SUCCEEDED` - The transaction's state is *SUCCEEDED*.
-    /// * `payerVPA = example@okbank` - The VPA of the payer is the string
-    ///   *example@okbank*.
-    /// * `(payerVPA = example@okbank) AND (createTime < "2021-08-15T14:50:00Z")`
-    ///
-    /// * The payer VPA example@okbank and the transaction was received
-    ///   before *2021-08-15 14:50:00 UTC*.
-    ///
-    /// * `createTime > "2021-08-15T14:50:00Z" AND createTime < "2021-08-16T14:50:00Z"` - The transaction was received between
-    ///   *2021-08-15 14:50:00 UTC* and *2021-08-16 14:50:00 UTC*.
-    /// * `startDate > "2021-08-15" AND startDate < "2021-08-17"` - The start
-    ///   date for mandate is between *2021-08-15* and *2021-08-17*.
+    ///    * `recurrencePattern = MONTHLY` - The recurrence pattern type is
+    ///    monthly.
+    ///    * `state = SUCCEEDED` - The transaction's state is _SUCCEEDED_.
+    ///    * `payerVPA = example@okbank` - The VPA of the payer is the string
+    ///    _example@okbank_.
+    ///    * `(payerVPA = example@okbank) AND (createTime <
+    ///    "2021-08-15T14:50:00Z")`
+    ///    - The payer VPA example@okbank and the transaction was received
+    ///    before _2021-08-15 14:50:00 UTC_.
+    ///    * `createTime > "2021-08-15T14:50:00Z" AND createTime <
+    ///    "2021-08-16T14:50:00Z"` - The transaction was received between
+    ///    _2021-08-15 14:50:00 UTC_ and _2021-08-16 14:50:00 UTC_.
+    ///    * `startDate > "2021-08-15" AND startDate < "2021-08-17"` - The start
+    ///    date for mandate is between _2021-08-15_ and _2021-08-17_.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -3386,42 +3357,41 @@ pub struct ListComplaintTransactionsRequest {
     /// The following fields in the `Complaint` are eligible for
     /// filtering:
     ///
-    /// * `transactionID` - The transaction ID of the complaint transaction.
-    ///   Allowed comparison operators: `=`.
-    /// * `transactionType` - The transaction type of the complaint
-    ///   transaction. Must be one of
-    ///   \[TransactionType\]\[google.cloud.paymentgateway.issuerswitch.v1.TransactionType\]
-    ///   values. For complaint transactions, only valid transaction types are
+    ///    * `transactionID` - The transaction ID of the complaint transaction.
+    ///    Allowed comparison operators: `=`.
+    ///    * `transactionType` - The transaction type of the complaint
+    ///    transaction. Must be one of
+    ///    [TransactionType][google.cloud.paymentgateway.issuerswitch.v1.TransactionType]
+    ///    values. For complaint transactions, only valid transaction types are
     ///   `TRANSACTION_TYPE_CHECK_STATUS`, `TRANSACTION_TYPE_COMPLAINT`,
     ///   `TRANSACTION_TYPE_REVERSAL`, `TRANSACTION_TYPE_DISPUTE`,
     ///   `TRANSACTION_TYPE_REFUND` or `TRANSACTION_TYPE_STATUS_UPDATE`. Allowed
-    ///   comparison operators: `=`.
-    /// * `originalRRN` - The retrieval reference number of the original
-    ///   transaction for which complaint / dispute was raised / resolved. Allowed
-    ///   comparison operators: `=`.
-    /// * `createTime` - The time at which the transaction was created
-    ///   (received) by the issuer switch. The value should be in
-    ///   the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison
-    ///   operators: `>`, `<`.
-    /// * `state` - The state of the transaction. Must be one of
-    ///   \[TransactionInfo.State\]\[google.cloud.paymentgateway.issuerswitch.v1.TransactionInfo.State\]
-    ///   values. Allowed comparison operators: `=`.
-    /// * `errorCode` - Use this filter to list complaint transactions which
-    ///   have failed a particular error code. Allowed comparison
-    ///   operators: `=`.
-    ///   You can combine multiple expressions by enclosing each expression in
-    ///   parentheses. Expressions are combined with AND logic. No other logical
-    ///   operators are supported.
+    ///    comparison operators: `=`.
+    ///    * `originalRRN` - The retrieval reference number of the original
+    ///    transaction for which complaint / dispute was raised / resolved. Allowed
+    ///    comparison operators: `=`.
+    ///    * `createTime` - The time at which the transaction was created
+    ///    (received) by the issuer switch. The value should be in
+    ///    the format `YYYY-MM-DDTHH:MM:SSZ`. Allowed comparison
+    ///    operators: `>`, `<`.
+    ///    * `state` - The state of the transaction. Must be one of
+    ///    [TransactionInfo.State][google.cloud.paymentgateway.issuerswitch.v1.TransactionInfo.State]
+    ///    values. Allowed comparison operators: `=`.
+    ///    * `errorCode` - Use this filter to list complaint transactions which
+    ///    have failed a particular error code. Allowed comparison
+    ///    operators: `=`.
+    /// You can combine multiple expressions by enclosing each expression in
+    /// parentheses. Expressions are combined with AND logic. No other logical
+    /// operators are supported.
     ///
     /// Here are a few examples:
     ///
-    /// * `state = SUCCEEDED` - The transaction's state is *SUCCEEDED*.
-    /// * (createTime \< "2021-08-15T14:50:00Z")\`
-    ///
-    /// * The transaction was received before *2021-08-15 14:50:00 UTC*.
-    ///
-    /// * `createTime > "2021-08-15T14:50:00Z" AND createTime < "2021-08-16T14:50:00Z"` - The transaction was received between
-    ///   *2021-08-15 14:50:00 UTC* and *2021-08-16 14:50:00 UTC*.
+    ///    * `state = SUCCEEDED` - The transaction's state is _SUCCEEDED_.
+    ///    * (createTime < "2021-08-15T14:50:00Z")`
+    ///    - The transaction was received before _2021-08-15 14:50:00 UTC_.
+    ///    * `createTime > "2021-08-15T14:50:00Z" AND createTime <
+    ///    "2021-08-16T14:50:00Z"` - The transaction was received between
+    ///    _2021-08-15 14:50:00 UTC_ and _2021-08-16 14:50:00 UTC_.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -3639,7 +3609,13 @@ pub struct ExportComplaintTransactionsMetadata {
 }
 /// Generated client implementations.
 pub mod issuer_switch_transactions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Fetch the issuer switch participant.
@@ -3727,8 +3703,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3758,8 +3733,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3789,8 +3763,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3820,8 +3793,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3843,219 +3815,219 @@ pub mod issuer_switch_transactions_client {
         /// file into a configured target location. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ExportFinancialTransactionsMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportFinancialTransactionsMetadata\]
-        /// * `response`:
-        ///  \[ExportFinancialTransactionsResponse\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportFinancialTransactionsResponse\]
+        /// - `metadata`:
+        /// [ExportFinancialTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.v1.ExportFinancialTransactionsMetadata]
+        /// - `response`:
+        /// [ExportFinancialTransactionsResponse][google.cloud.paymentgateway.issuerswitch.v1.ExportFinancialTransactionsResponse]
         ///
         /// The exported file will be in the standard CSV format where each row in the
         /// file represents a transaction. The file has the following fields in order:
         ///
         /// 1. `TransactionID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - UPI transaction ID.
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - UPI transaction ID.
         /// 1. `TransactionType`
-        ///   * **Min Length** - 22 characters
-        ///   * **Max Length** - 25 characters
-        ///   * **Description** - Type of the transaction. This will be one of
+        ///     * **Min Length** - 22 characters
+        ///     * **Max Length** - 25 characters
+        ///     * **Description** - Type of the transaction. This will be one of
         ///     `TRANSACTION_TYPE_CREDIT`, `TRANSACTION_TYPE_DEBIT` or
         ///     `TRANSACTION_TYPE_REVERSAL`.
         /// 1. `TransactionSubType`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 7 characters
-        ///   * **Description** - Subtype of the transaction. This will be one of
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 7 characters
+        ///     * **Description** - Subtype of the transaction. This will be one of
         ///     `COLLECT`, or `PAY`.
         /// 1. `CreationTime`
-        ///   * **Min Length** - 20 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Timestamp (in UTC) indicating when the issuer
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating when the issuer
         ///     switch created the transaction resource for processing the transaction.
         ///     The format will be as per RFC-3339. Example : 2022-11-22T23:00:05Z
         /// 1. `State`
-        ///   * **Min Length** - 6 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - State of the transaction. This will be one of
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - State of the transaction. This will be one of
         ///     `FAILED`, `SUCCEEDED`, or `TIMED_OUT`.
         /// 1. `RRN`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Retrieval reference number associated with the
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Retrieval reference number associated with the
         ///     transaction.
         /// 1. `PayerVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the payer.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payer.
         /// 1. `PayerMobileNumber`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Mobile number of the payer.
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Mobile number of the payer.
         /// 1. `PayerIFSC`
-        ///   * **Min Length** - 11 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - IFSC of the payer's bank account.
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payer's bank account.
         /// 1. `PayerAccountNumber`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payer's bank account number.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payer's bank account number.
         /// 1. `PayerAccountType`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 7 characters
-        ///   * **Description** - Payer's bank account type. This will be one of
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 7 characters
+        ///     * **Description** - Payer's bank account type. This will be one of
         ///     `SAVINGS`, `DEFAULT`, `CURRENT`, `NRE`, `NRO`, `PPIWALLET`,
         ///     `BANKWALLET`, `CREDIT`, `SOD`, or `UOD`.
         /// 1. `PayeeVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the payee.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payee.
         /// 1. `PayeeMobileNumber`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Payee's mobile number.
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Payee's mobile number.
         /// 1. `PayeeIFSC`
-        ///   * **Min Length** - 11 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - IFSC of the payee's bank account.
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payee's bank account.
         /// 1. `PayeeAccountNumber`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payee's bank account number.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payee's bank account number.
         /// 1. `PayeeAccountType`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 10 characters
-        ///   * **Description** - Payee's bank account type. This will be one of
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 10 characters
+        ///     * **Description** - Payee's bank account type. This will be one of
         ///     `SAVINGS`, `DEFAULT`, `CURRENT`, `NRE`, `NRO`, `PPIWALLET`,
         ///     `BANKWALLET`, `CREDIT`, `SOD`, or `UOD`.
         /// 1. `PayeeMerchantID`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Payee's merchant ID, only if the payee is a
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Payee's merchant ID, only if the payee is a
         ///     merchant.
         /// 1. `PayeeMerchantName`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Payee's merchant name, only if the payee is a
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Payee's merchant name, only if the payee is a
         ///     merchant.
         /// 1. `PayeeMCC`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 4 characters
-        ///   * **Description** - Payee's Merchant Category Code (MCC), only if the
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Payee's Merchant Category Code (MCC), only if the
         ///     payee is a merchant.
         /// 1. `Currency`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 3 characters
-        ///   * **Description** - Currency of the amount involved in the transaction.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Currency of the amount involved in the transaction.
         ///     The currency codes are defined in ISO 4217.
         /// 1. `Amount`
-        ///   * **Description** - Amount involved in the transaction.
+        ///     * **Description** - Amount involved in the transaction.
         /// 1. `AdapterRequestIDs`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 2,000 characters
-        ///   * **Description** - List of adapter request IDs (colon separated) used
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 2,000 characters
+        ///     * **Description** - List of adapter request IDs (colon separated) used
         ///     when invoking the Adapter APIs for fulfilling a transaction request.
         /// 1. `ErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Error code of a failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Error code of a failed transaction.
         /// 1. `ErrorMessage`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 10,000 characters
-        ///   * **Description** - Error description for a failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 10,000 characters
+        ///     * **Description** - Error description for a failed transaction.
         /// 1. `UPIErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 3 characters
-        ///   * **Description** - Error code as per the UPI specification. The issuer
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Error code as per the UPI specification. The issuer
         ///     switch maps the ErrorCode to an appropriate error code that complies
         ///     with the UPI specification.
         /// 1. `PayerDeviceInfoTypeAppName`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Payment application name on the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Payment application name on the payer's device.
         /// 1. `PayerDeviceInfoTypeCapability`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Capability of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Capability of the payer's device.
         /// 1. `PayerDeviceInfoTypeGeoCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 15 characters
-        ///   * **Description** - Geo code of the payer's device. This will include
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 15 characters
+        ///     * **Description** - Geo code of the payer's device. This will include
         ///     floating point values for latitude and longitude (separated by colon).
         /// 1. `PayerDeviceInfoTypeID`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Device ID of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Device ID of the payer's device.
         /// 1. `PayerDeviceInfoTypeIP`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 39 characters
-        ///   * **Description** - IP address of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 39 characters
+        ///     * **Description** - IP address of the payer's device.
         /// 1. `PayerDeviceInfoTypeLocation`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 40 characters
-        ///   * **Description** - Coarse location of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 40 characters
+        ///     * **Description** - Coarse location of the payer's device.
         /// 1. `PayerDeviceInfoTypeOS`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Operating system on the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Operating system on the payer's device.
         /// 1. `PayerDeviceInfoTypeTelecomProvider`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Telecom provider for the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Telecom provider for the payer's device.
         /// 1. `PayerDeviceInfoTypeDeviceType`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - Type of the payer's device. This will be one of
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - Type of the payer's device. This will be one of
         ///     'MOB', 'INET', 'USDC/USDB', 'POS'.
         /// 1. `PayeeDeviceInfoTypeAppName`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Payment application name on the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Payment application name on the payee's device.
         /// 1. `PayeeDeviceInfoTypeCapability`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Capability of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Capability of the payee's device.
         /// 1. `PayeeDeviceInfoTypeGeoCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 15 characters
-        ///   * **Description** - Geo code of the payee's device. This will include
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 15 characters
+        ///     * **Description** - Geo code of the payee's device. This will include
         ///     floating point values for latitude and longitude (separated by colon).
         /// 1. `PayeeDeviceInfoTypeID`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Device ID of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Device ID of the payee's device.
         /// 1. `PayeeDeviceInfoTypeIP`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 39 characters
-        ///   * **Description** - IP address of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 39 characters
+        ///     * **Description** - IP address of the payee's device.
         /// 1. `PayeeDeviceInfoTypeLocation`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 40 characters
-        ///   * **Description** - Coarse location of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 40 characters
+        ///     * **Description** - Coarse location of the payee's device.
         /// 1. `PayeeDeviceInfoTypeOS`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Operating system on the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Operating system on the payee's device.
         /// 1. `PayeeDeviceInfoTypeTelecomProvider`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Telecom provider for the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Telecom provider for the payee's device.
         /// 1. `PayeeDeviceInfoTypeDeviceType`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - Type of the payee's device. This will be one of
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - Type of the payee's device. This will be one of
         ///     'MOB', 'INET', 'USDC/USDB', 'POS'.
         /// 1. `ReferenceID`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Consumer reference number to identify loan number,
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Consumer reference number to identify loan number,
         ///     order id etc.
         /// 1. `ReferenceURI`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - URL for the  transaction.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - URL for the  transaction.
         /// 1. `ReferenceCategory`
-        ///   * **Min Length** - 2 characters
-        ///   * **Max Length** - 2 characters
-        ///   * **Description** - Reference category.
+        ///     * **Min Length** - 2 characters
+        ///     * **Max Length** - 2 characters
+        ///     * **Description** - Reference category.
         pub async fn export_financial_transactions(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportFinancialTransactionsRequest>,
@@ -4067,8 +4039,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4090,59 +4061,59 @@ pub mod issuer_switch_transactions_client {
         /// file into a configured target location. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ExportMetadataTransactionsMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportMetadataTransactionsMetadata\]
-        /// * `response`:
-        ///  \[ExportMetadataTransactionsResponse\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportMetadataTransactionsResponse\]
+        /// - `metadata`:
+        /// [ExportMetadataTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.v1.ExportMetadataTransactionsMetadata]
+        /// - `response`:
+        /// [ExportMetadataTransactionsResponse][google.cloud.paymentgateway.issuerswitch.v1.ExportMetadataTransactionsResponse]
         ///
         /// The exported file will be in the standard CSV format where each row in the
         /// file represents a transaction. The file has the following fields in order:
         ///
         /// 1. `TransactionID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - UPI transaction ID.
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - UPI transaction ID.
         /// 1. `APIType`
-        ///   * **Description** - The transaction's API type. The value will be of
-        ///     the \[ApiType\]\[google.cloud.paymentgateway.issuerswitch.v1.ApiType\]
+        ///     * **Description** - The transaction's API type. The value will be of
+        ///     the [ApiType][google.cloud.paymentgateway.issuerswitch.v1.ApiType]
         ///     enum.
         /// 1. `TransactionType`
-        ///   * **Description** - Type of the transaction. The value will be of the
-        ///     \[TransactionType\]\[google.cloud.paymentgateway.issuerswitch.v1.TransactionType\]
+        ///     * **Description** - Type of the transaction. The value will be of the
+        ///     [TransactionType][google.cloud.paymentgateway.issuerswitch.v1.TransactionType]
         ///     enum.
         /// 1. `CreationTime`
-        ///   * **Min Length** - 20 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Timestamp (in UTC) indicating when the issuer
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating when the issuer
         ///     switch created the transaction resource for processing the transaction.
         ///     The format will be as per RFC-3339. Example : 2022-11-22T23:00:05Z
         /// 1. `State`
-        ///   * **Min Length** - 6 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - State of the transaction. This will be one of
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - State of the transaction. This will be one of
         ///     `FAILED`, `SUCCEEDED`, or `TIMED_OUT`.
         /// 1. `OriginVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the originator of
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the originator of
         ///     the transaction.
         /// 1. `AdapterRequestIDs`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 2,000 characters
-        ///   * **Description** - List of adapter request IDs (colon separated) used
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 2,000 characters
+        ///     * **Description** - List of adapter request IDs (colon separated) used
         ///     when invoking the Adapter APIs for fulfilling a transaction request.
         /// 1. `ErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Error code of the failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Error code of the failed transaction.
         /// 1. `ErrorMessage`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 10,000 characters
-        ///   * **Description** - Error description for the failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 10,000 characters
+        ///     * **Description** - Error description for the failed transaction.
         /// 1. `UPIErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 3 characters
-        ///   * **Description** - Error code as per the UPI specification. The issuer
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Error code as per the UPI specification. The issuer
         ///     switch maps the ErrorCode to an appropriate error code that complies
         ///     with the UPI specification.
         pub async fn export_metadata_transactions(
@@ -4156,8 +4127,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4179,264 +4149,264 @@ pub mod issuer_switch_transactions_client {
         /// file into a configured target location. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ExportMandateTransactionsMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportMandateTransactionsMetadata\]
-        /// * `response`:
-        ///  \[ExportMandateTransactionsResponse\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportMandateTransactionsResponse\]
+        /// - `metadata`:
+        /// [ExportMandateTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.v1.ExportMandateTransactionsMetadata]
+        /// - `response`:
+        /// [ExportMandateTransactionsResponse][google.cloud.paymentgateway.issuerswitch.v1.ExportMandateTransactionsResponse]
         ///
         /// The exported file will be in the standard CSV format where each row in the
         /// file represents a transaction. The file has the following fields in order:
         ///
         /// 1. `TransactionID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - UPI transaction ID.
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - UPI transaction ID.
         /// 1. `UniqueMandateNumber`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 70 characters
-        ///   * **Description** - UPI Unique Mandate Number.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 70 characters
+        ///     * **Description** - UPI Unique Mandate Number.
         /// 1. `TransactionType`
-        ///   * **Min Length** - 23 characters
-        ///   * **Max Length** - 23 characters
-        ///   * **Description** - Type of the transaction. This will be one of
+        ///     * **Min Length** - 23 characters
+        ///     * **Max Length** - 23 characters
+        ///     * **Description** - Type of the transaction. This will be one of
         ///     `TRANSACTION_TYPE_CREATE`, `TRANSACTION_TYPE_REVOKE`,
         ///     `TRANSACTION_TYPE_UPDATE`, `TRANSACTION_TYPE_PAUSE` or
         ///     `TRANSACTION_TYPE_UNPAUSE`.
         /// 1. `CreationTime`
-        ///   * **Min Length** - 20 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Timestamp (in UTC) indicating when the issuer
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating when the issuer
         ///     switch created the transaction resource for processing the transaction.
         ///     The format will be as per RFC-3339. Example : 2022-11-22T23:00:05Z
         /// 1. `State`
-        ///   * **Min Length** - 6 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - State of the transaction. This will be one of
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - State of the transaction. This will be one of
         ///     `FAILED`, `SUCCEEDED`, or `TIMED_OUT`.
         /// 1. `PayerVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the payer.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payer.
         /// 1. `PayerMobileNumber`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Mobile number of the payer.
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Mobile number of the payer.
         /// 1. `PayerIFSC`
-        ///   * **Min Length** - 11 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - IFSC of the payer's bank account.
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payer's bank account.
         /// 1. `PayerAccountNumber`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payer's bank account number.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payer's bank account number.
         /// 1. `PayerAccountType`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 7 characters
-        ///   * **Description** - Payer's bank account type. This will be one of
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 7 characters
+        ///     * **Description** - Payer's bank account type. This will be one of
         ///     `SAVINGS`, `DEFAULT`, `CURRENT`, `NRE`, `NRO`, `PPIWALLET`,
         ///     `BANKWALLET`, `CREDIT`, `SOD`, or `UOD`.
         /// 1. `PayeeVPA`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Virtual Payment Address (VPA) of the payee.
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payee.
         /// 1. `PayeeMobileNumber`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Mobile number of the payee.
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Mobile number of the payee.
         /// 1. `PayeeIFSC`
-        ///   * **Min Length** - 11 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - IFSC of the payee's bank account.
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payee's bank account.
         /// 1. `PayeeAccountNumber`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payee's bank account number.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payee's bank account number.
         /// 1. `PayeeAccountType`
-        ///   * **Min Length** - 3 characters
-        ///   * **Max Length** - 10 characters
-        ///   * **Description** - Payee's bank account type. This will be one of
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 10 characters
+        ///     * **Description** - Payee's bank account type. This will be one of
         ///     `SAVINGS`, `DEFAULT`, `CURRENT`, `NRE`, `NRO`, `PPIWALLET`,
         ///     `BANKWALLET`, `CREDIT`, `SOD`, or `UOD`.
         /// 1. `PayeeMerchantID`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Payee's merchant ID, only if the payee is a
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payee's merchant ID, only if the payee is a
         ///     merchant
         /// 1. `PayeeMerchantName`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Payee's merchant name, only if the payee is a
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Payee's merchant name, only if the payee is a
         ///     merchant.
         /// 1. `PayeeMCC`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 4 characters
-        ///   * **Description** - Payee's Merchant Category Code (MCC), only if the
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Payee's Merchant Category Code (MCC), only if the
         ///     payee is a merchant.
         /// 1. `Amount`
-        ///   * **Description** - Amount specified in the mandate.
+        ///     * **Description** - Amount specified in the mandate.
         /// 1. `RecurrencePattern`
-        ///   * **Description** - Reccurence pattern of the mandate. The value will
+        ///     * **Description** - Reccurence pattern of the mandate. The value will
         ///     be of the
-        ///     \[MandateTransaction.RecurrencePatternType\]\[google.cloud.paymentgateway.issuerswitch.v1.MandateTransaction.RecurrencePatternType\]
+        ///     [MandateTransaction.RecurrencePatternType][google.cloud.paymentgateway.issuerswitch.v1.MandateTransaction.RecurrencePatternType]
         ///     enum.
         /// 1. `RecurrenceRuleType`
-        ///   * **Description** - Reccurrence rule type of the mandate. The value
+        ///     * **Description** - Reccurrence rule type of the mandate. The value
         ///     will be of the
-        ///     \[MandateTransaction.RecurrenceRuleType\]\[google.cloud.paymentgateway.issuerswitch.v1.MandateTransaction.RecurrenceRuleType\]
+        ///     [MandateTransaction.RecurrenceRuleType][google.cloud.paymentgateway.issuerswitch.v1.MandateTransaction.RecurrenceRuleType]
         ///     enum.
         /// 1. `RecurrenceRuleValue`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 2 characters
-        ///   * **Description** - Recurrence rule value of the mandate. This will be
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 2 characters
+        ///     * **Description** - Recurrence rule value of the mandate. This will be
         ///     an integer between 1 and 31.
         /// 1. `Revokeable`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 5 characters
-        ///   * **Description** - Boolean value specifying if the mandate is
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 5 characters
+        ///     * **Description** - Boolean value specifying if the mandate is
         ///     revokable.
         /// 1. `StartDate`
-        ///   * **Min Length** - 10 characters
-        ///   * **Max Length** - 10 characters
-        ///   * **Description** - The start date of the mandate in `DD-MM-YYYY`
+        ///     * **Min Length** - 10 characters
+        ///     * **Max Length** - 10 characters
+        ///     * **Description** - The start date of the mandate in `DD-MM-YYYY`
         ///     format.
         /// 1. `EndDate`
-        ///   * **Min Length** - 10 characters
-        ///   * **Max Length** - 10 characters
-        ///   * **Description** - The end date of the mandate in `DD-MM-YYYY` format.
+        ///     * **Min Length** - 10 characters
+        ///     * **Max Length** - 10 characters
+        ///     * **Description** - The end date of the mandate in `DD-MM-YYYY` format.
         /// 1. `AmountRuleType`
-        ///   * **Description** - The amount rule of the mandate. The value will be
+        ///     * **Description** - The amount rule of the mandate. The value will be
         ///     of the
-        ///     \[MandateTransaction.AmountRuleType\]\[google.cloud.paymentgateway.issuerswitch.v1.MandateTransaction.AmountRuleType\]
+        ///     [MandateTransaction.AmountRuleType][google.cloud.paymentgateway.issuerswitch.v1.MandateTransaction.AmountRuleType]
         ///     enum.
         /// 1. `ApprovalReference`
-        ///   * **Min Length** - 6 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - The block funds reference generated by the bank, if
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - The block funds reference generated by the bank, if
         ///     funds have been blocked for the mandate. This column will have a value
         ///     only when the RecurrencePattern is ONETIME.
         /// 1. `BlockFunds`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 5 characters
-        ///   * **Description** - Boolean value specifying if the mandate transaction
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 5 characters
+        ///     * **Description** - Boolean value specifying if the mandate transaction
         ///     requested to block funds.
         /// 1. `LastUpdateTime`
-        ///   * **Min Length** - 20 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Timestamp (in UTC) indicating when was the last
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating when was the last
         ///     modification made to the mandate. The format will be as per RFC-3339.
         ///     Example : 2022-11-22T23:00:05Z
         /// 1. `AdapterRequestIDs`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 2,000 characters
-        ///   * **Description** - List of adapter request IDs (colon separated) used
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 2,000 characters
+        ///     * **Description** - List of adapter request IDs (colon separated) used
         ///     when invoking the Adapter APIs for fulfilling a transaction request.
         /// 1. `ErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Error code of the failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Error code of the failed transaction.
         /// 1. `ErrorMessage`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 10,000 characters
-        ///   * **Description** - Error description for the failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 10,000 characters
+        ///     * **Description** - Error description for the failed transaction.
         /// 1. `UPIErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 3 characters
-        ///   * **Description** - Error code as per the UPI specification. The issuer
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Error code as per the UPI specification. The issuer
         ///     switch maps the ErrorCode to an appropriate error code that complies
         ///     with the UPI specification.
         /// 1. `PayerDeviceInfoTypeAppName`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Payment application name on the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Payment application name on the payer's device.
         /// 1. `PayerDeviceInfoTypeCapability`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Capability of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Capability of the payer's device.
         /// 1. `PayerDeviceInfoTypeGeoCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 15 characters
-        ///   * **Description** - Geo code of the payer's device. This will include
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 15 characters
+        ///     * **Description** - Geo code of the payer's device. This will include
         ///     floating point values for latitude and longitude (separated by colon).
         /// 1. `PayerDeviceInfoTypeID`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Device ID of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Device ID of the payer's device.
         /// 1. `PayerDeviceInfoTypeIP`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 39 characters
-        ///   * **Description** - IP address of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 39 characters
+        ///     * **Description** - IP address of the payer's device.
         /// 1. `PayerDeviceInfoTypeLocation`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 40 characters
-        ///   * **Description** - Coarse location of the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 40 characters
+        ///     * **Description** - Coarse location of the payer's device.
         /// 1. `PayerDeviceInfoTypeOS`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Operating system on the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Operating system on the payer's device.
         /// 1. `PayerDeviceInfoTypeTelecomProvider`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Telecom provider for the payer's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Telecom provider for the payer's device.
         /// 1. `PayerDeviceInfoTypeDeviceType`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - Type of the payer's device. This will be one of
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - Type of the payer's device. This will be one of
         ///     'MOB', 'INET', 'USDC/USDB', 'POS'.
         /// 1. `PayeeDeviceInfoTypeAppName`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Payment application name on the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Payment application name on the payee's device.
         /// 1. `PayeeDeviceInfoTypeCapability`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Capability of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Capability of the payee's device.
         /// 1. `PayeeDeviceInfoTypeGeoCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 15 characters
-        ///   * **Description** - Geo code of the payee's device. This will include
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 15 characters
+        ///     * **Description** - Geo code of the payee's device. This will include
         ///     floating point values for latitude and longitude (separated by colon).
         /// 1. `PayeeDeviceInfoTypeID`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Device ID of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Device ID of the payee's device.
         /// 1. `PayeeDeviceInfoTypeIP`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 39 characters
-        ///   * **Description** - IP address of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 39 characters
+        ///     * **Description** - IP address of the payee's device.
         /// 1. `PayeeDeviceInfoTypeLocation`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 40 characters
-        ///   * **Description** - Coarse location of the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 40 characters
+        ///     * **Description** - Coarse location of the payee's device.
         /// 1. `PayeeDeviceInfoTypeOS`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Operating system on the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Operating system on the payee's device.
         /// 1. `PayeeDeviceInfoTypeTelecomProvider`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 99 characters
-        ///   * **Description** - Telecom provider for the payee's device.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 99 characters
+        ///     * **Description** - Telecom provider for the payee's device.
         /// 1. `PayeeDeviceInfoTypeDeviceType`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - Type of the payee's device. This will be one of
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - Type of the payee's device. This will be one of
         ///     `MOB`, `INET`, `USDC/USDB`, `POS`.
         /// 1. `ReferenceID`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Consumer reference number to identify loan number,
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Consumer reference number to identify loan number,
         ///     order id etc.
         /// 1. `ReferenceURI`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - URL for the  transaction.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - URL for the  transaction.
         /// 1. `ReferenceCategory`
-        ///   * **Min Length** - 2 characters
-        ///   * **Max Length** - 2 characters
-        ///   * **Description** - Reference category.
+        ///     * **Min Length** - 2 characters
+        ///     * **Max Length** - 2 characters
+        ///     * **Description** - Reference category.
         /// 1. `MandateName`
-        ///   * **Min Length** - 1 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - The mandate's name.
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - The mandate's name.
         pub async fn export_mandate_transactions(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportMandateTransactionsRequest>,
@@ -4448,8 +4418,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4471,135 +4440,135 @@ pub mod issuer_switch_transactions_client {
         /// file into a configured target location. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// * `metadata`:
-        ///  \[ExportComplaintTransactionsMetadata\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportComplaintTransactionsMetadata\]
-        /// * `response`:
-        ///  \[ExportComplaintTransactionsResponse\]\[google.cloud.paymentgateway.issuerswitch.v1.ExportComplaintTransactionsResponse\]
+        /// - `metadata`:
+        /// [ExportComplaintTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.v1.ExportComplaintTransactionsMetadata]
+        /// - `response`:
+        /// [ExportComplaintTransactionsResponse][google.cloud.paymentgateway.issuerswitch.v1.ExportComplaintTransactionsResponse]
         ///
         /// The exported file will be in the standard CSV format where each row in the
         /// file represents a transaction. The file has the following fields in order:
         ///
         /// 1. `TransactionID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - UPI transaction ID.
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - UPI transaction ID.
         /// 1. `TransactionType`
-        ///   * **Min Length** - 23 characters
-        ///   * **Max Length** - 30 characters
-        ///   * **Description** - Type of the transaction. This will be one of
+        ///     * **Min Length** - 23 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Type of the transaction. This will be one of
         ///     `TRANSACTION_TYPE_CHECK_STATUS`, `TRANSACTION_TYPE_COMPLAINT`,
         ///     `TRANSACTION_TYPE_REVERSAL`, `TRANSACTION_TYPE_DISPUTE`,
         ///     `TRANSACTION_TYPE_REFUND`, or `TRANSACTION_TYPE_STATUS_UPDATE`.
         /// 1. `CreationTime`
-        ///   * **Min Length** - 20 characters
-        ///   * **Max Length** - 20 characters
-        ///   * **Description** - Timestamp (in UTC) indicating when the issuer
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating when the issuer
         ///     switch created the transaction resource for processing the transaction.
         ///     The format will be as per RFC-3339. Example : 2022-11-22T23:00:05Z
-        ///     1: `State`
-        ///   * **Min Length** - 6 characters
-        ///   * **Max Length** - 9 characters
-        ///   * **Description** - State of the transaction. This will be one of
+        /// 1: `State`
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 9 characters
+        ///     * **Description** - State of the transaction. This will be one of
         ///     `FAILED`, `SUCCEEDED`, or `TIMED_OUT`.
         /// 1. `OriginalRRN`
-        ///   * **Min Length** - 12 characters
-        ///   * **Max Length** - 12 characters
-        ///   * **Description** - Retrieval reference number of the original payment
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Retrieval reference number of the original payment
         ///     transaction.
         /// 1. `BankType`
-        ///   * **Min Length** - 8 characters
-        ///   * **Max Length** - 11 characters
-        ///   * **Description** - The subtype of the transaction based on the bank
+        ///     * **Min Length** - 8 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - The subtype of the transaction based on the bank
         ///     involved. This will be one of `BENEFICIARY`, or `REMITTER`.
         /// 1. `OriginalTransactionID`
-        ///   * **Min Length** - 35 characters
-        ///   * **Max Length** - 35 characters
-        ///   * **Description** - Transaction ID of the original unresolved
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Transaction ID of the original unresolved
         ///     transaction.
         /// 1. `RaiseComplaintAdjFlag`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the type of action to raise the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the type of action to raise the
         ///     complaint.
         /// 1. `RaiseComplaintAdjCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the reason of action to raise the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the reason of action to raise the
         ///     complaint.
         /// 1. `ResolveComplaintAdjFlag`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the type of action to resolve the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the type of action to resolve the
         ///     complaint.
         /// 1. `ResolveComplaintAdjCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the reason of action to resolve the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the reason of action to resolve the
         ///     complaint.
         /// 1. `RaiseDisputeAdjFlag`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the type of action to raise the dispute.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the type of action to raise the dispute.
         /// 1. `RaiseDisputeAdjCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the reason of action to raise the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the reason of action to raise the
         ///     dispute.
         /// 1. `ResolveDisputeAdjFlag`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the type of action to resolve the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the type of action to resolve the
         ///     dispute.
         /// 1. `ResolveDisputeAdjCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the reason of action to resolve the
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the reason of action to resolve the
         ///     dispute.
         /// 1. `Amount`
-        ///   * **Description** - Amount to be resolved.
+        ///     * **Description** - Amount to be resolved.
         /// 1. `CurrentCycle`
-        ///   * **Min Length** - 4 characters
-        ///   * **Max Length** - 5 characters
-        ///   * **Description** - Boolean value specifying if the complaint / dispute
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 5 characters
+        ///     * **Description** - Boolean value specifying if the complaint / dispute
         ///     belongs to current settlement cycle or not.
         /// 1. `CRN`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Defines the Complaint Reference number.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Defines the Complaint Reference number.
         /// 1. `AdjTime`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the time when the resolution was done.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the time when the resolution was done.
         /// 1. `RespAdjFlag`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the response category type.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the response category type.
         /// 1. `RespAdjCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the response reason used.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the response reason used.
         /// 1. `AdjRemarks`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Indicates the additional remarks for the complaint
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Indicates the additional remarks for the complaint
         ///     / dispute.
         /// 1. `AdapterRequestIDs`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 2,000 characters
-        ///   * **Description** - List of adapter request IDs (colon separated) used
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 2,000 characters
+        ///     * **Description** - List of adapter request IDs (colon separated) used
         ///     when invoking the Adapter APIs for fulfilling a transaction request.
         /// 1. `ErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 255 characters
-        ///   * **Description** - Error code of the failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Error code of the failed transaction.
         /// 1. `ErrorMessage`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 10,000 characters
-        ///   * **Description** - Error description for the failed transaction.
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 10,000 characters
+        ///     * **Description** - Error description for the failed transaction.
         /// 1. `UPIErrorCode`
-        ///   * **Min Length** - 0 characters
-        ///   * **Max Length** - 3 characters
-        ///   * **Description** - Error code as per the UPI specification. The issuer
+        ///     * **Min Length** - 0 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Error code as per the UPI specification. The issuer
         ///     switch service maps the ErrorCode to an appropriate error code that
         ///     complies with the UPI specification.
         pub async fn export_complaint_transactions(
@@ -4613,8 +4582,7 @@ pub mod issuer_switch_transactions_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4705,7 +4673,7 @@ pub mod upi_transaction {
     }
 }
 /// Request for the
-/// \[FetchParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant\]
+/// [FetchParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchParticipantRequest {
@@ -4808,13 +4776,13 @@ pub mod issuer_participant {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Inactive => "INACTIVE",
-                State::Active => "ACTIVE",
-                State::MpinLocked => "MPIN_LOCKED",
-                State::MobileNumberChanged => "MOBILE_NUMBER_CHANGED",
-                State::NewRegistrationInitiated => "NEW_REGISTRATION_INITIATED",
-                State::ReRegistrationInitiated => "RE_REGISTRATION_INITIATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Inactive => "INACTIVE",
+                Self::Active => "ACTIVE",
+                Self::MpinLocked => "MPIN_LOCKED",
+                Self::MobileNumberChanged => "MOBILE_NUMBER_CHANGED",
+                Self::NewRegistrationInitiated => "NEW_REGISTRATION_INITIATED",
+                Self::ReRegistrationInitiated => "RE_REGISTRATION_INITIATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4833,7 +4801,7 @@ pub mod issuer_participant {
     }
 }
 /// Request for the
-/// \[UpdateIssuerParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.UpdateIssuerParticipant\]
+/// [UpdateIssuerParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.UpdateIssuerParticipant]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateIssuerParticipantRequest {
@@ -4849,10 +4817,10 @@ pub struct UpdateIssuerParticipantRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request for the
-/// \[ActivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant\],
-/// \[DeactivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant\]
+/// [ActivateParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant],
+/// [DeactivateParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant]
 /// and
-/// \[MobileNumberUpdated\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged\]
+/// [MobileNumberUpdated][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged]
 /// methods.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParticipantStateChangeRequest {
@@ -4880,10 +4848,10 @@ pub mod participant_state_change_request {
     }
 }
 /// Response for the
-/// \[ActivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant\],
-/// \[DeactivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant\]
+/// [ActivateParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant],
+/// [DeactivateParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant]
 /// and
-/// \[MobileNumberChanged\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged\]
+/// [MobileNumberChanged][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged]
 /// methods.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IssuerParticipants {
@@ -4893,7 +4861,13 @@ pub struct IssuerParticipants {
 }
 /// Generated client implementations.
 pub mod issuer_switch_participants_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service that allows for the management of participants in the issuer
@@ -4985,8 +4959,7 @@ pub mod issuer_switch_participants_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5006,7 +4979,7 @@ pub mod issuer_switch_participants_client {
         }
         /// Update the issuer switch participant. Currently, this API only allows for
         /// the
-        /// \[metadata\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.metadata\]
+        /// [metadata][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.metadata]
         /// field to be updated.
         ///
         /// The `number` of key-value pairs in the `metadata` field, the length of each
@@ -5025,8 +4998,8 @@ pub mod issuer_switch_participants_client {
         /// callers must follow the following steps:
         ///
         /// 1. Invoke the
-        ///   \[FetchParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant\]
-        ///   API to get the current value of the `metadata` field.
+        ///   [FetchParticipant][google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant]
+        ///    API to get the current value of the `metadata` field.
         /// 1. Update the `metadata` map to add/remove key-value pairs from it.
         /// 1. Update the `metadata` in the issuer switch using this method.
         pub async fn update_issuer_participant(
@@ -5040,8 +5013,7 @@ pub mod issuer_switch_participants_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5061,34 +5033,34 @@ pub mod issuer_switch_participants_client {
         }
         /// Activate the issuer switch participant for UPI transactions. This API
         /// sets the state of the participant to
-        /// \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\].
+        /// [ACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE].
         /// A participant in the `ACTIVE` state can perform all UPI operations
         /// normally.
         ///
         /// The behavior of this API varies based on the current state of the
         /// participant.
         ///
-        /// * Current state is
-        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
-        ///  : This API will make no change to the participant's state and returns a
-        ///  successful response.
-        /// * Current state is
-        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
-        ///  : If an *MPIN* has already been provisioned for the participant, then
-        ///  this API will change the state of the participant to `ACTIVE`. Else,
-        ///  this API will return an error.
-        /// * Current state is
-        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
-        ///  : The state cannot be changed to `ACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `ACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `ACTIVE`. This API will return an
-        ///  error.
+        /// *   Current state is
+        ///     [ACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE]
+        ///     : This API will make no change to the participant's state and returns a
+        ///     successful response.
+        /// *    Current state is
+        ///     [INACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE]
+        ///     : If an _MPIN_ has already been provisioned for the participant, then
+        ///     this API will change the state of the participant to `ACTIVE`. Else,
+        ///     this API will return an error.
+        /// *   Current state is
+        ///     [MOBILE_NUMBER_CHANGED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED]
+        ///     : The state cannot be changed to `ACTIVE`. This API will return an
+        ///     error.
+        /// *   Current state is
+        ///     [NEW_REGISTRATION_INITIATED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED]
+        ///     : The state cannot be changed to `ACTIVE`. This API will return an
+        ///     error.
+        /// *   Current state is
+        ///     [RE_REGISTRATION_INITIATED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED]
+        ///     : The state cannot be changed to `ACTIVE`. This API will return an
+        ///     error.
         pub async fn activate_participant(
             &mut self,
             request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
@@ -5100,8 +5072,7 @@ pub mod issuer_switch_participants_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5121,34 +5092,34 @@ pub mod issuer_switch_participants_client {
         }
         /// Deactivate the issuer switch participant for UPI transactions. This API
         /// sets the state of the participant to
-        /// \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\].
+        /// [INACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE].
         /// An `INACTIVE` participant cannot perform any UPI operation which involves
         /// MPIN verification.
         ///
         /// The behavior of this API varies based on the current state of the
         /// participant.
         ///
-        /// * Current state is
-        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
-        ///  : The state will change to `INACTIVE`. The user will be forced to
-        ///  re-register with UPI and reset their MPIN  to perform any UPI
-        ///  operations.
-        /// * Current state is
-        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
-        ///  : This API will make no change to the participant's state and returns a
-        ///  successful response.
-        /// * Current state is
-        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
-        ///  : The state cannot be changed to `INACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `INACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `INACTIVE`. This API will return an
-        ///  error.
+        /// *   Current state is
+        ///     [ACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE]
+        ///     : The state will change to `INACTIVE`. The user will be forced to
+        ///     re-register with UPI and reset their MPIN  to perform any UPI
+        ///     operations.
+        /// *   Current state is
+        ///     [INACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE]
+        ///     : This API will make no change to the participant's state and returns a
+        ///     successful response.
+        /// *   Current state is
+        ///     [MOBILE_NUMBER_CHANGED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED]
+        ///     : The state cannot be changed to `INACTIVE`. This API will return an
+        ///     error.
+        /// *   Current state is
+        ///     [NEW_REGISTRATION_INITIATED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED]
+        ///     : The state cannot be changed to `INACTIVE`. This API will return an
+        ///     error.
+        /// *   Current state is
+        ///     [RE_REGISTRATION_INITIATED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED]
+        ///     : The state cannot be changed to `INACTIVE`. This API will return an
+        ///     error.
         pub async fn deactivate_participant(
             &mut self,
             request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
@@ -5160,8 +5131,7 @@ pub mod issuer_switch_participants_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5179,10 +5149,10 @@ pub mod issuer_switch_participants_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Mark the state of the issuer switch participant as *mobile number changed*
+        /// Mark the state of the issuer switch participant as _mobile number changed_
         /// to prevent UPI transactions by the user. This API sets the state of the
         /// participant to
-        /// \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\].
+        /// [MOBILE_NUMBER_CHANGED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED].
         ///
         /// Any UPI operation for a participant in the `MOBILE_NUMBER_CHANGED` state
         /// will cause the issuer switch to return a `B1` error to the UPI payments
@@ -5191,32 +5161,32 @@ pub mod issuer_switch_participants_client {
         /// The behavior of this API varies based on the current state of the
         /// participant.
         ///
-        /// * Current state is
-        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
-        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
-        ///  involving MPIN verification of the participant will return a `B1` error
-        ///  to the UPI payments orchestrator. The user will be forced to
-        ///  re-register with their changed mobile number.
-        /// * Current state is
-        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
-        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
-        ///  involving MPIN verification of the participant will return a `B1` error
-        ///  to the UPI payments orchestrator. The user will be forced to
-        ///  re-register with their changed mobile number.
-        /// * Current state is
-        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
-        ///  : This API will make no change to the participant's state and returns a
-        ///  successful response.
-        /// * Current state is
-        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `MOBILE_NUMBER_CHANGED`. This API will
-        ///  return an error.
-        /// * Current state is
-        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
-        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
-        ///  involving MPIN verification of the participant will return a `B1` error
-        ///  to the UPI payments orchestrator. The user will be forced to
-        ///  re-register with their changed mobile number.
+        /// *   Current state is
+        ///     [ACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE]
+        ///     : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
+        ///     involving MPIN verification of the participant will return a `B1` error
+        ///     to the UPI payments orchestrator. The user will be forced to
+        ///     re-register with their changed mobile number.
+        /// *   Current state is
+        ///     [INACTIVE][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE]
+        ///     : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
+        ///     involving MPIN verification of the participant will return a `B1` error
+        ///     to the UPI payments orchestrator. The user will be forced to
+        ///     re-register with their changed mobile number.
+        /// *   Current state is
+        ///     [MOBILE_NUMBER_CHANGED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED]
+        ///     : This API will make no change to the participant's state and returns a
+        ///     successful response.
+        /// *   Current state is
+        ///     [NEW_REGISTRATION_INITIATED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED]
+        ///     : The state cannot be changed to `MOBILE_NUMBER_CHANGED`. This API will
+        ///     return an error.
+        /// *   Current state is
+        ///     [RE_REGISTRATION_INITIATED][google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED]
+        ///     : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
+        ///     involving MPIN verification of the participant will return a `B1` error
+        ///     to the UPI payments orchestrator. The user will be forced to
+        ///     re-register with their changed mobile number.
         pub async fn mobile_number_changed(
             &mut self,
             request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
@@ -5228,8 +5198,7 @@ pub mod issuer_switch_participants_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5315,8 +5284,8 @@ pub mod rule_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::List => "LIST",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::List => "LIST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5347,13 +5316,13 @@ pub struct RuleMetadataValue {
     /// the value being used for the rule metadata. The following are the minimum
     /// and maximum lengths for the different types of values.
     ///
-    /// |Value Type|Minimum Length|Maximum Length|
-    /// |----------|--------------|--------------|
-    /// |Bank account IFSC|11|11|
-    /// |Bank account number|1|255|
-    /// |Device identifier|1|255|
-    /// |Mobile number|12|12|
-    /// |Virtual private address (VPA)|3|255|
+    /// Value Type | Minimum Length | Maximum Length |
+    /// -------- | -------- | -------- |
+    /// Bank account IFSC   | 11   | 11   |
+    /// Bank account number   | 1   | 255  |
+    /// Device identifier   | 1   | 255   |
+    /// Mobile number   | 12   | 12  |
+    /// Virtual private address (VPA)   | 3   | 255   |
     #[prost(oneof = "rule_metadata_value::Value", tags = "2, 3")]
     pub value: ::core::option::Option<rule_metadata_value::Value>,
 }
@@ -5370,13 +5339,13 @@ pub mod rule_metadata_value {
     /// the value being used for the rule metadata. The following are the minimum
     /// and maximum lengths for the different types of values.
     ///
-    /// |Value Type|Minimum Length|Maximum Length|
-    /// |----------|--------------|--------------|
-    /// |Bank account IFSC|11|11|
-    /// |Bank account number|1|255|
-    /// |Device identifier|1|255|
-    /// |Mobile number|12|12|
-    /// |Virtual private address (VPA)|3|255|
+    /// Value Type | Minimum Length | Maximum Length |
+    /// -------- | -------- | -------- |
+    /// Bank account IFSC   | 11   | 11   |
+    /// Bank account number   | 1   | 255  |
+    /// Device identifier   | 1   | 255   |
+    /// Mobile number   | 12   | 12  |
+    /// Virtual private address (VPA)   | 3   | 255   |
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Value {
         /// The value for string metadata.
@@ -5489,9 +5458,9 @@ pub struct ListRuleMetadataValuesResponse {
 pub struct BatchCreateRuleMetadataValuesRequest {
     /// The parent resource shared by all ruleMetadataValue being created. The
     /// format is `projects/{project}/rules/{rule}/metadata/{metadata}`. The
-    /// \[CreateRuleMetadataValueRequest.parent\]\[google.cloud.paymentgateway.issuerswitch.v1.CreateRuleMetadataValueRequest.parent\]
+    /// [CreateRuleMetadataValueRequest.parent][google.cloud.paymentgateway.issuerswitch.v1.CreateRuleMetadataValueRequest.parent]
     /// field in the
-    /// \[CreateRuleMetadataValueRequest\]\[google.cloud.paymentgateway.issuerswitch.v1.CreateRuleMetadataValueRequest\]
+    /// [CreateRuleMetadataValueRequest][google.cloud.paymentgateway.issuerswitch.v1.CreateRuleMetadataValueRequest]
     /// messages contained in this request must match this field.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -5535,7 +5504,13 @@ pub struct BatchDeleteRuleMetadataValuesRequest {
 }
 /// Generated client implementations.
 pub mod issuer_switch_rules_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages rules used by the issuer switch's rules engine.
@@ -5621,8 +5596,7 @@ pub mod issuer_switch_rules_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5652,8 +5626,7 @@ pub mod issuer_switch_rules_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5683,8 +5656,7 @@ pub mod issuer_switch_rules_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5715,8 +5687,7 @@ pub mod issuer_switch_rules_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5744,8 +5715,7 @@ pub mod issuer_switch_rules_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

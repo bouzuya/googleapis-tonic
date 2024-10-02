@@ -69,24 +69,24 @@ pub mod layer {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Directive::Unspecified => "DIRECTIVE_UNSPECIFIED",
-                Directive::Maintainer => "MAINTAINER",
-                Directive::Run => "RUN",
-                Directive::Cmd => "CMD",
-                Directive::Label => "LABEL",
-                Directive::Expose => "EXPOSE",
-                Directive::Env => "ENV",
-                Directive::Add => "ADD",
-                Directive::Copy => "COPY",
-                Directive::Entrypoint => "ENTRYPOINT",
-                Directive::Volume => "VOLUME",
-                Directive::User => "USER",
-                Directive::Workdir => "WORKDIR",
-                Directive::Arg => "ARG",
-                Directive::Onbuild => "ONBUILD",
-                Directive::Stopsignal => "STOPSIGNAL",
-                Directive::Healthcheck => "HEALTHCHECK",
-                Directive::Shell => "SHELL",
+                Self::Unspecified => "DIRECTIVE_UNSPECIFIED",
+                Self::Maintainer => "MAINTAINER",
+                Self::Run => "RUN",
+                Self::Cmd => "CMD",
+                Self::Label => "LABEL",
+                Self::Expose => "EXPOSE",
+                Self::Env => "ENV",
+                Self::Add => "ADD",
+                Self::Copy => "COPY",
+                Self::Entrypoint => "ENTRYPOINT",
+                Self::Volume => "VOLUME",
+                Self::User => "USER",
+                Self::Workdir => "WORKDIR",
+                Self::Arg => "ARG",
+                Self::Onbuild => "ONBUILD",
+                Self::Stopsignal => "STOPSIGNAL",
+                Self::Healthcheck => "HEALTHCHECK",
+                Self::Shell => "SHELL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -126,8 +126,8 @@ pub struct Fingerprint {
     #[prost(string, repeated, tag = "2")]
     pub v2_blob: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Output only. The name of the image's v2 blobs computed via:
-    /// \[bottom\] := v2_blob\[bottom\]
-    /// \[N\] := sha256(v2_blob\[N\] + " " + v2_name\[N+1\])
+    ///    \[bottom\] := v2_blob\[bottom\]
+    ///    \[N\] := sha256(v2_blob\[N\] + " " + v2_name\[N+1\])
     /// Only the name of the final blob is kept.
     #[prost(string, tag = "3")]
     pub v2_name: ::prost::alloc::string::String,
@@ -135,7 +135,7 @@ pub struct Fingerprint {
 /// Basis describes the base image portion (Note) of the DockerImage
 /// relationship. Linked occurrences are derived from this or an
 /// equivalent image via:
-/// FROM \<Basis.resource_url>
+///    FROM <Basis.resource_url>
 /// Or an equivalent reference, e.g. a tag of the resource_url.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Basis {
@@ -156,7 +156,7 @@ pub struct Details {
 }
 /// Derived describes the derived image portion (Occurrence) of the DockerImage
 /// relationship. This image would be produced from a Dockerfile with FROM
-/// \<DockerImage.Basis in attached Note>.
+/// <DockerImage.Basis in attached Note>.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Derived {
     /// Required. The fingerprint of the derived image.

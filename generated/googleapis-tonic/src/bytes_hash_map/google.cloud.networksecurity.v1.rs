@@ -62,7 +62,7 @@ pub mod authorization_policy {
             /// Optional. List of peer identities to match for authorization. At least one
             /// principal should match. Each peer can be an exact match, or a prefix
             /// match (example, "namespace/*") or a suffix match (example,
-            /// "*/service-account") or a presence match "\*". Authorization based on
+            /// "*/service-account") or a presence match "*". Authorization based on
             /// the principal name without certificate validation (configured by
             /// ServerTlsPolicy resource) is considered insecure.
             #[prost(string, repeated, tag = "1")]
@@ -81,7 +81,7 @@ pub mod authorization_policy {
             /// Required. List of host names to match. Matched against the ":authority" header in
             /// http requests. At least one host should match. Each host can be an
             /// exact match, or a prefix match (example "mydomain.*") or a suffix
-            /// match (example "*.myorg.com") or a presence (any) match "\*".
+            /// match (example "*.myorg.com") or a presence (any) match "*".
             #[prost(string, repeated, tag = "1")]
             pub hosts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             /// Required. List of destination ports to match. At least one port should match.
@@ -160,9 +160,9 @@ pub mod authorization_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Allow => "ALLOW",
-                Action::Deny => "DENY",
+                Self::Unspecified => "ACTION_UNSPECIFIED",
+                Self::Allow => "ALLOW",
+                Self::Deny => "DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -457,7 +457,7 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -489,6 +489,7 @@ pub struct ServerTlsPolicy {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    ///
     /// Determines if server allows plaintext connections. If set to true, server
     /// allows plain text connections. By default, it is set to false. This setting
     /// is not exclusive of other encryption modes. For example, if `allow_open`
@@ -500,11 +501,13 @@ pub struct ServerTlsPolicy {
     /// while having mixed TLS and non-TLS traffic reaching port :80.
     #[prost(bool, tag = "6")]
     pub allow_open: bool,
+    ///
     /// Defines a mechanism to provision server identity (public and private keys).
     /// Cannot be combined with `allow_open` as a permissive mode that allows both
     /// plain text and TLS is not supported.
     #[prost(message, optional, tag = "7")]
     pub server_certificate: ::core::option::Option<CertificateProvider>,
+    ///
     /// Defines a mechanism to provision peer validation certificates for peer to
     /// peer authentication (Mutual TLS - mTLS). If not specified, client
     /// certificate will not be requested. The connection is treated as TLS and not
@@ -518,6 +521,7 @@ pub mod server_tls_policy {
     /// Specification of the MTLSPolicy.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MtlsPolicy {
+        ///
         /// Defines the mechanism to obtain the Certificate Authority certificate to
         /// validate the client certificate.
         #[prost(message, repeated, tag = "1")]
@@ -602,7 +606,13 @@ pub struct DeleteServerTlsPolicyRequest {
 }
 /// Generated client implementations.
 pub mod network_security_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Network Security API provides resources to configure authentication and
@@ -689,8 +699,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -720,8 +729,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -751,8 +759,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -782,8 +789,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -813,8 +819,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -844,8 +849,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -875,8 +879,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -906,8 +909,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -937,8 +939,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -968,8 +969,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -999,8 +999,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1030,8 +1029,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1061,8 +1059,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1092,8 +1089,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1123,8 +1119,7 @@ pub mod network_security_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

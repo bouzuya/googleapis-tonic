@@ -44,9 +44,9 @@ impl PolylineQuality {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PolylineQuality::Unspecified => "POLYLINE_QUALITY_UNSPECIFIED",
-            PolylineQuality::HighQuality => "HIGH_QUALITY",
-            PolylineQuality::Overview => "OVERVIEW",
+            Self::Unspecified => "POLYLINE_QUALITY_UNSPECIFIED",
+            Self::HighQuality => "HIGH_QUALITY",
+            Self::Overview => "OVERVIEW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -79,9 +79,9 @@ impl PolylineEncoding {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PolylineEncoding::Unspecified => "POLYLINE_ENCODING_UNSPECIFIED",
-            PolylineEncoding::EncodedPolyline => "ENCODED_POLYLINE",
-            PolylineEncoding::GeoJsonLinestring => "GEO_JSON_LINESTRING",
+            Self::Unspecified => "POLYLINE_ENCODING_UNSPECIFIED",
+            Self::EncodedPolyline => "ENCODED_POLYLINE",
+            Self::GeoJsonLinestring => "GEO_JSON_LINESTRING",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -101,10 +101,10 @@ pub enum TollPass {
     /// Not used. If this value is used, then the request fails.
     Unspecified = 0,
     /// One of many Sydney toll pass providers.
-    /// <https://www.myetoll.com.au>
+    ///   <https://www.myetoll.com.au>
     AuEtollTag = 82,
     /// One of many Sydney toll pass providers.
-    /// <https://www.tollpay.com.au/>
+    ///   <https://www.tollpay.com.au/>
     AuEwayTag = 83,
     /// Australia-wide toll pass.
     /// See additional details at <https://www.linkt.com.au/.>
@@ -293,107 +293,103 @@ impl TollPass {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TollPass::Unspecified => "TOLL_PASS_UNSPECIFIED",
-            TollPass::AuEtollTag => "AU_ETOLL_TAG",
-            TollPass::AuEwayTag => "AU_EWAY_TAG",
-            TollPass::AuLinkt => "AU_LINKT",
-            TollPass::ArTelepase => "AR_TELEPASE",
-            TollPass::BrAutoExpreso => "BR_AUTO_EXPRESO",
-            TollPass::BrConectcar => "BR_CONECTCAR",
-            TollPass::BrMoveMais => "BR_MOVE_MAIS",
-            TollPass::BrPassaRapido => "BR_PASSA_RAPIDO",
-            TollPass::BrSemParar => "BR_SEM_PARAR",
-            TollPass::BrTaggy => "BR_TAGGY",
-            TollPass::BrVeloe => "BR_VELOE",
-            TollPass::CaUsAkwasasneSeawayCorporateCard => {
+            Self::Unspecified => "TOLL_PASS_UNSPECIFIED",
+            Self::AuEtollTag => "AU_ETOLL_TAG",
+            Self::AuEwayTag => "AU_EWAY_TAG",
+            Self::AuLinkt => "AU_LINKT",
+            Self::ArTelepase => "AR_TELEPASE",
+            Self::BrAutoExpreso => "BR_AUTO_EXPRESO",
+            Self::BrConectcar => "BR_CONECTCAR",
+            Self::BrMoveMais => "BR_MOVE_MAIS",
+            Self::BrPassaRapido => "BR_PASSA_RAPIDO",
+            Self::BrSemParar => "BR_SEM_PARAR",
+            Self::BrTaggy => "BR_TAGGY",
+            Self::BrVeloe => "BR_VELOE",
+            Self::CaUsAkwasasneSeawayCorporateCard => {
                 "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD"
             }
-            TollPass::CaUsAkwasasneSeawayTransitCard => {
-                "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD"
-            }
-            TollPass::CaUsBlueWaterEdgePass => "CA_US_BLUE_WATER_EDGE_PASS",
-            TollPass::CaUsConnexion => "CA_US_CONNEXION",
-            TollPass::CaUsNexusCard => "CA_US_NEXUS_CARD",
-            TollPass::IdEToll => "ID_E_TOLL",
-            TollPass::InFastag => "IN_FASTAG",
-            TollPass::InLocalHpPlateExempt => "IN_LOCAL_HP_PLATE_EXEMPT",
-            TollPass::MxTagIave => "MX_TAG_IAVE",
-            TollPass::MxTagTelevia => "MX_TAG_TELEVIA",
-            TollPass::MxViapass => "MX_VIAPASS",
-            TollPass::UsAlFreedomPass => "US_AL_FREEDOM_PASS",
-            TollPass::UsAkAntonAndersonTunnelBookOf10Tickets => {
+            Self::CaUsAkwasasneSeawayTransitCard => "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD",
+            Self::CaUsBlueWaterEdgePass => "CA_US_BLUE_WATER_EDGE_PASS",
+            Self::CaUsConnexion => "CA_US_CONNEXION",
+            Self::CaUsNexusCard => "CA_US_NEXUS_CARD",
+            Self::IdEToll => "ID_E_TOLL",
+            Self::InFastag => "IN_FASTAG",
+            Self::InLocalHpPlateExempt => "IN_LOCAL_HP_PLATE_EXEMPT",
+            Self::MxTagIave => "MX_TAG_IAVE",
+            Self::MxTagTelevia => "MX_TAG_TELEVIA",
+            Self::MxViapass => "MX_VIAPASS",
+            Self::UsAlFreedomPass => "US_AL_FREEDOM_PASS",
+            Self::UsAkAntonAndersonTunnelBookOf10Tickets => {
                 "US_AK_ANTON_ANDERSON_TUNNEL_BOOK_OF_10_TICKETS"
             }
-            TollPass::UsCaFastrak => "US_CA_FASTRAK",
-            TollPass::UsCaFastrakCavSticker => "US_CA_FASTRAK_CAV_STICKER",
-            TollPass::UsCoExpresstoll => "US_CO_EXPRESSTOLL",
-            TollPass::UsCoGoPass => "US_CO_GO_PASS",
-            TollPass::UsDeEzpassde => "US_DE_EZPASSDE",
-            TollPass::UsFlBobSikesTollBridgePass => "US_FL_BOB_SIKES_TOLL_BRIDGE_PASS",
-            TollPass::UsFlDunesCommunityDevelopmentDistrictExpresscard => {
+            Self::UsCaFastrak => "US_CA_FASTRAK",
+            Self::UsCaFastrakCavSticker => "US_CA_FASTRAK_CAV_STICKER",
+            Self::UsCoExpresstoll => "US_CO_EXPRESSTOLL",
+            Self::UsCoGoPass => "US_CO_GO_PASS",
+            Self::UsDeEzpassde => "US_DE_EZPASSDE",
+            Self::UsFlBobSikesTollBridgePass => "US_FL_BOB_SIKES_TOLL_BRIDGE_PASS",
+            Self::UsFlDunesCommunityDevelopmentDistrictExpresscard => {
                 "US_FL_DUNES_COMMUNITY_DEVELOPMENT_DISTRICT_EXPRESSCARD"
             }
-            TollPass::UsFlEpass => "US_FL_EPASS",
-            TollPass::UsFlGibaTollPass => "US_FL_GIBA_TOLL_PASS",
-            TollPass::UsFlLeeway => "US_FL_LEEWAY",
-            TollPass::UsFlSunpass => "US_FL_SUNPASS",
-            TollPass::UsFlSunpassPro => "US_FL_SUNPASS_PRO",
-            TollPass::UsIlEzpassil => "US_IL_EZPASSIL",
-            TollPass::UsIlIpass => "US_IL_IPASS",
-            TollPass::UsInEzpassin => "US_IN_EZPASSIN",
-            TollPass::UsKsBestpassHorizon => "US_KS_BESTPASS_HORIZON",
-            TollPass::UsKsKtag => "US_KS_KTAG",
-            TollPass::UsKsNationalpass => "US_KS_NATIONALPASS",
-            TollPass::UsKsPrepassElitepass => "US_KS_PREPASS_ELITEPASS",
-            TollPass::UsKyRiverlink => "US_KY_RIVERLINK",
-            TollPass::UsLaGeauxpass => "US_LA_GEAUXPASS",
-            TollPass::UsLaTollTag => "US_LA_TOLL_TAG",
-            TollPass::UsMaEzpassma => "US_MA_EZPASSMA",
-            TollPass::UsMdEzpassmd => "US_MD_EZPASSMD",
-            TollPass::UsMeEzpassme => "US_ME_EZPASSME",
-            TollPass::UsMiAmbassadorBridgePremierCommuterCard => {
+            Self::UsFlEpass => "US_FL_EPASS",
+            Self::UsFlGibaTollPass => "US_FL_GIBA_TOLL_PASS",
+            Self::UsFlLeeway => "US_FL_LEEWAY",
+            Self::UsFlSunpass => "US_FL_SUNPASS",
+            Self::UsFlSunpassPro => "US_FL_SUNPASS_PRO",
+            Self::UsIlEzpassil => "US_IL_EZPASSIL",
+            Self::UsIlIpass => "US_IL_IPASS",
+            Self::UsInEzpassin => "US_IN_EZPASSIN",
+            Self::UsKsBestpassHorizon => "US_KS_BESTPASS_HORIZON",
+            Self::UsKsKtag => "US_KS_KTAG",
+            Self::UsKsNationalpass => "US_KS_NATIONALPASS",
+            Self::UsKsPrepassElitepass => "US_KS_PREPASS_ELITEPASS",
+            Self::UsKyRiverlink => "US_KY_RIVERLINK",
+            Self::UsLaGeauxpass => "US_LA_GEAUXPASS",
+            Self::UsLaTollTag => "US_LA_TOLL_TAG",
+            Self::UsMaEzpassma => "US_MA_EZPASSMA",
+            Self::UsMdEzpassmd => "US_MD_EZPASSMD",
+            Self::UsMeEzpassme => "US_ME_EZPASSME",
+            Self::UsMiAmbassadorBridgePremierCommuterCard => {
                 "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD"
             }
-            TollPass::UsMiGrosseIleTollBridgePassTag => {
+            Self::UsMiGrosseIleTollBridgePassTag => {
                 "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG"
             }
-            TollPass::UsMiIqProxCard => "US_MI_IQ_PROX_CARD",
-            TollPass::UsMiMackinacBridgeMacPass => "US_MI_MACKINAC_BRIDGE_MAC_PASS",
-            TollPass::UsMiNexpressToll => "US_MI_NEXPRESS_TOLL",
-            TollPass::UsMnEzpassmn => "US_MN_EZPASSMN",
-            TollPass::UsNcEzpassnc => "US_NC_EZPASSNC",
-            TollPass::UsNcPeachPass => "US_NC_PEACH_PASS",
-            TollPass::UsNcQuickPass => "US_NC_QUICK_PASS",
-            TollPass::UsNhEzpassnh => "US_NH_EZPASSNH",
-            TollPass::UsNjDownbeachExpressPass => "US_NJ_DOWNBEACH_EXPRESS_PASS",
-            TollPass::UsNjEzpassnj => "US_NJ_EZPASSNJ",
-            TollPass::UsNyExpresspass => "US_NY_EXPRESSPASS",
-            TollPass::UsNyEzpassny => "US_NY_EZPASSNY",
-            TollPass::UsOhEzpassoh => "US_OH_EZPASSOH",
-            TollPass::UsPaEzpasspa => "US_PA_EZPASSPA",
-            TollPass::UsRiEzpassri => "US_RI_EZPASSRI",
-            TollPass::UsScPalpass => "US_SC_PALPASS",
-            TollPass::UsTxBancpass => "US_TX_BANCPASS",
-            TollPass::UsTxDelRioPass => "US_TX_DEL_RIO_PASS",
-            TollPass::UsTxEfastPass => "US_TX_EFAST_PASS",
-            TollPass::UsTxEaglePassExpressCard => "US_TX_EAGLE_PASS_EXPRESS_CARD",
-            TollPass::UsTxEptoll => "US_TX_EPTOLL",
-            TollPass::UsTxEzCross => "US_TX_EZ_CROSS",
-            TollPass::UsTxEztag => "US_TX_EZTAG",
-            TollPass::UsTxLaredoTradeTag => "US_TX_LAREDO_TRADE_TAG",
-            TollPass::UsTxPluspass => "US_TX_PLUSPASS",
-            TollPass::UsTxTolltag => "US_TX_TOLLTAG",
-            TollPass::UsTxTxtag => "US_TX_TXTAG",
-            TollPass::UsTxXpressCard => "US_TX_XPRESS_CARD",
-            TollPass::UsUtAdamsAveParkwayExpresscard => {
-                "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD"
-            }
-            TollPass::UsVaEzpassva => "US_VA_EZPASSVA",
-            TollPass::UsWaBreezeby => "US_WA_BREEZEBY",
-            TollPass::UsWaGoodToGo => "US_WA_GOOD_TO_GO",
-            TollPass::UsWvEzpasswv => "US_WV_EZPASSWV",
-            TollPass::UsWvMemorialBridgeTickets => "US_WV_MEMORIAL_BRIDGE_TICKETS",
-            TollPass::UsWvNewellTollBridgeTicket => "US_WV_NEWELL_TOLL_BRIDGE_TICKET",
+            Self::UsMiIqProxCard => "US_MI_IQ_PROX_CARD",
+            Self::UsMiMackinacBridgeMacPass => "US_MI_MACKINAC_BRIDGE_MAC_PASS",
+            Self::UsMiNexpressToll => "US_MI_NEXPRESS_TOLL",
+            Self::UsMnEzpassmn => "US_MN_EZPASSMN",
+            Self::UsNcEzpassnc => "US_NC_EZPASSNC",
+            Self::UsNcPeachPass => "US_NC_PEACH_PASS",
+            Self::UsNcQuickPass => "US_NC_QUICK_PASS",
+            Self::UsNhEzpassnh => "US_NH_EZPASSNH",
+            Self::UsNjDownbeachExpressPass => "US_NJ_DOWNBEACH_EXPRESS_PASS",
+            Self::UsNjEzpassnj => "US_NJ_EZPASSNJ",
+            Self::UsNyExpresspass => "US_NY_EXPRESSPASS",
+            Self::UsNyEzpassny => "US_NY_EZPASSNY",
+            Self::UsOhEzpassoh => "US_OH_EZPASSOH",
+            Self::UsPaEzpasspa => "US_PA_EZPASSPA",
+            Self::UsRiEzpassri => "US_RI_EZPASSRI",
+            Self::UsScPalpass => "US_SC_PALPASS",
+            Self::UsTxBancpass => "US_TX_BANCPASS",
+            Self::UsTxDelRioPass => "US_TX_DEL_RIO_PASS",
+            Self::UsTxEfastPass => "US_TX_EFAST_PASS",
+            Self::UsTxEaglePassExpressCard => "US_TX_EAGLE_PASS_EXPRESS_CARD",
+            Self::UsTxEptoll => "US_TX_EPTOLL",
+            Self::UsTxEzCross => "US_TX_EZ_CROSS",
+            Self::UsTxEztag => "US_TX_EZTAG",
+            Self::UsTxLaredoTradeTag => "US_TX_LAREDO_TRADE_TAG",
+            Self::UsTxPluspass => "US_TX_PLUSPASS",
+            Self::UsTxTolltag => "US_TX_TOLLTAG",
+            Self::UsTxTxtag => "US_TX_TXTAG",
+            Self::UsTxXpressCard => "US_TX_XPRESS_CARD",
+            Self::UsUtAdamsAveParkwayExpresscard => "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD",
+            Self::UsVaEzpassva => "US_VA_EZPASSVA",
+            Self::UsWaBreezeby => "US_WA_BREEZEBY",
+            Self::UsWaGoodToGo => "US_WA_GOOD_TO_GO",
+            Self::UsWvEzpasswv => "US_WV_EZPASSWV",
+            Self::UsWvMemorialBridgeTickets => "US_WV_MEMORIAL_BRIDGE_TICKETS",
+            Self::UsWvNewellTollBridgeTicket => "US_WV_NEWELL_TOLL_BRIDGE_TICKET",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -525,10 +521,10 @@ impl VehicleEmissionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            VehicleEmissionType::Unspecified => "VEHICLE_EMISSION_TYPE_UNSPECIFIED",
-            VehicleEmissionType::Gasoline => "GASOLINE",
-            VehicleEmissionType::Electric => "ELECTRIC",
-            VehicleEmissionType::Hybrid => "HYBRID",
+            Self::Unspecified => "VEHICLE_EMISSION_TYPE_UNSPECIFIED",
+            Self::Gasoline => "GASOLINE",
+            Self::Electric => "ELECTRIC",
+            Self::Hybrid => "HYBRID",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -624,7 +620,7 @@ pub struct ComputeRoutesRequest {
     pub travel_mode: i32,
     /// Optional. Specifies how to compute the route. The server
     /// attempts to use the selected routing preference to compute the route. If
-    /// the routing preference results in an error or an extra long latency, then
+    ///   the routing preference results in an error or an extra long latency, then
     /// an error is returned. In the future, we might implement a fallback
     /// mechanism to use a different option when the preferred option does not give
     /// a valid result. You can specify this option only when the `travel_mode` is
@@ -748,12 +744,12 @@ impl RouteTravelMode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RouteTravelMode::TravelModeUnspecified => "TRAVEL_MODE_UNSPECIFIED",
-            RouteTravelMode::Drive => "DRIVE",
-            RouteTravelMode::Bicycle => "BICYCLE",
-            RouteTravelMode::Walk => "WALK",
-            RouteTravelMode::TwoWheeler => "TWO_WHEELER",
-            RouteTravelMode::Taxi => "TAXI",
+            Self::TravelModeUnspecified => "TRAVEL_MODE_UNSPECIFIED",
+            Self::Drive => "DRIVE",
+            Self::Bicycle => "BICYCLE",
+            Self::Walk => "WALK",
+            Self::TwoWheeler => "TWO_WHEELER",
+            Self::Taxi => "TAXI",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -796,10 +792,10 @@ impl RoutingPreference {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RoutingPreference::Unspecified => "ROUTING_PREFERENCE_UNSPECIFIED",
-            RoutingPreference::TrafficUnaware => "TRAFFIC_UNAWARE",
-            RoutingPreference::TrafficAware => "TRAFFIC_AWARE",
-            RoutingPreference::TrafficAwareOptimal => "TRAFFIC_AWARE_OPTIMAL",
+            Self::Unspecified => "ROUTING_PREFERENCE_UNSPECIFIED",
+            Self::TrafficUnaware => "TRAFFIC_UNAWARE",
+            Self::TrafficAware => "TRAFFIC_AWARE",
+            Self::TrafficAwareOptimal => "TRAFFIC_AWARE_OPTIMAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -832,9 +828,9 @@ impl Units {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Units::Unspecified => "UNITS_UNSPECIFIED",
-            Units::Metric => "METRIC",
-            Units::Imperial => "IMPERIAL",
+            Self::Unspecified => "UNITS_UNSPECIFIED",
+            Self::Metric => "METRIC",
+            Self::Imperial => "IMPERIAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1055,10 +1051,8 @@ pub struct RouteTravelAdvisory {
     ///
     /// Example:
     ///
-    /// ```text
-    /// polyline: A ---- B ---- C ---- D ---- E ---- F ---- G
-    /// speed_reading_intervals: [A,C), [C,D), [D,G).
-    /// ```
+    ///      polyline: A ---- B ---- C ---- D ---- E ---- F ---- G
+    ///      speed_reading_intervals: [A,C), [C,D), [D,G).
     #[prost(message, repeated, tag = "3")]
     pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
     /// Deprecated: This field will stop being populated soon.
@@ -1088,10 +1082,8 @@ pub struct RouteLegTravelAdvisory {
     ///
     /// Example:
     ///
-    /// ```text
-    /// polyline: A ---- B ---- C ---- D ---- E ---- F ---- G
-    /// speed_reading_intervals: [A,C), [C,D), [D,G).
-    /// ```
+    ///      polyline: A ---- B ---- C ---- D ---- E ---- F ---- G
+    ///      speed_reading_intervals: [A,C), [C,D), [D,G).
     #[prost(message, repeated, tag = "2")]
     pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
     /// Deprecated: This field will stop being populated soon.
@@ -1273,10 +1265,10 @@ pub mod speed_reading_interval {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Speed::Unspecified => "SPEED_UNSPECIFIED",
-                Speed::Normal => "NORMAL",
-                Speed::Slow => "SLOW",
-                Speed::TrafficJam => "TRAFFIC_JAM",
+                Self::Unspecified => "SPEED_UNSPECIFIED",
+                Self::Normal => "NORMAL",
+                Self::Slow => "SLOW",
+                Self::TrafficJam => "TRAFFIC_JAM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1392,27 +1384,27 @@ impl Maneuver {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Maneuver::Unspecified => "MANEUVER_UNSPECIFIED",
-            Maneuver::TurnSlightLeft => "TURN_SLIGHT_LEFT",
-            Maneuver::TurnSharpLeft => "TURN_SHARP_LEFT",
-            Maneuver::UturnLeft => "UTURN_LEFT",
-            Maneuver::TurnLeft => "TURN_LEFT",
-            Maneuver::TurnSlightRight => "TURN_SLIGHT_RIGHT",
-            Maneuver::TurnSharpRight => "TURN_SHARP_RIGHT",
-            Maneuver::UturnRight => "UTURN_RIGHT",
-            Maneuver::TurnRight => "TURN_RIGHT",
-            Maneuver::Straight => "STRAIGHT",
-            Maneuver::RampLeft => "RAMP_LEFT",
-            Maneuver::RampRight => "RAMP_RIGHT",
-            Maneuver::Merge => "MERGE",
-            Maneuver::ForkLeft => "FORK_LEFT",
-            Maneuver::ForkRight => "FORK_RIGHT",
-            Maneuver::Ferry => "FERRY",
-            Maneuver::FerryTrain => "FERRY_TRAIN",
-            Maneuver::RoundaboutLeft => "ROUNDABOUT_LEFT",
-            Maneuver::RoundaboutRight => "ROUNDABOUT_RIGHT",
-            Maneuver::Depart => "DEPART",
-            Maneuver::NameChange => "NAME_CHANGE",
+            Self::Unspecified => "MANEUVER_UNSPECIFIED",
+            Self::TurnSlightLeft => "TURN_SLIGHT_LEFT",
+            Self::TurnSharpLeft => "TURN_SHARP_LEFT",
+            Self::UturnLeft => "UTURN_LEFT",
+            Self::TurnLeft => "TURN_LEFT",
+            Self::TurnSlightRight => "TURN_SLIGHT_RIGHT",
+            Self::TurnSharpRight => "TURN_SHARP_RIGHT",
+            Self::UturnRight => "UTURN_RIGHT",
+            Self::TurnRight => "TURN_RIGHT",
+            Self::Straight => "STRAIGHT",
+            Self::RampLeft => "RAMP_LEFT",
+            Self::RampRight => "RAMP_RIGHT",
+            Self::Merge => "MERGE",
+            Self::ForkLeft => "FORK_LEFT",
+            Self::ForkRight => "FORK_RIGHT",
+            Self::Ferry => "FERRY",
+            Self::FerryTrain => "FERRY_TRAIN",
+            Self::RoundaboutLeft => "ROUNDABOUT_LEFT",
+            Self::RoundaboutRight => "ROUNDABOUT_RIGHT",
+            Self::Depart => "DEPART",
+            Self::NameChange => "NAME_CHANGE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1497,9 +1489,9 @@ impl FallbackReason {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            FallbackReason::Unspecified => "FALLBACK_REASON_UNSPECIFIED",
-            FallbackReason::ServerError => "SERVER_ERROR",
-            FallbackReason::LatencyExceeded => "LATENCY_EXCEEDED",
+            Self::Unspecified => "FALLBACK_REASON_UNSPECIFIED",
+            Self::ServerError => "SERVER_ERROR",
+            Self::LatencyExceeded => "LATENCY_EXCEEDED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1532,9 +1524,9 @@ impl FallbackRoutingMode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            FallbackRoutingMode::Unspecified => "FALLBACK_ROUTING_MODE_UNSPECIFIED",
-            FallbackRoutingMode::FallbackTrafficUnaware => "FALLBACK_TRAFFIC_UNAWARE",
-            FallbackRoutingMode::FallbackTrafficAware => "FALLBACK_TRAFFIC_AWARE",
+            Self::Unspecified => "FALLBACK_ROUTING_MODE_UNSPECIFIED",
+            Self::FallbackTrafficUnaware => "FALLBACK_TRAFFIC_UNAWARE",
+            Self::FallbackTrafficAware => "FALLBACK_TRAFFIC_AWARE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1571,15 +1563,15 @@ pub mod compute_custom_routes_response {
     /// performs two types of fallbacks:
     ///
     /// 1. If it cannot compute the route using the routing_preference requested by
-    ///    the customer, it will fallback to another routing mode. In this case
-    ///    fallback_routing_mode and routing_mode_fallback_reason are used to
-    ///    communicate the fallback routing mode used, as well as the reason for
-    ///    fallback.
+    /// the customer, it will fallback to another routing mode. In this case
+    /// fallback_routing_mode and routing_mode_fallback_reason are used to
+    /// communicate the fallback routing mode used, as well as the reason for
+    /// fallback.
     ///
-    /// 1. If it cannot compute a 'best' route for the route objective specified by
-    ///    the customer, it might fallback to another objective.
-    ///    fallback_route_objective is used to communicate the fallback route
-    ///    objective.
+    /// 2. If it cannot compute a 'best' route for the route objective specified by
+    /// the customer, it might fallback to another objective.
+    /// fallback_route_objective is used to communicate the fallback route
+    /// objective.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct FallbackInfo {
         /// Routing mode used for the response. If fallback was triggered, the mode
@@ -1629,10 +1621,8 @@ pub mod compute_custom_routes_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    FallbackRouteObjective::Unspecified => {
-                        "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED"
-                    }
-                    FallbackRouteObjective::FallbackRatecardWithoutTollPriceData => {
+                    Self::Unspecified => "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED",
+                    Self::FallbackRatecardWithoutTollPriceData => {
                         "FALLBACK_RATECARD_WITHOUT_TOLL_PRICE_DATA"
                     }
                 }
@@ -1658,11 +1648,11 @@ pub struct ComputeRouteMatrixRequest {
     /// destinations:
     ///
     /// * The number of elements (origins × destinations) must be no greater than
-    ///   625 in any case.
+    /// 625 in any case.
     /// * The number of elements (origins × destinations) must be no greater than
-    ///   100 if routing_preference is set to `TRAFFIC_AWARE_OPTIMAL`.
+    /// 100 if routing_preference is set to `TRAFFIC_AWARE_OPTIMAL`.
     /// * The number of waypoints (origins + destinations) specified as `place_id`
-    ///   must be no greater than 50.
+    /// must be no greater than 50.
     #[prost(message, repeated, tag = "1")]
     pub origins: ::prost::alloc::vec::Vec<RouteMatrixOrigin>,
     /// Required. Array of destinations, which determines the columns of the response matrix.
@@ -1782,11 +1772,9 @@ impl RouteMatrixElementCondition {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RouteMatrixElementCondition::Unspecified => {
-                "ROUTE_MATRIX_ELEMENT_CONDITION_UNSPECIFIED"
-            }
-            RouteMatrixElementCondition::RouteExists => "ROUTE_EXISTS",
-            RouteMatrixElementCondition::RouteNotFound => "ROUTE_NOT_FOUND",
+            Self::Unspecified => "ROUTE_MATRIX_ELEMENT_CONDITION_UNSPECIFIED",
+            Self::RouteExists => "ROUTE_EXISTS",
+            Self::RouteNotFound => "ROUTE_NOT_FOUND",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1801,7 +1789,13 @@ impl RouteMatrixElementCondition {
 }
 /// Generated client implementations.
 pub mod routes_preferred_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Routes Preferred API.
@@ -1889,25 +1883,26 @@ pub mod routes_preferred_client {
         /// For example, in this method:
         ///
         /// * Field mask of all available fields (for manual inspection):
-        ///  `X-Goog-FieldMask: *`
+        ///   `X-Goog-FieldMask: *`
         /// * Field mask of Route-level duration, distance, and polyline (an example
-        ///  production setup):
-        ///  `X-Goog-FieldMask: routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline`
+        /// production setup):
+        ///   `X-Goog-FieldMask:
+        ///   routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline`
         ///
         /// Google discourage the use of the wildcard (`*`) response field mask, or
         /// specifying the field mask at the top level (`routes`), because:
         ///
         /// * Selecting only the fields that you need helps our server save computation
-        ///  cycles, allowing us to return the result to you with a lower latency.
+        /// cycles, allowing us to return the result to you with a lower latency.
         /// * Selecting only the fields that you need
-        ///  in your production job ensures stable latency performance. We might add
-        ///  more response fields in the future, and those new fields might require
-        ///  extra computation time. If you select all fields, or if you select all
-        ///  fields at the top level, then you might experience performance degradation
-        ///  because any new field we add will be automatically included in the
-        ///  response.
+        /// in your production job ensures stable latency performance. We might add
+        /// more response fields in the future, and those new fields might require
+        /// extra computation time. If you select all fields, or if you select all
+        /// fields at the top level, then you might experience performance degradation
+        /// because any new field we add will be automatically included in the
+        /// response.
         /// * Selecting only the fields that you need results in a smaller response
-        ///  size, and thus higher network throughput.
+        /// size, and thus higher network throughput.
         pub async fn compute_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeRoutesRequest>,
@@ -1919,8 +1914,7 @@ pub mod routes_preferred_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1953,25 +1947,26 @@ pub mod routes_preferred_client {
         /// For example, in this method:
         ///
         /// * Field mask of all available fields (for manual inspection):
-        ///  `X-Goog-FieldMask: *`
+        ///   `X-Goog-FieldMask: *`
         /// * Field mask of route durations, distances, element status, condition, and
-        ///  element indices (an example production setup):
-        ///  `X-Goog-FieldMask: originIndex,destinationIndex,status,condition,distanceMeters,duration`
+        ///   element indices (an example production setup):
+        ///   `X-Goog-FieldMask:
+        ///   originIndex,destinationIndex,status,condition,distanceMeters,duration`
         ///
         /// It is critical that you include `status` in your field mask as otherwise
         /// all messages will appear to be OK. Google discourages the use of the
         /// wildcard (`*`) response field mask, because:
         ///
         /// * Selecting only the fields that you need helps our server save computation
-        ///  cycles, allowing us to return the result to you with a lower latency.
+        /// cycles, allowing us to return the result to you with a lower latency.
         /// * Selecting only the fields that you need in your production job ensures
-        ///  stable latency performance. We might add more response fields in the
-        ///  future, and those new fields might require extra computation time. If you
-        ///  select all fields, or if you select all fields at the top level, then you
-        ///  might experience performance degradation because any new field we add will
-        ///  be automatically included in the response.
+        /// stable latency performance. We might add more response fields in the
+        /// future, and those new fields might require extra computation time. If you
+        /// select all fields, or if you select all fields at the top level, then you
+        /// might experience performance degradation because any new field we add will
+        /// be automatically included in the response.
         /// * Selecting only the fields that you need results in a smaller response
-        ///  size, and thus higher network throughput.
+        /// size, and thus higher network throughput.
         pub async fn compute_route_matrix(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeRouteMatrixRequest>,
@@ -1983,8 +1978,7 @@ pub mod routes_preferred_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2018,23 +2012,24 @@ pub mod routes_preferred_client {
         /// For example, in this method:
         ///
         /// * Field mask of all available fields (for manual inspection):
-        ///  `X-Goog-FieldMask: *`
+        ///   `X-Goog-FieldMask: *`
         /// * Field mask of route distances, durations, token and toll info:
-        ///  `X-Goog-FieldMask: routes.route.distanceMeters,routes.route.duration,routes.token,routes.route.travelAdvisory.tollInfo`
+        ///   `X-Goog-FieldMask:
+        ///   routes.route.distanceMeters,routes.route.duration,routes.token,routes.route.travelAdvisory.tollInfo`
         ///
         /// Google discourages the use of the wildcard (`*`) response field mask, or
         /// specifying the field mask at the top level (`routes`), because:
         ///
         /// * Selecting only the fields that you need helps our server save computation
-        ///  cycles, allowing us to return the result to you with a lower latency.
+        /// cycles, allowing us to return the result to you with a lower latency.
         /// * Selecting only the fields that you need in your production job ensures
-        ///  stable latency performance. We might add more response fields in the
-        ///  future, and those new fields might require extra computation time. If you
-        ///  select all fields, or if you select all fields at the top level, then you
-        ///  might experience performance degradation because any new field we add will
-        ///  be automatically included in the response.
+        /// stable latency performance. We might add more response fields in the
+        /// future, and those new fields might require extra computation time. If you
+        /// select all fields, or if you select all fields at the top level, then you
+        /// might experience performance degradation because any new field we add will
+        /// be automatically included in the response.
         /// * Selecting only the fields that you need results in a smaller response
-        ///  size, and thus higher network throughput.
+        /// size, and thus higher network throughput.
         pub async fn compute_custom_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeCustomRoutesRequest>,
@@ -2046,8 +2041,7 @@ pub mod routes_preferred_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

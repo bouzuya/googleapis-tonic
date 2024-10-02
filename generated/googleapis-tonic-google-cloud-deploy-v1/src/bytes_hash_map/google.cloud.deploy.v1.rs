@@ -29,15 +29,15 @@ impl Type {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Type::Unspecified => "TYPE_UNSPECIFIED",
-            Type::PubsubNotificationFailure => "TYPE_PUBSUB_NOTIFICATION_FAILURE",
-            Type::ResourceStateChange => "TYPE_RESOURCE_STATE_CHANGE",
-            Type::ProcessAborted => "TYPE_PROCESS_ABORTED",
-            Type::RestrictionViolated => "TYPE_RESTRICTION_VIOLATED",
-            Type::ResourceDeleted => "TYPE_RESOURCE_DELETED",
-            Type::RolloutUpdate => "TYPE_ROLLOUT_UPDATE",
-            Type::DeployPolicyEvaluation => "TYPE_DEPLOY_POLICY_EVALUATION",
-            Type::RenderStatuesChange => "TYPE_RENDER_STATUES_CHANGE",
+            Self::Unspecified => "TYPE_UNSPECIFIED",
+            Self::PubsubNotificationFailure => "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+            Self::ResourceStateChange => "TYPE_RESOURCE_STATE_CHANGE",
+            Self::ProcessAborted => "TYPE_PROCESS_ABORTED",
+            Self::RestrictionViolated => "TYPE_RESTRICTION_VIOLATED",
+            Self::ResourceDeleted => "TYPE_RESOURCE_DELETED",
+            Self::RolloutUpdate => "TYPE_ROLLOUT_UPDATE",
+            Self::DeployPolicyEvaluation => "TYPE_DEPLOY_POLICY_EVALUATION",
+            Self::RenderStatuesChange => "TYPE_RENDER_STATUES_CHANGE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -130,13 +130,13 @@ pub struct DeliveryPipeline {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 128 bytes.
+    /// Both keys and values are additionally constrained to be <= 128 bytes.
     #[prost(map = "string, string", tag = "5")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -308,9 +308,9 @@ pub mod canary {
 pub struct CanaryDeployment {
     /// Required. The percentage based deployments that will occur as a part of a
     /// `Rollout`. List is expected in ascending order and each integer n is
-    /// 0 \<= n \< 100.
+    /// 0 <= n < 100.
     /// If the GatewayServiceMesh is configured for Kubernetes, then the range for
-    /// n is 0 \<= n \<= 100.
+    /// n is 0 <= n <= 100.
     #[prost(int32, repeated, packed = "false", tag = "1")]
     pub percentages: ::prost::alloc::vec::Vec<i32>,
     /// Whether to run verify tests after each percentage deployment.
@@ -784,13 +784,13 @@ pub struct Target {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 128 bytes.
+    /// Both keys and values are additionally constrained to be <= 128 bytes.
     #[prost(map = "string, string", tag = "6")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -872,7 +872,7 @@ pub struct ExecutionConfig {
     pub worker_pool: ::prost::alloc::string::String,
     /// Optional. Google service account to use for execution. If unspecified,
     /// the project execution service account
-    /// (\<PROJECT_NUMBER>-compute@developer.gserviceaccount.com) is used.
+    /// (<PROJECT_NUMBER>-compute@developer.gserviceaccount.com) is used.
     #[prost(string, tag = "5")]
     pub service_account: ::prost::alloc::string::String,
     /// Optional. Cloud Storage location in which to store execution outputs. This
@@ -932,14 +932,12 @@ pub mod execution_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ExecutionEnvironmentUsage::Unspecified => {
-                    "EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED"
-                }
-                ExecutionEnvironmentUsage::Render => "RENDER",
-                ExecutionEnvironmentUsage::Deploy => "DEPLOY",
-                ExecutionEnvironmentUsage::Verify => "VERIFY",
-                ExecutionEnvironmentUsage::Predeploy => "PREDEPLOY",
-                ExecutionEnvironmentUsage::Postdeploy => "POSTDEPLOY",
+                Self::Unspecified => "EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED",
+                Self::Render => "RENDER",
+                Self::Deploy => "DEPLOY",
+                Self::Verify => "VERIFY",
+                Self::Predeploy => "PREDEPLOY",
+                Self::Postdeploy => "POSTDEPLOY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -971,7 +969,7 @@ pub mod execution_config {
 pub struct DefaultPool {
     /// Optional. Google service account to use for execution. If unspecified,
     /// the project execution service account
-    /// (\<PROJECT_NUMBER>-compute@developer.gserviceaccount.com) will be used.
+    /// (<PROJECT_NUMBER>-compute@developer.gserviceaccount.com) will be used.
     #[prost(string, tag = "1")]
     pub service_account: ::prost::alloc::string::String,
     /// Optional. Cloud Storage location where execution outputs should be stored.
@@ -990,7 +988,7 @@ pub struct PrivatePool {
     pub worker_pool: ::prost::alloc::string::String,
     /// Optional. Google service account to use for execution. If unspecified,
     /// the project execution service account
-    /// (\<PROJECT_NUMBER>-compute@developer.gserviceaccount.com) will be used.
+    /// (<PROJECT_NUMBER>-compute@developer.gserviceaccount.com) will be used.
     #[prost(string, tag = "2")]
     pub service_account: ::prost::alloc::string::String,
     /// Optional. Cloud Storage location where execution outputs should be stored.
@@ -1249,13 +1247,13 @@ pub struct CustomTargetType {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 128 bytes.
+    /// Both keys and values are additionally constrained to be <= 128 bytes.
     #[prost(map = "string, string", tag = "6")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -1333,7 +1331,7 @@ pub mod skaffold_modules {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SkaffoldGcsSource {
         /// Required. Cloud Storage source paths to copy recursively. For example,
-        /// providing "gs://my-bucket/dir/configs/\*" will result in Skaffold copying
+        /// providing "gs://my-bucket/dir/configs/*" will result in Skaffold copying
         /// all files within the "dir/configs" directory in the bucket "my-bucket".
         #[prost(string, tag = "1")]
         pub source: ::prost::alloc::string::String,
@@ -1551,13 +1549,13 @@ pub struct DeployPolicy {
     ///
     /// * Annotations are key/value pairs.
     /// * Valid annotation keys have two segments: an optional prefix and name,
-    ///   separated by a slash (`/`).
+    /// separated by a slash (`/`).
     /// * The name segment is required and must be 63 characters or less,
-    ///   beginning and ending with an alphanumeric character (`\[a-z0-9A-Z\]`) with
-    ///   dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+    /// beginning and ending with an alphanumeric character (`\[a-z0-9A-Z\]`) with
+    /// dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
     /// * The prefix is optional. If specified, the prefix must be a DNS subdomain:
-    ///   a series of DNS labels separated by dots(`.`), not longer than 253
-    ///   characters in total, followed by a slash (`/`).
+    /// a series of DNS labels separated by dots(`.`), not longer than 253
+    /// characters in total, followed by a slash (`/`).
     ///
     /// See
     /// <https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set>
@@ -1571,13 +1569,13 @@ pub struct DeployPolicy {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 128 bytes.
+    /// Both keys and values are additionally constrained to be <= 128 bytes.
     #[prost(map = "string, string", tag = "5")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -1641,9 +1639,9 @@ pub mod deploy_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Invoker::Unspecified => "INVOKER_UNSPECIFIED",
-                Invoker::User => "USER",
-                Invoker::DeployAutomation => "DEPLOY_AUTOMATION",
+                Self::Unspecified => "INVOKER_UNSPECIFIED",
+                Self::User => "USER",
+                Self::DeployAutomation => "DEPLOY_AUTOMATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1678,7 +1676,7 @@ pub struct DeliveryPipelineAttribute {
     /// following:
     ///
     /// * The last segment of a pipeline name
-    /// * "\*", all delivery pipelines in a location
+    /// * "*", all delivery pipelines in a location
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
     /// DeliveryPipeline labels.
@@ -1696,7 +1694,7 @@ pub struct TargetAttribute {
     /// following:
     ///
     /// * The last segment of a target name
-    /// * "\*", all targets in a location
+    /// * "*", all targets in a location
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
     /// Target labels.
@@ -1792,15 +1790,15 @@ pub mod rollout_restriction {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RolloutActions::Unspecified => "ROLLOUT_ACTIONS_UNSPECIFIED",
-                RolloutActions::Advance => "ADVANCE",
-                RolloutActions::Approve => "APPROVE",
-                RolloutActions::Cancel => "CANCEL",
-                RolloutActions::Create => "CREATE",
-                RolloutActions::IgnoreJob => "IGNORE_JOB",
-                RolloutActions::RetryJob => "RETRY_JOB",
-                RolloutActions::Rollback => "ROLLBACK",
-                RolloutActions::TerminateJobrun => "TERMINATE_JOBRUN",
+                Self::Unspecified => "ROLLOUT_ACTIONS_UNSPECIFIED",
+                Self::Advance => "ADVANCE",
+                Self::Approve => "APPROVE",
+                Self::Cancel => "CANCEL",
+                Self::Create => "CREATE",
+                Self::IgnoreJob => "IGNORE_JOB",
+                Self::RetryJob => "RETRY_JOB",
+                Self::Rollback => "ROLLBACK",
+                Self::TerminateJobrun => "TERMINATE_JOBRUN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1931,13 +1929,13 @@ pub struct Release {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 128 bytes.
+    /// Both keys and values are additionally constrained to be <= 128 bytes.
     #[prost(map = "string, string", tag = "5")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -2071,10 +2069,10 @@ pub mod release {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    TargetRenderState::Unspecified => "TARGET_RENDER_STATE_UNSPECIFIED",
-                    TargetRenderState::Succeeded => "SUCCEEDED",
-                    TargetRenderState::Failed => "FAILED",
-                    TargetRenderState::InProgress => "IN_PROGRESS",
+                    Self::Unspecified => "TARGET_RENDER_STATE_UNSPECIFIED",
+                    Self::Succeeded => "SUCCEEDED",
+                    Self::Failed => "FAILED",
+                    Self::InProgress => "IN_PROGRESS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2135,20 +2133,16 @@ pub mod release {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    FailureCause::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
-                    FailureCause::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
-                    FailureCause::ExecutionFailed => "EXECUTION_FAILED",
-                    FailureCause::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
-                    FailureCause::VerificationConfigNotFound => {
-                        "VERIFICATION_CONFIG_NOT_FOUND"
-                    }
-                    FailureCause::CustomActionNotFound => "CUSTOM_ACTION_NOT_FOUND",
-                    FailureCause::DeploymentStrategyNotSupported => {
+                    Self::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
+                    Self::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
+                    Self::ExecutionFailed => "EXECUTION_FAILED",
+                    Self::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
+                    Self::VerificationConfigNotFound => "VERIFICATION_CONFIG_NOT_FOUND",
+                    Self::CustomActionNotFound => "CUSTOM_ACTION_NOT_FOUND",
+                    Self::DeploymentStrategyNotSupported => {
                         "DEPLOYMENT_STRATEGY_NOT_SUPPORTED"
                     }
-                    FailureCause::RenderFeatureNotSupported => {
-                        "RENDER_FEATURE_NOT_SUPPORTED"
-                    }
+                    Self::RenderFeatureNotSupported => "RENDER_FEATURE_NOT_SUPPORTED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2247,10 +2241,10 @@ pub mod release {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RenderState::Unspecified => "RENDER_STATE_UNSPECIFIED",
-                RenderState::Succeeded => "SUCCEEDED",
-                RenderState::Failed => "FAILED",
-                RenderState::InProgress => "IN_PROGRESS",
+                Self::Unspecified => "RENDER_STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::InProgress => "IN_PROGRESS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2627,13 +2621,13 @@ pub struct Rollout {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 128 bytes.
+    /// Both keys and values are additionally constrained to be <= 128 bytes.
     #[prost(map = "string, string", tag = "5")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -2735,11 +2729,11 @@ pub mod rollout {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ApprovalState::Unspecified => "APPROVAL_STATE_UNSPECIFIED",
-                ApprovalState::NeedsApproval => "NEEDS_APPROVAL",
-                ApprovalState::DoesNotNeedApproval => "DOES_NOT_NEED_APPROVAL",
-                ApprovalState::Approved => "APPROVED",
-                ApprovalState::Rejected => "REJECTED",
+                Self::Unspecified => "APPROVAL_STATE_UNSPECIFIED",
+                Self::NeedsApproval => "NEEDS_APPROVAL",
+                Self::DoesNotNeedApproval => "DOES_NOT_NEED_APPROVAL",
+                Self::Approved => "APPROVED",
+                Self::Rejected => "REJECTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2799,17 +2793,17 @@ pub mod rollout {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::InProgress => "IN_PROGRESS",
-                State::PendingApproval => "PENDING_APPROVAL",
-                State::ApprovalRejected => "APPROVAL_REJECTED",
-                State::Pending => "PENDING",
-                State::PendingRelease => "PENDING_RELEASE",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
-                State::Halted => "HALTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::PendingApproval => "PENDING_APPROVAL",
+                Self::ApprovalRejected => "APPROVAL_REJECTED",
+                Self::Pending => "PENDING",
+                Self::PendingRelease => "PENDING_RELEASE",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
+                Self::Halted => "HALTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2874,19 +2868,15 @@ pub mod rollout {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FailureCause::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
-                FailureCause::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
-                FailureCause::ExecutionFailed => "EXECUTION_FAILED",
-                FailureCause::DeadlineExceeded => "DEADLINE_EXCEEDED",
-                FailureCause::ReleaseFailed => "RELEASE_FAILED",
-                FailureCause::ReleaseAbandoned => "RELEASE_ABANDONED",
-                FailureCause::VerificationConfigNotFound => {
-                    "VERIFICATION_CONFIG_NOT_FOUND"
-                }
-                FailureCause::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
-                FailureCause::OperationFeatureNotSupported => {
-                    "OPERATION_FEATURE_NOT_SUPPORTED"
-                }
+                Self::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
+                Self::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
+                Self::ExecutionFailed => "EXECUTION_FAILED",
+                Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+                Self::ReleaseFailed => "RELEASE_FAILED",
+                Self::ReleaseAbandoned => "RELEASE_ABANDONED",
+                Self::VerificationConfigNotFound => "VERIFICATION_CONFIG_NOT_FOUND",
+                Self::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
+                Self::OperationFeatureNotSupported => "OPERATION_FEATURE_NOT_SUPPORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3053,13 +3043,13 @@ pub mod phase {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::InProgress => "IN_PROGRESS",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Aborted => "ABORTED",
-                State::Skipped => "SKIPPED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Aborted => "ABORTED",
+                Self::Skipped => "SKIPPED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3176,15 +3166,15 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Disabled => "DISABLED",
-                State::InProgress => "IN_PROGRESS",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Aborted => "ABORTED",
-                State::Skipped => "SKIPPED",
-                State::Ignored => "IGNORED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Disabled => "DISABLED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Aborted => "ABORTED",
+                Self::Skipped => "SKIPPED",
+                Self::Ignored => "IGNORED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3364,8 +3354,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -3552,12 +3542,12 @@ pub mod job_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::InProgress => "IN_PROGRESS",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Terminating => "TERMINATING",
-                State::Terminated => "TERMINATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Terminating => "TERMINATING",
+                Self::Terminated => "TERMINATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3661,13 +3651,13 @@ pub mod deploy_job_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FailureCause::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
-                FailureCause::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
-                FailureCause::ExecutionFailed => "EXECUTION_FAILED",
-                FailureCause::DeadlineExceeded => "DEADLINE_EXCEEDED",
-                FailureCause::MissingResourcesForCanary => "MISSING_RESOURCES_FOR_CANARY",
-                FailureCause::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
-                FailureCause::DeployFeatureNotSupported => "DEPLOY_FEATURE_NOT_SUPPORTED",
+                Self::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
+                Self::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
+                Self::ExecutionFailed => "EXECUTION_FAILED",
+                Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+                Self::MissingResourcesForCanary => "MISSING_RESOURCES_FOR_CANARY",
+                Self::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
+                Self::DeployFeatureNotSupported => "DEPLOY_FEATURE_NOT_SUPPORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3749,14 +3739,12 @@ pub mod verify_job_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FailureCause::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
-                FailureCause::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
-                FailureCause::ExecutionFailed => "EXECUTION_FAILED",
-                FailureCause::DeadlineExceeded => "DEADLINE_EXCEEDED",
-                FailureCause::VerificationConfigNotFound => {
-                    "VERIFICATION_CONFIG_NOT_FOUND"
-                }
-                FailureCause::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
+                Self::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
+                Self::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
+                Self::ExecutionFailed => "EXECUTION_FAILED",
+                Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+                Self::VerificationConfigNotFound => "VERIFICATION_CONFIG_NOT_FOUND",
+                Self::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3828,11 +3816,11 @@ pub mod predeploy_job_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FailureCause::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
-                FailureCause::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
-                FailureCause::ExecutionFailed => "EXECUTION_FAILED",
-                FailureCause::DeadlineExceeded => "DEADLINE_EXCEEDED",
-                FailureCause::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
+                Self::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
+                Self::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
+                Self::ExecutionFailed => "EXECUTION_FAILED",
+                Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+                Self::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3903,11 +3891,11 @@ pub mod postdeploy_job_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FailureCause::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
-                FailureCause::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
-                FailureCause::ExecutionFailed => "EXECUTION_FAILED",
-                FailureCause::DeadlineExceeded => "DEADLINE_EXCEEDED",
-                FailureCause::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
+                Self::Unspecified => "FAILURE_CAUSE_UNSPECIFIED",
+                Self::CloudBuildUnavailable => "CLOUD_BUILD_UNAVAILABLE",
+                Self::ExecutionFailed => "EXECUTION_FAILED",
+                Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+                Self::CloudBuildRequestFailed => "CLOUD_BUILD_REQUEST_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4080,13 +4068,13 @@ pub struct Automation {
     ///
     /// * Annotations are key/value pairs.
     /// * Valid annotation keys have two segments: an optional prefix and name,
-    ///   separated by a slash (`/`).
+    /// separated by a slash (`/`).
     /// * The name segment is required and must be 63 characters or less,
-    ///   beginning and ending with an alphanumeric character (`\[a-z0-9A-Z\]`) with
-    ///   dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+    /// beginning and ending with an alphanumeric character (`\[a-z0-9A-Z\]`) with
+    /// dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
     /// * The prefix is optional. If specified, the prefix must be a DNS subdomain:
-    ///   a series of DNS labels separated by dots(`.`), not longer than 253
-    ///   characters in total, followed by a slash (`/`).
+    /// a series of DNS labels separated by dots(`.`), not longer than 253
+    /// characters in total, followed by a slash (`/`).
     ///
     /// See
     /// <https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set>
@@ -4100,13 +4088,13 @@ pub struct Automation {
     /// user and by Cloud Deploy. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    ///   underscores, and dashes.
+    /// underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    ///   allowed.
+    /// allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be \<= 63 characters.
+    /// Both keys and values are additionally constrained to be <= 63 characters.
     #[prost(map = "string, string", tag = "7")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -4512,13 +4500,13 @@ pub mod automation_run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Succeeded => "SUCCEEDED",
-                State::Cancelled => "CANCELLED",
-                State::Failed => "FAILED",
-                State::InProgress => "IN_PROGRESS",
-                State::Pending => "PENDING",
-                State::Aborted => "ABORTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Cancelled => "CANCELLED",
+                Self::Failed => "FAILED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Pending => "PENDING",
+                Self::Aborted => "ABORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4751,12 +4739,10 @@ impl SkaffoldSupportState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SkaffoldSupportState::Unspecified => "SKAFFOLD_SUPPORT_STATE_UNSPECIFIED",
-            SkaffoldSupportState::Supported => "SKAFFOLD_SUPPORT_STATE_SUPPORTED",
-            SkaffoldSupportState::MaintenanceMode => {
-                "SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE"
-            }
-            SkaffoldSupportState::Unsupported => "SKAFFOLD_SUPPORT_STATE_UNSUPPORTED",
+            Self::Unspecified => "SKAFFOLD_SUPPORT_STATE_UNSPECIFIED",
+            Self::Supported => "SKAFFOLD_SUPPORT_STATE_SUPPORTED",
+            Self::MaintenanceMode => "SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE",
+            Self::Unsupported => "SKAFFOLD_SUPPORT_STATE_UNSUPPORTED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4788,9 +4774,9 @@ impl BackoffMode {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            BackoffMode::Unspecified => "BACKOFF_MODE_UNSPECIFIED",
-            BackoffMode::Linear => "BACKOFF_MODE_LINEAR",
-            BackoffMode::Exponential => "BACKOFF_MODE_EXPONENTIAL",
+            Self::Unspecified => "BACKOFF_MODE_UNSPECIFIED",
+            Self::Linear => "BACKOFF_MODE_LINEAR",
+            Self::Exponential => "BACKOFF_MODE_EXPONENTIAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4829,13 +4815,13 @@ impl RepairState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RepairState::Unspecified => "REPAIR_STATE_UNSPECIFIED",
-            RepairState::Succeeded => "REPAIR_STATE_SUCCEEDED",
-            RepairState::Cancelled => "REPAIR_STATE_CANCELLED",
-            RepairState::Failed => "REPAIR_STATE_FAILED",
-            RepairState::InProgress => "REPAIR_STATE_IN_PROGRESS",
-            RepairState::Pending => "REPAIR_STATE_PENDING",
-            RepairState::Aborted => "REPAIR_STATE_ABORTED",
+            Self::Unspecified => "REPAIR_STATE_UNSPECIFIED",
+            Self::Succeeded => "REPAIR_STATE_SUCCEEDED",
+            Self::Cancelled => "REPAIR_STATE_CANCELLED",
+            Self::Failed => "REPAIR_STATE_FAILED",
+            Self::InProgress => "REPAIR_STATE_IN_PROGRESS",
+            Self::Pending => "REPAIR_STATE_PENDING",
+            Self::Aborted => "REPAIR_STATE_ABORTED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4854,7 +4840,13 @@ impl RepairState {
 }
 /// Generated client implementations.
 pub mod cloud_deploy_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// CloudDeploy service creates and manages Continuous Delivery operations
@@ -4940,8 +4932,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4971,8 +4962,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5002,8 +4992,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5033,8 +5022,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5064,8 +5052,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5095,8 +5082,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5123,8 +5109,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5151,8 +5136,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5179,8 +5163,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5207,8 +5190,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5235,8 +5217,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5263,8 +5244,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5294,8 +5274,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5325,8 +5304,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5356,8 +5334,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5387,8 +5364,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5418,8 +5394,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5443,8 +5418,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5471,8 +5445,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5502,8 +5475,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5533,8 +5505,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5564,8 +5535,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5595,8 +5565,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5626,8 +5595,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5654,8 +5622,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5685,8 +5652,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5716,8 +5682,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5747,8 +5712,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5778,8 +5742,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5803,8 +5766,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5831,8 +5793,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5862,8 +5823,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5890,8 +5850,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5918,8 +5877,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5943,8 +5901,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5971,8 +5928,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5999,8 +5955,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6027,8 +5982,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6058,8 +6012,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6089,8 +6042,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6117,8 +6069,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6148,8 +6099,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6176,8 +6126,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6207,8 +6156,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6241,8 +6189,7 @@ pub mod cloud_deploy_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6385,9 +6332,9 @@ pub mod deploy_policy_evaluation_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyVerdict::Unspecified => "POLICY_VERDICT_UNSPECIFIED",
-                PolicyVerdict::AllowedByPolicy => "ALLOWED_BY_POLICY",
-                PolicyVerdict::DeniedByPolicy => "DENIED_BY_POLICY",
+                Self::Unspecified => "POLICY_VERDICT_UNSPECIFIED",
+                Self::AllowedByPolicy => "ALLOWED_BY_POLICY",
+                Self::DeniedByPolicy => "DENIED_BY_POLICY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6429,11 +6376,9 @@ pub mod deploy_policy_evaluation_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PolicyVerdictOverride::Unspecified => {
-                    "POLICY_VERDICT_OVERRIDE_UNSPECIFIED"
-                }
-                PolicyVerdictOverride::PolicyOverridden => "POLICY_OVERRIDDEN",
-                PolicyVerdictOverride::PolicySuspended => "POLICY_SUSPENDED",
+                Self::Unspecified => "POLICY_VERDICT_OVERRIDE_UNSPECIFIED",
+                Self::PolicyOverridden => "POLICY_OVERRIDDEN",
+                Self::PolicySuspended => "POLICY_SUSPENDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6656,20 +6601,20 @@ pub mod rollout_update_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RolloutUpdateType::Unspecified => "ROLLOUT_UPDATE_TYPE_UNSPECIFIED",
-                RolloutUpdateType::Pending => "PENDING",
-                RolloutUpdateType::PendingRelease => "PENDING_RELEASE",
-                RolloutUpdateType::InProgress => "IN_PROGRESS",
-                RolloutUpdateType::Cancelling => "CANCELLING",
-                RolloutUpdateType::Cancelled => "CANCELLED",
-                RolloutUpdateType::Halted => "HALTED",
-                RolloutUpdateType::Succeeded => "SUCCEEDED",
-                RolloutUpdateType::Failed => "FAILED",
-                RolloutUpdateType::ApprovalRequired => "APPROVAL_REQUIRED",
-                RolloutUpdateType::Approved => "APPROVED",
-                RolloutUpdateType::Rejected => "REJECTED",
-                RolloutUpdateType::AdvanceRequired => "ADVANCE_REQUIRED",
-                RolloutUpdateType::Advanced => "ADVANCED",
+                Self::Unspecified => "ROLLOUT_UPDATE_TYPE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::PendingRelease => "PENDING_RELEASE",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
+                Self::Halted => "HALTED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::ApprovalRequired => "APPROVAL_REQUIRED",
+                Self::Approved => "APPROVED",
+                Self::Rejected => "REJECTED",
+                Self::AdvanceRequired => "ADVANCE_REQUIRED",
+                Self::Advanced => "ADVANCED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.

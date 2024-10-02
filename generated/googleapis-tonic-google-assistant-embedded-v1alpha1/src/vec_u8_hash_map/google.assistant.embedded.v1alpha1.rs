@@ -46,7 +46,7 @@ pub mod audio_in_config {
     )]
     #[repr(i32)]
     pub enum Encoding {
-        /// Not specified. Will return result \[google.rpc.Code.INVALID_ARGUMENT\]\[\].
+        /// Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
         Unspecified = 0,
         /// Uncompressed 16-bit signed little-endian samples (Linear PCM).
         /// This encoding includes no header, only the raw audio bytes.
@@ -67,9 +67,9 @@ pub mod audio_in_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-                Encoding::Linear16 => "LINEAR16",
-                Encoding::Flac => "FLAC",
+                Self::Unspecified => "ENCODING_UNSPECIFIED",
+                Self::Linear16 => "LINEAR16",
+                Self::Flac => "FLAC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -117,7 +117,7 @@ pub mod audio_out_config {
     )]
     #[repr(i32)]
     pub enum Encoding {
-        /// Not specified. Will return result \[google.rpc.Code.INVALID_ARGUMENT\]\[\].
+        /// Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
         Unspecified = 0,
         /// Uncompressed 16-bit signed little-endian samples (Linear PCM).
         Linear16 = 1,
@@ -136,10 +136,10 @@ pub mod audio_out_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-                Encoding::Linear16 => "LINEAR16",
-                Encoding::Mp3 => "MP3",
-                Encoding::OpusInOgg => "OPUS_IN_OGG",
+                Self::Unspecified => "ENCODING_UNSPECIFIED",
+                Self::Linear16 => "LINEAR16",
+                Self::Mp3 => "MP3",
+                Self::OpusInOgg => "OPUS_IN_OGG",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -241,9 +241,9 @@ pub mod converse_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MicrophoneMode::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
-                MicrophoneMode::CloseMicrophone => "CLOSE_MICROPHONE",
-                MicrophoneMode::DialogFollowOn => "DIALOG_FOLLOW_ON",
+                Self::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
+                Self::CloseMicrophone => "CLOSE_MICROPHONE",
+                Self::DialogFollowOn => "DIALOG_FOLLOW_ON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -331,8 +331,8 @@ pub mod converse_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::EndOfUtterance => "END_OF_UTTERANCE",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::EndOfUtterance => "END_OF_UTTERANCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -347,7 +347,7 @@ pub mod converse_response {
     /// Exactly one of these fields will be populated in each `ConverseResponse`.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConverseResponse {
-        /// *Output-only* If set, returns a \[google.rpc.Status\]\[google.rpc.Status\]
+        /// *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status]
         /// message that specifies the error for the operation. If an error occurs
         /// during processing, this message will be set and there will be no further
         /// messages sent.
@@ -366,7 +366,13 @@ pub mod converse_response {
 }
 /// Generated client implementations.
 pub mod embedded_assistant_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements Google Assistant API.
@@ -450,32 +456,32 @@ pub mod embedded_assistant_client {
         /// responds *What do you want to add?*. The sequence of streamed requests and
         /// responses in the first gRPC message could be:
         ///
-        /// * ConverseRequest.config
-        /// * ConverseRequest.audio_in
-        /// * ConverseRequest.audio_in
-        /// * ConverseRequest.audio_in
-        /// * ConverseRequest.audio_in
-        /// * ConverseResponse.event_type.END_OF_UTTERANCE
-        /// * ConverseResponse.result.microphone_mode.DIALOG_FOLLOW_ON
-        /// * ConverseResponse.audio_out
-        /// * ConverseResponse.audio_out
-        /// * ConverseResponse.audio_out
+        /// *   ConverseRequest.config
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseResponse.event_type.END_OF_UTTERANCE
+        /// *   ConverseResponse.result.microphone_mode.DIALOG_FOLLOW_ON
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
         ///
         /// The user then says *bagels* and the assistant responds
         /// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
         /// connection call to the `Converse` method, again with streamed requests and
         /// responses, such as:
         ///
-        /// * ConverseRequest.config
-        /// * ConverseRequest.audio_in
-        /// * ConverseRequest.audio_in
-        /// * ConverseRequest.audio_in
-        /// * ConverseResponse.event_type.END_OF_UTTERANCE
-        /// * ConverseResponse.result.microphone_mode.CLOSE_MICROPHONE
-        /// * ConverseResponse.audio_out
-        /// * ConverseResponse.audio_out
-        /// * ConverseResponse.audio_out
-        /// * ConverseResponse.audio_out
+        /// *   ConverseRequest.config
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseResponse.event_type.END_OF_UTTERANCE
+        /// *   ConverseResponse.result.microphone_mode.CLOSE_MICROPHONE
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
         ///
         /// Although the precise order of responses is not guaranteed, sequential
         /// ConverseResponse.audio_out messages will always contain sequential portions
@@ -491,8 +497,7 @@ pub mod embedded_assistant_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -9,7 +9,8 @@ pub struct PgpSignedAttestation {
     /// the payload that was signed must be attached. While the signature format
     /// supported is dependent on the verification implementation, currently only
     /// ASCII-armored (`--armor` to gpg), non-clearsigned (`--sign` rather than
-    /// `--clearsign` to gpg) are supported. Concretely, `gpg --sign --armor --output=signature.gpg payload.json` will create the signature content
+    /// `--clearsign` to gpg) are supported. Concretely, `gpg --sign --armor
+    /// --output=signature.gpg payload.json` will create the signature content
     /// expected in this field in `signature.gpg` for the `payload.json`
     /// attestation payload.
     #[prost(string, tag = "1")]
@@ -62,8 +63,8 @@ pub mod pgp_signed_attestation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-                ContentType::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
+                Self::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+                Self::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -93,15 +94,13 @@ pub mod pgp_signed_attestation {
         /// abbreviated key IDs, but only the full fingerprint is guaranteed to work.
         /// In gpg, the full fingerprint can be retrieved from the `fpr` field
         /// returned when calling --list-keys with --with-colons.  For example:
-        ///
-        /// ```text,
+        /// ```
         /// gpg --with-colons --with-fingerprint --force-v4-certs \
-        ///     --list-keys attester@example.com
+        ///      --list-keys attester@example.com
         /// tru::1:1513631572:0:3:1:5
         /// pub:...<SNIP>...
         /// fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB:
         /// ```
-        ///
         /// Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
         #[prost(string, tag = "2")]
         PgpKeyId(::prost::alloc::string::String),
@@ -162,8 +161,8 @@ pub mod generic_signed_attestation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-                ContentType::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
+                Self::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+                Self::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.

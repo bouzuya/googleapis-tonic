@@ -170,7 +170,7 @@ pub mod settings {
         ///
         /// To register for notifications, the owner of the topic must grant
         /// `alerts-api-push-notifications@system.gserviceaccount.com` the
-        /// `projects.topics.publish` permission.
+        ///   `projects.topics.publish` permission.
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct CloudPubsubTopic {
             /// The `name` field of a Cloud Pubsub \[Topic\]
@@ -208,8 +208,8 @@ pub mod settings {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    PayloadFormat::Unspecified => "PAYLOAD_FORMAT_UNSPECIFIED",
-                    PayloadFormat::Json => "JSON",
+                    Self::Unspecified => "PAYLOAD_FORMAT_UNSPECIFIED",
+                    Self::Json => "JSON",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -301,7 +301,7 @@ pub struct ListAlertsRequest {
     /// Optional. A token identifying a page of results the server should return.
     /// If empty, a new iteration is started. To continue an iteration, pass in
     /// the value from the previous ListAlertsResponse's
-    /// \[next_page_token\]\[google.apps.alertcenter.v1beta1.ListAlertsResponse.next_page_token\]
+    /// [next_page_token][google.apps.alertcenter.v1beta1.ListAlertsResponse.next_page_token]
     /// field.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -330,7 +330,7 @@ pub struct ListAlertsResponse {
     /// The token for the next page. If not empty, indicates that there may be more
     /// alerts that match the listing request; this value can be used in a
     /// subsequent
-    /// \[ListAlertsRequest\]\[google.apps.alertcenter.v1beta1.ListAlertsRequest\] to
+    /// [ListAlertsRequest][google.apps.alertcenter.v1beta1.ListAlertsRequest] to
     /// get alerts continuing from last result of the current list call.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
@@ -483,10 +483,10 @@ impl AlertFeedbackType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AlertFeedbackType::Unspecified => "ALERT_FEEDBACK_TYPE_UNSPECIFIED",
-            AlertFeedbackType::NotUseful => "NOT_USEFUL",
-            AlertFeedbackType::SomewhatUseful => "SOMEWHAT_USEFUL",
-            AlertFeedbackType::VeryUseful => "VERY_USEFUL",
+            Self::Unspecified => "ALERT_FEEDBACK_TYPE_UNSPECIFIED",
+            Self::NotUseful => "NOT_USEFUL",
+            Self::SomewhatUseful => "SOMEWHAT_USEFUL",
+            Self::VeryUseful => "VERY_USEFUL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -502,7 +502,13 @@ impl AlertFeedbackType {
 }
 /// Generated client implementations.
 pub mod alert_center_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Workspace Alert Center API (beta).
@@ -587,8 +593,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -616,8 +621,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -648,8 +652,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -680,8 +683,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -702,7 +704,7 @@ pub mod alert_center_service_client {
         /// Creates new feedback for an alert. Attempting to create a feedback for
         /// a non-existent alert returns `NOT_FOUND` error. Attempting to create a
         /// feedback for an alert that is marked for deletion returns
-        /// \`FAILED_PRECONDITION' error.
+        /// `FAILED_PRECONDITION' error.
         pub async fn create_alert_feedback(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAlertFeedbackRequest>,
@@ -711,8 +713,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -743,8 +744,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -772,8 +772,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -800,8 +799,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -828,8 +826,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -859,8 +856,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -890,8 +886,7 @@ pub mod alert_center_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

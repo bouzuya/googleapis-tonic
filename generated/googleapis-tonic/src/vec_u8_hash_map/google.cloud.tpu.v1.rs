@@ -163,21 +163,21 @@ pub mod node {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Restarting => "RESTARTING",
-                State::Reimaging => "REIMAGING",
-                State::Deleting => "DELETING",
-                State::Repairing => "REPAIRING",
-                State::Stopped => "STOPPED",
-                State::Stopping => "STOPPING",
-                State::Starting => "STARTING",
-                State::Preempted => "PREEMPTED",
-                State::Terminated => "TERMINATED",
-                State::Hiding => "HIDING",
-                State::Hidden => "HIDDEN",
-                State::Unhiding => "UNHIDING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Restarting => "RESTARTING",
+                Self::Reimaging => "REIMAGING",
+                Self::Deleting => "DELETING",
+                Self::Repairing => "REPAIRING",
+                Self::Stopped => "STOPPED",
+                Self::Stopping => "STOPPING",
+                Self::Starting => "STARTING",
+                Self::Preempted => "PREEMPTED",
+                Self::Terminated => "TERMINATED",
+                Self::Hiding => "HIDING",
+                Self::Hidden => "HIDDEN",
+                Self::Unhiding => "UNHIDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -238,12 +238,12 @@ pub mod node {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Health::Unspecified => "HEALTH_UNSPECIFIED",
-                Health::Healthy => "HEALTHY",
-                Health::DeprecatedUnhealthy => "DEPRECATED_UNHEALTHY",
-                Health::Timeout => "TIMEOUT",
-                Health::UnhealthyTensorflow => "UNHEALTHY_TENSORFLOW",
-                Health::UnhealthyMaintenance => "UNHEALTHY_MAINTENANCE",
+                Self::Unspecified => "HEALTH_UNSPECIFIED",
+                Self::Healthy => "HEALTHY",
+                Self::DeprecatedUnhealthy => "DEPRECATED_UNHEALTHY",
+                Self::Timeout => "TIMEOUT",
+                Self::UnhealthyTensorflow => "UNHEALTHY_TENSORFLOW",
+                Self::UnhealthyMaintenance => "UNHEALTHY_MAINTENANCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -289,10 +289,10 @@ pub mod node {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ApiVersion::Unspecified => "API_VERSION_UNSPECIFIED",
-                ApiVersion::V1Alpha1 => "V1_ALPHA1",
-                ApiVersion::V1 => "V1",
-                ApiVersion::V2Alpha1 => "V2_ALPHA1",
+                Self::Unspecified => "API_VERSION_UNSPECIFIED",
+                Self::V1Alpha1 => "V1_ALPHA1",
+                Self::V1 => "V1",
+                Self::V2Alpha1 => "V2_ALPHA1",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -307,7 +307,7 @@ pub mod node {
         }
     }
 }
-/// Request for \[ListNodes\]\[google.cloud.tpu.v1.Tpu.ListNodes\].
+/// Request for [ListNodes][google.cloud.tpu.v1.Tpu.ListNodes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNodesRequest {
     /// Required. The parent resource name.
@@ -320,7 +320,7 @@ pub struct ListNodesRequest {
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// Response for \[ListNodes\]\[google.cloud.tpu.v1.Tpu.ListNodes\].
+/// Response for [ListNodes][google.cloud.tpu.v1.Tpu.ListNodes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNodesResponse {
     /// The listed nodes.
@@ -333,14 +333,14 @@ pub struct ListNodesResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Request for \[GetNode\]\[google.cloud.tpu.v1.Tpu.GetNode\].
+/// Request for [GetNode][google.cloud.tpu.v1.Tpu.GetNode].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeRequest {
     /// Required. The resource name.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request for \[CreateNode\]\[google.cloud.tpu.v1.Tpu.CreateNode\].
+/// Request for [CreateNode][google.cloud.tpu.v1.Tpu.CreateNode].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNodeRequest {
     /// Required. The parent resource name.
@@ -353,14 +353,14 @@ pub struct CreateNodeRequest {
     #[prost(message, optional, tag = "3")]
     pub node: ::core::option::Option<Node>,
 }
-/// Request for \[DeleteNode\]\[google.cloud.tpu.v1.Tpu.DeleteNode\].
+/// Request for [DeleteNode][google.cloud.tpu.v1.Tpu.DeleteNode].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNodeRequest {
     /// Required. The resource name.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request for \[ReimageNode\]\[google.cloud.tpu.v1.Tpu.ReimageNode\].
+/// Request for [ReimageNode][google.cloud.tpu.v1.Tpu.ReimageNode].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReimageNodeRequest {
     /// The resource name.
@@ -370,14 +370,14 @@ pub struct ReimageNodeRequest {
     #[prost(string, tag = "2")]
     pub tensorflow_version: ::prost::alloc::string::String,
 }
-/// Request for \[StopNode\]\[google.cloud.tpu.v1.Tpu.StopNode\].
+/// Request for [StopNode][google.cloud.tpu.v1.Tpu.StopNode].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopNodeRequest {
     /// The resource name.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request for \[StartNode\]\[google.cloud.tpu.v1.Tpu.StartNode\].
+/// Request for [StartNode][google.cloud.tpu.v1.Tpu.StartNode].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartNodeRequest {
     /// The resource name.
@@ -395,7 +395,7 @@ pub struct TensorFlowVersion {
     pub version: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[GetTensorFlowVersion\]\[google.cloud.tpu.v1.Tpu.GetTensorFlowVersion\].
+/// [GetTensorFlowVersion][google.cloud.tpu.v1.Tpu.GetTensorFlowVersion].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTensorFlowVersionRequest {
     /// Required. The resource name.
@@ -403,7 +403,7 @@ pub struct GetTensorFlowVersionRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[ListTensorFlowVersions\]\[google.cloud.tpu.v1.Tpu.ListTensorFlowVersions\].
+/// [ListTensorFlowVersions][google.cloud.tpu.v1.Tpu.ListTensorFlowVersions].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTensorFlowVersionsRequest {
     /// Required. The parent resource name.
@@ -423,7 +423,7 @@ pub struct ListTensorFlowVersionsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for
-/// \[ListTensorFlowVersions\]\[google.cloud.tpu.v1.Tpu.ListTensorFlowVersions\].
+/// [ListTensorFlowVersions][google.cloud.tpu.v1.Tpu.ListTensorFlowVersions].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTensorFlowVersionsResponse {
     /// The listed nodes.
@@ -446,7 +446,7 @@ pub struct AcceleratorType {
     #[prost(string, tag = "2")]
     pub r#type: ::prost::alloc::string::String,
 }
-/// Request for \[GetAcceleratorType\]\[google.cloud.tpu.v1.Tpu.GetAcceleratorType\].
+/// Request for [GetAcceleratorType][google.cloud.tpu.v1.Tpu.GetAcceleratorType].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAcceleratorTypeRequest {
     /// Required. The resource name.
@@ -454,7 +454,7 @@ pub struct GetAcceleratorTypeRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for
-/// \[ListAcceleratorTypes\]\[google.cloud.tpu.v1.Tpu.ListAcceleratorTypes\].
+/// [ListAcceleratorTypes][google.cloud.tpu.v1.Tpu.ListAcceleratorTypes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAcceleratorTypesRequest {
     /// Required. The parent resource name.
@@ -474,7 +474,7 @@ pub struct ListAcceleratorTypesRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response for
-/// \[ListAcceleratorTypes\]\[google.cloud.tpu.v1.Tpu.ListAcceleratorTypes\].
+/// [ListAcceleratorTypes][google.cloud.tpu.v1.Tpu.ListAcceleratorTypes].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAcceleratorTypesResponse {
     /// The listed nodes.
@@ -487,7 +487,7 @@ pub struct ListAcceleratorTypesResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Metadata describing an \[Operation\]\[google.longrunning.Operation\]
+/// Metadata describing an [Operation][google.longrunning.Operation]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
     /// The time the operation was created.
@@ -569,13 +569,13 @@ pub mod symptom {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SymptomType::Unspecified => "SYMPTOM_TYPE_UNSPECIFIED",
-                SymptomType::LowMemory => "LOW_MEMORY",
-                SymptomType::OutOfMemory => "OUT_OF_MEMORY",
-                SymptomType::ExecuteTimedOut => "EXECUTE_TIMED_OUT",
-                SymptomType::MeshBuildFail => "MESH_BUILD_FAIL",
-                SymptomType::HbmOutOfMemory => "HBM_OUT_OF_MEMORY",
-                SymptomType::ProjectAbuse => "PROJECT_ABUSE",
+                Self::Unspecified => "SYMPTOM_TYPE_UNSPECIFIED",
+                Self::LowMemory => "LOW_MEMORY",
+                Self::OutOfMemory => "OUT_OF_MEMORY",
+                Self::ExecuteTimedOut => "EXECUTE_TIMED_OUT",
+                Self::MeshBuildFail => "MESH_BUILD_FAIL",
+                Self::HbmOutOfMemory => "HBM_OUT_OF_MEMORY",
+                Self::ProjectAbuse => "PROJECT_ABUSE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -595,7 +595,13 @@ pub mod symptom {
 }
 /// Generated client implementations.
 pub mod tpu_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages TPU nodes and other resources
@@ -682,8 +688,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -705,8 +710,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -731,8 +735,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -757,8 +760,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -783,8 +785,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -809,8 +810,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -835,8 +835,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -861,8 +860,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -889,8 +887,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -917,8 +914,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -945,8 +941,7 @@ pub mod tpu_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -238,31 +238,31 @@ pub mod event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::CreativeView => "CREATIVE_VIEW",
-                EventType::Start => "START",
-                EventType::BreakStart => "BREAK_START",
-                EventType::BreakEnd => "BREAK_END",
-                EventType::Impression => "IMPRESSION",
-                EventType::FirstQuartile => "FIRST_QUARTILE",
-                EventType::Midpoint => "MIDPOINT",
-                EventType::ThirdQuartile => "THIRD_QUARTILE",
-                EventType::Complete => "COMPLETE",
-                EventType::Progress => "PROGRESS",
-                EventType::Mute => "MUTE",
-                EventType::Unmute => "UNMUTE",
-                EventType::Pause => "PAUSE",
-                EventType::Click => "CLICK",
-                EventType::ClickThrough => "CLICK_THROUGH",
-                EventType::Rewind => "REWIND",
-                EventType::Resume => "RESUME",
-                EventType::Error => "ERROR",
-                EventType::Expand => "EXPAND",
-                EventType::Collapse => "COLLAPSE",
-                EventType::Close => "CLOSE",
-                EventType::CloseLinear => "CLOSE_LINEAR",
-                EventType::Skip => "SKIP",
-                EventType::AcceptInvitation => "ACCEPT_INVITATION",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::CreativeView => "CREATIVE_VIEW",
+                Self::Start => "START",
+                Self::BreakStart => "BREAK_START",
+                Self::BreakEnd => "BREAK_END",
+                Self::Impression => "IMPRESSION",
+                Self::FirstQuartile => "FIRST_QUARTILE",
+                Self::Midpoint => "MIDPOINT",
+                Self::ThirdQuartile => "THIRD_QUARTILE",
+                Self::Complete => "COMPLETE",
+                Self::Progress => "PROGRESS",
+                Self::Mute => "MUTE",
+                Self::Unmute => "UNMUTE",
+                Self::Pause => "PAUSE",
+                Self::Click => "CLICK",
+                Self::ClickThrough => "CLICK_THROUGH",
+                Self::Rewind => "REWIND",
+                Self::Resume => "RESUME",
+                Self::Error => "ERROR",
+                Self::Expand => "EXPAND",
+                Self::Collapse => "COLLAPSE",
+                Self::Close => "CLOSE",
+                Self::CloseLinear => "CLOSE_LINEAR",
+                Self::Skip => "SKIP",
+                Self::AcceptInvitation => "ACCEPT_INVITATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -355,10 +355,10 @@ pub mod companion_ads {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DisplayRequirement::Unspecified => "DISPLAY_REQUIREMENT_UNSPECIFIED",
-                DisplayRequirement::All => "ALL",
-                DisplayRequirement::Any => "ANY",
-                DisplayRequirement::None => "NONE",
+                Self::Unspecified => "DISPLAY_REQUIREMENT_UNSPECIFIED",
+                Self::All => "ALL",
+                Self::Any => "ANY",
+                Self::None => "NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -534,10 +534,10 @@ pub mod live_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -581,9 +581,9 @@ pub mod live_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StitchingPolicy::Unspecified => "STITCHING_POLICY_UNSPECIFIED",
-                StitchingPolicy::CutCurrent => "CUT_CURRENT",
-                StitchingPolicy::CompleteAd => "COMPLETE_AD",
+                Self::Unspecified => "STITCHING_POLICY_UNSPECIFIED",
+                Self::CutCurrent => "CUT_CURRENT",
+                Self::CompleteAd => "COMPLETE_AD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -645,9 +645,9 @@ impl AdTracking {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AdTracking::Unspecified => "AD_TRACKING_UNSPECIFIED",
-            AdTracking::Client => "CLIENT",
-            AdTracking::Server => "SERVER",
+            Self::Unspecified => "AD_TRACKING_UNSPECIFIED",
+            Self::Client => "CLIENT",
+            Self::Server => "SERVER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -674,12 +674,12 @@ pub struct VodSession {
     #[prost(string, tag = "4")]
     pub play_uri: ::prost::alloc::string::String,
     /// URI of the media to stitch. For most use cases, you should create a
-    /// \[VodConfig\]\[google.cloud.video.stitcher.v1.VodConfig\] with this information
+    /// [VodConfig][google.cloud.video.stitcher.v1.VodConfig] with this information
     /// rather than setting this field directly.
     #[prost(string, tag = "5")]
     pub source_uri: ::prost::alloc::string::String,
     /// Ad tag URI. For most use cases, you should create a
-    /// \[VodConfig\]\[google.cloud.video.stitcher.v1.VodConfig\] with this information
+    /// [VodConfig][google.cloud.video.stitcher.v1.VodConfig] with this information
     /// rather than setting this field directly.
     #[prost(string, tag = "6")]
     pub ad_tag_uri: ::prost::alloc::string::String,
@@ -690,12 +690,12 @@ pub struct VodSession {
     ///
     /// Macros are designated by square brackets, for example:
     ///
-    /// Ad tag URI: `"<https://doubleclick.google.com/ad/1?geo_id=\[geoId\]"`>
+    ///    Ad tag URI: `"<https://doubleclick.google.com/ad/1?geo_id=\[geoId\]"`>
     ///
-    /// Ad tag macro map: `{"geoId": "123"}`
+    ///    Ad tag macro map: `{"geoId": "123"}`
     ///
-    /// Fully qualified ad tag:
-    /// `"<https://doubleclick.google.com/ad/1?geo_id=123"`>
+    ///    Fully qualified ad tag:
+    ///    `"<https://doubleclick.google.com/ad/1?geo_id=123"`>
     #[prost(btree_map = "string, string", tag = "7")]
     pub ad_tag_macro_map: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -802,12 +802,12 @@ pub struct LiveSession {
     ///
     /// Macros are designated by square brackets, for example:
     ///
-    /// Ad tag URI: "<https://doubleclick.google.com/ad/1?geo_id=\[geoId\]">
+    ///    Ad tag URI: "<https://doubleclick.google.com/ad/1?geo_id=\[geoId\]">
     ///
-    /// Ad tag macros: `{"geoId": "123"}`
+    ///    Ad tag macros: `{"geoId": "123"}`
     ///
-    /// Fully qualified ad tag:
-    /// `"<https://doubleclick.google.com/ad/1?geo_id=123"`>
+    ///    Fully qualified ad tag:
+    ///    `"<https://doubleclick.google.com/ad/1?geo_id=123"`>
     #[prost(btree_map = "string, string", tag = "6")]
     pub ad_tag_macros: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -891,9 +891,9 @@ pub mod manifest_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OrderPolicy::Unspecified => "ORDER_POLICY_UNSPECIFIED",
-                OrderPolicy::Ascending => "ASCENDING",
-                OrderPolicy::Descending => "DESCENDING",
+                Self::Unspecified => "ORDER_POLICY_UNSPECIFIED",
+                Self::Ascending => "ASCENDING",
+                Self::Descending => "DESCENDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1038,10 +1038,10 @@ pub mod vod_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1580,7 +1580,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod video_stitcher_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Video-On-Demand content stitching API allows you to insert ads
@@ -1669,8 +1675,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1700,8 +1705,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1728,8 +1732,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1759,8 +1762,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1791,8 +1793,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1820,8 +1821,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1849,8 +1849,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1881,8 +1880,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1912,8 +1910,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1943,8 +1940,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1971,8 +1967,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2002,8 +1997,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2033,8 +2027,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2064,8 +2057,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2095,8 +2087,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2123,8 +2114,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2154,8 +2144,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2185,8 +2174,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2213,8 +2201,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2241,8 +2228,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2273,8 +2259,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2305,8 +2290,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2334,8 +2318,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2365,8 +2348,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2397,8 +2379,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2429,8 +2410,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2461,8 +2441,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2490,8 +2469,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2521,8 +2499,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2553,8 +2530,7 @@ pub mod video_stitcher_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -137,7 +137,7 @@ pub struct SearchAllResourcesRequest {
     /// Optional. A comma separated list of fields specifying the sorting order of
     /// the results. The default order is ascending. Add ` DESC` after the field
     /// name to indicate descending order. Redundant space characters are ignored.
-    /// For example, ` location DESC ,  name `.
+    /// For example, `  location DESC ,  name  `.
     #[prost(string, tag = "10")]
     pub order_by: ::prost::alloc::string::String,
 }
@@ -200,7 +200,13 @@ pub struct SearchAllIamPoliciesResponse {
 }
 /// Generated client implementations.
 pub mod asset_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Asset service definition.
@@ -290,8 +296,7 @@ pub mod asset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -326,8 +331,7 @@ pub mod asset_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

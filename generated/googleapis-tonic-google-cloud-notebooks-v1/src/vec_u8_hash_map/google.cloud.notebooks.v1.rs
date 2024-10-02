@@ -7,12 +7,11 @@ pub struct DiagnosticConfig {
     ///
     /// Permissions:
     /// User Managed Notebooks:
-    ///
-    /// * storage.buckets.writer: Must be given to the project's service account
-    ///   attached to VM.
-    ///   Google Managed Notebooks:
-    /// * storage.buckets.writer: Must be given to the project's service account or
-    ///   user credentials attached to VM depending on authentication mode.
+    /// - storage.buckets.writer: Must be given to the project's service account
+    ///    attached to VM.
+    /// Google Managed Notebooks:
+    /// - storage.buckets.writer: Must be given to the project's service account or
+    ///    user credentials attached to VM depending on authentication mode.
     ///
     /// Cloud Storage bucket Log file will be written to
     /// `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`
@@ -171,11 +170,11 @@ pub mod event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::Idle => "IDLE",
-                EventType::Heartbeat => "HEARTBEAT",
-                EventType::Health => "HEALTH",
-                EventType::Maintenance => "MAINTENANCE",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::Idle => "IDLE",
+                Self::Heartbeat => "HEARTBEAT",
+                Self::Health => "HEALTH",
+                Self::Maintenance => "MAINTENANCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -206,40 +205,42 @@ pub struct ExecutionTemplate {
     /// You can use certain Compute Engine machine types directly in this field.
     /// The following types are supported:
     ///
-    /// * `n1-standard-4`
-    /// * `n1-standard-8`
-    /// * `n1-standard-16`
-    /// * `n1-standard-32`
-    /// * `n1-standard-64`
-    /// * `n1-standard-96`
-    /// * `n1-highmem-2`
-    /// * `n1-highmem-4`
-    /// * `n1-highmem-8`
-    /// * `n1-highmem-16`
-    /// * `n1-highmem-32`
-    /// * `n1-highmem-64`
-    /// * `n1-highmem-96`
-    /// * `n1-highcpu-16`
-    /// * `n1-highcpu-32`
-    /// * `n1-highcpu-64`
-    /// * `n1-highcpu-96`
+    /// - `n1-standard-4`
+    /// - `n1-standard-8`
+    /// - `n1-standard-16`
+    /// - `n1-standard-32`
+    /// - `n1-standard-64`
+    /// - `n1-standard-96`
+    /// - `n1-highmem-2`
+    /// - `n1-highmem-4`
+    /// - `n1-highmem-8`
+    /// - `n1-highmem-16`
+    /// - `n1-highmem-32`
+    /// - `n1-highmem-64`
+    /// - `n1-highmem-96`
+    /// - `n1-highcpu-16`
+    /// - `n1-highcpu-32`
+    /// - `n1-highcpu-64`
+    /// - `n1-highcpu-96`
+    ///
     ///
     /// Alternatively, you can use the following legacy machine types:
     ///
-    /// * `standard`
-    /// * `large_model`
-    /// * `complex_model_s`
-    /// * `complex_model_m`
-    /// * `complex_model_l`
-    /// * `standard_gpu`
-    /// * `complex_model_m_gpu`
-    /// * `complex_model_l_gpu`
-    /// * `standard_p100`
-    /// * `complex_model_m_p100`
-    /// * `standard_v100`
-    /// * `large_model_v100`
-    /// * `complex_model_m_v100`
-    /// * `complex_model_l_v100`
+    /// - `standard`
+    /// - `large_model`
+    /// - `complex_model_s`
+    /// - `complex_model_m`
+    /// - `complex_model_l`
+    /// - `standard_gpu`
+    /// - `complex_model_m_gpu`
+    /// - `complex_model_l_gpu`
+    /// - `standard_p100`
+    /// - `complex_model_m_p100`
+    /// - `standard_v100`
+    /// - `large_model_v100`
+    /// - `complex_model_m_v100`
+    /// - `complex_model_l_v100`
+    ///
     ///
     /// Finally, if you want to use a TPU for training, specify `cloud_tpu` in this
     /// field. Learn more about the [special configuration options for training
@@ -395,9 +396,9 @@ pub mod execution_template {
         /// own cluster specification. When you use this tier, set values to
         /// configure your processing cluster according to these guidelines:
         ///
-        /// * You *must* set `ExecutionTemplate.masterType` to specify the type
-        ///   of machine to use for your master node. This is the only required
-        ///   setting.
+        /// *   You _must_ set `ExecutionTemplate.masterType` to specify the type
+        ///      of machine to use for your master node. This is the only required
+        ///      setting.
         Custom = 6,
     }
     impl ScaleTier {
@@ -407,13 +408,13 @@ pub mod execution_template {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ScaleTier::Unspecified => "SCALE_TIER_UNSPECIFIED",
-                ScaleTier::Basic => "BASIC",
-                ScaleTier::Standard1 => "STANDARD_1",
-                ScaleTier::Premium1 => "PREMIUM_1",
-                ScaleTier::BasicGpu => "BASIC_GPU",
-                ScaleTier::BasicTpu => "BASIC_TPU",
-                ScaleTier::Custom => "CUSTOM",
+                Self::Unspecified => "SCALE_TIER_UNSPECIFIED",
+                Self::Basic => "BASIC",
+                Self::Standard1 => "STANDARD_1",
+                Self::Premium1 => "PREMIUM_1",
+                Self::BasicGpu => "BASIC_GPU",
+                Self::BasicTpu => "BASIC_TPU",
+                Self::Custom => "CUSTOM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -470,17 +471,15 @@ pub mod execution_template {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SchedulerAcceleratorType::Unspecified => {
-                    "SCHEDULER_ACCELERATOR_TYPE_UNSPECIFIED"
-                }
-                SchedulerAcceleratorType::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
-                SchedulerAcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
-                SchedulerAcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
-                SchedulerAcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
-                SchedulerAcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
-                SchedulerAcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
-                SchedulerAcceleratorType::TpuV2 => "TPU_V2",
-                SchedulerAcceleratorType::TpuV3 => "TPU_V3",
+                Self::Unspecified => "SCHEDULER_ACCELERATOR_TYPE_UNSPECIFIED",
+                Self::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
+                Self::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
+                Self::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
+                Self::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
+                Self::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
+                Self::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
+                Self::TpuV2 => "TPU_V2",
+                Self::TpuV3 => "TPU_V3",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -529,9 +528,9 @@ pub mod execution_template {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                JobType::Unspecified => "JOB_TYPE_UNSPECIFIED",
-                JobType::VertexAi => "VERTEX_AI",
-                JobType::Dataproc => "DATAPROC",
+                Self::Unspecified => "JOB_TYPE_UNSPECIFIED",
+                Self::VertexAi => "VERTEX_AI",
+                Self::Dataproc => "DATAPROC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -567,7 +566,7 @@ pub struct Execution {
     #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Name used for UI purposes.
-    /// Name can only contain alphanumeric characters and underscores '\_'.
+    /// Name can only contain alphanumeric characters and underscores '_'.
     #[prost(string, tag = "3")]
     pub display_name: ::prost::alloc::string::String,
     /// A brief description of this execution.
@@ -637,16 +636,16 @@ pub mod execution {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Queued => "QUEUED",
-                State::Preparing => "PREPARING",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
-                State::Expired => "EXPIRED",
-                State::Initializing => "INITIALIZING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Queued => "QUEUED",
+                Self::Preparing => "PREPARING",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
+                Self::Expired => "EXPIRED",
+                Self::Initializing => "INITIALIZING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -713,10 +712,10 @@ pub mod reservation_affinity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::NoReservation => "NO_RESERVATION",
-                Type::AnyReservation => "ANY_RESERVATION",
-                Type::SpecificReservation => "SPECIFIC_RESERVATION",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::NoReservation => "NO_RESERVATION",
+                Self::AnyReservation => "ANY_RESERVATION",
+                Self::SpecificReservation => "SPECIFIC_RESERVATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -769,11 +768,10 @@ pub struct Instance {
     /// If not specified, the following
     /// [scopes](<https://cloud.google.com/compute/docs/access/service-accounts#accesscopesiam>)
     /// are defined:
-    ///
-    /// * <https://www.googleapis.com/auth/cloud-platform>
-    /// * <https://www.googleapis.com/auth/userinfo.email>
-    ///   If not using default scopes, you need at least:
-    ///   <https://www.googleapis.com/auth/compute>
+    ///   - <https://www.googleapis.com/auth/cloud-platform>
+    ///   - <https://www.googleapis.com/auth/userinfo.email>
+    /// If not using default scopes, you need at least:
+    ///     <https://www.googleapis.com/auth/compute>
     #[prost(string, repeated, tag = "31")]
     pub service_account_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. The [Compute Engine machine
@@ -1106,10 +1104,10 @@ pub mod instance {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Started => "STARTED",
-                    State::Succeeded => "SUCCEEDED",
-                    State::Failed => "FAILED",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Started => "STARTED",
+                    Self::Succeeded => "SUCCEEDED",
+                    Self::Failed => "FAILED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1151,9 +1149,9 @@ pub mod instance {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Action::Unspecified => "ACTION_UNSPECIFIED",
-                    Action::Upgrade => "UPGRADE",
-                    Action::Rollback => "ROLLBACK",
+                    Self::Unspecified => "ACTION_UNSPECIFIED",
+                    Self::Upgrade => "UPGRADE",
+                    Self::Rollback => "ROLLBACK",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1214,18 +1212,18 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AcceleratorType::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
-                AcceleratorType::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
-                AcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
-                AcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
-                AcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
-                AcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
-                AcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
-                AcceleratorType::NvidiaTeslaT4Vws => "NVIDIA_TESLA_T4_VWS",
-                AcceleratorType::NvidiaTeslaP100Vws => "NVIDIA_TESLA_P100_VWS",
-                AcceleratorType::NvidiaTeslaP4Vws => "NVIDIA_TESLA_P4_VWS",
-                AcceleratorType::TpuV2 => "TPU_V2",
-                AcceleratorType::TpuV3 => "TPU_V3",
+                Self::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
+                Self::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
+                Self::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
+                Self::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
+                Self::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
+                Self::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
+                Self::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
+                Self::NvidiaTeslaT4Vws => "NVIDIA_TESLA_T4_VWS",
+                Self::NvidiaTeslaP100Vws => "NVIDIA_TESLA_P100_VWS",
+                Self::NvidiaTeslaP4Vws => "NVIDIA_TESLA_P4_VWS",
+                Self::TpuV2 => "TPU_V2",
+                Self::TpuV3 => "TPU_V3",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1294,18 +1292,18 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Starting => "STARTING",
-                State::Provisioning => "PROVISIONING",
-                State::Active => "ACTIVE",
-                State::Stopping => "STOPPING",
-                State::Stopped => "STOPPED",
-                State::Deleted => "DELETED",
-                State::Upgrading => "UPGRADING",
-                State::Initializing => "INITIALIZING",
-                State::Registering => "REGISTERING",
-                State::Suspending => "SUSPENDING",
-                State::Suspended => "SUSPENDED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Starting => "STARTING",
+                Self::Provisioning => "PROVISIONING",
+                Self::Active => "ACTIVE",
+                Self::Stopping => "STOPPING",
+                Self::Stopped => "STOPPED",
+                Self::Deleted => "DELETED",
+                Self::Upgrading => "UPGRADING",
+                Self::Initializing => "INITIALIZING",
+                Self::Registering => "REGISTERING",
+                Self::Suspending => "SUSPENDING",
+                Self::Suspended => "SUSPENDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1359,11 +1357,11 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DiskType::Unspecified => "DISK_TYPE_UNSPECIFIED",
-                DiskType::PdStandard => "PD_STANDARD",
-                DiskType::PdSsd => "PD_SSD",
-                DiskType::PdBalanced => "PD_BALANCED",
-                DiskType::PdExtreme => "PD_EXTREME",
+                Self::Unspecified => "DISK_TYPE_UNSPECIFIED",
+                Self::PdStandard => "PD_STANDARD",
+                Self::PdSsd => "PD_SSD",
+                Self::PdBalanced => "PD_BALANCED",
+                Self::PdExtreme => "PD_EXTREME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1406,9 +1404,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DiskEncryption::Unspecified => "DISK_ENCRYPTION_UNSPECIFIED",
-                DiskEncryption::Gmek => "GMEK",
-                DiskEncryption::Cmek => "CMEK",
+                Self::Unspecified => "DISK_ENCRYPTION_UNSPECIFIED",
+                Self::Gmek => "GMEK",
+                Self::Cmek => "CMEK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1450,9 +1448,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NicType::UnspecifiedNicType => "UNSPECIFIED_NIC_TYPE",
-                NicType::VirtioNet => "VIRTIO_NET",
-                NicType::Gvnic => "GVNIC",
+                Self::UnspecifiedNicType => "UNSPECIFIED_NIC_TYPE",
+                Self::VirtioNet => "VIRTIO_NET",
+                Self::Gvnic => "GVNIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1564,15 +1562,15 @@ pub mod runtime {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Starting => "STARTING",
-                State::Provisioning => "PROVISIONING",
-                State::Active => "ACTIVE",
-                State::Stopping => "STOPPING",
-                State::Stopped => "STOPPED",
-                State::Deleting => "DELETING",
-                State::Upgrading => "UPGRADING",
-                State::Initializing => "INITIALIZING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Starting => "STARTING",
+                Self::Provisioning => "PROVISIONING",
+                Self::Active => "ACTIVE",
+                Self::Stopping => "STOPPING",
+                Self::Stopped => "STOPPED",
+                Self::Deleting => "DELETING",
+                Self::Upgrading => "UPGRADING",
+                Self::Initializing => "INITIALIZING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1629,11 +1627,11 @@ pub mod runtime {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HealthState::Unspecified => "HEALTH_STATE_UNSPECIFIED",
-                HealthState::Healthy => "HEALTHY",
-                HealthState::Unhealthy => "UNHEALTHY",
-                HealthState::AgentNotInstalled => "AGENT_NOT_INSTALLED",
-                HealthState::AgentNotRunning => "AGENT_NOT_RUNNING",
+                Self::Unspecified => "HEALTH_STATE_UNSPECIFIED",
+                Self::Healthy => "HEALTHY",
+                Self::Unhealthy => "UNHEALTHY",
+                Self::AgentNotInstalled => "AGENT_NOT_INSTALLED",
+                Self::AgentNotRunning => "AGENT_NOT_RUNNING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1725,18 +1723,18 @@ pub mod runtime_accelerator_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AcceleratorType::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
-                AcceleratorType::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
-                AcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
-                AcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
-                AcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
-                AcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
-                AcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
-                AcceleratorType::TpuV2 => "TPU_V2",
-                AcceleratorType::TpuV3 => "TPU_V3",
-                AcceleratorType::NvidiaTeslaT4Vws => "NVIDIA_TESLA_T4_VWS",
-                AcceleratorType::NvidiaTeslaP100Vws => "NVIDIA_TESLA_P100_VWS",
-                AcceleratorType::NvidiaTeslaP4Vws => "NVIDIA_TESLA_P4_VWS",
+                Self::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
+                Self::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
+                Self::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
+                Self::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
+                Self::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
+                Self::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
+                Self::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
+                Self::TpuV2 => "TPU_V2",
+                Self::TpuV3 => "TPU_V3",
+                Self::NvidiaTeslaT4Vws => "NVIDIA_TESLA_T4_VWS",
+                Self::NvidiaTeslaP100Vws => "NVIDIA_TESLA_P100_VWS",
+                Self::NvidiaTeslaP4Vws => "NVIDIA_TESLA_P4_VWS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1940,11 +1938,11 @@ pub mod local_disk_initialize_params {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DiskType::Unspecified => "DISK_TYPE_UNSPECIFIED",
-                DiskType::PdStandard => "PD_STANDARD",
-                DiskType::PdSsd => "PD_SSD",
-                DiskType::PdBalanced => "PD_BALANCED",
-                DiskType::PdExtreme => "PD_EXTREME",
+                Self::Unspecified => "DISK_TYPE_UNSPECIFIED",
+                Self::PdStandard => "PD_STANDARD",
+                Self::PdSsd => "PD_SSD",
+                Self::PdBalanced => "PD_BALANCED",
+                Self::PdExtreme => "PD_EXTREME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2008,9 +2006,9 @@ pub mod runtime_access_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RuntimeAccessType::Unspecified => "RUNTIME_ACCESS_TYPE_UNSPECIFIED",
-                RuntimeAccessType::SingleUser => "SINGLE_USER",
-                RuntimeAccessType::ServiceAccount => "SERVICE_ACCOUNT",
+                Self::Unspecified => "RUNTIME_ACCESS_TYPE_UNSPECIFIED",
+                Self::SingleUser => "SINGLE_USER",
+                Self::ServiceAccount => "SERVICE_ACCOUNT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2111,13 +2109,9 @@ pub mod runtime_software_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PostStartupScriptBehavior::Unspecified => {
-                    "POST_STARTUP_SCRIPT_BEHAVIOR_UNSPECIFIED"
-                }
-                PostStartupScriptBehavior::RunEveryStart => "RUN_EVERY_START",
-                PostStartupScriptBehavior::DownloadAndRunEveryStart => {
-                    "DOWNLOAD_AND_RUN_EVERY_START"
-                }
+                Self::Unspecified => "POST_STARTUP_SCRIPT_BEHAVIOR_UNSPECIFIED",
+                Self::RunEveryStart => "RUN_EVERY_START",
+                Self::DownloadAndRunEveryStart => "DOWNLOAD_AND_RUN_EVERY_START",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2186,13 +2180,11 @@ pub struct VirtualMachineConfig {
     /// If using regional request, the notebooks service will pick a location
     /// in the corresponding runtime region.
     /// On a get request, zone will always be present. Example:
-    ///
     /// * `us-central1-b`
     #[prost(string, tag = "1")]
     pub zone: ::prost::alloc::string::String,
     /// Required. The Compute Engine machine type used for runtimes.
     /// Short name is valid. Examples:
-    ///
     /// * `n1-standard-2`
     /// * `e2-standard-8`
     #[prost(string, tag = "2")]
@@ -2227,9 +2219,9 @@ pub struct VirtualMachineConfig {
     ///
     /// * Google Managed Network (Network & subnet are empty)
     /// * Consumer Project VPC (network & subnet are required). Requires
-    ///   configuring Private Service Access.
+    /// configuring Private Service Access.
     /// * Shared VPC (network & subnet are required). Requires configuring Private
-    ///   Service Access.
+    /// Service Access.
     #[prost(string, tag = "8")]
     pub network: ::prost::alloc::string::String,
     /// Optional. The Compute Engine subnetwork to be used for machine
@@ -2291,16 +2283,14 @@ pub struct VirtualMachineConfig {
     ///
     /// Example: managed-notebooks-range-c
     ///
-    /// ```text
-    /// PEERING_RANGE_NAME_3=managed-notebooks-range-c
-    /// gcloud compute addresses create $PEERING_RANGE_NAME_3 \
-    ///    --global \
-    ///    --prefix-length=24 \
-    ///    --description="Google Cloud Managed Notebooks Range 24 c" \
-    ///    --network=$NETWORK \
-    ///    --addresses=192.168.0.0 \
-    ///    --purpose=VPC_PEERING
-    /// ```
+    ///      PEERING_RANGE_NAME_3=managed-notebooks-range-c
+    ///      gcloud compute addresses create $PEERING_RANGE_NAME_3 \
+    ///        --global \
+    ///        --prefix-length=24 \
+    ///        --description="Google Cloud Managed Notebooks Range 24 c" \
+    ///        --network=$NETWORK \
+    ///        --addresses=192.168.0.0 \
+    ///        --purpose=VPC_PEERING
     ///
     /// Field value will be: `managed-notebooks-range-c`
     #[prost(string, tag = "18")]
@@ -2344,9 +2334,9 @@ pub mod virtual_machine_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NicType::UnspecifiedNicType => "UNSPECIFIED_NIC_TYPE",
-                NicType::VirtioNet => "VIRTIO_NET",
-                NicType::Gvnic => "GVNIC",
+                Self::UnspecifiedNicType => "UNSPECIFIED_NIC_TYPE",
+                Self::VirtioNet => "VIRTIO_NET",
+                Self::Gvnic => "GVNIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2479,7 +2469,7 @@ pub struct ResetRuntimeRequest {
 }
 /// Request for upgrading a Managed Notebook Runtime to the latest version.
 /// option (google.api.message_visibility).restriction =
-/// "TRUSTED_TESTER,SPECIAL_TESTER";
+///      "TRUSTED_TESTER,SPECIAL_TESTER";
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeRuntimeRequest {
     /// Required. Format:
@@ -2517,25 +2507,23 @@ pub struct UpdateRuntimeRequest {
     /// specified as `software_config.kernels`,
     /// and the `PATCH` request body would specify the new value, as follows:
     ///
-    /// ```text
-    /// {
-    ///    "software_config":{
-    ///      "kernels": [{
-    ///         'repository':
-    ///         'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag':
-    ///         'latest' }],
+    ///      {
+    ///        "software_config":{
+    ///          "kernels": [{
+    ///             'repository':
+    ///             'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag':
+    ///             'latest' }],
+    ///          }
     ///      }
-    /// }
-    /// ```
+    ///
     ///
     /// Currently, only the following fields can be updated:
-    ///
-    /// * `software_config.kernels`
-    /// * `software_config.post_startup_script`
-    /// * `software_config.custom_gpu_driver_path`
-    /// * `software_config.idle_shutdown`
-    /// * `software_config.idle_shutdown_timeout`
-    /// * `software_config.disable_terminal`
+    /// - `software_config.kernels`
+    /// - `software_config.post_startup_script`
+    /// - `software_config.custom_gpu_driver_path`
+    /// - `software_config.idle_shutdown`
+    /// - `software_config.idle_shutdown_timeout`
+    /// - `software_config.disable_terminal`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Idempotent request UUID.
@@ -2577,7 +2565,13 @@ pub struct DiagnoseRuntimeRequest {
 }
 /// Generated client implementations.
 pub mod managed_notebook_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API v1 service for Managed Notebooks.
@@ -2664,8 +2658,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2693,8 +2686,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2724,8 +2716,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2755,8 +2746,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2786,8 +2776,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2821,8 +2810,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2856,8 +2844,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2887,8 +2874,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2918,8 +2904,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2949,8 +2934,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2980,8 +2964,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3012,8 +2995,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3043,8 +3025,7 @@ pub mod managed_notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3133,14 +3114,14 @@ pub mod schedule {
         Enabled = 1,
         /// The job is paused by the user. It will not execute. A user can
         /// intentionally pause the job using
-        /// \[PauseJobRequest\]\[\].
+        /// [PauseJobRequest][].
         Paused = 2,
         /// The job is disabled by the system due to error. The user
         /// cannot directly set a job to be disabled.
         Disabled = 3,
-        /// The job state resulting from a failed \[CloudScheduler.UpdateJob\]\[\]
+        /// The job state resulting from a failed [CloudScheduler.UpdateJob][]
         /// operation. To recover a job from this state, retry
-        /// \[CloudScheduler.UpdateJob\]\[\] until a successful response is received.
+        /// [CloudScheduler.UpdateJob][] until a successful response is received.
         UpdateFailed = 4,
         /// The schedule resource is being created.
         Initializing = 5,
@@ -3154,13 +3135,13 @@ pub mod schedule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Enabled => "ENABLED",
-                State::Paused => "PAUSED",
-                State::Disabled => "DISABLED",
-                State::UpdateFailed => "UPDATE_FAILED",
-                State::Initializing => "INITIALIZING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Paused => "PAUSED",
+                Self::Disabled => "DISABLED",
+                Self::UpdateFailed => "UPDATE_FAILED",
+                Self::Initializing => "INITIALIZING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3198,8 +3179,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to `Code.CANCELLED`.
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
     /// API version used to start the operation.
@@ -3467,13 +3448,13 @@ pub struct GetInstanceHealthResponse {
     pub health_state: i32,
     /// Output only. Additional information about instance health.
     /// Example:
-    /// healthInfo": {
-    /// "docker_proxy_agent_status": "1",
-    /// "docker_status": "1",
-    /// "jupyterlab_api_status": "-1",
-    /// "jupyterlab_status": "-1",
-    /// "updated": "2020-10-18 09:40:03.573409"
-    /// }
+    ///      healthInfo": {
+    ///        "docker_proxy_agent_status": "1",
+    ///        "docker_status": "1",
+    ///        "jupyterlab_api_status": "-1",
+    ///        "jupyterlab_status": "-1",
+    ///        "updated": "2020-10-18 09:40:03.573409"
+    ///      }
     #[prost(map = "string, string", tag = "2")]
     pub health_info: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -3520,11 +3501,11 @@ pub mod get_instance_health_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HealthState::Unspecified => "HEALTH_STATE_UNSPECIFIED",
-                HealthState::Healthy => "HEALTHY",
-                HealthState::Unhealthy => "UNHEALTHY",
-                HealthState::AgentNotInstalled => "AGENT_NOT_INSTALLED",
-                HealthState::AgentNotRunning => "AGENT_NOT_RUNNING",
+                Self::Unspecified => "HEALTH_STATE_UNSPECIFIED",
+                Self::Healthy => "HEALTHY",
+                Self::Unhealthy => "UNHEALTHY",
+                Self::AgentNotInstalled => "AGENT_NOT_INSTALLED",
+                Self::AgentNotRunning => "AGENT_NOT_RUNNING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3684,10 +3665,8 @@ pub struct ListSchedulesResponse {
     pub next_page_token: ::prost::alloc::string::String,
     /// Schedules that could not be reached. For example:
     ///
-    /// ```text
-    /// ['projects/{project_id}/location/{location}/schedules/monthly_digest',
-    ///   'projects/{project_id}/location/{location}/schedules/weekly_sentiment']
-    /// ```
+    ///      ['projects/{project_id}/location/{location}/schedules/monthly_digest',
+    ///       'projects/{project_id}/location/{location}/schedules/weekly_sentiment']
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -3764,10 +3743,8 @@ pub struct ListExecutionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
     /// Executions IDs that could not be reached. For example:
     ///
-    /// ```text
-    /// ['projects/{project_id}/location/{location}/executions/imagenet_test1',
-    ///   'projects/{project_id}/location/{location}/executions/classifier_train1']
-    /// ```
+    ///      ['projects/{project_id}/location/{location}/executions/imagenet_test1',
+    ///       'projects/{project_id}/location/{location}/executions/classifier_train1']
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -3824,11 +3801,11 @@ impl UpgradeType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            UpgradeType::Unspecified => "UPGRADE_TYPE_UNSPECIFIED",
-            UpgradeType::UpgradeFramework => "UPGRADE_FRAMEWORK",
-            UpgradeType::UpgradeOs => "UPGRADE_OS",
-            UpgradeType::UpgradeCuda => "UPGRADE_CUDA",
-            UpgradeType::UpgradeAll => "UPGRADE_ALL",
+            Self::Unspecified => "UPGRADE_TYPE_UNSPECIFIED",
+            Self::UpgradeFramework => "UPGRADE_FRAMEWORK",
+            Self::UpgradeOs => "UPGRADE_OS",
+            Self::UpgradeCuda => "UPGRADE_CUDA",
+            Self::UpgradeAll => "UPGRADE_ALL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3845,7 +3822,13 @@ impl UpgradeType {
 }
 /// Generated client implementations.
 pub mod notebook_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API v1 service for Cloud AI Platform Notebooks.
@@ -3930,8 +3913,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3958,8 +3940,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3989,8 +3970,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4023,8 +4003,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4054,8 +4033,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4085,8 +4063,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4116,8 +4093,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4147,8 +4123,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4178,8 +4153,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4209,8 +4183,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4240,8 +4213,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4271,8 +4243,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4302,8 +4273,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4333,8 +4303,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4367,8 +4336,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4398,8 +4366,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4429,8 +4396,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4460,8 +4426,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4491,8 +4456,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4522,8 +4486,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4554,8 +4517,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4585,8 +4547,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4613,8 +4574,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4644,8 +4604,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4675,8 +4634,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4706,8 +4664,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4734,8 +4691,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4765,8 +4721,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4796,8 +4751,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4827,8 +4781,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4858,8 +4811,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4886,8 +4838,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4917,8 +4868,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4948,8 +4898,7 @@ pub mod notebook_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

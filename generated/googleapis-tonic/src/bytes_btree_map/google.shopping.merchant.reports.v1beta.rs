@@ -236,6 +236,7 @@ pub struct ProductPerformanceView {
 ///
 /// Values are only set for fields requested explicitly in the request's search
 /// query.
+///
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductView {
     /// REST ID of the product, in the form of
@@ -471,12 +472,10 @@ pub mod product_view {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        AggregatedIssueSeverity::Unspecified => {
-                            "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED"
-                        }
-                        AggregatedIssueSeverity::Disapproved => "DISAPPROVED",
-                        AggregatedIssueSeverity::Demoted => "DEMOTED",
-                        AggregatedIssueSeverity::Pending => "PENDING",
+                        Self::Unspecified => "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED",
+                        Self::Disapproved => "DISAPPROVED",
+                        Self::Demoted => "DEMOTED",
+                        Self::Pending => "PENDING",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -523,11 +522,9 @@ pub mod product_view {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ItemIssueResolution::Unspecified => {
-                        "ITEM_ISSUE_RESOLUTION_UNSPECIFIED"
-                    }
-                    ItemIssueResolution::MerchantAction => "MERCHANT_ACTION",
-                    ItemIssueResolution::PendingProcessing => "PENDING_PROCESSING",
+                    Self::Unspecified => "ITEM_ISSUE_RESOLUTION_UNSPECIFIED",
+                    Self::MerchantAction => "MERCHANT_ACTION",
+                    Self::PendingProcessing => "PENDING_PROCESSING",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -545,13 +542,15 @@ pub mod product_view {
     ///
     /// Here's an example of how the aggregated status is computed:
     ///
-    /// |Free listings|Shopping ads|Status|
-    /// |-------------|------------|------|
-    /// |Approved|Approved|ELIGIBLE|
-    /// |Approved|Pending|ELIGIBLE|
-    /// |Approved|Disapproved|ELIGIBLE_LIMITED|
-    /// |Pending|Pending|PENDING|
-    /// |Disapproved|Disapproved|NOT_ELIGIBLE_OR_DISAPPROVED|
+    /// Free listings | Shopping ads | Status
+    /// --------------|--------------|------------------------------
+    /// Approved      | Approved     | ELIGIBLE
+    /// Approved      | Pending      | ELIGIBLE
+    /// Approved      | Disapproved  | ELIGIBLE_LIMITED
+    /// Pending       | Pending      | PENDING
+    /// Disapproved   | Disapproved  | NOT_ELIGIBLE_OR_DISAPPROVED
+    ///
+    ///
     #[derive(
         Clone,
         Copy,
@@ -583,15 +582,11 @@ pub mod product_view {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AggregatedReportingContextStatus::Unspecified => {
-                    "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED"
-                }
-                AggregatedReportingContextStatus::NotEligibleOrDisapproved => {
-                    "NOT_ELIGIBLE_OR_DISAPPROVED"
-                }
-                AggregatedReportingContextStatus::Pending => "PENDING",
-                AggregatedReportingContextStatus::EligibleLimited => "ELIGIBLE_LIMITED",
-                AggregatedReportingContextStatus::Eligible => "ELIGIBLE",
+                Self::Unspecified => "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED",
+                Self::NotEligibleOrDisapproved => "NOT_ELIGIBLE_OR_DISAPPROVED",
+                Self::Pending => "PENDING",
+                Self::EligibleLimited => "ELIGIBLE_LIMITED",
+                Self::Eligible => "ELIGIBLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -646,10 +641,10 @@ pub mod product_view {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ClickPotential::Unspecified => "CLICK_POTENTIAL_UNSPECIFIED",
-                ClickPotential::Low => "LOW",
-                ClickPotential::Medium => "MEDIUM",
-                ClickPotential::High => "HIGH",
+                Self::Unspecified => "CLICK_POTENTIAL_UNSPECIFIED",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -870,10 +865,10 @@ pub mod price_insights_product_view {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Effectiveness::Unspecified => "EFFECTIVENESS_UNSPECIFIED",
-                Effectiveness::Low => "LOW",
-                Effectiveness::Medium => "MEDIUM",
-                Effectiveness::High => "HIGH",
+                Self::Unspecified => "EFFECTIVENESS_UNSPECIFIED",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -901,8 +896,8 @@ pub mod price_insights_product_view {
 pub struct BestSellersProductClusterView {
     /// Report date. The value of this field can only be one of the following:
     ///
-    /// * The first day of the week (Monday) for weekly reports,
-    /// * The first day of the month for monthly reports.
+    /// *   The first day of the week (Monday) for weekly reports,
+    /// *   The first day of the month for monthly reports.
     ///
     /// Required in the `SELECT` clause. If a `WHERE` condition on `report_date` is
     /// not specified in the query, the latest available weekly or monthly report
@@ -1050,10 +1045,10 @@ pub mod best_sellers_product_cluster_view {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                InventoryStatus::Unspecified => "INVENTORY_STATUS_UNSPECIFIED",
-                InventoryStatus::InStock => "IN_STOCK",
-                InventoryStatus::OutOfStock => "OUT_OF_STOCK",
-                InventoryStatus::NotInInventory => "NOT_IN_INVENTORY",
+                Self::Unspecified => "INVENTORY_STATUS_UNSPECIFIED",
+                Self::InStock => "IN_STOCK",
+                Self::OutOfStock => "OUT_OF_STOCK",
+                Self::NotInInventory => "NOT_IN_INVENTORY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1079,8 +1074,8 @@ pub mod best_sellers_product_cluster_view {
 pub struct BestSellersBrandView {
     /// Report date. The value of this field can only be one of the following:
     ///
-    /// * The first day of the week (Monday) for weekly reports,
-    /// * The first day of the month for monthly reports.
+    /// *   The first day of the week (Monday) for weekly reports,
+    /// *   The first day of the month for monthly reports.
     ///
     /// Required in the `SELECT` clause. If a `WHERE` condition on `report_date` is
     /// not specified in the query, the latest available weekly or monthly report
@@ -1428,9 +1423,9 @@ pub mod marketing_method {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MarketingMethodEnum::Unspecified => "MARKETING_METHOD_ENUM_UNSPECIFIED",
-                MarketingMethodEnum::Organic => "ORGANIC",
-                MarketingMethodEnum::Ads => "ADS",
+                Self::Unspecified => "MARKETING_METHOD_ENUM_UNSPECIFIED",
+                Self::Organic => "ORGANIC",
+                Self::Ads => "ADS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1478,11 +1473,9 @@ pub mod report_granularity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReportGranularityEnum::Unspecified => {
-                    "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
-                }
-                ReportGranularityEnum::Weekly => "WEEKLY",
-                ReportGranularityEnum::Monthly => "MONTHLY",
+                Self::Unspecified => "REPORT_GRANULARITY_ENUM_UNSPECIFIED",
+                Self::Weekly => "WEEKLY",
+                Self::Monthly => "MONTHLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1540,12 +1533,12 @@ pub mod relative_demand {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RelativeDemandEnum::Unspecified => "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
-                RelativeDemandEnum::VeryLow => "VERY_LOW",
-                RelativeDemandEnum::Low => "LOW",
-                RelativeDemandEnum::Medium => "MEDIUM",
-                RelativeDemandEnum::High => "HIGH",
-                RelativeDemandEnum::VeryHigh => "VERY_HIGH",
+                Self::Unspecified => "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
+                Self::VeryLow => "VERY_LOW",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
+                Self::VeryHigh => "VERY_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1598,12 +1591,10 @@ pub mod relative_demand_change_type {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RelativeDemandChangeTypeEnum::Unspecified => {
-                    "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED"
-                }
-                RelativeDemandChangeTypeEnum::Sinker => "SINKER",
-                RelativeDemandChangeTypeEnum::Flat => "FLAT",
-                RelativeDemandChangeTypeEnum::Riser => "RISER",
+                Self::Unspecified => "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED",
+                Self::Sinker => "SINKER",
+                Self::Flat => "FLAT",
+                Self::Riser => "RISER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1653,10 +1644,10 @@ pub mod traffic_source {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TrafficSourceEnum::Unspecified => "TRAFFIC_SOURCE_ENUM_UNSPECIFIED",
-                TrafficSourceEnum::Organic => "ORGANIC",
-                TrafficSourceEnum::Ads => "ADS",
-                TrafficSourceEnum::All => "ALL",
+                Self::Unspecified => "TRAFFIC_SOURCE_ENUM_UNSPECIFIED",
+                Self::Organic => "ORGANIC",
+                Self::Ads => "ADS",
+                Self::All => "ALL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1673,7 +1664,13 @@ pub mod traffic_source {
 }
 /// Generated client implementations.
 pub mod report_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for retrieving reports and insights about your products, their
@@ -1758,8 +1755,7 @@ pub mod report_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

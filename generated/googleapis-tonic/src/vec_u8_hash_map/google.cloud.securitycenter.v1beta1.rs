@@ -15,11 +15,11 @@ pub struct SecurityMarks {
     /// Mutable user specified security marks belonging to the parent resource.
     /// Constraints are as follows:
     ///
-    /// * Keys and values are treated as case insensitive
-    /// * Keys must be between 1 - 256 characters (inclusive)
-    /// * Keys must be letters, numbers, underscores, or dashes
-    /// * Values have leading and trailing whitespace trimmed, remaining
-    ///   characters must be between 1 - 4096 characters (inclusive)
+    ///    * Keys and values are treated as case insensitive
+    ///    * Keys must be between 1 - 256 characters (inclusive)
+    ///    * Keys must be letters, numbers, underscores, or dashes
+    ///    * Values have leading and trailing whitespace trimmed, remaining
+    ///      characters must be between 1 - 4096 characters (inclusive)
     #[prost(map = "string, string", tag = "2")]
     pub marks: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -195,9 +195,9 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Inactive => "INACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -222,7 +222,7 @@ pub struct OrganizationSettings {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A flag that indicates if Asset Discovery should be enabled. If the flag is
-    /// set to `true`, then discovery of assets will occur. If it is set to \`false,
+    /// set to `true`, then discovery of assets will occur. If it is set to `false,
     /// all historical assets will remain, but discovery of future assets will not
     /// occur.
     #[prost(bool, tag = "2")]
@@ -285,9 +285,9 @@ pub mod organization_settings {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    InclusionMode::Unspecified => "INCLUSION_MODE_UNSPECIFIED",
-                    InclusionMode::IncludeOnly => "INCLUDE_ONLY",
-                    InclusionMode::Exclude => "EXCLUDE",
+                    Self::Unspecified => "INCLUSION_MODE_UNSPECIFIED",
+                    Self::IncludeOnly => "INCLUDE_ONLY",
+                    Self::Exclude => "EXCLUDE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -345,10 +345,10 @@ pub mod run_asset_discovery_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Completed => "COMPLETED",
-                State::Superseded => "SUPERSEDED",
-                State::Terminated => "TERMINATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Completed => "COMPLETED",
+                Self::Superseded => "SUPERSEDED",
+                Self::Terminated => "TERMINATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -501,12 +501,12 @@ pub struct GroupAssetsRequest {
     /// Possible "state" values when compare_duration is specified:
     ///
     /// * "ADDED": indicates that the asset was not present before
-    ///   compare_duration, but present at reference_time.
+    ///               compare_duration, but present at reference_time.
     /// * "REMOVED": indicates that the asset was present at the start of
-    ///   compare_duration, but not present at reference_time.
+    ///               compare_duration, but not present at reference_time.
     /// * "ACTIVE": indicates that the asset was present at both the
-    ///   start and the end of the time period defined by
-    ///   compare_duration and reference_time.
+    ///               start and the end of the time period defined by
+    ///               compare_duration and reference_time.
     ///
     /// This field is ignored if `state` is not a field in `group_by`.
     #[prost(message, optional, tag = "4")]
@@ -560,9 +560,9 @@ pub struct GroupFindingsRequest {
     /// Restrictions have the form `<field> <operator> <value>` and may have a `-`
     /// character in front of them to indicate negation. Examples include:
     ///
-    /// * name
-    /// * source_properties.a_property
-    /// * security_marks.marks.marka
+    ///   * name
+    ///   * source_properties.a_property
+    ///   * security_marks.marks.marka
     ///
     /// The supported operators are:
     ///
@@ -731,12 +731,12 @@ pub struct ListAssetsRequest {
     /// Possible "state" values when compare_duration is specified:
     ///
     /// * "ADDED": indicates that the asset was not present before
-    ///   compare_duration, but present at read_time.
+    ///               compare_duration, but present at read_time.
     /// * "REMOVED": indicates that the asset was present at the start of
-    ///   compare_duration, but not present at read_time.
+    ///               compare_duration, but not present at read_time.
     /// * "ACTIVE": indicates that the asset was present at both the
-    ///   start and the end of the time period defined by
-    ///   compare_duration and read_time.
+    ///               start and the end of the time period defined by
+    ///               compare_duration and read_time.
     ///
     /// If compare_duration is not specified, then the only possible state is
     /// "UNUSED", which indicates that the asset is present at read_time.
@@ -827,11 +827,11 @@ pub mod list_assets_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Unused => "UNUSED",
-                    State::Added => "ADDED",
-                    State::Removed => "REMOVED",
-                    State::Active => "ACTIVE",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Unused => "UNUSED",
+                    Self::Added => "ADDED",
+                    Self::Removed => "REMOVED",
+                    Self::Active => "ACTIVE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -865,9 +865,9 @@ pub struct ListFindingsRequest {
     /// Restrictions have the form `<field> <operator> <value>` and may have a `-`
     /// character in front of them to indicate negation. Examples include:
     ///
-    /// * name
-    /// * source_properties.a_property
-    /// * security_marks.marks.marka
+    ///   * name
+    ///   * source_properties.a_property
+    ///   * security_marks.marks.marka
     ///
     /// The supported operators are:
     ///
@@ -1006,7 +1006,13 @@ pub struct UpdateSecurityMarksRequest {
 }
 /// Generated client implementations.
 pub mod security_center_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// V1 Beta APIs for Security Center service.
@@ -1088,8 +1094,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1117,8 +1122,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1150,8 +1154,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1181,8 +1184,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1209,8 +1211,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1241,8 +1242,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1276,8 +1276,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1307,8 +1306,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1341,8 +1339,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1372,8 +1369,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1408,8 +1404,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1436,8 +1431,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1469,8 +1463,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1504,8 +1497,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1533,8 +1525,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1564,8 +1555,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1592,8 +1582,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1620,8 +1609,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

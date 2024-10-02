@@ -33,7 +33,7 @@ pub struct GcsOutputDestination {
 pub struct GlossaryEntry {
     /// Identifier. The resource name of the entry.
     /// Format:
-    /// `projects/*/locations/*/glossaries/*/glossaryEntries/*`
+    ///    `projects/*/locations/*/glossaries/*/glossaryEntries/*`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Describes the glossary entry.
@@ -113,12 +113,12 @@ impl OperationState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OperationState::Unspecified => "OPERATION_STATE_UNSPECIFIED",
-            OperationState::Running => "OPERATION_STATE_RUNNING",
-            OperationState::Succeeded => "OPERATION_STATE_SUCCEEDED",
-            OperationState::Failed => "OPERATION_STATE_FAILED",
-            OperationState::Cancelling => "OPERATION_STATE_CANCELLING",
-            OperationState::Cancelled => "OPERATION_STATE_CANCELLED",
+            Self::Unspecified => "OPERATION_STATE_UNSPECIFIED",
+            Self::Running => "OPERATION_STATE_RUNNING",
+            Self::Succeeded => "OPERATION_STATE_SUCCEEDED",
+            Self::Failed => "OPERATION_STATE_FAILED",
+            Self::Cancelling => "OPERATION_STATE_CANCELLING",
+            Self::Cancelled => "OPERATION_STATE_CANCELLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -143,7 +143,7 @@ pub struct AdaptiveMtDataset {
     pub name: ::prost::alloc::string::String,
     /// The name of the dataset to show in the interface. The name can be
     /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
-    /// and a-z, underscores (\_), and ASCII digits 0-9.
+    /// and a-z, underscores (_), and ASCII digits 0-9.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// The BCP-47 language code of the source language.
@@ -299,8 +299,8 @@ pub mod adaptive_mt_translate_request {
         ///
         /// The format depends on the glossary:
         ///
-        /// * User-provided custom glossary:
-        ///   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
+        /// - User-provided custom glossary:
+        ///    `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
         #[prost(string, tag = "1")]
         pub glossary: ::prost::alloc::string::String,
         /// Optional. Indicates match is case insensitive. The default value is
@@ -678,7 +678,6 @@ pub struct ListExamplesRequest {
     pub parent: ::prost::alloc::string::String,
     /// Optional. An expression for filtering the examples that will be returned.
     /// Example filter:
-    ///
     /// * `usage=TRAIN`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
@@ -757,7 +756,7 @@ pub struct Dataset {
     pub name: ::prost::alloc::string::String,
     /// The name of the dataset to show in the interface. The name can be
     /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
-    /// and a-z, underscores (\_), and ASCII digits 0-9.
+    /// and a-z, underscores (_), and ASCII digits 0-9.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// The BCP-47 language code of the source language.
@@ -885,7 +884,7 @@ pub struct Model {
     pub name: ::prost::alloc::string::String,
     /// The name of the model to show in the interface. The name can be
     /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
-    /// and a-z, underscores (\_), and ASCII digits 0-9.
+    /// and a-z, underscores (_), and ASCII digits 0-9.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// The dataset from which the model is trained, in form of
@@ -933,7 +932,7 @@ pub struct TranslateTextRequest {
     #[prost(string, repeated, tag = "1")]
     pub contents: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. The format of the source text, for example, "text/html",
-    /// "text/plain". If left blank, the MIME type defaults to "text/html".
+    ///   "text/plain". If left blank, the MIME type defaults to "text/html".
     #[prost(string, tag = "3")]
     pub mime_type: ::prost::alloc::string::String,
     /// Optional. The ISO-639 language code of the input text if
@@ -967,14 +966,14 @@ pub struct TranslateTextRequest {
     ///
     /// The format depends on model type:
     ///
-    /// * AutoML Translation models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+    /// - AutoML Translation models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
     ///
-    /// * General (built-in) models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    /// - General (built-in) models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
     ///
-    /// * Translation LLM models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
+    /// - Translation LLM models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
     ///
     /// For global (non-regionalized) requests, use `location-id` `global`.
     /// For example,
@@ -1010,14 +1009,14 @@ pub struct TranslateTextRequest {
 pub struct TranslateTextResponse {
     /// Text translation responses with no glossary applied.
     /// This field has the same length as
-    /// \[`contents`\]\[google.cloud.translation.v3.TranslateTextRequest.contents\].
+    /// [`contents`][google.cloud.translation.v3.TranslateTextRequest.contents].
     #[prost(message, repeated, tag = "1")]
     pub translations: ::prost::alloc::vec::Vec<Translation>,
     /// Text translation responses if a glossary is provided in the request.
     /// This can be the same as
-    /// \[`translations`\]\[google.cloud.translation.v3.TranslateTextResponse.translations\]
+    /// [`translations`][google.cloud.translation.v3.TranslateTextResponse.translations]
     /// if no terms apply. This field has the same length as
-    /// \[`contents`\]\[google.cloud.translation.v3.TranslateTextRequest.contents\].
+    /// [`contents`][google.cloud.translation.v3.TranslateTextRequest.contents].
     #[prost(message, repeated, tag = "3")]
     pub glossary_translations: ::prost::alloc::vec::Vec<Translation>,
 }
@@ -1092,7 +1091,7 @@ pub struct Romanization {
 pub struct RomanizeTextResponse {
     /// Text romanization responses.
     /// This field has the same length as
-    /// \[`contents`\]\[google.cloud.translation.v3.RomanizeTextRequest.contents\].
+    /// [`contents`][google.cloud.translation.v3.RomanizeTextRequest.contents].
     #[prost(message, repeated, tag = "1")]
     pub romanizations: ::prost::alloc::vec::Vec<Romanization>,
 }
@@ -1201,11 +1200,12 @@ pub struct GetSupportedLanguagesRequest {
     ///
     /// The format depends on model type:
     ///
-    /// * AutoML Translation models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+    /// - AutoML Translation models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
     ///
-    /// * General (built-in) models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    /// - General (built-in) models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    ///
     ///
     /// Returns languages supported by the specified model.
     /// If missing, we get supported languages of Google general NMT model.
@@ -1274,7 +1274,7 @@ pub mod input_config {
         /// of the text request. If the first column is missing, we use the row
         /// number (0-based) from the input file as the ID in the output file. The
         /// second column is the actual text to be
-        /// translated. We recommend each row be \<= 10K Unicode codepoints,
+        ///   translated. We recommend each row be <= 10K Unicode codepoints,
         /// otherwise an error might be returned.
         /// Note that the input tsv must be RFC 4180 compliant.
         ///
@@ -1395,34 +1395,31 @@ pub struct DocumentInputConfig {
     /// gcs_source provided files. For a file provided through bytes content the
     /// mime_type must be provided.
     /// Currently supported mime types are:
-    ///
-    /// * application/pdf
-    /// * application/vnd.openxmlformats-officedocument.wordprocessingml.document
-    /// * application/vnd.openxmlformats-officedocument.presentationml.presentation
-    /// * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    /// - application/pdf
+    /// - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    /// - application/vnd.openxmlformats-officedocument.presentationml.presentation
+    /// - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
     #[prost(string, tag = "4")]
     pub mime_type: ::prost::alloc::string::String,
     /// Specifies the source for the document's content.
-    /// The input file size should be \<= 20MB for
-    ///
-    /// * application/vnd.openxmlformats-officedocument.wordprocessingml.document
-    /// * application/vnd.openxmlformats-officedocument.presentationml.presentation
-    /// * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-    ///   The input file size should be \<= 20MB and the maximum page limit is 20 for
-    /// * application/pdf
+    /// The input file size should be <= 20MB for
+    /// - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    /// - application/vnd.openxmlformats-officedocument.presentationml.presentation
+    /// - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    /// The input file size should be <= 20MB and the maximum page limit is 20 for
+    /// - application/pdf
     #[prost(oneof = "document_input_config::Source", tags = "1, 2")]
     pub source: ::core::option::Option<document_input_config::Source>,
 }
 /// Nested message and enum types in `DocumentInputConfig`.
 pub mod document_input_config {
     /// Specifies the source for the document's content.
-    /// The input file size should be \<= 20MB for
-    ///
-    /// * application/vnd.openxmlformats-officedocument.wordprocessingml.document
-    /// * application/vnd.openxmlformats-officedocument.presentationml.presentation
-    /// * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-    ///   The input file size should be \<= 20MB and the maximum page limit is 20 for
-    /// * application/pdf
+    /// The input file size should be <= 20MB for
+    /// - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    /// - application/vnd.openxmlformats-officedocument.presentationml.presentation
+    /// - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    /// The input file size should be <= 20MB and the maximum page limit is 20 for
+    /// - application/pdf
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Source {
         /// Document's content represented as a stream of bytes.
@@ -1442,11 +1439,10 @@ pub struct DocumentOutputConfig {
     /// input file's mime type.
     /// Currently only support the output mime type to be the same as input mime
     /// type.
-    ///
-    /// * application/pdf
-    /// * application/vnd.openxmlformats-officedocument.wordprocessingml.document
-    /// * application/vnd.openxmlformats-officedocument.presentationml.presentation
-    /// * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    /// - application/pdf
+    /// - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    /// - application/vnd.openxmlformats-officedocument.presentationml.presentation
+    /// - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
     #[prost(string, tag = "3")]
     pub mime_type: ::prost::alloc::string::String,
     /// A URI destination for the translated document.
@@ -1476,29 +1472,28 @@ pub mod document_output_config {
         /// already exists in the destination an error will be returned.
         ///
         /// For a DocumentInputConfig.contents provided document, the output file
-        /// will have the name "output\_\[trg\]\_translations.\[ext\]", where
+        /// will have the name "output_\[trg\]_translations.\[ext\]", where
+        /// - \[trg\] corresponds to the translated file's language code,
+        /// - \[ext\] corresponds to the translated file's extension according to its
+        /// mime type.
         ///
-        /// * \[trg\] corresponds to the translated file's language code,
-        /// * \[ext\] corresponds to the translated file's extension according to its
-        ///   mime type.
         ///
         /// For a DocumentInputConfig.gcs_uri provided document, the output file will
         /// have a name according to its URI. For example: an input file with URI:
         /// `gs://a/b/c.\[extension\]` stored in a gcs_destination bucket with name
         /// "my_bucket" will have an output URI:
         /// `gs://my_bucket/a_b_c_\[trg\]_translations.\[ext\]`, where
+        /// - \[trg\] corresponds to the translated file's language code,
+        /// - \[ext\] corresponds to the translated file's extension according to its
+        /// mime type.
         ///
-        /// * \[trg\] corresponds to the translated file's language code,
-        /// * \[ext\] corresponds to the translated file's extension according to its
-        ///   mime type.
         ///
         /// If the document was directly provided through the request, then the
         /// output document will have the format:
         /// `gs://my_bucket/translated_document_\[trg\]_translations.\[ext\]`, where
-        ///
-        /// * \[trg\] corresponds to the translated file's language code,
-        /// * \[ext\] corresponds to the translated file's extension according to its
-        ///   mime type.
+        /// - \[trg\] corresponds to the translated file's language code,
+        /// - \[ext\] corresponds to the translated file's extension according to its
+        /// mime type.
         ///
         /// If a glossary was provided, then the output URI for the glossary
         /// translation will be equal to the default output URI but have
@@ -1559,11 +1554,12 @@ pub struct TranslateDocumentRequest {
     ///
     /// The format depends on model type:
     ///
-    /// * AutoML Translation models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+    /// - AutoML Translation models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
     ///
-    /// * General (built-in) models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    /// - General (built-in) models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    ///
     ///
     /// If not provided, the default Google model (NMT) will be used for
     /// translation.
@@ -1679,11 +1675,12 @@ pub struct BatchTranslateTextRequest {
     ///
     /// The value format depends on model type:
     ///
-    /// * AutoML Translation models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+    /// - AutoML Translation models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
     ///
-    /// * General (built-in) models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    /// - General (built-in) models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    ///
     ///
     /// If the map is empty or a specific model is
     /// not requested for a language pair, then default google model (nmt) is used.
@@ -1693,8 +1690,8 @@ pub struct BatchTranslateTextRequest {
         ::prost::alloc::string::String,
     >,
     /// Required. Input configurations.
-    /// The total number of files matched should be \<= 100.
-    /// The total content size should be \<= 100M Unicode codepoints.
+    /// The total number of files matched should be <= 100.
+    /// The total content size should be <= 100M Unicode codepoints.
     /// The files must use UTF-8 encoding.
     #[prost(message, repeated, tag = "5")]
     pub input_configs: ::prost::alloc::vec::Vec<InputConfig>,
@@ -1787,12 +1784,12 @@ pub mod batch_translate_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1810,7 +1807,7 @@ pub mod batch_translate_metadata {
     }
 }
 /// Stored in the
-/// \[google.longrunning.Operation.response\]\[google.longrunning.Operation.response\]
+/// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field returned by BatchTranslateText if at least one sentence is translated
 /// successfully.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1828,7 +1825,7 @@ pub struct BatchTranslateResponse {
     #[prost(message, optional, tag = "4")]
     pub submit_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The time when the operation is finished and
-    /// \[google.longrunning.Operation.done\]\[google.longrunning.Operation.done\] is
+    /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
     /// set to true.
     #[prost(message, optional, tag = "5")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -1853,19 +1850,19 @@ pub mod glossary_input_config {
         ///
         /// For unidirectional glossaries:
         ///
-        /// * TSV/CSV (`.tsv`/`.csv`): Two column file, tab- or comma-separated.
-        ///   The first column is source text. The second column is target text.
-        ///   No headers in this file. The first row contains data and not column
-        ///   names.
+        /// - TSV/CSV (`.tsv`/`.csv`): Two column file, tab- or comma-separated.
+        ///    The first column is source text. The second column is target text.
+        ///    No headers in this file. The first row contains data and not column
+        ///    names.
         ///
-        /// * TMX (`.tmx`): TMX file with parallel data defining source/target term
-        ///   pairs.
+        /// - TMX (`.tmx`): TMX file with parallel data defining source/target term
+        /// pairs.
         ///
         /// For equivalent term sets glossaries:
         ///
-        /// * CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms
-        ///   in multiple languages. See documentation for more information -
-        ///   [glossaries](<https://cloud.google.com/translate/docs/advanced/glossary>).
+        /// - CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms
+        ///    in multiple languages. See documentation for more information -
+        ///    [glossaries](<https://cloud.google.com/translate/docs/advanced/glossary>).
         #[prost(message, tag = "1")]
         GcsSource(super::GcsSource),
     }
@@ -2074,7 +2071,7 @@ pub struct UpdateGlossaryEntryRequest {
     pub glossary_entry: ::core::option::Option<GlossaryEntry>,
 }
 /// Stored in the
-/// \[google.longrunning.Operation.metadata\]\[google.longrunning.Operation.metadata\]
+/// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata]
 /// field returned by CreateGlossary.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGlossaryMetadata {
@@ -2125,12 +2122,12 @@ pub mod create_glossary_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2148,7 +2145,7 @@ pub mod create_glossary_metadata {
     }
 }
 /// Stored in the
-/// \[google.longrunning.Operation.metadata\]\[google.longrunning.Operation.metadata\]
+/// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata]
 /// field returned by UpdateGlossary.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateGlossaryMetadata {
@@ -2200,12 +2197,12 @@ pub mod update_glossary_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2223,7 +2220,7 @@ pub mod update_glossary_metadata {
     }
 }
 /// Stored in the
-/// \[google.longrunning.Operation.metadata\]\[google.longrunning.Operation.metadata\]
+/// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata]
 /// field returned by DeleteGlossary.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteGlossaryMetadata {
@@ -2274,12 +2271,12 @@ pub mod delete_glossary_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2297,7 +2294,7 @@ pub mod delete_glossary_metadata {
     }
 }
 /// Stored in the
-/// \[google.longrunning.Operation.response\]\[google.longrunning.Operation.response\]
+/// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field returned by DeleteGlossary.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteGlossaryResponse {
@@ -2308,7 +2305,7 @@ pub struct DeleteGlossaryResponse {
     #[prost(message, optional, tag = "2")]
     pub submit_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The time when the glossary deletion is finished and
-    /// \[google.longrunning.Operation.done\]\[google.longrunning.Operation.done\] is
+    /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
     /// set to true.
     #[prost(message, optional, tag = "3")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -2337,8 +2334,8 @@ pub struct BatchTranslateDocumentRequest {
     #[prost(string, repeated, tag = "3")]
     pub target_language_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. Input configurations.
-    /// The total number of files matched should be \<= 100.
-    /// The total content size to translate should be \<= 100M Unicode codepoints.
+    /// The total number of files matched should be <= 100.
+    /// The total content size to translate should be <= 100M Unicode codepoints.
     /// The files must use UTF-8 encoding.
     #[prost(message, repeated, tag = "4")]
     pub input_configs: ::prost::alloc::vec::Vec<BatchDocumentInputConfig>,
@@ -2353,11 +2350,12 @@ pub struct BatchTranslateDocumentRequest {
     ///
     /// The value format depends on model type:
     ///
-    /// * AutoML Translation models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+    /// - AutoML Translation models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
     ///
-    /// * General (built-in) models:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    /// - General (built-in) models:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+    ///
     ///
     /// If the map is empty or a specific model is
     /// not requested for a language pair, then default google model (nmt) is used.
@@ -2377,9 +2375,8 @@ pub struct BatchTranslateDocumentRequest {
     /// mime_type of translated documents.
     ///
     /// Supported file format conversion includes:
-    ///
-    /// * `application/pdf` to
-    ///   `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+    /// - `application/pdf` to
+    ///    `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
     ///
     /// If nothing specified, output files will be in the same format as the
     /// original file.
@@ -2423,14 +2420,13 @@ pub mod batch_document_input_config {
         ///
         /// File mime type is determined based on extension. Supported mime type
         /// includes:
-        ///
-        /// * `pdf`, application/pdf
-        /// * `docx`,
-        ///   application/vnd.openxmlformats-officedocument.wordprocessingml.document
-        /// * `pptx`,
-        ///   application/vnd.openxmlformats-officedocument.presentationml.presentation
-        /// * `xlsx`,
-        ///   application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        /// - `pdf`, application/pdf
+        /// - `docx`,
+        /// application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        /// - `pptx`,
+        /// application/vnd.openxmlformats-officedocument.presentationml.presentation
+        /// - `xlsx`,
+        /// application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
         ///
         /// The max file size to support for `.docx`, `.pptx` and `.xlsx` is 100MB.
         /// The max file size to support for `.pdf` is 1GB and the max page limit is
@@ -2504,7 +2500,7 @@ pub mod batch_document_output_config {
     }
 }
 /// Stored in the
-/// \[google.longrunning.Operation.response\]\[google.longrunning.Operation.response\]
+/// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field returned by BatchTranslateDocument if at least one document is
 /// translated successfully.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2544,7 +2540,7 @@ pub struct BatchTranslateDocumentResponse {
     #[prost(message, optional, tag = "9")]
     pub submit_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The time when the operation is finished and
-    /// \[google.longrunning.Operation.done\]\[google.longrunning.Operation.done\] is
+    /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
     /// set to true.
     #[prost(message, optional, tag = "10")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -2629,12 +2625,12 @@ pub mod batch_translate_document_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2659,8 +2655,8 @@ pub struct TranslateTextGlossaryConfig {
     ///
     /// The format depends on the glossary:
     ///
-    /// * User-provided custom glossary:
-    ///   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
+    /// - User-provided custom glossary:
+    ///    `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
     #[prost(string, tag = "1")]
     pub glossary: ::prost::alloc::string::String,
     /// Optional. Indicates match is case insensitive. The default value is `false`
@@ -2670,7 +2666,13 @@ pub struct TranslateTextGlossaryConfig {
 }
 /// Generated client implementations.
 pub mod translation_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides natural language translation operations.
@@ -2755,8 +2757,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2786,8 +2787,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2817,8 +2817,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2848,8 +2847,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2879,8 +2877,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2916,8 +2913,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2953,8 +2949,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2985,8 +2980,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3017,8 +3011,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3049,8 +3042,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3078,8 +3070,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3111,8 +3102,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3139,8 +3129,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3170,8 +3159,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3198,8 +3186,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3226,8 +3213,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3254,8 +3240,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3285,8 +3270,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3313,8 +3297,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3344,8 +3327,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3375,8 +3357,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3406,8 +3387,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3435,8 +3415,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3466,8 +3445,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3497,8 +3475,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3528,8 +3505,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3556,8 +3532,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3584,8 +3559,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3616,8 +3590,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3647,8 +3620,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3678,8 +3650,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3709,8 +3680,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3740,8 +3710,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3771,8 +3740,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3802,8 +3770,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3833,8 +3800,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3861,8 +3827,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3892,8 +3857,7 @@ pub mod translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

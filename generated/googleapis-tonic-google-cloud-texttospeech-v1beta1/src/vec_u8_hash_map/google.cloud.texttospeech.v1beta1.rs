@@ -86,8 +86,8 @@ pub mod synthesize_speech_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TimepointType::Unspecified => "TIMEPOINT_TYPE_UNSPECIFIED",
-                TimepointType::SsmlMark => "SSML_MARK",
+                Self::Unspecified => "TIMEPOINT_TYPE_UNSPECIFIED",
+                Self::SsmlMark => "SSML_MARK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -102,7 +102,7 @@ pub mod synthesize_speech_request {
 }
 /// Contains text input to be synthesized. Either `text` or `ssml` must be
 /// supplied. Supplying both or neither returns
-/// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\]. The
+/// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. The
 /// input size is limited to 5000 bytes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SynthesisInput {
@@ -120,7 +120,7 @@ pub mod synthesis_input {
         Text(::prost::alloc::string::String),
         /// The SSML document to be synthesized. The SSML document must be valid
         /// and well-formed. Otherwise the RPC will fail and return
-        /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\]. For
+        /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
         /// more information, see
         /// [SSML](<https://cloud.google.com/text-to-speech/docs/ssml>).
         #[prost(string, tag = "2")]
@@ -170,7 +170,7 @@ pub struct AudioConfig {
     /// Optional. Input only. Speaking rate/speed, in the range \[0.25, 4.0\]. 1.0 is
     /// the normal native speed supported by the specific voice. 2.0 is twice as
     /// fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
-    /// speed. Any other values \< 0.25 or > 4.0 will return an error.
+    /// speed. Any other values < 0.25 or > 4.0 will return an error.
     #[prost(double, tag = "2")]
     pub speaking_rate: f64,
     /// Optional. Input only. Speaking pitch, in the range \[-20.0, 20.0\]. 20 means
@@ -194,7 +194,7 @@ pub struct AudioConfig {
     /// converting to the desired sample rate (which might result in worse audio
     /// quality), unless the specified sample rate is not supported for the
     /// encoding chosen, in which case it will fail the request and return
-    /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\].
+    /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
     #[prost(int32, tag = "5")]
     pub sample_rate_hertz: i32,
     /// Optional. Input only. An identifier which selects 'audio effects' profiles
@@ -251,9 +251,9 @@ pub mod custom_voice_params {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReportedUsage::Unspecified => "REPORTED_USAGE_UNSPECIFIED",
-                ReportedUsage::Realtime => "REALTIME",
-                ReportedUsage::Offline => "OFFLINE",
+                Self::Unspecified => "REPORTED_USAGE_UNSPECIFIED",
+                Self::Realtime => "REALTIME",
+                Self::Offline => "OFFLINE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -386,10 +386,10 @@ impl SsmlVoiceGender {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            SsmlVoiceGender::Unspecified => "SSML_VOICE_GENDER_UNSPECIFIED",
-            SsmlVoiceGender::Male => "MALE",
-            SsmlVoiceGender::Female => "FEMALE",
-            SsmlVoiceGender::Neutral => "NEUTRAL",
+            Self::Unspecified => "SSML_VOICE_GENDER_UNSPECIFIED",
+            Self::Male => "MALE",
+            Self::Female => "FEMALE",
+            Self::Neutral => "NEUTRAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -409,7 +409,7 @@ impl SsmlVoiceGender {
 #[repr(i32)]
 pub enum AudioEncoding {
     /// Not specified. Will return result
-    /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\].
+    /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
     Unspecified = 0,
     /// Uncompressed 16-bit signed little-endian samples (Linear PCM).
     /// Audio content returned as LINEAR16 also contains a WAV header.
@@ -437,13 +437,13 @@ impl AudioEncoding {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AudioEncoding::Unspecified => "AUDIO_ENCODING_UNSPECIFIED",
-            AudioEncoding::Linear16 => "LINEAR16",
-            AudioEncoding::Mp3 => "MP3",
-            AudioEncoding::Mp364Kbps => "MP3_64_KBPS",
-            AudioEncoding::OggOpus => "OGG_OPUS",
-            AudioEncoding::Mulaw => "MULAW",
-            AudioEncoding::Alaw => "ALAW",
+            Self::Unspecified => "AUDIO_ENCODING_UNSPECIFIED",
+            Self::Linear16 => "LINEAR16",
+            Self::Mp3 => "MP3",
+            Self::Mp364Kbps => "MP3_64_KBPS",
+            Self::OggOpus => "OGG_OPUS",
+            Self::Mulaw => "MULAW",
+            Self::Alaw => "ALAW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -462,7 +462,13 @@ impl AudioEncoding {
 }
 /// Generated client implementations.
 pub mod text_to_speech_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements Google Cloud Text-to-Speech API.
@@ -547,8 +553,7 @@ pub mod text_to_speech_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -579,8 +584,7 @@ pub mod text_to_speech_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -613,8 +617,7 @@ pub mod text_to_speech_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -676,7 +679,13 @@ pub struct SynthesizeLongAudioMetadata {
 }
 /// Generated client implementations.
 pub mod text_to_speech_long_audio_synthesize_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service that implements Google Cloud Text-to-Speech API.
@@ -763,8 +772,7 @@ pub mod text_to_speech_long_audio_synthesize_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

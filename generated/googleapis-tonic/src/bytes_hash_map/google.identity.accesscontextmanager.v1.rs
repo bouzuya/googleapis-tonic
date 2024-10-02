@@ -5,7 +5,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessLevel {
     /// Required. Resource name for the Access Level. The `short_name` component
-    /// must begin with a letter and only include alphanumeric and '\_'. Format:
+    /// must begin with a letter and only include alphanumeric and '_'. Format:
     /// `accessPolicies/{access_policy}/accessLevels/{access_level}`. The maximum
     /// length of the `access_level` component is 50 characters.
     #[prost(string, tag = "1")]
@@ -82,8 +82,8 @@ pub mod basic_level {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ConditionCombiningFunction::And => "AND",
-                ConditionCombiningFunction::Or => "OR",
+                Self::And => "AND",
+                Self::Or => "OR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -224,17 +224,16 @@ pub struct AccessPolicy {
     /// and where ACM resources can be referenced.
     /// For example, a policy with scopes=\["folders/123"\] has the following
     /// behavior:
-    ///
-    /// * vpcsc perimeters can only restrict projects within folders/123
-    /// * access levels can only be referenced by resources within folders/123.
-    ///   If empty, there are no limitations on which resources can be restricted by
-    ///   an ACM policy, and there are no limitations on where ACM resources can be
-    ///   referenced.
-    ///   Only one policy can include a given scope (attempting to create a second
-    ///   policy which includes "folders/123" will result in an error).
-    ///   Currently, scopes cannot be modified after a policy is created.
-    ///   Currently, policies can only have a single scope.
-    ///   Format: list of `folders/{folder_number}` or `projects/{project_number}`
+    /// - vpcsc perimeters can only restrict projects within folders/123
+    /// - access levels can only be referenced by resources within folders/123.
+    /// If empty, there are no limitations on which resources can be restricted by
+    /// an ACM policy, and there are no limitations on where ACM resources can be
+    /// referenced.
+    /// Only one policy can include a given scope (attempting to create a second
+    /// policy which includes "folders/123" will result in an error).
+    /// Currently, scopes cannot be modified after a policy is created.
+    /// Currently, policies can only have a single scope.
+    /// Format: list of `folders/{folder_number}` or `projects/{project_number}`
     #[prost(string, repeated, tag = "7")]
     pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Output only. Time the `AccessPolicy` was created in UTC.
@@ -263,7 +262,7 @@ pub struct AccessPolicy {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServicePerimeter {
     /// Required. Resource name for the ServicePerimeter.  The `short_name`
-    /// component must begin with a letter and only include alphanumeric and '\_'.
+    /// component must begin with a letter and only include alphanumeric and '_'.
     /// Format:
     /// `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`
     #[prost(string, tag = "1")]
@@ -355,8 +354,8 @@ pub mod service_perimeter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PerimeterType::Regular => "PERIMETER_TYPE_REGULAR",
-                PerimeterType::Bridge => "PERIMETER_TYPE_BRIDGE",
+                Self::Regular => "PERIMETER_TYPE_REGULAR",
+                Self::Bridge => "PERIMETER_TYPE_BRIDGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -402,8 +401,8 @@ pub struct ServicePerimeterConfig {
     /// \[google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy\]
     /// to apply to the perimeter. A perimeter may have multiple \[IngressPolicies\]
     /// \[google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy\],
-    /// each of which is evaluated separately. Access is granted if any \[Ingress
-    /// Policy\]
+    /// each of which is evaluated separately. Access is granted if any [Ingress
+    /// Policy]
     /// \[google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy\]
     /// grants it. Must be empty for a perimeter bridge.
     #[prost(message, repeated, tag = "8")]
@@ -690,7 +689,7 @@ pub mod service_perimeter_config {
         /// s3://BUCKET_NAME. For Azure Storage, the supported format is
         /// azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches
         /// if it contains an external resource in this list (Example:
-        /// s3://bucket/path). Currently '\*' is not allowed.
+        /// s3://bucket/path). Currently '*' is not allowed.
         #[prost(string, repeated, tag = "3")]
         pub external_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
@@ -772,10 +771,10 @@ pub mod service_perimeter_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IdentityType::Unspecified => "IDENTITY_TYPE_UNSPECIFIED",
-                IdentityType::AnyIdentity => "ANY_IDENTITY",
-                IdentityType::AnyUserAccount => "ANY_USER_ACCOUNT",
-                IdentityType::AnyServiceAccount => "ANY_SERVICE_ACCOUNT",
+                Self::Unspecified => "IDENTITY_TYPE_UNSPECIFIED",
+                Self::AnyIdentity => "ANY_IDENTITY",
+                Self::AnyUserAccount => "ANY_USER_ACCOUNT",
+                Self::AnyServiceAccount => "ANY_SERVICE_ACCOUNT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -924,7 +923,7 @@ pub struct GetAccessLevelRequest {
     pub name: ::prost::alloc::string::String,
     /// Whether to return `BasicLevels` in the Cloud Common Expression
     /// Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where
-    /// \[Access Levels\] \[google.identity.accesscontextmanager.v1.AccessLevel\]
+    /// \[Access Levels\] [google.identity.accesscontextmanager.v1.AccessLevel]
     /// are returned as `BasicLevels` or `CustomLevels` based on how they were
     /// created. If set to CEL, all \[Access Levels\]
     /// \[google.identity.accesscontextmanager.v1.AccessLevel\] are returned as
@@ -936,8 +935,8 @@ pub struct GetAccessLevelRequest {
 /// A request to create an `AccessLevel`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAccessLevelRequest {
-    /// Required. Resource name for the access policy which owns this \[Access
-    /// Level\] \[google.identity.accesscontextmanager.v1.AccessLevel\].
+    /// Required. Resource name for the access policy which owns this [Access
+    /// Level] \[google.identity.accesscontextmanager.v1.AccessLevel\].
     ///
     /// Format: `accessPolicies/{policy_id}`
     #[prost(string, tag = "1")]
@@ -1060,8 +1059,8 @@ pub struct GetServicePerimeterRequest {
 /// A request to create a `ServicePerimeter`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServicePerimeterRequest {
-    /// Required. Resource name for the access policy which owns this \[Service
-    /// Perimeter\] \[google.identity.accesscontextmanager.v1.ServicePerimeter\].
+    /// Required. Resource name for the access policy which owns this [Service
+    /// Perimeter] \[google.identity.accesscontextmanager.v1.ServicePerimeter\].
     ///
     /// Format: `accessPolicies/{policy_id}`
     #[prost(string, tag = "1")]
@@ -1136,7 +1135,7 @@ pub struct ReplaceServicePerimetersResponse {
 }
 /// A request to commit dry-run specs in all \[Service Perimeters\]
 /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] belonging to
-/// an \[Access Policy\]\[google.identity.accesscontextmanager.v1.AccessPolicy\].
+/// an [Access Policy][google.identity.accesscontextmanager.v1.AccessPolicy].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitServicePerimetersRequest {
     /// Required. Resource name for the parent \[Access Policy\]
@@ -1272,9 +1271,9 @@ impl LevelFormat {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LevelFormat::Unspecified => "LEVEL_FORMAT_UNSPECIFIED",
-            LevelFormat::AsDefined => "AS_DEFINED",
-            LevelFormat::Cel => "CEL",
+            Self::Unspecified => "LEVEL_FORMAT_UNSPECIFIED",
+            Self::AsDefined => "AS_DEFINED",
+            Self::Cel => "CEL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1289,18 +1288,24 @@ impl LevelFormat {
 }
 /// Generated client implementations.
 pub mod access_context_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// API for setting \[access levels\]
-    /// \[google.identity.accesscontextmanager.v1.AccessLevel\] and \[service
-    /// perimeters\] \[google.identity.accesscontextmanager.v1.ServicePerimeter\]
-    /// for Google Cloud projects. Each organization has one \[access policy\]
-    /// \[google.identity.accesscontextmanager.v1.AccessPolicy\] that contains the
-    /// \[access levels\] \[google.identity.accesscontextmanager.v1.AccessLevel\]
-    /// and \[service perimeters\]
-    /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\]. This
-    /// \[access policy\] \[google.identity.accesscontextmanager.v1.AccessPolicy\] is
+    /// API for setting [access levels]
+    /// [google.identity.accesscontextmanager.v1.AccessLevel] and [service
+    /// perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter]
+    /// for Google Cloud projects. Each organization has one [access policy]
+    /// [google.identity.accesscontextmanager.v1.AccessPolicy] that contains the
+    /// [access levels] [google.identity.accesscontextmanager.v1.AccessLevel]
+    /// and [service perimeters]
+    /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. This
+    /// [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy] is
     /// applicable to all resources in the organization.
     /// AccessPolicies
     #[derive(Debug, Clone)]
@@ -1372,8 +1377,8 @@ pub mod access_context_manager_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists all \[access policies\]
-        /// \[google.identity.accesscontextmanager.v1.AccessPolicy\] in an
+        /// Lists all [access policies]
+        /// [google.identity.accesscontextmanager.v1.AccessPolicy] in an
         /// organization.
         pub async fn list_access_policies(
             &mut self,
@@ -1386,8 +1391,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1405,8 +1409,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns an \[access policy\]
-        /// \[google.identity.accesscontextmanager.v1.AccessPolicy\] based on the name.
+        /// Returns an [access policy]
+        /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
         pub async fn get_access_policy(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAccessPolicyRequest>,
@@ -1415,8 +1419,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1450,8 +1453,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1469,11 +1471,11 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates an \[access policy\]
-        /// \[google.identity.accesscontextmanager.v1.AccessPolicy\]. The
+        /// Updates an [access policy]
+        /// [google.identity.accesscontextmanager.v1.AccessPolicy]. The
         /// long-running operation from this RPC has a successful status after the
-        /// changes to the \[access policy\]
-        /// \[google.identity.accesscontextmanager.v1.AccessPolicy\] propagate
+        /// changes to the [access policy]
+        /// [google.identity.accesscontextmanager.v1.AccessPolicy] propagate
         /// to long-lasting storage.
         pub async fn update_access_policy(
             &mut self,
@@ -1486,8 +1488,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1505,10 +1506,10 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes an \[access policy\]
-        /// \[google.identity.accesscontextmanager.v1.AccessPolicy\] based on the
+        /// Deletes an [access policy]
+        /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the
         /// resource name. The long-running operation has a successful status after the
-        /// \[access policy\] \[google.identity.accesscontextmanager.v1.AccessPolicy\]
+        /// [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
         /// is removed from long-lasting storage.
         pub async fn delete_access_policy(
             &mut self,
@@ -1521,8 +1522,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1540,8 +1540,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists all \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] for an access
+        /// Lists all [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] for an access
         /// policy.
         pub async fn list_access_levels(
             &mut self,
@@ -1554,8 +1554,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1573,8 +1572,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets an \[access level\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] based on the resource
+        /// Gets an [access level]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
         /// name.
         pub async fn get_access_level(
             &mut self,
@@ -1584,8 +1583,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1603,12 +1601,12 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates an \[access level\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\]. The long-running
-        /// operation from this RPC has a successful status after the \[access
-        /// level\] \[google.identity.accesscontextmanager.v1.AccessLevel\]
-        /// propagates to long-lasting storage. If \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] contain
+        /// Creates an [access level]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+        /// operation from this RPC has a successful status after the [access
+        /// level] [google.identity.accesscontextmanager.v1.AccessLevel]
+        /// propagates to long-lasting storage. If [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
         /// errors, an error response is returned for the first error encountered.
         pub async fn create_access_level(
             &mut self,
@@ -1621,8 +1619,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1640,13 +1637,13 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates an \[access level\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\]. The long-running
+        /// Updates an [access level]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
         /// operation from this RPC has a successful status after the changes to
-        /// the \[access level\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] propagate
-        /// to long-lasting storage. If \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] contain
+        /// the [access level]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] propagate
+        /// to long-lasting storage. If [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
         /// errors, an error response is returned for the first error encountered.
         pub async fn update_access_level(
             &mut self,
@@ -1659,8 +1656,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1678,11 +1674,11 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes an \[access level\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] based on the resource
+        /// Deletes an [access level]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
         /// name. The long-running operation from this RPC has a successful status
-        /// after the \[access level\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] has been removed
+        /// after the [access level]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
         /// from long-lasting storage.
         pub async fn delete_access_level(
             &mut self,
@@ -1695,8 +1691,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1714,22 +1709,22 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Replaces all existing \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] in an \[access
-        /// policy\] \[google.identity.accesscontextmanager.v1.AccessPolicy\] with
-        /// the \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] provided. This
+        /// Replaces all existing [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] in an [access
+        /// policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
+        /// the [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] provided. This
         /// is done atomically. The long-running operation from this RPC has a
         /// successful status after all replacements propagate to long-lasting
         /// storage. If the replacement contains errors, an error response is returned
         /// for the first error encountered.  Upon error, the replacement is cancelled,
-        /// and existing \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] are not
+        /// and existing [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] are not
         /// affected. The Operation.response field contains
-        /// ReplaceAccessLevelsResponse. Removing \[access levels\]
-        /// \[google.identity.accesscontextmanager.v1.AccessLevel\] contained in existing
-        /// \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] result in an
+        /// ReplaceAccessLevelsResponse. Removing [access levels]
+        /// [google.identity.accesscontextmanager.v1.AccessLevel] contained in existing
+        /// [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] result in an
         /// error.
         pub async fn replace_access_levels(
             &mut self,
@@ -1742,8 +1737,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1761,8 +1755,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists all \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] for an
+        /// Lists all [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
         /// access policy.
         pub async fn list_service_perimeters(
             &mut self,
@@ -1775,8 +1769,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1794,8 +1787,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] based on the
+        /// Gets a [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
         /// resource name.
         pub async fn get_service_perimeter(
             &mut self,
@@ -1808,8 +1801,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1827,13 +1819,13 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\]. The
+        /// Creates a [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
         /// long-running operation from this RPC has a successful status after the
-        /// \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\]
-        /// propagates to long-lasting storage. If a \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] contains
+        /// [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+        /// propagates to long-lasting storage. If a [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
         /// errors, an error response is returned for the first error encountered.
         pub async fn create_service_perimeter(
             &mut self,
@@ -1846,8 +1838,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1865,13 +1856,13 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates a \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\]. The
+        /// Updates a [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
         /// long-running operation from this RPC has a successful status after the
-        /// \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\]
-        /// propagates to long-lasting storage. If a \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] contains
+        /// [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+        /// propagates to long-lasting storage. If a [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
         /// errors, an error response is returned for the first error encountered.
         pub async fn update_service_perimeter(
             &mut self,
@@ -1884,8 +1875,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1903,11 +1893,11 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] based on the
+        /// Deletes a [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
         /// resource name. The long-running operation from this RPC has a successful
-        /// status after the \[service perimeter\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] is removed from
+        /// status after the [service perimeter]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] is removed from
         /// long-lasting storage.
         pub async fn delete_service_perimeter(
             &mut self,
@@ -1920,8 +1910,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1939,17 +1928,17 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Replace all existing \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] in an \[access
-        /// policy\] \[google.identity.accesscontextmanager.v1.AccessPolicy\] with the
-        /// \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] provided. This
+        /// Replace all existing [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] in an [access
+        /// policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with the
+        /// [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] provided. This
         /// is done atomically. The long-running operation from this RPC has a
         /// successful status after all replacements propagate to long-lasting storage.
         /// Replacements containing errors result in an error response for the first
         /// error encountered. Upon an error, replacement are cancelled and existing
-        /// \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] are not
+        /// [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] are not
         /// affected. The Operation.response field contains
         /// ReplaceServicePerimetersResponse.
         pub async fn replace_service_perimeters(
@@ -1963,8 +1952,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1982,16 +1970,16 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Commits the dry-run specification for all the \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] in an
-        /// \[access policy\]\[google.identity.accesscontextmanager.v1.AccessPolicy\].
+        /// Commits the dry-run specification for all the [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
+        /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
         /// A commit operation on a service perimeter involves copying its `spec` field
-        /// to the `status` field of the service perimeter. Only \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] with
+        /// to the `status` field of the service perimeter. Only [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] with
         /// `use_explicit_dry_run_spec` field set to true are affected by a commit
         /// operation. The long-running operation from this RPC has a successful
-        /// status after the dry-run specifications for all the \[service perimeters\]
-        /// \[google.identity.accesscontextmanager.v1.ServicePerimeter\] have been
+        /// status after the dry-run specifications for all the [service perimeters]
+        /// [google.identity.accesscontextmanager.v1.ServicePerimeter] have been
         /// committed. If a commit fails, it causes the long-running operation to
         /// return an error response and the entire commit operation is cancelled.
         /// When successful, the Operation.response field contains
@@ -2008,8 +1996,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2027,8 +2014,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists all \[GcpUserAccessBindings\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding\] for a
+        /// Lists all [GcpUserAccessBindings]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
         /// Google Cloud organization.
         pub async fn list_gcp_user_access_bindings(
             &mut self,
@@ -2041,8 +2028,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2060,8 +2046,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the \[GcpUserAccessBinding\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding\] with
+        /// Gets the [GcpUserAccessBinding]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] with
         /// the given name.
         pub async fn get_gcp_user_access_binding(
             &mut self,
@@ -2074,8 +2060,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2093,13 +2078,13 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a \[GcpUserAccessBinding\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding\]. If the
-        /// client specifies a \[name\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name\],
+        /// Creates a [GcpUserAccessBinding]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]. If the
+        /// client specifies a [name]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name],
         /// the server ignores it. Fails if a resource already exists with the same
-        /// \[group_key\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key\].
+        /// [group_key]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key].
         /// Completion of this long-running operation does not necessarily signify that
         /// the new binding is deployed onto all affected users, which may take more
         /// time.
@@ -2114,8 +2099,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2133,8 +2117,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates a \[GcpUserAccessBinding\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding\].
+        /// Updates a [GcpUserAccessBinding]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
         /// Completion of this long-running operation does not necessarily signify that
         /// the changed binding is deployed onto all affected users, which may take
         /// more time.
@@ -2149,8 +2133,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2168,8 +2151,8 @@ pub mod access_context_manager_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a \[GcpUserAccessBinding\]
-        /// \[google.identity.accesscontextmanager.v1.GcpUserAccessBinding\].
+        /// Deletes a [GcpUserAccessBinding]
+        /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
         /// Completion of this long-running operation does not necessarily signify that
         /// the binding deletion is deployed onto all affected users, which may take
         /// more time.
@@ -2184,8 +2167,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2204,11 +2186,11 @@ pub mod access_context_manager_client {
             self.inner.unary(req, path, codec).await
         }
         /// Sets the IAM policy for the specified Access Context Manager
-        /// \[access policy\]\[google.identity.accesscontextmanager.v1.AccessPolicy\].
+        /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
         /// This method replaces the existing IAM policy on the access policy. The IAM
         /// policy controls the set of users who can perform specific operations on the
-        /// Access Context Manager \[access
-        /// policy\]\[google.identity.accesscontextmanager.v1.AccessPolicy\].
+        /// Access Context Manager [access
+        /// policy][google.identity.accesscontextmanager.v1.AccessPolicy].
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2222,8 +2204,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2242,7 +2223,7 @@ pub mod access_context_manager_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets the IAM policy for the specified Access Context Manager
-        /// \[access policy\]\[google.identity.accesscontextmanager.v1.AccessPolicy\].
+        /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2256,8 +2237,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2277,10 +2257,10 @@ pub mod access_context_manager_client {
         }
         /// Returns the IAM permissions that the caller has on the specified Access
         /// Context Manager resource. The resource can be an
-        /// \[AccessPolicy\]\[google.identity.accesscontextmanager.v1.AccessPolicy\],
-        /// \[AccessLevel\]\[google.identity.accesscontextmanager.v1.AccessLevel\], or
-        /// \[ServicePerimeter\]\[google.identity.accesscontextmanager.v1.ServicePerimeter
-        /// \]. This method does not support other resources.
+        /// [AccessPolicy][google.identity.accesscontextmanager.v1.AccessPolicy],
+        /// [AccessLevel][google.identity.accesscontextmanager.v1.AccessLevel], or
+        /// [ServicePerimeter][google.identity.accesscontextmanager.v1.ServicePerimeter
+        /// ]. This method does not support other resources.
         pub async fn test_iam_permissions(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2296,8 +2276,7 @@ pub mod access_context_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

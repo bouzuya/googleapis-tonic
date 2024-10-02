@@ -95,12 +95,12 @@ pub mod function {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-                State::Deploying => "DEPLOYING",
-                State::Deleting => "DELETING",
-                State::Unknown => "UNKNOWN",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Failed => "FAILED",
+                Self::Deploying => "DEPLOYING",
+                Self::Deleting => "DELETING",
+                Self::Unknown => "UNKNOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -162,10 +162,10 @@ pub mod state_message {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Error => "ERROR",
-                Severity::Warning => "WARNING",
-                Severity::Info => "INFO",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Error => "ERROR",
+                Self::Warning => "WARNING",
+                Self::Info => "INFO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -336,7 +336,7 @@ pub struct BuildConfig {
     ///
     /// If the project id is not the same as the function, then the Cloud
     /// Functions Service Agent
-    /// (service-\<project_number>@gcf-admin-robot.iam.gserviceaccount.com) must be
+    /// (service-<project_number>@gcf-admin-robot.iam.gserviceaccount.com) must be
     /// granted the role Cloud Build Custom Workers Builder
     /// (roles/cloudbuild.customworkers.builder) in the project.
     #[prost(string, tag = "5")]
@@ -413,9 +413,9 @@ pub mod build_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DockerRegistry::Unspecified => "DOCKER_REGISTRY_UNSPECIFIED",
-                DockerRegistry::ContainerRegistry => "CONTAINER_REGISTRY",
-                DockerRegistry::ArtifactRegistry => "ARTIFACT_REGISTRY",
+                Self::Unspecified => "DOCKER_REGISTRY_UNSPECIFIED",
+                Self::ContainerRegistry => "CONTAINER_REGISTRY",
+                Self::ArtifactRegistry => "ARTIFACT_REGISTRY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -581,11 +581,9 @@ pub mod service_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                VpcConnectorEgressSettings::Unspecified => {
-                    "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED"
-                }
-                VpcConnectorEgressSettings::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
-                VpcConnectorEgressSettings::AllTraffic => "ALL_TRAFFIC",
+                Self::Unspecified => "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+                Self::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
+                Self::AllTraffic => "ALL_TRAFFIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -632,10 +630,10 @@ pub mod service_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IngressSettings::Unspecified => "INGRESS_SETTINGS_UNSPECIFIED",
-                IngressSettings::AllowAll => "ALLOW_ALL",
-                IngressSettings::AllowInternalOnly => "ALLOW_INTERNAL_ONLY",
-                IngressSettings::AllowInternalAndGclb => "ALLOW_INTERNAL_AND_GCLB",
+                Self::Unspecified => "INGRESS_SETTINGS_UNSPECIFIED",
+                Self::AllowAll => "ALLOW_ALL",
+                Self::AllowInternalOnly => "ALLOW_INTERNAL_ONLY",
+                Self::AllowInternalAndGclb => "ALLOW_INTERNAL_AND_GCLB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -686,9 +684,9 @@ pub mod service_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SecurityLevel::Unspecified => "SECURITY_LEVEL_UNSPECIFIED",
-                SecurityLevel::SecureAlways => "SECURE_ALWAYS",
-                SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
+                Self::Unspecified => "SECURITY_LEVEL_UNSPECIFIED",
+                Self::SecureAlways => "SECURE_ALWAYS",
+                Self::SecureOptional => "SECURE_OPTIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -859,9 +857,9 @@ pub mod event_trigger {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RetryPolicy::Unspecified => "RETRY_POLICY_UNSPECIFIED",
-                RetryPolicy::DoNotRetry => "RETRY_POLICY_DO_NOT_RETRY",
-                RetryPolicy::Retry => "RETRY_POLICY_RETRY",
+                Self::Unspecified => "RETRY_POLICY_UNSPECIFIED",
+                Self::DoNotRetry => "RETRY_POLICY_DO_NOT_RETRY",
+                Self::Retry => "RETRY_POLICY_RETRY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -968,7 +966,7 @@ pub struct CreateFunctionRequest {
     /// the function's resource name.
     ///
     /// This value should be 4-63 characters, and valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     #[prost(string, tag = "3")]
     pub function_id: ::prost::alloc::string::String,
 }
@@ -1143,13 +1141,13 @@ pub mod list_runtimes_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RuntimeStage::Unspecified => "RUNTIME_STAGE_UNSPECIFIED",
-                RuntimeStage::Development => "DEVELOPMENT",
-                RuntimeStage::Alpha => "ALPHA",
-                RuntimeStage::Beta => "BETA",
-                RuntimeStage::Ga => "GA",
-                RuntimeStage::Deprecated => "DEPRECATED",
-                RuntimeStage::Decommissioned => "DECOMMISSIONED",
+                Self::Unspecified => "RUNTIME_STAGE_UNSPECIFIED",
+                Self::Development => "DEVELOPMENT",
+                Self::Alpha => "ALPHA",
+                Self::Beta => "BETA",
+                Self::Ga => "GA",
+                Self::Deprecated => "DEPRECATED",
+                Self::Decommissioned => "DECOMMISSIONED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1200,8 +1198,8 @@ pub struct OperationMetadata {
     /// Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
     /// have
-    /// \[google.longrunning.Operation.error\]\[google.longrunning.Operation.error\]
-    /// value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// [google.longrunning.Operation.error][google.longrunning.Operation.error]
+    /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub cancel_requested: bool,
@@ -1288,13 +1286,13 @@ pub mod stage {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Name::Unspecified => "NAME_UNSPECIFIED",
-                Name::ArtifactRegistry => "ARTIFACT_REGISTRY",
-                Name::Build => "BUILD",
-                Name::Service => "SERVICE",
-                Name::Trigger => "TRIGGER",
-                Name::ServiceRollback => "SERVICE_ROLLBACK",
-                Name::TriggerRollback => "TRIGGER_ROLLBACK",
+                Self::Unspecified => "NAME_UNSPECIFIED",
+                Self::ArtifactRegistry => "ARTIFACT_REGISTRY",
+                Self::Build => "BUILD",
+                Self::Service => "SERVICE",
+                Self::Trigger => "TRIGGER",
+                Self::ServiceRollback => "SERVICE_ROLLBACK",
+                Self::TriggerRollback => "TRIGGER_ROLLBACK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1341,10 +1339,10 @@ pub mod stage {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::NotStarted => "NOT_STARTED",
-                State::InProgress => "IN_PROGRESS",
-                State::Complete => "COMPLETE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::NotStarted => "NOT_STARTED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Complete => "COMPLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1379,10 +1377,10 @@ impl OperationType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            OperationType::OperationtypeUnspecified => "OPERATIONTYPE_UNSPECIFIED",
-            OperationType::CreateFunction => "CREATE_FUNCTION",
-            OperationType::UpdateFunction => "UPDATE_FUNCTION",
-            OperationType::DeleteFunction => "DELETE_FUNCTION",
+            Self::OperationtypeUnspecified => "OPERATIONTYPE_UNSPECIFIED",
+            Self::CreateFunction => "CREATE_FUNCTION",
+            Self::UpdateFunction => "UPDATE_FUNCTION",
+            Self::DeleteFunction => "DELETE_FUNCTION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1414,9 +1412,9 @@ impl Environment {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Environment::Unspecified => "ENVIRONMENT_UNSPECIFIED",
-            Environment::Gen1 => "GEN_1",
-            Environment::Gen2 => "GEN_2",
+            Self::Unspecified => "ENVIRONMENT_UNSPECIFIED",
+            Self::Gen1 => "GEN_1",
+            Self::Gen2 => "GEN_2",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1431,7 +1429,13 @@ impl Environment {
 }
 /// Generated client implementations.
 pub mod function_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Cloud Functions is used to deploy functions that are executed by
@@ -1518,8 +1522,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1549,8 +1552,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1582,8 +1584,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1613,8 +1614,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1646,8 +1646,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1677,9 +1676,9 @@ pub mod function_service_client {
         ///
         /// * Source file type should be a zip file.
         /// * No credentials should be attached - the signed URLs provide access to the
-        ///  target bucket using internal service identity; if credentials were
-        ///  attached, the identity from the credentials would be used, but that
-        ///  identity does not have permissions to upload files to the URL.
+        ///   target bucket using internal service identity; if credentials were
+        ///   attached, the identity from the credentials would be used, but that
+        ///   identity does not have permissions to upload files to the URL.
         ///
         /// When making a HTTP PUT request, specify this header:
         ///
@@ -1699,8 +1698,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1734,8 +1732,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1765,8 +1762,7 @@ pub mod function_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

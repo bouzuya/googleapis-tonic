@@ -68,12 +68,11 @@ pub mod part {
 pub struct Blob {
     /// The IANA standard MIME type of the source data.
     /// Examples:
-    ///
-    /// * image/png
-    /// * image/jpeg
-    ///   If an unsupported MIME type is provided, an error will be returned. For a
-    ///   complete list of supported types, see [Supported file
-    ///   formats](<https://ai.google.dev/gemini-api/docs/prompting_with_media#supported_file_formats>).
+    ///    - image/png
+    ///    - image/jpeg
+    /// If an unsupported MIME type is provided, an error will be returned. For a
+    /// complete list of supported types, see [Supported file
+    /// formats](<https://ai.google.dev/gemini-api/docs/prompting_with_media#supported_file_formats>).
     #[prost(string, tag = "1")]
     pub mime_type: ::prost::alloc::string::String,
     /// Raw bytes for media formats.
@@ -133,8 +132,8 @@ pub mod executable_code {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Language::Unspecified => "LANGUAGE_UNSPECIFIED",
-                Language::Python => "PYTHON",
+                Self::Unspecified => "LANGUAGE_UNSPECIFIED",
+                Self::Python => "PYTHON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -195,10 +194,10 @@ pub mod code_execution_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Outcome::Unspecified => "OUTCOME_UNSPECIFIED",
-                Outcome::Ok => "OUTCOME_OK",
-                Outcome::Failed => "OUTCOME_FAILED",
-                Outcome::DeadlineExceeded => "OUTCOME_DEADLINE_EXCEEDED",
+                Self::Unspecified => "OUTCOME_UNSPECIFIED",
+                Self::Ok => "OUTCOME_OK",
+                Self::Failed => "OUTCOME_FAILED",
+                Self::DeadlineExceeded => "OUTCOME_DEADLINE_EXCEEDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -225,13 +224,13 @@ pub struct Tool {
     ///
     /// The model or system does not execute the function. Instead the defined
     /// function may be returned as a
-    /// \[FunctionCall\]\[google.ai.generativelanguage.v1beta.Part.function_call\] with
+    /// [FunctionCall][google.ai.generativelanguage.v1beta.Part.function_call] with
     /// arguments to the client side for execution. The model may decide to call a
     /// subset of these functions by populating
-    /// \[FunctionCall\]\[google.ai.generativelanguage.v1beta.Part.function_call\] in
+    /// [FunctionCall][google.ai.generativelanguage.v1beta.Part.function_call] in
     /// the response. The next conversation turn may contain a
-    /// \[FunctionResponse\]\[google.ai.generativelanguage.v1beta.Part.function_response\]
-    /// with the \[Content.role\]\[google.ai.generativelanguage.v1beta.Content.role\]
+    /// [FunctionResponse][google.ai.generativelanguage.v1beta.Part.function_response]
+    /// with the [Content.role][google.ai.generativelanguage.v1beta.Content.role]
     /// "function" generation context for the next model turn.
     #[prost(message, repeated, tag = "1")]
     pub function_declarations: ::prost::alloc::vec::Vec<FunctionDeclaration>,
@@ -288,8 +287,8 @@ pub mod dynamic_retrieval_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Dynamic => "MODE_DYNAMIC",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Dynamic => "MODE_DYNAMIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -371,10 +370,10 @@ pub mod function_calling_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Auto => "AUTO",
-                Mode::Any => "ANY",
-                Mode::None => "NONE",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Auto => "AUTO",
+                Self::Any => "ANY",
+                Self::None => "NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -452,9 +451,9 @@ pub struct Schema {
     pub r#type: i32,
     /// Optional. The format of the data. This is used only for primitive
     /// datatypes. Supported formats:
-    /// for NUMBER type: float, double
-    /// for INTEGER type: int32, int64
-    /// for STRING type: enum
+    ///   for NUMBER type: float, double
+    ///   for INTEGER type: int32, int64
+    ///   for STRING type: enum
     #[prost(string, tag = "2")]
     pub format: ::prost::alloc::string::String,
     /// Optional. A brief description of the parameter. This could contain examples
@@ -533,13 +532,13 @@ impl Type {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Type::Unspecified => "TYPE_UNSPECIFIED",
-            Type::String => "STRING",
-            Type::Number => "NUMBER",
-            Type::Integer => "INTEGER",
-            Type::Boolean => "BOOLEAN",
-            Type::Array => "ARRAY",
-            Type::Object => "OBJECT",
+            Self::Unspecified => "TYPE_UNSPECIFIED",
+            Self::String => "STRING",
+            Self::Number => "NUMBER",
+            Self::Integer => "INTEGER",
+            Self::Boolean => "BOOLEAN",
+            Self::Array => "ARRAY",
+            Self::Object => "OBJECT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -687,7 +686,13 @@ pub struct DeleteCachedContentRequest {
 }
 /// Generated client implementations.
 pub mod cache_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API for managing cache of content (CachedContent resources) that can be used
@@ -775,8 +780,7 @@ pub mod cache_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -803,8 +807,7 @@ pub mod cache_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -831,8 +834,7 @@ pub mod cache_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -859,8 +861,7 @@ pub mod cache_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -887,8 +888,7 @@ pub mod cache_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -980,9 +980,9 @@ pub mod content_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BlockedReason::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
-                BlockedReason::Safety => "SAFETY",
-                BlockedReason::Other => "OTHER",
+                Self::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
+                Self::Safety => "SAFETY",
+                Self::Other => "OTHER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1068,11 +1068,11 @@ pub mod safety_rating {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HarmProbability::Unspecified => "HARM_PROBABILITY_UNSPECIFIED",
-                HarmProbability::Negligible => "NEGLIGIBLE",
-                HarmProbability::Low => "LOW",
-                HarmProbability::Medium => "MEDIUM",
-                HarmProbability::High => "HIGH",
+                Self::Unspecified => "HARM_PROBABILITY_UNSPECIFIED",
+                Self::Negligible => "NEGLIGIBLE",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1137,12 +1137,12 @@ pub mod safety_setting {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HarmBlockThreshold::Unspecified => "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
-                HarmBlockThreshold::BlockLowAndAbove => "BLOCK_LOW_AND_ABOVE",
-                HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
-                HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
-                HarmBlockThreshold::BlockNone => "BLOCK_NONE",
-                HarmBlockThreshold::Off => "OFF",
+                Self::Unspecified => "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+                Self::BlockLowAndAbove => "BLOCK_LOW_AND_ABOVE",
+                Self::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
+                Self::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
+                Self::BlockNone => "BLOCK_NONE",
+                Self::Off => "OFF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1201,18 +1201,18 @@ impl HarmCategory {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            HarmCategory::Unspecified => "HARM_CATEGORY_UNSPECIFIED",
-            HarmCategory::Derogatory => "HARM_CATEGORY_DEROGATORY",
-            HarmCategory::Toxicity => "HARM_CATEGORY_TOXICITY",
-            HarmCategory::Violence => "HARM_CATEGORY_VIOLENCE",
-            HarmCategory::Sexual => "HARM_CATEGORY_SEXUAL",
-            HarmCategory::Medical => "HARM_CATEGORY_MEDICAL",
-            HarmCategory::Dangerous => "HARM_CATEGORY_DANGEROUS",
-            HarmCategory::Harassment => "HARM_CATEGORY_HARASSMENT",
-            HarmCategory::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
-            HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
-            HarmCategory::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
+            Self::Unspecified => "HARM_CATEGORY_UNSPECIFIED",
+            Self::Derogatory => "HARM_CATEGORY_DEROGATORY",
+            Self::Toxicity => "HARM_CATEGORY_TOXICITY",
+            Self::Violence => "HARM_CATEGORY_VIOLENCE",
+            Self::Sexual => "HARM_CATEGORY_SEXUAL",
+            Self::Medical => "HARM_CATEGORY_MEDICAL",
+            Self::Dangerous => "HARM_CATEGORY_DANGEROUS",
+            Self::Harassment => "HARM_CATEGORY_HARASSMENT",
+            Self::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
+            Self::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            Self::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
+            Self::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1420,7 +1420,13 @@ pub struct CountMessageTokensResponse {
 }
 /// Generated client implementations.
 pub mod discuss_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An API for using Generative Language Models (GLMs) in dialog applications.
@@ -1508,8 +1514,7 @@ pub mod discuss_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1539,8 +1544,7 @@ pub mod discuss_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1639,10 +1643,10 @@ pub mod file {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Processing => "PROCESSING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Processing => "PROCESSING",
+                Self::Active => "ACTIVE",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1725,7 +1729,13 @@ pub struct DeleteFileRequest {
 }
 /// Generated client implementations.
 pub mod file_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An API for uploading and managing files.
@@ -1810,8 +1820,7 @@ pub mod file_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1841,8 +1850,7 @@ pub mod file_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1869,8 +1877,7 @@ pub mod file_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1897,8 +1904,7 @@ pub mod file_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1948,7 +1954,7 @@ pub struct Corpus {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Document {
     /// Immutable. Identifier. The `Document` resource name. The ID (name excluding
-    /// the "corpora/\*/documents/" prefix) can contain up to 40 characters that are
+    /// the "corpora/*/documents/" prefix) can contain up to 40 characters that are
     /// lowercase alphanumeric or dashes (-). The ID cannot start or end with a
     /// dash. If the name is empty on create, a unique name will be derived from
     /// `display_name` along with a 12 character random suffix.
@@ -2005,9 +2011,9 @@ pub mod custom_metadata {
 /// User provided filter to limit retrieval based on `Chunk` or `Document` level
 /// metadata values.
 /// Example (genre = drama OR genre = action):
-/// key = "document.custom_metadata.genre"
-/// conditions = \[{string_value = "drama", operation = EQUAL},
-/// {string_value = "action", operation = EQUAL}\]
+///    key = "document.custom_metadata.genre"
+///    conditions = [{string_value = "drama", operation = EQUAL},
+///                  {string_value = "action", operation = EQUAL}]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataFilter {
     /// Required. The key of the metadata to filter on.
@@ -2078,15 +2084,15 @@ pub mod condition {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                Operator::Less => "LESS",
-                Operator::LessEqual => "LESS_EQUAL",
-                Operator::Equal => "EQUAL",
-                Operator::GreaterEqual => "GREATER_EQUAL",
-                Operator::Greater => "GREATER",
-                Operator::NotEqual => "NOT_EQUAL",
-                Operator::Includes => "INCLUDES",
-                Operator::Excludes => "EXCLUDES",
+                Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                Self::Less => "LESS",
+                Self::LessEqual => "LESS_EQUAL",
+                Self::Equal => "EQUAL",
+                Self::GreaterEqual => "GREATER_EQUAL",
+                Self::Greater => "GREATER",
+                Self::NotEqual => "NOT_EQUAL",
+                Self::Includes => "INCLUDES",
+                Self::Excludes => "EXCLUDES",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2184,10 +2190,10 @@ pub mod chunk {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::PendingProcessing => "STATE_PENDING_PROCESSING",
-                State::Active => "STATE_ACTIVE",
-                State::Failed => "STATE_FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::PendingProcessing => "STATE_PENDING_PROCESSING",
+                Self::Active => "STATE_ACTIVE",
+                Self::Failed => "STATE_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2369,7 +2375,7 @@ pub struct GenerationConfig {
     ///
     /// This penalty is binary on/off and not dependant on the number of times the
     /// token is used (after the first). Use
-    /// \[frequency_penalty\]\[google.ai.generativelanguage.v1beta.GenerationConfig.frequency_penalty\]
+    /// [frequency_penalty][google.ai.generativelanguage.v1beta.GenerationConfig.frequency_penalty]
     /// for a penalty that increases with each use.
     ///
     /// A positive penalty will discourage the use of tokens that have already
@@ -2388,12 +2394,12 @@ pub struct GenerationConfig {
     /// The more a token is used, the more dificult it is for the model to use
     /// that token again increasing the vocabulary of responses.
     ///
-    /// Caution: A *negative* penalty will encourage the model to reuse tokens
+    /// Caution: A _negative_ penalty will encourage the model to reuse tokens
     /// proportional to the number of times the token has been used. Small
     /// negative values will reduce the vocabulary of a response. Larger negative
     /// values will cause the model to start repeating a common token  until it
     /// hits the
-    /// \[max_output_tokens\]\[google.ai.generativelanguage.v1beta.GenerationConfig.max_output_tokens\]
+    /// [max_output_tokens][google.ai.generativelanguage.v1beta.GenerationConfig.max_output_tokens]
     /// limit: "...the the the the the...".
     #[prost(float, optional, tag = "16")]
     pub frequency_penalty: ::core::option::Option<f32>,
@@ -2401,9 +2407,9 @@ pub struct GenerationConfig {
     #[prost(bool, optional, tag = "17")]
     pub response_logprobs: ::core::option::Option<bool>,
     /// Optional. Only valid if
-    /// \[response_logprobs=True\]\[google.ai.generativelanguage.v1beta.GenerationConfig.response_logprobs\].
+    /// [response_logprobs=True][google.ai.generativelanguage.v1beta.GenerationConfig.response_logprobs].
     /// This sets the number of top logprobs to return at each decoding step in the
-    /// \[Candidate.logprobs_result\]\[google.ai.generativelanguage.v1beta.Candidate.logprobs_result\].
+    /// [Candidate.logprobs_result][google.ai.generativelanguage.v1beta.Candidate.logprobs_result].
     #[prost(int32, optional, tag = "18")]
     pub logprobs: ::core::option::Option<i32>,
 }
@@ -2435,12 +2441,11 @@ pub struct SemanticRetrieverConfig {
 /// Safety ratings and content filtering are reported for both
 /// prompt in `GenerateContentResponse.prompt_feedback` and for each candidate
 /// in `finish_reason` and in `safety_ratings`. The API:
-///
-/// * Returns either all requested candidates or none of them
-/// * Returns no candidates at all only if there was something wrong with the
-///   prompt (check `prompt_feedback`)
-/// * Reports feedback on each candidate in `finish_reason` and
-///   `safety_ratings`.
+///   - Returns either all requested candidates or none of them
+///   - Returns no candidates at all only if there was something wrong with the
+///     prompt (check `prompt_feedback`)
+///   - Reports feedback on each candidate in `finish_reason` and
+///     `safety_ratings`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateContentResponse {
     /// Candidate responses from the model.
@@ -2506,11 +2511,11 @@ pub mod generate_content_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
-                    BlockReason::Safety => "SAFETY",
-                    BlockReason::Other => "OTHER",
-                    BlockReason::Blocklist => "BLOCKLIST",
-                    BlockReason::ProhibitedContent => "PROHIBITED_CONTENT",
+                    Self::Unspecified => "BLOCK_REASON_UNSPECIFIED",
+                    Self::Safety => "SAFETY",
+                    Self::Other => "OTHER",
+                    Self::Blocklist => "BLOCKLIST",
+                    Self::ProhibitedContent => "PROHIBITED_CONTENT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2641,17 +2646,17 @@ pub mod candidate {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FinishReason::Unspecified => "FINISH_REASON_UNSPECIFIED",
-                FinishReason::Stop => "STOP",
-                FinishReason::MaxTokens => "MAX_TOKENS",
-                FinishReason::Safety => "SAFETY",
-                FinishReason::Recitation => "RECITATION",
-                FinishReason::Language => "LANGUAGE",
-                FinishReason::Other => "OTHER",
-                FinishReason::Blocklist => "BLOCKLIST",
-                FinishReason::ProhibitedContent => "PROHIBITED_CONTENT",
-                FinishReason::Spii => "SPII",
-                FinishReason::MalformedFunctionCall => "MALFORMED_FUNCTION_CALL",
+                Self::Unspecified => "FINISH_REASON_UNSPECIFIED",
+                Self::Stop => "STOP",
+                Self::MaxTokens => "MAX_TOKENS",
+                Self::Safety => "SAFETY",
+                Self::Recitation => "RECITATION",
+                Self::Language => "LANGUAGE",
+                Self::Other => "OTHER",
+                Self::Blocklist => "BLOCKLIST",
+                Self::ProhibitedContent => "PROHIBITED_CONTENT",
+                Self::Spii => "SPII",
+                Self::MalformedFunctionCall => "MALFORMED_FUNCTION_CALL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2795,7 +2800,7 @@ pub struct SearchEntryPoint {
     /// webview.
     #[prost(string, tag = "1")]
     pub rendered_content: ::prost::alloc::string::String,
-    /// Optional. Base64 encoded JSON representing array of \<search term, search
+    /// Optional. Base64 encoded JSON representing array of <search term, search
     /// url> tuple.
     #[prost(bytes = "vec", tag = "2")]
     pub sdk_blob: ::prost::alloc::vec::Vec<u8>,
@@ -2951,10 +2956,10 @@ pub mod generate_answer_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AnswerStyle::Unspecified => "ANSWER_STYLE_UNSPECIFIED",
-                AnswerStyle::Abstractive => "ABSTRACTIVE",
-                AnswerStyle::Extractive => "EXTRACTIVE",
-                AnswerStyle::Verbose => "VERBOSE",
+                Self::Unspecified => "ANSWER_STYLE_UNSPECIFIED",
+                Self::Abstractive => "ABSTRACTIVE",
+                Self::Extractive => "EXTRACTIVE",
+                Self::Verbose => "VERBOSE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3000,10 +3005,10 @@ pub struct GenerateAnswerResponse {
     /// When `answerable_probability` is low, you may want to:
     ///
     /// * Display a message to the effect of "We couldn’t answer that question" to
-    ///   the user.
+    /// the user.
     /// * Fall back to a general-purpose LLM that answers the question from world
-    ///   knowledge. The threshold and nature of such fallbacks will depend on
-    ///   individual use cases. `0.5` is a good starting threshold.
+    /// knowledge. The threshold and nature of such fallbacks will depend on
+    /// individual use cases. `0.5` is a good starting threshold.
     #[prost(float, optional, tag = "2")]
     pub answerable_probability: ::core::option::Option<f32>,
     /// Output only. Feedback related to the input data used to answer the
@@ -3011,11 +3016,11 @@ pub struct GenerateAnswerResponse {
     ///
     /// The input data can be one or more of the following:
     ///
-    /// * Question specified by the last entry in `GenerateAnswerRequest.content`
-    /// * Conversation history specified by the other entries in
-    ///   `GenerateAnswerRequest.content`
-    /// * Grounding sources (`GenerateAnswerRequest.semantic_retriever` or
-    ///   `GenerateAnswerRequest.inline_passages`)
+    /// - Question specified by the last entry in `GenerateAnswerRequest.content`
+    /// - Conversation history specified by the other entries in
+    /// `GenerateAnswerRequest.content`
+    /// - Grounding sources (`GenerateAnswerRequest.semantic_retriever` or
+    /// `GenerateAnswerRequest.inline_passages`)
     #[prost(message, optional, tag = "3")]
     pub input_feedback: ::core::option::Option<generate_answer_response::InputFeedback>,
 }
@@ -3065,9 +3070,9 @@ pub mod generate_answer_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
-                    BlockReason::Safety => "SAFETY",
-                    BlockReason::Other => "OTHER",
+                    Self::Unspecified => "BLOCK_REASON_UNSPECIFIED",
+                    Self::Safety => "SAFETY",
+                    Self::Other => "OTHER",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3223,14 +3228,14 @@ impl TaskType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TaskType::Unspecified => "TASK_TYPE_UNSPECIFIED",
-            TaskType::RetrievalQuery => "RETRIEVAL_QUERY",
-            TaskType::RetrievalDocument => "RETRIEVAL_DOCUMENT",
-            TaskType::SemanticSimilarity => "SEMANTIC_SIMILARITY",
-            TaskType::Classification => "CLASSIFICATION",
-            TaskType::Clustering => "CLUSTERING",
-            TaskType::QuestionAnswering => "QUESTION_ANSWERING",
-            TaskType::FactVerification => "FACT_VERIFICATION",
+            Self::Unspecified => "TASK_TYPE_UNSPECIFIED",
+            Self::RetrievalQuery => "RETRIEVAL_QUERY",
+            Self::RetrievalDocument => "RETRIEVAL_DOCUMENT",
+            Self::SemanticSimilarity => "SEMANTIC_SIMILARITY",
+            Self::Classification => "CLASSIFICATION",
+            Self::Clustering => "CLUSTERING",
+            Self::QuestionAnswering => "QUESTION_ANSWERING",
+            Self::FactVerification => "FACT_VERIFICATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3250,7 +3255,13 @@ impl TaskType {
 }
 /// Generated client implementations.
 pub mod generative_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API for using Large Models that generate multimodal content and have
@@ -3342,8 +3353,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3374,8 +3384,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3407,8 +3416,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3440,8 +3448,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3473,8 +3480,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3506,8 +3512,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3620,8 +3625,8 @@ pub struct TunedModel {
     ///
     /// Example:
     ///
-    /// * display_name = `Sentence Translator`
-    /// * name = `tunedModels/sentence-translator-u3b7m`
+    ///   * display_name = `Sentence Translator`
+    ///   * name = `tunedModels/sentence-translator-u3b7m`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The name to display for this model in user interfaces.
@@ -3711,10 +3716,10 @@ pub mod tuned_model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3950,16 +3955,15 @@ pub struct ListTunedModelsRequest {
     /// with everyone.
     ///
     /// Additional operators:
-    ///
-    /// * owner:me
-    /// * writers:me
-    /// * readers:me
-    /// * readers:everyone
+    ///    - owner:me
+    ///    - writers:me
+    ///    - readers:me
+    ///    - readers:everyone
     ///
     /// Examples:
-    /// "owner:me" returns all tuned models to which caller has owner role
-    /// "readers:me" returns all tuned models to which caller has reader role
-    /// "readers:everyone" returns all tuned models that are shared with everyone
+    ///    "owner:me" returns all tuned models to which caller has owner role
+    ///    "readers:me" returns all tuned models to which caller has reader role
+    ///    "readers:everyone" returns all tuned models that are shared with everyone
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -4028,7 +4032,13 @@ pub struct DeleteTunedModelRequest {
 }
 /// Generated client implementations.
 pub mod model_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for getting metadata information about Generative Models.
@@ -4115,8 +4125,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4147,8 +4156,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4175,8 +4183,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4206,8 +4213,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4227,11 +4233,11 @@ pub mod model_service_client {
         }
         /// Creates a tuned model.
         /// Check intermediate tuning progress (if any) through the
-        /// \[google.longrunning.Operations\] service.
+        /// [google.longrunning.Operations] service.
         ///
         /// Access status and results through the Operations service.
         /// Example:
-        /// GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
+        ///   GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
         pub async fn create_tuned_model(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTunedModelRequest>,
@@ -4243,8 +4249,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4271,8 +4276,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4299,8 +4303,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4331,15 +4334,15 @@ pub mod model_service_client {
 /// There are three concentric roles. Each role is a superset of the previous
 /// role's permitted operations:
 ///
-/// * reader can use the resource (e.g. tuned model, corpus) for inference
-/// * writer has reader's permissions and additionally can edit and share
-/// * owner has writer's permissions and additionally can delete
+/// - reader can use the resource (e.g. tuned model, corpus) for inference
+/// - writer has reader's permissions and additionally can edit and share
+/// - owner has writer's permissions and additionally can delete
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Permission {
     /// Output only. Identifier. The permission name. A unique name will be
     /// generated on create. Examples:
-    /// tunedModels/{tuned_model}/permissions/{permission}
-    /// corpora/{corpus}/permissions/{permission}
+    ///      tunedModels/{tuned_model}/permissions/{permission}
+    ///      corpora/{corpus}/permissions/{permission}
     /// Output only.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -4388,10 +4391,10 @@ pub mod permission {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                GranteeType::Unspecified => "GRANTEE_TYPE_UNSPECIFIED",
-                GranteeType::User => "USER",
-                GranteeType::Group => "GROUP",
-                GranteeType::Everyone => "EVERYONE",
+                Self::Unspecified => "GRANTEE_TYPE_UNSPECIFIED",
+                Self::User => "USER",
+                Self::Group => "GROUP",
+                Self::Everyone => "EVERYONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4435,10 +4438,10 @@ pub mod permission {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Role::Unspecified => "ROLE_UNSPECIFIED",
-                Role::Owner => "OWNER",
-                Role::Writer => "WRITER",
-                Role::Reader => "READER",
+                Self::Unspecified => "ROLE_UNSPECIFIED",
+                Self::Owner => "OWNER",
+                Self::Writer => "WRITER",
+                Self::Reader => "READER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4458,8 +4461,8 @@ pub mod permission {
 pub struct CreatePermissionRequest {
     /// Required. The parent resource of the `Permission`.
     /// Formats:
-    /// `tunedModels/{tuned_model}`
-    /// `corpora/{corpus}`
+    ///     `tunedModels/{tuned_model}`
+    ///     `corpora/{corpus}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The permission to create.
@@ -4472,8 +4475,8 @@ pub struct GetPermissionRequest {
     /// Required. The resource name of the permission.
     ///
     /// Formats:
-    /// `tunedModels/{tuned_model}/permissions/{permission}`
-    /// `corpora/{corpus}/permissions/{permission}`
+    ///     `tunedModels/{tuned_model}/permissions/{permission}`
+    ///     `corpora/{corpus}/permissions/{permission}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -4482,8 +4485,8 @@ pub struct GetPermissionRequest {
 pub struct ListPermissionsRequest {
     /// Required. The parent resource of the permissions.
     /// Formats:
-    /// `tunedModels/{tuned_model}`
-    /// `corpora/{corpus}`
+    ///     `tunedModels/{tuned_model}`
+    ///     `corpora/{corpus}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of `Permission`s to return (per page).
@@ -4526,8 +4529,7 @@ pub struct UpdatePermissionRequest {
     #[prost(message, optional, tag = "1")]
     pub permission: ::core::option::Option<Permission>,
     /// Required. The list of fields to update. Accepted ones:
-    ///
-    /// * role (`Permission.role` field)
+    ///   - role (`Permission.role` field)
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -4536,8 +4538,8 @@ pub struct UpdatePermissionRequest {
 pub struct DeletePermissionRequest {
     /// Required. The resource name of the permission.
     /// Formats:
-    /// `tunedModels/{tuned_model}/permissions/{permission}`
-    /// `corpora/{corpus}/permissions/{permission}`
+    ///     `tunedModels/{tuned_model}/permissions/{permission}`
+    ///     `corpora/{corpus}/permissions/{permission}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -4559,7 +4561,13 @@ pub struct TransferOwnershipRequest {
 pub struct TransferOwnershipResponse {}
 /// Generated client implementations.
 pub mod permission_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for managing permissions to PaLM API resources.
@@ -4641,8 +4649,7 @@ pub mod permission_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4669,8 +4676,7 @@ pub mod permission_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4700,8 +4706,7 @@ pub mod permission_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4728,8 +4733,7 @@ pub mod permission_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4756,8 +4760,7 @@ pub mod permission_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4789,8 +4792,7 @@ pub mod permission_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4811,7 +4813,7 @@ pub mod permission_service_client {
     }
 }
 /// Request message for
-/// \[PredictionService.Predict\]\[google.ai.generativelanguage.v1beta.PredictionService.Predict\].
+/// [PredictionService.Predict][google.ai.generativelanguage.v1beta.PredictionService.Predict].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictRequest {
     /// Required. The name of the model for prediction.
@@ -4834,7 +4836,13 @@ pub struct PredictResponse {
 }
 /// Generated client implementations.
 pub mod prediction_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// A service for online predictions and explanations.
@@ -4919,8 +4927,7 @@ pub mod prediction_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5028,29 +5035,29 @@ pub struct QueryCorpusRequest {
     /// are joined by logical "AND"s.
     ///
     /// Example query at document level:
-    /// (year >= 2020 OR year \< 2010) AND (genre = drama OR genre = action)
+    /// (year >= 2020 OR year < 2010) AND (genre = drama OR genre = action)
     ///
     /// `MetadataFilter` object list:
-    /// metadata_filters = \[
-    /// {key = "document.custom_metadata.year"
-    /// conditions = \[{int_value = 2020, operation = GREATER_EQUAL},
-    /// {int_value = 2010, operation = LESS}\]},
-    /// {key = "document.custom_metadata.year"
-    /// conditions = \[{int_value = 2020, operation = GREATER_EQUAL},
-    /// {int_value = 2010, operation = LESS}\]},
-    /// {key = "document.custom_metadata.genre"
-    /// conditions = \[{string_value = "drama", operation = EQUAL},
-    /// {string_value = "action", operation = EQUAL}\]}\]
+    ///   metadata_filters = [
+    ///   {key = "document.custom_metadata.year"
+    ///    conditions = [{int_value = 2020, operation = GREATER_EQUAL},
+    ///                  {int_value = 2010, operation = LESS}]},
+    ///   {key = "document.custom_metadata.year"
+    ///    conditions = [{int_value = 2020, operation = GREATER_EQUAL},
+    ///                  {int_value = 2010, operation = LESS}]},
+    ///   {key = "document.custom_metadata.genre"
+    ///    conditions = [{string_value = "drama", operation = EQUAL},
+    ///                  {string_value = "action", operation = EQUAL}]}]
     ///
     /// Example query at chunk level for a numeric range of values:
-    /// (year > 2015 AND year \<= 2020)
+    /// (year > 2015 AND year <= 2020)
     ///
     /// `MetadataFilter` object list:
-    /// metadata_filters = \[
-    /// {key = "chunk.custom_metadata.year"
-    /// conditions = \[{int_value = 2015, operation = GREATER}\]},
-    /// {key = "chunk.custom_metadata.year"
-    /// conditions = \[{int_value = 2020, operation = LESS_EQUAL}\]}\]
+    ///   metadata_filters = [
+    ///   {key = "chunk.custom_metadata.year"
+    ///    conditions = \[{int_value = 2015, operation = GREATER}\]},
+    ///   {key = "chunk.custom_metadata.year"
+    ///    conditions = \[{int_value = 2020, operation = LESS_EQUAL}\]}]
     ///
     /// Note: "AND"s for the same key are only supported for numeric values. String
     /// values only support "OR"s for the same key.
@@ -5188,26 +5195,26 @@ pub struct QueryDocumentRequest {
     /// a `Document` name is already specified.
     ///
     /// Example query:
-    /// (year >= 2020 OR year \< 2010) AND (genre = drama OR genre = action)
+    /// (year >= 2020 OR year < 2010) AND (genre = drama OR genre = action)
     ///
     /// `MetadataFilter` object list:
-    /// metadata_filters = \[
-    /// {key = "chunk.custom_metadata.year"
-    /// conditions = \[{int_value = 2020, operation = GREATER_EQUAL},
-    /// {int_value = 2010, operation = LESS}},
-    /// {key = "chunk.custom_metadata.genre"
-    /// conditions = \[{string_value = "drama", operation = EQUAL},
-    /// {string_value = "action", operation = EQUAL}}\]
+    ///   metadata_filters = [
+    ///   {key = "chunk.custom_metadata.year"
+    ///    conditions = [{int_value = 2020, operation = GREATER_EQUAL},
+    ///                  {int_value = 2010, operation = LESS}},
+    ///   {key = "chunk.custom_metadata.genre"
+    ///    conditions = [{string_value = "drama", operation = EQUAL},
+    ///                  {string_value = "action", operation = EQUAL}}]
     ///
     /// Example query for a numeric range of values:
-    /// (year > 2015 AND year \<= 2020)
+    /// (year > 2015 AND year <= 2020)
     ///
     /// `MetadataFilter` object list:
-    /// metadata_filters = \[
-    /// {key = "chunk.custom_metadata.year"
-    /// conditions = \[{int_value = 2015, operation = GREATER}\]},
-    /// {key = "chunk.custom_metadata.year"
-    /// conditions = \[{int_value = 2020, operation = LESS_EQUAL}\]}\]
+    ///   metadata_filters = [
+    ///   {key = "chunk.custom_metadata.year"
+    ///    conditions = \[{int_value = 2015, operation = GREATER}\]},
+    ///   {key = "chunk.custom_metadata.year"
+    ///    conditions = \[{int_value = 2020, operation = LESS_EQUAL}\]}]
     ///
     /// Note: "AND"s for the same key are only supported for numeric values. String
     /// values only support "OR"s for the same key.
@@ -5349,7 +5356,13 @@ pub struct ListChunksResponse {
 }
 /// Generated client implementations.
 pub mod retriever_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An API for semantic search over a corpus of user uploaded content.
@@ -5431,8 +5444,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5459,8 +5471,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5487,8 +5498,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5515,8 +5525,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5546,8 +5555,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5577,8 +5585,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5605,8 +5612,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5633,8 +5639,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5661,8 +5666,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5689,8 +5693,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5720,8 +5723,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5751,8 +5753,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5779,8 +5780,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5810,8 +5810,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5838,8 +5837,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5866,8 +5864,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5897,8 +5894,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5925,8 +5921,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5953,8 +5948,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5984,8 +5978,7 @@ pub mod retriever_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6011,8 +6004,8 @@ pub struct GenerateTextRequest {
     /// Required. The name of the `Model` or `TunedModel` to use for generating the
     /// completion.
     /// Examples:
-    /// models/text-bison-001
-    /// tunedModels/sentence-translator-u3b7m
+    ///   models/text-bison-001
+    ///   tunedModels/sentence-translator-u3b7m
     #[prost(string, tag = "1")]
     pub model: ::prost::alloc::string::String,
     /// Required. The free-form input text given to the model as a prompt.
@@ -6164,7 +6157,7 @@ pub struct EmbedTextResponse {
 pub struct BatchEmbedTextRequest {
     /// Required. The name of the `Model` to use for generating the embedding.
     /// Examples:
-    /// models/embedding-gecko-001
+    ///   models/embedding-gecko-001
     #[prost(string, tag = "1")]
     pub model: ::prost::alloc::string::String,
     /// Optional. The free-form input texts that the model will turn into an
@@ -6222,7 +6215,13 @@ pub struct CountTextTokensResponse {
 }
 /// Generated client implementations.
 pub mod text_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API for using Generative Language Models (GLMs) trained to generate text.
@@ -6310,8 +6309,7 @@ pub mod text_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6341,8 +6339,7 @@ pub mod text_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6373,8 +6370,7 @@ pub mod text_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6404,8 +6400,7 @@ pub mod text_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

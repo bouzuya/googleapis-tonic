@@ -6,39 +6,41 @@ pub struct TranslateSpeechConfig {
     /// Required. Encoding of audio data.
     /// Supported formats:
     ///
-    /// * `linear16`
+    /// - `linear16`
     ///
-    ///   Uncompressed 16-bit signed little-endian samples (Linear PCM).
+    ///    Uncompressed 16-bit signed little-endian samples (Linear PCM).
     ///
-    /// * `flac`
+    /// - `flac`
     ///
-    ///   `flac` (Free Lossless Audio Codec) is the recommended encoding
-    ///   because it is lossless--therefore recognition is not compromised--and
-    ///   requires only about half the bandwidth of `linear16`.
+    ///    `flac` (Free Lossless Audio Codec) is the recommended encoding
+    ///    because it is lossless--therefore recognition is not compromised--and
+    ///    requires only about half the bandwidth of `linear16`.
     ///
-    /// * `mulaw`
+    /// - `mulaw`
     ///
-    ///   8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
+    ///    8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
     ///
-    /// * `amr`
+    /// - `amr`
     ///
-    ///   Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.
+    ///    Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.
     ///
-    /// * `amr-wb`
+    /// - `amr-wb`
     ///
-    ///   Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.
+    ///    Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.
     ///
-    /// * `ogg-opus`
+    /// - `ogg-opus`
     ///
-    ///   Opus encoded audio frames in Ogg container
-    ///   ([OggOpus](<https://wiki.xiph.org/OggOpus>)).
-    ///   `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000.
+    ///    Opus encoded audio frames in Ogg container
+    ///    ([OggOpus](<https://wiki.xiph.org/OggOpus>)).
+    ///    `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000.
     ///
-    /// * `mp3`
+    /// - `mp3`
     ///
-    ///   MP3 audio. Support all standard MP3 bitrates (which range from 32-320
-    ///   kbps). When using this encoding, `sample_rate_hertz` has to match the
-    ///   sample rate of the file being used.
+    ///    MP3 audio. Support all standard MP3 bitrates (which range from 32-320
+    ///    kbps). When using this encoding, `sample_rate_hertz` has to match the
+    ///    sample rate of the file being used.
+    ///
+    ///
     #[prost(string, tag = "1")]
     pub audio_encoding: ::prost::alloc::string::String,
     /// Required. Source language code (BCP-47) of the input audio.
@@ -54,13 +56,12 @@ pub struct TranslateSpeechConfig {
     /// translated result will include the language code of the language detected
     /// in the audio.
     /// Note:
-    ///
     /// 1. If the provided alternative_source_language_code is not supported
-    ///    by current API version, we will skip that language code.
-    /// 1. If user only provided one eligible alternative_source_language_codes,
-    ///    the translation will happen between source_language_code and
-    ///    alternative_source_language_codes. The target_language_code will be
-    ///    ignored. It will be useful in conversation mode.
+    /// by current API version, we will skip that language code.
+    /// 2. If user only provided one eligible alternative_source_language_codes,
+    /// the translation will happen between source_language_code and
+    /// alternative_source_language_codes. The target_language_code will be
+    /// ignored. It will be useful in conversation mode.
     #[prost(string, repeated, tag = "6")]
     pub alternative_source_language_codes: ::prost::alloc::vec::Vec<
         ::prost::alloc::string::String,
@@ -69,6 +70,7 @@ pub struct TranslateSpeechConfig {
     /// 8000-48000. 16000 is optimal. For best results, set the sampling rate of
     /// the audio source to 16000 Hz. If that's not possible, use the native sample
     /// rate of the audio source (instead of re-sampling).
+    ///
     #[prost(int32, tag = "4")]
     pub sample_rate_hertz: i32,
     /// Optional.
@@ -105,33 +107,32 @@ pub struct StreamingTranslateSpeechConfig {
     /// Default empty string will be treated as "HIGH" in audio translation mode;
     /// will be treated as "LOW" in other translation mode.
     /// Note that stability and speed would be trade off.
-    ///
     /// 1. "LOW": In low mode, translation service will start to do translation
-    ///    right after getting recognition response. The speed will be faster.
-    /// 1. "MEDIUM": In medium mode, translation service will
-    ///    check if the recognition response is stable enough or not, and only
-    ///    translate recognition response which is not likely to be changed later.
-    /// 1. "HIGH": In high mode, translation service will wait for more stable
-    ///    recognition responses, and then start to do translation. Also, the
-    ///    following recognition responses cannot modify previous recognition
-    ///    responses. Thus it may impact quality in some situation. "HIGH" stability
-    ///    will generate "final" responses more frequently.
+    /// right after getting recognition response. The speed will be faster.
+    /// 2. "MEDIUM": In medium mode, translation service will
+    /// check if the recognition response is stable enough or not, and only
+    /// translate recognition response which is not likely to be changed later.
+    /// 3. "HIGH": In high mode, translation service will wait for more stable
+    /// recognition responses, and then start to do translation. Also, the
+    /// following recognition responses cannot modify previous recognition
+    /// responses. Thus it may impact quality in some situation. "HIGH" stability
+    /// will generate "final" responses more frequently.
+    ///
     #[prost(string, tag = "3")]
     pub stability: ::prost::alloc::string::String,
     /// Optional. Translation mode, the value should be "text", "audio", "text_and_audio".
     /// Default empty string will be treated as "text".
-    ///
     /// 1. "text": The response will be text translation. Text translation has a
-    ///    field "is_final". Detailed definition can be found in
-    ///    `TextTranslationResult`.
-    /// 1. "audio": The response will be audio translation. Audio translation does
-    ///    not have "is_final" field, which means each audio translation response is
-    ///    stable and will not be changed by later response.
-    ///    Translation mode "audio" can only be used with "high" stability mode,
-    /// 1. "text_and_audio": The response will have a text translation, when
-    ///    "is_final" is true, we will also output its corresponding audio
-    ///    translation. When "is_final" is false, audio_translation field will be
-    ///    empty.
+    /// field "is_final". Detailed definition can be found in
+    /// `TextTranslationResult`.
+    /// 2. "audio": The response will be audio translation. Audio translation does
+    /// not have "is_final" field, which means each audio translation response is
+    /// stable and will not be changed by later response.
+    /// Translation mode "audio" can only be used with "high" stability mode,
+    /// 3. "text_and_audio": The response will have a text translation, when
+    /// "is_final" is true, we will also output its corresponding audio
+    /// translation. When "is_final" is false, audio_translation field will be
+    /// empty.
     #[prost(string, tag = "4")]
     pub translation_mode: ::prost::alloc::string::String,
     /// Optional. If disable_interim_results is true, we will only return "final" responses.
@@ -231,7 +232,7 @@ pub mod streaming_translate_speech_result {
 /// the audio currently processed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingTranslateSpeechResponse {
-    /// Output only. If set, returns a \[google.rpc.Status\]\[google.rpc.Status\] message that
+    /// Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
     /// specifies the error for the operation.
     #[prost(message, optional, tag = "1")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
@@ -287,8 +288,8 @@ pub mod streaming_translate_speech_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SpeechEventType::Unspecified => "SPEECH_EVENT_TYPE_UNSPECIFIED",
-                SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
+                Self::Unspecified => "SPEECH_EVENT_TYPE_UNSPECIFIED",
+                Self::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -303,7 +304,13 @@ pub mod streaming_translate_speech_response {
 }
 /// Generated client implementations.
 pub mod speech_translation_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides translation from/to media types.
@@ -395,8 +402,7 @@ pub mod speech_translation_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -52,7 +52,7 @@ pub struct ListShelvesRequest {
     pub page_size: i32,
     /// A token identifying a page of results the server should return.
     /// Typically, this is the value of
-    /// \[ListShelvesResponse.next_page_token\]\[google.example.library.v1.ListShelvesResponse.next_page_token\]
+    /// [ListShelvesResponse.next_page_token][google.example.library.v1.ListShelvesResponse.next_page_token]
     /// returned from the previous call to `ListShelves` method.
     #[prost(string, tag = "2")]
     pub page_token: ::prost::alloc::string::String,
@@ -65,7 +65,7 @@ pub struct ListShelvesResponse {
     pub shelves: ::prost::alloc::vec::Vec<Shelf>,
     /// A token to retrieve next page of results.
     /// Pass this value in the
-    /// \[ListShelvesRequest.page_token\]\[google.example.library.v1.ListShelvesRequest.page_token\]
+    /// [ListShelvesRequest.page_token][google.example.library.v1.ListShelvesRequest.page_token]
     /// field in the subsequent call to `ListShelves` method to retrieve the next
     /// page of results.
     #[prost(string, tag = "2")]
@@ -118,7 +118,7 @@ pub struct ListBooksRequest {
     pub page_size: i32,
     /// A token identifying a page of results the server should return.
     /// Typically, this is the value of
-    /// \[ListBooksResponse.next_page_token\]\[google.example.library.v1.ListBooksResponse.next_page_token\].
+    /// [ListBooksResponse.next_page_token][google.example.library.v1.ListBooksResponse.next_page_token].
     /// returned from the previous call to `ListBooks` method.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
@@ -131,7 +131,7 @@ pub struct ListBooksResponse {
     pub books: ::prost::alloc::vec::Vec<Book>,
     /// A token to retrieve next page of results.
     /// Pass this value in the
-    /// \[ListBooksRequest.page_token\]\[google.example.library.v1.ListBooksRequest.page_token\]
+    /// [ListBooksRequest.page_token][google.example.library.v1.ListBooksRequest.page_token]
     /// field in the subsequent call to `ListBooks` method to retrieve the next
     /// page of results.
     #[prost(string, tag = "2")]
@@ -167,18 +167,24 @@ pub struct MoveBookRequest {
 }
 /// Generated client implementations.
 pub mod library_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// This API represents a simple digital library. It lets you manage Shelf
     /// resources and Book resources in the library. It defines the following
     /// resource model:
     ///
-    /// * The API has a collection of \[Shelf\]\[google.example.library.v1.Shelf\]
-    ///  resources, named `shelves/*`
+    /// - The API has a collection of [Shelf][google.example.library.v1.Shelf]
+    ///   resources, named `shelves/*`
     ///
-    /// * Each Shelf has a collection of \[Book\]\[google.example.library.v1.Book\]
-    ///  resources, named `shelves/*/books/*`
+    /// - Each Shelf has a collection of [Book][google.example.library.v1.Book]
+    ///   resources, named `shelves/*/books/*`
     #[derive(Debug, Clone)]
     pub struct LibraryServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -257,8 +263,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -285,8 +290,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -317,8 +321,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -345,8 +348,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -379,8 +381,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -407,8 +408,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -435,8 +435,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -468,8 +467,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -496,8 +494,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -525,8 +522,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -554,8 +550,7 @@ pub mod library_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

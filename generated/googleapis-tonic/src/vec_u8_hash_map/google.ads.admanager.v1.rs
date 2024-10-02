@@ -13,7 +13,7 @@ pub struct AdPartnerDeclaration {
     pub ad_partners: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Wrapper message for
-/// \[DeclarationTypeEnum\]\[google.ads.admanager.v1.DeclarationTypeEnum\].
+/// [DeclarationTypeEnum][google.ads.admanager.v1.DeclarationTypeEnum].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeclarationTypeEnum {}
 /// Nested message and enum types in `DeclarationTypeEnum`.
@@ -46,9 +46,9 @@ pub mod declaration_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeclarationType::Unspecified => "DECLARATION_TYPE_UNSPECIFIED",
-                DeclarationType::None => "NONE",
-                DeclarationType::Declared => "DECLARED",
+                Self::Unspecified => "DECLARATION_TYPE_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::Declared => "DECLARED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -139,7 +139,13 @@ pub struct ListAdPartnersResponse {
 }
 /// Generated client implementations.
 pub mod ad_partner_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling AdPartner objects.
@@ -221,8 +227,7 @@ pub mod ad_partner_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -252,8 +257,7 @@ pub mod ad_partner_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -274,7 +278,7 @@ pub mod ad_partner_service_client {
     }
 }
 /// Wrapper message for
-/// \[AppliedAdsenseEnabled\]\[google.ads.admanager.v1.AppliedAdsenseEnabledEnum.AppliedAdsenseEnabled\]
+/// [AppliedAdsenseEnabled][google.ads.admanager.v1.AppliedAdsenseEnabledEnum.AppliedAdsenseEnabled]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AppliedAdsenseEnabledEnum {}
 /// Nested message and enum types in `AppliedAdsenseEnabledEnum`.
@@ -308,11 +312,9 @@ pub mod applied_adsense_enabled_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AppliedAdsenseEnabled::Unspecified => {
-                    "APPLIED_ADSENSE_ENABLED_UNSPECIFIED"
-                }
-                AppliedAdsenseEnabled::True => "TRUE",
-                AppliedAdsenseEnabled::False => "FALSE",
+                Self::Unspecified => "APPLIED_ADSENSE_ENABLED_UNSPECIFIED",
+                Self::True => "TRUE",
+                Self::False => "FALSE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -327,7 +329,7 @@ pub mod applied_adsense_enabled_enum {
     }
 }
 /// Wrapper message for
-/// \[EnvironmentType\]\[google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType\].
+/// [EnvironmentType][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct EnvironmentTypeEnum {}
 /// Nested message and enum types in `EnvironmentTypeEnum`.
@@ -360,9 +362,9 @@ pub mod environment_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EnvironmentType::Unspecified => "ENVIRONMENT_TYPE_UNSPECIFIED",
-                EnvironmentType::Browser => "BROWSER",
-                EnvironmentType::VideoPlayer => "VIDEO_PLAYER",
+                Self::Unspecified => "ENVIRONMENT_TYPE_UNSPECIFIED",
+                Self::Browser => "BROWSER",
+                Self::VideoPlayer => "VIDEO_PLAYER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -397,7 +399,7 @@ pub struct Size {
     pub size_type: i32,
 }
 /// Wrapper message for
-/// \[SizeType\]\[google.ads.admanager.v1.SizeTypeEnum.SizeType\].
+/// [SizeType][google.ads.admanager.v1.SizeTypeEnum.SizeType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SizeTypeEnum {}
 /// Nested message and enum types in `SizeTypeEnum`.
@@ -446,14 +448,14 @@ pub mod size_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SizeType::Unspecified => "SIZE_TYPE_UNSPECIFIED",
-                SizeType::Pixel => "PIXEL",
-                SizeType::AspectRatio => "ASPECT_RATIO",
-                SizeType::Interstitial => "INTERSTITIAL",
-                SizeType::Ignored => "IGNORED",
-                SizeType::Native => "NATIVE",
-                SizeType::Fluid => "FLUID",
-                SizeType::Audio => "AUDIO",
+                Self::Unspecified => "SIZE_TYPE_UNSPECIFIED",
+                Self::Pixel => "PIXEL",
+                Self::AspectRatio => "ASPECT_RATIO",
+                Self::Interstitial => "INTERSTITIAL",
+                Self::Ignored => "IGNORED",
+                Self::Native => "NATIVE",
+                Self::Fluid => "FLUID",
+                Self::Audio => "AUDIO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -483,7 +485,7 @@ pub struct AdUnitSize {
     pub environment_type: i32,
     /// The companions for this ad unit size. Companions are only valid if the
     /// environment is
-    /// \[VIDEO_PLAYER\]\[google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType\].
+    /// [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
     #[prost(message, repeated, tag = "3")]
     pub companions: ::prost::alloc::vec::Vec<Size>,
 }
@@ -557,15 +559,15 @@ pub mod time_unit_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TimeUnit::Unspecified => "TIME_UNIT_UNSPECIFIED",
-                TimeUnit::Minute => "MINUTE",
-                TimeUnit::Hour => "HOUR",
-                TimeUnit::Day => "DAY",
-                TimeUnit::Week => "WEEK",
-                TimeUnit::Month => "MONTH",
-                TimeUnit::Lifetime => "LIFETIME",
-                TimeUnit::Pod => "POD",
-                TimeUnit::Stream => "STREAM",
+                Self::Unspecified => "TIME_UNIT_UNSPECIFIED",
+                Self::Minute => "MINUTE",
+                Self::Hour => "HOUR",
+                Self::Day => "DAY",
+                Self::Week => "WEEK",
+                Self::Month => "MONTH",
+                Self::Lifetime => "LIFETIME",
+                Self::Pod => "POD",
+                Self::Stream => "STREAM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -730,10 +732,10 @@ pub mod ad_unit {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Active => "ACTIVE",
-                Status::Inactive => "INACTIVE",
-                Status::Archived => "ARCHIVED",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
+                Self::Archived => "ARCHIVED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -764,7 +766,7 @@ pub struct AdUnitParent {
     pub ad_unit_code: ::prost::alloc::string::String,
 }
 /// Wrapper message for
-/// \[TargetWindow\]\[google.ads.admanager.v1.TargetWindowEnum.TargetWindow\].
+/// [TargetWindow][google.ads.admanager.v1.TargetWindowEnum.TargetWindow].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetWindowEnum {}
 /// Nested message and enum types in `TargetWindowEnum`.
@@ -798,9 +800,9 @@ pub mod target_window_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TargetWindow::Unspecified => "TARGET_WINDOW_UNSPECIFIED",
-                TargetWindow::Top => "TOP",
-                TargetWindow::Blank => "BLANK",
+                Self::Unspecified => "TARGET_WINDOW_UNSPECIFIED",
+                Self::Top => "TOP",
+                Self::Blank => "BLANK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -826,7 +828,7 @@ pub struct LabelFrequencyCap {
     pub frequency_cap: ::core::option::Option<FrequencyCap>,
 }
 /// Wrapper message for
-/// \[SmartSizeMode\]\[google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode\].
+/// [SmartSizeMode][google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SmartSizeModeEnum {}
 /// Nested message and enum types in `SmartSizeModeEnum`.
@@ -862,10 +864,10 @@ pub mod smart_size_mode_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SmartSizeMode::Unspecified => "SMART_SIZE_MODE_UNSPECIFIED",
-                SmartSizeMode::None => "NONE",
-                SmartSizeMode::SmartBanner => "SMART_BANNER",
-                SmartSizeMode::DynamicSize => "DYNAMIC_SIZE",
+                Self::Unspecified => "SMART_SIZE_MODE_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::SmartBanner => "SMART_BANNER",
+                Self::DynamicSize => "DYNAMIC_SIZE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -948,7 +950,13 @@ pub struct ListAdUnitsResponse {
 }
 /// Generated client implementations.
 pub mod ad_unit_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling AdUnit objects.
@@ -1030,8 +1038,7 @@ pub mod ad_unit_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1058,8 +1065,7 @@ pub mod ad_unit_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1106,7 +1112,7 @@ pub struct AdManagerError {
     pub details: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 /// Wrapper message for
-/// \[CompanyCreditStatus\]\[google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus\]
+/// [CompanyCreditStatus][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CompanyCreditStatusEnum {}
 /// Nested message and enum types in `CompanyCreditStatusEnum`.
@@ -1117,9 +1123,9 @@ pub mod company_credit_status_enum {
     /// ad serving of campaigns belonging to the company.
     ///
     /// In basic settings, only the
-    /// \[ACTIVE\]\[google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE\]
+    /// [ACTIVE][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE]
     /// and
-    /// \[INACTIVE\]\[google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.INACTIVE\]
+    /// [INACTIVE][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.INACTIVE]
     /// credit statuses are applicable. In advance settings, all credit statuses
     /// are applicable.
     #[derive(
@@ -1192,12 +1198,12 @@ pub mod company_credit_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CompanyCreditStatus::Unspecified => "COMPANY_CREDIT_STATUS_UNSPECIFIED",
-                CompanyCreditStatus::Active => "ACTIVE",
-                CompanyCreditStatus::Inactive => "INACTIVE",
-                CompanyCreditStatus::OnHold => "ON_HOLD",
-                CompanyCreditStatus::Stop => "STOP",
-                CompanyCreditStatus::Blocked => "BLOCKED",
+                Self::Unspecified => "COMPANY_CREDIT_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
+                Self::OnHold => "ON_HOLD",
+                Self::Stop => "STOP",
+                Self::Blocked => "BLOCKED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1215,7 +1221,7 @@ pub mod company_credit_status_enum {
     }
 }
 /// Wrapper message for
-/// \[CompanyType\]\[google.ads.admanager.v1.CompanyTypeEnum.CompanyType\]
+/// [CompanyType][google.ads.admanager.v1.CompanyTypeEnum.CompanyType]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CompanyTypeEnum {}
 /// Nested message and enum types in `CompanyTypeEnum`.
@@ -1257,13 +1263,13 @@ pub mod company_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CompanyType::Unspecified => "COMPANY_TYPE_UNSPECIFIED",
-                CompanyType::Advertiser => "ADVERTISER",
-                CompanyType::HouseAdvertiser => "HOUSE_ADVERTISER",
-                CompanyType::Agency => "AGENCY",
-                CompanyType::HouseAgency => "HOUSE_AGENCY",
-                CompanyType::AdNetwork => "AD_NETWORK",
-                CompanyType::ViewabilityProvider => "VIEWABILITY_PROVIDER",
+                Self::Unspecified => "COMPANY_TYPE_UNSPECIFIED",
+                Self::Advertiser => "ADVERTISER",
+                Self::HouseAdvertiser => "HOUSE_ADVERTISER",
+                Self::Agency => "AGENCY",
+                Self::HouseAgency => "HOUSE_AGENCY",
+                Self::AdNetwork => "AD_NETWORK",
+                Self::ViewabilityProvider => "VIEWABILITY_PROVIDER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1416,7 +1422,13 @@ pub struct ListCompaniesResponse {
 }
 /// Generated client implementations.
 pub mod company_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling `Company` objects.
@@ -1498,8 +1510,7 @@ pub mod company_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1529,8 +1540,7 @@ pub mod company_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1551,7 +1561,7 @@ pub mod company_service_client {
     }
 }
 /// Wrapper message for
-/// \[ComputedStatus\]\[google.ads.admanager.v1.ComputedStatusEnum.ComputedStatus\].
+/// [ComputedStatus][google.ads.admanager.v1.ComputedStatusEnum.ComputedStatus].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ComputedStatusEnum {}
 /// Nested message and enum types in `ComputedStatusEnum`.
@@ -1607,18 +1617,18 @@ pub mod computed_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ComputedStatus::Unspecified => "COMPUTED_STATUS_UNSPECIFIED",
-                ComputedStatus::DeliveryExtended => "DELIVERY_EXTENDED",
-                ComputedStatus::Delivering => "DELIVERING",
-                ComputedStatus::Ready => "READY",
-                ComputedStatus::Paused => "PAUSED",
-                ComputedStatus::Inactive => "INACTIVE",
-                ComputedStatus::PausedInventoryReleased => "PAUSED_INVENTORY_RELEASED",
-                ComputedStatus::PendingApproval => "PENDING_APPROVAL",
-                ComputedStatus::Completed => "COMPLETED",
-                ComputedStatus::Disapproved => "DISAPPROVED",
-                ComputedStatus::Draft => "DRAFT",
-                ComputedStatus::Canceled => "CANCELED",
+                Self::Unspecified => "COMPUTED_STATUS_UNSPECIFIED",
+                Self::DeliveryExtended => "DELIVERY_EXTENDED",
+                Self::Delivering => "DELIVERING",
+                Self::Ready => "READY",
+                Self::Paused => "PAUSED",
+                Self::Inactive => "INACTIVE",
+                Self::PausedInventoryReleased => "PAUSED_INVENTORY_RELEASED",
+                Self::PendingApproval => "PENDING_APPROVAL",
+                Self::Completed => "COMPLETED",
+                Self::Disapproved => "DISAPPROVED",
+                Self::Draft => "DRAFT",
+                Self::Canceled => "CANCELED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1721,7 +1731,13 @@ pub struct ListContactsResponse {
 }
 /// Generated client implementations.
 pub mod contact_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling Contact objects.
@@ -1803,8 +1819,7 @@ pub mod contact_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1834,8 +1849,7 @@ pub mod contact_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1865,8 +1879,8 @@ pub struct CreativePlaceholder {
     pub size: ::core::option::Option<Size>,
     /// The companions that the creative is expected to have. This attribute can
     /// only be set if the line item it belongs to has an
-    /// \[EnvironmentType\]\[google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType\]
-    /// of VIDEO_PLAYER or \[roadblocking_type\]\[LineItem.roadblocking_type\] of
+    /// [EnvironmentType][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType]
+    /// of VIDEO_PLAYER or [roadblocking_type][LineItem.roadblocking_type] of
     /// CREATIVE_SET.
     #[prost(message, repeated, tag = "2")]
     pub companion_sizes: ::prost::alloc::vec::Vec<Size>,
@@ -1994,7 +2008,13 @@ pub struct ListCreativesResponse {
 }
 /// Generated client implementations.
 pub mod creative_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling Creative objects.
@@ -2076,8 +2096,7 @@ pub mod creative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2107,8 +2126,7 @@ pub mod creative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2129,7 +2147,7 @@ pub mod creative_service_client {
     }
 }
 /// Wrapper message for
-/// \[CustomFieldDataType\]\[google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType\]
+/// [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomFieldDataTypeEnum {}
 /// Nested message and enum types in `CustomFieldDataTypeEnum`.
@@ -2168,11 +2186,11 @@ pub mod custom_field_data_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomFieldDataType::Unspecified => "CUSTOM_FIELD_DATA_TYPE_UNSPECIFIED",
-                CustomFieldDataType::String => "STRING",
-                CustomFieldDataType::Number => "NUMBER",
-                CustomFieldDataType::Toggle => "TOGGLE",
-                CustomFieldDataType::DropDown => "DROP_DOWN",
+                Self::Unspecified => "CUSTOM_FIELD_DATA_TYPE_UNSPECIFIED",
+                Self::String => "STRING",
+                Self::Number => "NUMBER",
+                Self::Toggle => "TOGGLE",
+                Self::DropDown => "DROP_DOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2189,7 +2207,7 @@ pub mod custom_field_data_type_enum {
     }
 }
 /// Wrapper message for
-/// \[CustomFieldEntityType\]\[google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType\]
+/// [CustomFieldEntityType][google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomFieldEntityTypeEnum {}
 /// Nested message and enum types in `CustomFieldEntityTypeEnum`.
@@ -2228,14 +2246,12 @@ pub mod custom_field_entity_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomFieldEntityType::Unspecified => {
-                    "CUSTOM_FIELD_ENTITY_TYPE_UNSPECIFIED"
-                }
-                CustomFieldEntityType::LineItem => "LINE_ITEM",
-                CustomFieldEntityType::Order => "ORDER",
-                CustomFieldEntityType::Creative => "CREATIVE",
-                CustomFieldEntityType::Proposal => "PROPOSAL",
-                CustomFieldEntityType::ProposalLineItem => "PROPOSAL_LINE_ITEM",
+                Self::Unspecified => "CUSTOM_FIELD_ENTITY_TYPE_UNSPECIFIED",
+                Self::LineItem => "LINE_ITEM",
+                Self::Order => "ORDER",
+                Self::Creative => "CREATIVE",
+                Self::Proposal => "PROPOSAL",
+                Self::ProposalLineItem => "PROPOSAL_LINE_ITEM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2253,7 +2269,7 @@ pub mod custom_field_entity_type_enum {
     }
 }
 /// Wrapper message for
-/// \[CustomFieldStatus\]\[google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus\]
+/// [CustomFieldStatus][google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomFieldStatusEnum {}
 /// Nested message and enum types in `CustomFieldStatusEnum`.
@@ -2286,9 +2302,9 @@ pub mod custom_field_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomFieldStatus::Unspecified => "CUSTOM_FIELD_STATUS_UNSPECIFIED",
-                CustomFieldStatus::Active => "ACTIVE",
-                CustomFieldStatus::Inactive => "INACTIVE",
+                Self::Unspecified => "CUSTOM_FIELD_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2303,7 +2319,7 @@ pub mod custom_field_status_enum {
     }
 }
 /// Wrapper message for
-/// \[CustomFieldVisibility\]\[google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility\]
+/// [CustomFieldVisibility][google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomFieldVisibilityEnum {}
 /// Nested message and enum types in `CustomFieldVisibilityEnum`.
@@ -2339,12 +2355,10 @@ pub mod custom_field_visibility_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomFieldVisibility::Unspecified => {
-                    "CUSTOM_FIELD_VISIBILITY_UNSPECIFIED"
-                }
-                CustomFieldVisibility::Hidden => "HIDDEN",
-                CustomFieldVisibility::ReadOnly => "READ_ONLY",
-                CustomFieldVisibility::Editable => "EDITABLE",
+                Self::Unspecified => "CUSTOM_FIELD_VISIBILITY_UNSPECIFIED",
+                Self::Hidden => "HIDDEN",
+                Self::ReadOnly => "READ_ONLY",
+                Self::Editable => "EDITABLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2482,7 +2496,13 @@ pub struct ListCustomFieldsResponse {
 }
 /// Generated client implementations.
 pub mod custom_field_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling `CustomField` objects.
@@ -2564,8 +2584,7 @@ pub mod custom_field_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2595,8 +2614,7 @@ pub mod custom_field_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2617,7 +2635,7 @@ pub mod custom_field_service_client {
     }
 }
 /// Wrapper message for
-/// \[CustomTargetingKeyStatus\]\[google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus\]
+/// [CustomTargetingKeyStatus][google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomTargetingKeyStatusEnum {}
 /// Nested message and enum types in `CustomTargetingKeyStatusEnum`.
@@ -2650,11 +2668,9 @@ pub mod custom_targeting_key_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingKeyStatus::Unspecified => {
-                    "CUSTOM_TARGETING_KEY_STATUS_UNSPECIFIED"
-                }
-                CustomTargetingKeyStatus::Active => "ACTIVE",
-                CustomTargetingKeyStatus::Inactive => "INACTIVE",
+                Self::Unspecified => "CUSTOM_TARGETING_KEY_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2669,7 +2685,7 @@ pub mod custom_targeting_key_status_enum {
     }
 }
 /// Wrapper message for
-/// \[CustomTargetingKeyType\]\[google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType\]
+/// [CustomTargetingKeyType][google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomTargetingKeyTypeEnum {}
 /// Nested message and enum types in `CustomTargetingKeyTypeEnum`.
@@ -2702,11 +2718,9 @@ pub mod custom_targeting_key_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingKeyType::Unspecified => {
-                    "CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED"
-                }
-                CustomTargetingKeyType::Predefined => "PREDEFINED",
-                CustomTargetingKeyType::Freeform => "FREEFORM",
+                Self::Unspecified => "CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED",
+                Self::Predefined => "PREDEFINED",
+                Self::Freeform => "FREEFORM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2721,7 +2735,7 @@ pub mod custom_targeting_key_type_enum {
     }
 }
 /// Wrapper message for
-/// \[CustomTargetingKeyReportableType\]\[google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType\]
+/// [CustomTargetingKeyReportableType][google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomTargetingKeyReportableTypeEnum {}
 /// Nested message and enum types in `CustomTargetingKeyReportableTypeEnum`.
@@ -2756,12 +2770,10 @@ pub mod custom_targeting_key_reportable_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingKeyReportableType::Unspecified => {
-                    "CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED"
-                }
-                CustomTargetingKeyReportableType::Off => "OFF",
-                CustomTargetingKeyReportableType::On => "ON",
-                CustomTargetingKeyReportableType::CustomDimension => "CUSTOM_DIMENSION",
+                Self::Unspecified => "CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED",
+                Self::Off => "OFF",
+                Self::On => "ON",
+                Self::CustomDimension => "CUSTOM_DIMENSION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2791,7 +2803,7 @@ pub struct CustomTargetingKey {
     pub custom_targeting_key_id: i64,
     /// Immutable. Name of the key. Keys can contain up to 10 characters each. You
     /// can use alphanumeric characters and symbols other than the following:
-    /// ", ', =, !, +, #, \*, ~, ;, ^, (, ), \<, >, \[, \], the white space character.
+    /// ", ', =, !, +, #, *, ~, ;, ^, (, ), <, >, \[, \], the white space character.
     #[prost(string, tag = "3")]
     pub ad_tag_name: ::prost::alloc::string::String,
     /// Optional. Descriptive name for the `CustomTargetingKey`.
@@ -2888,7 +2900,13 @@ pub struct ListCustomTargetingKeysResponse {
 }
 /// Generated client implementations.
 pub mod custom_targeting_key_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling `CustomTargetingKey` objects.
@@ -2975,8 +2993,7 @@ pub mod custom_targeting_key_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3006,8 +3023,7 @@ pub mod custom_targeting_key_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3028,7 +3044,7 @@ pub mod custom_targeting_key_service_client {
     }
 }
 /// Wrapper message for
-/// \[CustomTargetingValueStatus\]\[google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus\]
+/// [CustomTargetingValueStatus][google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomTargetingValueStatusEnum {}
 /// Nested message and enum types in `CustomTargetingValueStatusEnum`.
@@ -3061,11 +3077,9 @@ pub mod custom_targeting_value_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingValueStatus::Unspecified => {
-                    "CUSTOM_TARGETING_VALUE_STATUS_UNSPECIFIED"
-                }
-                CustomTargetingValueStatus::Active => "ACTIVE",
-                CustomTargetingValueStatus::Inactive => "INACTIVE",
+                Self::Unspecified => "CUSTOM_TARGETING_VALUE_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3080,7 +3094,7 @@ pub mod custom_targeting_value_status_enum {
     }
 }
 /// Wrapper message for
-/// \[CustomTargetingValueMatchType\]\[google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType\]
+/// [CustomTargetingValueMatchType][google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomTargetingValueMatchTypeEnum {}
 /// Nested message and enum types in `CustomTargetingValueMatchTypeEnum`.
@@ -3142,15 +3156,13 @@ pub mod custom_targeting_value_match_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CustomTargetingValueMatchType::Unspecified => {
-                    "CUSTOM_TARGETING_VALUE_MATCH_TYPE_UNSPECIFIED"
-                }
-                CustomTargetingValueMatchType::Exact => "EXACT",
-                CustomTargetingValueMatchType::Broad => "BROAD",
-                CustomTargetingValueMatchType::Prefix => "PREFIX",
-                CustomTargetingValueMatchType::BroadPrefix => "BROAD_PREFIX",
-                CustomTargetingValueMatchType::Suffix => "SUFFIX",
-                CustomTargetingValueMatchType::Contains => "CONTAINS",
+                Self::Unspecified => "CUSTOM_TARGETING_VALUE_MATCH_TYPE_UNSPECIFIED",
+                Self::Exact => "EXACT",
+                Self::Broad => "BROAD",
+                Self::Prefix => "PREFIX",
+                Self::BroadPrefix => "BROAD_PREFIX",
+                Self::Suffix => "SUFFIX",
+                Self::Contains => "CONTAINS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3180,9 +3192,9 @@ pub struct CustomTargetingValue {
     pub name: ::prost::alloc::string::String,
     /// Immutable. Name of the `CustomTargetingValue`. Values can contain up to 40
     /// characters each. You can use alphanumeric characters and symbols other than
-    /// the following: ", ', =, !, +, #, \*, ~, ;, ^, (, ), \<, >, \[, \]. Values are
+    /// the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), <, >, \[, \]. Values are
     /// not data-specific; all values are treated as string. For example, instead
-    /// of using "age>=18 AND \<=34", try "18-34"
+    /// of using "age>=18 AND <=34", try "18-34"
     #[prost(string, tag = "4")]
     pub ad_tag_name: ::prost::alloc::string::String,
     /// Optional. Descriptive name for the `CustomTargetingValue`.
@@ -3275,7 +3287,13 @@ pub struct ListCustomTargetingValuesResponse {
 }
 /// Generated client implementations.
 pub mod custom_targeting_value_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling `CustomTargetingValue` objects.
@@ -3362,8 +3380,7 @@ pub mod custom_targeting_value_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3393,8 +3410,7 @@ pub mod custom_targeting_value_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3414,9 +3430,9 @@ pub mod custom_targeting_value_service_client {
         }
     }
 }
-/// Defines the criteria a \[LineItem\]\[google.ads.admanager.v1.LineItem\] needs to
+/// Defines the criteria a [LineItem][google.ads.admanager.v1.LineItem] needs to
 /// satisfy to meet its delivery
-/// goal.
+///   goal.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Goal {
     /// The type of the goal for the LineItem. It defines the period over which the
@@ -3428,26 +3444,26 @@ pub struct Goal {
     pub unit_type: i32,
     /// If this is a primary goal, it represents the number or percentage of
     /// impressions or clicks that will be reserved. If the line item is of type
-    /// \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\],
+    /// [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP],
     /// it represents the percentage of available impressions reserved. If the line
     /// item is of type
-    /// \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
+    /// [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
     /// or
-    /// \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\],
+    /// [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY],
     /// it represents the number of remaining impressions reserved. If the line
     /// item is of type
-    /// \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
+    /// [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
     /// or
-    /// \[LineItemTypeEnum.LineItemType.HOUSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE\],
+    /// [LineItemTypeEnum.LineItemType.HOUSE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE],
     /// it represents the percentage of remaining impressions reserved. <p>If this
     /// is an impression cap goal, it represents the number of impressions or
     /// conversions that the line item will stop serving at if reached. For valid
-    /// line item types, see \[LineItem.impressions_cap\]\[\].
+    /// line item types, see [LineItem.impressions_cap][].
     #[prost(int64, tag = "3")]
     pub units: i64,
 }
 /// Wrapper message for
-/// \[GoalType\]\[google.ads.admanager.v1.GoalTypeEnum.GoalType\].
+/// [GoalType][google.ads.admanager.v1.GoalTypeEnum.GoalType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GoalTypeEnum {}
 /// Nested message and enum types in `GoalTypeEnum`.
@@ -3469,38 +3485,38 @@ pub mod goal_type_enum {
         /// Default value. This value is unused.
         Unspecified = 0,
         /// No goal is specified for the number of ads delivered.
-        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
         /// must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
-        /// * \[LineItemTypeEnum.LineItemType.AD_EXCHANGE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE\]
-        /// * \[LineItemTypeEnum.LineItemType.CLICK_TRACKING\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING\]
+        /// * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
+        /// * [LineItemTypeEnum.LineItemType.AD_EXCHANGE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE]
+        /// * [LineItemTypeEnum.LineItemType.CLICK_TRACKING][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING]
         None = 1,
         /// There is a goal on the number of ads delivered for this line item during
         /// its entire lifetime.
-        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
         /// must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
-        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
-        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
-        /// * \[LineItemTypeEnum.LineItemType.ADSENSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADSENSE\]
-        /// * \[LineItemTypeEnum.LineItemType.AD_EXCHANGE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE\]
-        /// * \[LineItemTypeEnum.LineItemType.ADMOB\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADMOB\]
-        /// * \[LineItemTypeEnum.LineItemType.CLICK_TRACKING\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING\]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
+        /// * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
+        /// * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
+        /// * [LineItemTypeEnum.LineItemType.ADSENSE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADSENSE]
+        /// * [LineItemTypeEnum.LineItemType.AD_EXCHANGE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE]
+        /// * [LineItemTypeEnum.LineItemType.ADMOB][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADMOB]
+        /// * [LineItemTypeEnum.LineItemType.CLICK_TRACKING][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING]
         Lifetime = 2,
         /// There is a daily goal on the number of ads delivered for this line item.
-        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
         /// must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
-        /// * \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
-        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
-        /// * \[LineItemTypeEnum.LineItemType.HOUSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE\]
-        /// * \[LineItemTypeEnum.LineItemType.ADSENSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADSENSE\]
-        /// * \[LineItemTypeEnum.LineItemType.AD_EXCHANGE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE\]
-        /// * \[LineItemTypeEnum.LineItemType.ADMOB\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADMOB\]
-        /// * \[LineItemTypeEnum.LineItemType.BUMPER\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BUMPER\]
+        /// * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
+        /// * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
+        /// * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
+        /// * [LineItemTypeEnum.LineItemType.HOUSE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE]
+        /// * [LineItemTypeEnum.LineItemType.ADSENSE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADSENSE]
+        /// * [LineItemTypeEnum.LineItemType.AD_EXCHANGE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE]
+        /// * [LineItemTypeEnum.LineItemType.ADMOB][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADMOB]
+        /// * [LineItemTypeEnum.LineItemType.BUMPER][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BUMPER]
         Daily = 3,
     }
     impl GoalType {
@@ -3510,10 +3526,10 @@ pub mod goal_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                GoalType::Unspecified => "GOAL_TYPE_UNSPECIFIED",
-                GoalType::None => "NONE",
-                GoalType::Lifetime => "LIFETIME",
-                GoalType::Daily => "DAILY",
+                Self::Unspecified => "GOAL_TYPE_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::Lifetime => "LIFETIME",
+                Self::Daily => "DAILY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3529,13 +3545,13 @@ pub mod goal_type_enum {
     }
 }
 /// Wrapper message for
-/// \[UnitType\]\[google.ads.admanager.v1.UnitTypeEnum.UnitType\].
+/// [UnitType][google.ads.admanager.v1.UnitTypeEnum.UnitType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UnitTypeEnum {}
 /// Nested message and enum types in `UnitTypeEnum`.
 pub mod unit_type_enum {
     /// Indicates the type of unit used for defining a reservation. The
-    /// \[LineItem.cost_type\]\[google.ads.admanager.v1.LineItem.cost_type\] can differ
+    /// [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] can differ
     /// from the UnitType - an ad can have an impression goal, but be billed by its
     /// click. Usually CostType and UnitType will refer to the same unit.
     #[derive(
@@ -3557,40 +3573,40 @@ pub mod unit_type_enum {
         /// item.
         Impressions = 1,
         /// The number of clicks reported by creatives associated with the line item.
-        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
         /// must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
-        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
-        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
+        /// * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
+        /// * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
         Clicks = 2,
         /// The number of view-through Cost-Per-Action (CPA) conversions from
         /// creatives associated with the line item. This is only supported as
         /// secondary goal and the
-        /// \[LineItem.cost_type\]\[google.ads.admanager.v1.LineItem.cost_type\] must be
-        /// \[CostTypeEnum.CostType.CPA\]\[\].
+        /// [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] must be
+        /// [CostTypeEnum.CostType.CPA][].
         ClickThroughCpaConversions = 3,
         /// The number of view-through Cost-Per-Action (CPA) conversions from
         /// creatives associated with the line item. This is only supported as
         /// secondary goal and the
-        /// \[LineItem.cost_type\]\[google.ads.admanager.v1.LineItem.cost_type\] must be
-        /// \[CostTypeEnum.CostType.CPA}.
+        /// [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] must be
+        /// [CostTypeEnum.CostType.CPA}.
         ViewThroughCpaConversions = 4,
         /// The number of total Cost-Per-Action (CPA) conversions from creatives
         /// associated with the line item. This is only supported as secondary goal
-        /// and the \[LineItem.cost_type} must be \[CostTypeEnum.CostType.CPA}.
+        /// and the [LineItem.cost_type} must be [CostTypeEnum.CostType.CPA}.
         TotalCpaConversions = 5,
         /// The number of viewable impressions reported by creatives associated with
         /// the line item. The
-        /// \[LineItem.line_item_type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// [LineItem.line_item_type][google.ads.admanager.v1.LineItem.line_item_type]
         /// must be
-        /// \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\].
+        /// [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD].
         ViewableImpressions = 6,
         /// The number of in-target impressions reported by third party measurements.
         /// The
-        /// \[LineItem.line_item_type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// [LineItem.line_item_type][google.ads.admanager.v1.LineItem.line_item_type]
         /// must be
-        /// \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\].
+        /// [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD].
         InTargetImpressions = 7,
     }
     impl UnitType {
@@ -3600,14 +3616,14 @@ pub mod unit_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UnitType::Unspecified => "UNIT_TYPE_UNSPECIFIED",
-                UnitType::Impressions => "IMPRESSIONS",
-                UnitType::Clicks => "CLICKS",
-                UnitType::ClickThroughCpaConversions => "CLICK_THROUGH_CPA_CONVERSIONS",
-                UnitType::ViewThroughCpaConversions => "VIEW_THROUGH_CPA_CONVERSIONS",
-                UnitType::TotalCpaConversions => "TOTAL_CPA_CONVERSIONS",
-                UnitType::ViewableImpressions => "VIEWABLE_IMPRESSIONS",
-                UnitType::InTargetImpressions => "IN_TARGET_IMPRESSIONS",
+                Self::Unspecified => "UNIT_TYPE_UNSPECIFIED",
+                Self::Impressions => "IMPRESSIONS",
+                Self::Clicks => "CLICKS",
+                Self::ClickThroughCpaConversions => "CLICK_THROUGH_CPA_CONVERSIONS",
+                Self::ViewThroughCpaConversions => "VIEW_THROUGH_CPA_CONVERSIONS",
+                Self::TotalCpaConversions => "TOTAL_CPA_CONVERSIONS",
+                Self::ViewableImpressions => "VIEWABLE_IMPRESSIONS",
+                Self::InTargetImpressions => "IN_TARGET_IMPRESSIONS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3702,7 +3718,13 @@ pub struct ListLabelsResponse {
 }
 /// Generated client implementations.
 pub mod label_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling Label objects.
@@ -3784,8 +3806,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3812,8 +3833,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3831,7 +3851,7 @@ pub mod label_service_client {
     }
 }
 /// Wrapper message for
-/// \[LineItemCostType\]\[google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType\].
+/// [LineItemCostType][google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LineItemCostTypeEnum {}
 /// Nested message and enum types in `LineItemCostTypeEnum`.
@@ -3853,54 +3873,54 @@ pub mod line_item_cost_type_enum {
         /// Not specified value.
         Unspecified = 0,
         /// Cost per action. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be one of:
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
-        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
-        /// * \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
+        /// * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
+        /// * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
+        /// * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
         Cpa = 1,
         /// Cost per click. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be one of:
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
-        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
-        /// * \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
-        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
-        /// * \[LineItemTypeEnum.LineItemType.HOUSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE\]
+        /// * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
+        /// * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
+        /// * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
+        /// * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
+        /// * [LineItemTypeEnum.LineItemType.HOUSE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE]
         Cpc = 2,
         /// Cost per day. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be one of:
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
-        /// * \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
+        /// * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
+        /// * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
         Cpd = 3,
         /// Cost per mille (thousand) impressions. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be one of:
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
-        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
-        /// * \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
-        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
-        /// * \[LineItemTypeEnum.LineItemType.HOUSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE\]
+        /// * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
+        /// * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
+        /// * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
+        /// * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
+        /// * [LineItemTypeEnum.LineItemType.HOUSE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE]
         Cpm = 4,
         /// Cost per mille (thousand) Active View viewable impressions. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be one of:
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
         Vcpm = 5,
         /// Cost per millie (thousand) in-target impressions. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be one of:
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
+        /// * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
         CpmInTarget = 6,
         /// Cost for the entire flight of the deal. The line item
-        /// \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\] must be must be
+        /// [type][google.ads.admanager.v1.LineItem.line_item_type] must be must be
         /// one of:
         ///
-        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
+        /// * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
         Cpf = 7,
     }
     impl LineItemCostType {
@@ -3910,14 +3930,14 @@ pub mod line_item_cost_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LineItemCostType::Unspecified => "LINE_ITEM_COST_TYPE_UNSPECIFIED",
-                LineItemCostType::Cpa => "CPA",
-                LineItemCostType::Cpc => "CPC",
-                LineItemCostType::Cpd => "CPD",
-                LineItemCostType::Cpm => "CPM",
-                LineItemCostType::Vcpm => "VCPM",
-                LineItemCostType::CpmInTarget => "CPM_IN_TARGET",
-                LineItemCostType::Cpf => "CPF",
+                Self::Unspecified => "LINE_ITEM_COST_TYPE_UNSPECIFIED",
+                Self::Cpa => "CPA",
+                Self::Cpc => "CPC",
+                Self::Cpd => "CPD",
+                Self::Cpm => "CPM",
+                Self::Vcpm => "VCPM",
+                Self::CpmInTarget => "CPM_IN_TARGET",
+                Self::Cpf => "CPF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3937,13 +3957,13 @@ pub mod line_item_cost_type_enum {
     }
 }
 /// Wrapper message for
-/// \[CreativeRotationType\]\[google.ads.admanager.v1.CreativeRotationTypeEnum.CreativeRotationType\].
+/// [CreativeRotationType][google.ads.admanager.v1.CreativeRotationTypeEnum.CreativeRotationType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CreativeRotationTypeEnum {}
 /// Nested message and enum types in `CreativeRotationTypeEnum`.
 pub mod creative_rotation_type_enum {
     /// The strategy to use for displaying multiple
-    /// \[creatives\]\[google.ads.admanager.v1.Creative\] that are associated with a
+    /// [creatives][google.ads.admanager.v1.Creative] that are associated with a
     /// line item.
     #[derive(
         Clone,
@@ -3979,11 +3999,11 @@ pub mod creative_rotation_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CreativeRotationType::Unspecified => "CREATIVE_ROTATION_TYPE_UNSPECIFIED",
-                CreativeRotationType::Evenly => "EVENLY",
-                CreativeRotationType::Optimized => "OPTIMIZED",
-                CreativeRotationType::Weighted => "WEIGHTED",
-                CreativeRotationType::Sequential => "SEQUENTIAL",
+                Self::Unspecified => "CREATIVE_ROTATION_TYPE_UNSPECIFIED",
+                Self::Evenly => "EVENLY",
+                Self::Optimized => "OPTIMIZED",
+                Self::Weighted => "WEIGHTED",
+                Self::Sequential => "SEQUENTIAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4000,7 +4020,7 @@ pub mod creative_rotation_type_enum {
     }
 }
 /// Wrapper message for
-/// \[DeliveryRateType\]\[google.ads.admanager.v1.DeliveryRateTypeEnum.DeliveryRateType\].
+/// [DeliveryRateType][google.ads.admanager.v1.DeliveryRateTypeEnum.DeliveryRateType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeliveryRateTypeEnum {}
 /// Nested message and enum types in `DeliveryRateTypeEnum`.
@@ -4023,13 +4043,13 @@ pub mod delivery_rate_type_enum {
         /// Not specified value
         Unspecified = 0,
         /// Line items are served as evenly as possible across the number of days
-        /// specified in a line item's \[duration\]\[LineItem.duration\].
+        /// specified in a line item's [duration][LineItem.duration].
         Evenly = 1,
         /// Line items are served more aggressively in the beginning of the flight
         /// date.
         Frontloaded = 2,
         /// The booked impressions may delivered well before the
-        /// \[end_time\]\[google.ads.admanager.v1.LineItem.end_time\]. Other
+        /// [end_time][google.ads.admanager.v1.LineItem.end_time]. Other
         /// lower-priority or lower-value line items will be stopped from delivering
         /// until the line item meets the number of impressions or clicks it is
         /// booked for.
@@ -4042,10 +4062,10 @@ pub mod delivery_rate_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeliveryRateType::Unspecified => "DELIVERY_RATE_TYPE_UNSPECIFIED",
-                DeliveryRateType::Evenly => "EVENLY",
-                DeliveryRateType::Frontloaded => "FRONTLOADED",
-                DeliveryRateType::AsFastAsPossible => "AS_FAST_AS_POSSIBLE",
+                Self::Unspecified => "DELIVERY_RATE_TYPE_UNSPECIFIED",
+                Self::Evenly => "EVENLY",
+                Self::Frontloaded => "FRONTLOADED",
+                Self::AsFastAsPossible => "AS_FAST_AS_POSSIBLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4061,7 +4081,7 @@ pub mod delivery_rate_type_enum {
     }
 }
 /// Wrapper message for
-/// \[LineItemDiscountType\]\[google.ads.admanager.v1.LineItemDiscountTypeEnum.LineItemDiscountType\].
+/// [LineItemDiscountType][google.ads.admanager.v1.LineItemDiscountTypeEnum.LineItemDiscountType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LineItemDiscountTypeEnum {}
 /// Nested message and enum types in `LineItemDiscountTypeEnum`.
@@ -4094,11 +4114,9 @@ pub mod line_item_discount_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LineItemDiscountType::Unspecified => {
-                    "LINE_ITEM_DISCOUNT_TYPE_UNSPECIFIED"
-                }
-                LineItemDiscountType::AbsoluteValue => "ABSOLUTE_VALUE",
-                LineItemDiscountType::Percentage => "PERCENTAGE",
+                Self::Unspecified => "LINE_ITEM_DISCOUNT_TYPE_UNSPECIFIED",
+                Self::AbsoluteValue => "ABSOLUTE_VALUE",
+                Self::Percentage => "PERCENTAGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4113,7 +4131,7 @@ pub mod line_item_discount_type_enum {
     }
 }
 /// Wrapper message for
-/// \[LineItemType\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType\].
+/// [LineItemType][google.ads.admanager.v1.LineItemTypeEnum.LineItemType].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LineItemTypeEnum {}
 /// Nested message and enum types in `LineItemTypeEnum`.
@@ -4183,20 +4201,20 @@ pub mod line_item_type_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LineItemType::Unspecified => "LINE_ITEM_TYPE_UNSPECIFIED",
-                LineItemType::Sponsorship => "SPONSORSHIP",
-                LineItemType::Standard => "STANDARD",
-                LineItemType::Network => "NETWORK",
-                LineItemType::Bulk => "BULK",
-                LineItemType::PricePriority => "PRICE_PRIORITY",
-                LineItemType::House => "HOUSE",
-                LineItemType::LegacyDfp => "LEGACY_DFP",
-                LineItemType::ClickTracking => "CLICK_TRACKING",
-                LineItemType::Adsense => "ADSENSE",
-                LineItemType::AdExchange => "AD_EXCHANGE",
-                LineItemType::Bumper => "BUMPER",
-                LineItemType::Admob => "ADMOB",
-                LineItemType::PreferredDeal => "PREFERRED_DEAL",
+                Self::Unspecified => "LINE_ITEM_TYPE_UNSPECIFIED",
+                Self::Sponsorship => "SPONSORSHIP",
+                Self::Standard => "STANDARD",
+                Self::Network => "NETWORK",
+                Self::Bulk => "BULK",
+                Self::PricePriority => "PRICE_PRIORITY",
+                Self::House => "HOUSE",
+                Self::LegacyDfp => "LEGACY_DFP",
+                Self::ClickTracking => "CLICK_TRACKING",
+                Self::Adsense => "ADSENSE",
+                Self::AdExchange => "AD_EXCHANGE",
+                Self::Bumper => "BUMPER",
+                Self::Admob => "ADMOB",
+                Self::PreferredDeal => "PREFERRED_DEAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4222,7 +4240,7 @@ pub mod line_item_type_enum {
     }
 }
 /// Wrapper message for
-/// \[ReservationStatus\]\[google.ads.admanager.v1.ReservationStatusEnum.ReservationStatus\].
+/// [ReservationStatus][google.ads.admanager.v1.ReservationStatusEnum.ReservationStatus].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReservationStatusEnum {}
 /// Nested message and enum types in `ReservationStatusEnum`.
@@ -4255,9 +4273,9 @@ pub mod reservation_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReservationStatus::Unspecified => "RESERVATION_STATUS_UNSPECIFIED",
-                ReservationStatus::Reserved => "RESERVED",
-                ReservationStatus::Unreserved => "UNRESERVED",
+                Self::Unspecified => "RESERVATION_STATUS_UNSPECIFIED",
+                Self::Reserved => "RESERVED",
+                Self::Unreserved => "UNRESERVED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4287,14 +4305,14 @@ pub struct LineItem {
     #[prost(bool, tag = "14")]
     pub archived: bool,
     /// Optional. This attribute is only applicable for certain
-    /// \[line item types\]\[LineItemType\] and acts as an "FYI" or note, which does
+    /// [line item types][LineItemType] and acts as an "FYI" or note, which does
     /// not impact ad-serving or other backend systems.
     ///
-    /// For \[SPONSORSHIP\]\[LineItemType.SPONSORSHIP\] line items, this represents
+    /// For [SPONSORSHIP][LineItemType.SPONSORSHIP] line items, this represents
     /// the minimum quantity, which is a lifetime impression volume goal for
     /// reporting purposes.
     ///
-    /// For \[STANDARD\]\[LineItemType.STANDARD\] line items, this represents the
+    /// For [STANDARD][LineItemType.STANDARD] line items, this represents the
     /// contracted quantity, which is the number of units specified in the contract
     /// that the advertiser has bought for this line item. This attribute is only
     /// available if you have this feature enabled on your network.
@@ -4314,7 +4332,7 @@ pub struct LineItem {
     #[prost(message, optional, tag = "31")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Required. The strategy used for displaying multiple
-    /// \[creatives\]\[google.ads.admanager.v1.Creative\] that are associated with the
+    /// [creatives][google.ads.admanager.v1.Creative] that are associated with the
     /// line item.
     #[prost(
         enumeration = "creative_rotation_type_enum::CreativeRotationType",
@@ -4322,29 +4340,29 @@ pub struct LineItem {
     )]
     pub creative_rotation_type: i32,
     /// Non-empty default. The strategy for delivering ads over the duration of the
-    /// line item. Defaults to \[EVENLY\]\[DeliveryRateType.EVENLY\] or
-    /// \[FRONTLOADED\]\[DeliveryRatetype.FRONTLOADED\] depending on the network's
+    /// line item. Defaults to [EVENLY][DeliveryRateType.EVENLY] or
+    /// [FRONTLOADED][DeliveryRatetype.FRONTLOADED] depending on the network's
     /// configuration.
     #[prost(enumeration = "delivery_rate_type_enum::DeliveryRateType", tag = "23")]
     pub delivery_rate_type: i32,
     /// Optional. The number here is either a percentage or an absolute value
     /// depending on the
-    /// \[discount_type\]\[google.ads.admanager.v1.LineItem.discount_type\]. If it is
-    /// \[PERCENTAGE\]\[LineItemDiscountType.PERCENTAGE\], then only non-fractional
+    /// [discount_type][google.ads.admanager.v1.LineItem.discount_type]. If it is
+    /// [PERCENTAGE][LineItemDiscountType.PERCENTAGE], then only non-fractional
     /// values are supported.
     #[prost(double, tag = "13")]
     pub discount: f64,
     /// Non-empty default. The type of discount applied to the line item. Defaults
-    /// to \[PERCENTAGE\]\[LineItemDiscountType.PERCENTAGE\].
+    /// to [PERCENTAGE][LineItemDiscountType.PERCENTAGE].
     #[prost(
         enumeration = "line_item_discount_type_enum::LineItemDiscountType",
         tag = "24"
     )]
     pub discount_type: i32,
     /// Non-empty default. The environment that the line item is targeting. The
-    /// default value is \[BROWSER\]\[EnvironmentType.BROWSER\]. If this value is
-    /// \[VIDEO_PLAYER\]\[EnvironmentType.VIDEO_PLAYER\], then this line item can only
-    /// target \[AdUnits\]\[google.ads.admanager.v1.AdUnit\] that have `AdUnitSizes`
+    /// default value is [BROWSER][EnvironmentType.BROWSER]. If this value is
+    /// [VIDEO_PLAYER][EnvironmentType.VIDEO_PLAYER], then this line item can only
+    /// target [AdUnits][google.ads.admanager.v1.AdUnit] that have `AdUnitSizes`
     /// whose `environment_type` is also `VIDEO_PLAYER`.
     #[prost(enumeration = "environment_type_enum::EnvironmentType", tag = "25")]
     pub environment_type: i32,
@@ -4358,25 +4376,25 @@ pub struct LineItem {
     pub start_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Optional. Time at which the LineItem will stop serving. This attribute is
     /// ignored when
-    /// \[unlimited_end_time\]\[google.ads.admanager.v1.LineItem.unlimited_end_time\]
+    /// [unlimited_end_time][google.ads.admanager.v1.LineItem.unlimited_end_time]
     /// is `true`. If specified, it must be after
-    /// \[start_time\]\[google.ads.admanager.v1.LineItem.start_time\]. This end time
+    /// [start_time][google.ads.admanager.v1.LineItem.start_time]. This end time
     /// does not include
-    /// \[auto_extension_days\]\[google.ads.admanager.v1.LineItem.auto_extension_days\].
+    /// [auto_extension_days][google.ads.admanager.v1.LineItem.auto_extension_days].
     #[prost(message, optional, tag = "7")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Optional. Number of days to allow a LineItem to deliver past its
-    /// \[end_time\]\[google.ads.admanager.v1.LineItem.end_time\]. A maximum of 7 days
+    /// [end_time][google.ads.admanager.v1.LineItem.end_time]. A maximum of 7 days
     /// is allowed. This feature is only available for Ad Manager 360 accounts.
     #[prost(int32, tag = "8")]
     pub auto_extension_days: i32,
     /// Optional. Whether the LineItem has an
-    /// \[end_time\]\[google.ads.admanager.v1.LineItem.end_time\]. This attribute can
+    /// [end_time][google.ads.admanager.v1.LineItem.end_time]. This attribute can
     /// be set to `true` for only LineItems with
-    /// \[line_item_type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
-    /// \[SPONSORSHIP\]\[LineItemType.SPONSORSHIP\], \[NETWORK\]\[LineItemType.NETWORK\],
-    /// \[PRICE_PRIORITY\]\[LineItemType.PRICE_PRIORITY\] and
-    /// \[HOUSE\]\[LineItemType.HOUSE\].
+    /// [line_item_type][google.ads.admanager.v1.LineItem.line_item_type]
+    /// [SPONSORSHIP][LineItemType.SPONSORSHIP], [NETWORK][LineItemType.NETWORK],
+    /// [PRICE_PRIORITY][LineItemType.PRICE_PRIORITY] and
+    /// [HOUSE][LineItemType.HOUSE].
     #[prost(bool, tag = "9")]
     pub unlimited_end_time: bool,
     /// Output only. The application that last modified this line item.
@@ -4388,27 +4406,27 @@ pub struct LineItem {
     #[prost(enumeration = "line_item_type_enum::LineItemType", tag = "10")]
     pub line_item_type: i32,
     /// Output only. Indicates if a line item is missing any
-    /// \[creatives\]\[google.ads.admanager.v1.Creative\] for the
-    /// \[creative_placeholders\]\[google.ads.admanager.v1.LineItem.creative_placeholders\]
+    /// [creatives][google.ads.admanager.v1.Creative] for the
+    /// [creative_placeholders][google.ads.admanager.v1.LineItem.creative_placeholders]
     /// specified.
     ///
-    /// \[Creatives\]\[google.ads.admanager.v1.Creative\] can be considered missing for
+    /// [Creatives][google.ads.admanager.v1.Creative] can be considered missing for
     /// several reasons:
     ///
-    /// * Not enough \[creatives\]\[google.ads.admanager.v1.Creative\] of a certain
-    ///   size have been uploaded,
-    ///   as determined by
-    ///   \[expectedCreativeCount\]\[google.ads.admanager.v1.CreativePlaceholder.expected_creative_count\].
-    ///   For example a line item specifies 750x350, 400x200, but only a 750x350
-    ///   was uploaded. Or line item specifies 750x350 with an expected count of 2,
-    ///   but only one was uploaded.
-    /// * The \[appliedLabels\]\[Creative.applied_labels\] of an associated
-    ///   \[Creative\]\[google.ads.admanager.v1.Creative\]
-    ///   do not match the
-    ///   \[effectiveAppliedLabels\]\[CreativePlaceholder.effective_applied_labels\] of
-    ///   the line item. For example if a line item specifies 750x350 with a foo
-    ///   applied label, but a 750x350 creative without an applied label was
-    ///   uploaded.
+    /// * Not enough [creatives][google.ads.admanager.v1.Creative] of a certain
+    /// size have been uploaded,
+    ///    as determined by
+    ///    [expectedCreativeCount][google.ads.admanager.v1.CreativePlaceholder.expected_creative_count].
+    ///    For example a line item specifies 750x350, 400x200, but only a 750x350
+    ///    was uploaded. Or line item specifies 750x350 with an expected count of 2,
+    ///    but only one was uploaded.
+    /// * The [appliedLabels][Creative.applied_labels] of an associated
+    /// [Creative][google.ads.admanager.v1.Creative]
+    ///    do not match the
+    ///    [effectiveAppliedLabels][CreativePlaceholder.effective_applied_labels] of
+    ///    the line item. For example if a line item specifies 750x350 with a foo
+    ///    applied label, but a 750x350 creative without an applied label was
+    ///    uploaded.
     #[prost(bool, tag = "16")]
     pub missing_creatives: bool,
     /// Optional. Provides any additional notes that may annotate LineItem. This
@@ -4420,7 +4438,7 @@ pub struct LineItem {
     /// `PERMISSION_DENIED` error will occur.
     ///
     /// The following list shows the default, minimum, and maximum priority values
-    /// for each \[LineItemType\]\[LineItemType\]: formatted as `LineItemType`: default
+    /// for each [LineItemType][LineItemType]: formatted as `LineItemType`: default
     /// priority (minimum priority, maximum priority):
     ///
     /// * `SPONSORSHIP`: 4 (2,5)
@@ -4441,8 +4459,8 @@ pub struct LineItem {
     pub reservation_status: i32,
     /// Optional. The web property code used for dynamic allocation line items.
     /// This web property is only required with line item types
-    /// \[AD_EXCHANGE\]\[LineItemType.AD_EXCHANGE\] and
-    /// \[ADSENSE\]\[LineItemType.ADSENSE\].
+    /// [AD_EXCHANGE][LineItemType.AD_EXCHANGE] and
+    /// [ADSENSE][LineItemType.ADSENSE].
     #[prost(string, tag = "21")]
     pub web_property_code: ::prost::alloc::string::String,
     /// Required. Details about the creatives that are expected to serve through
@@ -4458,10 +4476,10 @@ pub struct LineItem {
     pub primary_goal: ::core::option::Option<Goal>,
     /// Optional. The impression limit for the LineItem. This field is meaningful
     /// only if the
-    /// \[LineItem.line_item_type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
-    /// is \[LineItemType.SPONSORSHIP\]\[\] and
-    /// \[LineItem.cost_type\]\[google.ads.admanager.v1.LineItem.cost_type\] is
-    /// \[CostType.CPM\]\[\].
+    /// [LineItem.line_item_type][google.ads.admanager.v1.LineItem.line_item_type]
+    /// is [LineItemType.SPONSORSHIP][] and
+    /// [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] is
+    /// [CostType.CPM][].
     #[prost(message, optional, tag = "30")]
     pub impression_limit: ::core::option::Option<Goal>,
 }
@@ -4535,7 +4553,13 @@ pub struct ListLineItemsResponse {
 }
 /// Generated client implementations.
 pub mod line_item_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling LineItem objects.
@@ -4617,8 +4641,7 @@ pub mod line_item_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4648,8 +4671,7 @@ pub mod line_item_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4720,7 +4742,13 @@ pub struct GetNetworkRequest {
 }
 /// Generated client implementations.
 pub mod network_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling Network objects.
@@ -4802,8 +4830,7 @@ pub mod network_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4979,14 +5006,14 @@ pub mod order {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Draft => "DRAFT",
-                Status::PendingApproval => "PENDING_APPROVAL",
-                Status::Approved => "APPROVED",
-                Status::Disapproved => "DISAPPROVED",
-                Status::Paused => "PAUSED",
-                Status::Canceled => "CANCELED",
-                Status::Deleted => "DELETED",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Draft => "DRAFT",
+                Self::PendingApproval => "PENDING_APPROVAL",
+                Self::Approved => "APPROVED",
+                Self::Disapproved => "DISAPPROVED",
+                Self::Paused => "PAUSED",
+                Self::Canceled => "CANCELED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5074,7 +5101,13 @@ pub struct ListOrdersResponse {
 }
 /// Generated client implementations.
 pub mod order_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling `Order` objects.
@@ -5156,8 +5189,7 @@ pub mod order_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5175,7 +5207,6 @@ pub mod order_service_client {
         /// API to retrieve a list of `Order` objects.
         ///
         /// Fields used for literal matching in filter string:
-        ///
         /// * `order_id`
         /// * `display_name`
         /// * `external_order_id`
@@ -5190,8 +5221,7 @@ pub mod order_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5209,7 +5239,7 @@ pub mod order_service_client {
     }
 }
 /// Wrapper message for
-/// \[PlacementStatus\]\[google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus\]
+/// [PlacementStatus][google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PlacementStatusEnum {}
 /// Nested message and enum types in `PlacementStatusEnum`.
@@ -5244,10 +5274,10 @@ pub mod placement_status_enum {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PlacementStatus::Unspecified => "PLACEMENT_STATUS_UNSPECIFIED",
-                PlacementStatus::Active => "ACTIVE",
-                PlacementStatus::Inactive => "INACTIVE",
-                PlacementStatus::Archived => "ARCHIVED",
+                Self::Unspecified => "PLACEMENT_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
+                Self::Archived => "ARCHIVED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5365,7 +5395,13 @@ pub struct ListPlacementsResponse {
 }
 /// Generated client implementations.
 pub mod placement_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling `Placement` objects.
@@ -5447,8 +5483,7 @@ pub mod placement_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5478,8 +5513,7 @@ pub mod placement_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5526,7 +5560,7 @@ pub struct ExportSavedReportRequest {
     #[prost(bool, tag = "3")]
     pub include_report_properties: bool,
     /// Whether or not to include the IDs if there are any (e.g. advertiser ID,
-    /// order ID...) present in the report.
+    ///   order ID...) present in the report.
     #[prost(bool, tag = "4")]
     pub include_ids: bool,
     /// Whether or not to include a row containing metric totals.
@@ -5576,10 +5610,10 @@ pub mod export_saved_report_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Format::Unspecified => "FORMAT_UNSPECIFIED",
-                Format::CsvDump => "CSV_DUMP",
-                Format::Xlsx => "XLSX",
-                Format::Xml => "XML",
+                Self::Unspecified => "FORMAT_UNSPECIFIED",
+                Self::CsvDump => "CSV_DUMP",
+                Self::Xlsx => "XLSX",
+                Self::Xml => "XML",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5612,7 +5646,13 @@ pub struct ExportSavedReportResponse {
 }
 /// Generated client implementations.
 pub mod report_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for interacting with Reports.
@@ -5702,8 +5742,7 @@ pub mod report_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5799,7 +5838,13 @@ pub struct ListRolesResponse {
 }
 /// Generated client implementations.
 pub mod role_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling Role objects.
@@ -5881,8 +5926,7 @@ pub mod role_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5909,8 +5953,7 @@ pub mod role_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6003,7 +6046,13 @@ pub struct ListTeamsResponse {
 }
 /// Generated client implementations.
 pub mod team_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling Team objects.
@@ -6085,8 +6134,7 @@ pub mod team_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6113,8 +6161,7 @@ pub mod team_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6239,7 +6286,13 @@ pub struct ListUsersResponse {
 }
 /// Generated client implementations.
 pub mod user_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for handling User objects.
@@ -6321,8 +6374,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6349,8 +6401,7 @@ pub mod user_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

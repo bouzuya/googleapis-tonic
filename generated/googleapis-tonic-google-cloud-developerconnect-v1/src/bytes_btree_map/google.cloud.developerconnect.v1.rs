@@ -114,11 +114,11 @@ pub mod installation_state {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Stage::Unspecified => "STAGE_UNSPECIFIED",
-                Stage::PendingCreateApp => "PENDING_CREATE_APP",
-                Stage::PendingUserOauth => "PENDING_USER_OAUTH",
-                Stage::PendingInstallApp => "PENDING_INSTALL_APP",
-                Stage::Complete => "COMPLETE",
+                Self::Unspecified => "STAGE_UNSPECIFIED",
+                Self::PendingCreateApp => "PENDING_CREATE_APP",
+                Self::PendingUserOauth => "PENDING_USER_OAUTH",
+                Self::PendingInstallApp => "PENDING_INSTALL_APP",
+                Self::Complete => "COMPLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -185,9 +185,9 @@ pub mod git_hub_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                GitHubApp::Unspecified => "GIT_HUB_APP_UNSPECIFIED",
-                GitHubApp::DeveloperConnect => "DEVELOPER_CONNECT",
-                GitHubApp::Firebase => "FIREBASE",
+                Self::Unspecified => "GIT_HUB_APP_UNSPECIFIED",
+                Self::DeveloperConnect => "DEVELOPER_CONNECT",
+                Self::Firebase => "FIREBASE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -375,8 +375,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -441,7 +441,7 @@ pub struct CreateGitRepositoryLinkRequest {
     /// Required. The ID to use for the repository, which will become the final
     /// component of the repository's resource name. This ID should be unique in
     /// the connection. Allows alphanumeric characters and any of
-    /// -.\_~%!$&'()\*+,;=@.
+    /// -._~%!$&'()*+,;=@.
     #[prost(string, tag = "3")]
     pub git_repository_link_id: ::prost::alloc::string::String,
     /// Optional. An optional request ID to identify requests. Specify a unique
@@ -692,9 +692,9 @@ pub mod fetch_git_refs_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RefType::Unspecified => "REF_TYPE_UNSPECIFIED",
-                RefType::Tag => "TAG",
-                RefType::Branch => "BRANCH",
+                Self::Unspecified => "REF_TYPE_UNSPECIFIED",
+                Self::Tag => "TAG",
+                Self::Branch => "BRANCH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -720,7 +720,13 @@ pub struct FetchGitRefsResponse {
 }
 /// Generated client implementations.
 pub mod developer_connect_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service describing handlers for resources
@@ -805,8 +811,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -833,8 +838,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -864,8 +868,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -895,8 +898,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -926,8 +928,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -961,8 +962,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -992,8 +992,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1023,8 +1022,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1054,8 +1052,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1085,8 +1082,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1116,8 +1112,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1148,8 +1143,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1182,8 +1176,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1213,8 +1206,7 @@ pub mod developer_connect_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

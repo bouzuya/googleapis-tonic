@@ -1027,7 +1027,7 @@ pub mod asset_group_signal {
 pub struct AssetGroupTopCombinationView {
     /// Output only. The resource name of the asset group top combination view.
     /// AssetGroup Top Combination view resource names have the form:
-    /// \`"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}"
+    /// `"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}"
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The top combinations of assets that served together.
@@ -1480,6 +1480,7 @@ pub mod campaign {
         #[prost(int64, optional, tag = "5")]
         pub merchant_id: ::core::option::Option<i64>,
         /// Sales country of products to include in the campaign.
+        ///
         #[prost(string, optional, tag = "6")]
         pub sales_country: ::core::option::Option<::prost::alloc::string::String>,
         /// Feed label of products to include in the campaign.

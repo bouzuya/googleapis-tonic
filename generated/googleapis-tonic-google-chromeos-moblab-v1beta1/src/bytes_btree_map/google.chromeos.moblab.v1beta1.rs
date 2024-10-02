@@ -95,11 +95,11 @@ pub mod build {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BuildStatus::Unspecified => "BUILD_STATUS_UNSPECIFIED",
-                BuildStatus::Pass => "PASS",
-                BuildStatus::Fail => "FAIL",
-                BuildStatus::Running => "RUNNING",
-                BuildStatus::Aborted => "ABORTED",
+                Self::Unspecified => "BUILD_STATUS_UNSPECIFIED",
+                Self::Pass => "PASS",
+                Self::Fail => "FAIL",
+                Self::Running => "RUNNING",
+                Self::Aborted => "ABORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -142,9 +142,9 @@ pub mod build {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BuildType::Unspecified => "BUILD_TYPE_UNSPECIFIED",
-                BuildType::Release => "RELEASE",
-                BuildType::Firmware => "FIRMWARE",
+                Self::Unspecified => "BUILD_TYPE_UNSPECIFIED",
+                Self::Release => "RELEASE",
+                Self::Firmware => "FIRMWARE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -378,7 +378,13 @@ pub struct StageBuildMetadata {
 }
 /// Generated client implementations.
 pub mod build_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages Chrome OS build services.
@@ -463,8 +469,7 @@ pub mod build_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -494,8 +499,7 @@ pub mod build_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -526,8 +530,7 @@ pub mod build_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -558,8 +561,7 @@ pub mod build_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -581,9 +583,9 @@ pub mod build_service_client {
         /// to a partner Google Cloud Storage bucket. The stage will be skipped if all
         /// the objects in the partner bucket are the same as in the internal bucket.
         /// Operation
-        /// \<response:\[StageBuildResponse\]\[google.chromeos.moblab.v1beta1.StageBuildResponse\],
-        /// metadata:
-        /// \[StageBuildMetadata\]\[google.chromeos.moblab.v1beta1.StageBuildMetadata\]\>
+        /// <response:[StageBuildResponse][google.chromeos.moblab.v1beta1.StageBuildResponse],
+        ///            metadata:
+        ///           [StageBuildMetadata][google.chromeos.moblab.v1beta1.StageBuildMetadata]>
         pub async fn stage_build(
             &mut self,
             request: impl tonic::IntoRequest<super::StageBuildRequest>,
@@ -595,8 +597,7 @@ pub mod build_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -620,13 +621,12 @@ pub mod build_service_client {
         /// and it will return an empty response.
         ///
         /// Evaluation rules:
-        ///
-        /// 1. Stable channel build with label “Live”
-        /// 1. Beta channel build with label “Live”
-        /// 1. Dev channel build with label “Live”
-        /// 1. Most recent stable channel build with build status Pass
-        /// 1. Most recent beta channel build with build status Pass
-        /// 1. Most recent dev channel build with build status Pass
+        ///   1. Stable channel build with label “Live”
+        ///   2. Beta channel build with label “Live”
+        ///   3. Dev channel build with label “Live”
+        ///   4. Most recent stable channel build with build status Pass
+        ///   5. Most recent beta channel build with build status Pass
+        ///   6. Most recent dev channel build with build status Pass
         pub async fn find_most_stable_build(
             &mut self,
             request: impl tonic::IntoRequest<super::FindMostStableBuildRequest>,
@@ -638,8 +638,7 @@ pub mod build_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

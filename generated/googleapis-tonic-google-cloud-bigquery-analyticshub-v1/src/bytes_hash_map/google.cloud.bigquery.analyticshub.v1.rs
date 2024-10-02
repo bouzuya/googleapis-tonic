@@ -9,7 +9,7 @@ pub struct DataExchange {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. Human-readable display name of the data exchange. The display
-    /// name must contain only Unicode letters, numbers (0-9), underscores (\_),
+    /// name must contain only Unicode letters, numbers (0-9), underscores (_),
     /// dashes (-), spaces ( ), ampersands (&) and must not start or end with
     /// spaces. Default value is an empty string. Max length: 63 bytes.
     #[prost(string, tag = "2")]
@@ -114,7 +114,7 @@ pub struct Publisher {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DestinationDatasetReference {
     /// Required. A unique ID for this dataset, without the project name. The ID
-    /// must contain only letters (a-z, A-Z), numbers (0-9), or underscores (\_).
+    /// must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
     /// The maximum length is 1,024 characters.
     #[prost(string, tag = "1")]
     pub dataset_id: ::prost::alloc::string::String,
@@ -161,7 +161,7 @@ pub struct Listing {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. Human-readable display name of the listing. The display name must
-    /// contain only Unicode letters, numbers (0-9), underscores (\_), dashes (-),
+    /// contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
     /// spaces ( ), ampersands (&) and can't start or end with spaces. Default
     /// value is an empty string. Max length: 63 bytes.
     #[prost(string, tag = "2")]
@@ -225,7 +225,7 @@ pub mod listing {
     /// When subscriber's subscribe to a listing, Analytics Hub creates a linked
     /// dataset in
     /// the subscriber's project. A Linked dataset is an opaque, read-only BigQuery
-    /// dataset that serves as a *symbolic link* to a shared dataset.
+    /// dataset that serves as a _symbolic link_ to a shared dataset.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BigQueryDatasetSource {
         /// Resource name of the dataset source for this listing.
@@ -326,8 +326,8 @@ pub mod listing {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -381,30 +381,28 @@ pub mod listing {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::Others => "CATEGORY_OTHERS",
-                Category::AdvertisingAndMarketing => "CATEGORY_ADVERTISING_AND_MARKETING",
-                Category::Commerce => "CATEGORY_COMMERCE",
-                Category::ClimateAndEnvironment => "CATEGORY_CLIMATE_AND_ENVIRONMENT",
-                Category::Demographics => "CATEGORY_DEMOGRAPHICS",
-                Category::Economics => "CATEGORY_ECONOMICS",
-                Category::Education => "CATEGORY_EDUCATION",
-                Category::Energy => "CATEGORY_ENERGY",
-                Category::Financial => "CATEGORY_FINANCIAL",
-                Category::Gaming => "CATEGORY_GAMING",
-                Category::Geospatial => "CATEGORY_GEOSPATIAL",
-                Category::HealthcareAndLifeScience => {
-                    "CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE"
-                }
-                Category::Media => "CATEGORY_MEDIA",
-                Category::PublicSector => "CATEGORY_PUBLIC_SECTOR",
-                Category::Retail => "CATEGORY_RETAIL",
-                Category::Sports => "CATEGORY_SPORTS",
-                Category::ScienceAndResearch => "CATEGORY_SCIENCE_AND_RESEARCH",
-                Category::TransportationAndLogistics => {
+                Self::Unspecified => "CATEGORY_UNSPECIFIED",
+                Self::Others => "CATEGORY_OTHERS",
+                Self::AdvertisingAndMarketing => "CATEGORY_ADVERTISING_AND_MARKETING",
+                Self::Commerce => "CATEGORY_COMMERCE",
+                Self::ClimateAndEnvironment => "CATEGORY_CLIMATE_AND_ENVIRONMENT",
+                Self::Demographics => "CATEGORY_DEMOGRAPHICS",
+                Self::Economics => "CATEGORY_ECONOMICS",
+                Self::Education => "CATEGORY_EDUCATION",
+                Self::Energy => "CATEGORY_ENERGY",
+                Self::Financial => "CATEGORY_FINANCIAL",
+                Self::Gaming => "CATEGORY_GAMING",
+                Self::Geospatial => "CATEGORY_GEOSPATIAL",
+                Self::HealthcareAndLifeScience => "CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE",
+                Self::Media => "CATEGORY_MEDIA",
+                Self::PublicSector => "CATEGORY_PUBLIC_SECTOR",
+                Self::Retail => "CATEGORY_RETAIL",
+                Self::Sports => "CATEGORY_SPORTS",
+                Self::ScienceAndResearch => "CATEGORY_SCIENCE_AND_RESEARCH",
+                Self::TransportationAndLogistics => {
                     "CATEGORY_TRANSPORTATION_AND_LOGISTICS"
                 }
-                Category::TravelAndTourism => "CATEGORY_TRAVEL_AND_TOURISM",
+                Self::TravelAndTourism => "CATEGORY_TRAVEL_AND_TOURISM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -540,10 +538,10 @@ pub mod subscription {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "STATE_ACTIVE",
-                State::Stale => "STATE_STALE",
-                State::Inactive => "STATE_INACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "STATE_ACTIVE",
+                Self::Stale => "STATE_STALE",
+                Self::Inactive => "STATE_INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -639,7 +637,7 @@ pub struct CreateDataExchangeRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The ID of the data exchange.
-    /// Must contain only Unicode letters, numbers (0-9), underscores (\_).
+    /// Must contain only Unicode letters, numbers (0-9), underscores (_).
     /// Should not use characters that require URL-escaping, or characters
     /// outside of ASCII, spaces.
     /// Max length: 100 bytes.
@@ -711,7 +709,7 @@ pub struct CreateListingRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The ID of the listing to create.
-    /// Must contain only Unicode letters, numbers (0-9), underscores (\_).
+    /// Must contain only Unicode letters, numbers (0-9), underscores (_).
     /// Should not use characters that require URL-escaping, or characters
     /// outside of ASCII, spaces.
     /// Max length: 100 bytes.
@@ -828,8 +826,8 @@ pub struct ListSubscriptionsRequest {
     /// An expression for filtering the results of the request. Eligible
     /// fields for filtering are:
     ///
-    /// * `listing`
-    /// * `data_exchange`
+    ///   * `listing`
+    ///   * `data_exchange`
     ///
     /// Alternatively, a literal wrapped in double quotes may be provided.
     /// This will be checked for an exact match against both fields above.
@@ -837,9 +835,9 @@ pub struct ListSubscriptionsRequest {
     /// In all cases, the full Data Exchange or Listing resource name must
     /// be provided. Some example of using filters:
     ///
-    /// * data_exchange="projects/myproject/locations/us/dataExchanges/123"
-    /// * listing="projects/123/locations/us/dataExchanges/456/listings/789"
-    /// * "projects/myproject/locations/us/dataExchanges/123"
+    ///   * data_exchange="projects/myproject/locations/us/dataExchanges/123"
+    ///   * listing="projects/123/locations/us/dataExchanges/456/listings/789"
+    ///   * "projects/myproject/locations/us/dataExchanges/123"
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// The maximum number of results to return in a single response page.
@@ -928,8 +926,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -959,9 +957,9 @@ impl DiscoveryType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DiscoveryType::Unspecified => "DISCOVERY_TYPE_UNSPECIFIED",
-            DiscoveryType::Private => "DISCOVERY_TYPE_PRIVATE",
-            DiscoveryType::Public => "DISCOVERY_TYPE_PUBLIC",
+            Self::Unspecified => "DISCOVERY_TYPE_UNSPECIFIED",
+            Self::Private => "DISCOVERY_TYPE_PRIVATE",
+            Self::Public => "DISCOVERY_TYPE_PUBLIC",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -976,7 +974,13 @@ impl DiscoveryType {
 }
 /// Generated client implementations.
 pub mod analytics_hub_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The `AnalyticsHubService` API facilitates data sharing within and across
@@ -1066,8 +1070,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1098,8 +1101,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1126,8 +1128,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1154,8 +1155,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1182,8 +1182,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1210,8 +1209,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1241,8 +1239,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1269,8 +1266,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1297,8 +1293,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1325,8 +1320,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1353,8 +1347,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1389,8 +1382,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1421,8 +1413,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1454,8 +1445,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1482,8 +1472,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1513,8 +1502,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1546,8 +1534,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1577,8 +1564,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1608,8 +1594,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1641,8 +1626,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1674,8 +1658,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1709,8 +1692,7 @@ pub mod analytics_hub_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

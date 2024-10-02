@@ -49,7 +49,7 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub cancellation_requested: bool,
@@ -132,13 +132,13 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Inactive => "INACTIVE",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Inactive => "INACTIVE",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -158,7 +158,13 @@ pub mod instance {
 }
 /// Generated client implementations.
 pub mod provisioning_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The service that is used for managing the data plane provisioning of the
@@ -244,8 +250,7 @@ pub mod provisioning_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -275,8 +280,7 @@ pub mod provisioning_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -303,8 +307,7 @@ pub mod provisioning_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -705,7 +708,7 @@ pub struct CreateApiRequest {
     /// the API's resource name.
     ///
     /// This value should be 4-63 characters, and valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     ///
     /// Following AIP-162, IDs must not have the form of a UUID.
     #[prost(string, tag = "3")]
@@ -722,7 +725,7 @@ pub struct UpdateApiRequest {
     pub api: ::core::option::Option<Api>,
     /// The list of fields to be updated. If omitted, all fields are updated that
     /// are set in the request message (fields set to default values are ignored).
-    /// If an asterisk "\*" is specified, all fields are updated, including fields
+    /// If an asterisk "*" is specified, all fields are updated, including fields
     /// that are unspecified/default in the request.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -801,7 +804,7 @@ pub struct CreateApiVersionRequest {
     /// the version's resource name.
     ///
     /// This value should be 1-63 characters, and valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     ///
     /// Following AIP-162, IDs must not have the form of a UUID.
     #[prost(string, tag = "3")]
@@ -818,7 +821,7 @@ pub struct UpdateApiVersionRequest {
     pub api_version: ::core::option::Option<ApiVersion>,
     /// The list of fields to be updated. If omitted, all fields are updated that
     /// are set in the request message (fields set to default values are ignored).
-    /// If an asterisk "\*" is specified, all fields are updated, including fields
+    /// If an asterisk "*" is specified, all fields are updated, including fields
     /// that are unspecified/default in the request.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -905,7 +908,7 @@ pub struct CreateApiSpecRequest {
     /// the spec's resource name.
     ///
     /// This value should be 4-63 characters, and valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     ///
     /// Following AIP-162, IDs must not have the form of a UUID.
     #[prost(string, tag = "3")]
@@ -922,7 +925,7 @@ pub struct UpdateApiSpecRequest {
     pub api_spec: ::core::option::Option<ApiSpec>,
     /// The list of fields to be updated. If omitted, all fields are updated that
     /// are set in the request message (fields set to default values are ignored).
-    /// If an asterisk "\*" is specified, all fields are updated, including fields
+    /// If an asterisk "*" is specified, all fields are updated, including fields
     /// that are unspecified/default in the request.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -988,7 +991,7 @@ pub struct RollbackApiSpecRequest {
     /// Required. The revision ID to roll back to.
     /// It must be a revision of the same spec.
     ///
-    /// Example: `c7cfa2a8`
+    ///    Example: `c7cfa2a8`
     #[prost(string, tag = "2")]
     pub revision_id: ::prost::alloc::string::String,
 }
@@ -1061,7 +1064,7 @@ pub struct CreateApiDeploymentRequest {
     /// the deployment's resource name.
     ///
     /// This value should be 4-63 characters, and valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     ///
     /// Following AIP-162, IDs must not have the form of a UUID.
     #[prost(string, tag = "3")]
@@ -1078,7 +1081,7 @@ pub struct UpdateApiDeploymentRequest {
     pub api_deployment: ::core::option::Option<ApiDeployment>,
     /// The list of fields to be updated. If omitted, all fields are updated that
     /// are set in the request message (fields set to default values are ignored).
-    /// If an asterisk "\*" is specified, all fields are updated, including fields
+    /// If an asterisk "*" is specified, all fields are updated, including fields
     /// that are unspecified/default in the request.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
@@ -1144,7 +1147,7 @@ pub struct RollbackApiDeploymentRequest {
     /// Required. The revision ID to roll back to.
     /// It must be a revision of the same deployment.
     ///
-    /// Example: `c7cfa2a8`
+    ///    Example: `c7cfa2a8`
     #[prost(string, tag = "2")]
     pub revision_id: ::prost::alloc::string::String,
 }
@@ -1225,7 +1228,7 @@ pub struct CreateArtifactRequest {
     /// the artifact's resource name.
     ///
     /// This value should be 4-63 characters, and valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     ///
     /// Following AIP-162, IDs must not have the form of a UUID.
     #[prost(string, tag = "3")]
@@ -1251,7 +1254,13 @@ pub struct DeleteArtifactRequest {
 }
 /// Generated client implementations.
 pub mod registry_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Registry service allows teams to manage descriptions of APIs.
@@ -1336,8 +1345,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1364,8 +1372,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1389,8 +1396,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1417,8 +1423,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1446,8 +1451,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1477,8 +1481,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1505,8 +1508,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1533,8 +1535,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1561,8 +1562,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1590,8 +1590,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1621,8 +1620,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1649,8 +1647,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1683,8 +1680,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1711,8 +1707,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1739,8 +1734,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1768,8 +1762,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1796,8 +1789,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1828,8 +1820,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1857,8 +1848,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1885,8 +1875,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1916,8 +1905,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1944,8 +1932,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1972,8 +1959,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2000,8 +1986,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2029,8 +2014,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2058,8 +2042,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2090,8 +2073,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2119,8 +2101,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2147,8 +2128,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2178,8 +2158,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2206,8 +2185,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2240,8 +2218,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2268,8 +2245,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2296,8 +2272,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2324,8 +2299,7 @@ pub mod registry_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

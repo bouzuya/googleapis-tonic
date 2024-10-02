@@ -12,10 +12,10 @@
 /// The published and disabled states have some distinct characteristics:
 ///
 /// * Published—Some kinds of changes might be made to an object in this state,
-///   in which case `has_unpublished_changes` will be true. Also, some kinds of
-///   changes are not permitted. Generally, any change that would invalidate or
-///   cause new restrictions on existing metadata related to the label are
-///   rejected.
+///    in which case `has_unpublished_changes` will be true. Also, some kinds of
+///    changes are not permitted. Generally, any change that would invalidate or
+///    cause new restrictions on existing metadata related to the label are
+///    rejected.
 /// * Disabled—When disabled, the configured `DisabledPolicy` takes effect.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Lifecycle {
@@ -40,15 +40,15 @@ pub mod lifecycle {
         /// Whether to hide this disabled object in the search menu for Drive items.
         ///
         /// * When `false`, the object is generally shown in the UI as disabled but
-        ///   it appears in the search results when searching for Drive items.
+        /// it appears in the search results when searching for Drive items.
         /// * When `true`, the object is generally hidden in the UI when
-        ///   searching for Drive items.
+        ///    searching for Drive items.
         #[prost(bool, tag = "1")]
         pub hide_in_search: bool,
         /// Whether to show this disabled object in the apply menu on Drive items.
         ///
         /// * When `true`, the object is generally shown in the UI as disabled
-        ///   and is unselectable.
+        ///    and is unselectable.
         /// * When `false`, the object is generally hidden in the UI.
         #[prost(bool, tag = "2")]
         pub show_in_apply: bool,
@@ -90,11 +90,11 @@ pub mod lifecycle {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::UnpublishedDraft => "UNPUBLISHED_DRAFT",
-                State::Published => "PUBLISHED",
-                State::Disabled => "DISABLED",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::UnpublishedDraft => "UNPUBLISHED_DRAFT",
+                Self::Published => "PUBLISHED",
+                Self::Disabled => "DISABLED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -228,14 +228,14 @@ pub mod invalid_argument {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::FieldRequired => "FIELD_REQUIRED",
-                    Reason::InvalidValue => "INVALID_VALUE",
-                    Reason::ValueOutOfRange => "VALUE_OUT_OF_RANGE",
-                    Reason::StringValueTooLong => "STRING_VALUE_TOO_LONG",
-                    Reason::MaxEntriesExceeded => "MAX_ENTRIES_EXCEEDED",
-                    Reason::FieldNotFound => "FIELD_NOT_FOUND",
-                    Reason::ChoiceNotFound => "CHOICE_NOT_FOUND",
+                    Self::Unspecified => "REASON_UNSPECIFIED",
+                    Self::FieldRequired => "FIELD_REQUIRED",
+                    Self::InvalidValue => "INVALID_VALUE",
+                    Self::ValueOutOfRange => "VALUE_OUT_OF_RANGE",
+                    Self::StringValueTooLong => "STRING_VALUE_TOO_LONG",
+                    Self::MaxEntriesExceeded => "MAX_ENTRIES_EXCEEDED",
+                    Self::FieldNotFound => "FIELD_NOT_FOUND",
+                    Self::ChoiceNotFound => "CHOICE_NOT_FOUND",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -337,24 +337,20 @@ pub mod precondition_failure {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::CannotDisable => "CANNOT_DISABLE",
-                    Reason::CannotEnable => "CANNOT_ENABLE",
-                    Reason::CannotPublish => "CANNOT_PUBLISH",
-                    Reason::CannotUnpublish => "CANNOT_UNPUBLISH",
-                    Reason::CannotDelete => "CANNOT_DELETE",
-                    Reason::CannotRestrictRange => "CANNOT_RESTRICT_RANGE",
-                    Reason::CannotChangePublishedField => "CANNOT_CHANGE_PUBLISHED_FIELD",
-                    Reason::CannotCreateMoreLabels => "CANNOT_CREATE_MORE_LABELS",
-                    Reason::CannotChangePublishedFieldType => {
+                    Self::Unspecified => "REASON_UNSPECIFIED",
+                    Self::CannotDisable => "CANNOT_DISABLE",
+                    Self::CannotEnable => "CANNOT_ENABLE",
+                    Self::CannotPublish => "CANNOT_PUBLISH",
+                    Self::CannotUnpublish => "CANNOT_UNPUBLISH",
+                    Self::CannotDelete => "CANNOT_DELETE",
+                    Self::CannotRestrictRange => "CANNOT_RESTRICT_RANGE",
+                    Self::CannotChangePublishedField => "CANNOT_CHANGE_PUBLISHED_FIELD",
+                    Self::CannotCreateMoreLabels => "CANNOT_CREATE_MORE_LABELS",
+                    Self::CannotChangePublishedFieldType => {
                         "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE"
                     }
-                    Reason::CannotModifyLockedComponent => {
-                        "CANNOT_MODIFY_LOCKED_COMPONENT"
-                    }
-                    Reason::UnsupportEnabledAppSettings => {
-                        "UNSUPPORT_ENABLED_APP_SETTINGS"
-                    }
+                    Self::CannotModifyLockedComponent => "CANNOT_MODIFY_LOCKED_COMPONENT",
+                    Self::UnsupportEnabledAppSettings => "UNSUPPORT_ENABLED_APP_SETTINGS",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -463,52 +459,40 @@ impl ExceptionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ExceptionType::Unspecified => "EXCEPTION_TYPE_UNSPECIFIED",
-            ExceptionType::FieldRequired => "FIELD_REQUIRED",
-            ExceptionType::MetamodelAlreadyExists => "METAMODEL_ALREADY_EXISTS",
-            ExceptionType::MetamodelNotFound => "METAMODEL_NOT_FOUND",
-            ExceptionType::IllegalMetamodelStateTransition => {
-                "ILLEGAL_METAMODEL_STATE_TRANSITION"
-            }
-            ExceptionType::InvalidMetamodelDeprecationPolicy => {
+            Self::Unspecified => "EXCEPTION_TYPE_UNSPECIFIED",
+            Self::FieldRequired => "FIELD_REQUIRED",
+            Self::MetamodelAlreadyExists => "METAMODEL_ALREADY_EXISTS",
+            Self::MetamodelNotFound => "METAMODEL_NOT_FOUND",
+            Self::IllegalMetamodelStateTransition => "ILLEGAL_METAMODEL_STATE_TRANSITION",
+            Self::InvalidMetamodelDeprecationPolicy => {
                 "INVALID_METAMODEL_DEPRECATION_POLICY"
             }
-            ExceptionType::MetamodelDeletionDeniedUntil => {
-                "METAMODEL_DELETION_DENIED_UNTIL"
-            }
-            ExceptionType::InvalidField => "INVALID_FIELD",
-            ExceptionType::MetamodelPreconditionFailed => "METAMODEL_PRECONDITION_FAILED",
-            ExceptionType::DuplicateFieldKey => "DUPLICATE_FIELD_KEY",
-            ExceptionType::IllegalFieldRemoval => "ILLEGAL_FIELD_REMOVAL",
-            ExceptionType::IllegalFieldOptionsForField => {
-                "ILLEGAL_FIELD_OPTIONS_FOR_FIELD"
-            }
-            ExceptionType::UnsupportedChangeToPublishedMetamodel => {
+            Self::MetamodelDeletionDeniedUntil => "METAMODEL_DELETION_DENIED_UNTIL",
+            Self::InvalidField => "INVALID_FIELD",
+            Self::MetamodelPreconditionFailed => "METAMODEL_PRECONDITION_FAILED",
+            Self::DuplicateFieldKey => "DUPLICATE_FIELD_KEY",
+            Self::IllegalFieldRemoval => "ILLEGAL_FIELD_REMOVAL",
+            Self::IllegalFieldOptionsForField => "ILLEGAL_FIELD_OPTIONS_FOR_FIELD",
+            Self::UnsupportedChangeToPublishedMetamodel => {
                 "UNSUPPORTED_CHANGE_TO_PUBLISHED_METAMODEL"
             }
-            ExceptionType::IllegalMetamodelStateTransitionInUpdate => {
+            Self::IllegalMetamodelStateTransitionInUpdate => {
                 "ILLEGAL_METAMODEL_STATE_TRANSITION_IN_UPDATE"
             }
-            ExceptionType::PageTokenExpired => "PAGE_TOKEN_EXPIRED",
-            ExceptionType::NotAuthorized => "NOT_AUTHORIZED",
-            ExceptionType::IllegalFieldStateTransition => {
-                "ILLEGAL_FIELD_STATE_TRANSITION"
-            }
-            ExceptionType::IllegalChoiceSetOptionStateTransition => {
+            Self::PageTokenExpired => "PAGE_TOKEN_EXPIRED",
+            Self::NotAuthorized => "NOT_AUTHORIZED",
+            Self::IllegalFieldStateTransition => "ILLEGAL_FIELD_STATE_TRANSITION",
+            Self::IllegalChoiceSetOptionStateTransition => {
                 "ILLEGAL_CHOICE_SET_OPTION_STATE_TRANSITION"
             }
-            ExceptionType::InvalidChoiceSetOptions => "INVALID_CHOICE_SET_OPTIONS",
-            ExceptionType::InvalidFieldKey => "INVALID_FIELD_KEY",
-            ExceptionType::InvalidFieldPropertyRange => "INVALID_FIELD_PROPERTY_RANGE",
-            ExceptionType::InvalidLocalizedString => "INVALID_LOCALIZED_STRING",
-            ExceptionType::IllegalChangeToPublishedField => {
-                "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD"
-            }
-            ExceptionType::InvalidFieldUpdateNotInclusive => {
-                "INVALID_FIELD_UPDATE_NOT_INCLUSIVE"
-            }
-            ExceptionType::InvalidChoiceSetState => "INVALID_CHOICE_SET_STATE",
-            ExceptionType::InternalServerError => "INTERNAL_SERVER_ERROR",
+            Self::InvalidChoiceSetOptions => "INVALID_CHOICE_SET_OPTIONS",
+            Self::InvalidFieldKey => "INVALID_FIELD_KEY",
+            Self::InvalidFieldPropertyRange => "INVALID_FIELD_PROPERTY_RANGE",
+            Self::InvalidLocalizedString => "INVALID_LOCALIZED_STRING",
+            Self::IllegalChangeToPublishedField => "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD",
+            Self::InvalidFieldUpdateNotInclusive => "INVALID_FIELD_UPDATE_NOT_INCLUSIVE",
+            Self::InvalidChoiceSetState => "INVALID_CHOICE_SET_STATE",
+            Self::InternalServerError => "INTERNAL_SERVER_ERROR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -770,9 +754,9 @@ pub mod field {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DateFormat::Unspecified => "DATE_FORMAT_UNSPECIFIED",
-                    DateFormat::LongDate => "LONG_DATE",
-                    DateFormat::ShortDate => "SHORT_DATE",
+                    Self::Unspecified => "DATE_FORMAT_UNSPECIFIED",
+                    Self::LongDate => "LONG_DATE",
+                    Self::ShortDate => "SHORT_DATE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1170,10 +1154,10 @@ pub mod label {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    CopyMode::Unspecified => "COPY_MODE_UNSPECIFIED",
-                    CopyMode::DoNotCopy => "DO_NOT_COPY",
-                    CopyMode::AlwaysCopy => "ALWAYS_COPY",
-                    CopyMode::CopyAppliable => "COPY_APPLIABLE",
+                    Self::Unspecified => "COPY_MODE_UNSPECIFIED",
+                    Self::DoNotCopy => "DO_NOT_COPY",
+                    Self::AlwaysCopy => "ALWAYS_COPY",
+                    Self::CopyAppliable => "COPY_APPLIABLE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1220,10 +1204,10 @@ pub mod label {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LabelType::Unspecified => "LABEL_TYPE_UNSPECIFIED",
-                LabelType::Shared => "SHARED",
-                LabelType::Admin => "ADMIN",
-                LabelType::GoogleApp => "GOOGLE_APP",
+                Self::Unspecified => "LABEL_TYPE_UNSPECIFIED",
+                Self::Shared => "SHARED",
+                Self::Admin => "ADMIN",
+                Self::GoogleApp => "GOOGLE_APP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1443,9 +1427,9 @@ pub mod label_lock {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1478,7 +1462,6 @@ pub struct LabelPermission {
     /// The principal this permission applies to. Must be either an email, user,
     /// group, or audience.
     /// Example:
-    ///
     /// * people/12345
     /// * groups/45678
     /// * audiences/default
@@ -1523,11 +1506,11 @@ pub mod label_permission {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LabelRole::Unspecified => "LABEL_ROLE_UNSPECIFIED",
-                LabelRole::Reader => "READER",
-                LabelRole::Applier => "APPLIER",
-                LabelRole::Organizer => "ORGANIZER",
-                LabelRole::Editor => "EDITOR",
+                Self::Unspecified => "LABEL_ROLE_UNSPECIFIED",
+                Self::Reader => "READER",
+                Self::Applier => "APPLIER",
+                Self::Organizer => "ORGANIZER",
+                Self::Editor => "EDITOR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1545,7 +1528,6 @@ pub mod label_permission {
     /// The principal this permission applies to. Must be either an email, user,
     /// group, or audience.
     /// Example:
-    ///
     /// * people/12345
     /// * groups/45678
     /// * audiences/default
@@ -1581,7 +1563,7 @@ pub mod write_control {
     /// label.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Control {
-        /// The \[revision_id\]\[google.apps.drive.labels.v1.Label.revision_id\] of the
+        /// The [revision_id][google.apps.drive.labels.v1.Label.revision_id] of the
         /// label that the write request will be applied to. If this is not the
         /// latest revision of the label, the request will not be processed and will
         /// return a 400 Bad Request error.
@@ -2030,7 +2012,7 @@ pub mod delta_update_label_response {
 }
 /// Request to update the `CopyMode` of the given Label. Changes to this policy
 /// are not revisioned, do not require publishing, and take effect immediately.
-/// \\
+/// \
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateLabelCopyModeRequest {
     /// Required. The resource name of the Label to update.
@@ -2067,11 +2049,11 @@ pub struct ListLabelsRequest {
     /// Whether to include only published labels in the results.
     ///
     /// * When `true`, only the current published label revisions are returned.
-    ///   Disabled labels are included. Returned label resource names
-    ///   reference the published revision (`labels/{id}/{revision_id}`).
+    ///    Disabled labels are included. Returned label resource names
+    ///    reference the published revision (`labels/{id}/{revision_id}`).
     /// * When `false`, the current label revisions are returned, which might not
-    ///   be published. Returned label resource names don't reference a specific
-    ///   revision (`labels/{id}`).
+    ///    be published. Returned label resource names don't reference a specific
+    ///    revision (`labels/{id}`).
     #[prost(bool, tag = "1")]
     pub published_only: bool,
     /// The customer to scope this list request to.
@@ -2345,7 +2327,7 @@ pub struct ListLabelLocksResponse {
 }
 /// Resource view that can be applied to label responses. The default value
 /// `LABEL_VIEW_BASIC` implies the field mask:
-/// `name,id,revision_id,label_type,properties.*`\\
+/// `name,id,revision_id,label_type,properties.*`\
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LabelView {
@@ -2362,8 +2344,8 @@ impl LabelView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            LabelView::Basic => "LABEL_VIEW_BASIC",
-            LabelView::Full => "LABEL_VIEW_FULL",
+            Self::Basic => "LABEL_VIEW_BASIC",
+            Self::Full => "LABEL_VIEW_FULL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2397,7 +2379,13 @@ pub struct UserCapabilities {
 }
 /// Generated client implementations.
 pub mod label_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manage metadata taxonomies based on Labels and Fields that may be used within
@@ -2483,8 +2471,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2514,8 +2501,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2539,9 +2525,9 @@ pub mod label_service_client {
         /// * `labels/{id}` - See `labels/{id}@latest`
         /// * `labels/{id}@latest` - Gets the latest revision of the label.
         /// * `labels/{id}@published` - Gets the current published revision of the
-        ///  label.
+        ///   label.
         /// * `labels/{id}@{revision_id}` - Gets the label at the specified revision
-        ///  ID.
+        ///   ID.
         pub async fn get_label(
             &mut self,
             request: impl tonic::IntoRequest<super::GetLabelRequest>,
@@ -2550,8 +2536,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2579,8 +2564,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2607,8 +2591,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2641,8 +2624,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2670,8 +2652,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2701,12 +2682,11 @@ pub mod label_service_client {
         /// that would invalidate or cause new restrictions on existing metadata
         /// related to the Label will be rejected. For example, the following changes
         /// to a Label will be rejected after the Label is published:
-        ///
         /// * The label cannot be directly deleted. It must be disabled first, then
-        ///  deleted.
+        ///   deleted.
         /// * Field.FieldType cannot be changed.
         /// * Changes to Field validation options cannot reject something that was
-        ///  previously accepted.
+        ///   previously accepted.
         /// * Reducing the max entries.
         pub async fn publish_label(
             &mut self,
@@ -2716,8 +2696,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2750,8 +2729,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2781,8 +2759,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2812,8 +2789,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2843,8 +2819,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2877,8 +2852,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2911,8 +2885,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2940,8 +2913,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2974,8 +2946,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3003,8 +2974,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3034,8 +3004,7 @@ pub mod label_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

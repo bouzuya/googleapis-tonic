@@ -35,8 +35,8 @@ pub struct ErrorContext {
     pub report_location: ::core::option::Option<SourceLocation>,
 }
 /// The error payload that is populated on LRO import APIs, including
-/// "google.cloud.retail.v2.ProductService.ImportProducts" and
-/// "google.cloud.retail.v2.EventService.ImportUserEvents".
+///    "google.cloud.retail.v2.ProductService.ImportProducts" and
+///    "google.cloud.retail.v2.EventService.ImportUserEvents".
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportErrorContext {
     /// The operation resource name of the LRO.
@@ -93,8 +93,8 @@ pub struct ErrorLog {
     ///
     /// Most API request types are supported. For example:
     ///
-    /// "type.googleapis.com/google.cloud.retail.v2.ProductService.CreateProductRequest"
-    /// "type.googleapis.com/google.cloud.retail.v2.UserEventService.WriteUserEventRequest"
+    ///    "type.googleapis.com/google.cloud.retail.v2.ProductService.CreateProductRequest"
+    ///    "type.googleapis.com/google.cloud.retail.v2.UserEventService.WriteUserEventRequest"
     #[prost(message, optional, tag = "5")]
     pub request_payload: ::core::option::Option<::prost_types::Struct>,
     /// The API response payload, represented as a protocol buffer.
@@ -103,9 +103,9 @@ pub struct ErrorLog {
     /// consider there are some quality issues like unjoined events.
     ///
     /// The following API responses are supported and no PII is included:
-    /// "google.cloud.retail.v2.PredictionService.Predict"
-    /// "google.cloud.retail.v2.UserEventService.WriteUserEvent"
-    /// "google.cloud.retail.v2.UserEventService.CollectUserEvent"
+    ///    "google.cloud.retail.v2.PredictionService.Predict"
+    ///    "google.cloud.retail.v2.UserEventService.WriteUserEvent"
+    ///    "google.cloud.retail.v2.UserEventService.CollectUserEvent"
     #[prost(message, optional, tag = "6")]
     pub response_payload: ::core::option::Option<::prost_types::Struct>,
     /// The error payload that is populated on LRO import APIs.

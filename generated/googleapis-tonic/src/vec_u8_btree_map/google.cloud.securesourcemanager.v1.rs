@@ -118,12 +118,12 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-                State::Paused => "PAUSED",
-                State::Unknown => "UNKNOWN",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Deleting => "DELETING",
+                Self::Paused => "PAUSED",
+                Self::Unknown => "UNKNOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -168,9 +168,9 @@ pub mod instance {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StateNote::Unspecified => "STATE_NOTE_UNSPECIFIED",
-                StateNote::PausedCmekUnavailable => "PAUSED_CMEK_UNAVAILABLE",
-                StateNote::InstanceResuming => "INSTANCE_RESUMING",
+                Self::Unspecified => "STATE_NOTE_UNSPECIFIED",
+                Self::PausedCmekUnavailable => "PAUSED_CMEK_UNAVAILABLE",
+                Self::InstanceResuming => "INSTANCE_RESUMING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -490,8 +490,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -546,7 +546,7 @@ pub struct CreateRepositoryRequest {
     pub repository: ::core::option::Option<Repository>,
     /// Required. The ID to use for the repository, which will become the final
     /// component of the repository's resource name. This value should be 4-63
-    /// characters, and valid characters are /\[a-z\]\[0-9\]-/.
+    /// characters, and valid characters are /[a-z][0-9]-/.
     #[prost(string, tag = "3")]
     pub repository_id: ::prost::alloc::string::String,
 }
@@ -565,7 +565,13 @@ pub struct DeleteRepositoryRequest {
 }
 /// Generated client implementations.
 pub mod secure_source_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Secure Source Manager API
@@ -578,15 +584,11 @@ pub mod secure_source_manager_client {
     /// instance, so you must connect to your instance's API hostname to access
     /// them. The API hostname looks like the following:
     ///
-    /// ```text
-    /// https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
-    /// ```
+    ///    https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
     ///
     /// For example,
     ///
-    /// ```text
-    /// https://my-instance-702770452863-api.us-central1.sourcemanager.dev
-    /// ```
+    ///    https://my-instance-702770452863-api.us-central1.sourcemanager.dev
     ///
     /// Data Plane endpoints are denoted with **Host: Data Plane**.
     ///
@@ -673,8 +675,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -701,8 +702,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -732,8 +732,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -763,8 +762,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -796,8 +794,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -826,8 +823,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -859,8 +855,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -892,8 +887,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -925,8 +919,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -958,8 +951,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -994,8 +986,7 @@ pub mod secure_source_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

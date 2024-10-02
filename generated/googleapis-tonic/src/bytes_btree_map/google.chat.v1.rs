@@ -71,9 +71,9 @@ pub mod attachment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Source::Unspecified => "SOURCE_UNSPECIFIED",
-                Source::DriveFile => "DRIVE_FILE",
-                Source::UploadedContent => "UPLOADED_CONTENT",
+                Self::Unspecified => "SOURCE_UNSPECIFIED",
+                Self::DriveFile => "DRIVE_FILE",
+                Self::UploadedContent => "UPLOADED_CONTENT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -152,28 +152,28 @@ pub struct UploadAttachmentResponse {
 /// the output for a `User` resource only populates the user's `name` and `type`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct User {
-    /// Resource name for a Google Chat \[user\]\[google.chat.v1.User\].
+    /// Resource name for a Google Chat [user][google.chat.v1.User].
     ///
     /// Format: `users/{user}`. `users/app` can be used as an alias for the calling
-    /// app \[bot\]\[google.chat.v1.User.Type.BOT\] user.
+    /// app [bot][google.chat.v1.User.Type.BOT] user.
     ///
-    /// For \[human users\]\[google.chat.v1.User.Type.HUMAN\], `{user}` is the same
+    /// For [human users][google.chat.v1.User.Type.HUMAN], `{user}` is the same
     /// user identifier as:
     ///
-    /// * the `id` for the
-    ///   [Person](<https://developers.google.com/people/api/rest/v1/people>) in the
-    ///   People API. For example, `users/123456789` in Chat API represents the same
-    ///   person as the `123456789` Person profile ID in People API.
+    /// - the `id` for the
+    /// [Person](<https://developers.google.com/people/api/rest/v1/people>) in the
+    /// People API. For example, `users/123456789` in Chat API represents the same
+    /// person as the `123456789` Person profile ID in People API.
     ///
-    /// * the `id` for a
-    ///   [user](<https://developers.google.com/admin-sdk/directory/reference/rest/v1/users>)
-    ///   in the Admin SDK Directory API.
+    /// - the `id` for a
+    /// [user](<https://developers.google.com/admin-sdk/directory/reference/rest/v1/users>)
+    /// in the Admin SDK Directory API.
     ///
-    /// * the user's email address can be used as an alias for `{user}` in API
-    ///   requests. For example, if the People API Person profile ID for
-    ///   `user@example.com` is `123456789`, you can use `users/user@example.com` as
-    ///   an alias to reference `users/123456789`. Only the canonical resource name
-    ///   (for example `users/123456789`) will be returned from the API.
+    /// - the user's email address can be used as an alias for `{user}` in API
+    /// requests. For example, if the People API Person profile ID for
+    /// `user@example.com` is `123456789`, you can use `users/user@example.com` as
+    /// an alias to reference `users/123456789`. Only the canonical resource name
+    /// (for example `users/123456789`) will be returned from the API.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The user's display name.
@@ -219,9 +219,9 @@ pub mod user {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Human => "HUMAN",
-                Type::Bot => "BOT",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Human => "HUMAN",
+                Self::Bot => "BOT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -241,27 +241,25 @@ pub mod user {
 /// messages](<https://developers.google.com/workspace/chat/format-messages>).
 ///
 /// Example plain-text message body:
-///
-/// ```text,
+/// ```
 /// Hello @FooBot how are you!"
 /// ```
 ///
 /// The corresponding annotations metadata:
-///
-/// ```text,
+/// ```
 /// "annotations":[{
-///   "type":"USER_MENTION",
-///   "startIndex":6,
-///   "length":7,
-///   "userMention": {
-///     "user": {
-///       "name":"users/{user}",
-///       "displayName":"FooBot",
-///       "avatarUrl":"<https://goo.gl/aeDtrS",>
-///       "type":"BOT"
-///     },
-///     "type":"MENTION"
-///    }
+///    "type":"USER_MENTION",
+///    "startIndex":6,
+///    "length":7,
+///    "userMention": {
+///      "user": {
+///        "name":"users/{user}",
+///        "displayName":"FooBot",
+///        "avatarUrl":"<https://goo.gl/aeDtrS",>
+///        "type":"BOT"
+///      },
+///      "type":"MENTION"
+///     }
 /// }]
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -336,9 +334,9 @@ pub mod user_mention_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Add => "ADD",
-                Type::Mention => "MENTION",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Add => "ADD",
+                Self::Mention => "MENTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -400,9 +398,9 @@ pub mod slash_command_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Add => "ADD",
-                Type::Invoke => "INVOKE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Add => "ADD",
+                Self::Invoke => "INVOKE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -459,9 +457,9 @@ pub mod rich_link_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RichLinkType::Unspecified => "RICH_LINK_TYPE_UNSPECIFIED",
-                RichLinkType::DriveFile => "DRIVE_FILE",
-                RichLinkType::ChatSpace => "CHAT_SPACE",
+                Self::Unspecified => "RICH_LINK_TYPE_UNSPECIFIED",
+                Self::DriveFile => "DRIVE_FILE",
+                Self::ChatSpace => "CHAT_SPACE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -536,10 +534,10 @@ impl AnnotationType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            AnnotationType::Unspecified => "ANNOTATION_TYPE_UNSPECIFIED",
-            AnnotationType::UserMention => "USER_MENTION",
-            AnnotationType::SlashCommand => "SLASH_COMMAND",
-            AnnotationType::RichLink => "RICH_LINK",
+            Self::Unspecified => "ANNOTATION_TYPE_UNSPECIFIED",
+            Self::UserMention => "USER_MENTION",
+            Self::SlashCommand => "SLASH_COMMAND",
+            Self::RichLink => "RICH_LINK",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -633,10 +631,10 @@ pub mod membership {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MembershipState::Unspecified => "MEMBERSHIP_STATE_UNSPECIFIED",
-                MembershipState::Joined => "JOINED",
-                MembershipState::Invited => "INVITED",
-                MembershipState::NotAMember => "NOT_A_MEMBER",
+                Self::Unspecified => "MEMBERSHIP_STATE_UNSPECIFIED",
+                Self::Joined => "JOINED",
+                Self::Invited => "INVITED",
+                Self::NotAMember => "NOT_A_MEMBER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -665,10 +663,10 @@ pub mod membership {
     )]
     #[repr(i32)]
     pub enum MembershipRole {
-        /// Default value. For \[users\]\[google.chat.v1.Membership.member\]: they
+        /// Default value. For [users][google.chat.v1.Membership.member]: they
         /// aren't a member of the space, but can be invited. For
-        /// \[Google Groups\]\[google.chat.v1.Membership.group_member\]: they're always
-        /// assigned this role (other enum values might be used in the future).
+        /// [Google Groups][google.chat.v1.Membership.group_member]: they're always
+        ///   assigned this role (other enum values might be used in the future).
         Unspecified = 0,
         /// A member of the space. The user has basic permissions, like sending
         /// messages to the space. In 1:1 and unnamed group conversations, everyone
@@ -677,7 +675,7 @@ pub mod membership {
         /// A space manager. The user has all basic permissions plus administrative
         /// permissions that let them manage the space, like adding or removing
         /// members. Only supported in
-        /// \[SpaceType.SPACE\]\[google.chat.v1.Space.SpaceType\].
+        /// [SpaceType.SPACE][google.chat.v1.Space.SpaceType].
         RoleManager = 2,
     }
     impl MembershipRole {
@@ -687,9 +685,9 @@ pub mod membership {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MembershipRole::Unspecified => "MEMBERSHIP_ROLE_UNSPECIFIED",
-                MembershipRole::RoleMember => "ROLE_MEMBER",
-                MembershipRole::RoleManager => "ROLE_MANAGER",
+                Self::Unspecified => "MEMBERSHIP_ROLE_UNSPECIFIED",
+                Self::RoleMember => "ROLE_MEMBER",
+                Self::RoleManager => "ROLE_MANAGER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -774,7 +772,7 @@ pub struct UpdateMembershipRequest {
     ///
     /// Currently supported field paths:
     ///
-    /// * `role`
+    /// - `role`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// When `true`, the method runs using the user's Google Workspace
@@ -838,7 +836,7 @@ pub struct ListMembershipsRequest {
     ///
     /// For example, the following queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// role = "ROLE_MANAGER" OR role = "ROLE_MEMBER"
     /// member.type = "HUMAN" AND role = "ROLE_MANAGER"
     ///
@@ -847,7 +845,7 @@ pub struct ListMembershipsRequest {
     ///
     /// The following queries are invalid:
     ///
-    /// ```text,
+    /// ```
     /// member.type = "HUMAN" AND member.type = "BOT"
     /// role = "ROLE_MANAGER" AND role = "ROLE_MEMBER"
     /// ```
@@ -857,18 +855,18 @@ pub struct ListMembershipsRequest {
     #[prost(string, tag = "5")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. When `true`, also returns memberships associated with a
-    /// \[Google Group\]\[google.chat.v1.Membership.group_member\], in
+    /// [Google Group][google.chat.v1.Membership.group_member], in
     /// addition to other types of memberships. If a
-    /// \[filter\]\[google.chat.v1.ListMembershipsRequest.filter\] is set,
-    /// \[Google Group\]\[google.chat.v1.Membership.group_member\]
+    /// [filter][google.chat.v1.ListMembershipsRequest.filter] is set,
+    /// [Google Group][google.chat.v1.Membership.group_member]
     /// memberships that don't match the filter criteria aren't returned.
     #[prost(bool, tag = "6")]
     pub show_groups: bool,
     /// Optional. When `true`, also returns memberships associated with
-    /// \[invited\]\[google.chat.v1.Membership.MembershipState.INVITED\] members, in
+    /// [invited][google.chat.v1.Membership.MembershipState.INVITED] members, in
     /// addition to other types of memberships. If a
     /// filter is set,
-    /// \[invited\]\[google.chat.v1.Membership.MembershipState.INVITED\] memberships
+    /// [invited][google.chat.v1.Membership.MembershipState.INVITED] memberships
     /// that don't match the filter criteria aren't returned.
     ///
     /// Currently requires [user
@@ -1245,37 +1243,37 @@ pub mod widget_markup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Icon::Unspecified => "ICON_UNSPECIFIED",
-                Icon::Airplane => "AIRPLANE",
-                Icon::Bookmark => "BOOKMARK",
-                Icon::Bus => "BUS",
-                Icon::Car => "CAR",
-                Icon::Clock => "CLOCK",
-                Icon::ConfirmationNumberIcon => "CONFIRMATION_NUMBER_ICON",
-                Icon::Dollar => "DOLLAR",
-                Icon::Description => "DESCRIPTION",
-                Icon::Email => "EMAIL",
-                Icon::EventPerformer => "EVENT_PERFORMER",
-                Icon::EventSeat => "EVENT_SEAT",
-                Icon::FlightArrival => "FLIGHT_ARRIVAL",
-                Icon::FlightDeparture => "FLIGHT_DEPARTURE",
-                Icon::Hotel => "HOTEL",
-                Icon::HotelRoomType => "HOTEL_ROOM_TYPE",
-                Icon::Invite => "INVITE",
-                Icon::MapPin => "MAP_PIN",
-                Icon::Membership => "MEMBERSHIP",
-                Icon::MultiplePeople => "MULTIPLE_PEOPLE",
-                Icon::Offer => "OFFER",
-                Icon::Person => "PERSON",
-                Icon::Phone => "PHONE",
-                Icon::RestaurantIcon => "RESTAURANT_ICON",
-                Icon::ShoppingCart => "SHOPPING_CART",
-                Icon::Star => "STAR",
-                Icon::Store => "STORE",
-                Icon::Ticket => "TICKET",
-                Icon::Train => "TRAIN",
-                Icon::VideoCamera => "VIDEO_CAMERA",
-                Icon::VideoPlay => "VIDEO_PLAY",
+                Self::Unspecified => "ICON_UNSPECIFIED",
+                Self::Airplane => "AIRPLANE",
+                Self::Bookmark => "BOOKMARK",
+                Self::Bus => "BUS",
+                Self::Car => "CAR",
+                Self::Clock => "CLOCK",
+                Self::ConfirmationNumberIcon => "CONFIRMATION_NUMBER_ICON",
+                Self::Dollar => "DOLLAR",
+                Self::Description => "DESCRIPTION",
+                Self::Email => "EMAIL",
+                Self::EventPerformer => "EVENT_PERFORMER",
+                Self::EventSeat => "EVENT_SEAT",
+                Self::FlightArrival => "FLIGHT_ARRIVAL",
+                Self::FlightDeparture => "FLIGHT_DEPARTURE",
+                Self::Hotel => "HOTEL",
+                Self::HotelRoomType => "HOTEL_ROOM_TYPE",
+                Self::Invite => "INVITE",
+                Self::MapPin => "MAP_PIN",
+                Self::Membership => "MEMBERSHIP",
+                Self::MultiplePeople => "MULTIPLE_PEOPLE",
+                Self::Offer => "OFFER",
+                Self::Person => "PERSON",
+                Self::Phone => "PHONE",
+                Self::RestaurantIcon => "RESTAURANT_ICON",
+                Self::ShoppingCart => "SHOPPING_CART",
+                Self::Star => "STAR",
+                Self::Store => "STORE",
+                Self::Ticket => "TICKET",
+                Self::Train => "TRAIN",
+                Self::VideoCamera => "VIDEO_CAMERA",
+                Self::VideoPlay => "VIDEO_PLAY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1400,9 +1398,9 @@ pub mod contextual_add_on_markup {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        ImageStyle::Unspecified => "IMAGE_STYLE_UNSPECIFIED",
-                        ImageStyle::Image => "IMAGE",
-                        ImageStyle::Avatar => "AVATAR",
+                        Self::Unspecified => "IMAGE_STYLE_UNSPECIFIED",
+                        Self::Image => "IMAGE",
+                        Self::Avatar => "AVATAR",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1500,13 +1498,13 @@ pub mod deletion_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeletionType::Unspecified => "DELETION_TYPE_UNSPECIFIED",
-                DeletionType::Creator => "CREATOR",
-                DeletionType::SpaceOwner => "SPACE_OWNER",
-                DeletionType::Admin => "ADMIN",
-                DeletionType::AppMessageExpiry => "APP_MESSAGE_EXPIRY",
-                DeletionType::CreatorViaApp => "CREATOR_VIA_APP",
-                DeletionType::SpaceOwnerViaApp => "SPACE_OWNER_VIA_APP",
+                Self::Unspecified => "DELETION_TYPE_UNSPECIFIED",
+                Self::Creator => "CREATOR",
+                Self::SpaceOwner => "SPACE_OWNER",
+                Self::Admin => "ADMIN",
+                Self::AppMessageExpiry => "APP_MESSAGE_EXPIRY",
+                Self::CreatorViaApp => "CREATOR_VIA_APP",
+                Self::SpaceOwnerViaApp => "SPACE_OWNER_VIA_APP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1628,7 +1626,8 @@ pub struct ListReactionsRequest {
     /// (`user.name`).
     ///
     /// To filter reactions for multiple emojis or users, join similar fields
-    /// with the `OR` operator, such as `emoji.unicode = "🙂" OR emoji.unicode = "👍"` and `user.name = "users/AAAAAA" OR user.name = "users/BBBBBB"`.
+    /// with the `OR` operator, such as `emoji.unicode = "🙂" OR emoji.unicode =
+    /// "👍"` and `user.name = "users/AAAAAA" OR user.name = "users/BBBBBB"`.
     ///
     /// To filter reactions by emoji and user, use the `AND` operator, such as
     /// `emoji.unicode = "🙂" AND user.name = "users/AAAAAA"`.
@@ -1637,7 +1636,7 @@ pub struct ListReactionsRequest {
     ///
     /// For example, the following queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// user.name = "users/{user}"
     /// emoji.unicode = "🙂"
     /// emoji.custom_emoji.uid = "{uid}"
@@ -1650,7 +1649,7 @@ pub struct ListReactionsRequest {
     ///
     /// The following queries are invalid:
     ///
-    /// ```text,
+    /// ```
     /// emoji.unicode = "🙂" AND emoji.unicode = "👍"
     /// emoji.unicode = "🙂" AND emoji.custom_emoji.uid = "{uid}"
     /// emoji.unicode = "🙂" OR user.name = "users/{user}"
@@ -1716,9 +1715,9 @@ impl HistoryState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            HistoryState::Unspecified => "HISTORY_STATE_UNSPECIFIED",
-            HistoryState::HistoryOff => "HISTORY_OFF",
-            HistoryState::HistoryOn => "HISTORY_ON",
+            Self::Unspecified => "HISTORY_STATE_UNSPECIFIED",
+            Self::HistoryOff => "HISTORY_OFF",
+            Self::HistoryOn => "HISTORY_ON",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1774,18 +1773,18 @@ pub struct Space {
     /// Input when creating a space in a Google Workspace organization. Omit this
     /// field when creating spaces in the following conditions:
     ///
-    /// * The authenticated user uses a consumer account (unmanaged user
-    ///   account). By default, a space created by a consumer account permits any
-    ///   Google Chat user.
+    ///    * The authenticated user uses a consumer account (unmanaged user
+    ///      account). By default, a space created by a consumer account permits any
+    ///      Google Chat user.
     ///
-    /// * The space is used to \[import data to Google Chat\]
-    ///   (<https://developers.google.com/chat/api/guides/import-data-overview>)
-    ///   because import mode spaces must only permit members from the same
-    ///   Google Workspace organization. However, as part of the [Google
-    ///   Workspace Developer Preview
-    ///   Program](<https://developers.google.com/workspace/preview>), import mode
-    ///   spaces can permit any Google Chat user so this field can then be set
-    ///   for import mode spaces.
+    ///    * The space is used to \[import data to Google Chat\]
+    ///      (<https://developers.google.com/chat/api/guides/import-data-overview>)
+    ///      because import mode spaces must only permit members from the same
+    ///      Google Workspace organization. However, as part of the [Google
+    ///      Workspace Developer Preview
+    ///      Program](<https://developers.google.com/workspace/preview>), import mode
+    ///      spaces can permit any Google Chat user so this field can then be set
+    ///      for import mode spaces.
     ///
     /// For existing spaces, this field is output only.
     #[prost(bool, tag = "8")]
@@ -1919,9 +1918,9 @@ pub mod space {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    AccessState::Unspecified => "ACCESS_STATE_UNSPECIFIED",
-                    AccessState::Private => "PRIVATE",
-                    AccessState::Discoverable => "DISCOVERABLE",
+                    Self::Unspecified => "ACCESS_STATE_UNSPECIFIED",
+                    Self::Private => "PRIVATE",
+                    Self::Discoverable => "DISCOVERABLE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1964,9 +1963,9 @@ pub mod space {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Room => "ROOM",
-                Type::Dm => "DM",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Room => "ROOM",
+                Self::Dm => "DM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2012,10 +2011,10 @@ pub mod space {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SpaceType::Unspecified => "SPACE_TYPE_UNSPECIFIED",
-                SpaceType::Space => "SPACE",
-                SpaceType::GroupChat => "GROUP_CHAT",
-                SpaceType::DirectMessage => "DIRECT_MESSAGE",
+                Self::Unspecified => "SPACE_TYPE_UNSPECIFIED",
+                Self::Space => "SPACE",
+                Self::GroupChat => "GROUP_CHAT",
+                Self::DirectMessage => "DIRECT_MESSAGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2063,10 +2062,10 @@ pub mod space {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SpaceThreadingState::Unspecified => "SPACE_THREADING_STATE_UNSPECIFIED",
-                SpaceThreadingState::ThreadedMessages => "THREADED_MESSAGES",
-                SpaceThreadingState::GroupedMessages => "GROUPED_MESSAGES",
-                SpaceThreadingState::UnthreadedMessages => "UNTHREADED_MESSAGES",
+                Self::Unspecified => "SPACE_THREADING_STATE_UNSPECIFIED",
+                Self::ThreadedMessages => "THREADED_MESSAGES",
+                Self::GroupedMessages => "GROUPED_MESSAGES",
+                Self::UnthreadedMessages => "UNTHREADED_MESSAGES",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2137,7 +2136,7 @@ pub struct ListSpacesRequest {
     ///
     /// For example, the following queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// space_type = "SPACE"
     /// spaceType = "GROUP_CHAT" OR spaceType = "DIRECT_MESSAGE"
     /// ```
@@ -2210,52 +2209,52 @@ pub struct UpdateSpaceRequest {
     ///
     /// Currently supported field paths:
     ///
-    /// * `display_name` (Only supports changing the display name of a space with
-    ///   the `SPACE` type, or when also including the `space_type` mask to change a
-    ///   `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
-    ///   `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
-    ///   error. If you receive the error message `ALREADY_EXISTS` when updating the
-    ///   `displayName`, try a different `displayName`. An existing space within the
-    ///   Google Workspace organization might already use this display name.)
+    /// - `display_name` (Only supports changing the display name of a space with
+    /// the `SPACE` type, or when also including the `space_type` mask to change a
+    /// `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
+    /// `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
+    /// error. If you receive the error message `ALREADY_EXISTS` when updating the
+    /// `displayName`, try a different `displayName`. An existing space within the
+    /// Google Workspace organization might already use this display name.)
     ///
-    /// * `space_type` (Only supports changing a `GROUP_CHAT` space type to
-    ///   `SPACE`. Include `display_name` together
-    ///   with `space_type` in the update mask and ensure that the specified space
-    ///   has a non-empty display name and the `SPACE` space type. Including the
-    ///   `space_type` mask and the `SPACE` type in the specified space when updating
-    ///   the display name is optional if the existing space already has the `SPACE`
-    ///   type. Trying to update the space type in other ways results in an invalid
-    ///   argument error).
-    ///   `space_type` is not supported with admin access.
+    /// - `space_type` (Only supports changing a `GROUP_CHAT` space type to
+    /// `SPACE`. Include `display_name` together
+    /// with `space_type` in the update mask and ensure that the specified space
+    /// has a non-empty display name and the `SPACE` space type. Including the
+    /// `space_type` mask and the `SPACE` type in the specified space when updating
+    /// the display name is optional if the existing space already has the `SPACE`
+    /// type. Trying to update the space type in other ways results in an invalid
+    /// argument error).
+    /// `space_type` is not supported with admin access.
     ///
-    /// * `space_details`
+    /// - `space_details`
     ///
-    /// * `space_history_state` (Supports [turning history on or off for the
-    ///   space](<https://support.google.com/chat/answer/7664687>) if [the organization
-    ///   allows users to change their history
-    ///   setting](<https://support.google.com/a/answer/7664184>).
-    ///   Warning: mutually exclusive with all other field paths.)
-    ///   `space_history_state` is not supported with admin access.
+    /// - `space_history_state` (Supports [turning history on or off for the
+    /// space](<https://support.google.com/chat/answer/7664687>) if [the organization
+    /// allows users to change their history
+    /// setting](<https://support.google.com/a/answer/7664184>).
+    /// Warning: mutually exclusive with all other field paths.)
+    /// `space_history_state` is not supported with admin access.
     ///
-    /// * `access_settings.audience` (Supports changing the [access
-    ///   setting](<https://support.google.com/chat/answer/11971020>) of who can
-    ///   discover the space, join the space, and preview the messages in space. If
-    ///   no audience is specified in the access setting, the space's access setting
-    ///   is updated to private. Warning: mutually exclusive with all other field
-    ///   paths.)
-    ///   `access_settings.audience` is not supported with admin access.
+    /// - `access_settings.audience` (Supports changing the [access
+    /// setting](<https://support.google.com/chat/answer/11971020>) of who can
+    /// discover the space, join the space, and preview the messages in space. If
+    /// no audience is specified in the access setting, the space's access setting
+    /// is updated to private. Warning: mutually exclusive with all other field
+    /// paths.)
+    /// `access_settings.audience` is not supported with admin access.
     ///
-    /// * Developer Preview: Supports changing the [permission
-    ///   settings](<https://support.google.com/chat/answer/13340792>) of a space,
-    ///   supported field paths
-    ///   include: `permission_settings.manage_members_and_groups`,
-    ///   `permission_settings.modify_space_details`,
-    ///   `permission_settings.toggle_history`,
-    ///   `permission_settings.use_at_mention_all`,
-    ///   `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
-    ///   `permission_settings.reply_messages`
+    /// - Developer Preview: Supports changing the [permission
+    /// settings](<https://support.google.com/chat/answer/13340792>) of a space,
+    /// supported field paths
+    /// include: `permission_settings.manage_members_and_groups`,
+    /// `permission_settings.modify_space_details`,
+    /// `permission_settings.toggle_history`,
+    /// `permission_settings.use_at_mention_all`,
+    /// `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
+    /// `permission_settings.reply_messages`
     ///   (Warning: mutually exclusive with all other non-permission settings field
-    ///   paths). `permission_settings` is not supported with admin access.
+    /// paths). `permission_settings` is not supported with admin access.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// When `true`, the method runs using the user's Google Workspace
@@ -2312,13 +2311,13 @@ pub struct SearchSpacesRequest {
     ///
     /// You can search by using the following parameters:
     ///
-    /// * `create_time`
-    /// * `customer`
-    /// * `display_name`
-    /// * `external_user_allowed`
-    /// * `last_active_time`
-    /// * `space_history_state`
-    /// * `space_type`
+    /// - `create_time`
+    /// - `customer`
+    /// - `display_name`
+    /// - `external_user_allowed`
+    /// - `last_active_time`
+    /// - `space_history_state`
+    /// - `space_type`
     ///
     /// `create_time` and `last_active_time` accept a timestamp in
     /// [RFC-3339](<https://www.rfc-editor.org/rfc/rfc3339>) format and the supported
@@ -2330,7 +2329,8 @@ pub struct SearchSpacesRequest {
     /// `display_name` only accepts the `HAS` (`:`) operator. The text to
     /// match is first tokenized into tokens and each token is prefix-matched
     /// case-insensitively and independently as a substring anywhere in the space's
-    /// `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`.
+    /// `display_name`. For example, `Fun Eve` matches `Fun event` or `The
+    /// evening was fun`, but not `notFun event` or `even`.
     ///
     /// `external_user_allowed` accepts either `true` or `false`.
     ///
@@ -2349,11 +2349,13 @@ pub struct SearchSpacesRequest {
     /// `display_name`, 'space_history_state', and 'external_user_allowed' only
     /// support `OR` operators.
     /// `last_active_time` and `create_time` support both `AND` and `OR` operators.
-    /// `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time > "2023-01-01T00:00:00+00:00"`.
+    /// `AND` can only be used to represent an interval, such as `last_active_time
+    /// < "2022-01-01T00:00:00+00:00" AND last_active_time >
+    /// "2023-01-01T00:00:00+00:00"`.
     ///
     /// The following example queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// customer = "customers/my_customer" AND space_type = "SPACE"
     ///
     /// customer = "customers/my_customer" AND space_type = "SPACE" AND
@@ -2379,26 +2381,26 @@ pub struct SearchSpacesRequest {
     ///
     /// Supported attributes to order by are:
     ///
-    /// * `membership_count.joined_direct_human_user_count` — Denotes the count of
-    ///   human users that have directly joined a space.
-    /// * `last_active_time` — Denotes the time when last eligible item is added to
-    ///   any topic of this space.
-    /// * `create_time` — Denotes the time of the space creation.
+    /// - `membership_count.joined_direct_human_user_count` — Denotes the count of
+    /// human users that have directly joined a space.
+    /// - `last_active_time` — Denotes the time when last eligible item is added to
+    /// any topic of this space.
+    /// - `create_time` — Denotes the time of the space creation.
     ///
     /// Valid ordering operation values are:
     ///
-    /// * `ASC` for ascending. Default value.
+    /// - `ASC` for ascending. Default value.
     ///
-    /// * `DESC` for descending.
+    /// - `DESC` for descending.
     ///
     /// The supported syntax are:
     ///
-    /// * `membership_count.joined_direct_human_user_count DESC`
-    /// * `membership_count.joined_direct_human_user_count ASC`
-    /// * `last_active_time DESC`
-    /// * `last_active_time ASC`
-    /// * `create_time DESC`
-    /// * `create_time ASC`
+    /// - `membership_count.joined_direct_human_user_count DESC`
+    /// - `membership_count.joined_direct_human_user_count ASC`
+    /// - `last_active_time DESC`
+    /// - `last_active_time ASC`
+    /// - `create_time DESC`
+    /// - `create_time ASC`
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
 }
@@ -2460,6 +2462,7 @@ pub struct Message {
     ///
     /// Format: `spaces/{space}/messages/{message}`
     ///
+    ///
     /// Where `{space}` is the ID of the space where the message is posted and
     /// `{message}` is a system-assigned ID for the message. For example,
     /// `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`.
@@ -2513,21 +2516,21 @@ pub struct Message {
     /// but includes the following:
     ///
     /// * [Markup
-    ///   syntax](<https://developers.google.com/workspace/chat/format-messages>)
-    ///   for bold, italic, strikethrough, monospace, monospace block, and bulleted
-    ///   list.
+    /// syntax](<https://developers.google.com/workspace/chat/format-messages>)
+    /// for bold, italic, strikethrough, monospace, monospace block, and bulleted
+    /// list.
     ///
     /// * [User
-    ///   mentions](<https://developers.google.com/workspace/chat/format-messages#messages-@mention>)
-    ///   using the format `<users/{user}>`.
+    /// mentions](<https://developers.google.com/workspace/chat/format-messages#messages-@mention>)
+    /// using the format `<users/{user}>`.
     ///
     /// * Custom hyperlinks using the format `<{url}|{rendered_text}>` where the
-    ///   first string is the URL and the second is the rendered text—for example,
-    ///   `<<http://example.com|custom> text>`.
+    /// first string is the URL and the second is the rendered text—for example,
+    /// `<<http://example.com|custom> text>`.
     ///
     /// * Custom emoji using the format `:{emoji_name}:`—for example, `:smile:`.
-    ///   This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning
-    ///   face emoji.
+    /// This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning
+    /// face emoji.
     ///
     /// For more information, see [View text formatting sent in a
     /// message](<https://developers.google.com/workspace/chat/format-messages#view_text_formatting_sent_in_a_message>)
@@ -2643,8 +2646,8 @@ pub struct Message {
     /// details, see [Add interactive widgets at the bottom of a
     /// message](<https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets>).
     ///
-    /// Creating a message with accessory widgets requires \[app
-    /// authentication\]
+    /// Creating a message with accessory widgets requires [app
+    /// authentication]
     /// (<https://developers.google.com/workspace/chat/authenticate-authorize-chat-app>).
     #[prost(message, repeated, tag = "44")]
     pub accessory_widgets: ::prost::alloc::vec::Vec<AccessoryWidget>,
@@ -2786,13 +2789,13 @@ pub mod action_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResponseType::TypeUnspecified => "TYPE_UNSPECIFIED",
-                ResponseType::NewMessage => "NEW_MESSAGE",
-                ResponseType::UpdateMessage => "UPDATE_MESSAGE",
-                ResponseType::UpdateUserMessageCards => "UPDATE_USER_MESSAGE_CARDS",
-                ResponseType::RequestConfig => "REQUEST_CONFIG",
-                ResponseType::Dialog => "DIALOG",
-                ResponseType::UpdateWidget => "UPDATE_WIDGET",
+                Self::TypeUnspecified => "TYPE_UNSPECIFIED",
+                Self::NewMessage => "NEW_MESSAGE",
+                Self::UpdateMessage => "UPDATE_MESSAGE",
+                Self::UpdateUserMessageCards => "UPDATE_USER_MESSAGE_CARDS",
+                Self::RequestConfig => "REQUEST_CONFIG",
+                Self::Dialog => "DIALOG",
+                Self::UpdateWidget => "UPDATE_WIDGET",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2837,8 +2840,8 @@ pub struct GetMessageRequest {
     /// Format: `spaces/{space}/messages/{message}`
     ///
     /// If you've set a custom ID for your message, you can use the value from the
-    /// `clientAssignedMessageId` field for `{message}`. For details, see \[Name a
-    /// message\]
+    /// `clientAssignedMessageId` field for `{message}`. For details, see [Name a
+    /// message]
     /// (<https://developers.google.com/workspace/chat/create-messages#name_a_created_message>).
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -2851,8 +2854,8 @@ pub struct DeleteMessageRequest {
     /// Format: `spaces/{space}/messages/{message}`
     ///
     /// If you've set a custom ID for your message, you can use the value from the
-    /// `clientAssignedMessageId` field for `{message}`. For details, see \[Name a
-    /// message\]
+    /// `clientAssignedMessageId` field for `{message}`. For details, see [Name a
+    /// message]
     /// (<https://developers.google.com/workspace/chat/create-messages#name_a_created_message>).
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -2877,18 +2880,18 @@ pub struct UpdateMessageRequest {
     ///
     /// Currently supported field paths:
     ///
-    /// * `text`
+    /// - `text`
     ///
-    /// * `attachment`
+    /// - `attachment`
     ///
-    /// * `cards` (Requires [app
-    ///   authentication](/chat/api/guides/auth/service-accounts).)
+    /// - `cards` (Requires [app
+    /// authentication](/chat/api/guides/auth/service-accounts).)
     ///
-    /// * `cards_v2`  (Requires [app
-    ///   authentication](/chat/api/guides/auth/service-accounts).)
+    /// - `cards_v2`  (Requires [app
+    /// authentication](/chat/api/guides/auth/service-accounts).)
     ///
-    /// * `accessory_widgets`  (Requires [app
-    ///   authentication](/chat/api/guides/auth/service-accounts).)
+    /// - `accessory_widgets`  (Requires [app
+    /// authentication](/chat/api/guides/auth/service-accounts).)
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Optional. If `true` and the message isn't found, a new message is created
@@ -2910,10 +2913,10 @@ pub struct CreateMessageRequest {
     #[prost(message, optional, tag = "4")]
     pub message: ::core::option::Option<Message>,
     /// Optional. Deprecated: Use
-    /// \[thread.thread_key\]\[google.chat.v1.Thread.thread_key\] instead. ID for the
+    /// [thread.thread_key][google.chat.v1.Thread.thread_key] instead. ID for the
     /// thread. Supports up to 4000 characters. To start or add to a thread, create
     /// a message and specify a `threadKey` or the
-    /// \[thread.name\]\[google.chat.v1.Thread.name\]. For example usage, see [Start or
+    /// [thread.name][google.chat.v1.Thread.name]. For example usage, see [Start or
     /// reply to a message
     /// thread](<https://developers.google.com/workspace/chat/create-messages#create-message-thread>).
     #[deprecated]
@@ -2935,11 +2938,11 @@ pub struct CreateMessageRequest {
     /// The value for this field must meet the following requirements:
     ///
     /// * Begins with `client-`. For example, `client-custom-name` is a valid
-    ///   custom ID, but `custom-name` is not.
+    ///    custom ID, but `custom-name` is not.
     /// * Contains up to 63 characters and only lowercase letters, numbers, and
-    ///   hyphens.
+    ///    hyphens.
     /// * Is unique within a space. A Chat app can't use the same custom ID for
-    ///   different messages.
+    /// different messages.
     ///
     /// For details, see [Name a
     /// message](<https://developers.google.com/workspace/chat/create-messages#name_a_created_message>).
@@ -2963,18 +2966,18 @@ pub mod create_message_request {
     )]
     #[repr(i32)]
     pub enum MessageReplyOption {
-        /// Default. Starts a new thread. Using this option ignores any \[thread
-        /// ID\]\[google.chat.v1.Thread.name\] or
-        /// \[`thread_key`\]\[google.chat.v1.Thread.thread_key\] that's included.
+        /// Default. Starts a new thread. Using this option ignores any [thread
+        /// ID][google.chat.v1.Thread.name] or
+        /// [`thread_key`][google.chat.v1.Thread.thread_key] that's included.
         Unspecified = 0,
-        /// Creates the message as a reply to the thread specified by \[thread
-        /// ID\]\[google.chat.v1.Thread.name\] or
-        /// \[`thread_key`\]\[google.chat.v1.Thread.thread_key\]. If it fails, the
+        /// Creates the message as a reply to the thread specified by [thread
+        /// ID][google.chat.v1.Thread.name] or
+        /// [`thread_key`][google.chat.v1.Thread.thread_key]. If it fails, the
         /// message starts a new thread instead.
         ReplyMessageFallbackToNewThread = 1,
-        /// Creates the message as a reply to the thread specified by \[thread
-        /// ID\]\[google.chat.v1.Thread.name\] or
-        /// \[`thread_key`\]\[google.chat.v1.Thread.thread_key\]. If a new `thread_key`
+        /// Creates the message as a reply to the thread specified by [thread
+        /// ID][google.chat.v1.Thread.name] or
+        /// [`thread_key`][google.chat.v1.Thread.thread_key]. If a new `thread_key`
         /// is used, a new thread is created. If the message creation fails, a
         /// `NOT_FOUND` error is returned instead.
         ReplyMessageOrFail = 2,
@@ -2986,11 +2989,11 @@ pub mod create_message_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MessageReplyOption::Unspecified => "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                MessageReplyOption::ReplyMessageFallbackToNewThread => {
+                Self::Unspecified => "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                Self::ReplyMessageFallbackToNewThread => {
                     "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"
                 }
-                MessageReplyOption::ReplyMessageOrFail => "REPLY_MESSAGE_OR_FAIL",
+                Self::ReplyMessageOrFail => "REPLY_MESSAGE_OR_FAIL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3056,16 +3059,16 @@ pub struct ListMessagesRequest {
     ///
     /// For example, the following queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// create_time > "2012-04-21T11:30:00-04:00"
     ///
     /// create_time > "2012-04-21T11:30:00-04:00" AND
-    ///   thread.name = spaces/AAAAAAAAAAA/threads/123
+    ///    thread.name = spaces/AAAAAAAAAAA/threads/123
     ///
     /// create_time > "2012-04-21T11:30:00+00:00" AND
     ///
     /// create_time < "2013-01-01T00:00:00+00:00" AND
-    ///   thread.name = spaces/AAAAAAAAAAA/threads/123
+    ///    thread.name = spaces/AAAAAAAAAAA/threads/123
     ///
     /// thread.name = spaces/AAAAAAAAAAA/threads/123
     /// ```
@@ -3079,9 +3082,9 @@ pub struct ListMessagesRequest {
     /// How the list of messages is ordered. Specify a value to order by an
     /// ordering operation. Valid ordering operation values are as follows:
     ///
-    /// * `ASC` for ascending.
+    /// - `ASC` for ascending.
     ///
-    /// * `DESC` for descending.
+    /// - `DESC` for descending.
     ///
     /// The default ordering is `create_time ASC`.
     #[prost(string, tag = "5")]
@@ -3342,45 +3345,43 @@ pub struct SpaceEvent {
     /// Supported event types for
     /// [messages](<https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages>):
     ///
-    /// ```text
-    /// * New message: `google.workspace.chat.message.v1.created`
-    /// * Updated message: `google.workspace.chat.message.v1.updated`
-    /// * Deleted message: `google.workspace.chat.message.v1.deleted`
-    /// * Multiple new messages: `google.workspace.chat.message.v1.batchCreated`
-    /// * Multiple updated messages:
-    /// `google.workspace.chat.message.v1.batchUpdated`
-    /// * Multiple deleted messages:
-    /// `google.workspace.chat.message.v1.batchDeleted`
-    /// ```
+    ///     * New message: `google.workspace.chat.message.v1.created`
+    ///     * Updated message: `google.workspace.chat.message.v1.updated`
+    ///     * Deleted message: `google.workspace.chat.message.v1.deleted`
+    ///     * Multiple new messages: `google.workspace.chat.message.v1.batchCreated`
+    ///     * Multiple updated messages:
+    ///     `google.workspace.chat.message.v1.batchUpdated`
+    ///     * Multiple deleted messages:
+    ///     `google.workspace.chat.message.v1.batchDeleted`
     ///
     /// Supported event types for
     /// [memberships](<https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.members>):
     ///
-    /// * New membership: `google.workspace.chat.membership.v1.created`
-    /// * Updated membership: `google.workspace.chat.membership.v1.updated`
-    /// * Deleted membership: `google.workspace.chat.membership.v1.deleted`
-    /// * Multiple new memberships:
-    ///   `google.workspace.chat.membership.v1.batchCreated`
-    /// * Multiple updated memberships:
-    ///   `google.workspace.chat.membership.v1.batchUpdated`
-    /// * Multiple deleted memberships:
-    ///   `google.workspace.chat.membership.v1.batchDeleted`
+    ///    * New membership: `google.workspace.chat.membership.v1.created`
+    ///    * Updated membership: `google.workspace.chat.membership.v1.updated`
+    ///    * Deleted membership: `google.workspace.chat.membership.v1.deleted`
+    ///    * Multiple new memberships:
+    ///    `google.workspace.chat.membership.v1.batchCreated`
+    ///    * Multiple updated memberships:
+    ///    `google.workspace.chat.membership.v1.batchUpdated`
+    ///    * Multiple deleted memberships:
+    ///    `google.workspace.chat.membership.v1.batchDeleted`
     ///
     /// Supported event types for
     /// [reactions](<https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.reactions>):
     ///
-    /// * New reaction: `google.workspace.chat.reaction.v1.created`
-    /// * Deleted reaction: `google.workspace.chat.reaction.v1.deleted`
-    /// * Multiple new reactions:
-    ///   `google.workspace.chat.reaction.v1.batchCreated`
-    /// * Multiple deleted reactions:
-    ///   `google.workspace.chat.reaction.v1.batchDeleted`
+    ///    * New reaction: `google.workspace.chat.reaction.v1.created`
+    ///    * Deleted reaction: `google.workspace.chat.reaction.v1.deleted`
+    ///    * Multiple new reactions:
+    ///    `google.workspace.chat.reaction.v1.batchCreated`
+    ///    * Multiple deleted reactions:
+    ///    `google.workspace.chat.reaction.v1.batchDeleted`
     ///
     /// Supported event types about the
     /// [space](<https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces>):
     ///
-    /// * Updated space: `google.workspace.chat.space.v1.updated`
-    /// * Multiple space updates: `google.workspace.chat.space.v1.batchUpdated`
+    ///    * Updated space: `google.workspace.chat.space.v1.updated`
+    ///    * Multiple space updates: `google.workspace.chat.space.v1.batchUpdated`
     #[prost(string, tag = "6")]
     pub event_type: ::prost::alloc::string::String,
     #[prost(
@@ -3535,7 +3536,7 @@ pub struct ListSpaceEventsRequest {
     /// end time (`end_time`):
     ///
     /// * `start_time`: Exclusive timestamp from which to start listing space
-    ///   events.
+    /// events.
     ///   You can list events that occurred up to 28 days ago. If unspecified, lists
     ///   space events from the past 28 days.
     /// * `end_time`: Inclusive timestamp until which space events are listed.
@@ -3547,12 +3548,11 @@ pub struct ListSpaceEventsRequest {
     ///
     /// For example, the following queries are valid:
     ///
-    /// ```text,
+    /// ```
     /// start_time="2023-08-23T19:20:33+00:00" AND
     /// end_time="2023-08-23T19:21:54+00:00"
     /// ```
-    ///
-    /// ```text,
+    /// ```
     /// start_time="2023-08-23T19:20:33+00:00" AND
     /// (event_types:"google.workspace.chat.space.v1.updated" OR
     /// event_types:"google.workspace.chat.message.v1.created")
@@ -3560,12 +3560,11 @@ pub struct ListSpaceEventsRequest {
     ///
     /// The following queries are invalid:
     ///
-    /// ```text,
+    /// ```
     /// start_time="2023-08-23T19:20:33+00:00" OR
     /// end_time="2023-08-23T19:21:54+00:00"
     /// ```
-    ///
-    /// ```text,
+    /// ```
     /// event_types:"google.workspace.chat.space.v1.updated" AND
     /// event_types:"google.workspace.chat.message.v1.created"
     /// ```
@@ -3610,13 +3609,13 @@ pub struct GetSpaceReadStateRequest {
     ///
     /// To refer to the calling user, set one of the following:
     ///
-    /// * The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
+    /// - The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
     ///
-    /// * Their Workspace email address. For example,
-    ///   `users/user@example.com/spaces/{space}/spaceReadState`.
+    /// - Their Workspace email address. For example,
+    /// `users/user@example.com/spaces/{space}/spaceReadState`.
     ///
-    /// * Their user id. For example,
-    ///   `users/123456789/spaces/{space}/spaceReadState`.
+    /// - Their user id. For example,
+    /// `users/123456789/spaces/{space}/spaceReadState`.
     ///
     /// Format: users/{user}/spaces/{space}/spaceReadState
     #[prost(string, tag = "1")]
@@ -3631,20 +3630,20 @@ pub struct UpdateSpaceReadStateRequest {
     ///
     /// To refer to the calling user, set one of the following:
     ///
-    /// * The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
+    /// - The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
     ///
-    /// * Their Workspace email address. For example,
-    ///   `users/user@example.com/spaces/{space}/spaceReadState`.
+    /// - Their Workspace email address. For example,
+    /// `users/user@example.com/spaces/{space}/spaceReadState`.
     ///
-    /// * Their user id. For example,
-    ///   `users/123456789/spaces/{space}/spaceReadState`.
+    /// - Their user id. For example,
+    /// `users/123456789/spaces/{space}/spaceReadState`.
     ///
     /// Format: users/{user}/spaces/{space}/spaceReadState
     #[prost(message, optional, tag = "1")]
     pub space_read_state: ::core::option::Option<SpaceReadState>,
     /// Required. The field paths to update. Currently supported field paths:
     ///
-    /// * `last_read_time`
+    /// - `last_read_time`
     ///
     /// When the `last_read_time` is before the latest message create time, the
     /// space appears as unread in the UI.
@@ -3749,14 +3748,14 @@ pub struct GetThreadReadStateRequest {
     ///
     /// To refer to the calling user, set one of the following:
     ///
-    /// * The `me` alias. For example,
-    ///   `users/me/spaces/{space}/threads/{thread}/threadReadState`.
+    /// - The `me` alias. For example,
+    /// `users/me/spaces/{space}/threads/{thread}/threadReadState`.
     ///
-    /// * Their Workspace email address. For example,
-    ///   `users/user@example.com/spaces/{space}/threads/{thread}/threadReadState`.
+    /// - Their Workspace email address. For example,
+    /// `users/user@example.com/spaces/{space}/threads/{thread}/threadReadState`.
     ///
-    /// * Their user id. For example,
-    ///   `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
+    /// - Their user id. For example,
+    /// `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
     ///
     /// Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState
     #[prost(string, tag = "1")]
@@ -3764,7 +3763,13 @@ pub struct GetThreadReadStateRequest {
 }
 /// Generated client implementations.
 pub mod chat_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Enables developers to build Chat apps and
@@ -3846,10 +3851,10 @@ pub mod chat_service_client {
         /// [authentication](https://developers.google.com/workspace/chat/authenticate-authorize)
         /// and supports the following authentication types:
         ///
-        /// * For text messages, user authentication or app authentication are
-        ///  supported.
-        /// * For card messages, only app authentication is supported. (Only Chat apps
-        ///  can create card messages.)
+        /// - For text messages, user authentication or app authentication are
+        /// supported.
+        /// - For card messages, only app authentication is supported. (Only Chat apps
+        /// can create card messages.)
         pub async fn create_message(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMessageRequest>,
@@ -3858,8 +3863,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3888,8 +3892,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3932,8 +3935,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3967,8 +3969,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4002,8 +4003,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4040,8 +4040,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4075,8 +4074,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4105,8 +4103,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4139,8 +4136,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4185,8 +4181,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4215,8 +4210,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4248,8 +4242,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4266,9 +4259,9 @@ pub mod chat_service_client {
         /// example, see [Create a
         /// space](https://developers.google.com/workspace/chat/create-spaces).
         ///
-        /// If you receive the error message `ALREADY_EXISTS` when creating
-        /// a space, try a different `displayName`. An existing space within
-        /// the Google Workspace organization might already use this display name.
+        ///  If you receive the error message `ALREADY_EXISTS` when creating
+        ///  a space, try a different `displayName`. An existing space within
+        ///  the Google Workspace organization might already use this display name.
         ///
         /// Requires [user
         /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -4280,8 +4273,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4354,8 +4346,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4386,8 +4377,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4416,8 +4406,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4447,8 +4436,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4490,8 +4478,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4520,26 +4507,26 @@ pub mod chat_service_client {
         /// human or app member, or set the `membership.group_member.name` for the
         /// group member.
         ///
-        /// * To add the calling app to a space or a direct message between two human
-        ///  users, use `users/app`. Unable to add other
-        ///  apps to the space.
+        /// - To add the calling app to a space or a direct message between two human
+        ///   users, use `users/app`. Unable to add other
+        ///   apps to the space.
         ///
-        /// * To add a human user, use `users/{user}`, where `{user}` can be the email
-        ///  address for the user. For users in the same Workspace organization `{user}`
-        ///  can also be the `id` for the person from the People API, or the `id` for
-        ///  the user in the Directory API. For example, if the People API Person
-        ///  profile ID for `user@example.com` is `123456789`, you can add the user to
-        ///  the space by setting the `membership.member.name` to
-        ///  `users/user@example.com` or `users/123456789`.
+        /// - To add a human user, use `users/{user}`, where `{user}` can be the email
+        /// address for the user. For users in the same Workspace organization `{user}`
+        /// can also be the `id` for the person from the People API, or the `id` for
+        /// the user in the Directory API. For example, if the People API Person
+        /// profile ID for `user@example.com` is `123456789`, you can add the user to
+        /// the space by setting the `membership.member.name` to
+        /// `users/user@example.com` or `users/123456789`.
         ///
-        /// * To add or invite a Google group in a named space, use
-        ///  `groups/{group}`, where `{group}` is the `id` for the group from the Cloud
-        ///  Identity Groups API. For example, you can use [Cloud Identity Groups lookup
-        ///  API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
-        ///  to retrieve the ID `123456789` for group email `group@example.com`, then
-        ///  you can add or invite the group to a named space by setting the
-        ///  `membership.group_member.name` to `groups/123456789`. Group email is not
-        ///  supported, and Google groups can only be added as members in named spaces.
+        /// - To add or invite a Google group in a named space, use
+        /// `groups/{group}`, where `{group}` is the `id` for the group from the Cloud
+        /// Identity Groups API. For example, you can use [Cloud Identity Groups lookup
+        /// API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
+        /// to retrieve the ID `123456789` for group email `group@example.com`, then
+        /// you can add or invite the group to a named space by setting the
+        /// `membership.group_member.name` to `groups/123456789`. Group email is not
+        /// supported, and Google groups can only be added as members in named spaces.
         pub async fn create_membership(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMembershipRequest>,
@@ -4548,8 +4535,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4577,8 +4563,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4607,8 +4592,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4637,8 +4621,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4667,8 +4650,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4695,8 +4677,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4724,8 +4705,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4754,8 +4734,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4788,8 +4767,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4826,8 +4804,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4865,8 +4842,7 @@ pub mod chat_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

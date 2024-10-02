@@ -5,20 +5,21 @@ pub struct AutoscalingPolicy {
     /// Required. The policy id.
     ///
     /// The id must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of between 3 and 50 characters.
+    ///
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
     /// Output only. The "resource name" of the autoscaling policy, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies`, the resource name of the
-    ///   policy has the following format:
-    ///   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+    ///    policy has the following format:
+    ///    `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
     ///
     /// * For `projects.locations.autoscalingPolicies`, the resource name of the
-    ///   policy has the following format:
-    ///   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+    ///    policy has the following format:
+    ///    `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
     #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
     /// Required. Describes how the autoscaler will operate for primary workers.
@@ -143,8 +144,8 @@ pub struct InstanceGroupAutoscalingPolicyConfig {
     /// workers. Note that by default, clusters will not use secondary workers.
     /// Required for secondary workers if the minimum secondary instances is set.
     ///
-    /// Primary workers - Bounds: \[min_instances, ).
-    /// Secondary workers - Bounds: \[min_instances, ). Default: 0.
+    /// Primary workers - Bounds: [min_instances, ).
+    /// Secondary workers - Bounds: [min_instances, ). Default: 0.
     #[prost(int32, tag = "2")]
     pub max_instances: i32,
     /// Optional. Weight for the instance group, which is used to determine the
@@ -175,12 +176,12 @@ pub struct CreateAutoscalingPolicyRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.create`, the resource name
-    ///   of the region has the following format:
-    ///   `projects/{project_id}/regions/{region}`
+    ///    of the region has the following format:
+    ///    `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.autoscalingPolicies.create`, the resource name
-    ///   of the location has the following format:
-    ///   `projects/{project_id}/locations/{location}`
+    ///    of the location has the following format:
+    ///    `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The autoscaling policy to create.
@@ -194,12 +195,12 @@ pub struct GetAutoscalingPolicyRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.get`, the resource name
-    ///   of the policy has the following format:
-    ///   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+    ///    of the policy has the following format:
+    ///    `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
     ///
     /// * For `projects.locations.autoscalingPolicies.get`, the resource name
-    ///   of the policy has the following format:
-    ///   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+    ///    of the policy has the following format:
+    ///    `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -219,12 +220,12 @@ pub struct DeleteAutoscalingPolicyRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.delete`, the resource name
-    ///   of the policy has the following format:
-    ///   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+    ///    of the policy has the following format:
+    ///    `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
     ///
     /// * For `projects.locations.autoscalingPolicies.delete`, the resource name
-    ///   of the policy has the following format:
-    ///   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+    ///    of the policy has the following format:
+    ///    `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -235,12 +236,12 @@ pub struct ListAutoscalingPoliciesRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.list`, the resource name
-    ///   of the region has the following format:
-    ///   `projects/{project_id}/regions/{region}`
+    ///    of the region has the following format:
+    ///    `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.autoscalingPolicies.list`, the resource name
-    ///   of the location has the following format:
-    ///   `projects/{project_id}/locations/{location}`
+    ///    of the location has the following format:
+    ///    `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return in each response.
@@ -265,7 +266,13 @@ pub struct ListAutoscalingPoliciesResponse {
 }
 /// Generated client implementations.
 pub mod autoscaling_policy_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The API interface for managing autoscaling policies in the
@@ -353,8 +360,7 @@ pub mod autoscaling_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -387,8 +393,7 @@ pub mod autoscaling_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -418,8 +423,7 @@ pub mod autoscaling_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -449,8 +453,7 @@ pub mod autoscaling_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -478,8 +481,7 @@ pub mod autoscaling_policy_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -695,8 +697,8 @@ pub struct UsageSnapshot {
     /// (<https://cloud.google.com/dataproc-serverless/pricing>)).
     #[prost(int64, tag = "1")]
     pub milli_dcu: i64,
-    /// Optional. Shuffle Storage in gigabytes (GB). (see \[Dataproc Serverless
-    /// pricing\] (<https://cloud.google.com/dataproc-serverless/pricing>))
+    /// Optional. Shuffle Storage in gigabytes (GB). (see [Dataproc Serverless
+    /// pricing] (<https://cloud.google.com/dataproc-serverless/pricing>))
     #[prost(int64, tag = "2")]
     pub shuffle_storage_gb: i64,
     /// Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
@@ -709,8 +711,8 @@ pub struct UsageSnapshot {
     /// (<https://cloud.google.com/dataproc-serverless/pricing>))
     #[prost(int64, tag = "5")]
     pub shuffle_storage_gb_premium: i64,
-    /// Optional. Milli (one-thousandth) accelerator. (see \[Dataproc
-    /// Serverless pricing\] (<https://cloud.google.com/dataproc-serverless/pricing>))
+    /// Optional. Milli (one-thousandth) accelerator. (see [Dataproc
+    /// Serverless pricing] (<https://cloud.google.com/dataproc-serverless/pricing>))
     #[prost(int64, tag = "6")]
     pub milli_accelerator: i64,
     /// Optional. Accelerator type being used, if any
@@ -731,7 +733,7 @@ pub struct GkeClusterConfig {
     pub gke_cluster_target: ::prost::alloc::string::String,
     /// Optional. GKE node pools where workloads will be scheduled. At least one
     /// node pool must be assigned the `DEFAULT`
-    /// \[GkeNodePoolTarget.Role\]\[google.cloud.dataproc.v1.GkeNodePoolTarget.Role\].
+    /// [GkeNodePoolTarget.Role][google.cloud.dataproc.v1.GkeNodePoolTarget.Role].
     /// If a `GkeNodePoolTarget` is not specified, Dataproc constructs a `DEFAULT`
     /// `GkeNodePoolTarget`. Each role can be given to only one
     /// `GkeNodePoolTarget`. All node pools must have the same location settings.
@@ -826,7 +828,7 @@ pub struct GkeNodePoolTarget {
 pub mod gke_node_pool_target {
     /// `Role` specifies the tasks that will run on the node pool. Roles can be
     /// specific to workloads. Exactly one
-    /// \[GkeNodePoolTarget\]\[google.cloud.dataproc.v1.GkeNodePoolTarget\] within the
+    /// [GkeNodePoolTarget][google.cloud.dataproc.v1.GkeNodePoolTarget] within the
     /// virtual cluster must have the `DEFAULT` role, which is used to run all
     /// workloads that are not associated with a node pool.
     #[derive(
@@ -865,11 +867,11 @@ pub mod gke_node_pool_target {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Role::Unspecified => "ROLE_UNSPECIFIED",
-                Role::Default => "DEFAULT",
-                Role::Controller => "CONTROLLER",
-                Role::SparkDriver => "SPARK_DRIVER",
-                Role::SparkExecutor => "SPARK_EXECUTOR",
+                Self::Unspecified => "ROLE_UNSPECIFIED",
+                Self::Default => "DEFAULT",
+                Self::Controller => "CONTROLLER",
+                Self::SparkDriver => "SPARK_DRIVER",
+                Self::SparkExecutor => "SPARK_EXECUTOR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -926,10 +928,10 @@ pub mod gke_node_pool_config {
         /// Local SSDs](<https://cloud.google.com/compute/docs/disks/local-ssd>)).
         #[prost(int32, tag = "7")]
         pub local_ssd_count: i32,
-        /// Optional. Whether the nodes are created as legacy \[preemptible VM
-        /// instances\] (<https://cloud.google.com/compute/docs/instances/preemptible>).
+        /// Optional. Whether the nodes are created as legacy [preemptible VM
+        /// instances] (<https://cloud.google.com/compute/docs/instances/preemptible>).
         /// Also see
-        /// \[Spot\]\[google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot\]
+        /// [Spot][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot]
         /// VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot
         /// preemptible nodes cannot be used in a node pool with the `CONTROLLER`
         /// \[role\]
@@ -947,7 +949,7 @@ pub mod gke_node_pool_config {
         /// platform](<https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform>)
         /// to be used by this instance. The instance may be scheduled on the
         /// specified or a newer CPU platform. Specify the friendly names of CPU
-        /// platforms, such as "Intel Haswell"\` or Intel Sandy Bridge".
+        /// platforms, such as "Intel Haswell"` or Intel Sandy Bridge".
         #[prost(string, tag = "13")]
         pub min_cpu_platform: ::prost::alloc::string::String,
         /// Optional. The \[Customer Managed Encryption Key (CMEK)\]
@@ -960,8 +962,8 @@ pub mod gke_node_pool_config {
         /// Optional. Whether the nodes are created as \[Spot VM instances\]
         /// (<https://cloud.google.com/compute/docs/instances/spot>).
         /// Spot VMs are the latest update to legacy
-        /// \[preemptible
-        /// VMs\]\[google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible\].
+        /// [preemptible
+        /// VMs][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible].
         /// Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible
         /// nodes cannot be used in a node pool with the `CONTROLLER`
         /// [role](/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
@@ -990,7 +992,7 @@ pub mod gke_node_pool_config {
     /// adjust the size of the node pool to the current cluster usage.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct GkeNodePoolAutoscalingConfig {
-        /// The minimum number of nodes in the node pool. Must be >= 0 and \<=
+        /// The minimum number of nodes in the node pool. Must be >= 0 and <=
         /// max_node_count.
         #[prost(int32, tag = "2")]
         pub min_node_count: i32,
@@ -1046,10 +1048,10 @@ pub mod autotuning_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Scenario::Unspecified => "SCENARIO_UNSPECIFIED",
-                Scenario::Scaling => "SCALING",
-                Scenario::BroadcastHashJoin => "BROADCAST_HASH_JOIN",
-                Scenario::Memory => "MEMORY",
+                Self::Unspecified => "SCENARIO_UNSPECIFIED",
+                Self::Scaling => "SCALING",
+                Self::BroadcastHashJoin => "BROADCAST_HASH_JOIN",
+                Self::Memory => "MEMORY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1124,21 +1126,21 @@ impl Component {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Component::Unspecified => "COMPONENT_UNSPECIFIED",
-            Component::Anaconda => "ANACONDA",
-            Component::Docker => "DOCKER",
-            Component::Druid => "DRUID",
-            Component::Flink => "FLINK",
-            Component::Hbase => "HBASE",
-            Component::HiveWebhcat => "HIVE_WEBHCAT",
-            Component::Hudi => "HUDI",
-            Component::Jupyter => "JUPYTER",
-            Component::Presto => "PRESTO",
-            Component::Trino => "TRINO",
-            Component::Ranger => "RANGER",
-            Component::Solr => "SOLR",
-            Component::Zeppelin => "ZEPPELIN",
-            Component::Zookeeper => "ZOOKEEPER",
+            Self::Unspecified => "COMPONENT_UNSPECIFIED",
+            Self::Anaconda => "ANACONDA",
+            Self::Docker => "DOCKER",
+            Self::Druid => "DRUID",
+            Self::Flink => "FLINK",
+            Self::Hbase => "HBASE",
+            Self::HiveWebhcat => "HIVE_WEBHCAT",
+            Self::Hudi => "HUDI",
+            Self::Jupyter => "JUPYTER",
+            Self::Presto => "PRESTO",
+            Self::Trino => "TRINO",
+            Self::Ranger => "RANGER",
+            Self::Solr => "SOLR",
+            Self::Zeppelin => "ZEPPELIN",
+            Self::Zookeeper => "ZOOKEEPER",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1182,9 +1184,9 @@ impl FailureAction {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            FailureAction::Unspecified => "FAILURE_ACTION_UNSPECIFIED",
-            FailureAction::NoAction => "NO_ACTION",
-            FailureAction::Delete => "DELETE",
+            Self::Unspecified => "FAILURE_ACTION_UNSPECIFIED",
+            Self::NoAction => "NO_ACTION",
+            Self::Delete => "DELETE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1223,7 +1225,7 @@ pub struct CreateBatchRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -1407,13 +1409,13 @@ pub mod batch {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Cancelling => "CANCELLING",
-                State::Cancelled => "CANCELLED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Cancelling => "CANCELLING",
+                Self::Cancelled => "CANCELLED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1574,7 +1576,13 @@ pub struct SparkSqlBatch {
 }
 /// Generated client implementations.
 pub mod batch_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The BatchController provides methods to manage batch workloads.
@@ -1659,8 +1667,7 @@ pub mod batch_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1687,8 +1694,7 @@ pub mod batch_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1718,8 +1724,7 @@ pub mod batch_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1747,8 +1752,7 @@ pub mod batch_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1827,8 +1831,8 @@ pub mod batch_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BatchOperationType::Unspecified => "BATCH_OPERATION_TYPE_UNSPECIFIED",
-                BatchOperationType::Batch => "BATCH",
+                Self::Unspecified => "BATCH_OPERATION_TYPE_UNSPECIFIED",
+                Self::Batch => "BATCH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1904,10 +1908,10 @@ pub mod session_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SessionOperationType::Unspecified => "SESSION_OPERATION_TYPE_UNSPECIFIED",
-                SessionOperationType::Create => "CREATE",
-                SessionOperationType::Terminate => "TERMINATE",
-                SessionOperationType::Delete => "DELETE",
+                Self::Unspecified => "SESSION_OPERATION_TYPE_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Terminate => "TERMINATE",
+                Self::Delete => "DELETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1970,10 +1974,10 @@ pub mod cluster_operation_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unknown => "UNKNOWN",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Done => "DONE",
+                Self::Unknown => "UNKNOWN",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Done => "DONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2090,13 +2094,11 @@ pub mod node_group_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NodeGroupOperationType::Unspecified => {
-                    "NODE_GROUP_OPERATION_TYPE_UNSPECIFIED"
-                }
-                NodeGroupOperationType::Create => "CREATE",
-                NodeGroupOperationType::Update => "UPDATE",
-                NodeGroupOperationType::Delete => "DELETE",
-                NodeGroupOperationType::Resize => "RESIZE",
+                Self::Unspecified => "NODE_GROUP_OPERATION_TYPE_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Update => "UPDATE",
+                Self::Delete => "DELETE",
+                Self::Resize => "RESIZE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2138,8 +2140,8 @@ pub struct Cluster {
     /// cluster](<https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview>).
     /// Dataproc may set default values, and values may change when
     /// clusters are updated. Exactly one of
-    /// \[config\]\[google.cloud.dataproc.v1.Cluster.config\] or
-    /// \[virtual_cluster_config\]\[google.cloud.dataproc.v1.Cluster.virtual_cluster_config\]
+    /// [config][google.cloud.dataproc.v1.Cluster.config] or
+    /// [virtual_cluster_config][google.cloud.dataproc.v1.Cluster.virtual_cluster_config]
     /// must be specified.
     #[prost(message, optional, tag = "10")]
     pub virtual_cluster_config: ::core::option::Option<VirtualClusterConfig>,
@@ -2226,15 +2228,13 @@ pub struct ClusterConfig {
     /// a master or worker node, as shown below using `curl` (you can also use
     /// `wget`):
     ///
-    /// ```text
-    /// ROLE=$(curl -H Metadata-Flavor:Google
-    /// <http://metadata/computeMetadata/v1/instance/attributes/dataproc-role>)
-    /// if \[[ "${ROLE}" == 'Master' ]\]; then
-    ///    ... master specific actions ...
-    /// else
-    ///    ... worker specific actions ...
-    /// fi
-    /// ```
+    ///      ROLE=$(curl -H Metadata-Flavor:Google
+    ///      <http://metadata/computeMetadata/v1/instance/attributes/dataproc-role>)
+    ///      if \[[ "${ROLE}" == 'Master' ]\]; then
+    ///        ... master specific actions ...
+    ///      else
+    ///        ... worker specific actions ...
+    ///      fi
     #[prost(message, repeated, tag = "11")]
     pub initialization_actions: ::prost::alloc::vec::Vec<NodeInitializationAction>,
     /// Optional. Encryption settings for the cluster.
@@ -2343,8 +2343,8 @@ pub struct AutoscalingConfig {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptionConfig {
     /// Optional. The Cloud KMS key resource name to use for persistent disk
-    /// encryption for all instances in the cluster. See \[Use CMEK with cluster
-    /// data\]
+    /// encryption for all instances in the cluster. See [Use CMEK with cluster
+    /// data]
     /// (<https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data>)
     /// for more information.
     #[prost(string, tag = "1")]
@@ -2358,23 +2358,23 @@ pub struct EncryptionConfig {
     /// the following job types submitted to the cluster are encrypted using CMEK:
     ///
     /// * [FlinkJob
-    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
+    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
     /// * [HadoopJob
-    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
+    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
     /// * [SparkJob
-    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
+    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
     /// * [SparkRJob
-    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
+    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
     /// * [PySparkJob
-    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
+    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
     /// * [SparkSqlJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob>)
-    ///   scriptVariables and queryList.queries
+    ///    scriptVariables and queryList.queries
     /// * [HiveJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob>)
-    ///   scriptVariables and queryList.queries
+    ///    scriptVariables and queryList.queries
     /// * [PigJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob>)
-    ///   scriptVariables and queryList.queries
+    ///    scriptVariables and queryList.queries
     /// * [PrestoJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob>)
-    ///   scriptVariables and queryList.queries
+    ///    scriptVariables and queryList.queries
     #[prost(string, tag = "2")]
     pub kms_key: ::prost::alloc::string::String,
 }
@@ -2424,10 +2424,10 @@ pub struct GceClusterConfig {
     ///
     /// * All cluster VMs have internal IP addresses.
     /// * \[Google Private Access\]
-    ///   (<https://cloud.google.com/vpc/docs/private-google-access>)
-    ///   must be enabled to access Dataproc and other Google Cloud APIs.
+    /// (<https://cloud.google.com/vpc/docs/private-google-access>)
+    /// must be enabled to access Dataproc and other Google Cloud APIs.
     /// * Off-cluster dependencies must be configured to be accessible
-    ///   without external IP addresses.
+    /// without external IP addresses.
     ///
     /// When set to `false`:
     ///
@@ -2517,7 +2517,7 @@ pub mod gce_cluster_config {
     pub enum PrivateIpv6GoogleAccess {
         /// If unspecified, Compute Engine default behavior will apply, which
         /// is the same as
-        /// \[INHERIT_FROM_SUBNETWORK\]\[google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess.INHERIT_FROM_SUBNETWORK\].
+        /// [INHERIT_FROM_SUBNETWORK][google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess.INHERIT_FROM_SUBNETWORK].
         Unspecified = 0,
         /// Private access to and from Google Services configuration
         /// inherited from the subnetwork configuration. This is the
@@ -2537,14 +2537,10 @@ pub mod gce_cluster_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PrivateIpv6GoogleAccess::Unspecified => {
-                    "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED"
-                }
-                PrivateIpv6GoogleAccess::InheritFromSubnetwork => {
-                    "INHERIT_FROM_SUBNETWORK"
-                }
-                PrivateIpv6GoogleAccess::Outbound => "OUTBOUND",
-                PrivateIpv6GoogleAccess::Bidirectional => "BIDIRECTIONAL",
+                Self::Unspecified => "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+                Self::InheritFromSubnetwork => "INHERIT_FROM_SUBNETWORK",
+                Self::Outbound => "OUTBOUND",
+                Self::Bidirectional => "BIDIRECTIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2561,7 +2557,7 @@ pub mod gce_cluster_config {
 }
 /// Node Group Affinity for clusters using sole-tenant node groups.
 /// **The Dataproc `NodeGroupAffinity` resource is not related to the
-/// Dataproc \[NodeGroup\]\[google.cloud.dataproc.v1.NodeGroup\] resource.**
+/// Dataproc [NodeGroup][google.cloud.dataproc.v1.NodeGroup] resource.**
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeGroupAffinity {
     /// Required. The URI of a
@@ -2692,12 +2688,12 @@ pub struct InstanceGroupConfig {
     /// Example: Cluster creation request with `num_instances` = `5` and
     /// `min_num_instances` = `3`:
     ///
-    /// * If 4 VMs are created and 1 instance fails,
-    ///   the failed VM is deleted. The cluster is
-    ///   resized to 4 instances and placed in a `RUNNING` state.
-    /// * If 2 instances are created and 3 instances fail,
-    ///   the cluster in placed in an `ERROR` state. The failed VMs
-    ///   are not deleted.
+    /// *  If 4 VMs are created and 1 instance fails,
+    ///     the failed VM is deleted. The cluster is
+    ///     resized to 4 instances and placed in a `RUNNING` state.
+    /// *  If 2 instances are created and 3 instances fail,
+    ///     the cluster in placed in an `ERROR` state. The failed VMs
+    ///     are not deleted.
     #[prost(int32, tag = "12")]
     pub min_num_instances: i32,
     /// Optional. Instance flexibility Policy allowing a mixture of VM shapes and
@@ -2757,10 +2753,10 @@ pub mod instance_group_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Preemptibility::Unspecified => "PREEMPTIBILITY_UNSPECIFIED",
-                Preemptibility::NonPreemptible => "NON_PREEMPTIBLE",
-                Preemptibility::Preemptible => "PREEMPTIBLE",
-                Preemptibility::Spot => "SPOT",
+                Self::Unspecified => "PREEMPTIBILITY_UNSPECIFIED",
+                Self::NonPreemptible => "NON_PREEMPTIBLE",
+                Self::Preemptible => "PREEMPTIBLE",
+                Self::Spot => "SPOT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2931,14 +2927,14 @@ pub struct AuxiliaryNodeGroup {
     /// Optional. A node group ID. Generated if not specified.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of from 3 to 33 characters.
     #[prost(string, tag = "2")]
     pub node_group_id: ::prost::alloc::string::String,
 }
 /// Dataproc Node Group.
 /// **The Dataproc `NodeGroup` resource is not related to the
-/// Dataproc \[NodeGroupAffinity\]\[google.cloud.dataproc.v1.NodeGroupAffinity\]
+/// Dataproc [NodeGroupAffinity][google.cloud.dataproc.v1.NodeGroupAffinity]
 /// resource.**
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeGroup {
@@ -2954,10 +2950,10 @@ pub struct NodeGroup {
     /// Optional. Node group labels.
     ///
     /// * Label **keys** must consist of from 1 to 63 characters and conform to
-    ///   [RFC 1035](<https://www.ietf.org/rfc/rfc1035.txt>).
+    ///    [RFC 1035](<https://www.ietf.org/rfc/rfc1035.txt>).
     /// * Label **values** can be empty. If specified, they must consist of from
-    ///   1 to 63 characters and conform to \[RFC 1035\]
-    ///   (<https://www.ietf.org/rfc/rfc1035.txt>).
+    ///    1 to 63 characters and conform to \[RFC 1035\]
+    ///    (<https://www.ietf.org/rfc/rfc1035.txt>).
     /// * The node group must have no more than 32 labels.
     #[prost(map = "string, string", tag = "4")]
     pub labels: ::std::collections::HashMap<
@@ -2993,8 +2989,8 @@ pub mod node_group {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Role::Unspecified => "ROLE_UNSPECIFIED",
-                Role::Driver => "DRIVER",
+                Self::Unspecified => "ROLE_UNSPECIFIED",
+                Self::Driver => "DRIVER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3093,17 +3089,17 @@ pub mod cluster_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unknown => "UNKNOWN",
-                State::Creating => "CREATING",
-                State::Running => "RUNNING",
-                State::Error => "ERROR",
-                State::ErrorDueToUpdate => "ERROR_DUE_TO_UPDATE",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Stopping => "STOPPING",
-                State::Stopped => "STOPPED",
-                State::Starting => "STARTING",
-                State::Repairing => "REPAIRING",
+                Self::Unknown => "UNKNOWN",
+                Self::Creating => "CREATING",
+                Self::Running => "RUNNING",
+                Self::Error => "ERROR",
+                Self::ErrorDueToUpdate => "ERROR_DUE_TO_UPDATE",
+                Self::Deleting => "DELETING",
+                Self::Updating => "UPDATING",
+                Self::Stopping => "STOPPING",
+                Self::Stopped => "STOPPED",
+                Self::Starting => "STARTING",
+                Self::Repairing => "REPAIRING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3159,9 +3155,9 @@ pub mod cluster_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Substate::Unspecified => "UNSPECIFIED",
-                Substate::Unhealthy => "UNHEALTHY",
-                Substate::StaleStatus => "STALE_STATUS",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unhealthy => "UNHEALTHY",
+                Self::StaleStatus => "STALE_STATUS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3402,7 +3398,7 @@ pub mod dataproc_metric_config {
         ///
         /// Examples:
         ///
-        /// ```text,
+        /// ```
         /// yarn:ResourceManager:QueueMetrics:AppsCompleted
         /// spark:driver:DAGScheduler:job.allJobs
         /// sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed
@@ -3412,17 +3408,17 @@ pub mod dataproc_metric_config {
         /// Notes:
         ///
         /// * Only the specified overridden metrics are collected for the
-        ///   metric source. For example, if one or more `spark:executive` metrics
-        ///   are listed as metric overrides, other `SPARK` metrics are not
-        ///   collected. The collection of the metrics for other enabled custom
-        ///   metric sources is unaffected. For example, if both `SPARK` andd `YARN`
-        ///   metric sources are enabled, and overrides are provided for Spark
-        ///   metrics only, all YARN metrics are collected.
+        ///    metric source. For example, if one or more `spark:executive` metrics
+        ///    are listed as metric overrides, other `SPARK` metrics are not
+        ///    collected. The collection of the metrics for other enabled custom
+        ///    metric sources is unaffected. For example, if both `SPARK` andd `YARN`
+        ///    metric sources are enabled, and overrides are provided for Spark
+        ///    metrics only, all YARN metrics are collected.
         #[prost(string, repeated, tag = "2")]
         pub metric_overrides: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
-    /// A source for the collection of Dataproc custom metrics (see \[Custom
-    /// metrics\]
+    /// A source for the collection of Dataproc custom metrics (see [Custom
+    /// metrics]
     /// (<https://cloud.google.com//dataproc/docs/guides/dataproc-metrics#custom_metrics>)).
     #[derive(
         Clone,
@@ -3466,15 +3462,15 @@ pub mod dataproc_metric_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MetricSource::Unspecified => "METRIC_SOURCE_UNSPECIFIED",
-                MetricSource::MonitoringAgentDefaults => "MONITORING_AGENT_DEFAULTS",
-                MetricSource::Hdfs => "HDFS",
-                MetricSource::Spark => "SPARK",
-                MetricSource::Yarn => "YARN",
-                MetricSource::SparkHistoryServer => "SPARK_HISTORY_SERVER",
-                MetricSource::Hiveserver2 => "HIVESERVER2",
-                MetricSource::Hivemetastore => "HIVEMETASTORE",
-                MetricSource::Flink => "FLINK",
+                Self::Unspecified => "METRIC_SOURCE_UNSPECIFIED",
+                Self::MonitoringAgentDefaults => "MONITORING_AGENT_DEFAULTS",
+                Self::Hdfs => "HDFS",
+                Self::Spark => "SPARK",
+                Self::Yarn => "YARN",
+                Self::SparkHistoryServer => "SPARK_HISTORY_SERVER",
+                Self::Hiveserver2 => "HIVESERVER2",
+                Self::Hivemetastore => "HIVEMETASTORE",
+                Self::Flink => "FLINK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3511,14 +3507,14 @@ pub struct CreateClusterRequest {
     /// two
     /// [CreateClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. Failure action when primary worker creation fails.
@@ -3558,34 +3554,28 @@ pub struct UpdateClusterRequest {
     /// specified as `config.worker_config.num_instances`,
     /// and the `PATCH` request body would specify the new value, as follows:
     ///
-    /// ```text
-    /// {
-    ///    "config":{
-    ///      "workerConfig":{
-    ///        "numInstances":"5"
+    ///      {
+    ///        "config":{
+    ///          "workerConfig":{
+    ///            "numInstances":"5"
+    ///          }
+    ///        }
     ///      }
-    ///    }
-    /// }
-    /// ```
-    ///
     /// Similarly, to change the number of preemptible workers in a cluster to 5,
     /// the `update_mask` parameter would be
     /// `config.secondary_worker_config.num_instances`, and the `PATCH` request
     /// body would be set as follows:
     ///
-    /// ```text
-    /// {
-    ///    "config":{
-    ///      "secondaryWorkerConfig":{
-    ///        "numInstances":"5"
+    ///      {
+    ///        "config":{
+    ///          "secondaryWorkerConfig":{
+    ///            "numInstances":"5"
+    ///          }
+    ///        }
     ///      }
-    ///    }
-    /// }
-    /// ```
-    ///
     /// <strong>Note:</strong> Currently, only the following fields can be updated:
     ///
-    /// <table>
+    ///   <table>
     ///   <tbody>
     ///   <tr>
     ///   <td><strong>Mask</strong></td>
@@ -3615,14 +3605,14 @@ pub struct UpdateClusterRequest {
     /// receives two
     /// [UpdateClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "7")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -3647,14 +3637,14 @@ pub struct StopClusterRequest {
     /// receives two
     /// [StopClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -3679,14 +3669,14 @@ pub struct StartClusterRequest {
     /// receives two
     /// [StartClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -3711,14 +3701,14 @@ pub struct DeleteClusterRequest {
     /// receives two
     /// [DeleteClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -3749,7 +3739,7 @@ pub struct ListClustersRequest {
     /// Optional. A filter constraining the clusters to list. Filters are
     /// case-sensitive and have the following syntax:
     ///
-    /// field = value \[AND \[field = value\]\] ...
+    /// field = value \[AND [field = value]\] ...
     ///
     /// where **field** is one of `status.state`, `clusterName`, or `labels.\[KEY\]`,
     /// and `\[KEY\]` is a label key. **value** can be `*` to match all values.
@@ -3855,9 +3845,9 @@ pub mod diagnose_cluster_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TarballAccess::Unspecified => "TARBALL_ACCESS_UNSPECIFIED",
-                TarballAccess::GoogleCloudSupport => "GOOGLE_CLOUD_SUPPORT",
-                TarballAccess::GoogleDataprocDiagnose => "GOOGLE_DATAPROC_DIAGNOSE",
+                Self::Unspecified => "TARBALL_ACCESS_UNSPECIFIED",
+                Self::GoogleCloudSupport => "GOOGLE_CLOUD_SUPPORT",
+                Self::GoogleDataprocDiagnose => "GOOGLE_DATAPROC_DIAGNOSE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3925,10 +3915,10 @@ pub mod reservation_affinity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::NoReservation => "NO_RESERVATION",
-                Type::AnyReservation => "ANY_RESERVATION",
-                Type::SpecificReservation => "SPECIFIC_RESERVATION",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::NoReservation => "NO_RESERVATION",
+                Self::AnyReservation => "ANY_RESERVATION",
+                Self::SpecificReservation => "SPECIFIC_RESERVATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3945,7 +3935,13 @@ pub mod reservation_affinity {
 }
 /// Generated client implementations.
 pub mod cluster_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The ClusterControllerService provides methods to manage clusters
@@ -4020,7 +4016,7 @@ pub mod cluster_controller_client {
             self
         }
         /// Creates a cluster in a project. The returned
-        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
+        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         pub async fn create_cluster(
             &mut self,
@@ -4033,8 +4029,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4053,10 +4048,10 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates a cluster in a project. The returned
-        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
+        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         /// The cluster must be in a
-        /// \[`RUNNING`\]\[google.cloud.dataproc.v1.ClusterStatus.State\] state or an error
+        /// [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
         /// is returned.
         pub async fn update_cluster(
             &mut self,
@@ -4069,8 +4064,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4100,8 +4094,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4131,8 +4124,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4151,7 +4143,7 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a cluster in a project. The returned
-        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
+        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         pub async fn delete_cluster(
             &mut self,
@@ -4164,8 +4156,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4192,8 +4183,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4223,8 +4213,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4243,10 +4232,10 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets cluster diagnostic information. The returned
-        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
+        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         /// After the operation completes,
-        /// \[Operation.response\]\[google.longrunning.Operation.response\]
+        /// [Operation.response][google.longrunning.Operation.response]
         /// contains
         /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
         pub async fn diagnose_cluster(
@@ -4260,8 +4249,7 @@ pub mod cluster_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4287,10 +4275,9 @@ pub struct LoggingConfig {
     /// The per-package log levels for the driver. This can include
     /// "root" package name to configure rootLogger.
     /// Examples:
-    ///
-    /// * 'com.google = FATAL'
-    /// * 'root = INFO'
-    /// * 'org.apache = DEBUG'
+    /// - 'com.google = FATAL'
+    /// - 'root = INFO'
+    /// - 'org.apache = DEBUG'
     #[prost(map = "string, enumeration(logging_config::Level)", tag = "2")]
     pub driver_log_levels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -4341,15 +4328,15 @@ pub mod logging_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Level::Unspecified => "LEVEL_UNSPECIFIED",
-                Level::All => "ALL",
-                Level::Trace => "TRACE",
-                Level::Debug => "DEBUG",
-                Level::Info => "INFO",
-                Level::Warn => "WARN",
-                Level::Error => "ERROR",
-                Level::Fatal => "FATAL",
-                Level::Off => "OFF",
+                Self::Unspecified => "LEVEL_UNSPECIFIED",
+                Self::All => "ALL",
+                Self::Trace => "TRACE",
+                Self::Debug => "DEBUG",
+                Self::Info => "INFO",
+                Self::Warn => "WARN",
+                Self::Error => "ERROR",
+                Self::Fatal => "FATAL",
+                Self::Off => "OFF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4425,9 +4412,9 @@ pub mod hadoop_job {
     pub enum Driver {
         /// The HCFS URI of the jar file containing the main class.
         /// Examples:
-        /// 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'
-        /// 'hdfs:/tmp/test-samples/custom-wordcount.jar'
-        /// 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'
+        ///      'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'
+        ///      'hdfs:/tmp/test-samples/custom-wordcount.jar'
+        ///      'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'
         #[prost(string, tag = "1")]
         MainJarFileUri(::prost::alloc::string::String),
         /// The name of the driver's main class. The jar file containing the class
@@ -4473,9 +4460,9 @@ pub struct SparkJob {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in that jar, add the jar to
-    /// \[jarFileUris\]\[google.cloud.dataproc.v1.SparkJob.jar_file_uris\], and then
+    /// [jarFileUris][google.cloud.dataproc.v1.SparkJob.jar_file_uris], and then
     /// specify the main class name in
-    /// \[mainClass\]\[google.cloud.dataproc.v1.SparkJob.main_class\].
+    /// [mainClass][google.cloud.dataproc.v1.SparkJob.main_class].
     #[prost(oneof = "spark_job::Driver", tags = "1, 2")]
     pub driver: ::core::option::Option<spark_job::Driver>,
 }
@@ -4484,9 +4471,9 @@ pub mod spark_job {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in that jar, add the jar to
-    /// \[jarFileUris\]\[google.cloud.dataproc.v1.SparkJob.jar_file_uris\], and then
+    /// [jarFileUris][google.cloud.dataproc.v1.SparkJob.jar_file_uris], and then
     /// specify the main class name in
-    /// \[mainClass\]\[google.cloud.dataproc.v1.SparkJob.main_class\].
+    /// [mainClass][google.cloud.dataproc.v1.SparkJob.main_class].
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Driver {
         /// The HCFS URI of the jar file that contains the main class.
@@ -4552,17 +4539,15 @@ pub struct QueryList {
     /// string by separating each with a semicolon. Here is an example of a
     /// Dataproc API snippet that uses a QueryList to specify a HiveJob:
     ///
-    /// ```text
-    /// "hiveJob": {
-    ///    "queryList": {
-    ///      "queries": [
-    ///        "query1",
-    ///        "query2",
-    ///        "query3;query4",
-    ///      ]
-    ///    }
-    /// }
-    /// ```
+    ///      "hiveJob": {
+    ///        "queryList": {
+    ///          "queries": [
+    ///            "query1",
+    ///            "query2",
+    ///            "query3;query4",
+    ///          ]
+    ///        }
+    ///      }
     #[prost(string, repeated, tag = "1")]
     pub queries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -4875,9 +4860,9 @@ pub struct FlinkJob {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in the jar, add the jar to
-    /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\], and then
+    /// [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris], and then
     /// specify the main class name in
-    /// \[mainClass\]\[google.cloud.dataproc.v1.FlinkJob.main_class\].
+    /// [mainClass][google.cloud.dataproc.v1.FlinkJob.main_class].
     #[prost(oneof = "flink_job::Driver", tags = "1, 2")]
     pub driver: ::core::option::Option<flink_job::Driver>,
 }
@@ -4886,9 +4871,9 @@ pub mod flink_job {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in the jar, add the jar to
-    /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\], and then
+    /// [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris], and then
     /// specify the main class name in
-    /// \[mainClass\]\[google.cloud.dataproc.v1.FlinkJob.main_class\].
+    /// [mainClass][google.cloud.dataproc.v1.FlinkJob.main_class].
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Driver {
         /// The HCFS URI of the jar file that contains the main class.
@@ -4896,7 +4881,7 @@ pub mod flink_job {
         MainJarFileUri(::prost::alloc::string::String),
         /// The name of the driver's main class. The jar file that contains the class
         /// must be in the default CLASSPATH or specified in
-        /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\].
+        /// [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris].
         #[prost(string, tag = "2")]
         MainClass(::prost::alloc::string::String),
     }
@@ -4986,16 +4971,16 @@ pub mod job_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::SetupDone => "SETUP_DONE",
-                State::Running => "RUNNING",
-                State::CancelPending => "CANCEL_PENDING",
-                State::CancelStarted => "CANCEL_STARTED",
-                State::Cancelled => "CANCELLED",
-                State::Done => "DONE",
-                State::Error => "ERROR",
-                State::AttemptFailure => "ATTEMPT_FAILURE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::SetupDone => "SETUP_DONE",
+                Self::Running => "RUNNING",
+                Self::CancelPending => "CANCEL_PENDING",
+                Self::CancelStarted => "CANCEL_STARTED",
+                Self::Cancelled => "CANCELLED",
+                Self::Done => "DONE",
+                Self::Error => "ERROR",
+                Self::AttemptFailure => "ATTEMPT_FAILURE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5055,10 +5040,10 @@ pub mod job_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Substate::Unspecified => "UNSPECIFIED",
-                Substate::Submitted => "SUBMITTED",
-                Substate::Queued => "QUEUED",
-                Substate::StaleStatus => "STALE_STATUS",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Submitted => "SUBMITTED",
+                Self::Queued => "QUEUED",
+                Self::StaleStatus => "STALE_STATUS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5083,7 +5068,7 @@ pub struct JobReference {
     /// Optional. The job ID, which must be unique within the project.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), or hyphens (-). The maximum length is 100 characters.
+    /// underscores (_), or hyphens (-). The maximum length is 100 characters.
     ///
     /// If not specified by the caller, the job ID will be provided by the server.
     #[prost(string, tag = "2")]
@@ -5155,15 +5140,15 @@ pub mod yarn_application {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::New => "NEW",
-                State::NewSaving => "NEW_SAVING",
-                State::Submitted => "SUBMITTED",
-                State::Accepted => "ACCEPTED",
-                State::Running => "RUNNING",
-                State::Finished => "FINISHED",
-                State::Failed => "FAILED",
-                State::Killed => "KILLED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::New => "NEW",
+                Self::NewSaving => "NEW_SAVING",
+                Self::Submitted => "SUBMITTED",
+                Self::Accepted => "ACCEPTED",
+                Self::Running => "RUNNING",
+                Self::Finished => "FINISHED",
+                Self::Failed => "FAILED",
+                Self::Killed => "KILLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5346,14 +5331,14 @@ pub struct SubmitJobRequest {
     /// receives two
     /// [SubmitJobRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.SubmitJobRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first \[Job\]\[google.cloud.dataproc.v1.Job\] created and stored in the backend
+    /// first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
     /// is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The id must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -5417,7 +5402,7 @@ pub struct ListJobsRequest {
     /// Optional. A filter constraining the jobs to list. Filters are
     /// case-sensitive and have the following syntax:
     ///
-    /// \[field = value\] AND \[field \[= value\]\] ...
+    /// \[field = value\] AND \[field [= value]\] ...
     ///
     /// where **field** is `status.state` or `labels.\[KEY\]`, and `\[KEY\]` is a label
     /// key. **value** can be `*` to match all values.
@@ -5462,9 +5447,9 @@ pub mod list_jobs_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                JobStateMatcher::All => "ALL",
-                JobStateMatcher::Active => "ACTIVE",
-                JobStateMatcher::NonActive => "NON_ACTIVE",
+                Self::All => "ALL",
+                Self::Active => "ACTIVE",
+                Self::NonActive => "NON_ACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5515,7 +5500,7 @@ pub struct ListJobsResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     /// Output only. List of jobs with
-    /// \[kms_key\]\[google.cloud.dataproc.v1.EncryptionConfig.kms_key\]-encrypted
+    /// [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
     /// parameters that could not be decrypted. A response to a `jobs.get` request
     /// may indicate the reason for the decryption failure for a specific job.
     #[prost(string, repeated, tag = "3")]
@@ -5551,7 +5536,13 @@ pub struct DeleteJobRequest {
 }
 /// Generated client implementations.
 pub mod job_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The JobController provides methods to manage jobs.
@@ -5633,8 +5624,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5664,8 +5654,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5692,8 +5681,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5720,8 +5708,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5745,8 +5732,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5777,8 +5763,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5806,8 +5791,7 @@ pub mod job_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -5840,7 +5824,7 @@ pub struct CreateNodeGroupRequest {
     /// Optional. An optional node group ID. Generated if not specified.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of from 3 to 33 characters.
     #[prost(string, tag = "4")]
     pub node_group_id: ::prost::alloc::string::String,
@@ -5848,14 +5832,14 @@ pub struct CreateNodeGroupRequest {
     /// two
     /// [CreateNodeGroupRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests>)
     /// with the same ID, the second request is ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -5876,18 +5860,18 @@ pub struct ResizeNodeGroupRequest {
     /// two
     /// [ResizeNodeGroupRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.ResizeNodeGroupRequests>)
     /// with the same ID, the second request is ignored and the
-    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
+    /// first [google.longrunning.Operation][google.longrunning.Operation] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
-    /// Optional. Timeout for graceful YARN decommissioning. \[Graceful
-    /// decommissioning\]
+    /// Optional. Timeout for graceful YARN decommissioning. [Graceful
+    /// decommissioning]
     /// (<https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning>)
     /// allows the removal of nodes from the Compute Engine node group
     /// without interrupting jobs in progress. This timeout specifies how long to
@@ -5912,7 +5896,13 @@ pub struct GetNodeGroupRequest {
 }
 /// Generated client implementations.
 pub mod node_group_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The `NodeGroupControllerService` provides methods to manage node groups
@@ -5987,7 +5977,7 @@ pub mod node_group_controller_client {
             self
         }
         /// Creates a node group in a cluster. The returned
-        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] is
+        /// [Operation.metadata][google.longrunning.Operation.metadata] is
         /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
         pub async fn create_node_group(
             &mut self,
@@ -6000,8 +5990,7 @@ pub mod node_group_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6020,7 +6009,7 @@ pub mod node_group_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Resizes a node group in a cluster. The returned
-        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] is
+        /// [Operation.metadata][google.longrunning.Operation.metadata] is
         /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
         pub async fn resize_node_group(
             &mut self,
@@ -6033,8 +6022,7 @@ pub mod node_group_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6062,8 +6050,7 @@ pub mod node_group_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6096,21 +6083,21 @@ pub struct CreateSessionRequest {
     /// of the session's resource name.
     ///
     /// This value must be 4-63 characters. Valid characters
-    /// are /\[a-z\]\[0-9\]-/.
+    /// are /[a-z][0-9]-/.
     #[prost(string, tag = "3")]
     pub session_id: ::prost::alloc::string::String,
     /// Optional. A unique ID used to identify the request. If the service
     /// receives two
     /// [CreateSessionRequests](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateSessionRequest>)s
     /// with the same ID, the second request is ignored, and the
-    /// first \[Session\]\[google.cloud.dataproc.v1.Session\] is created and stored in
+    /// first [Session][google.cloud.dataproc.v1.Session] is created and stored in
     /// the backend.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -6179,7 +6166,7 @@ pub struct TerminateSessionRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -6198,7 +6185,7 @@ pub struct DeleteSessionRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -6260,7 +6247,6 @@ pub struct Session {
     /// Only resource names, including project ID and location, are valid.
     ///
     /// Example:
-    ///
     /// * `<https://www.googleapis.com/compute/v1/projects/\[project_id\]/locations/\[dataproc_region\]/sessionTemplates/\[template_id\]`>
     /// * `projects/\[project_id\]/locations/\[dataproc_region\]/sessionTemplates/\[template_id\]`
     ///
@@ -6323,12 +6309,12 @@ pub mod session {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Terminating => "TERMINATING",
-                State::Terminated => "TERMINATED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Terminating => "TERMINATING",
+                Self::Terminated => "TERMINATED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6395,9 +6381,9 @@ pub mod jupyter_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Kernel::Unspecified => "KERNEL_UNSPECIFIED",
-                Kernel::Python => "PYTHON",
-                Kernel::Scala => "SCALA",
+                Self::Unspecified => "KERNEL_UNSPECIFIED",
+                Self::Python => "PYTHON",
+                Self::Scala => "SCALA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6416,7 +6402,13 @@ pub mod jupyter_config {
 pub struct SparkConnectConfig {}
 /// Generated client implementations.
 pub mod session_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The `SessionController` provides methods to manage interactive sessions.
@@ -6501,8 +6493,7 @@ pub mod session_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6529,8 +6520,7 @@ pub mod session_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6560,8 +6550,7 @@ pub mod session_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6591,8 +6580,7 @@ pub mod session_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6623,8 +6611,7 @@ pub mod session_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6685,7 +6672,7 @@ pub struct ListSessionTemplatesRequest {
     /// Optional. A filter for the session templates to return in the response.
     /// Filters are case sensitive and have the following syntax:
     ///
-    /// \[field = value\] AND \[field \[= value\]\] ...
+    /// \[field = value\] AND \[field [= value]\] ...
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -6766,7 +6753,13 @@ pub mod session_template {
 }
 /// Generated client implementations.
 pub mod session_template_controller_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The SessionTemplateController provides methods to manage session templates.
@@ -6853,8 +6846,7 @@ pub mod session_template_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6884,8 +6876,7 @@ pub mod session_template_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6915,8 +6906,7 @@ pub mod session_template_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6946,8 +6936,7 @@ pub mod session_template_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -6974,8 +6963,7 @@ pub mod session_template_controller_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7004,12 +6992,12 @@ pub struct WorkflowTemplate {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates`, the resource name of the
-    ///   template has the following format:
-    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///    template has the following format:
+    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates`, the resource name of the
-    ///   template has the following format:
-    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///    template has the following format:
+    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. Used to perform a consistent read-modify-write.
@@ -7090,23 +7078,23 @@ pub mod workflow_template {
         /// encrypted](<https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_workflow_template_data>):
         ///
         /// * [FlinkJob
-        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
+        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
         /// * [HadoopJob
-        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
+        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
         /// * [SparkJob
-        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
+        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
         /// * [SparkRJob
-        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
+        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
         /// * [PySparkJob
-        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
+        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
         /// * [SparkSqlJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob>)
-        ///   scriptVariables and queryList.queries
+        ///    scriptVariables and queryList.queries
         /// * [HiveJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob>)
-        ///   scriptVariables and queryList.queries
+        ///    scriptVariables and queryList.queries
         /// * [PigJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob>)
-        ///   scriptVariables and queryList.queries
+        ///    scriptVariables and queryList.queries
         /// * [PrestoJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob>)
-        ///   scriptVariables and queryList.queries
+        ///    scriptVariables and queryList.queries
         #[prost(string, tag = "1")]
         pub kms_key: ::prost::alloc::string::String,
     }
@@ -7156,10 +7144,10 @@ pub struct ManagedCluster {
     ///
     /// Label keys must be between 1 and 63 characters long, and must conform to
     /// the following PCRE regular expression:
-    /// \[\\p{Ll}\p{Lo}\]\[\\p{Ll}\p{Lo}\p{N}\_-\]{0,62}
+    /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
     ///
     /// Label values must be between 1 and 63 characters long, and must conform to
-    /// the following PCRE regular expression: \[\\p{Ll}\p{Lo}\p{N}\_-\]{0,63}
+    /// the following PCRE regular expression: \[\p{Ll}\p{Lo}\p{N}_-\]{0,63}
     ///
     /// No more than 32 labels can be associated with a given cluster.
     #[prost(map = "string, string", tag = "4")]
@@ -7194,11 +7182,11 @@ pub struct OrderedJob {
     ///
     /// The step id is used as prefix for job id, as job
     /// `goog-dataproc-workflow-step-id` label, and in
-    /// \[prerequisiteStepIds\]\[google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids\]
+    /// [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids]
     /// field from other steps.
     ///
     /// The id must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of between 3 and 50 characters.
     #[prost(string, tag = "1")]
     pub step_id: ::prost::alloc::string::String,
@@ -7206,10 +7194,10 @@ pub struct OrderedJob {
     ///
     /// Label keys must be between 1 and 63 characters long, and must conform to
     /// the following regular expression:
-    /// \[\\p{Ll}\p{Lo}\]\[\\p{Ll}\p{Lo}\p{N}\_-\]{0,62}
+    /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
     ///
     /// Label values must be between 1 and 63 characters long, and must conform to
-    /// the following regular expression: \[\\p{Ll}\p{Lo}\p{N}\_-\]{0,63}
+    /// the following regular expression: \[\p{Ll}\p{Lo}\p{N}_-\]{0,63}
     ///
     /// No more than 32 labels can be associated with a given job.
     #[prost(map = "string, string", tag = "8")]
@@ -7267,14 +7255,13 @@ pub mod ordered_job {
 }
 /// A configurable parameter that replaces one or more fields in the template.
 /// Parameterizable fields:
-///
-/// * Labels
-/// * File uris
-/// * Job properties
-/// * Job arguments
-/// * Script variables
-/// * Main class (in HadoopJob and SparkJob)
-/// * Zone (in ClusterSelector)
+/// - Labels
+/// - File uris
+/// - Job properties
+/// - Job arguments
+/// - Script variables
+/// - Main class (in HadoopJob and SparkJob)
+/// - Zone (in ClusterSelector)
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TemplateParameter {
     /// Required. Parameter name.
@@ -7282,7 +7269,7 @@ pub struct TemplateParameter {
     /// parameter value, which are passed to the template when the template
     /// is instantiated.
     /// The name must contain only capital letters (A-Z), numbers (0-9), and
-    /// underscores (\_), and must not start with a number. The maximum length is
+    /// underscores (_), and must not start with a number. The maximum length is
     /// 40 characters.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -7291,46 +7278,45 @@ pub struct TemplateParameter {
     /// paths.
     ///
     /// A field path is similar in syntax to a
-    /// \[google.protobuf.FieldMask\]\[google.protobuf.FieldMask\]. For example, a
+    /// [google.protobuf.FieldMask][google.protobuf.FieldMask]. For example, a
     /// field path that references the zone field of a workflow template's cluster
     /// selector would be specified as `placement.clusterSelector.zone`.
     ///
     /// Also, field paths can reference fields using the following syntax:
     ///
     /// * Values in maps can be referenced by key:
+    ///      * labels\['key'\]
+    ///      * placement.clusterSelector.clusterLabels\['key'\]
+    ///      * placement.managedCluster.labels\['key'\]
+    ///      * placement.clusterSelector.clusterLabels\['key'\]
+    ///      * jobs\['step-id'\].labels\['key'\]
     ///
-    ///   * labels\['key'\]
-    ///   * placement.clusterSelector.clusterLabels\['key'\]
-    ///   * placement.managedCluster.labels\['key'\]
-    ///   * placement.clusterSelector.clusterLabels\['key'\]
-    ///   * jobs\['step-id'\].labels\['key'\]
     /// * Jobs in the jobs list can be referenced by step-id:
+    ///      * jobs\['step-id'\].hadoopJob.mainJarFileUri
+    ///      * jobs\['step-id'\].hiveJob.queryFileUri
+    ///      * jobs\['step-id'\].pySparkJob.mainPythonFileUri
+    ///      * jobs\['step-id'\].hadoopJob.jarFileUris\[0\]
+    ///      * jobs\['step-id'\].hadoopJob.archiveUris\[0\]
+    ///      * jobs\['step-id'\].hadoopJob.fileUris\[0\]
+    ///      * jobs\['step-id'\].pySparkJob.pythonFileUris\[0\]
     ///
-    ///   * jobs\['step-id'\].hadoopJob.mainJarFileUri
-    ///   * jobs\['step-id'\].hiveJob.queryFileUri
-    ///   * jobs\['step-id'\].pySparkJob.mainPythonFileUri
-    ///   * jobs\['step-id'\].hadoopJob.jarFileUris\[0\]
-    ///   * jobs\['step-id'\].hadoopJob.archiveUris\[0\]
-    ///   * jobs\['step-id'\].hadoopJob.fileUris\[0\]
-    ///   * jobs\['step-id'\].pySparkJob.pythonFileUris\[0\]
     /// * Items in repeated fields can be referenced by a zero-based index:
+    ///      * jobs\['step-id'\].sparkJob.args\[0\]
     ///
-    ///   * jobs\['step-id'\].sparkJob.args\[0\]
     /// * Other examples:
-    ///
-    ///   * jobs\['step-id'\].hadoopJob.properties\['key'\]
-    ///   * jobs\['step-id'\].hadoopJob.args\[0\]
-    ///   * jobs\['step-id'\].hiveJob.scriptVariables\['key'\]
-    ///   * jobs\['step-id'\].hadoopJob.mainJarFileUri
-    ///   * placement.clusterSelector.zone
+    ///      * jobs\['step-id'\].hadoopJob.properties\['key'\]
+    ///      * jobs\['step-id'\].hadoopJob.args\[0\]
+    ///      * jobs\['step-id'\].hiveJob.scriptVariables\['key'\]
+    ///      * jobs\['step-id'\].hadoopJob.mainJarFileUri
+    ///      * placement.clusterSelector.zone
     ///
     /// It may not be possible to parameterize maps and repeated fields in their
     /// entirety since only individual map values and individual items in repeated
     /// fields can be referenced. For example, the following field paths are
     /// invalid:
     ///
-    /// * placement.clusterSelector.clusterLabels
-    /// * jobs\['step-id'\].sparkJob.args
+    /// - placement.clusterSelector.clusterLabels
+    /// - jobs\['step-id'\].sparkJob.args
     #[prost(string, repeated, tag = "2")]
     pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Brief description of the parameter.
@@ -7384,12 +7370,12 @@ pub struct WorkflowMetadata {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates`, the resource name of the
-    ///   template has the following format:
-    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///    template has the following format:
+    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates`, the resource name of the
-    ///   template has the following format:
-    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///    template has the following format:
+    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub template: ::prost::alloc::string::String,
     /// Output only. The version of template at the time of
@@ -7432,12 +7418,12 @@ pub struct WorkflowMetadata {
     #[prost(message, optional, tag = "12")]
     pub dag_timeout: ::core::option::Option<::prost_types::Duration>,
     /// Output only. DAG start time, only set for workflows with
-    /// \[dag_timeout\]\[google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout\] when
+    /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
     /// DAG begins.
     #[prost(message, optional, tag = "13")]
     pub dag_start_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. DAG end time, only set for workflows with
-    /// \[dag_timeout\]\[google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout\] when
+    /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
     /// DAG ends.
     #[prost(message, optional, tag = "14")]
     pub dag_end_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -7474,10 +7460,10 @@ pub mod workflow_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unknown => "UNKNOWN",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Done => "DONE",
+                Self::Unknown => "UNKNOWN",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Done => "DONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7568,12 +7554,12 @@ pub mod workflow_node {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NodeState::Unspecified => "NODE_STATE_UNSPECIFIED",
-                NodeState::Blocked => "BLOCKED",
-                NodeState::Runnable => "RUNNABLE",
-                NodeState::Running => "RUNNING",
-                NodeState::Completed => "COMPLETED",
-                NodeState::Failed => "FAILED",
+                Self::Unspecified => "NODE_STATE_UNSPECIFIED",
+                Self::Blocked => "BLOCKED",
+                Self::Runnable => "RUNNABLE",
+                Self::Running => "RUNNING",
+                Self::Completed => "COMPLETED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7597,12 +7583,12 @@ pub struct CreateWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.create`, the resource name of the
-    ///   region has the following format:
-    ///   `projects/{project_id}/regions/{region}`
+    ///    region has the following format:
+    ///    `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.workflowTemplates.create`, the resource name of
-    ///   the location has the following format:
-    ///   `projects/{project_id}/locations/{location}`
+    ///    the location has the following format:
+    ///    `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The Dataproc workflow template to create.
@@ -7616,12 +7602,12 @@ pub struct GetWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.get`, the resource name of the
-    ///   template has the following format:
-    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///    template has the following format:
+    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates.get`, the resource name of the
-    ///   template has the following format:
-    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///    template has the following format:
+    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The version of workflow template to retrieve. Only previously
@@ -7638,12 +7624,12 @@ pub struct InstantiateWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.instantiate`, the resource name
-    ///   of the template has the following format:
-    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    /// of the template has the following format:
+    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates.instantiate`, the resource name
-    ///   of the template has the following format:
-    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///    of the template has the following format:
+    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The version of workflow template to instantiate. If specified,
@@ -7662,7 +7648,7 @@ pub struct InstantiateWorkflowTemplateRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The tag must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. Map from parameter names to values that should be used for those
@@ -7680,12 +7666,12 @@ pub struct InstantiateInlineWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates,instantiateinline`, the resource
-    ///   name of the region has the following format:
-    ///   `projects/{project_id}/regions/{region}`
+    ///    name of the region has the following format:
+    ///    `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.workflowTemplates.instantiateinline`, the
-    ///   resource name of the location has the following format:
-    ///   `projects/{project_id}/locations/{location}`
+    ///    resource name of the location has the following format:
+    ///    `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The workflow template to instantiate.
@@ -7699,7 +7685,7 @@ pub struct InstantiateInlineWorkflowTemplateRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The tag must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -7719,12 +7705,12 @@ pub struct ListWorkflowTemplatesRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates,list`, the resource
-    ///   name of the region has the following format:
-    ///   `projects/{project_id}/regions/{region}`
+    ///    name of the region has the following format:
+    ///    `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.workflowTemplates.list`, the
-    ///   resource name of the location has the following format:
-    ///   `projects/{project_id}/locations/{location}`
+    ///    resource name of the location has the following format:
+    ///    `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return in each response.
@@ -7761,12 +7747,12 @@ pub struct DeleteWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.delete`, the resource name
-    ///   of the template has the following format:
-    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    /// of the template has the following format:
+    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates.instantiate`, the resource name
-    ///   of the template has the following format:
-    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///    of the template has the following format:
+    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The version of workflow template to delete. If specified,
@@ -7777,7 +7763,13 @@ pub struct DeleteWorkflowTemplateRequest {
 }
 /// Generated client implementations.
 pub mod workflow_template_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The API interface for managing Workflow Templates in the
@@ -7865,8 +7857,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7899,8 +7890,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7922,22 +7912,22 @@ pub mod workflow_template_service_client {
         ///
         /// The returned Operation can be used to track execution of
         /// workflow by polling
-        /// \[operations.get\]\[google.longrunning.Operations.GetOperation\].
+        /// [operations.get][google.longrunning.Operations.GetOperation].
         /// The Operation will complete when entire workflow is finished.
         ///
         /// The running workflow can be aborted via
-        /// \[operations.cancel\]\[google.longrunning.Operations.CancelOperation\].
+        /// [operations.cancel][google.longrunning.Operations.CancelOperation].
         /// This will cause any inflight jobs to be cancelled and workflow-owned
         /// clusters to be deleted.
         ///
-        /// The \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
+        /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
         /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
         /// Also see [Using
         /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
         ///
         /// On successful completion,
-        /// \[Operation.response\]\[google.longrunning.Operation.response\] will be
-        /// \[Empty\]\[google.protobuf.Empty\].
+        /// [Operation.response][google.longrunning.Operation.response] will be
+        /// [Empty][google.protobuf.Empty].
         pub async fn instantiate_workflow_template(
             &mut self,
             request: impl tonic::IntoRequest<super::InstantiateWorkflowTemplateRequest>,
@@ -7949,8 +7939,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7971,28 +7960,28 @@ pub mod workflow_template_service_client {
         /// Instantiates a template and begins execution.
         ///
         /// This method is equivalent to executing the sequence
-        /// \[CreateWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate\],
-        /// \[InstantiateWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate\],
-        /// \[DeleteWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate\].
+        /// [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+        /// [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+        /// [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
         ///
         /// The returned Operation can be used to track execution of
         /// workflow by polling
-        /// \[operations.get\]\[google.longrunning.Operations.GetOperation\].
+        /// [operations.get][google.longrunning.Operations.GetOperation].
         /// The Operation will complete when entire workflow is finished.
         ///
         /// The running workflow can be aborted via
-        /// \[operations.cancel\]\[google.longrunning.Operations.CancelOperation\].
+        /// [operations.cancel][google.longrunning.Operations.CancelOperation].
         /// This will cause any inflight jobs to be cancelled and workflow-owned
         /// clusters to be deleted.
         ///
-        /// The \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
+        /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
         /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
         /// Also see [Using
         /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
         ///
         /// On successful completion,
-        /// \[Operation.response\]\[google.longrunning.Operation.response\] will be
-        /// \[Empty\]\[google.protobuf.Empty\].
+        /// [Operation.response][google.longrunning.Operation.response] will be
+        /// [Empty][google.protobuf.Empty].
         pub async fn instantiate_inline_workflow_template(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -8006,8 +7995,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8038,8 +8026,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8069,8 +8056,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8097,8 +8083,7 @@ pub mod workflow_template_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

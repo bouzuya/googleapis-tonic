@@ -237,9 +237,9 @@ pub mod conversation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Medium::Unspecified => "MEDIUM_UNSPECIFIED",
-                Medium::PhoneCall => "PHONE_CALL",
-                Medium::Chat => "CHAT",
+                Self::Unspecified => "MEDIUM_UNSPECIFIED",
+                Self::PhoneCall => "PHONE_CALL",
+                Self::Chat => "CHAT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -575,11 +575,11 @@ pub mod entity {
         /// convention), plus whichever additional elements appear in the text:
         ///
         /// * `number` - The actual number, broken down into sections according to
-        ///   local convention.
+        /// local convention.
         /// * `national_prefix` - Country code, if detected.
         /// * `area_code` - Region or area code, if detected.
         /// * `extension` - Phone extension (to be dialed after connection), if
-        ///   detected.
+        /// detected.
         PhoneNumber = 9,
         /// Address.
         ///
@@ -593,9 +593,9 @@ pub mod entity {
         /// * `country` - Country, if detected.
         /// * `broad_region` - Administrative area, such as the state, if detected.
         /// * `narrow_region` - Smaller administrative area, such as county, if
-        ///   detected.
+        /// detected.
         /// * `sublocality` - Used in Asian addresses to demark a district within a
-        ///   city, if detected.
+        /// city, if detected.
         Address = 10,
         /// Date.
         ///
@@ -621,19 +621,19 @@ pub mod entity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Person => "PERSON",
-                Type::Location => "LOCATION",
-                Type::Organization => "ORGANIZATION",
-                Type::Event => "EVENT",
-                Type::WorkOfArt => "WORK_OF_ART",
-                Type::ConsumerGood => "CONSUMER_GOOD",
-                Type::Other => "OTHER",
-                Type::PhoneNumber => "PHONE_NUMBER",
-                Type::Address => "ADDRESS",
-                Type::Date => "DATE",
-                Type::Number => "NUMBER",
-                Type::Price => "PRICE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Person => "PERSON",
+                Self::Location => "LOCATION",
+                Self::Organization => "ORGANIZATION",
+                Self::Event => "EVENT",
+                Self::WorkOfArt => "WORK_OF_ART",
+                Self::ConsumerGood => "CONSUMER_GOOD",
+                Self::Other => "OTHER",
+                Self::PhoneNumber => "PHONE_NUMBER",
+                Self::Address => "ADDRESS",
+                Self::Date => "DATE",
+                Self::Number => "NUMBER",
+                Self::Price => "PRICE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -741,9 +741,9 @@ pub mod entity_mention_data {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MentionType::Unspecified => "MENTION_TYPE_UNSPECIFIED",
-                MentionType::Proper => "PROPER",
-                MentionType::Common => "COMMON",
+                Self::Unspecified => "MENTION_TYPE_UNSPECIFIED",
+                Self::Proper => "PROPER",
+                Self::Common => "COMMON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -877,12 +877,12 @@ pub mod issue_model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Undeployed => "UNDEPLOYED",
-                State::Deploying => "DEPLOYING",
-                State::Deployed => "DEPLOYED",
-                State::Undeploying => "UNDEPLOYING",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Undeployed => "UNDEPLOYED",
+                Self::Deploying => "DEPLOYING",
+                Self::Deployed => "DEPLOYED",
+                Self::Undeploying => "UNDEPLOYING",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -926,9 +926,9 @@ pub mod issue_model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ModelType::Unspecified => "MODEL_TYPE_UNSPECIFIED",
-                ModelType::TypeV1 => "TYPE_V1",
-                ModelType::TypeV2 => "TYPE_V2",
+                Self::Unspecified => "MODEL_TYPE_UNSPECIFIED",
+                Self::TypeV1 => "TYPE_V1",
+                Self::TypeV2 => "TYPE_V2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1077,9 +1077,9 @@ pub mod phrase_matcher {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PhraseMatcherType::Unspecified => "PHRASE_MATCHER_TYPE_UNSPECIFIED",
-                PhraseMatcherType::AllOf => "ALL_OF",
-                PhraseMatcherType::AnyOf => "ANY_OF",
+                Self::Unspecified => "PHRASE_MATCHER_TYPE_UNSPECIFIED",
+                Self::AllOf => "ALL_OF",
+                Self::AnyOf => "ANY_OF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1137,11 +1137,9 @@ pub mod phrase_match_rule_group {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PhraseMatchRuleGroupType::Unspecified => {
-                    "PHRASE_MATCH_RULE_GROUP_TYPE_UNSPECIFIED"
-                }
-                PhraseMatchRuleGroupType::AllOf => "ALL_OF",
-                PhraseMatchRuleGroupType::AnyOf => "ANY_OF",
+                Self::Unspecified => "PHRASE_MATCH_RULE_GROUP_TYPE_UNSPECIFIED",
+                Self::AllOf => "ALL_OF",
+                Self::AnyOf => "ANY_OF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1230,7 +1228,7 @@ pub struct Settings {
     /// * "create-conversation": Notify each time a conversation is created.
     /// * "export-insights-data": Notify each time an export is complete.
     /// * "update-conversation": Notify each time a conversation is updated via
-    ///   UpdateConversation.
+    /// UpdateConversation.
     ///
     /// Values are Pub/Sub topics. The format of each Pub/Sub topic is:
     /// projects/{project}/topics/{topic}
@@ -1391,10 +1389,10 @@ pub mod answer_feedback {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CorrectnessLevel::Unspecified => "CORRECTNESS_LEVEL_UNSPECIFIED",
-                CorrectnessLevel::NotCorrect => "NOT_CORRECT",
-                CorrectnessLevel::PartiallyCorrect => "PARTIALLY_CORRECT",
-                CorrectnessLevel::FullyCorrect => "FULLY_CORRECT",
+                Self::Unspecified => "CORRECTNESS_LEVEL_UNSPECIFIED",
+                Self::NotCorrect => "NOT_CORRECT",
+                Self::PartiallyCorrect => "PARTIALLY_CORRECT",
+                Self::FullyCorrect => "FULLY_CORRECT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1620,11 +1618,11 @@ pub mod conversation_participant {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Role::Unspecified => "ROLE_UNSPECIFIED",
-                Role::HumanAgent => "HUMAN_AGENT",
-                Role::AutomatedAgent => "AUTOMATED_AGENT",
-                Role::EndUser => "END_USER",
-                Role::AnyAgent => "ANY_AGENT",
+                Self::Unspecified => "ROLE_UNSPECIFIED",
+                Self::HumanAgent => "HUMAN_AGENT",
+                Self::AutomatedAgent => "AUTOMATED_AGENT",
+                Self::EndUser => "END_USER",
+                Self::AnyAgent => "ANY_AGENT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1757,8 +1755,8 @@ pub mod annotator_selector {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SummarizationModel::Unspecified => "SUMMARIZATION_MODEL_UNSPECIFIED",
-                    SummarizationModel::BaselineModel => "BASELINE_MODEL",
+                    Self::Unspecified => "SUMMARIZATION_MODEL_UNSPECIFIED",
+                    Self::BaselineModel => "BASELINE_MODEL",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2091,9 +2089,9 @@ pub mod ingest_conversations_request {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BucketObjectType::Unspecified => "BUCKET_OBJECT_TYPE_UNSPECIFIED",
-                    BucketObjectType::Transcript => "TRANSCRIPT",
-                    BucketObjectType::Audio => "AUDIO",
+                    Self::Unspecified => "BUCKET_OBJECT_TYPE_UNSPECIFIED",
+                    Self::Transcript => "TRANSCRIPT",
+                    Self::Audio => "AUDIO",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2420,9 +2418,9 @@ pub mod export_insights_data_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                WriteDisposition::Unspecified => "WRITE_DISPOSITION_UNSPECIFIED",
-                WriteDisposition::WriteTruncate => "WRITE_TRUNCATE",
-                WriteDisposition::WriteAppend => "WRITE_APPEND",
+                Self::Unspecified => "WRITE_DISPOSITION_UNSPECIFIED",
+                Self::WriteTruncate => "WRITE_TRUNCATE",
+                Self::WriteAppend => "WRITE_APPEND",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2640,7 +2638,9 @@ pub struct CalculateIssueModelStatsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePhraseMatcherRequest {
     /// Required. The parent resource of the phrase matcher. Required. The location
-    /// to create a phrase matcher for. Format: `projects/<Project ID>/locations/<Location ID>` or `projects/<Project Number>/locations/<Location ID>`
+    /// to create a phrase matcher for. Format: `projects/<Project
+    /// ID>/locations/<Location ID>` or `projects/<Project
+    /// Number>/locations/<Location ID>`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The phrase matcher resource to create.
@@ -2808,9 +2808,9 @@ impl ConversationView {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ConversationView::Unspecified => "CONVERSATION_VIEW_UNSPECIFIED",
-            ConversationView::Full => "FULL",
-            ConversationView::Basic => "BASIC",
+            Self::Unspecified => "CONVERSATION_VIEW_UNSPECIFIED",
+            Self::Full => "FULL",
+            Self::Basic => "BASIC",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2825,7 +2825,13 @@ impl ConversationView {
 }
 /// Generated client implementations.
 pub mod contact_center_insights_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An API that lets users analyze and explore their business conversation data.
@@ -2907,8 +2913,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2940,8 +2945,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2968,8 +2972,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2996,8 +2999,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3027,8 +3029,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3055,8 +3056,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3087,8 +3087,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3115,8 +3114,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3146,8 +3144,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3174,8 +3171,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3205,8 +3201,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3236,8 +3231,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3268,8 +3262,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3299,8 +3292,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3330,8 +3322,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3358,8 +3349,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3386,8 +3376,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3417,8 +3406,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3448,8 +3436,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3480,8 +3467,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3512,8 +3498,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3540,8 +3525,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3571,8 +3555,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3599,8 +3582,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3627,8 +3609,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3658,8 +3639,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3686,8 +3666,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3714,8 +3693,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3745,8 +3723,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3773,8 +3750,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3801,8 +3777,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3832,8 +3807,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3860,8 +3834,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3888,8 +3861,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3916,8 +3888,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3944,8 +3915,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3975,8 +3945,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4003,8 +3972,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4031,8 +3999,7 @@ pub mod contact_center_insights_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -22,11 +22,11 @@ pub struct Domain {
     /// Required. The CIDR range of internal addresses that are reserved for this
     /// domain. Reserved networks must be /24 or larger. Ranges must be
     /// unique and non-overlapping with existing subnets in
-    /// \[Domain\].\[authorized_networks\].
+    /// \[Domain\].[authorized_networks].
     #[prost(string, tag = "4")]
     pub reserved_ip_range: ::prost::alloc::string::String,
     /// Required. Locations where domain needs to be provisioned.
-    /// \[regions\]\[compute/docs/regions-zones/\]
+    /// [regions][compute/docs/regions-zones/]
     /// e.g. us-west1 or us-east4
     /// Service supports up to 4 locations at once. Each location will use a /26
     /// block.
@@ -99,14 +99,14 @@ pub mod domain {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Repairing => "REPAIRING",
-                State::PerformingMaintenance => "PERFORMING_MAINTENANCE",
-                State::Unavailable => "UNAVAILABLE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Ready => "READY",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Repairing => "REPAIRING",
+                Self::PerformingMaintenance => "PERFORMING_MAINTENANCE",
+                Self::Unavailable => "UNAVAILABLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -207,12 +207,12 @@ pub mod trust {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Connected => "CONNECTED",
-                State::Disconnected => "DISCONNECTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Connected => "CONNECTED",
+                Self::Disconnected => "DISCONNECTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -256,9 +256,9 @@ pub mod trust {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TrustType::Unspecified => "TRUST_TYPE_UNSPECIFIED",
-                TrustType::Forest => "FOREST",
-                TrustType::External => "EXTERNAL",
+                Self::Unspecified => "TRUST_TYPE_UNSPECIFIED",
+                Self::Forest => "FOREST",
+                Self::External => "EXTERNAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -304,10 +304,10 @@ pub mod trust {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TrustDirection::Unspecified => "TRUST_DIRECTION_UNSPECIFIED",
-                TrustDirection::Inbound => "INBOUND",
-                TrustDirection::Outbound => "OUTBOUND",
-                TrustDirection::Bidirectional => "BIDIRECTIONAL",
+                Self::Unspecified => "TRUST_DIRECTION_UNSPECIFIED",
+                Self::Inbound => "INBOUND",
+                Self::Outbound => "OUTBOUND",
+                Self::Bidirectional => "BIDIRECTIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -339,7 +339,7 @@ pub struct OpMetadata {
     pub verb: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "5")]
     pub requested_cancellation: bool,
@@ -348,7 +348,7 @@ pub struct OpMetadata {
     pub api_version: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[CreateMicrosoftAdDomain\]\[google.cloud.managedidentities.v1.CreateMicrosoftAdDomain\]
+/// [CreateMicrosoftAdDomain][google.cloud.managedidentities.v1.CreateMicrosoftAdDomain]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateMicrosoftAdDomainRequest {
     /// Required. The resource project name and location using the form:
@@ -358,15 +358,15 @@ pub struct CreateMicrosoftAdDomainRequest {
     /// Required. The fully qualified domain name.
     /// e.g. mydomain.myorganization.com, with the following restrictions:
     ///
-    /// * Must contain only lowercase letters, numbers, periods and hyphens.
-    /// * Must start with a letter.
-    /// * Must contain between 2-64 characters.
-    /// * Must end with a number or a letter.
-    /// * Must not start with period.
-    /// * First segement length (mydomain form example above) shouldn't exceed
-    ///   15 chars.
-    /// * The last segment cannot be fully numeric.
-    /// * Must be unique within the customer project.
+    ///   * Must contain only lowercase letters, numbers, periods and hyphens.
+    ///   * Must start with a letter.
+    ///   * Must contain between 2-64 characters.
+    ///   * Must end with a number or a letter.
+    ///   * Must not start with period.
+    ///   * First segement length (mydomain form example above) shouldn't exceed
+    ///     15 chars.
+    ///   * The last segment cannot be fully numeric.
+    ///   * Must be unique within the customer project.
     #[prost(string, tag = "2")]
     pub domain_name: ::prost::alloc::string::String,
     /// Required. A Managed Identity domain resource.
@@ -374,7 +374,7 @@ pub struct CreateMicrosoftAdDomainRequest {
     pub domain: ::core::option::Option<Domain>,
 }
 /// Request message for
-/// \[ResetAdminPassword\]\[google.cloud.managedidentities.v1.ResetAdminPassword\]
+/// [ResetAdminPassword][google.cloud.managedidentities.v1.ResetAdminPassword]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetAdminPasswordRequest {
     /// Required. The domain resource name using the form:
@@ -383,15 +383,15 @@ pub struct ResetAdminPasswordRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ResetAdminPassword\]\[google.cloud.managedidentities.v1.ResetAdminPassword\]
+/// [ResetAdminPassword][google.cloud.managedidentities.v1.ResetAdminPassword]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetAdminPasswordResponse {
-    /// A random password. See \[admin\]\[google.cloud.managedidentities.v1.Domain.admin\] for more information.
+    /// A random password. See [admin][google.cloud.managedidentities.v1.Domain.admin] for more information.
     #[prost(string, tag = "1")]
     pub password: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[ListDomains\]\[google.cloud.managedidentities.v1.ListDomains\]
+/// [ListDomains][google.cloud.managedidentities.v1.ListDomains]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDomainsRequest {
     /// Required. The resource name of the domain location using the form:
@@ -402,7 +402,7 @@ pub struct ListDomainsRequest {
     /// If not specified, a default value of 1000 will be used.
     /// Regardless of the page_size value, the response may include a partial list.
     /// Callers should rely on a response's
-    /// \[next_page_token\]\[google.cloud.managedidentities.v1.ListDomainsResponse.next_page_token\]
+    /// [next_page_token][google.cloud.managedidentities.v1.ListDomainsResponse.next_page_token]
     /// to determine if there are additional results to list.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
@@ -422,7 +422,7 @@ pub struct ListDomainsRequest {
     pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListDomains\]\[google.cloud.managedidentities.v1.ListDomains\]
+/// [ListDomains][google.cloud.managedidentities.v1.ListDomains]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDomainsResponse {
     /// A list of Managed Identities Service domains in the project.
@@ -436,7 +436,7 @@ pub struct ListDomainsResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Request message for \[GetDomain\]\[google.cloud.managedidentities.v1.GetDomain\]
+/// Request message for [GetDomain][google.cloud.managedidentities.v1.GetDomain]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDomainRequest {
     /// Required. The domain resource name using the form:
@@ -445,16 +445,15 @@ pub struct GetDomainRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[UpdateDomain\]\[google.cloud.managedidentities.v1.UpdateDomain\]
+/// [UpdateDomain][google.cloud.managedidentities.v1.UpdateDomain]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDomainRequest {
     /// Required. Mask of fields to update. At least one path must be supplied in this
     /// field. The elements of the repeated paths field may only include
-    /// fields from \[Domain\]\[google.cloud.managedidentities.v1.Domain\]:
-    ///
-    /// * `labels`
-    /// * `locations`
-    /// * `authorized_networks`
+    /// fields from [Domain][google.cloud.managedidentities.v1.Domain]:
+    ///   * `labels`
+    ///   * `locations`
+    ///   * `authorized_networks`
     #[prost(message, optional, tag = "1")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Required. Domain message with updated fields. Only supported fields specified in
@@ -463,7 +462,7 @@ pub struct UpdateDomainRequest {
     pub domain: ::core::option::Option<Domain>,
 }
 /// Request message for
-/// \[DeleteDomain\]\[google.cloud.managedidentities.v1.DeleteDomain\]
+/// [DeleteDomain][google.cloud.managedidentities.v1.DeleteDomain]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDomainRequest {
     /// Required. The domain resource name using the form:
@@ -472,7 +471,7 @@ pub struct DeleteDomainRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[AttachTrust\]\[google.cloud.managedidentities.v1.AttachTrust\]
+/// [AttachTrust][google.cloud.managedidentities.v1.AttachTrust]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachTrustRequest {
     /// Required. The resource domain name, project name and location using the form:
@@ -484,7 +483,7 @@ pub struct AttachTrustRequest {
     pub trust: ::core::option::Option<Trust>,
 }
 /// Request message for
-/// \[ReconfigureTrust\]\[google.cloud.managedidentities.v1.ReconfigureTrust\]
+/// [ReconfigureTrust][google.cloud.managedidentities.v1.ReconfigureTrust]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReconfigureTrustRequest {
     /// Required. The resource domain name, project name and location using the form:
@@ -503,7 +502,7 @@ pub struct ReconfigureTrustRequest {
     >,
 }
 /// Request message for
-/// \[DetachTrust\]\[google.cloud.managedidentities.v1.DetachTrust\]
+/// [DetachTrust][google.cloud.managedidentities.v1.DetachTrust]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DetachTrustRequest {
     /// Required. The resource domain name, project name, and location using the form:
@@ -515,7 +514,7 @@ pub struct DetachTrustRequest {
     pub trust: ::core::option::Option<Trust>,
 }
 /// Request message for
-/// \[ValidateTrust\]\[google.cloud.managedidentities.v1.ValidateTrust\]
+/// [ValidateTrust][google.cloud.managedidentities.v1.ValidateTrust]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValidateTrustRequest {
     /// Required. The resource domain name, project name, and location using the form:
@@ -528,7 +527,13 @@ pub struct ValidateTrustRequest {
 }
 /// Generated client implementations.
 pub mod managed_identities_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API Overview
@@ -546,23 +551,23 @@ pub mod managed_identities_service_client {
     /// The Managed Identities service exposes the following resources:
     ///
     /// * Locations as global, named as follows:
-    ///  `projects/{project_id}/locations/global`.
+    ///   `projects/{project_id}/locations/global`.
     ///
     /// * Domains, named as follows:
-    ///  `/projects/{project_id}/locations/global/domain/{domain_name}`.
+    ///   `/projects/{project_id}/locations/global/domain/{domain_name}`.
     ///
     /// The `{domain_name}` refers to fully qualified domain name in the customer
     /// project e.g. mydomain.myorganization.com, with the following restrictions:
     ///
-    /// * Must contain only lowercase letters, numbers, periods and hyphens.
-    /// * Must start with a letter.
-    /// * Must contain between 2-64 characters.
-    /// * Must end with a number or a letter.
-    /// * Must not start with period.
-    /// * First segement length (mydomain form example above) shouldn't exceed
-    ///  15 chars.
-    /// * The last segment cannot be fully numeric.
-    /// * Must be unique within the customer project.
+    ///  * Must contain only lowercase letters, numbers, periods and hyphens.
+    ///  * Must start with a letter.
+    ///  * Must contain between 2-64 characters.
+    ///  * Must end with a number or a letter.
+    ///  * Must not start with period.
+    ///  * First segement length (mydomain form example above) shouldn't exceed
+    ///    15 chars.
+    ///  * The last segment cannot be fully numeric.
+    ///  * Must be unique within the customer project.
     #[derive(Debug, Clone)]
     pub struct ManagedIdentitiesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -646,8 +651,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -677,8 +681,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -708,8 +711,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -736,8 +738,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -767,8 +768,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -798,8 +798,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -829,8 +828,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -860,8 +858,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -891,8 +888,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -923,8 +919,7 @@ pub mod managed_identities_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -10,7 +10,7 @@ pub struct ListAppGatewaysRequest {
     /// If not specified, a default value of 50 will be used by the service.
     /// Regardless of the page_size value, the response may include a partial list
     /// and a caller should only rely on response's
-    /// \[next_page_token\]\[BeyondCorp.ListAppGatewaysResponse.next_page_token\] to
+    /// [next_page_token][BeyondCorp.ListAppGatewaysResponse.next_page_token] to
     /// determine if there are more instances left to be queried.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
@@ -58,10 +58,9 @@ pub struct CreateAppGatewayRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. User-settable AppGateway resource ID.
-    ///
-    /// * Must start with a letter.
-    /// * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
-    /// * Must end with a number or a letter.
+    ///   * Must start with a letter.
+    ///   * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
+    ///   * Must end with a number or a letter.
     #[prost(string, tag = "2")]
     pub app_gateway_id: ::prost::alloc::string::String,
     /// Required. A BeyondCorp AppGateway resource.
@@ -201,8 +200,8 @@ pub mod app_gateway {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::TcpProxy => "TCP_PROXY",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::TcpProxy => "TCP_PROXY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -249,12 +248,12 @@ pub mod app_gateway {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Created => "CREATED",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Down => "DOWN",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Created => "CREATED",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Down => "DOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -297,8 +296,8 @@ pub mod app_gateway {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HostType::Unspecified => "HOST_TYPE_UNSPECIFIED",
-                HostType::GcpRegionalMig => "GCP_REGIONAL_MIG",
+                Self::Unspecified => "HOST_TYPE_UNSPECIFIED",
+                Self::GcpRegionalMig => "GCP_REGIONAL_MIG",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -331,8 +330,8 @@ pub struct AppGatewayOperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -342,7 +341,13 @@ pub struct AppGatewayOperationMetadata {
 }
 /// Generated client implementations.
 pub mod app_gateways_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API Overview:
@@ -355,7 +360,7 @@ pub mod app_gateways_service_client {
     /// The AppGatewaysService exposes the following resources:
     ///
     /// * AppGateways, named as follows:
-    ///  `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`.
+    ///   `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`.
     ///
     /// The AppGatewaysService service provides methods to manage
     /// (create/read/update/delete) BeyondCorp AppGateways.
@@ -440,8 +445,7 @@ pub mod app_gateways_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -468,8 +472,7 @@ pub mod app_gateways_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -499,8 +502,7 @@ pub mod app_gateways_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -530,8 +532,7 @@ pub mod app_gateways_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

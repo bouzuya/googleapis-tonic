@@ -90,9 +90,8 @@ pub struct Dimension {
 }
 /// Used to express a dimension which is the result of a formula of multiple
 /// dimensions. Example usages:
-///
-/// 1. lower_case(dimension)
-/// 1. concatenate(dimension1, symbol, dimension2).
+/// 1) lower_case(dimension)
+/// 2) concatenate(dimension1, symbol, dimension2).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionExpression {
     /// Specify one type of dimension expression for `DimensionExpression`.
@@ -309,13 +308,13 @@ pub mod filter {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    MatchType::Unspecified => "MATCH_TYPE_UNSPECIFIED",
-                    MatchType::Exact => "EXACT",
-                    MatchType::BeginsWith => "BEGINS_WITH",
-                    MatchType::EndsWith => "ENDS_WITH",
-                    MatchType::Contains => "CONTAINS",
-                    MatchType::FullRegexp => "FULL_REGEXP",
-                    MatchType::PartialRegexp => "PARTIAL_REGEXP",
+                    Self::Unspecified => "MATCH_TYPE_UNSPECIFIED",
+                    Self::Exact => "EXACT",
+                    Self::BeginsWith => "BEGINS_WITH",
+                    Self::EndsWith => "ENDS_WITH",
+                    Self::Contains => "CONTAINS",
+                    Self::FullRegexp => "FULL_REGEXP",
+                    Self::PartialRegexp => "PARTIAL_REGEXP",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -390,12 +389,12 @@ pub mod filter {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Operation::Unspecified => "OPERATION_UNSPECIFIED",
-                    Operation::Equal => "EQUAL",
-                    Operation::LessThan => "LESS_THAN",
-                    Operation::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-                    Operation::GreaterThan => "GREATER_THAN",
-                    Operation::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                    Self::Unspecified => "OPERATION_UNSPECIFIED",
+                    Self::Equal => "EQUAL",
+                    Self::LessThan => "LESS_THAN",
+                    Self::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+                    Self::GreaterThan => "GREATER_THAN",
+                    Self::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -488,14 +487,14 @@ pub mod order_by {
         pub enum OrderType {
             /// Unspecified.
             Unspecified = 0,
-            /// Alphanumeric sort by Unicode code point. For example, "2" \< "A" \< "X" \<
-            /// "b" \< "z".
+            /// Alphanumeric sort by Unicode code point. For example, "2" < "A" < "X" <
+            /// "b" < "z".
             Alphanumeric = 1,
             /// Case insensitive alphanumeric sort by lower case Unicode code point.
-            /// For example, "2" \< "A" \< "b" \< "X" \< "z".
+            /// For example, "2" < "A" < "b" < "X" < "z".
             CaseInsensitiveAlphanumeric = 2,
             /// Dimension values are converted to numbers before sorting. For example
-            /// in NUMERIC sort, "25" \< "100", and in `ALPHANUMERIC` sort, "100" \<
+            /// in NUMERIC sort, "25" < "100", and in `ALPHANUMERIC` sort, "100" <
             /// "25". Non-numeric dimension values all have equal ordering value below
             /// all numeric values.
             Numeric = 3,
@@ -507,12 +506,10 @@ pub mod order_by {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
-                    OrderType::Alphanumeric => "ALPHANUMERIC",
-                    OrderType::CaseInsensitiveAlphanumeric => {
-                        "CASE_INSENSITIVE_ALPHANUMERIC"
-                    }
-                    OrderType::Numeric => "NUMERIC",
+                    Self::Unspecified => "ORDER_TYPE_UNSPECIFIED",
+                    Self::Alphanumeric => "ALPHANUMERIC",
+                    Self::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
+                    Self::Numeric => "NUMERIC",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -552,17 +549,15 @@ pub mod order_by {
         /// metric_name = "Sessions",
         /// then the rows will be sorted based on Sessions in Chrome.
         ///
-        /// ```text
-        /// ---------|----------|----------------|----------|----------------
-        ///           |  Chrome  |    Chrome      |  Safari  |     Safari
-        /// ---------|----------|----------------|----------|----------------
-        ///   Country | Sessions | Pages/Sessions | Sessions | Pages/Sessions
-        /// ---------|----------|----------------|----------|----------------
-        ///      US   |    2     |       2        |     3    |        1
-        /// ---------|----------|----------------|----------|----------------
-        ///    Canada |    3     |       1        |     4    |        1
-        /// ---------|----------|----------------|----------|----------------
-        /// ```
+        ///      ---------|----------|----------------|----------|----------------
+        ///               |  Chrome  |    Chrome      |  Safari  |     Safari
+        ///      ---------|----------|----------------|----------|----------------
+        ///       Country | Sessions | Pages/Sessions | Sessions | Pages/Sessions
+        ///      ---------|----------|----------------|----------|----------------
+        ///          US   |    2     |       2        |     3    |        1
+        ///      ---------|----------|----------------|----------|----------------
+        ///        Canada |    3     |       1        |     4    |        1
+        ///      ---------|----------|----------------|----------|----------------
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct PivotSelection {
             /// Must be a dimension name from the request.
@@ -611,7 +606,8 @@ pub struct Pivot {
     /// single pivot requests.
     ///
     /// The product of the `limit` for each `pivot` in a `RunPivotReportRequest`
-    /// must not exceed 250,000. For example, a two pivot request with `limit: 1000` in each pivot will fail because the product is `1,000,000`.
+    /// must not exceed 250,000. For example, a two pivot request with `limit:
+    /// 1000` in each pivot will fail because the product is `1,000,000`.
     #[prost(int64, tag = "4")]
     pub limit: i64,
     /// Aggregate the metrics by dimensions in this pivot using the specified
@@ -760,10 +756,10 @@ pub mod cohorts_range {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
-                Granularity::Daily => "DAILY",
-                Granularity::Weekly => "WEEKLY",
-                Granularity::Monthly => "MONTHLY",
+                Self::Unspecified => "GRANULARITY_UNSPECIFIED",
+                Self::Daily => "DAILY",
+                Self::Weekly => "WEEKLY",
+                Self::Monthly => "MONTHLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -954,38 +950,38 @@ pub struct PivotDimensionHeader {
 /// Report data for each row.
 /// For example if RunReportRequest contains:
 ///
-/// ```text,none
+/// ```none
 /// "dimensions": [
-///   {
-///     "name": "eventName"
-///   },
-///   {
-///     "name": "countryId"
-///   }
+///    {
+///      "name": "eventName"
+///    },
+///    {
+///      "name": "countryId"
+///    }
 /// ],
 /// "metrics": [
-///   {
-///     "name": "eventCount"
-///   }
+///    {
+///      "name": "eventCount"
+///    }
 /// ]
 /// ```
 ///
 /// One row with 'in_app_purchase' as the eventName, 'JP' as the countryId, and
 /// 15 as the eventCount, would be:
 ///
-/// ```text,none
+/// ```none
 /// "dimensionValues": [
-///   {
-///     "value": "in_app_purchase"
-///   },
-///   {
-///     "value": "JP"
-///   }
+///    {
+///      "value": "in_app_purchase"
+///    },
+///    {
+///      "value": "JP"
+///    }
 /// ],
 /// "metricValues": [
-///   {
-///     "value": "15"
-///   }
+///    {
+///      "value": "15"
+///    }
 /// ]
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1212,9 +1208,9 @@ pub mod metric_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BlockedReason::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
-                BlockedReason::NoRevenueMetrics => "NO_REVENUE_METRICS",
-                BlockedReason::NoCostMetrics => "NO_COST_METRICS",
+                Self::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
+                Self::NoRevenueMetrics => "NO_REVENUE_METRICS",
+                Self::NoCostMetrics => "NO_COST_METRICS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1290,11 +1286,11 @@ impl MetricAggregation {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            MetricAggregation::Unspecified => "METRIC_AGGREGATION_UNSPECIFIED",
-            MetricAggregation::Total => "TOTAL",
-            MetricAggregation::Minimum => "MINIMUM",
-            MetricAggregation::Maximum => "MAXIMUM",
-            MetricAggregation::Count => "COUNT",
+            Self::Unspecified => "METRIC_AGGREGATION_UNSPECIFIED",
+            Self::Total => "TOTAL",
+            Self::Minimum => "MINIMUM",
+            Self::Maximum => "MAXIMUM",
+            Self::Count => "COUNT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1347,19 +1343,19 @@ impl MetricType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            MetricType::Unspecified => "METRIC_TYPE_UNSPECIFIED",
-            MetricType::TypeInteger => "TYPE_INTEGER",
-            MetricType::TypeFloat => "TYPE_FLOAT",
-            MetricType::TypeSeconds => "TYPE_SECONDS",
-            MetricType::TypeMilliseconds => "TYPE_MILLISECONDS",
-            MetricType::TypeMinutes => "TYPE_MINUTES",
-            MetricType::TypeHours => "TYPE_HOURS",
-            MetricType::TypeStandard => "TYPE_STANDARD",
-            MetricType::TypeCurrency => "TYPE_CURRENCY",
-            MetricType::TypeFeet => "TYPE_FEET",
-            MetricType::TypeMiles => "TYPE_MILES",
-            MetricType::TypeMeters => "TYPE_METERS",
-            MetricType::TypeKilometers => "TYPE_KILOMETERS",
+            Self::Unspecified => "METRIC_TYPE_UNSPECIFIED",
+            Self::TypeInteger => "TYPE_INTEGER",
+            Self::TypeFloat => "TYPE_FLOAT",
+            Self::TypeSeconds => "TYPE_SECONDS",
+            Self::TypeMilliseconds => "TYPE_MILLISECONDS",
+            Self::TypeMinutes => "TYPE_MINUTES",
+            Self::TypeHours => "TYPE_HOURS",
+            Self::TypeStandard => "TYPE_STANDARD",
+            Self::TypeCurrency => "TYPE_CURRENCY",
+            Self::TypeFeet => "TYPE_FEET",
+            Self::TypeMiles => "TYPE_MILES",
+            Self::TypeMeters => "TYPE_METERS",
+            Self::TypeKilometers => "TYPE_KILOMETERS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1401,9 +1397,9 @@ impl RestrictedMetricType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            RestrictedMetricType::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
-            RestrictedMetricType::CostData => "COST_DATA",
-            RestrictedMetricType::RevenueData => "REVENUE_DATA",
+            Self::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+            Self::CostData => "COST_DATA",
+            Self::RevenueData => "REVENUE_DATA",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1436,9 +1432,9 @@ impl Compatibility {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Compatibility::Unspecified => "COMPATIBILITY_UNSPECIFIED",
-            Compatibility::Compatible => "COMPATIBLE",
-            Compatibility::Incompatible => "INCOMPATIBLE",
+            Self::Unspecified => "COMPATIBILITY_UNSPECIFIED",
+            Self::Compatible => "COMPATIBLE",
+            Self::Incompatible => "INCOMPATIBLE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1576,7 +1572,7 @@ pub struct RunReportRequest {
     #[prost(int64, tag = "8")]
     pub limit: i64,
     /// Aggregation of metrics. Aggregated metric values will be shown in rows
-    /// where the dimension_values are set to "RESERVED\_(MetricAggregation)".
+    /// where the dimension_values are set to "RESERVED_(MetricAggregation)".
     #[prost(enumeration = "MetricAggregation", repeated, tag = "9")]
     pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
     /// Specifies how rows are ordered in the response.
@@ -1738,42 +1734,38 @@ pub struct RunPivotReportResponse {
     /// request produces one header in the response. If we have a request like
     /// this:
     ///
-    /// ```text
-    /// "pivots": [{
-    ///    "fieldNames": ["country",
-    ///      "city"]
-    /// },
-    /// {
-    ///    "fieldNames": "eventName"
-    /// }]
-    /// ```
+    ///      "pivots": [{
+    ///        "fieldNames": ["country",
+    ///          "city"]
+    ///      },
+    ///      {
+    ///        "fieldNames": "eventName"
+    ///      }]
     ///
     /// We will have the following `pivotHeaders` in the response:
     ///
-    /// ```text
-    /// "pivotHeaders" : [{
-    ///    "dimensionHeaders": [{
-    ///      "dimensionValues": [
-    ///         { "value": "United Kingdom" },
-    ///         { "value": "London" }
-    ///       ]
-    ///    },
-    ///    {
-    ///      "dimensionValues": [
-    ///      { "value": "Japan" },
-    ///      { "value": "Osaka" }
-    ///      ]
-    ///    }]
-    /// },
-    /// {
-    ///    "dimensionHeaders": [{
-    ///      "dimensionValues": \[{ "value": "session_start" }\]
-    ///    },
-    ///    {
-    ///      "dimensionValues": \[{ "value": "scroll" }\]
-    ///    }]
-    /// }]
-    /// ```
+    ///      "pivotHeaders" : [{
+    ///        "dimensionHeaders": [{
+    ///          "dimensionValues": [
+    ///             { "value": "United Kingdom" },
+    ///             { "value": "London" }
+    ///           ]
+    ///        },
+    ///        {
+    ///          "dimensionValues": [
+    ///          { "value": "Japan" },
+    ///          { "value": "Osaka" }
+    ///          ]
+    ///        }]
+    ///      },
+    ///      {
+    ///        "dimensionHeaders": [{
+    ///          "dimensionValues": \[{ "value": "session_start" }\]
+    ///        },
+    ///        {
+    ///          "dimensionValues": \[{ "value": "scroll" }\]
+    ///        }]
+    ///      }]
     #[prost(message, repeated, tag = "1")]
     pub pivot_headers: ::prost::alloc::vec::Vec<PivotHeader>,
     /// Describes dimension columns. The number of DimensionHeaders and ordering of
@@ -1790,7 +1782,7 @@ pub struct RunPivotReportResponse {
     /// Aggregation of metric values. Can be totals, minimums, or maximums. The
     /// returned aggregations are controlled by the metric_aggregations in the
     /// pivot. The type of aggregation returned in each row is shown by the
-    /// dimension_values which are set to "RESERVED\_<MetricAggregation>".
+    /// dimension_values which are set to "RESERVED_<MetricAggregation>".
     #[prost(message, repeated, tag = "5")]
     pub aggregates: ::prost::alloc::vec::Vec<Row>,
     /// Metadata for the report.
@@ -1920,7 +1912,7 @@ pub struct RunRealtimeReportRequest {
     #[prost(int64, tag = "6")]
     pub limit: i64,
     /// Aggregation of metrics. Aggregated metric values will be shown in rows
-    /// where the dimension_values are set to "RESERVED\_(MetricAggregation)".
+    /// where the dimension_values are set to "RESERVED_(MetricAggregation)".
     #[prost(enumeration = "MetricAggregation", repeated, tag = "7")]
     pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
     /// Specifies how rows are ordered in the response.
@@ -2115,10 +2107,10 @@ pub mod audience_export {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2227,7 +2219,13 @@ pub mod audience_dimension_value {
 }
 /// Generated client implementations.
 pub mod beta_analytics_data_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Analytics reporting data service.
@@ -2322,8 +2320,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2357,8 +2354,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2389,8 +2385,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2421,8 +2416,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2458,8 +2452,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2497,8 +2490,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2537,8 +2529,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2592,8 +2583,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2641,8 +2631,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2680,8 +2669,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2725,8 +2713,7 @@ pub mod beta_analytics_data_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

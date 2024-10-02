@@ -8,16 +8,16 @@ pub struct Volume {
     /// Mount options vary based on the type of storage volume:
     ///
     /// * For a Cloud Storage bucket, all the mount options provided
-    ///   by
-    ///   the [`gcsfuse` tool](<https://cloud.google.com/storage/docs/gcsfuse-cli>)
-    ///   are supported.
+    /// by
+    ///    the [`gcsfuse` tool](<https://cloud.google.com/storage/docs/gcsfuse-cli>)
+    ///    are supported.
     /// * For an existing persistent disk, all mount options provided by the
-    ///   [`mount` command](<https://man7.org/linux/man-pages/man8/mount.8.html>)
-    ///   except writing are supported. This is due to restrictions of
-    ///   [multi-writer
-    ///   mode](<https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms>).
+    ///    [`mount` command](<https://man7.org/linux/man-pages/man8/mount.8.html>)
+    ///    except writing are supported. This is due to restrictions of
+    ///    [multi-writer
+    ///    mode](<https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms>).
     /// * For any other disk or a Network File System (NFS), all the
-    ///   mount options provided by the `mount` command are supported.
+    ///    mount options provided by the `mount` command are supported.
     #[prost(string, repeated, tag = "5")]
     pub mount_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The source for the volume.
@@ -146,12 +146,11 @@ pub struct TaskExecution {
     /// due to the following reasons, the exit code will be 50000.
     ///
     /// Otherwise, it can be from different sources:
-    ///
     /// * Batch known failures:
-    ///   <https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes.>
+    /// <https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes.>
     /// * Batch runnable execution failures; you can rely on Batch logs to further
-    ///   diagnose: <https://cloud.google.com/batch/docs/analyze-job-using-logs.> If
-    ///   there are multiple runnables failures, Batch only exposes the first error.
+    /// diagnose: <https://cloud.google.com/batch/docs/analyze-job-using-logs.> If
+    /// there are multiple runnables failures, Batch only exposes the first error.
     #[prost(int32, tag = "1")]
     pub exit_code: i32,
 }
@@ -203,13 +202,13 @@ pub mod task_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Assigned => "ASSIGNED",
-                State::Running => "RUNNING",
-                State::Failed => "FAILED",
-                State::Succeeded => "SUCCEEDED",
-                State::Unexecuted => "UNEXECUTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Assigned => "ASSIGNED",
+                Self::Running => "RUNNING",
+                Self::Failed => "FAILED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Unexecuted => "UNEXECUTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -304,7 +303,7 @@ pub mod runnable {
         pub entrypoint: ::prost::alloc::string::String,
         /// Volumes to mount (bind mount) from the host machine files or directories
         /// into the container, formatted to match `--volume` option for the
-        /// `docker run` command—for example, `/foo:/bar` or `/foo:/bar:ro`.
+        /// `docker run` command&mdash;for example, `/foo:/bar` or `/foo:/bar:ro`.
         ///
         /// If the `TaskSpec.Volumes` field is specified but this field is not, Batch
         /// will mount each volume from the host machine to the container with the
@@ -316,7 +315,7 @@ pub mod runnable {
         #[prost(string, repeated, tag = "7")]
         pub volumes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         /// Required for some container images. Arbitrary additional options to
-        /// include in the `docker run` command when running this container—for
+        /// include in the `docker run` command when running this container&mdash;for
         /// example, `--network host`. For the `--volume` option, use the `volumes`
         /// field for the container.
         #[prost(string, tag = "8")]
@@ -398,7 +397,7 @@ pub mod runnable {
             ///
             /// Unless the script file supports the default `#!/bin/sh` shell
             /// interpreter, you must specify an interpreter by including a
-            /// \[shebang line\](<https://en.wikipedia.org/wiki/Shebang\_(Unix>) as the
+            /// [shebang line](<https://en.wikipedia.org/wiki/Shebang_(Unix>) as the
             /// first line of the file. For example, to execute the script using bash,
             /// include `#!/bin/bash` as the first line of the file. Alternatively,
             /// to execute the script using Python3, include `#!/usr/bin/env python3`
@@ -409,7 +408,7 @@ pub mod runnable {
             ///
             /// Unless the script text supports the default `#!/bin/sh` shell
             /// interpreter, you must specify an interpreter by including a
-            /// \[shebang line\](<https://en.wikipedia.org/wiki/Shebang\_(Unix>) at the
+            /// [shebang line](<https://en.wikipedia.org/wiki/Shebang_(Unix>) at the
             /// beginning of the text. For example, to execute the script using bash,
             /// include `#!/bin/bash\n` at the beginning of the text. Alternatively,
             /// to execute the script using Python3, include `#!/usr/bin/env python3\n`
@@ -450,10 +449,10 @@ pub struct TaskSpec {
     /// all of its script and container runnables each must meet at least one of
     /// the following conditions:
     ///
-    /// * The runnable exited with a zero status.
-    /// * The runnable didn't finish, but you enabled its `background` subfield.
-    /// * The runnable exited with a non-zero status, but you enabled its
-    ///   `ignore_exit_status` subfield.
+    /// + The runnable exited with a zero status.
+    /// + The runnable didn't finish, but you enabled its `background` subfield.
+    /// + The runnable exited with a non-zero status, but you enabled its
+    ///    `ignore_exit_status` subfield.
     #[prost(message, repeated, tag = "8")]
     pub runnables: ::prost::alloc::vec::Vec<Runnable>,
     /// ComputeResource requirements.
@@ -461,7 +460,7 @@ pub struct TaskSpec {
     pub compute_resource: ::core::option::Option<ComputeResource>,
     /// Maximum duration the task should run before being automatically retried
     /// (if enabled) or automatically failed. Format the value of this field
-    /// as a time limit in seconds followed by `s`—for example, `3600s`
+    /// as a time limit in seconds followed by `s`&mdash;for example, `3600s`
     /// for 1 hour. The field accepts any value between 0 and the maximum listed
     /// for the `Duration` field type at
     /// <https://protobuf.dev/reference/protobuf/google.protobuf/#duration;> however,
@@ -553,9 +552,9 @@ pub mod lifecycle_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::RetryTask => "RETRY_TASK",
-                Action::FailTask => "FAIL_TASK",
+                Self::Unspecified => "ACTION_UNSPECIFIED",
+                Self::RetryTask => "RETRY_TASK",
+                Self::FailTask => "FAIL_TASK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -628,7 +627,7 @@ pub struct Job {
     #[prost(string, tag = "2")]
     pub uid: ::prost::alloc::string::String,
     /// Priority of the Job.
-    /// The valid value range is \[0, 100). Default value is 0.
+    /// The valid value range is [0, 100). Default value is 0.
     /// Higher value indicates higher priority.
     /// A job with higher priority value is more likely to run earlier if all other
     /// requirements are satisfied.
@@ -643,9 +642,9 @@ pub struct Job {
     /// Labels for the Job. Labels could be user provided or system generated.
     /// For example,
     /// "labels": {
-    /// "department": "finance",
-    /// "environment": "test"
-    /// }
+    ///     "department": "finance",
+    ///     "environment": "test"
+    ///   }
     /// You can assign up to 64 labels.  [Google Compute Engine label
     /// restrictions](<https://cloud.google.com/compute/docs/labeling-resources#restrictions>)
     /// apply.
@@ -733,9 +732,9 @@ pub mod logs_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Destination::Unspecified => "DESTINATION_UNSPECIFIED",
-                Destination::CloudLogging => "CLOUD_LOGGING",
-                Destination::Path => "PATH",
+                Self::Unspecified => "DESTINATION_UNSPECIFIED",
+                Self::CloudLogging => "CLOUD_LOGGING",
+                Self::Path => "PATH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -838,13 +837,13 @@ pub mod job_status {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Queued => "QUEUED",
-                State::Scheduled => "SCHEDULED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::DeletionInProgress => "DELETION_IN_PROGRESS",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Queued => "QUEUED",
+                Self::Scheduled => "SCHEDULED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::DeletionInProgress => "DELETION_IN_PROGRESS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -934,9 +933,9 @@ pub mod job_notification {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::JobStateChanged => "JOB_STATE_CHANGED",
-                Type::TaskStateChanged => "TASK_STATE_CHANGED",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::JobStateChanged => "JOB_STATE_CHANGED",
+                Self::TaskStateChanged => "TASK_STATE_CHANGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -968,10 +967,9 @@ pub struct AllocationPolicy {
     /// template configured in the Batch job.
     ///
     /// Includes the following fields:
-    ///
-    /// * email: The service account's email address. If not set, the default
+    ///   * email: The service account's email address. If not set, the default
     ///   Compute Engine service account is used.
-    /// * scopes: Additional OAuth scopes to grant the service account, beyond the
+    ///   * scopes: Additional OAuth scopes to grant the service account, beyond the
     ///   default cloud-platform scope. (list of strings)
     #[prost(message, optional, tag = "9")]
     pub service_account: ::core::option::Option<ServiceAccount>,
@@ -1020,8 +1018,8 @@ pub mod allocation_policy {
         ///
         /// Mixing locations from different regions would cause errors.
         /// For example,
-        /// \["regions/us-central1", "zones/us-central1-a", "zones/us-central1-b",
-        /// "zones/us-west1-a"\] contains locations from two distinct regions:
+        /// ["regions/us-central1", "zones/us-central1-a", "zones/us-central1-b",
+        /// "zones/us-west1-a"] contains locations from two distinct regions:
         /// us-central1 and us-west1. This combination will trigger an error.
         #[prost(string, repeated, tag = "1")]
         pub allowed_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -1081,9 +1079,9 @@ pub mod allocation_policy {
             /// For example, the following are all valid URLs:
             ///
             /// * Specify the image by its family name:
-            ///   projects/{project}/global/images/family/{image_family}
+            /// projects/{project}/global/images/family/{image_family}
             /// * Specify the image version:
-            ///   projects/{project}/global/images/{image_version}
+            /// projects/{project}/global/images/{image_version}
             ///
             /// You can also use Batch customized image in short names.
             /// The following image values are supported for a boot disk:
@@ -1213,9 +1211,9 @@ pub mod allocation_policy {
         /// Batch allows project-level SSH keys for a job's VMs only if all
         /// the following are true:
         ///
-        /// * This field is undefined or set to `false`.
-        /// * The job's VM instance template (if any) doesn't block project-level
-        ///   SSH keys.
+        /// + This field is undefined or set to `false`.
+        /// + The job's VM instance template (if any) doesn't block project-level
+        ///    SSH keys.
         ///
         /// Notably, you can override this behavior by manually updating a VM to
         /// block or allow project-level SSH keys. For more information about
@@ -1338,10 +1336,10 @@ pub mod allocation_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ProvisioningModel::Unspecified => "PROVISIONING_MODEL_UNSPECIFIED",
-                ProvisioningModel::Standard => "STANDARD",
-                ProvisioningModel::Spot => "SPOT",
-                ProvisioningModel::Preemptible => "PREEMPTIBLE",
+                Self::Unspecified => "PROVISIONING_MODEL_UNSPECIFIED",
+                Self::Standard => "STANDARD",
+                Self::Spot => "SPOT",
+                Self::Preemptible => "PREEMPTIBLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1448,9 +1446,9 @@ pub mod task_group {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SchedulingPolicy::Unspecified => "SCHEDULING_POLICY_UNSPECIFIED",
-                SchedulingPolicy::AsSoonAsPossible => "AS_SOON_AS_POSSIBLE",
-                SchedulingPolicy::InOrder => "IN_ORDER",
+                Self::Unspecified => "SCHEDULING_POLICY_UNSPECIFIED",
+                Self::AsSoonAsPossible => "AS_SOON_AS_POSSIBLE",
+                Self::InOrder => "IN_ORDER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1636,8 +1634,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -1647,7 +1645,13 @@ pub struct OperationMetadata {
 }
 /// Generated client implementations.
 pub mod batch_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Batch Service.
@@ -1731,8 +1735,7 @@ pub mod batch_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1756,8 +1759,7 @@ pub mod batch_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1782,8 +1784,7 @@ pub mod batch_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1810,8 +1811,7 @@ pub mod batch_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1835,8 +1835,7 @@ pub mod batch_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1863,8 +1862,7 @@ pub mod batch_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

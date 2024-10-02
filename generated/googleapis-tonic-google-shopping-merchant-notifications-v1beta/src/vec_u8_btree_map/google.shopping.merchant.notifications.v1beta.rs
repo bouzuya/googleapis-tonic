@@ -112,10 +112,8 @@ pub mod notification_subscription {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NotificationEventType::Unspecified => {
-                    "NOTIFICATION_EVENT_TYPE_UNSPECIFIED"
-                }
-                NotificationEventType::ProductStatusChange => "PRODUCT_STATUS_CHANGE",
+                Self::Unspecified => "NOTIFICATION_EVENT_TYPE_UNSPECIFIED",
+                Self::ProductStatusChange => "PRODUCT_STATUS_CHANGE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -209,8 +207,8 @@ impl Resource {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Resource::Unspecified => "RESOURCE_UNSPECIFIED",
-            Resource::Product => "PRODUCT",
+            Self::Unspecified => "RESOURCE_UNSPECIFIED",
+            Self::Product => "PRODUCT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -239,8 +237,8 @@ impl Attribute {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Attribute::Unspecified => "ATTRIBUTE_UNSPECIFIED",
-            Attribute::Status => "STATUS",
+            Self::Unspecified => "ATTRIBUTE_UNSPECIFIED",
+            Self::Status => "STATUS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -254,7 +252,13 @@ impl Attribute {
 }
 /// Generated client implementations.
 pub mod notifications_api_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to manage notification subscriptions for merchants
@@ -341,8 +345,7 @@ pub mod notifications_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -363,17 +366,15 @@ pub mod notifications_api_service_client {
         /// Creates a notification subscription for a merchant. We will allow the
         /// following types of notification subscriptions to exist together (per
         /// merchant as a subscriber per event type):
-        ///
         /// 1. Subscription for all managed accounts + subscription for self
-        /// 1. Multiple "partial" subscriptions for managed accounts + subscription
-        ///   for self
+        /// 2. Multiple "partial" subscriptions for managed accounts + subscription
+        /// for self
         ///
         /// we will not allow (per merchant as a subscriber per event type):
-        ///
         /// 1. multiple self subscriptions.
-        /// 1. multiple "all managed accounts" subscriptions.
-        /// 1. all and partial subscriptions at the same time.
-        /// 1. multiple partial subscriptions for the same target account
+        /// 2. multiple "all managed accounts" subscriptions.
+        /// 3. all and partial subscriptions at the same time.
+        /// 4. multiple partial subscriptions for the same target account
         pub async fn create_notification_subscription(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -387,8 +388,7 @@ pub mod notifications_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -420,8 +420,7 @@ pub mod notifications_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -450,8 +449,7 @@ pub mod notifications_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -481,8 +479,7 @@ pub mod notifications_api_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

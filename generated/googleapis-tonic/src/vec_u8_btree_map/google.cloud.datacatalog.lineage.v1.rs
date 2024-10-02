@@ -98,11 +98,11 @@ pub mod run {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unknown => "UNKNOWN",
-                State::Started => "STARTED",
-                State::Completed => "COMPLETED",
-                State::Failed => "FAILED",
-                State::Aborted => "ABORTED",
+                Self::Unknown => "UNKNOWN",
+                Self::Started => "STARTED",
+                Self::Completed => "COMPLETED",
+                Self::Failed => "FAILED",
+                Self::Aborted => "ABORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -222,11 +222,11 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -269,9 +269,9 @@ pub mod operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Delete => "DELETE",
-                Type::Create => "CREATE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Delete => "DELETE",
+                Self::Create => "CREATE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -286,7 +286,7 @@ pub mod operation_metadata {
     }
 }
 /// Request message for
-/// \[ProcessOpenLineageRunEvent\]\[google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEvent\].
+/// [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEvent].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessOpenLineageRunEventRequest {
     /// Required. The name of the project and its location that should own the
@@ -304,7 +304,7 @@ pub struct ProcessOpenLineageRunEventRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ProcessOpenLineageRunEvent\]\[google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEvent\].
+/// [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEvent].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessOpenLineageRunEventResponse {
     /// Created process name.
@@ -323,7 +323,7 @@ pub struct ProcessOpenLineageRunEventResponse {
     pub lineage_events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for
-/// \[CreateProcess\]\[google.cloud.datacatalog.lineage.v1.CreateProcess\].
+/// [CreateProcess][google.cloud.datacatalog.lineage.v1.CreateProcess].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProcessRequest {
     /// Required. The name of the project and its location that should own the
@@ -340,7 +340,7 @@ pub struct CreateProcessRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[UpdateProcess\]\[google.cloud.datacatalog.lineage.v1.UpdateProcess\].
+/// [UpdateProcess][google.cloud.datacatalog.lineage.v1.UpdateProcess].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProcessRequest {
     /// Required. The lineage process to update.
@@ -357,7 +357,7 @@ pub struct UpdateProcessRequest {
     pub allow_missing: bool,
 }
 /// Request message for
-/// \[GetProcess\]\[google.cloud.datacatalog.lineage.v1.GetProcess\].
+/// [GetProcess][google.cloud.datacatalog.lineage.v1.GetProcess].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProcessRequest {
     /// Required. The name of the process to get.
@@ -365,7 +365,7 @@ pub struct GetProcessRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[ListProcesses\]\[google.cloud.datacatalog.lineage.v1.ListProcesses\].
+/// [ListProcesses][google.cloud.datacatalog.lineage.v1.ListProcesses].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessesRequest {
     /// Required. The name of the project and its location that owns this
@@ -387,7 +387,7 @@ pub struct ListProcessesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListProcesses\]\[google.cloud.datacatalog.lineage.v1.ListProcesses\].
+/// [ListProcesses][google.cloud.datacatalog.lineage.v1.ListProcesses].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessesResponse {
     /// The processes from the specified project and location.
@@ -399,7 +399,7 @@ pub struct ListProcessesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DeleteProcess\]\[google.cloud.datacatalog.lineage.v1.DeleteProcess\].
+/// [DeleteProcess][google.cloud.datacatalog.lineage.v1.DeleteProcess].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteProcessRequest {
     /// Required. The name of the process to delete.
@@ -411,7 +411,7 @@ pub struct DeleteProcessRequest {
     pub allow_missing: bool,
 }
 /// Request message for
-/// \[CreateRun\]\[google.cloud.datacatalog.lineage.v1.CreateRun\].
+/// [CreateRun][google.cloud.datacatalog.lineage.v1.CreateRun].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRunRequest {
     /// Required. The name of the process that should own the run.
@@ -427,7 +427,7 @@ pub struct CreateRunRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[UpdateRun\]\[google.cloud.datacatalog.lineage.v1.UpdateRun\].
+/// [UpdateRun][google.cloud.datacatalog.lineage.v1.UpdateRun].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRunRequest {
     /// Required. The lineage run to update.
@@ -447,7 +447,7 @@ pub struct UpdateRunRequest {
     pub allow_missing: bool,
 }
 /// Request message for
-/// \[GetRun\]\[google.cloud.datacatalog.lineage.v1.GetRun\].
+/// [GetRun][google.cloud.datacatalog.lineage.v1.GetRun].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRunRequest {
     /// Required. The name of the run to get.
@@ -455,7 +455,7 @@ pub struct GetRunRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[ListRuns\]\[google.cloud.datacatalog.lineage.v1.ListRuns\].
+/// [ListRuns][google.cloud.datacatalog.lineage.v1.ListRuns].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRunsRequest {
     /// Required. The name of process that owns this collection of runs.
@@ -476,7 +476,7 @@ pub struct ListRunsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListRuns\]\[google.cloud.datacatalog.lineage.v1.ListRuns\].
+/// [ListRuns][google.cloud.datacatalog.lineage.v1.ListRuns].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRunsResponse {
     /// The runs from the specified project and location.
@@ -488,7 +488,7 @@ pub struct ListRunsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DeleteRun\]\[google.cloud.datacatalog.lineage.v1.DeleteRun\].
+/// [DeleteRun][google.cloud.datacatalog.lineage.v1.DeleteRun].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRunRequest {
     /// Required. The name of the run to delete.
@@ -500,7 +500,7 @@ pub struct DeleteRunRequest {
     pub allow_missing: bool,
 }
 /// Request message for
-/// \[CreateLineageEvent\]\[google.cloud.datacatalog.lineage.v1.CreateLineageEvent\].
+/// [CreateLineageEvent][google.cloud.datacatalog.lineage.v1.CreateLineageEvent].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLineageEventRequest {
     /// Required. The name of the run that should own the lineage event.
@@ -516,7 +516,7 @@ pub struct CreateLineageEventRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[GetLineageEvent\]\[google.cloud.datacatalog.lineage.v1.GetLineageEvent\].
+/// [GetLineageEvent][google.cloud.datacatalog.lineage.v1.GetLineageEvent].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLineageEventRequest {
     /// Required. The name of the lineage event to get.
@@ -524,7 +524,7 @@ pub struct GetLineageEventRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[ListLineageEvents\]\[google.cloud.datacatalog.lineage.v1.ListLineageEvents\].
+/// [ListLineageEvents][google.cloud.datacatalog.lineage.v1.ListLineageEvents].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLineageEventsRequest {
     /// Required. The name of the run that owns the collection of lineage events to
@@ -547,7 +547,7 @@ pub struct ListLineageEventsRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[ListLineageEvents\]\[google.cloud.datacatalog.lineage.v1.ListLineageEvents\].
+/// [ListLineageEvents][google.cloud.datacatalog.lineage.v1.ListLineageEvents].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLineageEventsResponse {
     /// Lineage events from the specified project and location.
@@ -559,7 +559,7 @@ pub struct ListLineageEventsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[DeleteLineageEvent\]\[google.cloud.datacatalog.lineage.v1.DeleteLineageEvent\].
+/// [DeleteLineageEvent][google.cloud.datacatalog.lineage.v1.DeleteLineageEvent].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLineageEventRequest {
     /// Required. The name of the lineage event to delete.
@@ -571,7 +571,7 @@ pub struct DeleteLineageEventRequest {
     pub allow_missing: bool,
 }
 /// Request message for
-/// \[SearchLinks\]\[google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks\].
+/// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchLinksRequest {
     /// Required. The project and location you want search in.
@@ -612,7 +612,7 @@ pub mod search_links_request {
     }
 }
 /// Response message for
-/// \[SearchLinks\]\[google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks\].
+/// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchLinksResponse {
     /// The list of links for a given asset. Can be empty if the asset has no
@@ -649,7 +649,7 @@ pub struct Link {
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Request message for
-/// \[BatchSearchLinkProcesses\]\[google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses\].
+/// [BatchSearchLinkProcesses][google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchSearchLinkProcessesRequest {
     /// Required. The project and location where you want to search.
@@ -678,7 +678,7 @@ pub struct BatchSearchLinkProcessesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[BatchSearchLinkProcesses\]\[google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses\].
+/// [BatchSearchLinkProcesses][google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchSearchLinkProcessesResponse {
     /// An array of processes associated with the specified links.
@@ -734,9 +734,10 @@ pub struct Origin {
     /// location parts of the resource name must match the project and location of
     /// the lineage resource being created. Examples:
     ///
-    /// * `{source_type: COMPOSER, name: "projects/foo/locations/us/environments/bar"}`
-    /// * `{source_type: BIGQUERY, name: "projects/foo/locations/eu"}`
-    /// * `{source_type: CUSTOM,   name: "myCustomIntegration"}`
+    /// - `{source_type: COMPOSER, name:
+    ///    "projects/foo/locations/us/environments/bar"}`
+    /// - `{source_type: BIGQUERY, name: "projects/foo/locations/eu"}`
+    /// - `{source_type: CUSTOM,   name: "myCustomIntegration"}`
     #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
 }
@@ -778,13 +779,13 @@ pub mod origin {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SourceType::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
-                SourceType::Custom => "CUSTOM",
-                SourceType::Bigquery => "BIGQUERY",
-                SourceType::DataFusion => "DATA_FUSION",
-                SourceType::Composer => "COMPOSER",
-                SourceType::LookerStudio => "LOOKER_STUDIO",
-                SourceType::Dataproc => "DATAPROC",
+                Self::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
+                Self::Custom => "CUSTOM",
+                Self::Bigquery => "BIGQUERY",
+                Self::DataFusion => "DATA_FUSION",
+                Self::Composer => "COMPOSER",
+                Self::LookerStudio => "LOOKER_STUDIO",
+                Self::Dataproc => "DATAPROC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -804,11 +805,17 @@ pub mod origin {
 }
 /// Generated client implementations.
 pub mod lineage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Lineage is used to track data flows between assets over time. You can
-    /// create \[LineageEvents\]\[google.cloud.datacatalog.lineage.v1.LineageEvent\]
+    /// create [LineageEvents][google.cloud.datacatalog.lineage.v1.LineageEvent]
     /// to record lineage between multiple sources and a single target, for
     /// example, when table data is based on data from multiple tables.
     #[derive(Debug, Clone)]
@@ -895,8 +902,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -923,8 +929,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -951,8 +956,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -979,8 +983,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1011,8 +1014,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1042,8 +1044,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1070,8 +1071,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1098,8 +1098,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1126,8 +1125,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1158,8 +1156,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1189,8 +1186,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1217,8 +1213,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1245,8 +1240,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1277,8 +1271,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1305,8 +1298,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1344,8 +1336,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1371,7 +1362,7 @@ pub mod lineage_client {
         /// If you have specific link names, you can use this method to
         /// verify which LineageProcesses contribute to creating those links.
         /// See the
-        /// \[SearchLinks\]\[google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks\]
+        /// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]
         /// method for more information on how to retrieve link name.
         ///
         /// You can retrieve the LineageProcess information in every project where you
@@ -1388,8 +1379,7 @@ pub mod lineage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

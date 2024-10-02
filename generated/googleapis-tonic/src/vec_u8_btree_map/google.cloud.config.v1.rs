@@ -23,7 +23,8 @@ pub struct Deployment {
     #[prost(enumeration = "deployment::State", tag = "5")]
     pub state: i32,
     /// Output only. Revision name that was most recently applied.
-    /// Format: `projects/{project}/locations/{location}/deployments/{deployment}/ revisions/{revision}`
+    /// Format: `projects/{project}/locations/{location}/deployments/{deployment}/
+    /// revisions/{revision}`
     #[prost(string, tag = "7")]
     pub latest_revision: ::prost::alloc::string::String,
     /// Output only. Additional information regarding the current state.
@@ -58,10 +59,9 @@ pub struct Deployment {
     /// A default bucket will be bootstrapped if the field is not set or empty.
     /// Default bucket format: `gs://<project number>-<region>-blueprint-config`
     /// Constraints:
-    ///
-    /// * The bucket needs to be in the same project as the deployment
-    /// * The path cannot be within the path of `gcs_source`
-    /// * The field cannot be updated, including changing its presence
+    /// - The bucket needs to be in the same project as the deployment
+    /// - The path cannot be within the path of `gcs_source`
+    /// - The field cannot be updated, including changing its presence
     #[prost(string, optional, tag = "15")]
     pub artifacts_gcs_bucket: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. User-specified Service Account (SA) credentials to be used when
@@ -155,14 +155,14 @@ pub mod deployment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
-                State::Suspended => "SUSPENDED",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Active => "ACTIVE",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
+                Self::Suspended => "SUSPENDED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -219,15 +219,15 @@ pub mod deployment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
-                ErrorCode::RevisionFailed => "REVISION_FAILED",
-                ErrorCode::CloudBuildPermissionDenied => "CLOUD_BUILD_PERMISSION_DENIED",
-                ErrorCode::DeleteBuildApiFailed => "DELETE_BUILD_API_FAILED",
-                ErrorCode::DeleteBuildRunFailed => "DELETE_BUILD_RUN_FAILED",
-                ErrorCode::BucketCreationPermissionDenied => {
+                Self::Unspecified => "ERROR_CODE_UNSPECIFIED",
+                Self::RevisionFailed => "REVISION_FAILED",
+                Self::CloudBuildPermissionDenied => "CLOUD_BUILD_PERMISSION_DENIED",
+                Self::DeleteBuildApiFailed => "DELETE_BUILD_API_FAILED",
+                Self::DeleteBuildRunFailed => "DELETE_BUILD_RUN_FAILED",
+                Self::BucketCreationPermissionDenied => {
                     "BUCKET_CREATION_PERMISSION_DENIED"
                 }
-                ErrorCode::BucketCreationFailed => "BUCKET_CREATION_FAILED",
+                Self::BucketCreationFailed => "BUCKET_CREATION_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -282,13 +282,13 @@ pub mod deployment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LockState::Unspecified => "LOCK_STATE_UNSPECIFIED",
-                LockState::Locked => "LOCKED",
-                LockState::Unlocked => "UNLOCKED",
-                LockState::Locking => "LOCKING",
-                LockState::Unlocking => "UNLOCKING",
-                LockState::LockFailed => "LOCK_FAILED",
-                LockState::UnlockFailed => "UNLOCK_FAILED",
+                Self::Unspecified => "LOCK_STATE_UNSPECIFIED",
+                Self::Locked => "LOCKED",
+                Self::Unlocked => "UNLOCKED",
+                Self::Locking => "LOCKING",
+                Self::Unlocking => "UNLOCKING",
+                Self::LockFailed => "LOCK_FAILED",
+                Self::UnlockFailed => "UNLOCK_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -399,27 +399,25 @@ pub struct ListDeploymentsRequest {
     pub page_token: ::prost::alloc::string::String,
     /// Lists the Deployments that match the filter expression. A filter
     /// expression filters the resources listed in the response. The expression
-    /// must be of the form '{field} {operator} {value}' where operators: '\<', '>',
-    /// '\<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
+    /// must be of the form '{field} {operator} {value}' where operators: '<', '>',
+    /// '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
     /// operator which is roughly synonymous with equality). {field} can refer to a
     /// proto or JSON field, or a synthetic field. Field names can be camelCase or
     /// snake_case.
     ///
     /// Examples:
+    /// - Filter by name:
+    ///    name = "projects/foo/locations/us-central1/deployments/bar
     ///
-    /// * Filter by name:
-    ///   name = "projects/foo/locations/us-central1/deployments/bar
+    /// - Filter by labels:
+    ///    - Resources that have a key called 'foo'
+    ///      labels.foo:*
+    ///    - Resources that have a key called 'foo' whose value is 'bar'
+    ///      labels.foo = bar
     ///
-    /// * Filter by labels:
-    ///
-    ///   * Resources that have a key called 'foo'
-    ///     labels.foo:\*
-    ///   * Resources that have a key called 'foo' whose value is 'bar'
-    ///     labels.foo = bar
-    /// * Filter by state:
-    ///
-    ///   * Deployments in CREATING state.
-    ///     state=CREATING
+    /// - Filter by state:
+    ///    - Deployments in CREATING state.
+    ///      state=CREATING
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Field to use to sort the list.
@@ -428,7 +426,7 @@ pub struct ListDeploymentsRequest {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeploymentsResponse {
-    /// List of \[Deployment\]\[google.cloud.config.v1.Deployment\]s.
+    /// List of [Deployment][google.cloud.config.v1.Deployment]s.
     #[prost(message, repeated, tag = "1")]
     pub deployments: ::prost::alloc::vec::Vec<Deployment>,
     /// Token to be supplied to the next ListDeployments request via `page_token`
@@ -465,27 +463,25 @@ pub struct ListRevisionsRequest {
     pub page_token: ::prost::alloc::string::String,
     /// Lists the Revisions that match the filter expression. A filter
     /// expression filters the resources listed in the response. The expression
-    /// must be of the form '{field} {operator} {value}' where operators: '\<', '>',
-    /// '\<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
+    /// must be of the form '{field} {operator} {value}' where operators: '<', '>',
+    /// '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
     /// operator which is roughly synonymous with equality). {field} can refer to a
     /// proto or JSON field, or a synthetic field. Field names can be camelCase or
     /// snake_case.
     ///
     /// Examples:
+    /// - Filter by name:
+    ///    name = "projects/foo/locations/us-central1/deployments/dep/revisions/bar
     ///
-    /// * Filter by name:
-    ///   name = "projects/foo/locations/us-central1/deployments/dep/revisions/bar
+    /// - Filter by labels:
+    ///    - Resources that have a key called 'foo'
+    ///      labels.foo:*
+    ///    - Resources that have a key called 'foo' whose value is 'bar'
+    ///      labels.foo = bar
     ///
-    /// * Filter by labels:
-    ///
-    ///   * Resources that have a key called 'foo'
-    ///     labels.foo:\*
-    ///   * Resources that have a key called 'foo' whose value is 'bar'
-    ///     labels.foo = bar
-    /// * Filter by state:
-    ///
-    ///   * Revisions in CREATING state.
-    ///     state=CREATING
+    /// - Filter by state:
+    ///    - Revisions in CREATING state.
+    ///      state=CREATING
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Field to use to sort the list.
@@ -495,7 +491,7 @@ pub struct ListRevisionsRequest {
 /// A response to a 'ListRevisions' call. Contains a list of Revisions.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRevisionsResponse {
-    /// List of \[Revision\]\[google.cloud.config.v1.Revision\]s.
+    /// List of [Revision][google.cloud.config.v1.Revision]s.
     #[prost(message, repeated, tag = "1")]
     pub revisions: ::prost::alloc::vec::Vec<Revision>,
     /// A token to request the next page of resources from the 'ListRevisions'
@@ -524,7 +520,7 @@ pub struct CreateDeploymentRequest {
     /// Required. The Deployment ID.
     #[prost(string, tag = "2")]
     pub deployment_id: ::prost::alloc::string::String,
-    /// Required. \[Deployment\]\[google.cloud.config.v1.Deployment\] resource to be
+    /// Required. [Deployment][google.cloud.config.v1.Deployment] resource to be
     /// created.
     #[prost(message, optional, tag = "3")]
     pub deployment: ::core::option::Option<Deployment>,
@@ -554,7 +550,7 @@ pub struct UpdateDeploymentRequest {
     /// user does not provide a mask then all fields will be overwritten.
     #[prost(message, optional, tag = "1")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    /// Required. \[Deployment\]\[google.cloud.config.v1.Deployment\] to update.
+    /// Required. [Deployment][google.cloud.config.v1.Deployment] to update.
     ///
     /// The deployment's `name` field is used to identify the resource to be
     /// updated. Format:
@@ -639,9 +635,9 @@ pub mod delete_deployment_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeletePolicy::Unspecified => "DELETE_POLICY_UNSPECIFIED",
-                DeletePolicy::Delete => "DELETE",
-                DeletePolicy::Abandon => "ABANDON",
+                Self::Unspecified => "DELETE_POLICY_UNSPECIFIED",
+                Self::Delete => "DELETE",
+                Self::Abandon => "ABANDON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -675,8 +671,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation of the
     /// operation. Operations that have successfully been cancelled have
-    /// \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -708,7 +704,8 @@ pub mod operation_metadata {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Revision {
     /// Revision name. Format:
-    /// `projects/{project}/locations/{location}/deployments/{deployment}/ revisions/{revision}`
+    /// `projects/{project}/locations/{location}/deployments/{deployment}/
+    /// revisions/{revision}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Time when the revision was created.
@@ -823,10 +820,10 @@ pub mod revision {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Create => "CREATE",
-                Action::Update => "UPDATE",
-                Action::Delete => "DELETE",
+                Self::Unspecified => "ACTION_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Update => "UPDATE",
+                Self::Delete => "DELETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -870,10 +867,10 @@ pub mod revision {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Applying => "APPLYING",
-                State::Applied => "APPLIED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Applying => "APPLYING",
+                Self::Applied => "APPLIED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -922,11 +919,11 @@ pub mod revision {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
-                ErrorCode::CloudBuildPermissionDenied => "CLOUD_BUILD_PERMISSION_DENIED",
-                ErrorCode::ApplyBuildApiFailed => "APPLY_BUILD_API_FAILED",
-                ErrorCode::ApplyBuildRunFailed => "APPLY_BUILD_RUN_FAILED",
-                ErrorCode::QuotaValidationFailed => "QUOTA_VALIDATION_FAILED",
+                Self::Unspecified => "ERROR_CODE_UNSPECIFIED",
+                Self::CloudBuildPermissionDenied => "CLOUD_BUILD_PERMISSION_DENIED",
+                Self::ApplyBuildApiFailed => "APPLY_BUILD_API_FAILED",
+                Self::ApplyBuildRunFailed => "APPLY_BUILD_RUN_FAILED",
+                Self::QuotaValidationFailed => "QUOTA_VALIDATION_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1052,19 +1049,19 @@ pub mod deployment_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeploymentStep::Unspecified => "DEPLOYMENT_STEP_UNSPECIFIED",
-                DeploymentStep::PreparingStorageBucket => "PREPARING_STORAGE_BUCKET",
-                DeploymentStep::DownloadingBlueprint => "DOWNLOADING_BLUEPRINT",
-                DeploymentStep::RunningTfInit => "RUNNING_TF_INIT",
-                DeploymentStep::RunningTfPlan => "RUNNING_TF_PLAN",
-                DeploymentStep::RunningTfApply => "RUNNING_TF_APPLY",
-                DeploymentStep::RunningTfDestroy => "RUNNING_TF_DESTROY",
-                DeploymentStep::RunningTfValidate => "RUNNING_TF_VALIDATE",
-                DeploymentStep::UnlockingDeployment => "UNLOCKING_DEPLOYMENT",
-                DeploymentStep::Succeeded => "SUCCEEDED",
-                DeploymentStep::Failed => "FAILED",
-                DeploymentStep::ValidatingRepository => "VALIDATING_REPOSITORY",
-                DeploymentStep::RunningQuotaValidation => "RUNNING_QUOTA_VALIDATION",
+                Self::Unspecified => "DEPLOYMENT_STEP_UNSPECIFIED",
+                Self::PreparingStorageBucket => "PREPARING_STORAGE_BUCKET",
+                Self::DownloadingBlueprint => "DOWNLOADING_BLUEPRINT",
+                Self::RunningTfInit => "RUNNING_TF_INIT",
+                Self::RunningTfPlan => "RUNNING_TF_PLAN",
+                Self::RunningTfApply => "RUNNING_TF_APPLY",
+                Self::RunningTfDestroy => "RUNNING_TF_DESTROY",
+                Self::RunningTfValidate => "RUNNING_TF_VALIDATE",
+                Self::UnlockingDeployment => "UNLOCKING_DEPLOYMENT",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::ValidatingRepository => "VALIDATING_REPOSITORY",
+                Self::RunningQuotaValidation => "RUNNING_QUOTA_VALIDATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1152,12 +1149,12 @@ pub mod resource {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Intent::Unspecified => "INTENT_UNSPECIFIED",
-                Intent::Create => "CREATE",
-                Intent::Update => "UPDATE",
-                Intent::Delete => "DELETE",
-                Intent::Recreate => "RECREATE",
-                Intent::Unchanged => "UNCHANGED",
+                Self::Unspecified => "INTENT_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Update => "UPDATE",
+                Self::Delete => "DELETE",
+                Self::Recreate => "RECREATE",
+                Self::Unchanged => "UNCHANGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1205,11 +1202,11 @@ pub mod resource {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Planned => "PLANNED",
-                State::InProgress => "IN_PROGRESS",
-                State::Reconciled => "RECONCILED",
-                State::Failed => "FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Planned => "PLANNED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Reconciled => "RECONCILED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1274,18 +1271,17 @@ pub struct ListResourcesRequest {
     pub page_token: ::prost::alloc::string::String,
     /// Lists the Resources that match the filter expression. A filter
     /// expression filters the resources listed in the response. The expression
-    /// must be of the form '{field} {operator} {value}' where operators: '\<', '>',
-    /// '\<=',
+    /// must be of the form '{field} {operator} {value}' where operators: '<', '>',
+    /// '<=',
     /// '>=',
     /// '!=', '=', ':' are supported (colon ':' represents a HAS operator which is
     /// roughly synonymous with equality). {field} can refer to a proto or JSON
     /// field, or a synthetic field. Field names can be camelCase or snake_case.
     ///
     /// Examples:
-    ///
-    /// * Filter by name:
-    ///   name =
-    ///   "projects/foo/locations/us-central1/deployments/dep/revisions/bar/resources/baz
+    /// - Filter by name:
+    ///    name =
+    ///    "projects/foo/locations/us-central1/deployments/dep/revisions/bar/resources/baz
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Field to use to sort the list.
@@ -1295,7 +1291,7 @@ pub struct ListResourcesRequest {
 /// A response to a 'ListResources' call. Contains a list of Resources.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListResourcesResponse {
-    /// List of \[Resources\]\[\]s.
+    /// List of [Resources][]s.
     #[prost(message, repeated, tag = "1")]
     pub resources: ::prost::alloc::vec::Vec<Resource>,
     /// A token to request the next page of resources from the 'ListResources'
@@ -1459,11 +1455,10 @@ pub struct Preview {
     /// A default bucket will be bootstrapped if the field is not set or empty
     /// Default Bucket Format: `gs://<project number>-<region>-blueprint-config`
     /// Constraints:
-    ///
-    /// * The bucket needs to be in the same project as the deployment
-    /// * The path cannot be within the path of `gcs_source`
-    ///   If omitted and deployment resource ref provided has artifacts_gcs_bucket
-    ///   defined, that artifact bucket is used.
+    /// - The bucket needs to be in the same project as the deployment
+    /// - The path cannot be within the path of `gcs_source`
+    /// If omitted and deployment resource ref provided has artifacts_gcs_bucket
+    /// defined, that artifact bucket is used.
     #[prost(string, optional, tag = "8")]
     pub artifacts_gcs_bucket: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. The user-specified Worker Pool resource in which the Cloud Build
@@ -1551,14 +1546,14 @@ pub mod preview {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Succeeded => "SUCCEEDED",
-                State::Applying => "APPLYING",
-                State::Stale => "STALE",
-                State::Deleting => "DELETING",
-                State::Failed => "FAILED",
-                State::Deleted => "DELETED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Applying => "APPLYING",
+                Self::Stale => "STALE",
+                Self::Deleting => "DELETING",
+                Self::Failed => "FAILED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1605,9 +1600,9 @@ pub mod preview {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PreviewMode::Unspecified => "PREVIEW_MODE_UNSPECIFIED",
-                PreviewMode::Default => "DEFAULT",
-                PreviewMode::Delete => "DELETE",
+                Self::Unspecified => "PREVIEW_MODE_UNSPECIFIED",
+                Self::Default => "DEFAULT",
+                Self::Delete => "DELETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1656,17 +1651,15 @@ pub mod preview {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
-                ErrorCode::CloudBuildPermissionDenied => "CLOUD_BUILD_PERMISSION_DENIED",
-                ErrorCode::BucketCreationPermissionDenied => {
+                Self::Unspecified => "ERROR_CODE_UNSPECIFIED",
+                Self::CloudBuildPermissionDenied => "CLOUD_BUILD_PERMISSION_DENIED",
+                Self::BucketCreationPermissionDenied => {
                     "BUCKET_CREATION_PERMISSION_DENIED"
                 }
-                ErrorCode::BucketCreationFailed => "BUCKET_CREATION_FAILED",
-                ErrorCode::DeploymentLockAcquireFailed => {
-                    "DEPLOYMENT_LOCK_ACQUIRE_FAILED"
-                }
-                ErrorCode::PreviewBuildApiFailed => "PREVIEW_BUILD_API_FAILED",
-                ErrorCode::PreviewBuildRunFailed => "PREVIEW_BUILD_RUN_FAILED",
+                Self::BucketCreationFailed => "BUCKET_CREATION_FAILED",
+                Self::DeploymentLockAcquireFailed => "DEPLOYMENT_LOCK_ACQUIRE_FAILED",
+                Self::PreviewBuildApiFailed => "PREVIEW_BUILD_API_FAILED",
+                Self::PreviewBuildRunFailed => "PREVIEW_BUILD_RUN_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1758,17 +1751,17 @@ pub mod preview_operation_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PreviewStep::Unspecified => "PREVIEW_STEP_UNSPECIFIED",
-                PreviewStep::PreparingStorageBucket => "PREPARING_STORAGE_BUCKET",
-                PreviewStep::DownloadingBlueprint => "DOWNLOADING_BLUEPRINT",
-                PreviewStep::RunningTfInit => "RUNNING_TF_INIT",
-                PreviewStep::RunningTfPlan => "RUNNING_TF_PLAN",
-                PreviewStep::FetchingDeployment => "FETCHING_DEPLOYMENT",
-                PreviewStep::LockingDeployment => "LOCKING_DEPLOYMENT",
-                PreviewStep::UnlockingDeployment => "UNLOCKING_DEPLOYMENT",
-                PreviewStep::Succeeded => "SUCCEEDED",
-                PreviewStep::Failed => "FAILED",
-                PreviewStep::ValidatingRepository => "VALIDATING_REPOSITORY",
+                Self::Unspecified => "PREVIEW_STEP_UNSPECIFIED",
+                Self::PreparingStorageBucket => "PREPARING_STORAGE_BUCKET",
+                Self::DownloadingBlueprint => "DOWNLOADING_BLUEPRINT",
+                Self::RunningTfInit => "RUNNING_TF_INIT",
+                Self::RunningTfPlan => "RUNNING_TF_PLAN",
+                Self::FetchingDeployment => "FETCHING_DEPLOYMENT",
+                Self::LockingDeployment => "LOCKING_DEPLOYMENT",
+                Self::UnlockingDeployment => "UNLOCKING_DEPLOYMENT",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::ValidatingRepository => "VALIDATING_REPOSITORY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1812,7 +1805,7 @@ pub struct CreatePreviewRequest {
     /// Optional. The preview ID.
     #[prost(string, tag = "2")]
     pub preview_id: ::prost::alloc::string::String,
-    /// Required. \[Preview\]\[google.cloud.config.v1.Preview\] resource to be created.
+    /// Required. [Preview][google.cloud.config.v1.Preview] resource to be created.
     #[prost(message, optional, tag = "3")]
     pub preview: ::core::option::Option<Preview>,
     /// Optional. An optional request ID to identify requests. Specify a unique
@@ -1858,27 +1851,25 @@ pub struct ListPreviewsRequest {
     pub page_token: ::prost::alloc::string::String,
     /// Optional. Lists the Deployments that match the filter expression. A filter
     /// expression filters the resources listed in the response. The expression
-    /// must be of the form '{field} {operator} {value}' where operators: '\<', '>',
-    /// '\<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
+    /// must be of the form '{field} {operator} {value}' where operators: '<', '>',
+    /// '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
     /// operator which is roughly synonymous with equality). {field} can refer to a
     /// proto or JSON field, or a synthetic field. Field names can be camelCase or
     /// snake_case.
     ///
     /// Examples:
+    /// - Filter by name:
+    ///    name = "projects/foo/locations/us-central1/deployments/bar
     ///
-    /// * Filter by name:
-    ///   name = "projects/foo/locations/us-central1/deployments/bar
+    /// - Filter by labels:
+    ///    - Resources that have a key called 'foo'
+    ///      labels.foo:*
+    ///    - Resources that have a key called 'foo' whose value is 'bar'
+    ///      labels.foo = bar
     ///
-    /// * Filter by labels:
-    ///
-    ///   * Resources that have a key called 'foo'
-    ///     labels.foo:\*
-    ///   * Resources that have a key called 'foo' whose value is 'bar'
-    ///     labels.foo = bar
-    /// * Filter by state:
-    ///
-    ///   * Deployments in CREATING state.
-    ///     state=CREATING
+    /// - Filter by state:
+    ///    - Deployments in CREATING state.
+    ///      state=CREATING
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. Field to use to sort the list.
@@ -1888,7 +1879,7 @@ pub struct ListPreviewsRequest {
 /// A response to a `ListPreviews` call. Contains a list of Previews.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPreviewsResponse {
-    /// List of \[Previews\]\[\]s.
+    /// List of [Previews][]s.
     #[prost(message, repeated, tag = "1")]
     pub previews: ::prost::alloc::vec::Vec<Preview>,
     /// Token to be supplied to the next ListPreviews request via `page_token`
@@ -1977,8 +1968,8 @@ pub struct ListTerraformVersionsRequest {
     /// Optional. Lists the TerraformVersions that match the filter expression. A
     /// filter expression filters the resources listed in the response. The
     /// expression must be of the form '{field} {operator} {value}' where
-    /// operators: '\<', '>',
-    /// '\<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
+    /// operators: '<', '>',
+    /// '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
     /// operator which is roughly synonymous with equality). {field} can refer to a
     /// proto or JSON field, or a synthetic field. Field names can be camelCase or
     /// snake_case.
@@ -1991,7 +1982,7 @@ pub struct ListTerraformVersionsRequest {
 /// The response message for the `ListTerraformVersions` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTerraformVersionsResponse {
-    /// List of \[TerraformVersion\]\[google.cloud.config.v1.TerraformVersion\]s.
+    /// List of [TerraformVersion][google.cloud.config.v1.TerraformVersion]s.
     #[prost(message, repeated, tag = "1")]
     pub terraform_versions: ::prost::alloc::vec::Vec<TerraformVersion>,
     /// Token to be supplied to the next ListTerraformVersions request via
@@ -2055,10 +2046,10 @@ pub mod terraform_version {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deprecated => "DEPRECATED",
-                State::Obsolete => "OBSOLETE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Deprecated => "DEPRECATED",
+                Self::Obsolete => "OBSOLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2096,9 +2087,9 @@ impl QuotaValidation {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            QuotaValidation::Unspecified => "QUOTA_VALIDATION_UNSPECIFIED",
-            QuotaValidation::Enabled => "ENABLED",
-            QuotaValidation::Enforced => "ENFORCED",
+            Self::Unspecified => "QUOTA_VALIDATION_UNSPECIFIED",
+            Self::Enabled => "ENABLED",
+            Self::Enforced => "ENFORCED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2113,7 +2104,13 @@ impl QuotaValidation {
 }
 /// Generated client implementations.
 pub mod config_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Infrastructure Manager is a managed service that automates the deployment and
@@ -2187,7 +2184,7 @@ pub mod config_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists \[Deployment\]\[google.cloud.config.v1.Deployment\]s in a given project
+        /// Lists [Deployment][google.cloud.config.v1.Deployment]s in a given project
         /// and location.
         pub async fn list_deployments(
             &mut self,
@@ -2200,8 +2197,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2216,7 +2212,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a \[Deployment\]\[google.cloud.config.v1.Deployment\].
+        /// Gets details about a [Deployment][google.cloud.config.v1.Deployment].
         pub async fn get_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeploymentRequest>,
@@ -2225,8 +2221,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2241,7 +2236,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a \[Deployment\]\[google.cloud.config.v1.Deployment\].
+        /// Creates a [Deployment][google.cloud.config.v1.Deployment].
         pub async fn create_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeploymentRequest>,
@@ -2253,8 +2248,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2269,7 +2263,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates a \[Deployment\]\[google.cloud.config.v1.Deployment\].
+        /// Updates a [Deployment][google.cloud.config.v1.Deployment].
         pub async fn update_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDeploymentRequest>,
@@ -2281,8 +2275,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2297,7 +2290,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a \[Deployment\]\[google.cloud.config.v1.Deployment\].
+        /// Deletes a [Deployment][google.cloud.config.v1.Deployment].
         pub async fn delete_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDeploymentRequest>,
@@ -2309,8 +2302,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2325,7 +2317,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists \[Revision\]\[google.cloud.config.v1.Revision\]s of a deployment.
+        /// Lists [Revision][google.cloud.config.v1.Revision]s of a deployment.
         pub async fn list_revisions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRevisionsRequest>,
@@ -2337,8 +2329,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2353,7 +2344,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a \[Revision\]\[google.cloud.config.v1.Revision\].
+        /// Gets details about a [Revision][google.cloud.config.v1.Revision].
         pub async fn get_revision(
             &mut self,
             request: impl tonic::IntoRequest<super::GetRevisionRequest>,
@@ -2362,8 +2353,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2376,7 +2366,7 @@ pub mod config_client {
                 .insert(GrpcMethod::new("google.cloud.config.v1.Config", "GetRevision"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a \[Resource\]\[google.cloud.config.v1.Resource\] deployed
+        /// Gets details about a [Resource][google.cloud.config.v1.Resource] deployed
         /// by Infra Manager.
         pub async fn get_resource(
             &mut self,
@@ -2386,8 +2376,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2400,7 +2389,7 @@ pub mod config_client {
                 .insert(GrpcMethod::new("google.cloud.config.v1.Config", "GetResource"));
             self.inner.unary(req, path, codec).await
         }
-        /// Lists \[Resource\]\[google.cloud.config.v1.Resource\]s in a given revision.
+        /// Lists [Resource][google.cloud.config.v1.Resource]s in a given revision.
         pub async fn list_resources(
             &mut self,
             request: impl tonic::IntoRequest<super::ListResourcesRequest>,
@@ -2412,8 +2401,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2437,8 +2425,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2465,8 +2452,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2494,8 +2480,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2519,8 +2504,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2547,8 +2531,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2575,8 +2558,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2600,8 +2582,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2616,7 +2597,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a \[Preview\]\[google.cloud.config.v1.Preview\].
+        /// Creates a [Preview][google.cloud.config.v1.Preview].
         pub async fn create_preview(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePreviewRequest>,
@@ -2628,8 +2609,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2644,7 +2624,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a \[Preview\]\[google.cloud.config.v1.Preview\].
+        /// Gets details about a [Preview][google.cloud.config.v1.Preview].
         pub async fn get_preview(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPreviewRequest>,
@@ -2653,8 +2633,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2667,7 +2646,7 @@ pub mod config_client {
                 .insert(GrpcMethod::new("google.cloud.config.v1.Config", "GetPreview"));
             self.inner.unary(req, path, codec).await
         }
-        /// Lists \[Preview\]\[google.cloud.config.v1.Preview\]s in a given project and
+        /// Lists [Preview][google.cloud.config.v1.Preview]s in a given project and
         /// location.
         pub async fn list_previews(
             &mut self,
@@ -2680,8 +2659,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2696,7 +2674,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a \[Preview\]\[google.cloud.config.v1.Preview\].
+        /// Deletes a [Preview][google.cloud.config.v1.Preview].
         pub async fn delete_preview(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePreviewRequest>,
@@ -2708,8 +2686,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2724,7 +2701,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Export \[Preview\]\[google.cloud.config.v1.Preview\] results.
+        /// Export [Preview][google.cloud.config.v1.Preview] results.
         pub async fn export_preview_result(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportPreviewResultRequest>,
@@ -2736,8 +2713,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2755,7 +2731,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists \[TerraformVersion\]\[google.cloud.config.v1.TerraformVersion\]s in a
+        /// Lists [TerraformVersion][google.cloud.config.v1.TerraformVersion]s in a
         /// given project and location.
         pub async fn list_terraform_versions(
             &mut self,
@@ -2768,8 +2744,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2788,7 +2763,7 @@ pub mod config_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets details about a
-        /// \[TerraformVersion\]\[google.cloud.config.v1.TerraformVersion\].
+        /// [TerraformVersion][google.cloud.config.v1.TerraformVersion].
         pub async fn get_terraform_version(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTerraformVersionRequest>,
@@ -2800,8 +2775,7 @@ pub mod config_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

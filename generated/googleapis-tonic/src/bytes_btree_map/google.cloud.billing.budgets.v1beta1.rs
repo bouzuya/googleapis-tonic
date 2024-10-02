@@ -12,7 +12,7 @@ pub struct Budget {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// User data for display name in UI.
-    /// Validation: \<= 60 chars.
+    /// Validation: <= 60 chars.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// Optional. Filters that define which resources are used to compute the
@@ -62,22 +62,22 @@ pub mod budget_amount {
         SpecifiedAmount(super::super::super::super::super::r#type::Money),
         /// Use the last period's actual spend as the budget for the present period.
         /// LastPeriodAmount can only be set when the budget's time period is a
-        /// \[Filter.calendar_period\]\[google.cloud.billing.budgets.v1beta1.Filter.calendar_period\].
+        /// [Filter.calendar_period][google.cloud.billing.budgets.v1beta1.Filter.calendar_period].
         /// It cannot be set in combination with
-        /// \[Filter.custom_period\]\[google.cloud.billing.budgets.v1beta1.Filter.custom_period\].
+        /// [Filter.custom_period][google.cloud.billing.budgets.v1beta1.Filter.custom_period].
         #[prost(message, tag = "2")]
         LastPeriodAmount(super::LastPeriodAmount),
     }
 }
 /// Describes a budget amount targeted to the last
-/// \[Filter.calendar_period\]\[google.cloud.billing.budgets.v1beta1.Filter.calendar_period\]
+/// [Filter.calendar_period][google.cloud.billing.budgets.v1beta1.Filter.calendar_period]
 /// spend. At this time, the amount is automatically 100% of the last calendar
 /// period's spend; that is, there are no other options yet.
 /// Future configuration options will be described here (for example, configuring
 /// a percentage of last period's spend).
 /// LastPeriodAmount cannot be set for a budget configured with
 /// a
-/// \[Filter.custom_period\]\[google.cloud.billing.budgets.v1beta1.Filter.custom_period\].
+/// [Filter.custom_period][google.cloud.billing.budgets.v1beta1.Filter.custom_period].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LastPeriodAmount {}
 /// ThresholdRule contains the definition of a threshold. Threshold rules define
@@ -92,9 +92,9 @@ pub struct LastPeriodAmount {}
 /// object](<https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format>)
 /// sent to a Pub/Sub topic.
 ///
-/// Threshold rules are *required* if using email notifications.
+/// Threshold rules are _required_ if using email notifications.
 ///
-/// Threshold rules are *optional* if only setting a
+/// Threshold rules are _optional_ if only setting a
 /// [`pubsubTopic` NotificationsRule](#NotificationsRule),
 /// unless you want your JSON data object to include data about the thresholds
 /// you set.
@@ -137,9 +137,9 @@ pub mod threshold_rule {
         /// Use forecasted spend for the period as the basis for comparison against
         /// the threshold.
         /// FORECASTED_SPEND can only be set when the budget's time period is a
-        /// \[Filter.calendar_period\]\[google.cloud.billing.budgets.v1beta1.Filter.calendar_period\].
+        /// [Filter.calendar_period][google.cloud.billing.budgets.v1beta1.Filter.calendar_period].
         /// It cannot be set in combination with
-        /// \[Filter.custom_period\]\[google.cloud.billing.budgets.v1beta1.Filter.custom_period\].
+        /// [Filter.custom_period][google.cloud.billing.budgets.v1beta1.Filter.custom_period].
         ForecastedSpend = 2,
     }
     impl Basis {
@@ -149,9 +149,9 @@ pub mod threshold_rule {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Basis::Unspecified => "BASIS_UNSPECIFIED",
-                Basis::CurrentSpend => "CURRENT_SPEND",
-                Basis::ForecastedSpend => "FORECASTED_SPEND",
+                Self::Unspecified => "BASIS_UNSPECIFIED",
+                Self::CurrentSpend => "CURRENT_SPEND",
+                Self::ForecastedSpend => "FORECASTED_SPEND",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -183,9 +183,9 @@ pub struct AllUpdatesRule {
     #[prost(string, tag = "1")]
     pub pubsub_topic: ::prost::alloc::string::String,
     /// Optional. Required when
-    /// \[AllUpdatesRule.pubsub_topic\]\[google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic\]
+    /// [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]
     /// is set. The schema version of the notification sent to
-    /// \[AllUpdatesRule.pubsub_topic\]\[google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic\].
+    /// [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic].
     /// Only "1.0" is accepted. It represents the JSON schema as defined in
     /// <https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.>
     #[prost(string, tag = "2")]
@@ -237,14 +237,14 @@ pub struct Filter {
     #[prost(string, repeated, tag = "2")]
     pub resource_ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. If
-    /// \[Filter.credit_types_treatment\]\[google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment\]
+    /// [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
     /// is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be
     /// subtracted from gross cost to determine the spend for threshold
     /// calculations. See [a list of acceptable credit type
     /// values](<https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type>).
     ///
     /// If
-    /// \[Filter.credit_types_treatment\]\[google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment\]
+    /// [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
     /// is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
     #[prost(string, repeated, tag = "7")]
     pub credit_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -271,10 +271,11 @@ pub struct Filter {
     /// this set of labeled resources should be included in the budget. If omitted,
     /// the report will include all labeled and unlabeled usage.
     ///
-    /// An object containing a single `"key": value` pair. Example: `{ "name": "wrench" }`.
+    /// An object containing a single `"key": value` pair. Example: `{ "name":
+    /// "wrench" }`.
     ///
-    /// *Currently, multiple entries or multiple values per entry are not
-    /// allowed.*
+    ///   _Currently, multiple entries or multiple values per entry are not
+    ///   allowed._
     #[prost(btree_map = "string, message", tag = "6")]
     pub labels: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -326,12 +327,10 @@ pub mod filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CreditTypesTreatment::Unspecified => "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
-                CreditTypesTreatment::IncludeAllCredits => "INCLUDE_ALL_CREDITS",
-                CreditTypesTreatment::ExcludeAllCredits => "EXCLUDE_ALL_CREDITS",
-                CreditTypesTreatment::IncludeSpecifiedCredits => {
-                    "INCLUDE_SPECIFIED_CREDITS"
-                }
+                Self::Unspecified => "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
+                Self::IncludeAllCredits => "INCLUDE_ALL_CREDITS",
+                Self::ExcludeAllCredits => "EXCLUDE_ALL_CREDITS",
+                Self::IncludeSpecifiedCredits => "INCLUDE_SPECIFIED_CREDITS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -402,10 +401,10 @@ impl CalendarPeriod {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            CalendarPeriod::Unspecified => "CALENDAR_PERIOD_UNSPECIFIED",
-            CalendarPeriod::Month => "MONTH",
-            CalendarPeriod::Quarter => "QUARTER",
-            CalendarPeriod::Year => "YEAR",
+            Self::Unspecified => "CALENDAR_PERIOD_UNSPECIFIED",
+            Self::Month => "MONTH",
+            Self::Quarter => "QUARTER",
+            Self::Year => "YEAR",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -500,7 +499,13 @@ pub struct DeleteBudgetRequest {
 }
 /// Generated client implementations.
 pub mod budget_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// BudgetService stores Cloud Billing budgets, which define a
@@ -585,8 +590,7 @@ pub mod budget_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -617,8 +621,7 @@ pub mod budget_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -650,8 +653,7 @@ pub mod budget_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -686,8 +688,7 @@ pub mod budget_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -714,8 +715,7 @@ pub mod budget_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

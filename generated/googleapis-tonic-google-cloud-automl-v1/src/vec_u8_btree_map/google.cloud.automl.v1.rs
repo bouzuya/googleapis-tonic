@@ -91,7 +91,7 @@ pub mod classification_evaluation_metrics {
         /// for each example.
         #[prost(float, tag = "9")]
         pub false_positive_rate_at1: f32,
-        /// Output only. The harmonic mean of \[recall_at1\]\[google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1\] and \[precision_at1\]\[google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1\].
+        /// Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
         #[prost(float, tag = "7")]
         pub f1_score_at1: f32,
         /// Output only. The number of model created labels that match a ground truth
@@ -116,14 +116,14 @@ pub mod classification_evaluation_metrics {
     pub struct ConfusionMatrix {
         /// Output only. IDs of the annotation specs used in the confusion matrix.
         /// For Tables CLASSIFICATION
-        /// \[prediction_type\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type\]
-        /// only list of \[annotation_spec_display_name-s\]\[\] is populated.
+        /// [prediction_type][google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type]
+        /// only list of [annotation_spec_display_name-s][] is populated.
         #[prost(string, repeated, tag = "1")]
         pub annotation_spec_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         /// Output only. Display name of the annotation specs used in the confusion
         /// matrix, as they were at the moment of the evaluation. For Tables
         /// CLASSIFICATION
-        /// \[prediction_type-s\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type\],
+        /// [prediction_type-s][google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type],
         /// distinct values of the target column at the moment of the model
         /// evaluation are populated here.
         #[prost(string, repeated, tag = "3")]
@@ -144,7 +144,7 @@ pub mod classification_evaluation_metrics {
             /// Output only. Value of the specific cell in the confusion matrix.
             /// The number of values each row has (i.e. the length of the row) is equal
             /// to the length of the `annotation_spec_id` field or, if that one is not
-            /// populated, length of the \[display_name\]\[google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name\] field.
+            /// populated, length of the [display_name][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
             #[prost(int32, repeated, tag = "1")]
             pub example_count: ::prost::alloc::vec::Vec<i32>,
         }
@@ -168,9 +168,9 @@ impl ClassificationType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ClassificationType::Unspecified => "CLASSIFICATION_TYPE_UNSPECIFIED",
-            ClassificationType::Multiclass => "MULTICLASS",
-            ClassificationType::Multilabel => "MULTILABEL",
+            Self::Unspecified => "CLASSIFICATION_TYPE_UNSPECIFIED",
+            Self::Multiclass => "MULTICLASS",
+            Self::Multilabel => "MULTILABEL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -352,14 +352,14 @@ pub mod text_extraction_evaluation_metrics {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TextSentimentAnnotation {
     /// Output only. The sentiment with the semantic, as given to the
-    /// \[AutoMl.ImportData\]\[google.cloud.automl.v1.AutoMl.ImportData\] when populating the dataset from which the model used
+    /// [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when populating the dataset from which the model used
     /// for the prediction had been trained.
     /// The sentiment values are between 0 and
     /// Dataset.text_sentiment_dataset_metadata.sentiment_max (inclusive),
     /// with higher value meaning more positive sentiment. They are completely
     /// relative, i.e. 0 means least positive sentiment and sentiment_max means
     /// the most positive from the sentiments present in the train data. Therefore
-    /// e.g. if train data had only negative sentiment, then sentiment_max, would
+    ///   e.g. if train data had only negative sentiment, then sentiment_max, would
     /// be still negative (although least negative).
     /// The sentiment shouldn't be confused with "score" or "magnitude"
     /// from the previous Natural Language Sentiment Analysis API.
@@ -402,11 +402,11 @@ pub struct TextSentimentEvaluationMetrics {
         classification_evaluation_metrics::ConfusionMatrix,
     >,
 }
-/// Input configuration for \[AutoMl.ImportData\]\[google.cloud.automl.v1.AutoMl.ImportData\] action.
+/// Input configuration for [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] action.
 ///
 /// The format of input depends on dataset_metadata the Dataset into which
 /// the import is happening has. As input source the
-/// \[gcs_source\]\[google.cloud.automl.v1.InputConfig.gcs_source\]
+/// [gcs_source][google.cloud.automl.v1.InputConfig.gcs_source]
 /// is expected, unless specified otherwise. Additionally any input .CSV file
 /// by itself must be 100MB or smaller, unless specified otherwise.
 /// If an "example" file (that is, image, video etc.) with identical content
@@ -419,6 +419,8 @@ pub struct TextSentimentEvaluationMetrics {
 /// non-terminal symbols defined near the end of this comment. The formats are:
 ///
 /// <h4>AutoML Vision</h4>
+///
+///
 /// <div class="ds-selector-tabs"><section><h5>Classification</h5>
 ///
 /// See [Preparing your training
@@ -427,24 +429,22 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// CSV file(s) with each line in format:
 ///
-/// ```text
-/// ML_USE,GCS_FILE_PATH,LABEL,LABEL,...
-/// ```
+///      ML_USE,GCS_FILE_PATH,LABEL,LABEL,...
 ///
-/// * `ML_USE` - Identifies the data set that the current row (file) applies
-///   to.
-///   This value can be one of the following:
+/// *   `ML_USE` - Identifies the data set that the current row (file) applies
+/// to.
+///      This value can be one of the following:
+///      * `TRAIN` - Rows in this file are used to train the model.
+///      * `TEST` - Rows in this file are used to test the model during training.
+///      * `UNASSIGNED` - Rows in this file are not categorized. They are
+///         Automatically divided into train and test data. 80% for training and
+///         20% for testing.
 ///
-///   * `TRAIN` - Rows in this file are used to train the model.
-///   * `TEST` - Rows in this file are used to test the model during training.
-///   * `UNASSIGNED` - Rows in this file are not categorized. They are
-///     Automatically divided into train and test data. 80% for training and
-///     20% for testing.
-/// * `GCS_FILE_PATH` - The Google Cloud Storage location of an image of up to
-///   30MB in size. Supported extensions: .JPEG, .GIF, .PNG, .WEBP, .BMP,
-///   .TIFF, .ICO.
+/// *   `GCS_FILE_PATH` - The Google Cloud Storage location of an image of up to
+///       30MB in size. Supported extensions: .JPEG, .GIF, .PNG, .WEBP, .BMP,
+///       .TIFF, .ICO.
 ///
-/// * `LABEL` - A label that identifies the object in the image.
+/// *   `LABEL` - A label that identifies the object in the image.
 ///
 /// For the `MULTICLASS` classification type, at most one `LABEL` is allowed
 /// per image. If an image has not yet been labeled, then it should be
@@ -452,12 +452,11 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// Some sample rows:
 ///
-/// ```text
-/// TRAIN,gs://folder/image1.jpg,daisy
-/// TEST,gs://folder/image2.jpg,dandelion,tulip,rose
-/// UNASSIGNED,gs://folder/image3.jpg,daisy
-/// UNASSIGNED,gs://folder/image4.jpg
-/// ```
+///      TRAIN,gs://folder/image1.jpg,daisy
+///      TEST,gs://folder/image2.jpg,dandelion,tulip,rose
+///      UNASSIGNED,gs://folder/image3.jpg,daisy
+///      UNASSIGNED,gs://folder/image4.jpg
+///
 ///
 /// </section><section><h5>Object Detection</h5>
 /// See [Preparing your training
@@ -466,45 +465,44 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// A CSV file(s) with each line in format:
 ///
-/// ```text
-/// ML_USE,GCS_FILE_PATH,\[LABEL\],(BOUNDING_BOX | ,,,,,,,)
-/// ```
+///      ML_USE,GCS_FILE_PATH,\[LABEL\],(BOUNDING_BOX | ,,,,,,,)
 ///
-/// * `ML_USE` - Identifies the data set that the current row (file) applies
-///   to.
-///   This value can be one of the following:
+/// *   `ML_USE` - Identifies the data set that the current row (file) applies
+/// to.
+///      This value can be one of the following:
+///      * `TRAIN` - Rows in this file are used to train the model.
+///      * `TEST` - Rows in this file are used to test the model during training.
+///      * `UNASSIGNED` - Rows in this file are not categorized. They are
+///         Automatically divided into train and test data. 80% for training and
+///         20% for testing.
 ///
-///   * `TRAIN` - Rows in this file are used to train the model.
-///   * `TEST` - Rows in this file are used to test the model during training.
-///   * `UNASSIGNED` - Rows in this file are not categorized. They are
-///     Automatically divided into train and test data. 80% for training and
-///     20% for testing.
-/// * `GCS_FILE_PATH` - The Google Cloud Storage location of an image of up to
-///   30MB in size. Supported extensions: .JPEG, .GIF, .PNG. Each image
-///   is assumed to be exhaustively labeled.
+/// *  `GCS_FILE_PATH` - The Google Cloud Storage location of an image of up to
+///      30MB in size. Supported extensions: .JPEG, .GIF, .PNG. Each image
+///      is assumed to be exhaustively labeled.
 ///
-/// * `LABEL` - A label that identifies the object in the image specified by the
-///   `BOUNDING_BOX`.
+/// *  `LABEL` - A label that identifies the object in the image specified by the
+///     `BOUNDING_BOX`.
 ///
-/// * `BOUNDING BOX` - The vertices of an object in the example image.
-///   The minimum allowed `BOUNDING_BOX` edge length is 0.01, and no more than
-///   500 `BOUNDING_BOX` instances per image are allowed (one `BOUNDING_BOX`
-///   per line). If an image has no looked for objects then it should be
-///   mentioned just once with no LABEL and the ",,,,,,," in place of the
-///   `BOUNDING_BOX`.
+/// *  `BOUNDING BOX` - The vertices of an object in the example image.
+///     The minimum allowed `BOUNDING_BOX` edge length is 0.01, and no more than
+///     500 `BOUNDING_BOX` instances per image are allowed (one `BOUNDING_BOX`
+///     per line). If an image has no looked for objects then it should be
+///     mentioned just once with no LABEL and the ",,,,,,," in place of the
+///    `BOUNDING_BOX`.
 ///
 /// **Four sample rows:**
 ///
-/// ```text
-/// TRAIN,gs://folder/image1.png,car,0.1,0.1,,,0.3,0.3,,
-/// TRAIN,gs://folder/image1.png,bike,.7,.6,,,.8,.9,,
-/// UNASSIGNED,gs://folder/im2.png,car,0.1,0.1,0.2,0.1,0.2,0.3,0.1,0.3
-/// TEST,gs://folder/im3.png,,,,,,,,,
-/// ```
-///
-/// </section>
+///      TRAIN,gs://folder/image1.png,car,0.1,0.1,,,0.3,0.3,,
+///      TRAIN,gs://folder/image1.png,bike,.7,.6,,,.8,.9,,
+///      UNASSIGNED,gs://folder/im2.png,car,0.1,0.1,0.2,0.1,0.2,0.3,0.1,0.3
+///      TEST,gs://folder/im3.png,,,,,,,,,
+///    </section>
 /// </div>
+///
+///
 /// <h4>AutoML Video Intelligence</h4>
+///
+///
 /// <div class="ds-selector-tabs"><section><h5>Classification</h5>
 ///
 /// See [Preparing your training
@@ -513,18 +511,14 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// CSV file(s) with each line in format:
 ///
-/// ```text
-/// ML_USE,GCS_FILE_PATH
-/// ```
+///      ML_USE,GCS_FILE_PATH
 ///
 /// For `ML_USE`, do not use `VALIDATE`.
 ///
 /// `GCS_FILE_PATH` is the path to another .csv file that describes training
 /// example for a given `ML_USE`, using the following row format:
 ///
-/// ```text
-/// GCS_FILE_PATH,(LABEL,TIME_SEGMENT_START,TIME_SEGMENT_END | ,,)
-/// ```
+///      GCS_FILE_PATH,(LABEL,TIME_SEGMENT_START,TIME_SEGMENT_END | ,,)
 ///
 /// Here `GCS_FILE_PATH` leads to a video of up to 50GB in size and up
 /// to 3h duration. Supported extensions: .MOV, .MPEG4, .MP4, .AVI.
@@ -534,24 +528,23 @@ pub struct TextSentimentEvaluationMetrics {
 /// segment of a video which has one or more labels on it, is considered a
 /// hard negative for all other labels. Any segment with no labels on
 /// it is considered to be unknown. If a whole video is unknown, then
-/// it should be mentioned just once with ",," in place of `LABEL, TIME_SEGMENT_START,TIME_SEGMENT_END`.
+/// it should be mentioned just once with ",," in place of `LABEL,
+/// TIME_SEGMENT_START,TIME_SEGMENT_END`.
 ///
 /// Sample top level CSV file:
 ///
-/// ```text
-/// TRAIN,gs://folder/train_videos.csv
-/// TEST,gs://folder/test_videos.csv
-/// UNASSIGNED,gs://folder/other_videos.csv
-/// ```
+///      TRAIN,gs://folder/train_videos.csv
+///      TEST,gs://folder/test_videos.csv
+///      UNASSIGNED,gs://folder/other_videos.csv
 ///
 /// Sample rows of a CSV file for a particular ML_USE:
 ///
-/// ```text
-/// gs://folder/video1.avi,car,120,180.000021
-/// gs://folder/video1.avi,bike,150,180.000021
-/// gs://folder/vid2.avi,car,0,60.5
-/// gs://folder/vid3.avi,,,
-/// ```
+///      gs://folder/video1.avi,car,120,180.000021
+///      gs://folder/video1.avi,bike,150,180.000021
+///      gs://folder/vid2.avi,car,0,60.5
+///      gs://folder/vid3.avi,,,
+///
+///
 ///
 /// </section><section><h5>Object Tracking</h5>
 ///
@@ -561,24 +554,18 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// CSV file(s) with each line in format:
 ///
-/// ```text
-/// ML_USE,GCS_FILE_PATH
-/// ```
+///      ML_USE,GCS_FILE_PATH
 ///
 /// For `ML_USE`, do not use `VALIDATE`.
 ///
 /// `GCS_FILE_PATH` is the path to another .csv file that describes training
 /// example for a given `ML_USE`, using the following row format:
 ///
-/// ```text
-/// GCS_FILE_PATH,LABEL,\[INSTANCE_ID\],TIMESTAMP,BOUNDING_BOX
-/// ```
+///      GCS_FILE_PATH,LABEL,\[INSTANCE_ID\],TIMESTAMP,BOUNDING_BOX
 ///
 /// or
 ///
-/// ```text
-/// GCS_FILE_PATH,,,,,,,,,,
-/// ```
+///      GCS_FILE_PATH,,,,,,,,,,
 ///
 /// Here `GCS_FILE_PATH` leads to a video of up to 50GB in size and up
 /// to 3h duration. Supported extensions: .MOV, .MPEG4, .MP4, .AVI.
@@ -592,31 +579,31 @@ pub struct TextSentimentEvaluationMetrics {
 /// to the `TIMESTAMP`. Any mentioned by the `TIMESTAMP` frame is expected
 /// to be exhaustively labeled and no more than 500 `BOUNDING_BOX`-es per
 /// frame are allowed. If a whole video is unknown, then it should be
-/// mentioned just once with ",,,,,,,,,," in place of `LABEL, \[INSTANCE_ID\],TIMESTAMP,BOUNDING_BOX`.
+/// mentioned just once with ",,,,,,,,,," in place of `LABEL,
+/// \[INSTANCE_ID\],TIMESTAMP,BOUNDING_BOX`.
 ///
 /// Sample top level CSV file:
 ///
-/// ```text
-///   TRAIN,gs://folder/train_videos.csv
-///   TEST,gs://folder/test_videos.csv
-///   UNASSIGNED,gs://folder/other_videos.csv
-/// ```
+///       TRAIN,gs://folder/train_videos.csv
+///       TEST,gs://folder/test_videos.csv
+///       UNASSIGNED,gs://folder/other_videos.csv
 ///
 /// Seven sample rows of a CSV file for a particular ML_USE:
 ///
-/// ```text
-///   gs://folder/video1.avi,car,1,12.10,0.8,0.8,0.9,0.8,0.9,0.9,0.8,0.9
-///   gs://folder/video1.avi,car,1,12.90,0.4,0.8,0.5,0.8,0.5,0.9,0.4,0.9
-///   gs://folder/video1.avi,car,2,12.10,.4,.2,.5,.2,.5,.3,.4,.3
-///   gs://folder/video1.avi,car,2,12.90,.8,.2,,,.9,.3,,
-///   gs://folder/video1.avi,bike,,12.50,.45,.45,,,.55,.55,,
-///   gs://folder/video2.avi,car,1,0,.1,.9,,,.9,.1,,
-///   gs://folder/video2.avi,,,,,,,,,,,
-/// ```
-///
-/// </section>
+///       gs://folder/video1.avi,car,1,12.10,0.8,0.8,0.9,0.8,0.9,0.9,0.8,0.9
+///       gs://folder/video1.avi,car,1,12.90,0.4,0.8,0.5,0.8,0.5,0.9,0.4,0.9
+///       gs://folder/video1.avi,car,2,12.10,.4,.2,.5,.2,.5,.3,.4,.3
+///       gs://folder/video1.avi,car,2,12.90,.8,.2,,,.9,.3,,
+///       gs://folder/video1.avi,bike,,12.50,.45,.45,,,.55,.55,,
+///       gs://folder/video2.avi,car,1,0,.1,.9,,,.9,.1,,
+///       gs://folder/video2.avi,,,,,,,,,,,
+///    </section>
 /// </div>
+///
+///
 /// <h4>AutoML Natural Language</h4>
+///
+///
 /// <div class="ds-selector-tabs"><section><h5>Entity Extraction</h5>
 ///
 /// See [Preparing your training
@@ -625,22 +612,20 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// One or more CSV file(s) with each line in the following format:
 ///
-/// ```text
-/// ML_USE,GCS_FILE_PATH
-/// ```
+///      ML_USE,GCS_FILE_PATH
 ///
-/// * `ML_USE` - Identifies the data set that the current row (file) applies
-///   to.
-///   This value can be one of the following:
+/// *   `ML_USE` - Identifies the data set that the current row (file) applies
+/// to.
+///      This value can be one of the following:
+///      * `TRAIN` - Rows in this file are used to train the model.
+///      * `TEST` - Rows in this file are used to test the model during training.
+///      * `UNASSIGNED` - Rows in this file are not categorized. They are
+///         Automatically divided into train and test data. 80% for training and
+///         20% for testing..
 ///
-///   * `TRAIN` - Rows in this file are used to train the model.
-///   * `TEST` - Rows in this file are used to test the model during training.
-///   * `UNASSIGNED` - Rows in this file are not categorized. They are
-///     Automatically divided into train and test data. 80% for training and
-///     20% for testing..
-/// * `GCS_FILE_PATH` - a Identifies JSON Lines (.JSONL) file stored in
-///   Google Cloud Storage that contains in-line text in-line as documents
-///   for model training.
+/// *   `GCS_FILE_PATH` - a Identifies JSON Lines (.JSONL) file stored in
+///       Google Cloud Storage that contains in-line text in-line as documents
+///       for model training.
 ///
 /// After the training data set has been determined from the `TRAIN` and
 /// `UNASSIGNED` CSV files, the training data is divided into train and
@@ -648,17 +633,15 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// For example:
 ///
-/// ```text
-/// TRAIN,gs://folder/file1.jsonl
-/// VALIDATE,gs://folder/file2.jsonl
-/// TEST,gs://folder/file3.jsonl
-/// ```
+///      TRAIN,gs://folder/file1.jsonl
+///      VALIDATE,gs://folder/file2.jsonl
+///      TEST,gs://folder/file3.jsonl
 ///
 /// **In-line JSONL files**
 ///
 /// In-line .JSONL files contain, per line, a JSON document that wraps a
-/// \[`text_snippet`\]\[google.cloud.automl.v1.TextSnippet\] field followed by
-/// one or more \[`annotations`\]\[google.cloud.automl.v1.AnnotationPayload\]
+/// [`text_snippet`][google.cloud.automl.v1.TextSnippet] field followed by
+/// one or more [`annotations`][google.cloud.automl.v1.AnnotationPayload]
 /// fields, which have `display_name` and `text_extraction` fields to describe
 /// the entity from the text snippet. Multiple JSON documents can be separated
 /// using line breaks (\n).
@@ -673,46 +656,44 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// For example:
 ///
-/// ```text
-/// {
-///    "text_snippet": {
-///      "content": "dog car cat"
-///    },
-///    "annotations": [
-///       {
-///         "display_name": "animal",
-///         "text_extraction": {
-///           "text_segment": {"start_offset": 0, "end_offset": 2}
-///        }
-///       },
-///       {
-///        "display_name": "vehicle",
-///         "text_extraction": {
-///           "text_segment": {"start_offset": 4, "end_offset": 6}
-///         }
-///       },
-///       {
-///         "display_name": "animal",
-///         "text_extraction": {
-///           "text_segment": {"start_offset": 8, "end_offset": 10}
-///         }
-///       }
-///   ]
-/// }\n
-/// {
-///     "text_snippet": {
-///       "content": "This dog is good."
-///     },
-///     "annotations": [
-///        {
-///          "display_name": "animal",
-///          "text_extraction": {
-///            "text_segment": {"start_offset": 5, "end_offset": 7}
-///          }
-///        }
-///     ]
-/// }
-/// ```
+///      {
+///        "text_snippet": {
+///          "content": "dog car cat"
+///        },
+///        "annotations": [
+///           {
+///             "display_name": "animal",
+///             "text_extraction": {
+///               "text_segment": {"start_offset": 0, "end_offset": 2}
+///            }
+///           },
+///           {
+///            "display_name": "vehicle",
+///             "text_extraction": {
+///               "text_segment": {"start_offset": 4, "end_offset": 6}
+///             }
+///           },
+///           {
+///             "display_name": "animal",
+///             "text_extraction": {
+///               "text_segment": {"start_offset": 8, "end_offset": 10}
+///             }
+///           }
+///       ]
+///      }\n
+///      {
+///         "text_snippet": {
+///           "content": "This dog is good."
+///         },
+///         "annotations": [
+///            {
+///              "display_name": "animal",
+///              "text_extraction": {
+///                "text_segment": {"start_offset": 5, "end_offset": 7}
+///              }
+///            }
+///         ]
+///      }
 ///
 /// **JSONL files that reference documents**
 ///
@@ -724,24 +705,22 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// For example:
 ///
-/// ```text
-/// {
-///    "document": {
-///      "input_config": {
-///        "gcs_source": { "input_uris": \[ "gs://folder/document1.pdf" \]
+///      {
+///        "document": {
+///          "input_config": {
+///            "gcs_source": { "input_uris": \[ "gs://folder/document1.pdf" \]
+///            }
+///          }
+///        }
+///      }\n
+///      {
+///        "document": {
+///          "input_config": {
+///            "gcs_source": { "input_uris": \[ "gs://folder/document2.tif" \]
+///            }
+///          }
 ///        }
 ///      }
-///    }
-/// }\n
-/// {
-///    "document": {
-///      "input_config": {
-///        "gcs_source": { "input_uris": \[ "gs://folder/document2.tif" \]
-///        }
-///      }
-///    }
-/// }
-/// ```
 ///
 /// **In-line JSONL files with document layout information**
 ///
@@ -754,58 +733,59 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// For example:
 ///
-/// ```text
-/// {
-///    "document": {
-///            "document_text": {
-///              "content": "dog car cat"
-///            }
-///            "layout": [
-///              {
-///                "text_segment": {
-///                  "start_offset": 0,
-///                  "end_offset": 11,
-///                 },
-///                 "page_number": 1,
-///                 "bounding_poly": {
-///                    "normalized_vertices": [
-///                      {"x": 0.1, "y": 0.1},
-///                      {"x": 0.1, "y": 0.3},
-///                      {"x": 0.3, "y": 0.3},
-///                      {"x": 0.3, "y": 0.1},
-///                    ],
-///                  },
-///                  "text_segment_type": TOKEN,
-///              }
-///            ],
-///            "document_dimensions": {
-///              "width": 8.27,
-///              "height": 11.69,
-///              "unit": INCH,
-///            }
-///            "page_count": 3,
-///          },
-///          "annotations": [
-///            {
-///              "display_name": "animal",
-///              "text_extraction": {
-///                "text_segment": {"start_offset": 0, "end_offset": 3}
-///              }
-///            },
-///            {
-///              "display_name": "vehicle",
-///              "text_extraction": {
-///                "text_segment": {"start_offset": 4, "end_offset": 7}
-///              }
-///            },
-///            {
-///              "display_name": "animal",
-///              "text_extraction": {
-///                "text_segment": {"start_offset": 8, "end_offset": 11}
-///              }
-///            },
-///          ],
-/// ```
+///      {
+///        "document": {
+///                "document_text": {
+///                  "content": "dog car cat"
+///                }
+///                "layout": [
+///                  {
+///                    "text_segment": {
+///                      "start_offset": 0,
+///                      "end_offset": 11,
+///                     },
+///                     "page_number": 1,
+///                     "bounding_poly": {
+///                        "normalized_vertices": [
+///                          {"x": 0.1, "y": 0.1},
+///                          {"x": 0.1, "y": 0.3},
+///                          {"x": 0.3, "y": 0.3},
+///                          {"x": 0.3, "y": 0.1},
+///                        ],
+///                      },
+///                      "text_segment_type": TOKEN,
+///                  }
+///                ],
+///                "document_dimensions": {
+///                  "width": 8.27,
+///                  "height": 11.69,
+///                  "unit": INCH,
+///                }
+///                "page_count": 3,
+///              },
+///              "annotations": [
+///                {
+///                  "display_name": "animal",
+///                  "text_extraction": {
+///                    "text_segment": {"start_offset": 0, "end_offset": 3}
+///                  }
+///                },
+///                {
+///                  "display_name": "vehicle",
+///                  "text_extraction": {
+///                    "text_segment": {"start_offset": 4, "end_offset": 7}
+///                  }
+///                },
+///                {
+///                  "display_name": "animal",
+///                  "text_extraction": {
+///                    "text_segment": {"start_offset": 8, "end_offset": 11}
+///                  }
+///                },
+///              ],
+///
+///
+///
 ///
 /// </section><section><h5>Classification</h5>
 ///
@@ -815,46 +795,44 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// One or more CSV file(s) with each line in the following format:
 ///
-/// ```text
-/// ML_USE,(TEXT_SNIPPET | GCS_FILE_PATH),LABEL,LABEL,...
-/// ```
+///      ML_USE,(TEXT_SNIPPET | GCS_FILE_PATH),LABEL,LABEL,...
 ///
-/// * `ML_USE` - Identifies the data set that the current row (file) applies
-///   to.
-///   This value can be one of the following:
+/// *   `ML_USE` - Identifies the data set that the current row (file) applies
+/// to.
+///      This value can be one of the following:
+///      * `TRAIN` - Rows in this file are used to train the model.
+///      * `TEST` - Rows in this file are used to test the model during training.
+///      * `UNASSIGNED` - Rows in this file are not categorized. They are
+///         Automatically divided into train and test data. 80% for training and
+///         20% for testing.
 ///
-///   * `TRAIN` - Rows in this file are used to train the model.
-///   * `TEST` - Rows in this file are used to test the model during training.
-///   * `UNASSIGNED` - Rows in this file are not categorized. They are
-///     Automatically divided into train and test data. 80% for training and
-///     20% for testing.
-/// * `TEXT_SNIPPET` and `GCS_FILE_PATH` are distinguished by a pattern. If
-///   the column content is a valid Google Cloud Storage file path, that is,
-///   prefixed by "gs://", it is treated as a `GCS_FILE_PATH`. Otherwise, if
-///   the content is enclosed in double quotes (""), it is treated as a
-///   `TEXT_SNIPPET`. For `GCS_FILE_PATH`, the path must lead to a
-///   file with supported extension and UTF-8 encoding, for example,
-///   "gs://folder/content.txt" AutoML imports the file content
-///   as a text snippet. For `TEXT_SNIPPET`, AutoML imports the column content
-///   excluding quotes. In both cases, size of the content must be 10MB or
-///   less in size. For zip files, the size of each file inside the zip must be
-///   10MB or less in size.
+/// *   `TEXT_SNIPPET` and `GCS_FILE_PATH` are distinguished by a pattern. If
+///      the column content is a valid Google Cloud Storage file path, that is,
+///      prefixed by "gs://", it is treated as a `GCS_FILE_PATH`. Otherwise, if
+///      the content is enclosed in double quotes (""), it is treated as a
+///      `TEXT_SNIPPET`. For `GCS_FILE_PATH`, the path must lead to a
+///      file with supported extension and UTF-8 encoding, for example,
+///      "gs://folder/content.txt" AutoML imports the file content
+///      as a text snippet. For `TEXT_SNIPPET`, AutoML imports the column content
+///      excluding quotes. In both cases, size of the content must be 10MB or
+///      less in size. For zip files, the size of each file inside the zip must be
+///      10MB or less in size.
 ///
-///   For the `MULTICLASS` classification type, at most one `LABEL` is allowed.
+///      For the `MULTICLASS` classification type, at most one `LABEL` is allowed.
 ///
-///   The `ML_USE` and `LABEL` columns are optional.
-///   Supported file extensions: .TXT, .PDF, .TIF, .TIFF, .ZIP
+///      The `ML_USE` and `LABEL` columns are optional.
+///      Supported file extensions: .TXT, .PDF, .TIF, .TIFF, .ZIP
 ///
 /// A maximum of 100 unique labels are allowed per CSV row.
 ///
 /// Sample rows:
 ///
-/// ```text
-/// TRAIN,"They have bad food and very rude",RudeService,BadFood
-/// gs://folder/content.txt,SlowService
-/// TEST,gs://folder/document.pdf
-/// VALIDATE,gs://folder/text_files.zip,BadFood
-/// ```
+///      TRAIN,"They have bad food and very rude",RudeService,BadFood
+///      gs://folder/content.txt,SlowService
+///      TEST,gs://folder/document.pdf
+///      VALIDATE,gs://folder/text_files.zip,BadFood
+///
+///
 ///
 /// </section><section><h5>Sentiment Analysis</h5>
 ///
@@ -864,62 +842,60 @@ pub struct TextSentimentEvaluationMetrics {
 ///
 /// CSV file(s) with each line in format:
 ///
-/// ```text
-/// ML_USE,(TEXT_SNIPPET | GCS_FILE_PATH),SENTIMENT
-/// ```
+///      ML_USE,(TEXT_SNIPPET | GCS_FILE_PATH),SENTIMENT
 ///
-/// * `ML_USE` - Identifies the data set that the current row (file) applies
-///   to.
-///   This value can be one of the following:
+/// *   `ML_USE` - Identifies the data set that the current row (file) applies
+/// to.
+///      This value can be one of the following:
+///      * `TRAIN` - Rows in this file are used to train the model.
+///      * `TEST` - Rows in this file are used to test the model during training.
+///      * `UNASSIGNED` - Rows in this file are not categorized. They are
+///         Automatically divided into train and test data. 80% for training and
+///         20% for testing.
 ///
-///   * `TRAIN` - Rows in this file are used to train the model.
-///   * `TEST` - Rows in this file are used to test the model during training.
-///   * `UNASSIGNED` - Rows in this file are not categorized. They are
-///     Automatically divided into train and test data. 80% for training and
-///     20% for testing.
-/// * `TEXT_SNIPPET` and `GCS_FILE_PATH` are distinguished by a pattern. If
-///   the column content is a valid  Google Cloud Storage file path, that is,
-///   prefixed by "gs://", it is treated as a `GCS_FILE_PATH`. Otherwise, if
-///   the content is enclosed in double quotes (""), it is treated as a
-///   `TEXT_SNIPPET`. For `GCS_FILE_PATH`, the path must lead to a
-///   file with supported extension and UTF-8 encoding, for example,
-///   "gs://folder/content.txt" AutoML imports the file content
-///   as a text snippet. For `TEXT_SNIPPET`, AutoML imports the column content
-///   excluding quotes. In both cases, size of the content must be 128kB or
-///   less in size. For zip files, the size of each file inside the zip must be
-///   128kB or less in size.
+/// *   `TEXT_SNIPPET` and `GCS_FILE_PATH` are distinguished by a pattern. If
+///      the column content is a valid  Google Cloud Storage file path, that is,
+///      prefixed by "gs://", it is treated as a `GCS_FILE_PATH`. Otherwise, if
+///      the content is enclosed in double quotes (""), it is treated as a
+///      `TEXT_SNIPPET`. For `GCS_FILE_PATH`, the path must lead to a
+///      file with supported extension and UTF-8 encoding, for example,
+///      "gs://folder/content.txt" AutoML imports the file content
+///      as a text snippet. For `TEXT_SNIPPET`, AutoML imports the column content
+///      excluding quotes. In both cases, size of the content must be 128kB or
+///      less in size. For zip files, the size of each file inside the zip must be
+///      128kB or less in size.
 ///
-///   The `ML_USE` and `SENTIMENT` columns are optional.
-///   Supported file extensions: .TXT, .PDF, .TIF, .TIFF, .ZIP
+///      The `ML_USE` and `SENTIMENT` columns are optional.
+///      Supported file extensions: .TXT, .PDF, .TIF, .TIFF, .ZIP
 ///
-/// * `SENTIMENT` - An integer between 0 and
-///   Dataset.text_sentiment_dataset_metadata.sentiment_max
-///   (inclusive). Describes the ordinal of the sentiment - higher
-///   value means a more positive sentiment. All the values are
-///   completely relative, i.e. neither 0 needs to mean a negative or
-///   neutral sentiment nor sentiment_max needs to mean a positive one -
-///   it is just required that 0 is the least positive sentiment
-///   in the data, and sentiment_max is the  most positive one.
-///   The SENTIMENT shouldn't be confused with "score" or "magnitude"
-///   from the previous Natural Language Sentiment Analysis API.
-///   All SENTIMENT values between 0 and sentiment_max must be
-///   represented in the imported data. On prediction the same 0 to
-///   sentiment_max range will be used. The difference between
-///   neighboring sentiment values needs not to be uniform, e.g. 1 and
-///   2 may be similar whereas the difference between 2 and 3 may be
-///   large.
+/// *  `SENTIMENT` - An integer between 0 and
+///      Dataset.text_sentiment_dataset_metadata.sentiment_max
+///      (inclusive). Describes the ordinal of the sentiment - higher
+///      value means a more positive sentiment. All the values are
+///      completely relative, i.e. neither 0 needs to mean a negative or
+///      neutral sentiment nor sentiment_max needs to mean a positive one -
+///      it is just required that 0 is the least positive sentiment
+///      in the data, and sentiment_max is the  most positive one.
+///      The SENTIMENT shouldn't be confused with "score" or "magnitude"
+///      from the previous Natural Language Sentiment Analysis API.
+///      All SENTIMENT values between 0 and sentiment_max must be
+///      represented in the imported data. On prediction the same 0 to
+///      sentiment_max range will be used. The difference between
+///      neighboring sentiment values needs not to be uniform, e.g. 1 and
+///      2 may be similar whereas the difference between 2 and 3 may be
+///      large.
 ///
 /// Sample rows:
 ///
-/// ```text
-/// TRAIN,"@freewrytin this is way too good for your product",2
-/// gs://folder/content.txt,3
-/// TEST,gs://folder/document.pdf
-/// VALIDATE,gs://folder/text_files.zip,2
-/// ```
-///
-/// </section>
+///      TRAIN,"@freewrytin this is way too good for your product",2
+///      gs://folder/content.txt,3
+///      TEST,gs://folder/document.pdf
+///      VALIDATE,gs://folder/text_files.zip,2
+///    </section>
 /// </div>
+///
+///
+///
 /// <h4>AutoML Tables</h4><div class="ui-datasection-main"><section
 /// class="selected">
 ///
@@ -928,11 +904,11 @@ pub struct TextSentimentEvaluationMetrics {
 /// information.
 ///
 /// You can use either
-/// \[gcs_source\]\[google.cloud.automl.v1.InputConfig.gcs_source\] or
-/// \[bigquery_source\]\[google.cloud.automl.v1.InputConfig.bigquery_source\].
+/// [gcs_source][google.cloud.automl.v1.InputConfig.gcs_source] or
+/// [bigquery_source][google.cloud.automl.v1.InputConfig.bigquery_source].
 /// All input is concatenated into a
 /// single
-/// \[primary_table_spec_id\]\[google.cloud.automl.v1.TablesDatasetMetadata.primary_table_spec_id\]
+/// [primary_table_spec_id][google.cloud.automl.v1.TablesDatasetMetadata.primary_table_spec_id]
 ///
 /// **For gcs_source:**
 ///
@@ -946,13 +922,11 @@ pub struct TextSentimentEvaluationMetrics {
 /// size must be 100GB or smaller.
 ///
 /// First three sample rows of a CSV file:
-///
 /// <pre>
 /// "Id","First Name","Last Name","Dob","Addresses"
 /// "1","John","Doe","1968-01-22","\[{"status":"current","address":"123_First_Avenue","city":"Seattle","state":"WA","zip":"11111","numberOfYears":"1"},{"status":"previous","address":"456_Main_Street","city":"Portland","state":"OR","zip":"22222","numberOfYears":"5"}\]"
 /// "2","Jane","Doe","1980-10-16","\[{"status":"current","address":"789_Any_Avenue","city":"Albany","state":"NY","zip":"33333","numberOfYears":"2"},{"status":"previous","address":"321_Main_Street","city":"Hoboken","state":"NJ","zip":"44444","numberOfYears":"3"}\]}
 /// </pre>
-///
 /// **For bigquery_source:**
 ///
 /// An URI of a BigQuery table. The user data size of the BigQuery
@@ -962,81 +936,84 @@ pub struct TextSentimentEvaluationMetrics {
 /// and between 1000 and 100,000,000 rows, inclusive. There are at most 5
 /// import data running in parallel.
 ///
-/// </section>
+///    </section>
 /// </div>
+///
 ///
 /// **Input field definitions:**
 ///
 /// `ML_USE`
 /// : ("TRAIN" | "VALIDATE" | "TEST" | "UNASSIGNED")
-/// Describes how the given example (file) should be used for model
-/// training. "UNASSIGNED" can be used when user has no preference.
+///    Describes how the given example (file) should be used for model
+///    training. "UNASSIGNED" can be used when user has no preference.
 ///
 /// `GCS_FILE_PATH`
 /// : The path to a file on Google Cloud Storage. For example,
-/// "gs://folder/image1.png".
+///    "gs://folder/image1.png".
 ///
 /// `LABEL`
 /// : A display name of an object on an image, video etc., e.g. "dog".
-/// Must be up to 32 characters long and can consist only of ASCII
-/// Latin letters A-Z and a-z, underscores(\_), and ASCII digits 0-9.
-/// For each label an AnnotationSpec is created which display_name
-/// becomes the label; AnnotationSpecs are given back in predictions.
+///    Must be up to 32 characters long and can consist only of ASCII
+///    Latin letters A-Z and a-z, underscores(_), and ASCII digits 0-9.
+///    For each label an AnnotationSpec is created which display_name
+///    becomes the label; AnnotationSpecs are given back in predictions.
 ///
 /// `INSTANCE_ID`
 /// : A positive integer that identifies a specific instance of a
-/// labeled entity on an example. Used e.g. to track two cars on
-/// a video while being able to tell apart which one is which.
+///    labeled entity on an example. Used e.g. to track two cars on
+///    a video while being able to tell apart which one is which.
 ///
 /// `BOUNDING_BOX`
 /// : (`VERTEX,VERTEX,VERTEX,VERTEX` | `VERTEX,,,VERTEX,,`)
-/// A rectangle parallel to the frame of the example (image,
-/// video). If 4 vertices are given they are connected by edges
-/// in the order provided, if 2 are given they are recognized
-/// as diagonally opposite vertices of the rectangle.
+///    A rectangle parallel to the frame of the example (image,
+///    video). If 4 vertices are given they are connected by edges
+///    in the order provided, if 2 are given they are recognized
+///    as diagonally opposite vertices of the rectangle.
 ///
 /// `VERTEX`
 /// : (`COORDINATE,COORDINATE`)
-/// First coordinate is horizontal (x), the second is vertical (y).
+///    First coordinate is horizontal (x), the second is vertical (y).
 ///
 /// `COORDINATE`
 /// : A float in 0 to 1 range, relative to total length of
-/// image or video in given dimension. For fractions the
-/// leading non-decimal 0 can be omitted (i.e. 0.3 = .3).
-/// Point 0,0 is in top left.
+///    image or video in given dimension. For fractions the
+///    leading non-decimal 0 can be omitted (i.e. 0.3 = .3).
+///    Point 0,0 is in top left.
 ///
 /// `TIME_SEGMENT_START`
 /// : (`TIME_OFFSET`)
-/// Expresses a beginning, inclusive, of a time segment
-/// within an example that has a time dimension
-/// (e.g. video).
+///    Expresses a beginning, inclusive, of a time segment
+///    within an example that has a time dimension
+///    (e.g. video).
 ///
 /// `TIME_SEGMENT_END`
 /// : (`TIME_OFFSET`)
-/// Expresses an end, exclusive, of a time segment within
-/// n example that has a time dimension (e.g. video).
+///    Expresses an end, exclusive, of a time segment within
+///    n example that has a time dimension (e.g. video).
 ///
 /// `TIME_OFFSET`
 /// : A number of seconds as measured from the start of an
-/// example (e.g. video). Fractions are allowed, up to a
-/// microsecond precision. "inf" is allowed, and it means the end
-/// of the example.
+///    example (e.g. video). Fractions are allowed, up to a
+///    microsecond precision. "inf" is allowed, and it means the end
+///    of the example.
 ///
 /// `TEXT_SNIPPET`
 /// : The content of a text snippet, UTF-8 encoded, enclosed within
-/// double quotes ("").
+///    double quotes ("").
 ///
 /// `DOCUMENT`
 /// : A field that provides the textual content with document and the layout
-/// information.
+///    information.
 ///
-/// **Errors:**
 ///
-/// If any of the provided CSV files can't be parsed or if more than certain
-/// percent of CSV rows cannot be processed then the operation fails and
-/// nothing is imported. Regardless of overall success or failure the per-row
-/// failures, up to a certain count cap, is listed in
-/// Operation.metadata.partial_failures.
+///   **Errors:**
+///
+///   If any of the provided CSV files can't be parsed or if more than certain
+///   percent of CSV rows cannot be processed then the operation fails and
+///   nothing is imported. Regardless of overall success or failure the per-row
+///   failures, up to a certain count cap, is listed in
+///   Operation.metadata.partial_failures.
+///
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
     /// Additional domain-specific parameters describing the semantic of the
@@ -1047,9 +1024,9 @@ pub struct InputConfig {
     ///
     /// `schema_inference_version`
     /// : (integer) This value must be supplied.
-    /// The version of the
-    /// algorithm to use for the initial inference of the
-    /// column data types of the imported table. Allowed values: "1".
+    ///    The version of the
+    ///    algorithm to use for the initial inference of the
+    ///    column data types of the imported table. Allowed values: "1".
     #[prost(btree_map = "string, string", tag = "2")]
     pub params: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -1065,8 +1042,8 @@ pub mod input_config {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Source {
         /// The Google Cloud Storage location for the input content.
-        /// For \[AutoMl.ImportData\]\[google.cloud.automl.v1.AutoMl.ImportData\], `gcs_source` points to a CSV file with
-        /// a structure described in \[InputConfig\]\[google.cloud.automl.v1.InputConfig\].
+        /// For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData], `gcs_source` points to a CSV file with
+        /// a structure described in [InputConfig][google.cloud.automl.v1.InputConfig].
         #[prost(message, tag = "1")]
         GcsSource(super::GcsSource),
     }
@@ -1075,7 +1052,7 @@ pub mod input_config {
 ///
 /// The format of input depends on the ML problem of the model used for
 /// prediction. As input source the
-/// \[gcs_source\]\[google.cloud.automl.v1.InputConfig.gcs_source\]
+/// [gcs_source][google.cloud.automl.v1.InputConfig.gcs_source]
 /// is expected, unless specified otherwise.
 ///
 /// The formats are represented in EBNF with commas being literal and with
@@ -1087,9 +1064,7 @@ pub mod input_config {
 ///
 /// One or more CSV files where each line is a single column:
 ///
-/// ```text
-/// GCS_FILE_PATH
-/// ```
+///      GCS_FILE_PATH
 ///
 /// The Google Cloud Storage location of an image of up to
 /// 30MB in size. Supported extensions: .JPEG, .GIF, .PNG.
@@ -1097,19 +1072,15 @@ pub mod input_config {
 ///
 /// Sample rows:
 ///
-/// ```text
-/// gs://folder/image1.jpeg
-/// gs://folder/image2.gif
-/// gs://folder/image3.png
-/// ```
+///      gs://folder/image1.jpeg
+///      gs://folder/image2.gif
+///      gs://folder/image3.png
 ///
 /// </section><section><h5>Object Detection</h5>
 ///
 /// One or more CSV files where each line is a single column:
 ///
-/// ```text
-/// GCS_FILE_PATH
-/// ```
+///      GCS_FILE_PATH
 ///
 /// The Google Cloud Storage location of an image of up to
 /// 30MB in size. Supported extensions: .JPEG, .GIF, .PNG.
@@ -1117,22 +1088,18 @@ pub mod input_config {
 ///
 /// Sample rows:
 ///
-/// ```text
-/// gs://folder/image1.jpeg
-/// gs://folder/image2.gif
-/// gs://folder/image3.png
-/// ```
-///
-/// </section>
+///      gs://folder/image1.jpeg
+///      gs://folder/image2.gif
+///      gs://folder/image3.png
+///    </section>
 /// </div>
+///
 /// <h4>AutoML Video Intelligence</h4>
 /// <div class="ds-selector-tabs"><section><h5>Classification</h5>
 ///
 /// One or more CSV files where each line is a single column:
 ///
-/// ```text
-/// GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END
-/// ```
+///      GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END
 ///
 /// `GCS_FILE_PATH` is the Google Cloud Storage location of video up to 50GB in
 /// size and up to 3h in duration duration.
@@ -1143,19 +1110,15 @@ pub mod input_config {
 ///
 /// Sample rows:
 ///
-/// ```text
-/// gs://folder/video1.mp4,10,40
-/// gs://folder/video1.mp4,20,60
-/// gs://folder/vid2.mov,0,inf
-/// ```
+///      gs://folder/video1.mp4,10,40
+///      gs://folder/video1.mp4,20,60
+///      gs://folder/vid2.mov,0,inf
 ///
 /// </section><section><h5>Object Tracking</h5>
 ///
 /// One or more CSV files where each line is a single column:
 ///
-/// ```text
-/// GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END
-/// ```
+///      GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END
 ///
 /// `GCS_FILE_PATH` is the Google Cloud Storage location of video up to 50GB in
 /// size and up to 3h in duration duration.
@@ -1166,22 +1129,18 @@ pub mod input_config {
 ///
 /// Sample rows:
 ///
-/// ```text
-/// gs://folder/video1.mp4,10,40
-/// gs://folder/video1.mp4,20,60
-/// gs://folder/vid2.mov,0,inf
-/// ```
-///
-/// </section>
+///      gs://folder/video1.mp4,10,40
+///      gs://folder/video1.mp4,20,60
+///      gs://folder/vid2.mov,0,inf
+///    </section>
 /// </div>
+///
 /// <h4>AutoML Natural Language</h4>
 /// <div class="ds-selector-tabs"><section><h5>Classification</h5>
 ///
 /// One or more CSV files where each line is a single column:
 ///
-/// ```text
-/// GCS_FILE_PATH
-/// ```
+///      GCS_FILE_PATH
 ///
 /// `GCS_FILE_PATH` is the Google Cloud Storage location of a text file.
 /// Supported file extensions: .TXT, .PDF, .TIF, .TIFF
@@ -1190,19 +1149,14 @@ pub mod input_config {
 ///
 /// Sample rows:
 ///
-/// ```text
-/// gs://folder/text1.txt
-/// gs://folder/text2.pdf
-/// gs://folder/text3.tif
-/// ```
+///      gs://folder/text1.txt
+///      gs://folder/text2.pdf
+///      gs://folder/text3.tif
 ///
 /// </section><section><h5>Sentiment Analysis</h5>
 /// One or more CSV files where each line is a single column:
 ///
-///
-/// ```text
-/// GCS_FILE_PATH
-/// ```
+///      GCS_FILE_PATH
 ///
 /// `GCS_FILE_PATH` is the Google Cloud Storage location of a text file.
 /// Supported file extensions: .TXT, .PDF, .TIF, .TIFF
@@ -1211,11 +1165,9 @@ pub mod input_config {
 ///
 /// Sample rows:
 ///
-/// ```text
-/// gs://folder/text1.txt
-/// gs://folder/text2.pdf
-/// gs://folder/text3.tif
-/// ```
+///      gs://folder/text1.txt
+///      gs://folder/text2.pdf
+///      gs://folder/text3.tif
 ///
 /// </section><section><h5>Entity Extraction</h5>
 ///
@@ -1242,58 +1194,54 @@ pub mod input_config {
 /// Sample inline JSONL file (Shown with artificial line
 /// breaks. Actual line breaks are denoted by "\n".):
 ///
-/// ```text
-/// {
-///     "id": "my_first_id",
-///     "text_snippet": { "content": "dog car cat"},
-///     "text_features": [
+///      {
+///         "id": "my_first_id",
+///         "text_snippet": { "content": "dog car cat"},
+///         "text_features": [
+///           {
+///             "text_segment": {"start_offset": 4, "end_offset": 6},
+///             "structural_type": PARAGRAPH,
+///             "bounding_poly": {
+///               "normalized_vertices": [
+///                 {"x": 0.1, "y": 0.1},
+///                 {"x": 0.1, "y": 0.3},
+///                 {"x": 0.3, "y": 0.3},
+///                 {"x": 0.3, "y": 0.1},
+///               ]
+///             },
+///           }
+///         ],
+///       }\n
 ///       {
-///         "text_segment": {"start_offset": 4, "end_offset": 6},
-///         "structural_type": PARAGRAPH,
-///         "bounding_poly": {
-///           "normalized_vertices": [
-///             {"x": 0.1, "y": 0.1},
-///             {"x": 0.1, "y": 0.3},
-///             {"x": 0.3, "y": 0.3},
-///             {"x": 0.3, "y": 0.1},
-///           ]
-///         },
+///         "id": "2",
+///         "text_snippet": {
+///           "content": "Extended sample content",
+///           "mime_type": "text/plain"
+///         }
 ///       }
-///     ],
-///   }\n
-///   {
-///     "id": "2",
-///     "text_snippet": {
-///       "content": "Extended sample content",
-///       "mime_type": "text/plain"
-///     }
-///   }
-/// ```
 ///
 /// Sample document JSONL file (Shown with artificial line
 /// breaks. Actual line breaks are denoted by "\n".):
 ///
-/// ```text
-///   {
-///     "document": {
-///       "input_config": {
-///         "gcs_source": { "input_uris": \[ "gs://folder/document1.pdf" \]
+///       {
+///         "document": {
+///           "input_config": {
+///             "gcs_source": { "input_uris": \[ "gs://folder/document1.pdf" \]
+///             }
+///           }
+///         }
+///       }\n
+///       {
+///         "document": {
+///           "input_config": {
+///             "gcs_source": { "input_uris": \[ "gs://folder/document2.tif" \]
+///             }
+///           }
 ///         }
 ///       }
-///     }
-///   }\n
-///   {
-///     "document": {
-///       "input_config": {
-///         "gcs_source": { "input_uris": \[ "gs://folder/document2.tif" \]
-///         }
-///       }
-///     }
-///   }
-/// ```
-///
-/// </section>
+///    </section>
 /// </div>
+///
 /// <h4>AutoML Tables</h4><div class="ui-datasection-main"><section
 /// class="selected">
 ///
@@ -1302,9 +1250,9 @@ pub mod input_config {
 /// information.
 ///
 /// You can use either
-/// \[gcs_source\]\[google.cloud.automl.v1.BatchPredictInputConfig.gcs_source\]
+/// [gcs_source][google.cloud.automl.v1.BatchPredictInputConfig.gcs_source]
 /// or
-/// \[bigquery_source\]\[BatchPredictInputConfig.bigquery_source\].
+/// [bigquery_source][BatchPredictInputConfig.bigquery_source].
 ///
 /// **For gcs_source:**
 ///
@@ -1315,67 +1263,65 @@ pub mod input_config {
 /// contain values for the corresponding columns.
 ///
 /// The column names must contain the model's
-/// \[input_feature_column_specs'\]\[google.cloud.automl.v1.TablesModelMetadata.input_feature_column_specs\]
-/// \[display_name-s\]\[google.cloud.automl.v1.ColumnSpec.display_name\]
+/// [input_feature_column_specs'][google.cloud.automl.v1.TablesModelMetadata.input_feature_column_specs]
+/// [display_name-s][google.cloud.automl.v1.ColumnSpec.display_name]
 /// (order doesn't matter). The columns corresponding to the model's
 /// input feature column specs must contain values compatible with the
 /// column spec's data types. Prediction on all the rows, i.e. the CSV
 /// lines, will be attempted.
 ///
-/// Sample rows from a CSV file:
 ///
+/// Sample rows from a CSV file:
 /// <pre>
 /// "First Name","Last Name","Dob","Addresses"
 /// "John","Doe","1968-01-22","\[{"status":"current","address":"123_First_Avenue","city":"Seattle","state":"WA","zip":"11111","numberOfYears":"1"},{"status":"previous","address":"456_Main_Street","city":"Portland","state":"OR","zip":"22222","numberOfYears":"5"}\]"
 /// "Jane","Doe","1980-10-16","\[{"status":"current","address":"789_Any_Avenue","city":"Albany","state":"NY","zip":"33333","numberOfYears":"2"},{"status":"previous","address":"321_Main_Street","city":"Hoboken","state":"NJ","zip":"44444","numberOfYears":"3"}\]}
 /// </pre>
-///
 /// **For bigquery_source:**
 ///
 /// The URI of a BigQuery table. The user data size of the BigQuery
 /// table must be 100GB or smaller.
 ///
 /// The column names must contain the model's
-/// \[input_feature_column_specs'\]\[google.cloud.automl.v1.TablesModelMetadata.input_feature_column_specs\]
-/// \[display_name-s\]\[google.cloud.automl.v1.ColumnSpec.display_name\]
+/// [input_feature_column_specs'][google.cloud.automl.v1.TablesModelMetadata.input_feature_column_specs]
+/// [display_name-s][google.cloud.automl.v1.ColumnSpec.display_name]
 /// (order doesn't matter). The columns corresponding to the model's
 /// input feature column specs must contain values compatible with the
 /// column spec's data types. Prediction on all the rows of the table
 /// will be attempted.
-///
-/// </section>
+///    </section>
 /// </div>
 ///
 /// **Input field definitions:**
 ///
 /// `GCS_FILE_PATH`
 /// : The path to a file on Google Cloud Storage. For example,
-/// "gs://folder/video.avi".
+///    "gs://folder/video.avi".
 ///
 /// `TIME_SEGMENT_START`
 /// : (`TIME_OFFSET`)
-/// Expresses a beginning, inclusive, of a time segment
-/// within an example that has a time dimension
-/// (e.g. video).
+///    Expresses a beginning, inclusive, of a time segment
+///    within an example that has a time dimension
+///    (e.g. video).
 ///
 /// `TIME_SEGMENT_END`
 /// : (`TIME_OFFSET`)
-/// Expresses an end, exclusive, of a time segment within
-/// n example that has a time dimension (e.g. video).
+///    Expresses an end, exclusive, of a time segment within
+///    n example that has a time dimension (e.g. video).
 ///
 /// `TIME_OFFSET`
 /// : A number of seconds as measured from the start of an
-/// example (e.g. video). Fractions are allowed, up to a
-/// microsecond precision. "inf" is allowed, and it means the end
-/// of the example.
+///    example (e.g. video). Fractions are allowed, up to a
+///    microsecond precision. "inf" is allowed, and it means the end
+///    of the example.
 ///
-/// **Errors:**
+///   **Errors:**
 ///
-/// If any of the provided CSV files can't be parsed or if more than certain
-/// percent of CSV rows cannot be processed then the operation fails and
-/// prediction does not happen. Regardless of overall success or failure the
-/// per-row failures, up to a certain count cap, will be listed in
-/// Operation.metadata.partial_failures.
+///   If any of the provided CSV files can't be parsed or if more than certain
+///   percent of CSV rows cannot be processed then the operation fails and
+///   prediction does not happen. Regardless of overall success or failure the
+///   per-row failures, up to a certain count cap, will be listed in
+///   Operation.metadata.partial_failures.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictInputConfig {
     /// The source of the input.
@@ -1392,7 +1338,7 @@ pub mod batch_predict_input_config {
         GcsSource(super::GcsSource),
     }
 }
-/// Input configuration of a \[Document\]\[google.cloud.automl.v1.Document\].
+/// Input configuration of a [Document][google.cloud.automl.v1.Document].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentInputConfig {
     /// The Google Cloud Storage location of the document file. Only a single path
@@ -1404,34 +1350,34 @@ pub struct DocumentInputConfig {
     #[prost(message, optional, tag = "1")]
     pub gcs_source: ::core::option::Option<GcsSource>,
 }
-/// * For Translation:
-///   CSV file `translation.csv`, with each line in format:
-///   ML_USE,GCS_FILE_PATH
-///   GCS_FILE_PATH leads to a .TSV file which describes examples that have
-///   given ML_USE, using the following row format per line:
-///   TEXT_SNIPPET (in source language) \t TEXT_SNIPPET (in target
-///   language)
+/// *  For Translation:
+///          CSV file `translation.csv`, with each line in format:
+///          ML_USE,GCS_FILE_PATH
+///          GCS_FILE_PATH leads to a .TSV file which describes examples that have
+///          given ML_USE, using the following row format per line:
+///          TEXT_SNIPPET (in source language) \t TEXT_SNIPPET (in target
+///          language)
 ///
-/// * For Tables:
-///   Output depends on whether the dataset was imported from Google Cloud
-///   Storage or BigQuery.
-///   Google Cloud Storage case:
-///   \[gcs_destination\]\[google.cloud.automl.v1p1beta.OutputConfig.gcs_destination\]
-///   must be set. Exported are CSV file(s) `tables_1.csv`,
-///   `tables_2.csv`,...,`tables_N.csv` with each having as header line
-///   the table's column names, and all other lines contain values for
-///   the header columns.
-///   BigQuery case:
-///   \[bigquery_destination\]\[google.cloud.automl.v1p1beta.OutputConfig.bigquery_destination\]
-///   pointing to a BigQuery project must be set. In the given project a
-///   new dataset will be created with name
-///   `export_data_<automl-dataset-display-name>_<timestamp-of-export-call>`
-///   where <automl-dataset-display-name> will be made
-///   BigQuery-dataset-name compatible (e.g. most special characters will
-///   become underscores), and timestamp will be in
-///   YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In that
-///   dataset a new table called `primary_table` will be created, and
-///   filled with precisely the same data as this obtained on import.
+///    *  For Tables:
+///          Output depends on whether the dataset was imported from Google Cloud
+///          Storage or BigQuery.
+///          Google Cloud Storage case:
+///            [gcs_destination][google.cloud.automl.v1p1beta.OutputConfig.gcs_destination]
+///            must be set. Exported are CSV file(s) `tables_1.csv`,
+///            `tables_2.csv`,...,`tables_N.csv` with each having as header line
+///            the table's column names, and all other lines contain values for
+///            the header columns.
+///          BigQuery case:
+///            [bigquery_destination][google.cloud.automl.v1p1beta.OutputConfig.bigquery_destination]
+///            pointing to a BigQuery project must be set. In the given project a
+///            new dataset will be created with name
+///            `export_data_<automl-dataset-display-name>_<timestamp-of-export-call>`
+///            where <automl-dataset-display-name> will be made
+///            BigQuery-dataset-name compatible (e.g. most special characters will
+///            become underscores), and timestamp will be in
+///            YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In that
+///            dataset a new table called `primary_table` will be created, and
+///            filled with precisely the same data as this obtained on import.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
     /// The destination of the output.
@@ -1456,7 +1402,7 @@ pub mod output_config {
 /// Output configuration for BatchPredict Action.
 ///
 /// As destination the
-/// \[gcs_destination\]\[google.cloud.automl.v1.BatchPredictOutputConfig.gcs_destination\]
+/// [gcs_destination][google.cloud.automl.v1.BatchPredictOutputConfig.gcs_destination]
 /// must be set unless specified otherwise for a domain. If gcs_destination is
 /// set then in the given directory a new directory is created. Its name
 /// will be
@@ -1464,255 +1410,244 @@ pub mod output_config {
 /// where timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format. The contents
 /// of it depends on the ML problem the predictions are made for.
 ///
-/// * For Image Classification:
-///   In the created directory files `image_classification_1.jsonl`,
-///   `image_classification_2.jsonl`,...,`image_classification_N.jsonl`
-///   will be created, where N may be 1, and depends on the
-///   total number of the successfully predicted images and annotations.
-///   A single image will be listed only once with all its annotations,
-///   and its annotations will never be split across files.
-///   Each .JSONL file will contain, per line, a JSON representation of a
-///   proto that wraps image's "ID" : "\<id_value>" followed by a list of
-///   zero or more AnnotationPayload protos (called annotations), which
-///   have classification detail populated.
-///   If prediction for any image failed (partially or completely), then an
-///   additional `errors_1.jsonl`, `errors_2.jsonl`,..., `errors_N.jsonl`
-///   files will be created (N depends on total number of failed
-///   predictions). These files will have a JSON representation of a proto
-///   that wraps the same "ID" : "\<id_value>" but here followed by
-///   exactly one
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   containing only `code` and `message`fields.
+///   *  For Image Classification:
+///          In the created directory files `image_classification_1.jsonl`,
+///          `image_classification_2.jsonl`,...,`image_classification_N.jsonl`
+///          will be created, where N may be 1, and depends on the
+///          total number of the successfully predicted images and annotations.
+///          A single image will be listed only once with all its annotations,
+///          and its annotations will never be split across files.
+///          Each .JSONL file will contain, per line, a JSON representation of a
+///          proto that wraps image's "ID" : "<id_value>" followed by a list of
+///          zero or more AnnotationPayload protos (called annotations), which
+///          have classification detail populated.
+///          If prediction for any image failed (partially or completely), then an
+///          additional `errors_1.jsonl`, `errors_2.jsonl`,..., `errors_N.jsonl`
+///          files will be created (N depends on total number of failed
+///          predictions). These files will have a JSON representation of a proto
+///          that wraps the same "ID" : "<id_value>" but here followed by
+///          exactly one
+///          [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///          containing only `code` and `message`fields.
 ///
-/// * For Image Object Detection:
-///   In the created directory files `image_object_detection_1.jsonl`,
-///   `image_object_detection_2.jsonl`,...,`image_object_detection_N.jsonl`
-///   will be created, where N may be 1, and depends on the
-///   total number of the successfully predicted images and annotations.
-///   Each .JSONL file will contain, per line, a JSON representation of a
-///   proto that wraps image's "ID" : "\<id_value>" followed by a list of
-///   zero or more AnnotationPayload protos (called annotations), which
-///   have image_object_detection detail populated. A single image will
-///   be listed only once with all its annotations, and its annotations
-///   will never be split across files.
-///   If prediction for any image failed (partially or completely), then
-///   additional `errors_1.jsonl`, `errors_2.jsonl`,..., `errors_N.jsonl`
-///   files will be created (N depends on total number of failed
-///   predictions). These files will have a JSON representation of a proto
-///   that wraps the same "ID" : "\<id_value>" but here followed by
-///   exactly one
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   containing only `code` and `message`fields.
+///   *  For Image Object Detection:
+///          In the created directory files `image_object_detection_1.jsonl`,
+///          `image_object_detection_2.jsonl`,...,`image_object_detection_N.jsonl`
+///          will be created, where N may be 1, and depends on the
+///          total number of the successfully predicted images and annotations.
+///          Each .JSONL file will contain, per line, a JSON representation of a
+///          proto that wraps image's "ID" : "<id_value>" followed by a list of
+///          zero or more AnnotationPayload protos (called annotations), which
+///          have image_object_detection detail populated. A single image will
+///          be listed only once with all its annotations, and its annotations
+///          will never be split across files.
+///          If prediction for any image failed (partially or completely), then
+///          additional `errors_1.jsonl`, `errors_2.jsonl`,..., `errors_N.jsonl`
+///          files will be created (N depends on total number of failed
+///          predictions). These files will have a JSON representation of a proto
+///          that wraps the same "ID" : "<id_value>" but here followed by
+///          exactly one
+///          [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///          containing only `code` and `message`fields.
+///   *  For Video Classification:
+///          In the created directory a video_classification.csv file, and a .JSON
+///          file per each video classification requested in the input (i.e. each
+///          line in given CSV(s)), will be created.
 ///
-/// * For Video Classification:
-///   In the created directory a video_classification.csv file, and a .JSON
-///   file per each video classification requested in the input (i.e. each
-///   line in given CSV(s)), will be created.
+///          The format of video_classification.csv is:
+///          GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END,JSON_FILE_NAME,STATUS
+///          where:
+///          GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END = matches 1 to 1
+///              the prediction input lines (i.e. video_classification.csv has
+///              precisely the same number of lines as the prediction input had.)
+///          JSON_FILE_NAME = Name of .JSON file in the output directory, which
+///              contains prediction responses for the video time segment.
+///          STATUS = "OK" if prediction completed successfully, or an error code
+///              with message otherwise. If STATUS is not "OK" then the .JSON file
+///              for that line may not exist or be empty.
 ///
-///   ```text
-///   The format of video_classification.csv is:
-///   GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END,JSON_FILE_NAME,STATUS
-///   where:
-///   GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END = matches 1 to 1
-///       the prediction input lines (i.e. video_classification.csv has
-///       precisely the same number of lines as the prediction input had.)
-///   JSON_FILE_NAME = Name of .JSON file in the output directory, which
-///       contains prediction responses for the video time segment.
-///   STATUS = "OK" if prediction completed successfully, or an error code
-///       with message otherwise. If STATUS is not "OK" then the .JSON file
-///       for that line may not exist or be empty.
+///          Each .JSON file, assuming STATUS is "OK", will contain a list of
+///          AnnotationPayload protos in JSON format, which are the predictions
+///          for the video time segment the file is assigned to in the
+///          video_classification.csv. All AnnotationPayload protos will have
+///          video_classification field set, and will be sorted by
+///          video_classification.type field (note that the returned types are
+///          governed by `classifaction_types` parameter in
+///          [PredictService.BatchPredictRequest.params][]).
 ///
-///   Each .JSON file, assuming STATUS is "OK", will contain a list of
-///   AnnotationPayload protos in JSON format, which are the predictions
-///   for the video time segment the file is assigned to in the
-///   video_classification.csv. All AnnotationPayload protos will have
-///   video_classification field set, and will be sorted by
-///   video_classification.type field (note that the returned types are
-///   governed by `classifaction_types` parameter in
-///   [PredictService.BatchPredictRequest.params][]).
-///   ```
+///   *  For Video Object Tracking:
+///          In the created directory a video_object_tracking.csv file will be
+///          created, and multiple files video_object_trackinng_1.json,
+///          video_object_trackinng_2.json,..., video_object_trackinng_N.json,
+///          where N is the number of requests in the input (i.e. the number of
+///          lines in given CSV(s)).
 ///
-/// * For Video Object Tracking:
-///   In the created directory a video_object_tracking.csv file will be
-///   created, and multiple files video_object_trackinng_1.json,
-///   video_object_trackinng_2.json,..., video_object_trackinng_N.json,
-///   where N is the number of requests in the input (i.e. the number of
-///   lines in given CSV(s)).
+///          The format of video_object_tracking.csv is:
+///          GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END,JSON_FILE_NAME,STATUS
+///          where:
+///          GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END = matches 1 to 1
+///              the prediction input lines (i.e. video_object_tracking.csv has
+///              precisely the same number of lines as the prediction input had.)
+///          JSON_FILE_NAME = Name of .JSON file in the output directory, which
+///              contains prediction responses for the video time segment.
+///          STATUS = "OK" if prediction completed successfully, or an error
+///              code with message otherwise. If STATUS is not "OK" then the .JSON
+///              file for that line may not exist or be empty.
 ///
-///   ```text
-///   The format of video_object_tracking.csv is:
-///   GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END,JSON_FILE_NAME,STATUS
-///   where:
-///   GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END = matches 1 to 1
-///       the prediction input lines (i.e. video_object_tracking.csv has
-///       precisely the same number of lines as the prediction input had.)
-///   JSON_FILE_NAME = Name of .JSON file in the output directory, which
-///       contains prediction responses for the video time segment.
-///   STATUS = "OK" if prediction completed successfully, or an error
-///       code with message otherwise. If STATUS is not "OK" then the .JSON
-///       file for that line may not exist or be empty.
+///          Each .JSON file, assuming STATUS is "OK", will contain a list of
+///          AnnotationPayload protos in JSON format, which are the predictions
+///          for each frame of the video time segment the file is assigned to in
+///          video_object_tracking.csv. All AnnotationPayload protos will have
+///          video_object_tracking field set.
+///   *  For Text Classification:
+///          In the created directory files `text_classification_1.jsonl`,
+///          `text_classification_2.jsonl`,...,`text_classification_N.jsonl`
+///          will be created, where N may be 1, and depends on the
+///          total number of inputs and annotations found.
 ///
-///   Each .JSON file, assuming STATUS is "OK", will contain a list of
-///   AnnotationPayload protos in JSON format, which are the predictions
-///   for each frame of the video time segment the file is assigned to in
-///   video_object_tracking.csv. All AnnotationPayload protos will have
-///   video_object_tracking field set.
-///   ```
+///          Each .JSONL file will contain, per line, a JSON representation of a
+///          proto that wraps input text file (or document) in
+///          the text snippet (or document) proto and a list of
+///          zero or more AnnotationPayload protos (called annotations), which
+///          have classification detail populated. A single text file (or
+///          document) will be listed only once with all its annotations, and its
+///          annotations will never be split across files.
 ///
-/// * For Text Classification:
-///   In the created directory files `text_classification_1.jsonl`,
-///   `text_classification_2.jsonl`,...,`text_classification_N.jsonl`
-///   will be created, where N may be 1, and depends on the
-///   total number of inputs and annotations found.
+///          If prediction for any input file (or document) failed (partially or
+///          completely), then additional `errors_1.jsonl`, `errors_2.jsonl`,...,
+///          `errors_N.jsonl` files will be created (N depends on total number of
+///          failed predictions). These files will have a JSON representation of a
+///          proto that wraps input file followed by exactly one
+///          [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///          containing only `code` and `message`.
 ///
-///   ```text
-///   Each .JSONL file will contain, per line, a JSON representation of a
-///   proto that wraps input text file (or document) in
-///   the text snippet (or document) proto and a list of
-///   zero or more AnnotationPayload protos (called annotations), which
-///   have classification detail populated. A single text file (or
-///   document) will be listed only once with all its annotations, and its
-///   annotations will never be split across files.
+///   *  For Text Sentiment:
+///          In the created directory files `text_sentiment_1.jsonl`,
+///          `text_sentiment_2.jsonl`,...,`text_sentiment_N.jsonl`
+///          will be created, where N may be 1, and depends on the
+///          total number of inputs and annotations found.
 ///
-///   If prediction for any input file (or document) failed (partially or
-///   completely), then additional `errors_1.jsonl`, `errors_2.jsonl`,...,
-///   `errors_N.jsonl` files will be created (N depends on total number of
-///   failed predictions). These files will have a JSON representation of a
-///   proto that wraps input file followed by exactly one
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   containing only `code` and `message`.
-///   ```
+///          Each .JSONL file will contain, per line, a JSON representation of a
+///          proto that wraps input text file (or document) in
+///          the text snippet (or document) proto and a list of
+///          zero or more AnnotationPayload protos (called annotations), which
+///          have text_sentiment detail populated. A single text file (or
+///          document) will be listed only once with all its annotations, and its
+///          annotations will never be split across files.
 ///
-/// * For Text Sentiment:
-///   In the created directory files `text_sentiment_1.jsonl`,
-///   `text_sentiment_2.jsonl`,...,`text_sentiment_N.jsonl`
-///   will be created, where N may be 1, and depends on the
-///   total number of inputs and annotations found.
+///          If prediction for any input file (or document) failed (partially or
+///          completely), then additional `errors_1.jsonl`, `errors_2.jsonl`,...,
+///          `errors_N.jsonl` files will be created (N depends on total number of
+///          failed predictions). These files will have a JSON representation of a
+///          proto that wraps input file followed by exactly one
+///          [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///          containing only `code` and `message`.
 ///
-///   ```text
-///   Each .JSONL file will contain, per line, a JSON representation of a
-///   proto that wraps input text file (or document) in
-///   the text snippet (or document) proto and a list of
-///   zero or more AnnotationPayload protos (called annotations), which
-///   have text_sentiment detail populated. A single text file (or
-///   document) will be listed only once with all its annotations, and its
-///   annotations will never be split across files.
+///    *  For Text Extraction:
+///          In the created directory files `text_extraction_1.jsonl`,
+///          `text_extraction_2.jsonl`,...,`text_extraction_N.jsonl`
+///          will be created, where N may be 1, and depends on the
+///          total number of inputs and annotations found.
+///          The contents of these .JSONL file(s) depend on whether the input
+///          used inline text, or documents.
+///          If input was inline, then each .JSONL file will contain, per line,
+///            a JSON representation of a proto that wraps given in request text
+///            snippet's "id" (if specified), followed by input text snippet,
+///            and a list of zero or more
+///            AnnotationPayload protos (called annotations), which have
+///            text_extraction detail populated. A single text snippet will be
+///            listed only once with all its annotations, and its annotations will
+///            never be split across files.
+///          If input used documents, then each .JSONL file will contain, per
+///            line, a JSON representation of a proto that wraps given in request
+///            document proto, followed by its OCR-ed representation in the form
+///            of a text snippet, finally followed by a list of zero or more
+///            AnnotationPayload protos (called annotations), which have
+///            text_extraction detail populated and refer, via their indices, to
+///            the OCR-ed text snippet. A single document (and its text snippet)
+///            will be listed only once with all its annotations, and its
+///            annotations will never be split across files.
+///          If prediction for any text snippet failed (partially or completely),
+///          then additional `errors_1.jsonl`, `errors_2.jsonl`,...,
+///          `errors_N.jsonl` files will be created (N depends on total number of
+///          failed predictions). These files will have a JSON representation of a
+///          proto that wraps either the "id" : "<id_value>" (in case of inline)
+///          or the document proto (in case of document) but here followed by
+///          exactly one
+///          [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///          containing only `code` and `message`.
 ///
-///   If prediction for any input file (or document) failed (partially or
-///   completely), then additional `errors_1.jsonl`, `errors_2.jsonl`,...,
-///   `errors_N.jsonl` files will be created (N depends on total number of
-///   failed predictions). These files will have a JSON representation of a
-///   proto that wraps input file followed by exactly one
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   containing only `code` and `message`.
-///   ```
-///
-/// * For Text Extraction:
-///   In the created directory files `text_extraction_1.jsonl`,
-///   `text_extraction_2.jsonl`,...,`text_extraction_N.jsonl`
-///   will be created, where N may be 1, and depends on the
-///   total number of inputs and annotations found.
-///   The contents of these .JSONL file(s) depend on whether the input
-///   used inline text, or documents.
-///   If input was inline, then each .JSONL file will contain, per line,
-///   a JSON representation of a proto that wraps given in request text
-///   snippet's "id" (if specified), followed by input text snippet,
-///   and a list of zero or more
-///   AnnotationPayload protos (called annotations), which have
-///   text_extraction detail populated. A single text snippet will be
-///   listed only once with all its annotations, and its annotations will
-///   never be split across files.
-///   If input used documents, then each .JSONL file will contain, per
-///   line, a JSON representation of a proto that wraps given in request
-///   document proto, followed by its OCR-ed representation in the form
-///   of a text snippet, finally followed by a list of zero or more
-///   AnnotationPayload protos (called annotations), which have
-///   text_extraction detail populated and refer, via their indices, to
-///   the OCR-ed text snippet. A single document (and its text snippet)
-///   will be listed only once with all its annotations, and its
-///   annotations will never be split across files.
-///   If prediction for any text snippet failed (partially or completely),
-///   then additional `errors_1.jsonl`, `errors_2.jsonl`,...,
-///   `errors_N.jsonl` files will be created (N depends on total number of
-///   failed predictions). These files will have a JSON representation of a
-///   proto that wraps either the "id" : "\<id_value>" (in case of inline)
-///   or the document proto (in case of document) but here followed by
-///   exactly one
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   containing only `code` and `message`.
-///
-/// * For Tables:
-///   Output depends on whether
-///   \[gcs_destination\]\[google.cloud.automl.v1p1beta.BatchPredictOutputConfig.gcs_destination\]
-///   or
-///   \[bigquery_destination\]\[google.cloud.automl.v1p1beta.BatchPredictOutputConfig.bigquery_destination\]
-///   is set (either is allowed).
-///   Google Cloud Storage case:
-///   In the created directory files `tables_1.csv`, `tables_2.csv`,...,
-///   `tables_N.csv` will be created, where N may be 1, and depends on
-///   the total number of the successfully predicted rows.
-///   For all CLASSIFICATION
-///   \[prediction_type-s\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type\]:
-///   Each .csv file will contain a header, listing all columns'
-///   \[display_name-s\]\[google.cloud.automl.v1p1beta.ColumnSpec.display_name\]
-///   given on input followed by M target column names in the format of
-///   "\<\[target_column_specs\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec\]
-///   \[display_name\]\[google.cloud.automl.v1p1beta.ColumnSpec.display_name\]\>*<target
-///           value>
-/// *score" where M is the number of distinct target values,
-///   i.e. number of distinct values in the target column of the table
-///   used to train the model. Subsequent lines will contain the
-///   respective values of successfully predicted rows, with the last,
-///   i.e. the target, columns having the corresponding prediction
-///   \[scores\]\[google.cloud.automl.v1p1beta.TablesAnnotation.score\].
-///   For REGRESSION and FORECASTING
-///   \[prediction_type-s\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type\]:
-///   Each .csv file will contain a header, listing all columns'
-///   \[display_name-s\]\[google.cloud.automl.v1p1beta.display_name\]
-///   given on input followed by the predicted target column with name
-///   in the format of
-///   "predicted*\<\[target_column_specs\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec\]
-///   \[display_name\]\[google.cloud.automl.v1p1beta.ColumnSpec.display_name\]\>"
-///   Subsequent lines will contain the respective values of
-///   successfully predicted rows, with the last, i.e. the target,
-///   column having the predicted target value.
-///   If prediction for any rows failed, then an additional
-///   `errors_1.csv`, `errors_2.csv`,..., `errors_N.csv` will be
-///   created (N depends on total number of failed rows). These files
-///   will have analogous format as `tables_*.csv`, but always with a
-///   single target column having
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   represented as a JSON string, and containing only `code` and
-///   `message`.
-///   BigQuery case:
-///   \[bigquery_destination\]\[google.cloud.automl.v1p1beta.OutputConfig.bigquery_destination\]
-///   pointing to a BigQuery project must be set. In the given project a
-///   new dataset will be created with name
-///   `prediction_<model-display-name>_<timestamp-of-prediction-call>`
-///   where <model-display-name> will be made
-///   BigQuery-dataset-name compatible (e.g. most special characters will
-///   become underscores), and timestamp will be in
-///   YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In the dataset
-///   two tables will be created, `predictions`, and `errors`.
-///   The `predictions` table's column names will be the input columns'
-///   \[display_name-s\]\[google.cloud.automl.v1p1beta.ColumnSpec.display_name\]
-///   followed by the target column with name in the format of
-///   "predicted*\<\[target_column_specs\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec\]
-///   \[display_name\]\[google.cloud.automl.v1p1beta.ColumnSpec.display_name\]\>"
-///   The input feature columns will contain the respective values of
-///   successfully predicted rows, with the target column having an
-///   ARRAY of
-///   \[AnnotationPayloads\]\[google.cloud.automl.v1p1beta.AnnotationPayload\],
-///   represented as STRUCT-s, containing
-///   \[TablesAnnotation\]\[google.cloud.automl.v1p1beta.TablesAnnotation\].
-///   The `errors` table contains rows for which the prediction has
-///   failed, it has analogous input columns while the target column name
-///   is in the format of
-///   "errors\_\<\[target_column_specs\]\[google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec\]
-///   \[display_name\]\[google.cloud.automl.v1p1beta.ColumnSpec.display_name\]\>",
-///   and as a value has
-///   [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
-///   represented as a STRUCT, and containing only `code` and `message`.
+///   *  For Tables:
+///          Output depends on whether
+///          [gcs_destination][google.cloud.automl.v1p1beta.BatchPredictOutputConfig.gcs_destination]
+///          or
+///          [bigquery_destination][google.cloud.automl.v1p1beta.BatchPredictOutputConfig.bigquery_destination]
+///          is set (either is allowed).
+///          Google Cloud Storage case:
+///            In the created directory files `tables_1.csv`, `tables_2.csv`,...,
+///            `tables_N.csv` will be created, where N may be 1, and depends on
+///            the total number of the successfully predicted rows.
+///            For all CLASSIFICATION
+///            [prediction_type-s][google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type]:
+///              Each .csv file will contain a header, listing all columns'
+///              [display_name-s][google.cloud.automl.v1p1beta.ColumnSpec.display_name]
+///              given on input followed by M target column names in the format of
+///              "<[target_column_specs][google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec]
+///              [display_name][google.cloud.automl.v1p1beta.ColumnSpec.display_name]>_<target
+///              value>_score" where M is the number of distinct target values,
+///              i.e. number of distinct values in the target column of the table
+///              used to train the model. Subsequent lines will contain the
+///              respective values of successfully predicted rows, with the last,
+///              i.e. the target, columns having the corresponding prediction
+///              [scores][google.cloud.automl.v1p1beta.TablesAnnotation.score].
+///            For REGRESSION and FORECASTING
+///            [prediction_type-s][google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type]:
+///              Each .csv file will contain a header, listing all columns'
+///              [display_name-s][google.cloud.automl.v1p1beta.display_name]
+///              given on input followed by the predicted target column with name
+///              in the format of
+///              "predicted_<[target_column_specs][google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec]
+///              [display_name][google.cloud.automl.v1p1beta.ColumnSpec.display_name]>"
+///              Subsequent lines will contain the respective values of
+///              successfully predicted rows, with the last, i.e. the target,
+///              column having the predicted target value.
+///              If prediction for any rows failed, then an additional
+///              `errors_1.csv`, `errors_2.csv`,..., `errors_N.csv` will be
+///              created (N depends on total number of failed rows). These files
+///              will have analogous format as `tables_*.csv`, but always with a
+///              single target column having
+///              [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///              represented as a JSON string, and containing only `code` and
+///              `message`.
+///          BigQuery case:
+///            [bigquery_destination][google.cloud.automl.v1p1beta.OutputConfig.bigquery_destination]
+///            pointing to a BigQuery project must be set. In the given project a
+///            new dataset will be created with name
+///            `prediction_<model-display-name>_<timestamp-of-prediction-call>`
+///            where <model-display-name> will be made
+///            BigQuery-dataset-name compatible (e.g. most special characters will
+///            become underscores), and timestamp will be in
+///            YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In the dataset
+///            two tables will be created, `predictions`, and `errors`.
+///            The `predictions` table's column names will be the input columns'
+///            [display_name-s][google.cloud.automl.v1p1beta.ColumnSpec.display_name]
+///            followed by the target column with name in the format of
+///            "predicted_<[target_column_specs][google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec]
+///            [display_name][google.cloud.automl.v1p1beta.ColumnSpec.display_name]>"
+///            The input feature columns will contain the respective values of
+///            successfully predicted rows, with the target column having an
+///            ARRAY of
+///            [AnnotationPayloads][google.cloud.automl.v1p1beta.AnnotationPayload],
+///            represented as STRUCT-s, containing
+///            [TablesAnnotation][google.cloud.automl.v1p1beta.TablesAnnotation].
+///            The `errors` table contains rows for which the prediction has
+///            failed, it has analogous input columns while the target column name
+///            is in the format of
+///            "errors_<[target_column_specs][google.cloud.automl.v1p1beta.TablesModelMetadata.target_column_spec]
+///            [display_name][google.cloud.automl.v1p1beta.ColumnSpec.display_name]>",
+///            and as a value has
+///            [`google.rpc.Status`](<https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto>)
+///            represented as a STRUCT, and containing only `code` and `message`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictOutputConfig {
     /// The destination of the output.
@@ -1738,36 +1673,31 @@ pub struct ModelExportOutputConfig {
     /// combination doesn't have a format listed, it means its models are not
     /// exportable):
     ///
-    /// * For Image Classification mobile-low-latency-1, mobile-versatile-1,
-    ///   mobile-high-accuracy-1:
-    ///   "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js",
-    ///   "docker".
+    /// *  For Image Classification mobile-low-latency-1, mobile-versatile-1,
+    ///         mobile-high-accuracy-1:
+    ///       "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js",
+    ///       "docker".
     ///
-    /// * For Image Classification mobile-core-ml-low-latency-1,
-    ///   mobile-core-ml-versatile-1, mobile-core-ml-high-accuracy-1:
-    ///   "core_ml" (default).
+    /// *  For Image Classification mobile-core-ml-low-latency-1,
+    ///         mobile-core-ml-versatile-1, mobile-core-ml-high-accuracy-1:
+    ///       "core_ml" (default).
     ///
-    /// * For Image Object Detection mobile-low-latency-1, mobile-versatile-1,
-    ///   mobile-high-accuracy-1:
-    ///   "tflite", "tf_saved_model", "tf_js".
-    ///   Formats description:
+    /// *  For Image Object Detection mobile-low-latency-1, mobile-versatile-1,
+    ///         mobile-high-accuracy-1:
+    ///       "tflite", "tf_saved_model", "tf_js".
+    /// Formats description:
     ///
     /// * tflite - Used for Android mobile devices.
-    ///
     /// * edgetpu_tflite - Used for [Edge TPU](<https://cloud.google.com/edge-tpu/>)
-    ///   devices.
-    ///
+    ///                     devices.
     /// * tf_saved_model - A tensorflow model in SavedModel format.
-    ///
     /// * tf_js - A [TensorFlow.js](<https://www.tensorflow.org/js>) model that can
-    ///   be used in the browser and in Node.js using JavaScript.
-    ///
+    ///            be used in the browser and in Node.js using JavaScript.
     /// * docker - Used for Docker containers. Use the params field to customize
-    ///   the container. The container is verified to work correctly on
-    ///   ubuntu 16.04 operating system. See more at
-    ///   [containers
-    ///   quickstart](<https://cloud.google.com/vision/automl/docs/containers-gcs-quickstart>)
-    ///
+    ///             the container. The container is verified to work correctly on
+    ///             ubuntu 16.04 operating system. See more at
+    ///             [containers
+    ///             quickstart](<https://cloud.google.com/vision/automl/docs/containers-gcs-quickstart>)
     /// * core_ml - Used for iOS mobile devices.
     #[prost(string, tag = "4")]
     pub model_format: ::prost::alloc::string::String,
@@ -1775,9 +1705,9 @@ pub struct ModelExportOutputConfig {
     /// requirements for the to be exported model files, any string must be up to
     /// 25000 characters long.
     ///
-    /// * For `docker` format:
-    ///   `cpu_architecture` - (string) "x86_64" (default).
-    ///   `gpu_architecture` - (string) "none" (default), "nvidia".
+    ///   * For `docker` format:
+    ///      `cpu_architecture` - (string) "x86_64" (default).
+    ///      `gpu_architecture` - (string) "none" (default), "nvidia".
     #[prost(btree_map = "string, string", tag = "2")]
     pub params: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -1794,13 +1724,13 @@ pub mod model_export_output_config {
     pub enum Destination {
         /// Required. The Google Cloud Storage location where the model is to be written to.
         /// This location may only be set for the following model formats:
-        /// "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
+        ///    "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
         ///
-        /// Under the directory given as the destination a new one with name
-        /// "model-export-<model-display-name>-<timestamp-of-export-call>",
-        /// where timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format,
-        /// will be created. Inside the model and any of its supporting files
-        /// will be written.
+        ///   Under the directory given as the destination a new one with name
+        ///   "model-export-<model-display-name>-<timestamp-of-export-call>",
+        ///   where timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format,
+        ///   will be created. Inside the model and any of its supporting files
+        ///   will be written.
         #[prost(message, tag = "1")]
         GcsDestination(super::GcsDestination),
     }
@@ -1810,7 +1740,6 @@ pub mod model_export_output_config {
 pub struct GcsSource {
     /// Required. Google Cloud Storage URIs to input files, up to 2000
     /// characters long. Accepted forms:
-    ///
     /// * Full object path, e.g. gs://bucket/directory/object.csv
     #[prost(string, repeated, tag = "1")]
     pub input_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -1821,10 +1750,9 @@ pub struct GcsDestination {
     /// Required. Google Cloud Storage URI to output directory, up to 2000
     /// characters long.
     /// Accepted forms:
-    ///
     /// * Prefix path: gs://bucket/directory
-    ///   The requesting user must have write permission to the bucket.
-    ///   The directory is created if it doesn't exist.
+    /// The requesting user must have write permission to the bucket.
+    /// The directory is created if it doesn't exist.
     #[prost(string, tag = "1")]
     pub output_uri_prefix: ::prost::alloc::string::String,
 }
@@ -1836,14 +1764,14 @@ pub struct Image {
     #[prost(string, tag = "4")]
     pub thumbnail_uri: ::prost::alloc::string::String,
     /// Input only. The data representing the image.
-    /// For Predict calls \[image_bytes\]\[google.cloud.automl.v1.Image.image_bytes\] must be set .
+    /// For Predict calls [image_bytes][google.cloud.automl.v1.Image.image_bytes] must be set .
     #[prost(oneof = "image::Data", tags = "1")]
     pub data: ::core::option::Option<image::Data>,
 }
 /// Nested message and enum types in `Image`.
 pub mod image {
     /// Input only. The data representing the image.
-    /// For Predict calls \[image_bytes\]\[google.cloud.automl.v1.Image.image_bytes\] must be set .
+    /// For Predict calls [image_bytes][google.cloud.automl.v1.Image.image_bytes] must be set .
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Data {
         /// Image content represented as a stream of bytes.
@@ -1860,9 +1788,9 @@ pub struct TextSnippet {
     /// characters long.
     #[prost(string, tag = "1")]
     pub content: ::prost::alloc::string::String,
-    /// Optional. The format of \[content\]\[google.cloud.automl.v1.TextSnippet.content\]. Currently the only two allowed
+    /// Optional. The format of [content][google.cloud.automl.v1.TextSnippet.content]. Currently the only two allowed
     /// values are "text/html" and "text/plain". If left blank, the format is
-    /// automatically determined from the type of the uploaded \[content\]\[google.cloud.automl.v1.TextSnippet.content\].
+    /// automatically determined from the type of the uploaded [content][google.cloud.automl.v1.TextSnippet.content].
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
     /// Output only. HTTP URI where you can download the content.
@@ -1914,12 +1842,10 @@ pub mod document_dimensions {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DocumentDimensionUnit::Unspecified => {
-                    "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED"
-                }
-                DocumentDimensionUnit::Inch => "INCH",
-                DocumentDimensionUnit::Centimeter => "CENTIMETER",
-                DocumentDimensionUnit::Point => "POINT",
+                Self::Unspecified => "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED",
+                Self::Inch => "INCH",
+                Self::Centimeter => "CENTIMETER",
+                Self::Point => "POINT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1944,7 +1870,7 @@ pub struct Document {
     #[prost(message, optional, tag = "2")]
     pub document_text: ::core::option::Option<TextSnippet>,
     /// Describes the layout of the document.
-    /// Sorted by \[page_number\]\[\].
+    /// Sorted by [page_number][].
     #[prost(message, repeated, tag = "3")]
     pub layout: ::prost::alloc::vec::Vec<document::Layout>,
     /// The dimensions of the page in the document.
@@ -1956,28 +1882,28 @@ pub struct Document {
 }
 /// Nested message and enum types in `Document`.
 pub mod document {
-    /// Describes the layout information of a \[text_segment\]\[google.cloud.automl.v1.Document.Layout.text_segment\] in the document.
+    /// Describes the layout information of a [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in the document.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Layout {
         /// Text Segment that represents a segment in
-        /// \[document_text\]\[google.cloud.automl.v1p1beta.Document.document_text\].
+        /// [document_text][google.cloud.automl.v1p1beta.Document.document_text].
         #[prost(message, optional, tag = "1")]
         pub text_segment: ::core::option::Option<super::TextSegment>,
-        /// Page number of the \[text_segment\]\[google.cloud.automl.v1.Document.Layout.text_segment\] in the original document, starts
+        /// Page number of the [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in the original document, starts
         /// from 1.
         #[prost(int32, tag = "2")]
         pub page_number: i32,
-        /// The position of the \[text_segment\]\[google.cloud.automl.v1.Document.Layout.text_segment\] in the page.
+        /// The position of the [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in the page.
         /// Contains exactly 4
-        /// \[normalized_vertices\]\[google.cloud.automl.v1p1beta.BoundingPoly.normalized_vertices\]
+        /// [normalized_vertices][google.cloud.automl.v1p1beta.BoundingPoly.normalized_vertices]
         /// and they are connected by edges in the order provided, which will
         /// represent a rectangle parallel to the frame. The
-        /// \[NormalizedVertex-s\]\[google.cloud.automl.v1p1beta.NormalizedVertex\] are
+        /// [NormalizedVertex-s][google.cloud.automl.v1p1beta.NormalizedVertex] are
         /// relative to the page.
         /// Coordinates are based on top-left as point (0,0).
         #[prost(message, optional, tag = "3")]
         pub bounding_poly: ::core::option::Option<super::BoundingPoly>,
-        /// The type of the \[text_segment\]\[google.cloud.automl.v1.Document.Layout.text_segment\] in document.
+        /// The type of the [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in document.
         #[prost(enumeration = "layout::TextSegmentType", tag = "4")]
         pub text_segment_type: i32,
     }
@@ -2035,16 +1961,16 @@ pub mod document {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    TextSegmentType::Unspecified => "TEXT_SEGMENT_TYPE_UNSPECIFIED",
-                    TextSegmentType::Token => "TOKEN",
-                    TextSegmentType::Paragraph => "PARAGRAPH",
-                    TextSegmentType::FormField => "FORM_FIELD",
-                    TextSegmentType::FormFieldName => "FORM_FIELD_NAME",
-                    TextSegmentType::FormFieldContents => "FORM_FIELD_CONTENTS",
-                    TextSegmentType::Table => "TABLE",
-                    TextSegmentType::TableHeader => "TABLE_HEADER",
-                    TextSegmentType::TableRow => "TABLE_ROW",
-                    TextSegmentType::TableCell => "TABLE_CELL",
+                    Self::Unspecified => "TEXT_SEGMENT_TYPE_UNSPECIFIED",
+                    Self::Token => "TOKEN",
+                    Self::Paragraph => "PARAGRAPH",
+                    Self::FormField => "FORM_FIELD",
+                    Self::FormFieldName => "FORM_FIELD_NAME",
+                    Self::FormFieldContents => "FORM_FIELD_CONTENTS",
+                    Self::Table => "TABLE",
+                    Self::TableHeader => "TABLE_HEADER",
+                    Self::TableRow => "TABLE_ROW",
+                    Self::TableCell => "TABLE_CELL",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2143,7 +2069,7 @@ pub struct AnnotationPayload {
     #[prost(string, tag = "1")]
     pub annotation_spec_id: ::prost::alloc::string::String,
     /// Output only. The value of
-    /// \[display_name\]\[google.cloud.automl.v1.AnnotationSpec.display_name\]
+    /// [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
     /// when the model was trained. Because this field returns a value at model
     /// training time, for different models trained using the same dataset, the
     /// returned value could be different as model owner could update the
@@ -2241,39 +2167,38 @@ pub struct ImageClassificationModelMetadata {
     #[prost(string, tag = "5")]
     pub stop_reason: ::prost::alloc::string::String,
     /// Optional. Type of the model. The available values are:
-    ///
-    /// * `cloud` - Model to be used via prediction calls to AutoML API.
-    ///   This is the default value.
-    /// * `mobile-low-latency-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile or edge device
-    ///   with TensorFlow afterwards. Expected to have low latency, but
-    ///   may have lower prediction quality than other models.
-    /// * `mobile-versatile-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile or edge device
-    ///   with TensorFlow afterwards.
-    /// * `mobile-high-accuracy-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile or edge device
-    ///   with TensorFlow afterwards.  Expected to have a higher
-    ///   latency, but should also have a higher prediction quality
-    ///   than other models.
-    /// * `mobile-core-ml-low-latency-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile device with Core
-    ///   ML afterwards. Expected to have low latency, but may have
-    ///   lower prediction quality than other models.
-    /// * `mobile-core-ml-versatile-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile device with Core
-    ///   ML afterwards.
-    /// * `mobile-core-ml-high-accuracy-1` - A model that, in addition to
-    ///   providing prediction via AutoML API, can also be exported
-    ///   (see \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile device with
-    ///   Core ML afterwards.  Expected to have a higher latency, but
-    ///   should also have a higher prediction quality than other
-    ///   models.
+    /// *   `cloud` - Model to be used via prediction calls to AutoML API.
+    ///                This is the default value.
+    /// *   `mobile-low-latency-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+    ///                with TensorFlow afterwards. Expected to have low latency, but
+    ///                may have lower prediction quality than other models.
+    /// *   `mobile-versatile-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+    ///                with TensorFlow afterwards.
+    /// *   `mobile-high-accuracy-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+    ///                with TensorFlow afterwards.  Expected to have a higher
+    ///                latency, but should also have a higher prediction quality
+    ///                than other models.
+    /// *   `mobile-core-ml-low-latency-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile device with Core
+    ///                ML afterwards. Expected to have low latency, but may have
+    ///                lower prediction quality than other models.
+    /// *   `mobile-core-ml-versatile-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile device with Core
+    ///                ML afterwards.
+    /// *   `mobile-core-ml-high-accuracy-1` - A model that, in addition to
+    ///                providing prediction via AutoML API, can also be exported
+    ///                (see [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile device with
+    ///                Core ML afterwards.  Expected to have a higher latency, but
+    ///                should also have a higher prediction quality than other
+    ///                models.
     #[prost(string, tag = "7")]
     pub model_type: ::prost::alloc::string::String,
     /// Output only. An approximate number of online prediction QPS that can
@@ -2290,29 +2215,28 @@ pub struct ImageClassificationModelMetadata {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionModelMetadata {
     /// Optional. Type of the model. The available values are:
-    ///
-    /// * `cloud-high-accuracy-1` - (default) A model to be used via prediction
-    ///   calls to AutoML API. Expected to have a higher latency, but
-    ///   should also have a higher prediction quality than other
-    ///   models.
-    /// * `cloud-low-latency-1` -  A model to be used via prediction
-    ///   calls to AutoML API. Expected to have low latency, but may
-    ///   have lower prediction quality than other models.
-    /// * `mobile-low-latency-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile or edge device
-    ///   with TensorFlow afterwards. Expected to have low latency, but
-    ///   may have lower prediction quality than other models.
-    /// * `mobile-versatile-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile or edge device
-    ///   with TensorFlow afterwards.
-    /// * `mobile-high-accuracy-1` - A model that, in addition to providing
-    ///   prediction via AutoML API, can also be exported (see
-    ///   \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\]) and used on a mobile or edge device
-    ///   with TensorFlow afterwards.  Expected to have a higher
-    ///   latency, but should also have a higher prediction quality
-    ///   than other models.
+    /// *   `cloud-high-accuracy-1` - (default) A model to be used via prediction
+    ///                calls to AutoML API. Expected to have a higher latency, but
+    ///                should also have a higher prediction quality than other
+    ///                models.
+    /// *   `cloud-low-latency-1` -  A model to be used via prediction
+    ///                calls to AutoML API. Expected to have low latency, but may
+    ///                have lower prediction quality than other models.
+    /// *   `mobile-low-latency-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+    ///                with TensorFlow afterwards. Expected to have low latency, but
+    ///                may have lower prediction quality than other models.
+    /// *   `mobile-versatile-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+    ///                with TensorFlow afterwards.
+    /// *   `mobile-high-accuracy-1` - A model that, in addition to providing
+    ///                prediction via AutoML API, can also be exported (see
+    ///                [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+    ///                with TensorFlow afterwards.  Expected to have a higher
+    ///                latency, but should also have a higher prediction quality
+    ///                than other models.
     #[prost(string, tag = "1")]
     pub model_type: ::prost::alloc::string::String,
     /// Output only. The number of nodes this model is deployed on. A node is an
@@ -2357,7 +2281,7 @@ pub struct ImageClassificationModelDeploymentMetadata {
     /// Input only. The number of nodes to deploy the model on. A node is an
     /// abstraction of a machine resource, which can handle online prediction QPS
     /// as given in the model's
-    /// \[node_qps\]\[google.cloud.automl.v1.ImageClassificationModelMetadata.node_qps\].
+    /// [node_qps][google.cloud.automl.v1.ImageClassificationModelMetadata.node_qps].
     /// Must be between 1 and 100, inclusive on both ends.
     #[prost(int64, tag = "1")]
     pub node_count: i64,
@@ -2368,7 +2292,7 @@ pub struct ImageObjectDetectionModelDeploymentMetadata {
     /// Input only. The number of nodes to deploy the model on. A node is an
     /// abstraction of a machine resource, which can handle online prediction QPS
     /// as given in the model's
-    /// \[qps_per_node\]\[google.cloud.automl.v1.ImageObjectDetectionModelMetadata.qps_per_node\].
+    /// [qps_per_node][google.cloud.automl.v1.ImageObjectDetectionModelMetadata.qps_per_node].
     /// Must be between 1 and 100, inclusive on both ends.
     #[prost(int64, tag = "1")]
     pub node_count: i64,
@@ -2419,7 +2343,7 @@ pub struct Dataset {
     /// Required. The name of the dataset to show in the interface. The name can be
     /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
     /// and a-z, underscores
-    /// (\_), and ASCII digits 0-9.
+    /// (_), and ASCII digits 0-9.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// User-provided description of the dataset. The description can be up to
@@ -2490,7 +2414,7 @@ pub struct Model {
     /// Required. The name of the model to show in the interface. The name can be
     /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
     /// and a-z, underscores
-    /// (\_), and ASCII digits 0-9. It must start with a letter.
+    /// (_), and ASCII digits 0-9. It must start with a letter.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// Required. The resource ID of the dataset used to create the model. The dataset must
@@ -2560,9 +2484,9 @@ pub mod model {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeploymentState::Unspecified => "DEPLOYMENT_STATE_UNSPECIFIED",
-                DeploymentState::Deployed => "DEPLOYED",
-                DeploymentState::Undeployed => "UNDEPLOYED",
+                Self::Unspecified => "DEPLOYMENT_STATE_UNSPECIFIED",
+                Self::Deployed => "DEPLOYED",
+                Self::Undeployed => "UNDEPLOYED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2612,19 +2536,19 @@ pub struct ModelEvaluation {
     /// The ID is empty for the overall model evaluation.
     /// For Tables annotation specs in the dataset do not exist and this ID is
     /// always not set, but for CLASSIFICATION
-    /// \[prediction_type-s\]\[google.cloud.automl.v1.TablesModelMetadata.prediction_type\]
+    /// [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
     /// the
-    /// \[display_name\]\[google.cloud.automl.v1.ModelEvaluation.display_name\]
+    /// [display_name][google.cloud.automl.v1.ModelEvaluation.display_name]
     /// field is used.
     #[prost(string, tag = "2")]
     pub annotation_spec_id: ::prost::alloc::string::String,
     /// Output only. The value of
-    /// \[display_name\]\[google.cloud.automl.v1.AnnotationSpec.display_name\]
+    /// [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
     /// at the moment when the model was trained. Because this field returns a
     /// value at model training time, for different models trained from the same
     /// dataset, the values may differ, since display names could had been changed
     /// between the two model's trainings. For Tables CLASSIFICATION
-    /// \[prediction_type-s\]\[google.cloud.automl.v1.TablesModelMetadata.prediction_type\]
+    /// [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
     /// distinct values of the target column at the moment of the model evaluation
     /// are populated here.
     /// The display_name is empty for the overall model evaluation.
@@ -2640,7 +2564,7 @@ pub struct ModelEvaluation {
     /// the total number of all examples used for evaluation.
     /// Otherwise, this is the count of examples that according to the ground
     /// truth were annotated by the
-    /// \[annotation_spec_id\]\[google.cloud.automl.v1.ModelEvaluation.annotation_spec_id\].
+    /// [annotation_spec_id][google.cloud.automl.v1.ModelEvaluation.annotation_spec_id].
     #[prost(int32, tag = "6")]
     pub evaluated_example_count: i32,
     /// Output only. Problem type specific evaluation metrics.
@@ -2767,7 +2691,7 @@ pub struct ExportDataOperationMetadata {
 pub mod export_data_operation_metadata {
     /// Further describes this export data's output.
     /// Supplements
-    /// \[OutputConfig\]\[google.cloud.automl.v1.OutputConfig\].
+    /// [OutputConfig][google.cloud.automl.v1.OutputConfig].
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ExportDataOutputInfo {
         /// The output location to which the exported data is written.
@@ -2805,7 +2729,7 @@ pub struct BatchPredictOperationMetadata {
 pub mod batch_predict_operation_metadata {
     /// Further describes this batch predict's output.
     /// Supplements
-    /// \[BatchPredictOutputConfig\]\[google.cloud.automl.v1.BatchPredictOutputConfig\].
+    /// [BatchPredictOutputConfig][google.cloud.automl.v1.BatchPredictOutputConfig].
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BatchPredictOutputInfo {
         /// The output location into which prediction output is written.
@@ -2840,7 +2764,7 @@ pub struct ExportModelOperationMetadata {
 pub mod export_model_operation_metadata {
     /// Further describes the output of model export.
     /// Supplements
-    /// \[ModelExportOutputConfig\]\[google.cloud.automl.v1.ModelExportOutputConfig\].
+    /// [ModelExportOutputConfig][google.cloud.automl.v1.ModelExportOutputConfig].
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ExportModelOutputInfo {
         /// The full path of the Google Cloud Storage directory created, into which
@@ -2849,7 +2773,7 @@ pub mod export_model_operation_metadata {
         pub gcs_output_directory: ::prost::alloc::string::String,
     }
 }
-/// Request message for \[PredictionService.Predict\]\[google.cloud.automl.v1.PredictionService.Predict\].
+/// Request message for [PredictionService.Predict][google.cloud.automl.v1.PredictionService.Predict].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictRequest {
     /// Required. Name of the model requested to serve the prediction.
@@ -2866,36 +2790,36 @@ pub struct PredictRequest {
     ///
     /// `score_threshold`
     /// : (float) A value from 0.0 to 1.0. When the model
-    /// makes predictions for an image, it will only produce results that have
-    /// at least this confidence score. The default is 0.5.
+    ///    makes predictions for an image, it will only produce results that have
+    ///    at least this confidence score. The default is 0.5.
     ///
     /// AutoML Vision Object Detection
     ///
     /// `score_threshold`
     /// : (float) When Model detects objects on the image,
-    /// it will only produce bounding boxes which have at least this
-    /// confidence score. Value in 0 to 1 range, default is 0.5.
+    ///    it will only produce bounding boxes which have at least this
+    ///    confidence score. Value in 0 to 1 range, default is 0.5.
     ///
     /// `max_bounding_box_count`
     /// : (int64) The maximum number of bounding
-    /// boxes returned. The default is 100. The
-    /// number of returned bounding boxes might be limited by the server.
+    ///    boxes returned. The default is 100. The
+    ///    number of returned bounding boxes might be limited by the server.
     ///
     /// AutoML Tables
     ///
     /// `feature_importance`
     /// : (boolean) Whether
-    /// \[feature_importance\]\[google.cloud.automl.v1.TablesModelColumnInfo.feature_importance\]
-    /// is populated in the returned list of
-    /// \[TablesAnnotation\]\[google.cloud.automl.v1.TablesAnnotation\]
-    /// objects. The default is false.
+    /// [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+    ///    is populated in the returned list of
+    ///    [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+    ///    objects. The default is false.
     #[prost(btree_map = "string, string", tag = "3")]
     pub params: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
 }
-/// Response message for \[PredictionService.Predict\]\[google.cloud.automl.v1.PredictionService.Predict\].
+/// Response message for [PredictionService.Predict][google.cloud.automl.v1.PredictionService.Predict].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictResponse {
     /// Prediction result.
@@ -2909,7 +2833,7 @@ pub struct PredictResponse {
     /// For AutoML Natural Language (Classification, Entity Extraction, and
     /// Sentiment Analysis), if the input is a document, the recognized text is
     /// returned in the
-    /// \[document_text\]\[google.cloud.automl.v1.Document.document_text\]
+    /// [document_text][google.cloud.automl.v1.Document.document_text]
     /// property.
     #[prost(message, optional, tag = "3")]
     pub preprocessed_input: ::core::option::Option<ExamplePayload>,
@@ -2924,20 +2848,20 @@ pub struct PredictResponse {
     ///
     /// `sentiment_score`
     /// : (float, deprecated) A value between -1 and 1,
-    /// -1 maps to least positive sentiment, while 1 maps to the most positive
-    /// one and the higher the score, the more positive the sentiment in the
-    /// document is. Yet these values are relative to the training data, so
-    /// e.g. if all data was positive then -1 is also positive (though
-    /// the least).
-    /// `sentiment_score` is not the same as "score" and "magnitude"
-    /// from Sentiment Analysis in the Natural Language API.
+    ///    -1 maps to least positive sentiment, while 1 maps to the most positive
+    ///    one and the higher the score, the more positive the sentiment in the
+    ///    document is. Yet these values are relative to the training data, so
+    ///    e.g. if all data was positive then -1 is also positive (though
+    ///    the least).
+    ///    `sentiment_score` is not the same as "score" and "magnitude"
+    ///    from Sentiment Analysis in the Natural Language API.
     #[prost(btree_map = "string, string", tag = "2")]
     pub metadata: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
 }
-/// Request message for \[PredictionService.BatchPredict\]\[google.cloud.automl.v1.PredictionService.BatchPredict\].
+/// Request message for [PredictionService.BatchPredict][google.cloud.automl.v1.PredictionService.BatchPredict].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictRequest {
     /// Required. Name of the model requested to serve the batch prediction.
@@ -2957,81 +2881,83 @@ pub struct BatchPredictRequest {
     ///
     /// `score_threshold`
     /// : (float) A value from 0.0 to 1.0. When the model
-    /// makes predictions for a text snippet, it will only produce results
-    /// that have at least this confidence score. The default is 0.5.
+    ///    makes predictions for a text snippet, it will only produce results
+    ///    that have at least this confidence score. The default is 0.5.
+    ///
     ///
     /// AutoML Vision Classification
     ///
     /// `score_threshold`
     /// : (float) A value from 0.0 to 1.0. When the model
-    /// makes predictions for an image, it will only produce results that
-    /// have at least this confidence score. The default is 0.5.
+    ///    makes predictions for an image, it will only produce results that
+    ///    have at least this confidence score. The default is 0.5.
     ///
     /// AutoML Vision Object Detection
     ///
     /// `score_threshold`
     /// : (float) When Model detects objects on the image,
-    /// it will only produce bounding boxes which have at least this
-    /// confidence score. Value in 0 to 1 range, default is 0.5.
+    ///    it will only produce bounding boxes which have at least this
+    ///    confidence score. Value in 0 to 1 range, default is 0.5.
     ///
     /// `max_bounding_box_count`
     /// : (int64) The maximum number of bounding
-    /// boxes returned per image. The default is 100, the
-    /// number of bounding boxes returned might be limited by the server.
+    ///    boxes returned per image. The default is 100, the
+    ///    number of bounding boxes returned might be limited by the server.
     /// AutoML Video Intelligence Classification
     ///
     /// `score_threshold`
     /// : (float) A value from 0.0 to 1.0. When the model
-    /// makes predictions for a video, it will only produce results that
-    /// have at least this confidence score. The default is 0.5.
+    ///    makes predictions for a video, it will only produce results that
+    ///    have at least this confidence score. The default is 0.5.
     ///
     /// `segment_classification`
     /// : (boolean) Set to true to request
-    /// segment-level classification. AutoML Video Intelligence returns
-    /// labels and their confidence scores for the entire segment of the
-    /// video that user specified in the request configuration.
-    /// The default is true.
+    ///    segment-level classification. AutoML Video Intelligence returns
+    ///    labels and their confidence scores for the entire segment of the
+    ///    video that user specified in the request configuration.
+    ///    The default is true.
     ///
     /// `shot_classification`
     /// : (boolean) Set to true to request shot-level
-    /// classification. AutoML Video Intelligence determines the boundaries
-    /// for each camera shot in the entire segment of the video that user
-    /// specified in the request configuration. AutoML Video Intelligence
-    /// then returns labels and their confidence scores for each detected
-    /// shot, along with the start and end time of the shot.
-    /// The default is false.
+    ///    classification. AutoML Video Intelligence determines the boundaries
+    ///    for each camera shot in the entire segment of the video that user
+    ///    specified in the request configuration. AutoML Video Intelligence
+    ///    then returns labels and their confidence scores for each detected
+    ///    shot, along with the start and end time of the shot.
+    ///    The default is false.
     ///
-    /// WARNING: Model evaluation is not done for this classification type,
-    /// the quality of it depends on training data, but there are no metrics
-    /// provided to describe that quality.
+    ///    WARNING: Model evaluation is not done for this classification type,
+    ///    the quality of it depends on training data, but there are no metrics
+    ///    provided to describe that quality.
     ///
     /// `1s_interval_classification`
     /// : (boolean) Set to true to request
-    /// classification for a video at one-second intervals. AutoML Video
-    /// Intelligence returns labels and their confidence scores for each
-    /// second of the entire segment of the video that user specified in the
-    /// request configuration. The default is false.
+    ///    classification for a video at one-second intervals. AutoML Video
+    ///    Intelligence returns labels and their confidence scores for each
+    ///    second of the entire segment of the video that user specified in the
+    ///    request configuration. The default is false.
     ///
-    /// WARNING: Model evaluation is not done for this classification
-    /// type, the quality of it depends on training data, but there are no
-    /// metrics provided to describe that quality.
+    ///    WARNING: Model evaluation is not done for this classification
+    ///    type, the quality of it depends on training data, but there are no
+    ///    metrics provided to describe that quality.
     ///
     /// AutoML Video Intelligence Object Tracking
     ///
     /// `score_threshold`
     /// : (float) When Model detects objects on video frames,
-    /// it will only produce bounding boxes which have at least this
-    /// confidence score. Value in 0 to 1 range, default is 0.5.
+    ///    it will only produce bounding boxes which have at least this
+    ///    confidence score. Value in 0 to 1 range, default is 0.5.
     ///
     /// `max_bounding_box_count`
     /// : (int64) The maximum number of bounding
-    /// boxes returned per image. The default is 100, the
-    /// number of bounding boxes returned might be limited by the server.
+    ///    boxes returned per image. The default is 100, the
+    ///    number of bounding boxes returned might be limited by the server.
     ///
     /// `min_bounding_box_size`
     /// : (float) Only bounding boxes with shortest edge
-    /// at least that long as a relative value of video frame size are
-    /// returned. Value in 0 to 1 range. Default is 0.
+    ///    at least that long as a relative value of video frame size are
+    ///    returned. Value in 0 to 1 range. Default is 0.
+    ///
     #[prost(btree_map = "string, string", tag = "5")]
     pub params: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -3039,8 +2965,8 @@ pub struct BatchPredictRequest {
     >,
 }
 /// Result of the Batch Predict. This message is returned in
-/// \[response\]\[google.longrunning.Operation.response\] of the operation returned
-/// by the \[PredictionService.BatchPredict\]\[google.cloud.automl.v1.PredictionService.BatchPredict\].
+/// [response][google.longrunning.Operation.response] of the operation returned
+/// by the [PredictionService.BatchPredict][google.cloud.automl.v1.PredictionService.BatchPredict].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictResult {
     /// Additional domain-specific prediction response metadata.
@@ -3062,7 +2988,13 @@ pub struct BatchPredictResult {
 }
 /// Generated client implementations.
 pub mod prediction_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// AutoML Prediction API.
@@ -3153,7 +3085,7 @@ pub mod prediction_service_client {
         /// AutoML Natural Language Classification
         ///
         /// * A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
-        ///  .PDF, .TIF or .TIFF format with size upto 2MB.
+        /// .PDF, .TIF or .TIFF format with size upto 2MB.
         ///
         /// AutoML Natural Language Entity Extraction
         ///
@@ -3163,7 +3095,7 @@ pub mod prediction_service_client {
         /// AutoML Natural Language Sentiment Analysis
         ///
         /// * A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
-        ///  .PDF, .TIF or .TIFF format with size upto 2MB.
+        /// .PDF, .TIF or .TIFF format with size upto 2MB.
         ///
         /// AutoML Translation
         ///
@@ -3172,8 +3104,8 @@ pub mod prediction_service_client {
         /// AutoML Tables
         ///
         /// * A row with column values matching
-        ///  the columns of the model, up to 5MB. Not available for FORECASTING
-        ///  `prediction_type`.
+        ///   the columns of the model, up to 5MB. Not available for FORECASTING
+        ///   `prediction_type`.
         pub async fn predict(
             &mut self,
             request: impl tonic::IntoRequest<super::PredictRequest>,
@@ -3185,8 +3117,7 @@ pub mod prediction_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3204,12 +3135,12 @@ pub mod prediction_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Perform a batch prediction. Unlike the online \[Predict\]\[google.cloud.automl.v1.PredictionService.Predict\], batch
+        /// Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
         /// prediction result won't be immediately available in the response. Instead,
         /// a long running operation object is returned. User can poll the operation
-        /// result via \[GetOperation\]\[google.longrunning.Operations.GetOperation\]
-        /// method. Once the operation is done, \[BatchPredictResult\]\[google.cloud.automl.v1.BatchPredictResult\] is returned in
-        /// the \[response\]\[google.longrunning.Operation.response\] field.
+        /// result via [GetOperation][google.longrunning.Operations.GetOperation]
+        /// method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned in
+        /// the [response][google.longrunning.Operation.response] field.
         /// Available for following ML scenarios:
         ///
         /// * AutoML Vision Classification
@@ -3230,8 +3161,7 @@ pub mod prediction_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3251,7 +3181,7 @@ pub mod prediction_service_client {
         }
     }
 }
-/// Request message for \[AutoMl.CreateDataset\]\[google.cloud.automl.v1.AutoMl.CreateDataset\].
+/// Request message for [AutoMl.CreateDataset][google.cloud.automl.v1.AutoMl.CreateDataset].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDatasetRequest {
     /// Required. The resource name of the project to create the dataset for.
@@ -3261,14 +3191,14 @@ pub struct CreateDatasetRequest {
     #[prost(message, optional, tag = "2")]
     pub dataset: ::core::option::Option<Dataset>,
 }
-/// Request message for \[AutoMl.GetDataset\]\[google.cloud.automl.v1.AutoMl.GetDataset\].
+/// Request message for [AutoMl.GetDataset][google.cloud.automl.v1.AutoMl.GetDataset].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDatasetRequest {
     /// Required. The resource name of the dataset to retrieve.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.ListDatasets\]\[google.cloud.automl.v1.AutoMl.ListDatasets\].
+/// Request message for [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDatasetsRequest {
     /// Required. The resource name of the project from which to list datasets.
@@ -3276,11 +3206,11 @@ pub struct ListDatasetsRequest {
     pub parent: ::prost::alloc::string::String,
     /// An expression for filtering the results of the request.
     ///
-    /// * `dataset_metadata` - for existence of the case (e.g.
-    ///   `image_classification_dataset_metadata:*`). Some examples of using the filter are:
+    ///    * `dataset_metadata` - for existence of the case (e.g.
+    ///              `image_classification_dataset_metadata:*`). Some examples of using the filter are:
     ///
-    /// * `translation_dataset_metadata:*` --> The dataset has
-    ///   `translation_dataset_metadata`.
+    ///    * `translation_dataset_metadata:*` --> The dataset has
+    ///                                           `translation_dataset_metadata`.
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
     /// Requested page size. Server may return fewer results than requested.
@@ -3289,23 +3219,23 @@ pub struct ListDatasetsRequest {
     pub page_size: i32,
     /// A token identifying a page of results for the server to return
     /// Typically obtained via
-    /// \[ListDatasetsResponse.next_page_token\]\[google.cloud.automl.v1.ListDatasetsResponse.next_page_token\] of the previous
-    /// \[AutoMl.ListDatasets\]\[google.cloud.automl.v1.AutoMl.ListDatasets\] call.
+    /// [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token] of the previous
+    /// [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets] call.
     #[prost(string, tag = "6")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// Response message for \[AutoMl.ListDatasets\]\[google.cloud.automl.v1.AutoMl.ListDatasets\].
+/// Response message for [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDatasetsResponse {
     /// The datasets read.
     #[prost(message, repeated, tag = "1")]
     pub datasets: ::prost::alloc::vec::Vec<Dataset>,
     /// A token to retrieve next page of results.
-    /// Pass to \[ListDatasetsRequest.page_token\]\[google.cloud.automl.v1.ListDatasetsRequest.page_token\] to obtain that page.
+    /// Pass to [ListDatasetsRequest.page_token][google.cloud.automl.v1.ListDatasetsRequest.page_token] to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.UpdateDataset\]\[google.cloud.automl.v1.AutoMl.UpdateDataset\]
+/// Request message for [AutoMl.UpdateDataset][google.cloud.automl.v1.AutoMl.UpdateDataset]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDatasetRequest {
     /// Required. The dataset which replaces the resource on the server.
@@ -3315,14 +3245,14 @@ pub struct UpdateDatasetRequest {
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
-/// Request message for \[AutoMl.DeleteDataset\]\[google.cloud.automl.v1.AutoMl.DeleteDataset\].
+/// Request message for [AutoMl.DeleteDataset][google.cloud.automl.v1.AutoMl.DeleteDataset].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDatasetRequest {
     /// Required. The resource name of the dataset to delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.ImportData\]\[google.cloud.automl.v1.AutoMl.ImportData\].
+/// Request message for [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportDataRequest {
     /// Required. Dataset name. Dataset must already exist. All imported
@@ -3334,7 +3264,7 @@ pub struct ImportDataRequest {
     #[prost(message, optional, tag = "3")]
     pub input_config: ::core::option::Option<InputConfig>,
 }
-/// Request message for \[AutoMl.ExportData\]\[google.cloud.automl.v1.AutoMl.ExportData\].
+/// Request message for [AutoMl.ExportData][google.cloud.automl.v1.AutoMl.ExportData].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDataRequest {
     /// Required. The resource name of the dataset.
@@ -3344,14 +3274,14 @@ pub struct ExportDataRequest {
     #[prost(message, optional, tag = "3")]
     pub output_config: ::core::option::Option<OutputConfig>,
 }
-/// Request message for \[AutoMl.GetAnnotationSpec\]\[google.cloud.automl.v1.AutoMl.GetAnnotationSpec\].
+/// Request message for [AutoMl.GetAnnotationSpec][google.cloud.automl.v1.AutoMl.GetAnnotationSpec].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAnnotationSpecRequest {
     /// Required. The resource name of the annotation spec to retrieve.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.CreateModel\]\[google.cloud.automl.v1.AutoMl.CreateModel\].
+/// Request message for [AutoMl.CreateModel][google.cloud.automl.v1.AutoMl.CreateModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateModelRequest {
     /// Required. Resource name of the parent project where the model is being created.
@@ -3361,14 +3291,14 @@ pub struct CreateModelRequest {
     #[prost(message, optional, tag = "4")]
     pub model: ::core::option::Option<Model>,
 }
-/// Request message for \[AutoMl.GetModel\]\[google.cloud.automl.v1.AutoMl.GetModel\].
+/// Request message for [AutoMl.GetModel][google.cloud.automl.v1.AutoMl.GetModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetModelRequest {
     /// Required. Resource name of the model.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.ListModels\]\[google.cloud.automl.v1.AutoMl.ListModels\].
+/// Request message for [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelsRequest {
     /// Required. Resource name of the project, from which to list the models.
@@ -3376,15 +3306,13 @@ pub struct ListModelsRequest {
     pub parent: ::prost::alloc::string::String,
     /// An expression for filtering the results of the request.
     ///
-    /// * `model_metadata` - for existence of the case (e.g.
-    ///   `video_classification_model_metadata:*`).
+    ///    * `model_metadata` - for existence of the case (e.g.
+    ///              `video_classification_model_metadata:*`).
+    ///    * `dataset_id` - for = or !=. Some examples of using the filter are:
     ///
-    /// * `dataset_id` - for = or !=. Some examples of using the filter are:
-    ///
-    /// * `image_classification_model_metadata:*` --> The model has
-    ///   `image_classification_model_metadata`.
-    ///
-    /// * `dataset_id=5` --> The model was created from a dataset with ID 5.
+    ///    * `image_classification_model_metadata:*` --> The model has
+    ///                                       `image_classification_model_metadata`.
+    ///    * `dataset_id=5` --> The model was created from a dataset with ID 5.
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
     /// Requested page size.
@@ -3392,30 +3320,30 @@ pub struct ListModelsRequest {
     pub page_size: i32,
     /// A token identifying a page of results for the server to return
     /// Typically obtained via
-    /// \[ListModelsResponse.next_page_token\]\[google.cloud.automl.v1.ListModelsResponse.next_page_token\] of the previous
-    /// \[AutoMl.ListModels\]\[google.cloud.automl.v1.AutoMl.ListModels\] call.
+    /// [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
+    /// [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
     #[prost(string, tag = "6")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// Response message for \[AutoMl.ListModels\]\[google.cloud.automl.v1.AutoMl.ListModels\].
+/// Response message for [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelsResponse {
     /// List of models in the requested page.
     #[prost(message, repeated, tag = "1")]
     pub model: ::prost::alloc::vec::Vec<Model>,
     /// A token to retrieve next page of results.
-    /// Pass to \[ListModelsRequest.page_token\]\[google.cloud.automl.v1.ListModelsRequest.page_token\] to obtain that page.
+    /// Pass to [ListModelsRequest.page_token][google.cloud.automl.v1.ListModelsRequest.page_token] to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.DeleteModel\]\[google.cloud.automl.v1.AutoMl.DeleteModel\].
+/// Request message for [AutoMl.DeleteModel][google.cloud.automl.v1.AutoMl.DeleteModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteModelRequest {
     /// Required. Resource name of the model being deleted.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.UpdateModel\]\[google.cloud.automl.v1.AutoMl.UpdateModel\]
+/// Request message for [AutoMl.UpdateModel][google.cloud.automl.v1.AutoMl.UpdateModel]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateModelRequest {
     /// Required. The model which replaces the resource on the server.
@@ -3425,7 +3353,7 @@ pub struct UpdateModelRequest {
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
-/// Request message for \[AutoMl.DeployModel\]\[google.cloud.automl.v1.AutoMl.DeployModel\].
+/// Request message for [AutoMl.DeployModel][google.cloud.automl.v1.AutoMl.DeployModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployModelRequest {
     /// Required. Resource name of the model to deploy.
@@ -3454,14 +3382,14 @@ pub mod deploy_model_request {
         ),
     }
 }
-/// Request message for \[AutoMl.UndeployModel\]\[google.cloud.automl.v1.AutoMl.UndeployModel\].
+/// Request message for [AutoMl.UndeployModel][google.cloud.automl.v1.AutoMl.UndeployModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeployModelRequest {
     /// Required. Resource name of the model to undeploy.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.ExportModel\]\[google.cloud.automl.v1.AutoMl.ExportModel\].
+/// Request message for [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel].
 /// Models need to be enabled for exporting, otherwise an error code will be
 /// returned.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3473,14 +3401,14 @@ pub struct ExportModelRequest {
     #[prost(message, optional, tag = "3")]
     pub output_config: ::core::option::Option<ModelExportOutputConfig>,
 }
-/// Request message for \[AutoMl.GetModelEvaluation\]\[google.cloud.automl.v1.AutoMl.GetModelEvaluation\].
+/// Request message for [AutoMl.GetModelEvaluation][google.cloud.automl.v1.AutoMl.GetModelEvaluation].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetModelEvaluationRequest {
     /// Required. Resource name for the model evaluation.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for \[AutoMl.ListModelEvaluations\]\[google.cloud.automl.v1.AutoMl.ListModelEvaluations\].
+/// Request message for [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelEvaluationsRequest {
     /// Required. Resource name of the model to list the model evaluations for.
@@ -3490,15 +3418,15 @@ pub struct ListModelEvaluationsRequest {
     pub parent: ::prost::alloc::string::String,
     /// Required. An expression for filtering the results of the request.
     ///
-    /// * `annotation_spec_id` - for =, !=  or existence. See example below for
-    ///   the last.
+    ///    * `annotation_spec_id` - for =, !=  or existence. See example below for
+    ///                           the last.
     ///
     /// Some examples of using the filter are:
     ///
-    /// * `annotation_spec_id!=4` --> The model evaluation was done for
-    ///   annotation spec with ID different than 4.
-    /// * `NOT annotation_spec_id:*` --> The model evaluation was done for
-    ///   aggregate of all annotation specs.
+    ///    * `annotation_spec_id!=4` --> The model evaluation was done for
+    ///                              annotation spec with ID different than 4.
+    ///    * `NOT annotation_spec_id:*` --> The model evaluation was done for
+    ///                                 aggregate of all annotation specs.
     #[prost(string, tag = "3")]
     pub filter: ::prost::alloc::string::String,
     /// Requested page size.
@@ -3506,26 +3434,32 @@ pub struct ListModelEvaluationsRequest {
     pub page_size: i32,
     /// A token identifying a page of results for the server to return.
     /// Typically obtained via
-    /// \[ListModelEvaluationsResponse.next_page_token\]\[google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token\] of the previous
-    /// \[AutoMl.ListModelEvaluations\]\[google.cloud.automl.v1.AutoMl.ListModelEvaluations\] call.
+    /// [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token] of the previous
+    /// [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] call.
     #[prost(string, tag = "6")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// Response message for \[AutoMl.ListModelEvaluations\]\[google.cloud.automl.v1.AutoMl.ListModelEvaluations\].
+/// Response message for [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelEvaluationsResponse {
     /// List of model evaluations in the requested page.
     #[prost(message, repeated, tag = "1")]
     pub model_evaluation: ::prost::alloc::vec::Vec<ModelEvaluation>,
     /// A token to retrieve next page of results.
-    /// Pass to the \[ListModelEvaluationsRequest.page_token\]\[google.cloud.automl.v1.ListModelEvaluationsRequest.page_token\] field of a new
-    /// \[AutoMl.ListModelEvaluations\]\[google.cloud.automl.v1.AutoMl.ListModelEvaluations\] request to obtain that page.
+    /// Pass to the [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token] field of a new
+    /// [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] request to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod auto_ml_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// AutoML Server API.
@@ -3623,8 +3557,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3648,8 +3581,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3674,8 +3606,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3699,8 +3630,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3717,9 +3647,9 @@ pub mod auto_ml_client {
         }
         /// Deletes a dataset and all of its contents.
         /// Returns empty response in the
-        /// \[response\]\[google.longrunning.Operation.response\] field when it completes,
+        /// [response][google.longrunning.Operation.response] field when it completes,
         /// and `delete_details` in the
-        /// \[metadata\]\[google.longrunning.Operation.metadata\] field.
+        /// [metadata][google.longrunning.Operation.metadata] field.
         pub async fn delete_dataset(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDatasetRequest>,
@@ -3731,8 +3661,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3751,12 +3680,11 @@ pub mod auto_ml_client {
         /// For Tables this method can only be called on an empty Dataset.
         ///
         /// For Tables:
-        ///
-        /// * A
-        ///  \[schema_inference_version\]\[google.cloud.automl.v1.InputConfig.params\]
-        ///  parameter must be explicitly set.
-        ///  Returns an empty response in the
-        ///  \[response\]\[google.longrunning.Operation.response\] field when it completes.
+        /// *   A
+        /// [schema_inference_version][google.cloud.automl.v1.InputConfig.params]
+        ///     parameter must be explicitly set.
+        /// Returns an empty response in the
+        /// [response][google.longrunning.Operation.response] field when it completes.
         pub async fn import_data(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportDataRequest>,
@@ -3768,8 +3696,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3784,7 +3711,7 @@ pub mod auto_ml_client {
         }
         /// Exports dataset's data to the provided output location.
         /// Returns an empty response in the
-        /// \[response\]\[google.longrunning.Operation.response\] field when it completes.
+        /// [response][google.longrunning.Operation.response] field when it completes.
         pub async fn export_data(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportDataRequest>,
@@ -3796,8 +3723,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3819,8 +3745,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3836,7 +3761,7 @@ pub mod auto_ml_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a model.
-        /// Returns a Model in the \[response\]\[google.longrunning.Operation.response\]
+        /// Returns a Model in the [response][google.longrunning.Operation.response]
         /// field when it completes.
         /// When you create a model, several model evaluations are created for it:
         /// a global evaluation, and one evaluation for each annotation spec.
@@ -3851,8 +3776,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3874,8 +3798,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3900,8 +3823,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3916,9 +3838,9 @@ pub mod auto_ml_client {
         }
         /// Deletes a model.
         /// Returns `google.protobuf.Empty` in the
-        /// \[response\]\[google.longrunning.Operation.response\] field when it completes,
+        /// [response][google.longrunning.Operation.response] field when it completes,
         /// and `delete_details` in the
-        /// \[metadata\]\[google.longrunning.Operation.metadata\] field.
+        /// [metadata][google.longrunning.Operation.metadata] field.
         pub async fn delete_model(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteModelRequest>,
@@ -3930,8 +3852,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3953,8 +3874,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3970,14 +3890,14 @@ pub mod auto_ml_client {
         /// Deploys a model. If a model is already deployed, deploying it with the
         /// same parameters has no effect. Deploying with different parametrs
         /// (as e.g. changing
-        /// \[node_number\]\[google.cloud.automl.v1p1beta.ImageObjectDetectionModelDeploymentMetadata.node_number\])
-        /// will reset the deployment state without pausing the model's availability.
+        /// [node_number][google.cloud.automl.v1p1beta.ImageObjectDetectionModelDeploymentMetadata.node_number])
+        ///  will reset the deployment state without pausing the model's availability.
         ///
         /// Only applicable for Text Classification, Image Object Detection , Tables, and Image Segmentation; all other domains manage
         /// deployment automatically.
         ///
         /// Returns an empty response in the
-        /// \[response\]\[google.longrunning.Operation.response\] field when it completes.
+        /// [response][google.longrunning.Operation.response] field when it completes.
         pub async fn deploy_model(
             &mut self,
             request: impl tonic::IntoRequest<super::DeployModelRequest>,
@@ -3989,8 +3909,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4009,7 +3928,7 @@ pub mod auto_ml_client {
         /// all other domains manage deployment automatically.
         ///
         /// Returns an empty response in the
-        /// \[response\]\[google.longrunning.Operation.response\] field when it completes.
+        /// [response][google.longrunning.Operation.response] field when it completes.
         pub async fn undeploy_model(
             &mut self,
             request: impl tonic::IntoRequest<super::UndeployModelRequest>,
@@ -4021,8 +3940,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4040,10 +3958,10 @@ pub mod auto_ml_client {
         /// Exports a trained, "export-able", model to a user specified Google Cloud
         /// Storage location. A model is considered export-able if and only if it has
         /// an export format defined for it in
-        /// \[ModelExportOutputConfig\]\[google.cloud.automl.v1.ModelExportOutputConfig\].
+        /// [ModelExportOutputConfig][google.cloud.automl.v1.ModelExportOutputConfig].
         ///
         /// Returns an empty response in the
-        /// \[response\]\[google.longrunning.Operation.response\] field when it completes.
+        /// [response][google.longrunning.Operation.response] field when it completes.
         pub async fn export_model(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportModelRequest>,
@@ -4055,8 +3973,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4081,8 +3998,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4112,8 +4028,7 @@ pub mod auto_ml_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

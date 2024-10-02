@@ -21,7 +21,8 @@ pub struct Document {
     /// defined here. For `map_value`, the field path is represented by a
     /// dot-delimited (`.`) string of segments. Each segment is either a simple
     /// field name (defined below) or a quoted field name. For example, the
-    /// structured field `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be represented by the field path `` foo.`x&y` ``.
+    /// structured field `"foo" : { map_value: { "x&y" : { string_value: "hello"
+    /// }}}` would be represented by the field path `` foo.`x&y` ``.
     ///
     /// A simple field name contains only characters `a` to `z`, `A` to `Z`,
     /// `0` to `9`, or `_`, and must not start with `0` to `9`. For example,
@@ -131,18 +132,17 @@ pub struct MapValue {
 /// A Firestore query.
 ///
 /// The query stages are executed in the following order:
-///
 /// 1. from
-/// 1. where
-/// 1. select
-/// 1. order_by + start_at + end_at
-/// 1. offset
-/// 1. limit
+/// 2. where
+/// 3. select
+/// 4. order_by + start_at + end_at
+/// 5. offset
+/// 6. limit
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StructuredQuery {
     /// Optional sub-set of the fields to return.
     ///
-    /// This acts as a \[DocumentMask\]\[google.firestore.v1.DocumentMask\] over the
+    /// This acts as a [DocumentMask][google.firestore.v1.DocumentMask] over the
     /// documents returned from a query. When not set, assumes that the caller
     /// wants all fields returned.
     #[prost(message, optional, tag = "1")]
@@ -159,20 +159,20 @@ pub struct StructuredQuery {
     /// no ordering at all. In all cases, Firestore guarantees a stable ordering
     /// through the following rules:
     ///
-    /// * The `order_by` is required to reference all fields used with an
-    ///   inequality filter.
-    /// * All fields that are required to be in the `order_by` but are not already
-    ///   present are appended in lexicographical ordering of the field name.
-    /// * If an order on `__name__` is not specified, it is appended by default.
+    ///   * The `order_by` is required to reference all fields used with an
+    ///     inequality filter.
+    ///   * All fields that are required to be in the `order_by` but are not already
+    ///     present are appended in lexicographical ordering of the field name.
+    ///   * If an order on `__name__` is not specified, it is appended by default.
     ///
     /// Fields are appended with the same sort direction as the last order
     /// specified, or 'ASCENDING' if no order was specified. For example:
     ///
-    /// * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC`
-    /// * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC`
-    /// * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC`
-    /// * `WHERE __name__ > ... AND a > 1` becomes
-    ///   `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
+    ///   * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC`
+    ///   * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC`
+    ///   * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC`
+    ///   * `WHERE __name__ > ... AND a > 1` becomes
+    ///      `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
     #[prost(message, repeated, tag = "4")]
     pub order_by: ::prost::alloc::vec::Vec<structured_query::Order>,
     /// A potential prefix of a position in the result set to start the query at.
@@ -180,7 +180,7 @@ pub struct StructuredQuery {
     /// The ordering of the result set is based on the `ORDER BY` clause of the
     /// original query.
     ///
-    /// ```text,
+    /// ```
     /// SELECT * FROM k WHERE a = 1 AND b > 2 ORDER BY b ASC, __name__ ASC;
     /// ```
     ///
@@ -193,8 +193,9 @@ pub struct StructuredQuery {
     /// Continuing off the example above, attaching the following start cursors
     /// will have varying impact:
     ///
-    /// * `START BEFORE (2, /k/123)`: start the query right before `a = 1 AND b > 2 AND __name__ > /k/123`.
-    /// * `START AFTER (10)`: start the query right after `a = 1 AND b > 10`.
+    /// - `START BEFORE (2, /k/123)`: start the query right before `a = 1 AND
+    ///     b > 2 AND __name__ > /k/123`.
+    /// - `START AFTER (10)`: start the query right after `a = 1 AND b > 10`.
     ///
     /// Unlike `OFFSET` which requires scanning over the first N results to skip,
     /// a start cursor allows the query to begin at a logical position. This
@@ -204,7 +205,7 @@ pub struct StructuredQuery {
     /// Requires:
     ///
     /// * The number of values cannot be greater than the number of fields
-    ///   specified in the `ORDER BY` clause.
+    ///    specified in the `ORDER BY` clause.
     #[prost(message, optional, tag = "7")]
     pub start_at: ::core::option::Option<Cursor>,
     /// A potential prefix of a position in the result set to end the query at.
@@ -215,7 +216,7 @@ pub struct StructuredQuery {
     /// Requires:
     ///
     /// * The number of values cannot be greater than the number of fields
-    ///   specified in the `ORDER BY` clause.
+    ///    specified in the `ORDER BY` clause.
     #[prost(message, optional, tag = "8")]
     pub end_at: ::core::option::Option<Cursor>,
     /// The number of documents to skip before returning the first result.
@@ -327,9 +328,9 @@ pub mod structured_query {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                    Operator::And => "AND",
-                    Operator::Or => "OR",
+                    Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                    Self::And => "AND",
+                    Self::Or => "OR",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -414,7 +415,7 @@ pub mod structured_query {
             /// Requires:
             ///
             /// * That `value` is a non-empty `ArrayValue`, subject to disjunction
-            ///   limits.
+            ///    limits.
             /// * No `NOT_IN` filters in the same query.
             In = 8,
             /// The given `field` is an array that contains any of the values in the
@@ -423,7 +424,7 @@ pub mod structured_query {
             /// Requires:
             ///
             /// * That `value` is a non-empty `ArrayValue`, subject to disjunction
-            ///   limits.
+            ///    limits.
             /// * No other `ARRAY_CONTAINS_ANY` filters within the same disjunction.
             /// * No `NOT_IN` filters in the same query.
             ArrayContainsAny = 9,
@@ -433,7 +434,7 @@ pub mod structured_query {
             ///
             /// * That `value` is a non-empty `ArrayValue` with at most 10 values.
             /// * No other `OR`, `IN`, `ARRAY_CONTAINS_ANY`, `NOT_IN`, `NOT_EQUAL`,
-            ///   `IS_NOT_NULL`, or `IS_NOT_NAN`.
+            ///    `IS_NOT_NULL`, or `IS_NOT_NAN`.
             /// * That `field` comes first in the `order_by`.
             NotIn = 10,
         }
@@ -444,17 +445,17 @@ pub mod structured_query {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                    Operator::LessThan => "LESS_THAN",
-                    Operator::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-                    Operator::GreaterThan => "GREATER_THAN",
-                    Operator::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
-                    Operator::Equal => "EQUAL",
-                    Operator::NotEqual => "NOT_EQUAL",
-                    Operator::ArrayContains => "ARRAY_CONTAINS",
-                    Operator::In => "IN",
-                    Operator::ArrayContainsAny => "ARRAY_CONTAINS_ANY",
-                    Operator::NotIn => "NOT_IN",
+                    Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                    Self::LessThan => "LESS_THAN",
+                    Self::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+                    Self::GreaterThan => "GREATER_THAN",
+                    Self::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                    Self::Equal => "EQUAL",
+                    Self::NotEqual => "NOT_EQUAL",
+                    Self::ArrayContains => "ARRAY_CONTAINS",
+                    Self::In => "IN",
+                    Self::ArrayContainsAny => "ARRAY_CONTAINS_ANY",
+                    Self::NotIn => "NOT_IN",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -530,11 +531,11 @@ pub mod structured_query {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                    Operator::IsNan => "IS_NAN",
-                    Operator::IsNull => "IS_NULL",
-                    Operator::IsNotNan => "IS_NOT_NAN",
-                    Operator::IsNotNull => "IS_NOT_NULL",
+                    Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                    Self::IsNan => "IS_NAN",
+                    Self::IsNull => "IS_NULL",
+                    Self::IsNotNan => "IS_NOT_NAN",
+                    Self::IsNotNull => "IS_NOT_NULL",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -575,8 +576,8 @@ pub mod structured_query {
         /// Requires:
         ///
         /// * MUST be a dot-delimited (`.`) string of segments, where each segment
-        ///   conforms to \[document field name\]\[google.firestore.v1.Document.fields\]
-        ///   limitations.
+        /// conforms to [document field name][google.firestore.v1.Document.fields]
+        /// limitations.
         #[prost(string, tag = "2")]
         pub field_path: ::prost::alloc::string::String,
     }
@@ -613,8 +614,8 @@ pub mod structured_query {
         #[prost(message, optional, tag = "4")]
         pub limit: ::core::option::Option<i32>,
         /// Optional. Optional name of the field to output the result of the vector
-        /// distance calculation. Must conform to \[document field
-        /// name\]\[google.firestore.v1.Document.fields\] limitations.
+        /// distance calculation. Must conform to [document field
+        /// name][google.firestore.v1.Document.fields] limitations.
         #[prost(string, tag = "5")]
         pub distance_result_field: ::prost::alloc::string::String,
         /// Optional. Option to specify a threshold for which no less similar
@@ -623,7 +624,7 @@ pub mod structured_query {
         /// Since DOT_PRODUCT distances increase when the vectors are more similar,
         /// the comparison is inverted.
         ///
-        /// For EUCLIDEAN, COSINE: WHERE distance \<= distance_threshold
+        /// For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
         /// For DOT_PRODUCT:       WHERE distance >= distance_threshold
         #[prost(message, optional, tag = "6")]
         pub distance_threshold: ::core::option::Option<f64>,
@@ -672,10 +673,10 @@ pub mod structured_query {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    DistanceMeasure::Unspecified => "DISTANCE_MEASURE_UNSPECIFIED",
-                    DistanceMeasure::Euclidean => "EUCLIDEAN",
-                    DistanceMeasure::Cosine => "COSINE",
-                    DistanceMeasure::DotProduct => "DOT_PRODUCT",
+                    Self::Unspecified => "DISTANCE_MEASURE_UNSPECIFIED",
+                    Self::Euclidean => "EUCLIDEAN",
+                    Self::Cosine => "COSINE",
+                    Self::DotProduct => "DOT_PRODUCT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -718,9 +719,9 @@ pub mod structured_query {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Direction::Unspecified => "DIRECTION_UNSPECIFIED",
-                Direction::Ascending => "ASCENDING",
-                Direction::Descending => "DESCENDING",
+                Self::Unspecified => "DIRECTION_UNSPECIFIED",
+                Self::Ascending => "ASCENDING",
+                Self::Descending => "DESCENDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -735,7 +736,7 @@ pub mod structured_query {
     }
 }
 /// Firestore query for running an aggregation over a
-/// \[StructuredQuery\]\[google.firestore.v1.StructuredQuery\].
+/// [StructuredQuery][google.firestore.v1.StructuredQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StructuredAggregationQuery {
     /// Optional. Series of aggregations to apply over the results of the
@@ -763,35 +764,35 @@ pub mod structured_aggregation_query {
         /// If not provided, Firestore will pick a default name following the format
         /// `field_<incremental_id++>`. For example:
         ///
-        /// ```text,
+        /// ```
         /// AGGREGATE
-        ///   COUNT_UP_TO(1) AS count_up_to_1,
-        ///   COUNT_UP_TO(2),
-        ///   COUNT_UP_TO(3) AS count_up_to_3,
-        ///   COUNT(*)
+        ///    COUNT_UP_TO(1) AS count_up_to_1,
+        ///    COUNT_UP_TO(2),
+        ///    COUNT_UP_TO(3) AS count_up_to_3,
+        ///    COUNT(*)
         /// OVER (
-        ///   ...
+        ///    ...
         /// );
         /// ```
         ///
         /// becomes:
         ///
-        /// ```text,
+        /// ```
         /// AGGREGATE
-        ///   COUNT_UP_TO(1) AS count_up_to_1,
-        ///   COUNT_UP_TO(2) AS field_1,
-        ///   COUNT_UP_TO(3) AS count_up_to_3,
-        ///   COUNT(*) AS field_2
+        ///    COUNT_UP_TO(1) AS count_up_to_1,
+        ///    COUNT_UP_TO(2) AS field_1,
+        ///    COUNT_UP_TO(3) AS count_up_to_3,
+        ///    COUNT(*) AS field_2
         /// OVER (
-        ///   ...
+        ///    ...
         /// );
         /// ```
         ///
         /// Requires:
         ///
         /// * Must be unique across all aggregation aliases.
-        /// * Conform to \[document field name\]\[google.firestore.v1.Document.fields\]
-        ///   limitations.
+        /// * Conform to [document field name][google.firestore.v1.Document.fields]
+        /// limitations.
         #[prost(string, tag = "7")]
         pub alias: ::prost::alloc::string::String,
         /// The type of aggregation to perform, required.
@@ -816,7 +817,7 @@ pub mod structured_aggregation_query {
             ///
             /// High-Level Example:
             ///
-            /// ```text,
+            /// ```
             /// AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k );
             /// ```
             ///
@@ -829,24 +830,24 @@ pub mod structured_aggregation_query {
         /// Sum of the values of the requested field.
         ///
         /// * Only numeric values will be aggregated. All non-numeric values
-        ///   including `NULL` are skipped.
+        /// including `NULL` are skipped.
         ///
         /// * If the aggregated values contain `NaN`, returns `NaN`. Infinity math
-        ///   follows IEEE-754 standards.
+        /// follows IEEE-754 standards.
         ///
         /// * If the aggregated value set is empty, returns 0.
         ///
         /// * Returns a 64-bit integer if all aggregated numbers are integers and the
-        ///   sum result does not overflow. Otherwise, the result is returned as a
-        ///   double. Note that even if all the aggregated values are integers, the
-        ///   result is returned as a double if it cannot fit within a 64-bit signed
-        ///   integer. When this occurs, the returned value will lose precision.
+        /// sum result does not overflow. Otherwise, the result is returned as a
+        /// double. Note that even if all the aggregated values are integers, the
+        /// result is returned as a double if it cannot fit within a 64-bit signed
+        /// integer. When this occurs, the returned value will lose precision.
         ///
         /// * When underflow occurs, floating-point aggregation is non-deterministic.
-        ///   This means that running the same query repeatedly without any changes to
-        ///   the underlying values could produce slightly different results each
-        ///   time. In those cases, values should be stored as integers over
-        ///   floating-point numbers.
+        /// This means that running the same query repeatedly without any changes to
+        /// the underlying values could produce slightly different results each
+        /// time. In those cases, values should be stored as integers over
+        /// floating-point numbers.
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Sum {
             /// The field to aggregate on.
@@ -858,10 +859,10 @@ pub mod structured_aggregation_query {
         /// Average of the values of the requested field.
         ///
         /// * Only numeric values will be aggregated. All non-numeric values
-        ///   including `NULL` are skipped.
+        /// including `NULL` are skipped.
         ///
         /// * If the aggregated values contain `NaN`, returns `NaN`. Infinity math
-        ///   follows IEEE-754 standards.
+        /// follows IEEE-754 standards.
         ///
         /// * If the aggregated value set is empty, returns `NULL`.
         ///
@@ -920,7 +921,7 @@ pub struct AggregationResult {
     /// The result of the aggregation functions, ex: `COUNT(*) AS total_docs`.
     ///
     /// The key is the
-    /// \[alias\]\[google.firestore.v1.StructuredAggregationQuery.Aggregation.alias\]
+    /// [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
     /// assigned to the aggregation function on input and the size of this map
     /// equals the number of aggregation functions in the query.
     #[prost(map = "string, message", tag = "2")]
@@ -932,7 +933,7 @@ pub struct AggregationResult {
 /// A sequence of bits, encoded in a byte array.
 ///
 /// Each byte in the `bitmap` byte array stores 8 bits of the sequence. The only
-/// exception is the last byte, which may store 8 *or fewer* bits. The `padding`
+/// exception is the last byte, which may store 8 _or fewer_ bits. The `padding`
 /// defines the number of bits of the last byte to be ignored as "padding". The
 /// values of these "padding" bits are unspecified and must be ignored.
 ///
@@ -965,9 +966,7 @@ pub struct BitSequence {
 /// These two hash values, named `h1` and `h2`, are then used to compute the
 /// `hash_count` hash values using the formula, starting at `i=0`:
 ///
-/// ```text
-/// h(i) = h1 + (i * h2)
-/// ```
+///      h(i) = h1 + (i * h2)
 ///
 /// These resulting values are then taken modulo the number of bits in the bloom
 /// filter to get the bits of the bloom filter to test for the given entry.
@@ -984,12 +983,12 @@ pub struct BloomFilter {
 /// Used to restrict a get or update operation on a document to a subset of its
 /// fields.
 /// This is different from standard field masks, as this is always scoped to a
-/// \[Document\]\[google.firestore.v1.Document\], and takes in account the dynamic
-/// nature of \[Value\]\[google.firestore.v1.Value\].
+/// [Document][google.firestore.v1.Document], and takes in account the dynamic
+/// nature of [Value][google.firestore.v1.Value].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentMask {
     /// The list of field paths in the mask. See
-    /// \[Document.fields\]\[google.firestore.v1.Document.fields\] for a field path
+    /// [Document.fields][google.firestore.v1.Document.fields] for a field path
     /// syntax reference.
     #[prost(string, repeated, tag = "1")]
     pub field_paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -1089,7 +1088,7 @@ pub struct ExplainMetrics {
     #[prost(message, optional, tag = "1")]
     pub plan_summary: ::core::option::Option<PlanSummary>,
     /// Aggregated stats from the execution of the query. Only present when
-    /// \[ExplainOptions.analyze\]\[google.firestore.v1.ExplainOptions.analyze\] is set
+    /// [ExplainOptions.analyze][google.firestore.v1.ExplainOptions.analyze] is set
     /// to true.
     #[prost(message, optional, tag = "2")]
     pub execution_stats: ::core::option::Option<ExecutionStats>,
@@ -1098,10 +1097,10 @@ pub struct ExplainMetrics {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlanSummary {
     /// The indexes selected for the query. For example:
-    /// \[
-    /// {"query_scope": "Collection", "properties": "(foo ASC, **name** ASC)"},
-    /// {"query_scope": "Collection", "properties": "(bar ASC, **name** ASC)"}
-    /// \]
+    ///   [
+    ///     {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"},
+    ///     {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"}
+    ///   ]
     #[prost(message, repeated, tag = "1")]
     pub indexes_used: ::prost::alloc::vec::Vec<::prost_types::Struct>,
 }
@@ -1121,15 +1120,15 @@ pub struct ExecutionStats {
     /// Debugging statistics from the execution of the query. Note that the
     /// debugging stats are subject to change as Firestore evolves. It could
     /// include:
-    /// {
-    /// "indexes_entries_scanned": "1000",
-    /// "documents_scanned": "20",
-    /// "billing_details" : {
-    /// "documents_billable": "20",
-    /// "index_entries_billable": "1000",
-    /// "min_query_cost": "0"
-    /// }
-    /// }
+    ///   {
+    ///     "indexes_entries_scanned": "1000",
+    ///     "documents_scanned": "20",
+    ///     "billing_details" : {
+    ///        "documents_billable": "20",
+    ///        "index_entries_billable": "1000",
+    ///        "min_query_cost": "0"
+    ///     }
+    ///   }
     #[prost(message, optional, tag = "5")]
     pub debug_stats: ::core::option::Option<::prost_types::Struct>,
 }
@@ -1199,7 +1198,7 @@ pub mod document_transform {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FieldTransform {
         /// The path of the field. See
-        /// \[Document.fields\]\[google.firestore.v1.Document.fields\] for the field path
+        /// [Document.fields][google.firestore.v1.Document.fields] for the field path
         /// syntax reference.
         #[prost(string, tag = "1")]
         pub field_path: ::prost::alloc::string::String,
@@ -1237,8 +1236,8 @@ pub mod document_transform {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ServerValue::Unspecified => "SERVER_VALUE_UNSPECIFIED",
-                    ServerValue::RequestTime => "REQUEST_TIME",
+                    Self::Unspecified => "SERVER_VALUE_UNSPECIFIED",
+                    Self::RequestTime => "REQUEST_TIME",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1336,22 +1335,22 @@ pub struct WriteResult {
     #[prost(message, optional, tag = "1")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
     /// The results of applying each
-    /// \[DocumentTransform.FieldTransform\]\[google.firestore.v1.DocumentTransform.FieldTransform\],
+    /// [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform],
     /// in the same order.
     #[prost(message, repeated, tag = "2")]
     pub transform_results: ::prost::alloc::vec::Vec<Value>,
 }
-/// A \[Document\]\[google.firestore.v1.Document\] has changed.
+/// A [Document][google.firestore.v1.Document] has changed.
 ///
-/// May be the result of multiple \[writes\]\[google.firestore.v1.Write\], including
+/// May be the result of multiple [writes][google.firestore.v1.Write], including
 /// deletes, that ultimately resulted in a new value for the
-/// \[Document\]\[google.firestore.v1.Document\].
+/// [Document][google.firestore.v1.Document].
 ///
-/// Multiple \[DocumentChange\]\[google.firestore.v1.DocumentChange\] messages may be
+/// Multiple [DocumentChange][google.firestore.v1.DocumentChange] messages may be
 /// returned for the same logical change, if multiple targets are affected.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentChange {
-    /// The new state of the \[Document\]\[google.firestore.v1.Document\].
+    /// The new state of the [Document][google.firestore.v1.Document].
     ///
     /// If `mask` is set, contains only fields that were updated or added.
     #[prost(message, optional, tag = "1")]
@@ -1363,17 +1362,17 @@ pub struct DocumentChange {
     #[prost(int32, repeated, tag = "6")]
     pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
 }
-/// A \[Document\]\[google.firestore.v1.Document\] has been deleted.
+/// A [Document][google.firestore.v1.Document] has been deleted.
 ///
-/// May be the result of multiple \[writes\]\[google.firestore.v1.Write\], including
+/// May be the result of multiple [writes][google.firestore.v1.Write], including
 /// updates, the last of which deleted the
-/// \[Document\]\[google.firestore.v1.Document\].
+/// [Document][google.firestore.v1.Document].
 ///
-/// Multiple \[DocumentDelete\]\[google.firestore.v1.DocumentDelete\] messages may be
+/// Multiple [DocumentDelete][google.firestore.v1.DocumentDelete] messages may be
 /// returned for the same logical delete, if multiple targets are affected.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentDelete {
-    /// The resource name of the \[Document\]\[google.firestore.v1.Document\] that was
+    /// The resource name of the [Document][google.firestore.v1.Document] that was
     /// deleted.
     #[prost(string, tag = "1")]
     pub document: ::prost::alloc::string::String,
@@ -1386,19 +1385,19 @@ pub struct DocumentDelete {
     #[prost(message, optional, tag = "4")]
     pub read_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// A \[Document\]\[google.firestore.v1.Document\] has been removed from the view of
+/// A [Document][google.firestore.v1.Document] has been removed from the view of
 /// the targets.
 ///
 /// Sent if the document is no longer relevant to a target and is out of view.
 /// Can be sent instead of a DocumentDelete or a DocumentChange if the server
 /// can not send the new value of the document.
 ///
-/// Multiple \[DocumentRemove\]\[google.firestore.v1.DocumentRemove\] messages may be
+/// Multiple [DocumentRemove][google.firestore.v1.DocumentRemove] messages may be
 /// returned for the same logical write or delete, if multiple targets are
 /// affected.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentRemove {
-    /// The resource name of the \[Document\]\[google.firestore.v1.Document\] that has
+    /// The resource name of the [Document][google.firestore.v1.Document] that has
     /// gone out of view.
     #[prost(string, tag = "1")]
     pub document: ::prost::alloc::string::String,
@@ -1418,7 +1417,7 @@ pub struct ExistenceFilter {
     #[prost(int32, tag = "1")]
     pub target_id: i32,
     /// The total count of documents that match
-    /// \[target_id\]\[google.firestore.v1.ExistenceFilter.target_id\].
+    /// [target_id][google.firestore.v1.ExistenceFilter.target_id].
     ///
     /// If different from the count of documents in the client that match, the
     /// client must manually determine which documents no longer match the target.
@@ -1431,7 +1430,7 @@ pub struct ExistenceFilter {
     pub count: i32,
     /// A bloom filter that, despite its name, contains the UTF-8 byte encodings of
     /// the resource names of ALL the documents that match
-    /// \[target_id\]\[google.firestore.v1.ExistenceFilter.target_id\], in the form
+    /// [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
     /// `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
     ///
     /// This bloom filter may be omitted at the server's discretion, such as if it
@@ -1444,7 +1443,7 @@ pub struct ExistenceFilter {
     pub unchanged_names: ::core::option::Option<BloomFilter>,
 }
 /// The request for
-/// \[Firestore.GetDocument\]\[google.firestore.v1.Firestore.GetDocument\].
+/// [Firestore.GetDocument][google.firestore.v1.Firestore.GetDocument].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDocumentRequest {
     /// Required. The resource name of the Document to get. In the format:
@@ -1483,7 +1482,7 @@ pub mod get_document_request {
     }
 }
 /// The request for
-/// \[Firestore.ListDocuments\]\[google.firestore.v1.Firestore.ListDocuments\].
+/// [Firestore.ListDocuments][google.firestore.v1.Firestore.ListDocuments].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDocumentsRequest {
     /// Required. The parent resource name. In the format:
@@ -1519,7 +1518,7 @@ pub struct ListDocumentsRequest {
     ///
     /// For example: `priority desc, __name__ desc`.
     ///
-    /// This mirrors the \[`ORDER BY`\]\[google.firestore.v1.StructuredQuery.order_by\]
+    /// This mirrors the [`ORDER BY`][google.firestore.v1.StructuredQuery.order_by]
     /// used in Firestore queries but in a string representation. When absent,
     /// documents are ordered based on `__name__ ASC`.
     #[prost(string, tag = "6")]
@@ -1535,8 +1534,8 @@ pub struct ListDocumentsRequest {
     /// A document is missing if it does not exist, but there are sub-documents
     /// nested underneath it. When true, such missing documents will be returned
     /// with a key but will not have fields,
-    /// \[`create_time`\]\[google.firestore.v1.Document.create_time\], or
-    /// \[`update_time`\]\[google.firestore.v1.Document.update_time\] set.
+    /// [`create_time`][google.firestore.v1.Document.create_time], or
+    /// [`update_time`][google.firestore.v1.Document.update_time] set.
     ///
     /// Requests with `show_missing` may not specify `where` or `order_by`.
     #[prost(bool, tag = "12")]
@@ -1567,7 +1566,7 @@ pub mod list_documents_request {
     }
 }
 /// The response for
-/// \[Firestore.ListDocuments\]\[google.firestore.v1.Firestore.ListDocuments\].
+/// [Firestore.ListDocuments][google.firestore.v1.Firestore.ListDocuments].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDocumentsResponse {
     /// The Documents found.
@@ -1580,7 +1579,7 @@ pub struct ListDocumentsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[Firestore.CreateDocument\]\[google.firestore.v1.Firestore.CreateDocument\].
+/// [Firestore.CreateDocument][google.firestore.v1.Firestore.CreateDocument].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDocumentRequest {
     /// Required. The parent resource. For example:
@@ -1608,7 +1607,7 @@ pub struct CreateDocumentRequest {
     pub mask: ::core::option::Option<DocumentMask>,
 }
 /// The request for
-/// \[Firestore.UpdateDocument\]\[google.firestore.v1.Firestore.UpdateDocument\].
+/// [Firestore.UpdateDocument][google.firestore.v1.Firestore.UpdateDocument].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDocumentRequest {
     /// Required. The updated document.
@@ -1636,7 +1635,7 @@ pub struct UpdateDocumentRequest {
     pub current_document: ::core::option::Option<Precondition>,
 }
 /// The request for
-/// \[Firestore.DeleteDocument\]\[google.firestore.v1.Firestore.DeleteDocument\].
+/// [Firestore.DeleteDocument][google.firestore.v1.Firestore.DeleteDocument].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDocumentRequest {
     /// Required. The resource name of the Document to delete. In the format:
@@ -1649,7 +1648,7 @@ pub struct DeleteDocumentRequest {
     pub current_document: ::core::option::Option<Precondition>,
 }
 /// The request for
-/// \[Firestore.BatchGetDocuments\]\[google.firestore.v1.Firestore.BatchGetDocuments\].
+/// [Firestore.BatchGetDocuments][google.firestore.v1.Firestore.BatchGetDocuments].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetDocumentsRequest {
     /// Required. The database name. In the format:
@@ -1703,12 +1702,12 @@ pub mod batch_get_documents_request {
     }
 }
 /// The streamed response for
-/// \[Firestore.BatchGetDocuments\]\[google.firestore.v1.Firestore.BatchGetDocuments\].
+/// [Firestore.BatchGetDocuments][google.firestore.v1.Firestore.BatchGetDocuments].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetDocumentsResponse {
     /// The transaction that was started as part of this request.
     /// Will only be set in the first response, and only if
-    /// \[BatchGetDocumentsRequest.new_transaction\]\[google.firestore.v1.BatchGetDocumentsRequest.new_transaction\]
+    /// [BatchGetDocumentsRequest.new_transaction][google.firestore.v1.BatchGetDocumentsRequest.new_transaction]
     /// was set in the request.
     #[prost(bytes = "bytes", tag = "3")]
     pub transaction: ::prost::bytes::Bytes,
@@ -1739,7 +1738,7 @@ pub mod batch_get_documents_response {
     }
 }
 /// The request for
-/// \[Firestore.BeginTransaction\]\[google.firestore.v1.Firestore.BeginTransaction\].
+/// [Firestore.BeginTransaction][google.firestore.v1.Firestore.BeginTransaction].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionRequest {
     /// Required. The database name. In the format:
@@ -1752,14 +1751,14 @@ pub struct BeginTransactionRequest {
     pub options: ::core::option::Option<TransactionOptions>,
 }
 /// The response for
-/// \[Firestore.BeginTransaction\]\[google.firestore.v1.Firestore.BeginTransaction\].
+/// [Firestore.BeginTransaction][google.firestore.v1.Firestore.BeginTransaction].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionResponse {
     /// The transaction that was started.
     #[prost(bytes = "bytes", tag = "1")]
     pub transaction: ::prost::bytes::Bytes,
 }
-/// The request for \[Firestore.Commit\]\[google.firestore.v1.Firestore.Commit\].
+/// The request for [Firestore.Commit][google.firestore.v1.Firestore.Commit].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitRequest {
     /// Required. The database name. In the format:
@@ -1775,7 +1774,7 @@ pub struct CommitRequest {
     #[prost(bytes = "bytes", tag = "3")]
     pub transaction: ::prost::bytes::Bytes,
 }
-/// The response for \[Firestore.Commit\]\[google.firestore.v1.Firestore.Commit\].
+/// The response for [Firestore.Commit][google.firestore.v1.Firestore.Commit].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitResponse {
     /// The result of applying the writes.
@@ -1789,7 +1788,7 @@ pub struct CommitResponse {
     #[prost(message, optional, tag = "2")]
     pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// The request for \[Firestore.Rollback\]\[google.firestore.v1.Firestore.Rollback\].
+/// The request for [Firestore.Rollback][google.firestore.v1.Firestore.Rollback].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RollbackRequest {
     /// Required. The database name. In the format:
@@ -1800,7 +1799,7 @@ pub struct RollbackRequest {
     #[prost(bytes = "bytes", tag = "2")]
     pub transaction: ::prost::bytes::Bytes,
 }
-/// The request for \[Firestore.RunQuery\]\[google.firestore.v1.Firestore.RunQuery\].
+/// The request for [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryRequest {
     /// Required. The parent resource name. In the format:
@@ -1859,12 +1858,12 @@ pub mod run_query_request {
     }
 }
 /// The response for
-/// \[Firestore.RunQuery\]\[google.firestore.v1.Firestore.RunQuery\].
+/// [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryResponse {
     /// The transaction that was started as part of this request.
     /// Can only be set in the first response, and only if
-    /// \[RunQueryRequest.new_transaction\]\[google.firestore.v1.RunQueryRequest.new_transaction\]
+    /// [RunQueryRequest.new_transaction][google.firestore.v1.RunQueryRequest.new_transaction]
     /// was set in the request. If set, no other fields will be set in this
     /// response.
     #[prost(bytes = "bytes", tag = "2")]
@@ -1886,7 +1885,7 @@ pub struct RunQueryResponse {
     #[prost(int32, tag = "4")]
     pub skipped_results: i32,
     /// Query explain metrics. This is only present when the
-    /// \[RunQueryRequest.explain_options\]\[google.firestore.v1.RunQueryRequest.explain_options\]
+    /// [RunQueryRequest.explain_options][google.firestore.v1.RunQueryRequest.explain_options]
     /// is provided, and it is sent only once with the last response in the stream.
     #[prost(message, optional, tag = "11")]
     pub explain_metrics: ::core::option::Option<ExplainMetrics>,
@@ -1912,7 +1911,7 @@ pub mod run_query_response {
     }
 }
 /// The request for
-/// \[Firestore.RunAggregationQuery\]\[google.firestore.v1.Firestore.RunAggregationQuery\].
+/// [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunAggregationQueryRequest {
     /// Required. The parent resource name. In the format:
@@ -1972,7 +1971,7 @@ pub mod run_aggregation_query_request {
     }
 }
 /// The response for
-/// \[Firestore.RunAggregationQuery\]\[google.firestore.v1.Firestore.RunAggregationQuery\].
+/// [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunAggregationQueryResponse {
     /// A single aggregation result.
@@ -1997,13 +1996,13 @@ pub struct RunAggregationQueryResponse {
     #[prost(message, optional, tag = "3")]
     pub read_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Query explain metrics. This is only present when the
-    /// \[RunAggregationQueryRequest.explain_options\]\[google.firestore.v1.RunAggregationQueryRequest.explain_options\]
+    /// [RunAggregationQueryRequest.explain_options][google.firestore.v1.RunAggregationQueryRequest.explain_options]
     /// is provided, and it is sent only once with the last response in the stream.
     #[prost(message, optional, tag = "10")]
     pub explain_metrics: ::core::option::Option<ExplainMetrics>,
 }
 /// The request for
-/// \[Firestore.PartitionQuery\]\[google.firestore.v1.Firestore.PartitionQuery\].
+/// [Firestore.PartitionQuery][google.firestore.v1.Firestore.PartitionQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionQueryRequest {
     /// Required. The parent resource name. In the format:
@@ -2029,8 +2028,8 @@ pub struct PartitionQueryRequest {
     ///
     /// For example, two subsequent calls using a page_token may return:
     ///
-    /// * cursor B, cursor M, cursor Q
-    /// * cursor A, cursor U, cursor W
+    ///   * cursor B, cursor M, cursor Q
+    ///   * cursor A, cursor U, cursor W
     ///
     /// To obtain a complete result set ordered with respect to the results of the
     /// query supplied to PartitionQuery, the results sets should be merged:
@@ -2082,7 +2081,7 @@ pub mod partition_query_request {
     }
 }
 /// The response for
-/// \[Firestore.PartitionQuery\]\[google.firestore.v1.Firestore.PartitionQuery\].
+/// [Firestore.PartitionQuery][google.firestore.v1.Firestore.PartitionQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionQueryResponse {
     /// Partition results.
@@ -2096,9 +2095,9 @@ pub struct PartitionQueryResponse {
     /// running the following three queries will return the entire result set of
     /// the original query:
     ///
-    /// * query, end_at A
-    /// * query, start_at A, end_at B
-    /// * query, start_at B
+    ///   * query, end_at A
+    ///   * query, start_at A, end_at B
+    ///   * query, start_at B
     ///
     /// An empty result may indicate that the query has too few results to be
     /// partitioned, or that the query is not yet supported for partitioning.
@@ -2110,7 +2109,7 @@ pub struct PartitionQueryResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
-/// The request for \[Firestore.Write\]\[google.firestore.v1.Firestore.Write\].
+/// The request for [Firestore.Write][google.firestore.v1.Firestore.Write].
 ///
 /// The first request creates a stream, or resumes an existing one from a token.
 ///
@@ -2143,7 +2142,7 @@ pub struct WriteRequest {
     /// A stream token that was previously sent by the server.
     ///
     /// The client should set this field to the token from the most recent
-    /// \[WriteResponse\]\[google.firestore.v1.WriteResponse\] it has received. This
+    /// [WriteResponse][google.firestore.v1.WriteResponse] it has received. This
     /// acknowledges that the client has received responses up to this token. After
     /// sending this token, earlier tokens may not be used anymore.
     ///
@@ -2163,7 +2162,7 @@ pub struct WriteRequest {
         ::prost::alloc::string::String,
     >,
 }
-/// The response for \[Firestore.Write\]\[google.firestore.v1.Firestore.Write\].
+/// The response for [Firestore.Write][google.firestore.v1.Firestore.Write].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteResponse {
     /// The ID of the stream.
@@ -2187,7 +2186,7 @@ pub struct WriteResponse {
     #[prost(message, optional, tag = "4")]
     pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// A request for \[Firestore.Listen\]\[google.firestore.v1.Firestore.Listen\]
+/// A request for [Firestore.Listen][google.firestore.v1.Firestore.Listen]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenRequest {
     /// Required. The database name. In the format:
@@ -2217,7 +2216,7 @@ pub mod listen_request {
         RemoveTarget(i32),
     }
 }
-/// The response for \[Firestore.Listen\]\[google.firestore.v1.Firestore.Listen\].
+/// The response for [Firestore.Listen][google.firestore.v1.Firestore.Listen].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenResponse {
     /// The supported responses.
@@ -2232,13 +2231,13 @@ pub mod listen_response {
         /// Targets have changed.
         #[prost(message, tag = "2")]
         TargetChange(super::TargetChange),
-        /// A \[Document\]\[google.firestore.v1.Document\] has changed.
+        /// A [Document][google.firestore.v1.Document] has changed.
         #[prost(message, tag = "3")]
         DocumentChange(super::DocumentChange),
-        /// A \[Document\]\[google.firestore.v1.Document\] has been deleted.
+        /// A [Document][google.firestore.v1.Document] has been deleted.
         #[prost(message, tag = "4")]
         DocumentDelete(super::DocumentDelete),
-        /// A \[Document\]\[google.firestore.v1.Document\] has been removed from a target
+        /// A [Document][google.firestore.v1.Document] has been removed from a target
         /// (because it is no longer relevant to that target).
         #[prost(message, tag = "6")]
         DocumentRemove(super::DocumentRemove),
@@ -2350,7 +2349,7 @@ pub mod target {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ResumeType {
         /// A resume token from a prior
-        /// \[TargetChange\]\[google.firestore.v1.TargetChange\] for an identical target.
+        /// [TargetChange][google.firestore.v1.TargetChange] for an identical target.
         ///
         /// Using a resume token with a different target is unsupported and may fail.
         #[prost(bytes, tag = "4")]
@@ -2442,11 +2441,11 @@ pub mod target_change {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TargetChangeType::NoChange => "NO_CHANGE",
-                TargetChangeType::Add => "ADD",
-                TargetChangeType::Remove => "REMOVE",
-                TargetChangeType::Current => "CURRENT",
-                TargetChangeType::Reset => "RESET",
+                Self::NoChange => "NO_CHANGE",
+                Self::Add => "ADD",
+                Self::Remove => "REMOVE",
+                Self::Current => "CURRENT",
+                Self::Reset => "RESET",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2463,7 +2462,7 @@ pub mod target_change {
     }
 }
 /// The request for
-/// \[Firestore.ListCollectionIds\]\[google.firestore.v1.Firestore.ListCollectionIds\].
+/// [Firestore.ListCollectionIds][google.firestore.v1.Firestore.ListCollectionIds].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCollectionIdsRequest {
     /// Required. The parent document. In the format:
@@ -2476,7 +2475,7 @@ pub struct ListCollectionIdsRequest {
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// A page token. Must be a value from
-    /// \[ListCollectionIdsResponse\]\[google.firestore.v1.ListCollectionIdsResponse\].
+    /// [ListCollectionIdsResponse][google.firestore.v1.ListCollectionIdsResponse].
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
     /// The consistency mode for this request.
@@ -2502,7 +2501,7 @@ pub mod list_collection_ids_request {
     }
 }
 /// The response from
-/// \[Firestore.ListCollectionIds\]\[google.firestore.v1.Firestore.ListCollectionIds\].
+/// [Firestore.ListCollectionIds][google.firestore.v1.Firestore.ListCollectionIds].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCollectionIdsResponse {
     /// The collection ids.
@@ -2513,7 +2512,7 @@ pub struct ListCollectionIdsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for
-/// \[Firestore.BatchWrite\]\[google.firestore.v1.Firestore.BatchWrite\].
+/// [Firestore.BatchWrite][google.firestore.v1.Firestore.BatchWrite].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchWriteRequest {
     /// Required. The database name. In the format:
@@ -2535,7 +2534,7 @@ pub struct BatchWriteRequest {
     >,
 }
 /// The response from
-/// \[Firestore.BatchWrite\]\[google.firestore.v1.Firestore.BatchWrite\].
+/// [Firestore.BatchWrite][google.firestore.v1.Firestore.BatchWrite].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchWriteResponse {
     /// The result of applying the writes.
@@ -2553,7 +2552,13 @@ pub struct BatchWriteResponse {
 }
 /// Generated client implementations.
 pub mod firestore_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Cloud Firestore service.
@@ -2642,8 +2647,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2668,8 +2672,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2693,8 +2696,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2718,8 +2720,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2749,8 +2750,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2777,8 +2777,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2802,8 +2801,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2825,8 +2823,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2851,8 +2848,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2867,14 +2863,14 @@ pub mod firestore_client {
         }
         /// Runs an aggregation query.
         ///
-        /// Rather than producing \[Document\]\[google.firestore.v1.Document\] results like
-        /// \[Firestore.RunQuery\]\[google.firestore.v1.Firestore.RunQuery\], this API
+        /// Rather than producing [Document][google.firestore.v1.Document] results like
+        /// [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery], this API
         /// allows running an aggregation to produce a series of
-        /// \[AggregationResult\]\[google.firestore.v1.AggregationResult\] server-side.
+        /// [AggregationResult][google.firestore.v1.AggregationResult] server-side.
         ///
         /// High-Level Example:
         ///
-        /// ```text,
+        /// ```
         /// -- Return the number of documents in table given a filter.
         /// SELECT COUNT(*) FROM ( SELECT * FROM k where a = true );
         /// ```
@@ -2889,8 +2885,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2922,8 +2917,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2951,8 +2945,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2978,8 +2971,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3004,8 +2996,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3025,11 +3016,11 @@ pub mod firestore_client {
         /// The BatchWrite method does not apply the write operations atomically
         /// and can apply them out of order. Method does not allow more than one write
         /// per document. Each write succeeds or fails independently. See the
-        /// \[BatchWriteResponse\]\[google.firestore.v1.BatchWriteResponse\] for the
+        /// [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the
         /// success status of each write.
         ///
         /// If you require an atomically applied set of writes, use
-        /// \[Commit\]\[google.firestore.v1.Firestore.Commit\] instead.
+        /// [Commit][google.firestore.v1.Firestore.Commit] instead.
         pub async fn batch_write(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchWriteRequest>,
@@ -3041,8 +3032,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3064,8 +3054,7 @@ pub mod firestore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

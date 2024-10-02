@@ -4,9 +4,9 @@
 pub struct PolicyRule {
     /// A condition which determines whether this rule is used
     /// in the evaluation of the policy. When set, the `expression` field in
-    /// the \`Expr' must include from 1 to 10 subexpressions, joined by the "||"
+    /// the `Expr' must include from 1 to 10 subexpressions, joined by the "||"
     /// or "&&" operators. Each subexpression must be of the form
-    /// "resource.matchTag('\<ORG_ID>/tag_key_short_name,
+    /// "resource.matchTag('<ORG_ID>/tag_key_short_name,
     /// 'tag_value_short_name')" or "resource.matchTagId('tagKeys/key_id',
     /// 'tagValues/value_id')" where key_name and value_name are the resource
     /// names for Label Keys and Values. These names are available from the Tag
@@ -32,9 +32,9 @@ pub mod policy_rule {
     /// same as values with no prefix.
     /// Ancestry subtrees must be in one of the following formats:
     ///
-    /// * `projects/<project-id>` (for example, `projects/tokyo-rain-123`)
-    /// * `folders/<folder-id>` (for example, `folders/1234`)
-    /// * `organizations/<organization-id>` (for example, `organizations/1234`)
+    /// - `projects/<project-id>` (for example, `projects/tokyo-rain-123`)
+    /// - `folders/<folder-id>` (for example, `folders/1234`)
+    /// - `organizations/<organization-id>` (for example, `organizations/1234`)
     ///
     /// The `supports_under` field of the associated `Constraint`  defines
     /// whether ancestry prefixes can be used.
@@ -79,8 +79,7 @@ pub struct CustomConstraint {
     /// Immutable. Name of the constraint. This is unique within the organization.
     /// Format of the name should be
     ///
-    /// *
-    ///
+    /// -
     /// `organizations/{organization_id}/customConstraints/{custom_constraint_id}`
     ///
     /// Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`
@@ -92,7 +91,7 @@ pub struct CustomConstraint {
     /// Immutable. The resource instance type on which this policy applies. Format
     /// will be of the form : `<canonical service name>/<type>` Example:
     ///
-    /// * `compute.googleapis.com/Instance`.
+    ///   - `compute.googleapis.com/Instance`.
     #[prost(string, repeated, tag = "2")]
     pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// All the operations being applied for this constraint.
@@ -161,10 +160,10 @@ pub mod custom_constraint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MethodType::Unspecified => "METHOD_TYPE_UNSPECIFIED",
-                MethodType::Create => "CREATE",
-                MethodType::Update => "UPDATE",
-                MethodType::Delete => "DELETE",
+                Self::Unspecified => "METHOD_TYPE_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Update => "UPDATE",
+                Self::Delete => "DELETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -206,9 +205,9 @@ pub mod custom_constraint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
-                ActionType::Allow => "ALLOW",
-                ActionType::Deny => "DENY",
+                Self::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+                Self::Allow => "ALLOW",
+                Self::Deny => "DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -342,11 +341,11 @@ pub mod custom_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -414,9 +413,9 @@ impl EnablementState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-            EnablementState::Enabled => "ENABLED",
-            EnablementState::Disabled => "DISABLED",
+            Self::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+            Self::Enabled => "ENABLED",
+            Self::Disabled => "DISABLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -449,8 +448,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -548,10 +547,10 @@ pub mod posture {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Deprecated => "DEPRECATED",
-                State::Draft => "DRAFT",
-                State::Active => "ACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Deprecated => "DEPRECATED",
+                Self::Draft => "DRAFT",
+                Self::Active => "ACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -749,10 +748,9 @@ pub struct ExtractPostureRequest {
     /// Required. Workload from which the policies are to be extracted, it should
     /// belong to the same organization defined in parent. The format of this value
     /// varies depending on the scope of the request:
-    ///
-    /// * `folder/folderNumber`
-    /// * `project/projectNumber`
-    /// * `organization/organizationNumber`
+    /// - `folder/folderNumber`
+    /// - `project/projectNumber`
+    /// - `organization/organizationNumber`
     #[prost(string, tag = "3")]
     pub workload: ::prost::alloc::string::String,
 }
@@ -871,14 +869,14 @@ pub mod posture_deployment {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Active => "ACTIVE",
-                State::CreateFailed => "CREATE_FAILED",
-                State::UpdateFailed => "UPDATE_FAILED",
-                State::DeleteFailed => "DELETE_FAILED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Deleting => "DELETING",
+                Self::Updating => "UPDATING",
+                Self::Active => "ACTIVE",
+                Self::CreateFailed => "CREATE_FAILED",
+                Self::UpdateFailed => "UPDATE_FAILED",
+                Self::DeleteFailed => "DELETE_FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1027,9 +1025,9 @@ pub mod posture_template {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deprecated => "DEPRECATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Deprecated => "DEPRECATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1084,7 +1082,13 @@ pub struct GetPostureTemplateRequest {
 }
 /// Generated client implementations.
 pub mod security_posture_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service describing handlers for resources.
@@ -1175,8 +1179,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1206,8 +1209,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1239,8 +1241,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1261,7 +1262,7 @@ pub mod security_posture_client {
         /// Creates a new Posture resource.
         /// If a Posture with the specified name already exists in the specified
         /// organization and location, the long running operation returns a
-        /// \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
+        /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
         pub async fn create_posture(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePostureRequest>,
@@ -1273,8 +1274,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1315,8 +1315,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1348,8 +1347,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1369,7 +1367,7 @@ pub mod security_posture_client {
         }
         /// Extracts existing policies on a workload as a posture.
         /// If a Posture on the given workload already exists, the long running
-        /// operation returns a \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
+        /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
         pub async fn extract_posture(
             &mut self,
             request: impl tonic::IntoRequest<super::ExtractPostureRequest>,
@@ -1381,8 +1379,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1413,8 +1410,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1444,8 +1440,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1475,8 +1470,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1506,8 +1500,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1537,8 +1530,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1569,8 +1561,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1605,8 +1596,7 @@ pub mod security_posture_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -48,18 +48,18 @@ pub struct AzureCredentials {
 /// the `updated` property of Cloud Storage objects, the `LastModified` field
 /// of S3 objects, and the `Last-Modified` header of Azure blobs.
 ///
-/// Transfers with a \[PosixFilesystem\]\[google.storagetransfer.v1.PosixFilesystem\]
+/// Transfers with a [PosixFilesystem][google.storagetransfer.v1.PosixFilesystem]
 /// source or destination don't support `ObjectConditions`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectConditions {
     /// Ensures that objects are not transferred until a specific minimum time
     /// has elapsed after the "last modification time". When a
-    /// \[TransferOperation\]\[google.storagetransfer.v1.TransferOperation\] begins,
+    /// [TransferOperation][google.storagetransfer.v1.TransferOperation] begins,
     /// objects with a "last modification time" are transferred only if the elapsed
     /// time between the
-    /// \[start_time\]\[google.storagetransfer.v1.TransferOperation.start_time\] of the
+    /// [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
     /// `TransferOperation` and the "last modification time" of the object is equal
-    /// to or greater than the value of min_time_elapsed_since_last_modification\`.
+    /// to or greater than the value of min_time_elapsed_since_last_modification`.
     /// Objects that do not have a "last modification time" are also transferred.
     #[prost(message, optional, tag = "1")]
     pub min_time_elapsed_since_last_modification: ::core::option::Option<
@@ -67,12 +67,12 @@ pub struct ObjectConditions {
     >,
     /// Ensures that objects are not transferred if a specific maximum time
     /// has elapsed since the "last modification time".
-    /// When a \[TransferOperation\]\[google.storagetransfer.v1.TransferOperation\]
+    /// When a [TransferOperation][google.storagetransfer.v1.TransferOperation]
     /// begins, objects with a "last modification time" are transferred only if the
     /// elapsed time between the
-    /// \[start_time\]\[google.storagetransfer.v1.TransferOperation.start_time\] of the
+    /// [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
     /// `TransferOperation`and the "last modification time" of the object
-    /// is less than the value of max_time_elapsed_since_last_modification\`.
+    ///   is less than the value of max_time_elapsed_since_last_modification`.
     /// Objects that do not have a "last modification time" are also transferred.
     #[prost(message, optional, tag = "2")]
     pub max_time_elapsed_since_last_modification: ::core::option::Option<
@@ -82,26 +82,26 @@ pub struct ObjectConditions {
     /// in the `include_prefixes` array to determine which objects to include in a
     /// transfer. Objects must start with one of the matching `include_prefixes`
     /// for inclusion in the transfer. If
-    /// \[exclude_prefixes\]\[google.storagetransfer.v1.ObjectConditions.exclude_prefixes\]
+    /// [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes]
     /// is specified, objects must not start with any of the `exclude_prefixes`
     /// specified for inclusion in the transfer.
     ///
     /// The following are requirements of `include_prefixes`:
     ///
-    /// * Each include-prefix can contain any sequence of Unicode characters, to
-    ///   a max length of 1024 bytes when UTF8-encoded, and must not contain
-    ///   Carriage Return or Line Feed characters.  Wildcard matching and regular
-    ///   expression matching are not supported.
+    ///    * Each include-prefix can contain any sequence of Unicode characters, to
+    ///      a max length of 1024 bytes when UTF8-encoded, and must not contain
+    ///      Carriage Return or Line Feed characters.  Wildcard matching and regular
+    ///      expression matching are not supported.
     ///
-    /// * Each include-prefix must omit the leading slash. For example, to
-    ///   include the object `s3://my-aws-bucket/logs/y=2015/requests.gz`,
-    ///   specify the include-prefix as `logs/y=2015/requests.gz`.
+    ///    * Each include-prefix must omit the leading slash. For example, to
+    ///      include the object `s3://my-aws-bucket/logs/y=2015/requests.gz`,
+    ///      specify the include-prefix as `logs/y=2015/requests.gz`.
     ///
-    /// * None of the include-prefix values can be empty, if specified.
+    ///    * None of the include-prefix values can be empty, if specified.
     ///
-    /// * Each include-prefix must include a distinct portion of the object
-    ///   namespace. No include-prefix may be a prefix of another
-    ///   include-prefix.
+    ///    * Each include-prefix must include a distinct portion of the object
+    ///      namespace. No include-prefix may be a prefix of another
+    ///      include-prefix.
     ///
     /// The max size of `include_prefixes` is 1000.
     ///
@@ -116,25 +116,25 @@ pub struct ObjectConditions {
     ///
     /// The following are requirements of `exclude_prefixes`:
     ///
-    /// * Each exclude-prefix can contain any sequence of Unicode characters, to
-    ///   a max length of 1024 bytes when UTF8-encoded, and must not contain
-    ///   Carriage Return or Line Feed characters.  Wildcard matching and regular
-    ///   expression matching are not supported.
+    ///    * Each exclude-prefix can contain any sequence of Unicode characters, to
+    ///      a max length of 1024 bytes when UTF8-encoded, and must not contain
+    ///      Carriage Return or Line Feed characters.  Wildcard matching and regular
+    ///      expression matching are not supported.
     ///
-    /// * Each exclude-prefix must omit the leading slash. For example, to
-    ///   exclude the object `s3://my-aws-bucket/logs/y=2015/requests.gz`,
-    ///   specify the exclude-prefix as `logs/y=2015/requests.gz`.
+    ///    * Each exclude-prefix must omit the leading slash. For example, to
+    ///      exclude the object `s3://my-aws-bucket/logs/y=2015/requests.gz`,
+    ///      specify the exclude-prefix as `logs/y=2015/requests.gz`.
     ///
-    /// * None of the exclude-prefix values can be empty, if specified.
+    ///    * None of the exclude-prefix values can be empty, if specified.
     ///
-    /// * Each exclude-prefix must exclude a distinct portion of the object
-    ///   namespace. No exclude-prefix may be a prefix of another
-    ///   exclude-prefix.
+    ///    * Each exclude-prefix must exclude a distinct portion of the object
+    ///      namespace. No exclude-prefix may be a prefix of another
+    ///      exclude-prefix.
     ///
-    /// * If
-    ///   \[include_prefixes\]\[google.storagetransfer.v1.ObjectConditions.include_prefixes\]
-    ///   is specified, then each exclude-prefix must start with the value of a
-    ///   path explicitly included by `include_prefixes`.
+    ///    * If
+    ///    [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes]
+    ///    is specified, then each exclude-prefix must start with the value of a
+    ///    path explicitly included by `include_prefixes`.
     ///
     /// The max size of `exclude_prefixes` is 1000.
     ///
@@ -151,9 +151,9 @@ pub struct ObjectConditions {
     /// processes each day's worth of data at a time. For that you'd set each
     /// of the fields as follows:
     ///
-    /// * `last_modified_since` to the start of the day
+    /// *  `last_modified_since` to the start of the day
     ///
-    /// * `last_modified_before` to the end of the day
+    /// *  `last_modified_before` to the end of the day
     #[prost(message, optional, tag = "5")]
     pub last_modified_since: ::core::option::Option<::prost_types::Timestamp>,
     /// If specified, only objects with a "last modification time" before this
@@ -187,10 +187,10 @@ pub struct GcsData {
     ///
     /// If set to true:
     ///
-    /// * Managed folders in the source bucket are transferred to the
-    ///   destination bucket.
-    /// * Managed folders in the destination bucket are overwritten. Other
-    ///   OVERWRITE options are not supported.
+    /// - Managed folders in the source bucket are transferred to the
+    ///    destination bucket.
+    /// - Managed folders in the destination bucket are overwritten. Other
+    ///    OVERWRITE options are not supported.
     ///
     /// See
     /// [Transfer Cloud Storage managed
@@ -230,7 +230,7 @@ pub struct AwsS3Data {
     /// When a role ARN is provided, Transfer Service fetches temporary
     /// credentials for the session using a `AssumeRoleWithWebIdentity` call for
     /// the provided role using the
-    /// \[GoogleServiceAccount\]\[google.storagetransfer.v1.GoogleServiceAccount\] for
+    /// [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for
     /// this project.
     #[prost(string, tag = "4")]
     pub role_arn: ::prost::alloc::string::String,
@@ -251,11 +251,11 @@ pub struct AwsS3Data {
     /// AWS credentials must be stored in Secret Manager in JSON format:
     ///
     /// {
-    /// "access_key_id": "ACCESS_KEY_ID",
-    /// "secret_access_key": "SECRET_ACCESS_KEY"
+    ///   "access_key_id": "ACCESS_KEY_ID",
+    ///   "secret_access_key": "SECRET_ACCESS_KEY"
     /// }
     ///
-    /// \[GoogleServiceAccount\]\[google.storagetransfer.v1.GoogleServiceAccount\] must
+    /// [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
     /// be granted `roles/secretmanager.secretAccessor` for the resource.
     ///
     /// See \[Configure access to a source: Amazon S3\]
@@ -263,8 +263,8 @@ pub struct AwsS3Data {
     /// for more information.
     ///
     /// If `credentials_secret` is specified, do not specify
-    /// \[role_arn\]\[google.storagetransfer.v1.AwsS3Data.role_arn\] or
-    /// \[aws_access_key\]\[google.storagetransfer.v1.AwsS3Data.aws_access_key\].
+    /// [role_arn][google.storagetransfer.v1.AwsS3Data.role_arn] or
+    /// [aws_access_key][google.storagetransfer.v1.AwsS3Data.aws_access_key].
     ///
     /// Format: `projects/{project_number}/secrets/{secret_name}`
     #[prost(string, tag = "7")]
@@ -316,10 +316,10 @@ pub struct AzureBlobStorageData {
     /// The Azure SAS token must be stored in Secret Manager in JSON format:
     ///
     /// {
-    /// "sas_token" : "SAS_TOKEN"
+    ///   "sas_token" : "SAS_TOKEN"
     /// }
     ///
-    /// \[GoogleServiceAccount\]\[google.storagetransfer.v1.GoogleServiceAccount\] must
+    /// [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
     /// be granted `roles/secretmanager.secretAccessor` for the resource.
     ///
     /// See \[Configure access to a source: Microsoft Azure Blob Storage\]
@@ -327,7 +327,7 @@ pub struct AzureBlobStorageData {
     /// for more information.
     ///
     /// If `credentials_secret` is specified, do not specify
-    /// \[azure_credentials\]\[google.storagetransfer.v1.AzureBlobStorageData.azure_credentials\].
+    /// [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials].
     ///
     /// Format: `projects/{project_number}/secrets/{secret_name}`
     #[prost(string, tag = "7")]
@@ -353,26 +353,26 @@ pub struct AzureBlobStorageData {
 /// When transferring data based on a URL list, keep the following in mind:
 ///
 /// * When an object located at `http(s)://hostname:port/<URL-path>` is
-///   transferred to a data sink, the name of the object at the data sink is
-///   `<hostname>/<URL-path>`.
+/// transferred to a data sink, the name of the object at the data sink is
+/// `<hostname>/<URL-path>`.
 ///
 /// * If the specified size of an object does not match the actual size of the
-///   object fetched, the object is not transferred.
+/// object fetched, the object is not transferred.
 ///
 /// * If the specified MD5 does not match the MD5 computed from the transferred
-///   bytes, the object transfer fails.
+/// bytes, the object transfer fails.
 ///
 /// * Ensure that each URL you specify is publicly accessible. For
-///   example, in Cloud Storage you can
-///   \[share an object publicly\]
-///   (/storage/docs/cloud-console#\_sharingdata) and get a link to it.
+/// example, in Cloud Storage you can
+/// \[share an object publicly\]
+/// (/storage/docs/cloud-console#_sharingdata) and get a link to it.
 ///
 /// * Storage Transfer Service obeys `robots.txt` rules and requires the source
-///   HTTP server to support `Range` requests and to return a `Content-Length`
-///   header in each response.
+/// HTTP server to support `Range` requests and to return a `Content-Length`
+/// header in each response.
 ///
-/// * \[ObjectConditions\]\[google.storagetransfer.v1.ObjectConditions\] have no
-///   effect when filtering objects to transfer.
+/// * [ObjectConditions][google.storagetransfer.v1.ObjectConditions] have no
+/// effect when filtering objects to transfer.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpData {
     /// Required. The URL that points to the file that stores the object list
@@ -489,9 +489,9 @@ pub mod s3_compatible_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AuthMethod::Unspecified => "AUTH_METHOD_UNSPECIFIED",
-                AuthMethod::AwsSignatureV4 => "AUTH_METHOD_AWS_SIGNATURE_V4",
-                AuthMethod::AwsSignatureV2 => "AUTH_METHOD_AWS_SIGNATURE_V2",
+                Self::Unspecified => "AUTH_METHOD_UNSPECIFIED",
+                Self::AwsSignatureV4 => "AUTH_METHOD_AWS_SIGNATURE_V4",
+                Self::AwsSignatureV2 => "AUTH_METHOD_AWS_SIGNATURE_V2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -534,9 +534,9 @@ pub mod s3_compatible_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RequestModel::Unspecified => "REQUEST_MODEL_UNSPECIFIED",
-                RequestModel::VirtualHostedStyle => "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
-                RequestModel::PathStyle => "REQUEST_MODEL_PATH_STYLE",
+                Self::Unspecified => "REQUEST_MODEL_UNSPECIFIED",
+                Self::VirtualHostedStyle => "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
+                Self::PathStyle => "REQUEST_MODEL_PATH_STYLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -579,9 +579,9 @@ pub mod s3_compatible_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NetworkProtocol::Unspecified => "NETWORK_PROTOCOL_UNSPECIFIED",
-                NetworkProtocol::Https => "NETWORK_PROTOCOL_HTTPS",
-                NetworkProtocol::Http => "NETWORK_PROTOCOL_HTTP",
+                Self::Unspecified => "NETWORK_PROTOCOL_UNSPECIFIED",
+                Self::Https => "NETWORK_PROTOCOL_HTTPS",
+                Self::Http => "NETWORK_PROTOCOL_HTTP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -622,9 +622,9 @@ pub mod s3_compatible_metadata {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ListApi::Unspecified => "LIST_API_UNSPECIFIED",
-                ListApi::ListObjectsV2 => "LIST_OBJECTS_V2",
-                ListApi::ListObjects => "LIST_OBJECTS",
+                Self::Unspecified => "LIST_API_UNSPECIFIED",
+                Self::ListObjectsV2 => "LIST_OBJECTS_V2",
+                Self::ListObjects => "LIST_OBJECTS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -700,10 +700,10 @@ pub mod agent_pool {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Created => "CREATED",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Created => "CREATED",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -730,7 +730,7 @@ pub struct TransferOptions {
     /// Whether objects that exist only in the sink should be deleted.
     ///
     /// **Note:** This option and
-    /// \[delete_objects_from_source_after_transfer\]\[google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer\]
+    /// [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer]
     /// are mutually exclusive.
     #[prost(bool, tag = "2")]
     pub delete_objects_unique_in_sink: bool,
@@ -738,13 +738,13 @@ pub struct TransferOptions {
     /// transferred to the sink.
     ///
     /// **Note:** This option and
-    /// \[delete_objects_unique_in_sink\]\[google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink\]
+    /// [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
     /// are mutually exclusive.
     #[prost(bool, tag = "3")]
     pub delete_objects_from_source_after_transfer: bool,
     /// When to overwrite objects that already exist in the sink. If not set,
     /// overwrite behavior is determined by
-    /// \[overwrite_objects_already_existing_in_sink\]\[google.storagetransfer.v1.TransferOptions.overwrite_objects_already_existing_in_sink\].
+    /// [overwrite_objects_already_existing_in_sink][google.storagetransfer.v1.TransferOptions.overwrite_objects_already_existing_in_sink].
     #[prost(enumeration = "transfer_options::OverwriteWhen", tag = "4")]
     pub overwrite_when: i32,
     /// Represents the selected metadata options for a transfer job.
@@ -787,10 +787,10 @@ pub mod transfer_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OverwriteWhen::Unspecified => "OVERWRITE_WHEN_UNSPECIFIED",
-                OverwriteWhen::Different => "DIFFERENT",
-                OverwriteWhen::Never => "NEVER",
-                OverwriteWhen::Always => "ALWAYS",
+                Self::Unspecified => "OVERWRITE_WHEN_UNSPECIFIED",
+                Self::Different => "DIFFERENT",
+                Self::Never => "NEVER",
+                Self::Always => "ALWAYS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -814,10 +814,10 @@ pub struct TransferSpec {
     #[prost(message, optional, tag = "5")]
     pub object_conditions: ::core::option::Option<ObjectConditions>,
     /// If the option
-    /// \[delete_objects_unique_in_sink\]\[google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink\]
+    /// [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
     /// is `true` and time-based object conditions such as 'last modification time'
     /// are specified, the request fails with an
-    /// \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] error.
+    /// [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
     #[prost(message, optional, tag = "6")]
     pub transfer_options: ::core::option::Option<TransferOptions>,
     /// A manifest file provides a list of objects to be transferred from the data
@@ -923,24 +923,24 @@ pub struct MetadataOptions {
     pub acl: i32,
     /// Specifies the storage class to set on objects being transferred to Google
     /// Cloud Storage buckets.  If unspecified, the default behavior is the same as
-    /// \[STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT\]\[google.storagetransfer.v1.MetadataOptions.StorageClass.STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT\].
+    /// [STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT][google.storagetransfer.v1.MetadataOptions.StorageClass.STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT].
     #[prost(enumeration = "metadata_options::StorageClass", tag = "6")]
     pub storage_class: i32,
     /// Specifies how each object's temporary hold status should be preserved for
     /// transfers between Google Cloud Storage buckets.  If unspecified, the
     /// default behavior is the same as
-    /// \[TEMPORARY_HOLD_PRESERVE\]\[google.storagetransfer.v1.MetadataOptions.TemporaryHold.TEMPORARY_HOLD_PRESERVE\].
+    /// [TEMPORARY_HOLD_PRESERVE][google.storagetransfer.v1.MetadataOptions.TemporaryHold.TEMPORARY_HOLD_PRESERVE].
     #[prost(enumeration = "metadata_options::TemporaryHold", tag = "7")]
     pub temporary_hold: i32,
     /// Specifies how each object's Cloud KMS customer-managed encryption key
     /// (CMEK) is preserved for transfers between Google Cloud Storage buckets.  If
     /// unspecified, the default behavior is the same as
-    /// \[KMS_KEY_DESTINATION_BUCKET_DEFAULT\]\[google.storagetransfer.v1.MetadataOptions.KmsKey.KMS_KEY_DESTINATION_BUCKET_DEFAULT\].
+    /// [KMS_KEY_DESTINATION_BUCKET_DEFAULT][google.storagetransfer.v1.MetadataOptions.KmsKey.KMS_KEY_DESTINATION_BUCKET_DEFAULT].
     #[prost(enumeration = "metadata_options::KmsKey", tag = "8")]
     pub kms_key: i32,
     /// Specifies how each object's `timeCreated` metadata is preserved for
     /// transfers. If unspecified, the default behavior is the same as
-    /// \[TIME_CREATED_SKIP\]\[google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP\].
+    /// [TIME_CREATED_SKIP][google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP].
     /// This behavior is supported for transfers to Cloud Storage buckets from
     /// Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources.
     #[prost(enumeration = "metadata_options::TimeCreated", tag = "9")]
@@ -976,9 +976,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Symlink::Unspecified => "SYMLINK_UNSPECIFIED",
-                Symlink::Skip => "SYMLINK_SKIP",
-                Symlink::Preserve => "SYMLINK_PRESERVE",
+                Self::Unspecified => "SYMLINK_UNSPECIFIED",
+                Self::Skip => "SYMLINK_SKIP",
+                Self::Preserve => "SYMLINK_PRESERVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1019,9 +1019,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Skip => "MODE_SKIP",
-                Mode::Preserve => "MODE_PRESERVE",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Skip => "MODE_SKIP",
+                Self::Preserve => "MODE_PRESERVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1062,9 +1062,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Gid::Unspecified => "GID_UNSPECIFIED",
-                Gid::Skip => "GID_SKIP",
-                Gid::Number => "GID_NUMBER",
+                Self::Unspecified => "GID_UNSPECIFIED",
+                Self::Skip => "GID_SKIP",
+                Self::Number => "GID_NUMBER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1105,9 +1105,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Uid::Unspecified => "UID_UNSPECIFIED",
-                Uid::Skip => "UID_SKIP",
-                Uid::Number => "UID_NUMBER",
+                Self::Unspecified => "UID_UNSPECIFIED",
+                Self::Skip => "UID_SKIP",
+                Self::Number => "UID_NUMBER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1152,9 +1152,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Acl::Unspecified => "ACL_UNSPECIFIED",
-                Acl::DestinationBucketDefault => "ACL_DESTINATION_BUCKET_DEFAULT",
-                Acl::Preserve => "ACL_PRESERVE",
+                Self::Unspecified => "ACL_UNSPECIFIED",
+                Self::DestinationBucketDefault => "ACL_DESTINATION_BUCKET_DEFAULT",
+                Self::Preserve => "ACL_PRESERVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1206,15 +1206,15 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                StorageClass::Unspecified => "STORAGE_CLASS_UNSPECIFIED",
-                StorageClass::DestinationBucketDefault => {
+                Self::Unspecified => "STORAGE_CLASS_UNSPECIFIED",
+                Self::DestinationBucketDefault => {
                     "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT"
                 }
-                StorageClass::Preserve => "STORAGE_CLASS_PRESERVE",
-                StorageClass::Standard => "STORAGE_CLASS_STANDARD",
-                StorageClass::Nearline => "STORAGE_CLASS_NEARLINE",
-                StorageClass::Coldline => "STORAGE_CLASS_COLDLINE",
-                StorageClass::Archive => "STORAGE_CLASS_ARCHIVE",
+                Self::Preserve => "STORAGE_CLASS_PRESERVE",
+                Self::Standard => "STORAGE_CLASS_STANDARD",
+                Self::Nearline => "STORAGE_CLASS_NEARLINE",
+                Self::Coldline => "STORAGE_CLASS_COLDLINE",
+                Self::Archive => "STORAGE_CLASS_ARCHIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1261,9 +1261,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TemporaryHold::Unspecified => "TEMPORARY_HOLD_UNSPECIFIED",
-                TemporaryHold::Skip => "TEMPORARY_HOLD_SKIP",
-                TemporaryHold::Preserve => "TEMPORARY_HOLD_PRESERVE",
+                Self::Unspecified => "TEMPORARY_HOLD_UNSPECIFIED",
+                Self::Skip => "TEMPORARY_HOLD_SKIP",
+                Self::Preserve => "TEMPORARY_HOLD_PRESERVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1306,9 +1306,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                KmsKey::Unspecified => "KMS_KEY_UNSPECIFIED",
-                KmsKey::DestinationBucketDefault => "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
-                KmsKey::Preserve => "KMS_KEY_PRESERVE",
+                Self::Unspecified => "KMS_KEY_UNSPECIFIED",
+                Self::DestinationBucketDefault => "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
+                Self::Preserve => "KMS_KEY_PRESERVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1355,11 +1355,9 @@ pub mod metadata_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TimeCreated::Unspecified => "TIME_CREATED_UNSPECIFIED",
-                TimeCreated::Skip => "TIME_CREATED_SKIP",
-                TimeCreated::PreserveAsCustomTime => {
-                    "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
-                }
+                Self::Unspecified => "TIME_CREATED_UNSPECIFIED",
+                Self::Skip => "TIME_CREATED_SKIP",
+                Self::PreserveAsCustomTime => "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1390,7 +1388,7 @@ pub struct TransferManifest {
 pub struct Schedule {
     /// Required. The start date of a transfer. Date boundaries are determined
     /// relative to UTC time. If `schedule_start_date` and
-    /// \[start_time_of_day\]\[google.storagetransfer.v1.Schedule.start_time_of_day\]
+    /// [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day]
     /// are in the past relative to the job's creation time, the transfer starts
     /// the day after you schedule the transfer request.
     ///
@@ -1400,22 +1398,22 @@ pub struct Schedule {
     /// Transfer Service server receives the request on June 2, then it creates
     /// a TransferJob with `schedule_start_date` set to June 2 and a
     /// `start_time_of_day` set to midnight UTC. The first scheduled
-    /// \[TransferOperation\]\[google.storagetransfer.v1.TransferOperation\] takes
+    /// [TransferOperation][google.storagetransfer.v1.TransferOperation] takes
     /// place on June 3 at midnight UTC.
     #[prost(message, optional, tag = "1")]
     pub schedule_start_date: ::core::option::Option<super::super::r#type::Date>,
     /// The last day a transfer runs. Date boundaries are determined relative to
     /// UTC time. A job runs once per 24 hours within the following guidelines:
     ///
-    /// * If `schedule_end_date` and
-    ///   \[schedule_start_date\]\[google.storagetransfer.v1.Schedule.schedule_start_date\]
-    ///   are the same and in
-    ///   the future relative to UTC, the transfer is executed only one time.
-    /// * If `schedule_end_date` is later than `schedule_start_date`  and
-    ///   `schedule_end_date` is in the future relative to UTC, the job runs each
-    ///   day at
-    ///   \[start_time_of_day\]\[google.storagetransfer.v1.Schedule.start_time_of_day\]
-    ///   through `schedule_end_date`.
+    /// *   If `schedule_end_date` and
+    /// [schedule_start_date][google.storagetransfer.v1.Schedule.schedule_start_date]
+    /// are the same and in
+    ///      the future relative to UTC, the transfer is executed only one time.
+    /// *   If `schedule_end_date` is later than `schedule_start_date`  and
+    ///      `schedule_end_date` is in the future relative to UTC, the job runs each
+    ///      day at
+    ///      [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day]
+    ///      through `schedule_end_date`.
     #[prost(message, optional, tag = "2")]
     pub schedule_end_date: ::core::option::Option<super::super::r#type::Date>,
     /// The time in UTC that a transfer job is scheduled to run. Transfers may
@@ -1423,34 +1421,34 @@ pub struct Schedule {
     ///
     /// If `start_time_of_day` is not specified:
     ///
-    /// * One-time transfers run immediately.
-    /// * Recurring transfers run immediately, and each day at midnight UTC,
-    ///   through
-    ///   \[schedule_end_date\]\[google.storagetransfer.v1.Schedule.schedule_end_date\].
+    /// *   One-time transfers run immediately.
+    /// *   Recurring transfers run immediately, and each day at midnight UTC,
+    ///      through
+    ///      [schedule_end_date][google.storagetransfer.v1.Schedule.schedule_end_date].
     ///
     /// If `start_time_of_day` is specified:
     ///
-    /// * One-time transfers run at the specified time.
-    /// * Recurring transfers run at the specified time each day, through
-    ///   `schedule_end_date`.
+    /// *   One-time transfers run at the specified time.
+    /// *   Recurring transfers run at the specified time each day, through
+    ///      `schedule_end_date`.
     #[prost(message, optional, tag = "3")]
     pub start_time_of_day: ::core::option::Option<super::super::r#type::TimeOfDay>,
     /// The time in UTC that no further transfer operations are scheduled. Combined
     /// with
-    /// \[schedule_end_date\]\[google.storagetransfer.v1.Schedule.schedule_end_date\],
+    /// [schedule_end_date][google.storagetransfer.v1.Schedule.schedule_end_date],
     /// `end_time_of_day` specifies the end date and time for starting new transfer
     /// operations. This field must be greater than or equal to the timestamp
     /// corresponding to the combintation of
-    /// \[schedule_start_date\]\[google.storagetransfer.v1.Schedule.schedule_start_date\]
+    /// [schedule_start_date][google.storagetransfer.v1.Schedule.schedule_start_date]
     /// and
-    /// \[start_time_of_day\]\[google.storagetransfer.v1.Schedule.start_time_of_day\],
+    /// [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day],
     /// and is subject to the following:
     ///
-    /// * If `end_time_of_day` is not set and `schedule_end_date` is set, then
-    ///   a default value of `23:59:59` is used for `end_time_of_day`.
+    /// *   If `end_time_of_day` is not set and `schedule_end_date` is set, then
+    ///      a default value of `23:59:59` is used for `end_time_of_day`.
     ///
-    /// * If `end_time_of_day` is set and `schedule_end_date` is not set, then
-    ///   \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] is returned.
+    /// *   If `end_time_of_day` is set and `schedule_end_date` is not set, then
+    ///      [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] is returned.
     #[prost(message, optional, tag = "4")]
     pub end_time_of_day: ::core::option::Option<super::super::r#type::TimeOfDay>,
     /// Interval between the start of each scheduled TransferOperation. If
@@ -1491,7 +1489,7 @@ pub struct TransferJob {
     /// is used as the unique name for this job.
     ///
     /// If the specified name is in use by a job, the creation request fails with
-    /// an \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
+    /// an [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
     ///
     /// This name must start with `"transferJobs/"` prefix and end with a letter or
     /// a number, and should be no more than 128 characters. For transfers
@@ -1509,7 +1507,7 @@ pub struct TransferJob {
     /// involving OPI.
     ///
     /// Invalid job names fail with an
-    /// \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] error.
+    /// [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A description provided by the user for the job. Its max length is 1024
@@ -1543,8 +1541,8 @@ pub struct TransferJob {
     ///
     /// **Note:** The effect of the new job status takes place during a subsequent
     /// job run. For example, if you change the job status from
-    /// \[ENABLED\]\[google.storagetransfer.v1.TransferJob.Status.ENABLED\] to
-    /// \[DISABLED\]\[google.storagetransfer.v1.TransferJob.Status.DISABLED\], and an
+    /// [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
+    /// [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
     /// operation spawned by the transfer is running, the status change would not
     /// affect the current operation.
     #[prost(enumeration = "transfer_job::Status", tag = "6")]
@@ -1598,10 +1596,10 @@ pub mod transfer_job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Enabled => "ENABLED",
-                Status::Disabled => "DISABLED",
-                Status::Deleted => "DELETED",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Enabled => "ENABLED",
+                Self::Disabled => "DISABLED",
+                Self::Deleted => "DELETED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1736,29 +1734,29 @@ pub struct TransferCounters {
 /// following `PubsubMessage.attributes`:
 ///
 /// * `"eventType"`: one of the
-///   \[EventType\]\[google.storagetransfer.v1.NotificationConfig.EventType\] values
+/// [EventType][google.storagetransfer.v1.NotificationConfig.EventType] values
 /// * `"payloadFormat"`: one of the
-///   \[PayloadFormat\]\[google.storagetransfer.v1.NotificationConfig.PayloadFormat\]
-///   values
+/// [PayloadFormat][google.storagetransfer.v1.NotificationConfig.PayloadFormat]
+/// values
 /// * `"projectId"`: the
-///   \[project_id\]\[google.storagetransfer.v1.TransferOperation.project_id\] of the
-///   `TransferOperation`
+/// [project_id][google.storagetransfer.v1.TransferOperation.project_id] of the
+/// `TransferOperation`
 /// * `"transferJobName"`: the
-///   \[transfer_job_name\]\[google.storagetransfer.v1.TransferOperation.transfer_job_name\]
-///   of the `TransferOperation`
+/// [transfer_job_name][google.storagetransfer.v1.TransferOperation.transfer_job_name]
+/// of the `TransferOperation`
 /// * `"transferOperationName"`: the
-///   \[name\]\[google.storagetransfer.v1.TransferOperation.name\] of the
-///   `TransferOperation`
+/// [name][google.storagetransfer.v1.TransferOperation.name] of the
+/// `TransferOperation`
 ///
 /// The `PubsubMessage.data` contains a
-/// \[TransferOperation\]\[google.storagetransfer.v1.TransferOperation\] resource
+/// [TransferOperation][google.storagetransfer.v1.TransferOperation] resource
 /// formatted according to the specified `PayloadFormat`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NotificationConfig {
     /// Required. The `Topic.name` of the Pub/Sub topic to which to publish
     /// notifications. Must be of the format: `projects/{project}/topics/{topic}`.
     /// Not matching this format results in an
-    /// \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] error.
+    /// [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
     #[prost(string, tag = "1")]
     pub pubsub_topic: ::prost::alloc::string::String,
     /// Event types for which a notification is desired. If empty, send
@@ -1793,13 +1791,13 @@ pub mod notification_config {
         /// Illegal value, to avoid allowing a default.
         Unspecified = 0,
         /// `TransferOperation` completed with status
-        /// \[SUCCESS\]\[google.storagetransfer.v1.TransferOperation.Status.SUCCESS\].
+        /// [SUCCESS][google.storagetransfer.v1.TransferOperation.Status.SUCCESS].
         TransferOperationSuccess = 1,
         /// `TransferOperation` completed with status
-        /// \[FAILED\]\[google.storagetransfer.v1.TransferOperation.Status.FAILED\].
+        /// [FAILED][google.storagetransfer.v1.TransferOperation.Status.FAILED].
         TransferOperationFailed = 2,
         /// `TransferOperation` completed with status
-        /// \[ABORTED\]\[google.storagetransfer.v1.TransferOperation.Status.ABORTED\].
+        /// [ABORTED][google.storagetransfer.v1.TransferOperation.Status.ABORTED].
         TransferOperationAborted = 3,
     }
     impl EventType {
@@ -1809,10 +1807,10 @@ pub mod notification_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::TransferOperationSuccess => "TRANSFER_OPERATION_SUCCESS",
-                EventType::TransferOperationFailed => "TRANSFER_OPERATION_FAILED",
-                EventType::TransferOperationAborted => "TRANSFER_OPERATION_ABORTED",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::TransferOperationSuccess => "TRANSFER_OPERATION_SUCCESS",
+                Self::TransferOperationFailed => "TRANSFER_OPERATION_FAILED",
+                Self::TransferOperationAborted => "TRANSFER_OPERATION_ABORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1856,9 +1854,9 @@ pub mod notification_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PayloadFormat::Unspecified => "PAYLOAD_FORMAT_UNSPECIFIED",
-                PayloadFormat::None => "NONE",
-                PayloadFormat::Json => "JSON",
+                Self::Unspecified => "PAYLOAD_FORMAT_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::Json => "JSON",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1928,10 +1926,10 @@ pub mod logging_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LoggableAction::Unspecified => "LOGGABLE_ACTION_UNSPECIFIED",
-                LoggableAction::Find => "FIND",
-                LoggableAction::Delete => "DELETE",
-                LoggableAction::Copy => "COPY",
+                Self::Unspecified => "LOGGABLE_ACTION_UNSPECIFIED",
+                Self::Find => "FIND",
+                Self::Delete => "DELETE",
+                Self::Copy => "COPY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1962,10 +1960,10 @@ pub mod logging_config {
         /// Default value. This value is unused.
         Unspecified = 0,
         /// `LoggableAction` completed successfully. `SUCCEEDED` actions are
-        /// logged as \[INFO\]\[google.logging.type.LogSeverity.INFO\].
+        /// logged as [INFO][google.logging.type.LogSeverity.INFO].
         Succeeded = 1,
         /// `LoggableAction` terminated in an error state. `FAILED` actions are
-        /// logged as \[ERROR\]\[google.logging.type.LogSeverity.ERROR\].
+        /// logged as [ERROR][google.logging.type.LogSeverity.ERROR].
         Failed = 2,
     }
     impl LoggableActionState {
@@ -1975,9 +1973,9 @@ pub mod logging_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LoggableActionState::Unspecified => "LOGGABLE_ACTION_STATE_UNSPECIFIED",
-                LoggableActionState::Succeeded => "SUCCEEDED",
-                LoggableActionState::Failed => "FAILED",
+                Self::Unspecified => "LOGGABLE_ACTION_STATE_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2068,14 +2066,14 @@ pub mod transfer_operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::InProgress => "IN_PROGRESS",
-                Status::Paused => "PAUSED",
-                Status::Success => "SUCCESS",
-                Status::Failed => "FAILED",
-                Status::Aborted => "ABORTED",
-                Status::Queued => "QUEUED",
-                Status::Suspending => "SUSPENDING",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Paused => "PAUSED",
+                Self::Success => "SUCCESS",
+                Self::Failed => "FAILED",
+                Self::Aborted => "ABORTED",
+                Self::Queued => "QUEUED",
+                Self::Suspending => "SUSPENDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2121,29 +2119,29 @@ pub struct UpdateTransferJobRequest {
     pub project_id: ::prost::alloc::string::String,
     /// Required. The job to update. `transferJob` is expected to specify one or
     /// more of five fields:
-    /// \[description\]\[google.storagetransfer.v1.TransferJob.description\],
-    /// \[transfer_spec\]\[google.storagetransfer.v1.TransferJob.transfer_spec\],
-    /// \[notification_config\]\[google.storagetransfer.v1.TransferJob.notification_config\],
-    /// \[logging_config\]\[google.storagetransfer.v1.TransferJob.logging_config\], and
-    /// \[status\]\[google.storagetransfer.v1.TransferJob.status\].  An
+    /// [description][google.storagetransfer.v1.TransferJob.description],
+    /// [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
+    /// [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
+    /// [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+    /// [status][google.storagetransfer.v1.TransferJob.status].  An
     /// `UpdateTransferJobRequest` that specifies other fields are rejected with
-    /// the error \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\]. Updating a
+    /// the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
     /// job status to
-    /// \[DELETED\]\[google.storagetransfer.v1.TransferJob.Status.DELETED\] requires
+    /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
     /// `storagetransfer.jobs.delete` permission.
     #[prost(message, optional, tag = "3")]
     pub transfer_job: ::core::option::Option<TransferJob>,
     /// The field mask of the fields in `transferJob` that are to be updated in
     /// this request.  Fields in `transferJob` that can be updated are:
-    /// \[description\]\[google.storagetransfer.v1.TransferJob.description\],
-    /// \[transfer_spec\]\[google.storagetransfer.v1.TransferJob.transfer_spec\],
-    /// \[notification_config\]\[google.storagetransfer.v1.TransferJob.notification_config\],
-    /// \[logging_config\]\[google.storagetransfer.v1.TransferJob.logging_config\], and
-    /// \[status\]\[google.storagetransfer.v1.TransferJob.status\].  To update the
+    /// [description][google.storagetransfer.v1.TransferJob.description],
+    /// [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
+    /// [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
+    /// [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+    /// [status][google.storagetransfer.v1.TransferJob.status].  To update the
     /// `transfer_spec` of the job, a complete transfer specification must be
     /// provided. An incomplete specification missing any required fields is
     /// rejected with the error
-    /// \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\].
+    /// [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
     #[prost(message, optional, tag = "4")]
     pub update_transfer_job_field_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -2174,15 +2172,17 @@ pub struct DeleteTransferJobRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferJobsRequest {
     /// Required. A list of query parameters specified as JSON text in the form of:
-    /// `{"projectId":"my_project_id", "jobNames":\["jobid1","jobid2",...\], "jobStatuses":\["status1","status2",...\]}`
+    /// `{"projectId":"my_project_id",
+    ///   "jobNames":\["jobid1","jobid2",...\],
+    ///   "jobStatuses":\["status1","status2",...\]}`
     ///
     /// Since `jobNames` and `jobStatuses` support multiple values, their values
     /// must be specified with array notation. `projectId` is required.
     /// `jobNames` and `jobStatuses` are optional.  The valid values for
     /// `jobStatuses` are case-insensitive:
-    /// \[ENABLED\]\[google.storagetransfer.v1.TransferJob.Status.ENABLED\],
-    /// \[DISABLED\]\[google.storagetransfer.v1.TransferJob.Status.DISABLED\], and
-    /// \[DELETED\]\[google.storagetransfer.v1.TransferJob.Status.DELETED\].
+    /// [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED],
+    /// [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and
+    /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
     #[prost(string, tag = "1")]
     pub filter: ::prost::alloc::string::String,
     /// The list page size. The max allowed value is 256.
@@ -2241,12 +2241,12 @@ pub struct CreateAgentPoolRequest {
     ///
     /// The `agent_pool_id` must meet the following requirements:
     ///
-    /// * Length of 128 characters or less.
-    /// * Not start with the string `goog`.
-    /// * Start with a lowercase ASCII character, followed by:
-    ///   * Zero or more: lowercase Latin alphabet characters, numerals,
-    ///     hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
-    ///   * One or more numerals or lowercase ASCII characters.
+    /// *   Length of 128 characters or less.
+    /// *   Not start with the string `goog`.
+    /// *   Start with a lowercase ASCII character, followed by:
+    ///      *   Zero or more: lowercase Latin alphabet characters, numerals,
+    ///          hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
+    ///      *   One or more numerals or lowercase ASCII characters.
     ///
     /// As expressed by the regular expression:
     /// `^(?!goog)[a-z](\[a-z0-9-._~\]*[a-z0-9])?$`.
@@ -2259,13 +2259,13 @@ pub struct UpdateAgentPoolRequest {
     /// Required. The agent pool to update. `agent_pool` is expected to specify
     /// following fields:
     ///
-    /// * \[name\]\[google.storagetransfer.v1.AgentPool.name\]
+    /// *  [name][google.storagetransfer.v1.AgentPool.name]
     ///
-    /// * \[display_name\]\[google.storagetransfer.v1.AgentPool.display_name\]
+    /// *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
     ///
-    /// * \[bandwidth_limit\]\[google.storagetransfer.v1.AgentPool.bandwidth_limit\]
-    ///   An `UpdateAgentPoolRequest` with any other fields is rejected
-    ///   with the error \[INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\].
+    /// *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
+    /// An `UpdateAgentPoolRequest` with any other fields is rejected
+    /// with the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
     #[prost(message, optional, tag = "1")]
     pub agent_pool: ::core::option::Option<AgentPool>,
     /// The \[field mask\]
@@ -2273,9 +2273,9 @@ pub struct UpdateAgentPoolRequest {
     /// of the fields in `agentPool` to update in this request.
     /// The following `agentPool` fields can be updated:
     ///
-    /// * \[display_name\]\[google.storagetransfer.v1.AgentPool.display_name\]
+    /// *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
     ///
-    /// * \[bandwidth_limit\]\[google.storagetransfer.v1.AgentPool.bandwidth_limit\]
+    /// *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -2328,7 +2328,13 @@ pub struct ListAgentPoolsResponse {
 }
 /// Generated client implementations.
 pub mod storage_transfer_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Storage Transfer Service and its protos.
@@ -2424,8 +2430,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2452,8 +2457,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2474,11 +2478,11 @@ pub mod storage_transfer_service_client {
         /// Updates a transfer job. Updating a job's transfer spec does not affect
         /// transfer operations that are running already.
         ///
-        /// **Note:** The job's \[status\]\[google.storagetransfer.v1.TransferJob.status\]
+        /// **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
         /// field can be modified using this RPC (for example, to set a job's status to
-        /// \[DELETED\]\[google.storagetransfer.v1.TransferJob.Status.DELETED\],
-        /// \[DISABLED\]\[google.storagetransfer.v1.TransferJob.Status.DISABLED\], or
-        /// \[ENABLED\]\[google.storagetransfer.v1.TransferJob.Status.ENABLED\]).
+        /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
+        /// [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
+        /// [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
         pub async fn update_transfer_job(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTransferJobRequest>,
@@ -2487,8 +2491,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2515,8 +2518,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2546,8 +2548,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2574,8 +2575,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2602,8 +2602,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2636,8 +2635,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2656,7 +2654,7 @@ pub mod storage_transfer_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a transfer job. Deleting a transfer job sets its status to
-        /// \[DELETED\]\[google.storagetransfer.v1.TransferJob.Status.DELETED\].
+        /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
         pub async fn delete_transfer_job(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTransferJobRequest>,
@@ -2665,8 +2663,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2693,8 +2690,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2721,8 +2717,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2749,8 +2744,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2780,8 +2774,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2808,8 +2801,7 @@ pub mod storage_transfer_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

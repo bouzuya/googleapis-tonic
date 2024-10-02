@@ -9,7 +9,7 @@ pub struct Folder {
     pub name: ::prost::alloc::string::String,
     /// Required. The Folder’s parent's resource name.
     /// Updates to the folder's parent must be performed via
-    /// \[MoveFolder\]\[google.cloud.resourcemanager.v2.Folders.MoveFolder\].
+    /// [MoveFolder][google.cloud.resourcemanager.v2.Folders.MoveFolder].
     #[prost(string, tag = "2")]
     pub parent: ::prost::alloc::string::String,
     /// The folder’s display name.
@@ -18,13 +18,13 @@ pub struct Folder {
     /// The display name must start and end with a letter or digit, may contain
     /// letters, digits, spaces, hyphens and underscores and can be no longer
     /// than 30 characters. This is captured by the regular expression:
-    /// \[\\p{L}\p{N}\](\[\\p{L}\p{N}\_- \]{0,28}\[\\p{L}\p{N}\])?.
+    /// [\p{L}\p{N}](\[\p{L}\p{N}_- \]{0,28}\[\p{L}\p{N}\])?.
     #[prost(string, tag = "3")]
     pub display_name: ::prost::alloc::string::String,
     /// Output only. The lifecycle state of the folder.
     /// Updates to the lifecycle_state must be performed via
-    /// \[DeleteFolder\]\[google.cloud.resourcemanager.v2.Folders.DeleteFolder\] and
-    /// \[UndeleteFolder\]\[google.cloud.resourcemanager.v2.Folders.UndeleteFolder\].
+    /// [DeleteFolder][google.cloud.resourcemanager.v2.Folders.DeleteFolder] and
+    /// [UndeleteFolder][google.cloud.resourcemanager.v2.Folders.UndeleteFolder].
     #[prost(enumeration = "folder::LifecycleState", tag = "4")]
     pub lifecycle_state: i32,
     /// Output only. Timestamp when the Folder was created. Assigned by the server.
@@ -64,9 +64,9 @@ pub mod folder {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LifecycleState::Unspecified => "LIFECYCLE_STATE_UNSPECIFIED",
-                LifecycleState::Active => "ACTIVE",
-                LifecycleState::DeleteRequested => "DELETE_REQUESTED",
+                Self::Unspecified => "LIFECYCLE_STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::DeleteRequested => "DELETE_REQUESTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -98,7 +98,7 @@ pub struct ListFoldersRequest {
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
     /// Optional. Controls whether Folders in the
-    /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED\]
+    /// [DELETE_REQUESTED][google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED]
     /// state should be returned. Defaults to false.
     #[prost(bool, tag = "4")]
     pub show_deleted: bool,
@@ -139,15 +139,15 @@ pub struct SearchFoldersRequest {
     /// Some example queries are:
     ///
     /// * Query `displayName=Test*` returns Folder resources whose display name
-    ///   starts with "Test".
+    /// starts with "Test".
     /// * Query `lifecycleState=ACTIVE` returns Folder resources with
-    ///   `lifecycleState` set to `ACTIVE`.
+    /// `lifecycleState` set to `ACTIVE`.
     /// * Query `parent=folders/123` returns Folder resources that have
-    ///   `folders/123` as a parent resource.
+    /// `folders/123` as a parent resource.
     /// * Query `parent=folders/123 AND lifecycleState=ACTIVE` returns active
-    ///   Folder resources that have `folders/123` as a parent resource.
+    /// Folder resources that have `folders/123` as a parent resource.
     /// * Query `displayName=\\"Test String\\"` returns Folder resources with
-    ///   display names that include both "Test" and "String".
+    /// display names that include both "Test" and "String".
     #[prost(string, tag = "3")]
     pub query: ::prost::alloc::string::String,
 }
@@ -277,9 +277,9 @@ pub mod folder_operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
-                OperationType::Create => "CREATE",
-                OperationType::Move => "MOVE",
+                Self::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
+                Self::Create => "CREATE",
+                Self::Move => "MOVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -295,7 +295,13 @@ pub mod folder_operation {
 }
 /// Generated client implementations.
 pub mod folders_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages Cloud Resource Folders.
@@ -388,8 +394,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -424,8 +429,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -456,8 +460,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -484,14 +487,14 @@ pub mod folders_client {
         /// In order to succeed, the addition of this new Folder must not violate
         /// the Folder naming, height or fanout constraints.
         ///
-        /// * The Folder's display_name must be distinct from all other Folder's that
-        ///  share its parent.
-        /// * The addition of the Folder must not cause the active Folder hierarchy
-        ///  to exceed a height of 4. Note, the full active + deleted Folder hierarchy
-        ///  is allowed to reach a height of 8; this provides additional headroom when
-        ///  moving folders that contain deleted folders.
-        /// * The addition of the Folder must not cause the total number of Folders
-        ///  under its parent to exceed 100.
+        /// + The Folder's display_name must be distinct from all other Folder's that
+        /// share its parent.
+        /// + The addition of the Folder must not cause the active Folder hierarchy
+        /// to exceed a height of 4. Note, the full active + deleted Folder hierarchy
+        /// is allowed to reach a height of 8; this provides additional headroom when
+        /// moving folders that contain deleted folders.
+        /// + The addition of the Folder must not cause the total number of Folders
+        /// under its parent to exceed 100.
         ///
         /// If the operation fails due to a folder constraint violation, some errors
         /// may be returned by the CreateFolder request, with status code
@@ -513,8 +516,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -535,12 +537,12 @@ pub mod folders_client {
         /// Updates a Folder, changing its display_name.
         /// Changes to the folder display_name will be rejected if they violate either
         /// the display_name formatting rules or naming constraints described in
-        /// the \[CreateFolder\]\[google.cloud.resourcemanager.v2.Folders.CreateFolder\] documentation.
+        /// the [CreateFolder][google.cloud.resourcemanager.v2.Folders.CreateFolder] documentation.
         ///
         /// The Folder's display name must start and end with a letter or digit,
         /// may contain letters, digits, spaces, hyphens and underscores and can be
         /// no longer than 30 characters. This is captured by the regular expression:
-        /// \[\\p{L}\p{N}\](\[\\p{L}\p{N}\_- \]{0,28}\[\\p{L}\p{N}\])?.
+        /// [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
         /// The caller must have `resourcemanager.folders.update` permission on the
         /// identified folder.
         ///
@@ -555,8 +557,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -588,7 +589,7 @@ pub mod folders_client {
         /// FolderOperation message as an aid to stateless clients.
         /// Folder moves will be rejected if they violate either the naming, height
         /// or fanout constraints described in the
-        /// \[CreateFolder\]\[google.cloud.resourcemanager.v2.Folders.CreateFolder\] documentation.
+        /// [CreateFolder][google.cloud.resourcemanager.v2.Folders.CreateFolder] documentation.
         /// The caller must have `resourcemanager.folders.move` permission on the
         /// folder's current and proposed new parent.
         pub async fn move_folder(
@@ -602,8 +603,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -622,12 +622,12 @@ pub mod folders_client {
             self.inner.unary(req, path, codec).await
         }
         /// Requests deletion of a Folder. The Folder is moved into the
-        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED\] state
+        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED] state
         /// immediately, and is deleted approximately 30 days later. This method may
         /// only be called on an empty Folder in the
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE\] state, where a Folder is empty if
+        /// [ACTIVE][google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE] state, where a Folder is empty if
         /// it doesn't contain any Folders or Projects in the
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE\] state.
+        /// [ACTIVE][google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE] state.
         /// The caller must have `resourcemanager.folders.delete` permission on the
         /// identified folder.
         pub async fn delete_folder(
@@ -638,8 +638,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -659,12 +658,12 @@ pub mod folders_client {
         }
         /// Cancels the deletion request for a Folder. This method may only be
         /// called on a Folder in the
-        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED\] state.
+        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED] state.
         /// In order to succeed, the Folder's parent must be in the
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE\] state.
+        /// [ACTIVE][google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE] state.
         /// In addition, reintroducing the folder into the tree must not violate
         /// folder naming, height and fanout constraints described in the
-        /// \[CreateFolder\]\[google.cloud.resourcemanager.v2.Folders.CreateFolder\] documentation.
+        /// [CreateFolder][google.cloud.resourcemanager.v2.Folders.CreateFolder] documentation.
         /// The caller must have `resourcemanager.folders.undelete` permission on the
         /// identified folder.
         pub async fn undelete_folder(
@@ -675,8 +674,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -712,8 +710,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -749,8 +746,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -788,8 +784,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

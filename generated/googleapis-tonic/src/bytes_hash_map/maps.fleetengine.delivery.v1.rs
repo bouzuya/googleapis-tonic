@@ -60,7 +60,7 @@ pub struct DeliveryVehicleLocation {
     #[prost(message, optional, tag = "22")]
     pub latlng_accuracy: ::core::option::Option<f64>,
     /// Direction the vehicle is moving in degrees.  0 represents North.
-    /// The valid range is \[0,360).
+    /// The valid range is [0,360).
     #[prost(message, optional, tag = "2")]
     pub heading: ::core::option::Option<i32>,
     /// Deprecated: Use `heading_accuracy` instead.
@@ -228,21 +228,15 @@ impl DeliveryVehicleLocationSensor {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DeliveryVehicleLocationSensor::UnknownSensor => "UNKNOWN_SENSOR",
-            DeliveryVehicleLocationSensor::Gps => "GPS",
-            DeliveryVehicleLocationSensor::Network => "NETWORK",
-            DeliveryVehicleLocationSensor::Passive => "PASSIVE",
-            DeliveryVehicleLocationSensor::RoadSnappedLocationProvider => {
-                "ROAD_SNAPPED_LOCATION_PROVIDER"
-            }
-            DeliveryVehicleLocationSensor::CustomerSuppliedLocation => {
-                "CUSTOMER_SUPPLIED_LOCATION"
-            }
-            DeliveryVehicleLocationSensor::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
-            DeliveryVehicleLocationSensor::FusedLocationProvider => {
-                "FUSED_LOCATION_PROVIDER"
-            }
-            DeliveryVehicleLocationSensor::CoreLocation => "CORE_LOCATION",
+            Self::UnknownSensor => "UNKNOWN_SENSOR",
+            Self::Gps => "GPS",
+            Self::Network => "NETWORK",
+            Self::Passive => "PASSIVE",
+            Self::RoadSnappedLocationProvider => "ROAD_SNAPPED_LOCATION_PROVIDER",
+            Self::CustomerSuppliedLocation => "CUSTOMER_SUPPLIED_LOCATION",
+            Self::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
+            Self::FusedLocationProvider => "FUSED_LOCATION_PROVIDER",
+            Self::CoreLocation => "CORE_LOCATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -284,17 +278,11 @@ impl DeliveryVehicleNavigationStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DeliveryVehicleNavigationStatus::UnknownNavigationStatus => {
-                "UNKNOWN_NAVIGATION_STATUS"
-            }
-            DeliveryVehicleNavigationStatus::NoGuidance => "NO_GUIDANCE",
-            DeliveryVehicleNavigationStatus::EnrouteToDestination => {
-                "ENROUTE_TO_DESTINATION"
-            }
-            DeliveryVehicleNavigationStatus::OffRoute => "OFF_ROUTE",
-            DeliveryVehicleNavigationStatus::ArrivedAtDestination => {
-                "ARRIVED_AT_DESTINATION"
-            }
+            Self::UnknownNavigationStatus => "UNKNOWN_NAVIGATION_STATUS",
+            Self::NoGuidance => "NO_GUIDANCE",
+            Self::EnrouteToDestination => "ENROUTE_TO_DESTINATION",
+            Self::OffRoute => "OFF_ROUTE",
+            Self::ArrivedAtDestination => "ARRIVED_AT_DESTINATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -344,14 +332,14 @@ pub struct DeliveryVehicle {
     /// (REST):
     ///
     /// * The endpoint of the `current_route_segment` does not match
-    ///   `DeliveryVehicle.remaining_vehicle_journey_segments\[0\].stop` (gRPC) or
-    ///   `DeliveryVehicle.remainingVehicleJourneySegments\[0\].stop` (REST).
+    /// `DeliveryVehicle.remaining_vehicle_journey_segments\[0\].stop` (gRPC) or
+    /// `DeliveryVehicle.remainingVehicleJourneySegments\[0\].stop` (REST).
     ///
     /// * The driver app has not updated its location recently, so the last
-    ///   updated value for this field might be stale.
+    /// updated value for this field might be stale.
     ///
     /// * The driver app has recently updated its location, but the
-    ///   `current_route_segment` is stale, and points to a previous vehicle stop.
+    /// `current_route_segment` is stale, and points to a previous vehicle stop.
     ///
     /// In these cases, Fleet Engine populates this field with a route from the
     /// most recently passed VehicleStop to the upcoming VehicleStop to ensure that
@@ -375,7 +363,7 @@ pub struct DeliveryVehicle {
     /// The Driver app typically provides this field, but there are some
     /// circumstances in which Fleet Engine will override the value sent by the
     /// app. For more information, see
-    /// \[DeliveryVehicle.current_route_segment\]\[maps.fleetengine.delivery.v1.DeliveryVehicle.current_route_segment\].
+    /// [DeliveryVehicle.current_route_segment][maps.fleetengine.delivery.v1.DeliveryVehicle.current_route_segment].
     /// This field is returned in
     /// `Task.remaining_vehicle_journey_segments\[0\].driving_distance_meters` (gRPC)
     /// or `Task.remainingVehicleJourneySegments\[0\].drivingDistanceMeters` (REST)
@@ -389,7 +377,7 @@ pub struct DeliveryVehicle {
     /// The Driver app typically provides this field, but there are some
     /// circumstances in which Fleet Engine will override the value sent by the
     /// app.  For more information, see
-    /// \[DeliveryVehicle.current_route_segment\]\[maps.fleetengine.delivery.v1.DeliveryVehicle.current_route_segment\].
+    /// [DeliveryVehicle.current_route_segment][maps.fleetengine.delivery.v1.DeliveryVehicle.current_route_segment].
     /// This field is returned in
     /// `Task.remaining_vehicle_journey_segments\[0\].driving_duration` (gRPC) or
     /// `Task.remainingVehicleJourneySegments\[0\].drivingDuration` (REST) for all
@@ -449,11 +437,11 @@ pub mod delivery_vehicle {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DeliveryVehicleType::Unspecified => "DELIVERY_VEHICLE_TYPE_UNSPECIFIED",
-                DeliveryVehicleType::Auto => "AUTO",
-                DeliveryVehicleType::TwoWheeler => "TWO_WHEELER",
-                DeliveryVehicleType::Bicycle => "BICYCLE",
-                DeliveryVehicleType::Pedestrian => "PEDESTRIAN",
+                Self::Unspecified => "DELIVERY_VEHICLE_TYPE_UNSPECIFIED",
+                Self::Auto => "AUTO",
+                Self::TwoWheeler => "TWO_WHEELER",
+                Self::Bicycle => "BICYCLE",
+                Self::Pedestrian => "PEDESTRIAN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -557,9 +545,9 @@ pub mod vehicle_stop {
         /// * Must be a valid Unicode string.
         /// * Limited to a maximum length of 64 characters.
         /// * Normalized according to \[Unicode Normalization Form C\]
-        ///   (<http://www.unicode.org/reports/tr15/>).
+        /// (<http://www.unicode.org/reports/tr15/>).
         /// * May not contain any of the following ASCII characters: '/', ':', '?',
-        ///   ',', or '#'.
+        /// ',', or '#'.
         #[prost(string, tag = "1")]
         pub task_id: ::prost::alloc::string::String,
         /// Output only. The time required to perform the Task.
@@ -601,10 +589,10 @@ pub mod vehicle_stop {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::New => "NEW",
-                State::Enroute => "ENROUTE",
-                State::Arrived => "ARRIVED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::New => "NEW",
+                Self::Enroute => "ENROUTE",
+                Self::Arrived => "ARRIVED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -704,10 +692,10 @@ pub mod delivery_request_header {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SdkType::Unspecified => "SDK_TYPE_UNSPECIFIED",
-                SdkType::Consumer => "CONSUMER",
-                SdkType::Driver => "DRIVER",
-                SdkType::Javascript => "JAVASCRIPT",
+                Self::Unspecified => "SDK_TYPE_UNSPECIFIED",
+                Self::Consumer => "CONSUMER",
+                Self::Driver => "DRIVER",
+                Self::Javascript => "JAVASCRIPT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -751,10 +739,10 @@ pub mod delivery_request_header {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Platform::Unspecified => "PLATFORM_UNSPECIFIED",
-                Platform::Android => "ANDROID",
-                Platform::Ios => "IOS",
-                Platform::Web => "WEB",
+                Self::Unspecified => "PLATFORM_UNSPECIFIED",
+                Self::Android => "ANDROID",
+                Self::Ios => "IOS",
+                Self::Web => "WEB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -818,9 +806,9 @@ pub struct Task {
     /// * Must be a valid Unicode string.
     /// * Limited to a maximum length of 64 characters.
     /// * Normalized according to \[Unicode Normalization Form C\]
-    ///   (<http://www.unicode.org/reports/tr15/>).
+    /// (<http://www.unicode.org/reports/tr15/>).
     /// * May not contain any of the following ASCII characters: '/', ':', '?',
-    ///   ',', or '#'.
+    /// ',', or '#'.
     #[prost(string, tag = "4")]
     pub tracking_id: ::prost::alloc::string::String,
     /// Output only. The ID of the vehicle that is executing this Task. Delivery
@@ -829,9 +817,9 @@ pub struct Task {
     /// * Must be a valid Unicode string.
     /// * Limited to a maximum length of 64 characters.
     /// * Normalized according to \[Unicode Normalization Form C\]
-    ///   (<http://www.unicode.org/reports/tr15/>).
+    /// (<http://www.unicode.org/reports/tr15/>).
     /// * May not contain any of the following ASCII characters: '/', ':', '?',
-    ///   ',', or '#'.
+    /// ',', or '#'.
     #[prost(string, tag = "5")]
     pub delivery_vehicle_id: ::prost::alloc::string::String,
     /// Immutable. The location where the Task will be completed.
@@ -871,7 +859,7 @@ pub mod task {
         /// contains route information from the driver's last known location to the
         /// upcoming `VehicleStop`. Current route information usually comes from the
         /// driver app, except for some cases noted in the documentation for
-        /// \[DeliveryVehicle.current_route_segment\]\[maps.fleetengine.delivery.v1.DeliveryVehicle.current_route_segment\].
+        /// [DeliveryVehicle.current_route_segment][maps.fleetengine.delivery.v1.DeliveryVehicle.current_route_segment].
         /// The other segments in
         /// `Task.journey_sharing_info.remaining_vehicle_journey_segments` (gRPC) or
         /// `Task.journeySharingInfo.remainingVehicleJourneySegments` (REST) are
@@ -932,11 +920,11 @@ pub mod task {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Pickup => "PICKUP",
-                Type::Delivery => "DELIVERY",
-                Type::ScheduledStop => "SCHEDULED_STOP",
-                Type::Unavailable => "UNAVAILABLE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::Pickup => "PICKUP",
+                Self::Delivery => "DELIVERY",
+                Self::ScheduledStop => "SCHEDULED_STOP",
+                Self::Unavailable => "UNAVAILABLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -980,9 +968,9 @@ pub mod task {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Open => "OPEN",
-                State::Closed => "CLOSED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Open => "OPEN",
+                Self::Closed => "CLOSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1024,9 +1012,9 @@ pub mod task {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TaskOutcome::Unspecified => "TASK_OUTCOME_UNSPECIFIED",
-                TaskOutcome::Succeeded => "SUCCEEDED",
-                TaskOutcome::Failed => "FAILED",
+                Self::Unspecified => "TASK_OUTCOME_UNSPECIFIED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1068,11 +1056,9 @@ pub mod task {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                TaskOutcomeLocationSource::Unspecified => {
-                    "TASK_OUTCOME_LOCATION_SOURCE_UNSPECIFIED"
-                }
-                TaskOutcomeLocationSource::Provider => "PROVIDER",
-                TaskOutcomeLocationSource::LastVehicleLocation => "LAST_VEHICLE_LOCATION",
+                Self::Unspecified => "TASK_OUTCOME_LOCATION_SOURCE_UNSPECIFIED",
+                Self::Provider => "PROVIDER",
+                Self::LastVehicleLocation => "LAST_VEHICLE_LOCATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1151,15 +1137,15 @@ pub mod task_tracking_view_config {
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum VisibilityOption {
             /// This data element is visible to the end users if the remaining stop
-            /// count \<= remaining_stop_count_threshold.
+            /// count <= remaining_stop_count_threshold.
             #[prost(int32, tag = "1")]
             RemainingStopCountThreshold(i32),
             /// This data element is visible to the end users if the ETA to the stop
-            /// \<= duration_until_estimated_arrival_time_threshold.
+            /// <= duration_until_estimated_arrival_time_threshold.
             #[prost(message, tag = "2")]
             DurationUntilEstimatedArrivalTimeThreshold(::prost_types::Duration),
             /// This data element is visible to the end users if the remaining
-            /// driving distance in meters \<=
+            /// driving distance in meters <=
             /// remaining_driving_distance_meters_threshold.
             #[prost(int32, tag = "3")]
             RemainingDrivingDistanceMetersThreshold(i32),
@@ -1185,13 +1171,12 @@ pub struct TaskTrackingInfo {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Immutable. The tracking ID of a Task.
-    ///
     /// * Must be a valid Unicode string.
     /// * Limited to a maximum length of 64 characters.
     /// * Normalized according to \[Unicode Normalization Form C\]
-    ///   (<http://www.unicode.org/reports/tr15/>).
+    /// (<http://www.unicode.org/reports/tr15/>).
     /// * May not contain any of the following ASCII characters: '/', ':', '?',
-    ///   ',', or '#'.
+    /// ',', or '#'.
     #[prost(string, tag = "2")]
     pub tracking_id: ::prost::alloc::string::String,
     /// The vehicle's last location.
@@ -1254,9 +1239,9 @@ pub struct CreateDeliveryVehicleRequest {
     /// * Must be a valid Unicode string.
     /// * Limited to a maximum length of 64 characters.
     /// * Normalized according to \[Unicode Normalization Form C\]
-    ///   (<http://www.unicode.org/reports/tr15/>).
+    /// (<http://www.unicode.org/reports/tr15/>).
     /// * May not contain any of the following ASCII characters: '/', ':', '?',
-    ///   ',', or '#'.
+    /// ',', or '#'.
     #[prost(string, tag = "4")]
     pub delivery_vehicle_id: ::prost::alloc::string::String,
     /// Required. The `DeliveryVehicle` entity to create. When creating a new
@@ -1417,9 +1402,9 @@ pub struct CreateTaskRequest {
     /// * Must be a valid Unicode string.
     /// * Limited to a maximum length of 64 characters.
     /// * Normalized according to \[Unicode Normalization Form C\]
-    ///   (<http://www.unicode.org/reports/tr15/>).
+    /// (<http://www.unicode.org/reports/tr15/>).
     /// * May not contain any of the following ASCII characters: '/', ':', '?',
-    ///   ',', or '#'.
+    /// ',', or '#'.
     #[prost(string, tag = "5")]
     pub task_id: ::prost::alloc::string::String,
     /// Required. The Task entity to create.
@@ -1428,7 +1413,7 @@ pub struct CreateTaskRequest {
     /// * `type`
     /// * `state` (must be set to `OPEN`)
     /// * `tracking_id` (must not be set for `UNAVAILABLE` or `SCHEDULED_STOP`
-    ///   tasks, but required for all other task types)
+    /// tasks, but required for all other task types)
     /// * `planned_location` (optional for `UNAVAILABLE` tasks)
     /// * `task_duration`
     ///
@@ -1459,11 +1444,11 @@ pub struct UpdateTaskRequest {
     /// The following fields are maintained by Fleet Engine. Do not update
     /// them using `Task.update`.
     ///
-    /// * `last_location`.
-    /// * `last_location_snappable`.
-    /// * `name`.
-    /// * `remaining_vehicle_journey_segments`.
-    /// * `task_outcome_location_source`.
+    ///    * `last_location`.
+    ///    * `last_location_snappable`.
+    ///    * `name`.
+    ///    * `remaining_vehicle_journey_segments`.
+    ///    * `task_outcome_location_source`.
     ///
     /// Note: You cannot change the value of `task_outcome` once you set it.
     ///
@@ -1548,7 +1533,13 @@ pub struct GetTaskTrackingInfoRequest {
 }
 /// Generated client implementations.
 pub mod delivery_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// The Last Mile Delivery service.
@@ -1633,8 +1624,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1664,8 +1654,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1701,8 +1690,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1732,8 +1720,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1760,8 +1747,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1788,8 +1774,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1816,8 +1801,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1847,8 +1831,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1878,8 +1861,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1909,8 +1891,7 @@ pub mod delivery_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

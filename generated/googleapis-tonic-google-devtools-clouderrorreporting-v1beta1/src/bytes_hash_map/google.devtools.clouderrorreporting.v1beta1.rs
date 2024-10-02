@@ -192,11 +192,11 @@ impl ResolutionStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ResolutionStatus::Unspecified => "RESOLUTION_STATUS_UNSPECIFIED",
-            ResolutionStatus::Open => "OPEN",
-            ResolutionStatus::Acknowledged => "ACKNOWLEDGED",
-            ResolutionStatus::Resolved => "RESOLVED",
-            ResolutionStatus::Muted => "MUTED",
+            Self::Unspecified => "RESOLUTION_STATUS_UNSPECIFIED",
+            Self::Open => "OPEN",
+            Self::Acknowledged => "ACKNOWLEDGED",
+            Self::Resolved => "RESOLVED",
+            Self::Muted => "MUTED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -245,7 +245,13 @@ pub struct UpdateGroupRequest {
 }
 /// Generated client implementations.
 pub mod error_group_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service for retrieving and updating individual error groups.
@@ -327,8 +333,7 @@ pub mod error_group_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -356,8 +361,7 @@ pub mod error_group_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -505,9 +509,9 @@ pub struct ErrorGroupStats {
     /// Approximate number of occurrences over time.
     /// Timed counts returned by ListGroups are guaranteed to be:
     ///
-    /// * Inside the requested time interval
-    /// * Non-overlapping, and
-    /// * Ordered by ascending time.
+    /// - Inside the requested time interval
+    /// - Non-overlapping, and
+    /// - Ordered by ascending time.
     #[prost(message, repeated, tag = "4")]
     pub timed_counts: ::prost::alloc::vec::Vec<TimedCount>,
     /// Approximate first occurrence that was ever seen for this group
@@ -664,12 +668,12 @@ pub mod query_time_range {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Period::Unspecified => "PERIOD_UNSPECIFIED",
-                Period::Period1Hour => "PERIOD_1_HOUR",
-                Period::Period6Hours => "PERIOD_6_HOURS",
-                Period::Period1Day => "PERIOD_1_DAY",
-                Period::Period1Week => "PERIOD_1_WEEK",
-                Period::Period30Days => "PERIOD_30_DAYS",
+                Self::Unspecified => "PERIOD_UNSPECIFIED",
+                Self::Period1Hour => "PERIOD_1_HOUR",
+                Self::Period6Hours => "PERIOD_6_HOURS",
+                Self::Period1Day => "PERIOD_1_DAY",
+                Self::Period1Week => "PERIOD_1_WEEK",
+                Self::Period30Days => "PERIOD_30_DAYS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -759,11 +763,9 @@ impl TimedCountAlignment {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TimedCountAlignment::ErrorCountAlignmentUnspecified => {
-                "ERROR_COUNT_ALIGNMENT_UNSPECIFIED"
-            }
-            TimedCountAlignment::AlignmentEqualRounded => "ALIGNMENT_EQUAL_ROUNDED",
-            TimedCountAlignment::AlignmentEqualAtEnd => "ALIGNMENT_EQUAL_AT_END",
+            Self::ErrorCountAlignmentUnspecified => "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
+            Self::AlignmentEqualRounded => "ALIGNMENT_EQUAL_ROUNDED",
+            Self::AlignmentEqualAtEnd => "ALIGNMENT_EQUAL_AT_END",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -801,11 +803,11 @@ impl ErrorGroupOrder {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ErrorGroupOrder::GroupOrderUnspecified => "GROUP_ORDER_UNSPECIFIED",
-            ErrorGroupOrder::CountDesc => "COUNT_DESC",
-            ErrorGroupOrder::LastSeenDesc => "LAST_SEEN_DESC",
-            ErrorGroupOrder::CreatedDesc => "CREATED_DESC",
-            ErrorGroupOrder::AffectedUsersDesc => "AFFECTED_USERS_DESC",
+            Self::GroupOrderUnspecified => "GROUP_ORDER_UNSPECIFIED",
+            Self::CountDesc => "COUNT_DESC",
+            Self::LastSeenDesc => "LAST_SEEN_DESC",
+            Self::CreatedDesc => "CREATED_DESC",
+            Self::AffectedUsersDesc => "AFFECTED_USERS_DESC",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -822,7 +824,13 @@ impl ErrorGroupOrder {
 }
 /// Generated client implementations.
 pub mod error_stats_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An API for retrieving and managing error statistics as well as data for
@@ -908,8 +916,7 @@ pub mod error_stats_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -939,8 +946,7 @@ pub mod error_stats_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -970,8 +976,7 @@ pub mod error_stats_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1034,20 +1039,21 @@ pub struct ReportedErrorEvent {
     /// Supported stack trace formats are:
     ///
     /// * **Java**: Must be the return value of
-    ///   [`Throwable.printStackTrace()`](<https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29>).
+    /// [`Throwable.printStackTrace()`](<https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29>).
     /// * **Python**: Must be the return value of
-    ///   [`traceback.format_exc()`](<https://docs.python.org/2/library/traceback.html#traceback.format_exc>).
+    /// [`traceback.format_exc()`](<https://docs.python.org/2/library/traceback.html#traceback.format_exc>).
     /// * **JavaScript**: Must be the value of
-    ///   [`error.stack`](<https://github.com/v8/v8/wiki/Stack-Trace-API>) as returned
-    ///   by V8.
+    /// [`error.stack`](<https://github.com/v8/v8/wiki/Stack-Trace-API>) as returned
+    /// by V8.
     /// * **Ruby**: Must contain frames returned by
-    ///   [`Exception.backtrace`](<https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace>).
+    /// [`Exception.backtrace`](<https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace>).
     /// * **C#**: Must be the return value of
-    ///   [`Exception.ToString()`](<https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx>).
-    /// * **PHP**: Must be prefixed with `"PHP (Notice|Parse error|Fatal error|Warning): "` and contain the result of
-    ///   [`(string)$exception`](<https://php.net/manual/en/exception.tostring.php>).
+    /// [`Exception.ToString()`](<https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx>).
+    /// * **PHP**: Must be prefixed with `"PHP (Notice|Parse error|Fatal
+    /// error|Warning): "` and contain the result of
+    /// [`(string)$exception`](<https://php.net/manual/en/exception.tostring.php>).
     /// * **Go**: Must be the return value of
-    ///   [`runtime.Stack()`](<https://golang.org/pkg/runtime/debug/#Stack>).
+    /// [`runtime.Stack()`](<https://golang.org/pkg/runtime/debug/#Stack>).
     #[prost(string, tag = "3")]
     pub message: ::prost::alloc::string::String,
     /// Optional. A description of the context in which the error occurred.
@@ -1056,7 +1062,13 @@ pub struct ReportedErrorEvent {
 }
 /// Generated client implementations.
 pub mod report_errors_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// An API for reporting error events.
@@ -1136,18 +1148,19 @@ pub mod report_errors_service_client {
         /// for authentication. To use an API key, append it to the URL as the value of
         /// a `key` parameter. For example:
         ///
-        /// `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
+        /// `POST
+        /// https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
         ///
-        /// **Note:** \[Error Reporting\] (https://cloud.google.com/error-reporting)
+        /// **Note:** [Error Reporting] (https://cloud.google.com/error-reporting)
         /// is a service built on Cloud Logging and can analyze log entries when all of
         /// the following are true:
         ///
         /// * Customer-managed encryption keys (CMEK) are disabled on the log bucket.
         /// * The log bucket satisfies one of the following:
-        ///  * The log bucket is stored in the same project where the logs
-        ///    originated.
-        ///  * The logs were routed to a project, and then that project stored those
-        ///    logs in a log bucket that it owns.
+        ///     * The log bucket is stored in the same project where the logs
+        ///     originated.
+        ///     * The logs were routed to a project, and then that project stored those
+        ///     logs in a log bucket that it owns.
         pub async fn report_error_event(
             &mut self,
             request: impl tonic::IntoRequest<super::ReportErrorEventRequest>,
@@ -1159,8 +1172,7 @@ pub mod report_errors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

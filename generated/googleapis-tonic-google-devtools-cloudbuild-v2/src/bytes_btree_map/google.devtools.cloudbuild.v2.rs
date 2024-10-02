@@ -19,8 +19,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -42,8 +42,8 @@ pub struct RunWorkflowCustomOperationMetadata {
     pub verb: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "4")]
     pub requested_cancellation: bool,
@@ -173,11 +173,11 @@ pub mod installation_state {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Stage::Unspecified => "STAGE_UNSPECIFIED",
-                Stage::PendingCreateApp => "PENDING_CREATE_APP",
-                Stage::PendingUserOauth => "PENDING_USER_OAUTH",
-                Stage::PendingInstallApp => "PENDING_INSTALL_APP",
-                Stage::Complete => "COMPLETE",
+                Self::Unspecified => "STAGE_UNSPECIFIED",
+                Self::PendingCreateApp => "PENDING_CREATE_APP",
+                Self::PendingUserOauth => "PENDING_USER_OAUTH",
+                Self::PendingInstallApp => "PENDING_INSTALL_APP",
+                Self::Complete => "COMPLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -439,7 +439,7 @@ pub struct CreateConnectionRequest {
     /// Required. The ID to use for the Connection, which will become the final
     /// component of the Connection's resource name. Names must be unique
     /// per-project per-location. Allows alphanumeric characters and any of
-    /// -.\_~%!$&'()\*+,;=@.
+    /// -._~%!$&'()*+,;=@.
     #[prost(string, tag = "3")]
     pub connection_id: ::prost::alloc::string::String,
 }
@@ -527,7 +527,7 @@ pub struct CreateRepositoryRequest {
     /// Required. The ID to use for the repository, which will become the final
     /// component of the repository's resource name. This ID should be unique in
     /// the connection. Allows alphanumeric characters and any of
-    /// -.\_~%!$&'()\*+,;=@.
+    /// -._~%!$&'()*+,;=@.
     #[prost(string, tag = "3")]
     pub repository_id: ::prost::alloc::string::String,
 }
@@ -535,7 +535,7 @@ pub struct CreateRepositoryRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateRepositoriesRequest {
     /// Required. The connection to contain all the repositories being created.
-    /// Format: projects/*/locations/*/connections/\*
+    /// Format: projects/*/locations/*/connections/*
     /// The parent field in the CreateRepositoryRequest messages
     /// must either be empty or match this field.
     #[prost(string, tag = "1")]
@@ -697,9 +697,9 @@ pub mod fetch_git_refs_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RefType::Unspecified => "REF_TYPE_UNSPECIFIED",
-                RefType::Tag => "TAG",
-                RefType::Branch => "BRANCH",
+                Self::Unspecified => "REF_TYPE_UNSPECIFIED",
+                Self::Tag => "TAG",
+                Self::Branch => "BRANCH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -722,7 +722,13 @@ pub struct FetchGitRefsResponse {
 }
 /// Generated client implementations.
 pub mod repository_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages connections to source code repositories.
@@ -807,8 +813,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -835,8 +840,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -866,8 +870,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -897,8 +900,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -928,8 +930,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -959,8 +960,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -990,8 +990,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1018,8 +1017,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1049,8 +1047,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1080,8 +1077,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1111,8 +1107,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1142,8 +1137,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1174,8 +1168,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1205,8 +1198,7 @@ pub mod repository_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -21,10 +21,9 @@ pub struct RelatedUrl {
 /// for quickly selecting a public key ALREADY CONFIGURED on the verifier through
 /// a trusted channel. Verification implementations MUST reject signatures in any
 /// of the following circumstances:
-///
-/// * The `public_key_id` is not recognized by the verifier.
-/// * The public key that `public_key_id` refers to does not verify the
-///   signature with respect to the payload.
+///    * The `public_key_id` is not recognized by the verifier.
+///    * The public key that `public_key_id` refers to does not verify the
+///      signature with respect to the payload.
 ///
 /// The `signature` contents SHOULD NOT be "attached" (where the payload is
 /// included with the serialized `signature` bytes). Verifiers MUST ignore any
@@ -43,25 +42,22 @@ pub struct Signature {
     #[prost(bytes = "vec", tag = "1")]
     pub signature: ::prost::alloc::vec::Vec<u8>,
     /// The identifier for the public key that verifies this signature.
-    ///
-    /// * The `public_key_id` is required.
-    /// * The `public_key_id` SHOULD be an RFC3986 conformant URI.
-    /// * When possible, the `public_key_id` SHOULD be an immutable reference,
-    ///   such as a cryptographic digest.
+    ///    * The `public_key_id` is required.
+    ///    * The `public_key_id` SHOULD be an RFC3986 conformant URI.
+    ///    * When possible, the `public_key_id` SHOULD be an immutable reference,
+    ///      such as a cryptographic digest.
     ///
     /// Examples of valid `public_key_id`s:
     ///
     /// OpenPGP V4 public key fingerprint:
-    ///
-    /// * "openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA"
-    ///   See <https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr> for more
-    ///   details on this scheme.
+    ///    * "openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA"
+    /// See <https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr> for more
+    /// details on this scheme.
     ///
     /// RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER
     /// serialization):
-    ///
-    /// * "ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU"
-    /// * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5"
+    ///    * "ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU"
+    ///    * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5"
     #[prost(string, tag = "2")]
     pub public_key_id: ::prost::alloc::string::String,
 }
@@ -154,19 +150,19 @@ impl NoteKind {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NoteKind::Unspecified => "NOTE_KIND_UNSPECIFIED",
-            NoteKind::Vulnerability => "VULNERABILITY",
-            NoteKind::Build => "BUILD",
-            NoteKind::Image => "IMAGE",
-            NoteKind::Package => "PACKAGE",
-            NoteKind::Deployment => "DEPLOYMENT",
-            NoteKind::Discovery => "DISCOVERY",
-            NoteKind::Attestation => "ATTESTATION",
-            NoteKind::Upgrade => "UPGRADE",
-            NoteKind::Compliance => "COMPLIANCE",
-            NoteKind::DsseAttestation => "DSSE_ATTESTATION",
-            NoteKind::VulnerabilityAssessment => "VULNERABILITY_ASSESSMENT",
-            NoteKind::SbomReference => "SBOM_REFERENCE",
+            Self::Unspecified => "NOTE_KIND_UNSPECIFIED",
+            Self::Vulnerability => "VULNERABILITY",
+            Self::Build => "BUILD",
+            Self::Image => "IMAGE",
+            Self::Package => "PACKAGE",
+            Self::Deployment => "DEPLOYMENT",
+            Self::Discovery => "DISCOVERY",
+            Self::Attestation => "ATTESTATION",
+            Self::Upgrade => "UPGRADE",
+            Self::Compliance => "COMPLIANCE",
+            Self::DsseAttestation => "DSSE_ATTESTATION",
+            Self::VulnerabilityAssessment => "VULNERABILITY_ASSESSMENT",
+            Self::SbomReference => "SBOM_REFERENCE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -284,12 +280,12 @@ impl Severity {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-            Severity::Minimal => "MINIMAL",
-            Severity::Low => "LOW",
-            Severity::Medium => "MEDIUM",
-            Severity::High => "HIGH",
-            Severity::Critical => "CRITICAL",
+            Self::Unspecified => "SEVERITY_UNSPECIFIED",
+            Self::Minimal => "MINIMAL",
+            Self::Low => "LOW",
+            Self::Medium => "MEDIUM",
+            Self::High => "HIGH",
+            Self::Critical => "CRITICAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -963,10 +959,10 @@ pub mod alias_context {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Kind::Unspecified => "KIND_UNSPECIFIED",
-                Kind::Fixed => "FIXED",
-                Kind::Movable => "MOVABLE",
-                Kind::Other => "OTHER",
+                Self::Unspecified => "KIND_UNSPECIFIED",
+                Self::Fixed => "FIXED",
+                Self::Movable => "MOVABLE",
+                Self::Other => "OTHER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1278,11 +1274,11 @@ pub mod cvs_sv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
-                AttackVector::Network => "ATTACK_VECTOR_NETWORK",
-                AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
-                AttackVector::Local => "ATTACK_VECTOR_LOCAL",
-                AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
+                Self::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
+                Self::Network => "ATTACK_VECTOR_NETWORK",
+                Self::Adjacent => "ATTACK_VECTOR_ADJACENT",
+                Self::Local => "ATTACK_VECTOR_LOCAL",
+                Self::Physical => "ATTACK_VECTOR_PHYSICAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1321,9 +1317,9 @@ pub mod cvs_sv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
-                AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
-                AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
+                Self::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
+                Self::Low => "ATTACK_COMPLEXITY_LOW",
+                Self::High => "ATTACK_COMPLEXITY_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1361,10 +1357,10 @@ pub mod cvs_sv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
-                PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
-                PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
-                PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
+                Self::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
+                Self::None => "PRIVILEGES_REQUIRED_NONE",
+                Self::Low => "PRIVILEGES_REQUIRED_LOW",
+                Self::High => "PRIVILEGES_REQUIRED_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1402,9 +1398,9 @@ pub mod cvs_sv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
-                UserInteraction::None => "USER_INTERACTION_NONE",
-                UserInteraction::Required => "USER_INTERACTION_REQUIRED",
+                Self::Unspecified => "USER_INTERACTION_UNSPECIFIED",
+                Self::None => "USER_INTERACTION_NONE",
+                Self::Required => "USER_INTERACTION_REQUIRED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1441,9 +1437,9 @@ pub mod cvs_sv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Scope::Unspecified => "SCOPE_UNSPECIFIED",
-                Scope::Unchanged => "SCOPE_UNCHANGED",
-                Scope::Changed => "SCOPE_CHANGED",
+                Self::Unspecified => "SCOPE_UNSPECIFIED",
+                Self::Unchanged => "SCOPE_UNCHANGED",
+                Self::Changed => "SCOPE_CHANGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1481,10 +1477,10 @@ pub mod cvs_sv3 {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Impact::Unspecified => "IMPACT_UNSPECIFIED",
-                Impact::High => "IMPACT_HIGH",
-                Impact::Low => "IMPACT_LOW",
-                Impact::None => "IMPACT_NONE",
+                Self::Unspecified => "IMPACT_UNSPECIFIED",
+                Self::High => "IMPACT_HIGH",
+                Self::Low => "IMPACT_LOW",
+                Self::None => "IMPACT_NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1562,11 +1558,11 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
-                AttackVector::Network => "ATTACK_VECTOR_NETWORK",
-                AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
-                AttackVector::Local => "ATTACK_VECTOR_LOCAL",
-                AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
+                Self::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
+                Self::Network => "ATTACK_VECTOR_NETWORK",
+                Self::Adjacent => "ATTACK_VECTOR_ADJACENT",
+                Self::Local => "ATTACK_VECTOR_LOCAL",
+                Self::Physical => "ATTACK_VECTOR_PHYSICAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1606,10 +1602,10 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
-                AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
-                AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
-                AttackComplexity::Medium => "ATTACK_COMPLEXITY_MEDIUM",
+                Self::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
+                Self::Low => "ATTACK_COMPLEXITY_LOW",
+                Self::High => "ATTACK_COMPLEXITY_HIGH",
+                Self::Medium => "ATTACK_COMPLEXITY_MEDIUM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1648,10 +1644,10 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Authentication::Unspecified => "AUTHENTICATION_UNSPECIFIED",
-                Authentication::Multiple => "AUTHENTICATION_MULTIPLE",
-                Authentication::Single => "AUTHENTICATION_SINGLE",
-                Authentication::None => "AUTHENTICATION_NONE",
+                Self::Unspecified => "AUTHENTICATION_UNSPECIFIED",
+                Self::Multiple => "AUTHENTICATION_MULTIPLE",
+                Self::Single => "AUTHENTICATION_SINGLE",
+                Self::None => "AUTHENTICATION_NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1690,10 +1686,10 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
-                PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
-                PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
-                PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
+                Self::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
+                Self::None => "PRIVILEGES_REQUIRED_NONE",
+                Self::Low => "PRIVILEGES_REQUIRED_LOW",
+                Self::High => "PRIVILEGES_REQUIRED_HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1731,9 +1727,9 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
-                UserInteraction::None => "USER_INTERACTION_NONE",
-                UserInteraction::Required => "USER_INTERACTION_REQUIRED",
+                Self::Unspecified => "USER_INTERACTION_UNSPECIFIED",
+                Self::None => "USER_INTERACTION_NONE",
+                Self::Required => "USER_INTERACTION_REQUIRED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1770,9 +1766,9 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Scope::Unspecified => "SCOPE_UNSPECIFIED",
-                Scope::Unchanged => "SCOPE_UNCHANGED",
-                Scope::Changed => "SCOPE_CHANGED",
+                Self::Unspecified => "SCOPE_UNSPECIFIED",
+                Self::Unchanged => "SCOPE_UNCHANGED",
+                Self::Changed => "SCOPE_CHANGED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1812,12 +1808,12 @@ pub mod cvss {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Impact::Unspecified => "IMPACT_UNSPECIFIED",
-                Impact::High => "IMPACT_HIGH",
-                Impact::Low => "IMPACT_LOW",
-                Impact::None => "IMPACT_NONE",
-                Impact::Partial => "IMPACT_PARTIAL",
-                Impact::Complete => "IMPACT_COMPLETE",
+                Self::Unspecified => "IMPACT_UNSPECIFIED",
+                Self::High => "IMPACT_HIGH",
+                Self::Low => "IMPACT_LOW",
+                Self::None => "IMPACT_NONE",
+                Self::Partial => "IMPACT_PARTIAL",
+                Self::Complete => "IMPACT_COMPLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1849,9 +1845,9 @@ impl CvssVersion {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            CvssVersion::Unspecified => "CVSS_VERSION_UNSPECIFIED",
-            CvssVersion::CvssVersion2 => "CVSS_VERSION_2",
-            CvssVersion::CvssVersion3 => "CVSS_VERSION_3",
+            Self::Unspecified => "CVSS_VERSION_UNSPECIFIED",
+            Self::CvssVersion2 => "CVSS_VERSION_2",
+            Self::CvssVersion3 => "CVSS_VERSION_3",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1929,10 +1925,10 @@ pub mod deployment_occurrence {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Platform::Unspecified => "PLATFORM_UNSPECIFIED",
-                Platform::Gke => "GKE",
-                Platform::Flex => "FLEX",
-                Platform::Custom => "CUSTOM",
+                Self::Unspecified => "PLATFORM_UNSPECIFIED",
+                Self::Gke => "GKE",
+                Self::Flex => "FLEX",
+                Self::Custom => "CUSTOM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2047,9 +2043,9 @@ pub mod discovery_occurrence {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    SbomState::Unspecified => "SBOM_STATE_UNSPECIFIED",
-                    SbomState::Pending => "PENDING",
-                    SbomState::Complete => "COMPLETE",
+                    Self::Unspecified => "SBOM_STATE_UNSPECIFIED",
+                    Self::Pending => "PENDING",
+                    Self::Complete => "COMPLETE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2109,11 +2105,9 @@ pub mod discovery_occurrence {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    VulnerabilityAttestationState::Unspecified => {
-                        "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED"
-                    }
-                    VulnerabilityAttestationState::Success => "SUCCESS",
-                    VulnerabilityAttestationState::Failure => "FAILURE",
+                    Self::Unspecified => "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED",
+                    Self::Success => "SUCCESS",
+                    Self::Failure => "FAILURE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2157,9 +2151,9 @@ pub mod discovery_occurrence {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ContinuousAnalysis::Unspecified => "CONTINUOUS_ANALYSIS_UNSPECIFIED",
-                ContinuousAnalysis::Active => "ACTIVE",
-                ContinuousAnalysis::Inactive => "INACTIVE",
+                Self::Unspecified => "CONTINUOUS_ANALYSIS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2208,12 +2202,12 @@ pub mod discovery_occurrence {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AnalysisStatus::Unspecified => "ANALYSIS_STATUS_UNSPECIFIED",
-                AnalysisStatus::Pending => "PENDING",
-                AnalysisStatus::Scanning => "SCANNING",
-                AnalysisStatus::FinishedSuccess => "FINISHED_SUCCESS",
-                AnalysisStatus::FinishedFailed => "FINISHED_FAILED",
-                AnalysisStatus::FinishedUnsupported => "FINISHED_UNSUPPORTED",
+                Self::Unspecified => "ANALYSIS_STATUS_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Scanning => "SCANNING",
+                Self::FinishedSuccess => "FINISHED_SUCCESS",
+                Self::FinishedFailed => "FINISHED_FAILED",
+                Self::FinishedUnsupported => "FINISHED_UNSUPPORTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2296,8 +2290,8 @@ pub struct Fingerprint {
     #[prost(string, repeated, tag = "2")]
     pub v2_blob: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Output only. The name of the image's v2 blobs computed via:
-    /// \[bottom\] := v2_blob\[bottom\]
-    /// \[N\] := sha256(v2_blob\[N\] + " " + v2_name\[N+1\])
+    ///    \[bottom\] := v2_blob\[bottom\]
+    ///    \[N\] := sha256(v2_blob\[N\] + " " + v2_name\[N+1\])
     /// Only the name of the final blob is kept.
     #[prost(string, tag = "3")]
     pub v2_name: ::prost::alloc::string::String,
@@ -2305,7 +2299,7 @@ pub struct Fingerprint {
 /// Basis describes the base image portion (Note) of the DockerImage
 /// relationship. Linked occurrences are derived from this or an equivalent image
 /// via:
-/// FROM \<Basis.resource_url>
+///    FROM <Basis.resource_url>
 /// Or an equivalent reference, e.g., a tag of the resource_url.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageNote {
@@ -2318,7 +2312,7 @@ pub struct ImageNote {
     pub fingerprint: ::core::option::Option<Fingerprint>,
 }
 /// Details of the derived image portion of the DockerImage relationship. This
-/// image would be produced from a Dockerfile with FROM \<DockerImage.Basis in
+/// image would be produced from a Dockerfile with FROM <DockerImage.Basis in
 /// attached Note>.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageOccurrence {
@@ -2515,10 +2509,10 @@ pub mod version {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
-                VersionKind::Normal => "NORMAL",
-                VersionKind::Minimum => "MINIMUM",
-                VersionKind::Maximum => "MAXIMUM",
+                Self::Unspecified => "VERSION_KIND_UNSPECIFIED",
+                Self::Normal => "NORMAL",
+                Self::Minimum => "MINIMUM",
+                Self::Maximum => "MAXIMUM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2551,9 +2545,9 @@ impl Architecture {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
-            Architecture::X86 => "X86",
-            Architecture::X64 => "X64",
+            Self::Unspecified => "ARCHITECTURE_UNSPECIFIED",
+            Self::X86 => "X86",
+            Self::X64 => "X64",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2784,7 +2778,7 @@ pub mod vulnerability_assessment_note {
     /// Publisher contains information about the publisher of
     /// this Note.
     /// (-- api-linter: core::0123::resource-annotation=disabled
-    /// aip.dev/not-precedent: Publisher is not a separate resource. --)
+    ///      aip.dev/not-precedent: Publisher is not a separate resource. --)
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Publisher {
         /// Name of the publisher.
@@ -2806,7 +2800,7 @@ pub mod vulnerability_assessment_note {
     /// Product contains information about a product and how to uniquely identify
     /// it.
     /// (-- api-linter: core::0123::resource-annotation=disabled
-    /// aip.dev/not-precedent: Product is not a separate resource. --)
+    ///      aip.dev/not-precedent: Product is not a separate resource. --)
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Product {
         /// Name of the product.
@@ -2929,20 +2923,16 @@ pub mod vulnerability_assessment_note {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        JustificationType::Unspecified => {
-                            "JUSTIFICATION_TYPE_UNSPECIFIED"
-                        }
-                        JustificationType::ComponentNotPresent => "COMPONENT_NOT_PRESENT",
-                        JustificationType::VulnerableCodeNotPresent => {
-                            "VULNERABLE_CODE_NOT_PRESENT"
-                        }
-                        JustificationType::VulnerableCodeNotInExecutePath => {
+                        Self::Unspecified => "JUSTIFICATION_TYPE_UNSPECIFIED",
+                        Self::ComponentNotPresent => "COMPONENT_NOT_PRESENT",
+                        Self::VulnerableCodeNotPresent => "VULNERABLE_CODE_NOT_PRESENT",
+                        Self::VulnerableCodeNotInExecutePath => {
                             "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH"
                         }
-                        JustificationType::VulnerableCodeCannotBeControlledByAdversary => {
+                        Self::VulnerableCodeCannotBeControlledByAdversary => {
                             "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY"
                         }
-                        JustificationType::InlineMitigationsAlreadyExist => {
+                        Self::InlineMitigationsAlreadyExist => {
                             "INLINE_MITIGATIONS_ALREADY_EXIST"
                         }
                     }
@@ -3018,12 +3008,12 @@ pub mod vulnerability_assessment_note {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        RemediationType::Unspecified => "REMEDIATION_TYPE_UNSPECIFIED",
-                        RemediationType::Mitigation => "MITIGATION",
-                        RemediationType::NoFixPlanned => "NO_FIX_PLANNED",
-                        RemediationType::NoneAvailable => "NONE_AVAILABLE",
-                        RemediationType::VendorFix => "VENDOR_FIX",
-                        RemediationType::Workaround => "WORKAROUND",
+                        Self::Unspecified => "REMEDIATION_TYPE_UNSPECIFIED",
+                        Self::Mitigation => "MITIGATION",
+                        Self::NoFixPlanned => "NO_FIX_PLANNED",
+                        Self::NoneAvailable => "NONE_AVAILABLE",
+                        Self::VendorFix => "VENDOR_FIX",
+                        Self::Workaround => "WORKAROUND",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3073,11 +3063,11 @@ pub mod vulnerability_assessment_note {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Affected => "AFFECTED",
-                    State::NotAffected => "NOT_AFFECTED",
-                    State::Fixed => "FIXED",
-                    State::UnderInvestigation => "UNDER_INVESTIGATION",
+                    Self::Unspecified => "STATE_UNSPECIFIED",
+                    Self::Affected => "AFFECTED",
+                    Self::NotAffected => "NOT_AFFECTED",
+                    Self::Fixed => "FIXED",
+                    Self::UnderInvestigation => "UNDER_INVESTIGATION",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3359,7 +3349,7 @@ pub mod vulnerability_occurrence {
         /// generated.
         /// This will be of the form: `projects/\[PROJECT_ID\]/notes/\[NOTE_ID\]`.
         /// (-- api-linter: core::0122::name-suffix=disabled
-        /// aip.dev/not-precedent: The suffix is kept for consistency. --)
+        ///      aip.dev/not-precedent: The suffix is kept for consistency. --)
         #[prost(string, tag = "3")]
         pub note_name: ::prost::alloc::string::String,
         /// Provides the state of this Vulnerability assessment.
@@ -3773,7 +3763,13 @@ pub struct BatchCreateOccurrencesResponse {
 }
 /// Generated client implementations.
 pub mod grafeas_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// [Grafeas](https://grafeas.io) API.
@@ -3868,8 +3864,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3894,8 +3889,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3919,8 +3913,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3942,8 +3935,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3968,8 +3960,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3991,8 +3982,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4015,8 +4005,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4038,8 +4027,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4064,8 +4052,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4087,8 +4074,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4110,8 +4096,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4136,8 +4121,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4159,8 +4143,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -4187,8 +4170,7 @@ pub mod grafeas_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

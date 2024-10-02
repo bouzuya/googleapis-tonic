@@ -93,13 +93,13 @@ pub mod insight {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::Cost => "COST",
-                Category::Security => "SECURITY",
-                Category::Performance => "PERFORMANCE",
-                Category::Manageability => "MANAGEABILITY",
-                Category::Sustainability => "SUSTAINABILITY",
-                Category::Reliability => "RELIABILITY",
+                Self::Unspecified => "CATEGORY_UNSPECIFIED",
+                Self::Cost => "COST",
+                Self::Security => "SECURITY",
+                Self::Performance => "PERFORMANCE",
+                Self::Manageability => "MANAGEABILITY",
+                Self::Sustainability => "SUSTAINABILITY",
+                Self::Reliability => "RELIABILITY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -148,11 +148,11 @@ pub mod insight {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Low => "LOW",
-                Severity::Medium => "MEDIUM",
-                Severity::High => "HIGH",
-                Severity::Critical => "CRITICAL",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
+                Self::Critical => "CRITICAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -219,10 +219,10 @@ pub mod insight_state_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Accepted => "ACCEPTED",
-                State::Dismissed => "DISMISSED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Accepted => "ACCEPTED",
+                Self::Dismissed => "DISMISSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -255,8 +255,8 @@ pub struct Recommendation {
     /// to see a list of subtypes for a given Recommender.
     ///
     /// Examples:
-    /// For recommender = "google.iam.policy.Recommender",
-    /// recommender_subtype can be one of "REMOVE_ROLE"/"REPLACE_ROLE"
+    ///    For recommender = "google.iam.policy.Recommender",
+    ///    recommender_subtype can be one of "REMOVE_ROLE"/"REPLACE_ROLE"
     #[prost(string, tag = "12")]
     pub recommender_subtype: ::prost::alloc::string::String,
     /// Last time this recommendation was refreshed by the system that created it
@@ -337,11 +337,11 @@ pub mod recommendation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Priority::Unspecified => "PRIORITY_UNSPECIFIED",
-                Priority::P4 => "P4",
-                Priority::P3 => "P3",
-                Priority::P2 => "P2",
-                Priority::P1 => "P1",
+                Self::Unspecified => "PRIORITY_UNSPECIFIED",
+                Self::P4 => "P4",
+                Self::P3 => "P3",
+                Self::P2 => "P2",
+                Self::P1 => "P1",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -383,9 +383,9 @@ pub struct OperationGroup {
 /// * Custom filters for describing partial array patch.
 /// * Extended path values for describing nested arrays.
 /// * Custom fields for describing the resource for which the operation is being
-///   described.
+///    described.
 /// * Allows extension to custom operations not natively supported by RFC6902.
-///   See <https://tools.ietf.org/html/rfc6902> for details on the original RFC.
+/// See <https://tools.ietf.org/html/rfc6902> for details on the original RFC.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Operation {
     /// Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
@@ -424,32 +424,26 @@ pub struct Operation {
     /// matching, use path_value_matchers.
     ///
     /// * Example:
-    ///
-    /// ```text,
+    /// ```
     /// {
-    ///   "/versions/*/name" : "it-123"
-    ///   "/versions/*/targetSize/percent": 20
+    ///    "/versions/*/name" : "it-123"
+    ///    "/versions/*/targetSize/percent": 20
     /// }
     /// ```
-    ///
     /// * Example:
-    ///
-    /// ```text,
+    /// ```
     /// {
-    ///   "/bindings/*/role": "roles/owner"
-    ///   "/bindings/*/condition" : null
+    ///    "/bindings/*/role": "roles/owner"
+    ///    "/bindings/*/condition" : null
     /// }
     /// ```
-    ///
     /// * Example:
-    ///
-    /// ```text,
+    /// ```
     /// {
-    ///   "/bindings/*/role": "roles/owner"
-    ///   "/bindings/*/members/*" : \["x@example.com", "y@example.com"\]
+    ///    "/bindings/*/role": "roles/owner"
+    ///    "/bindings/*/members/*" : \["x@example.com", "y@example.com"\]
     /// }
     /// ```
-    ///
     /// When both path_filters and path_value_matchers are set, an implicit AND
     /// must be performed.
     #[prost(btree_map = "string, message", tag = "8")]
@@ -588,10 +582,10 @@ pub mod reliability_projection {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RiskType::Unspecified => "RISK_TYPE_UNSPECIFIED",
-                RiskType::ServiceDisruption => "SERVICE_DISRUPTION",
-                RiskType::DataLoss => "DATA_LOSS",
-                RiskType::AccessDeny => "ACCESS_DENY",
+                Self::Unspecified => "RISK_TYPE_UNSPECIFIED",
+                Self::ServiceDisruption => "SERVICE_DISRUPTION",
+                Self::DataLoss => "DATA_LOSS",
+                Self::AccessDeny => "ACCESS_DENY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -654,13 +648,13 @@ pub mod impact {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::Cost => "COST",
-                Category::Security => "SECURITY",
-                Category::Performance => "PERFORMANCE",
-                Category::Manageability => "MANAGEABILITY",
-                Category::Sustainability => "SUSTAINABILITY",
-                Category::Reliability => "RELIABILITY",
+                Self::Unspecified => "CATEGORY_UNSPECIFIED",
+                Self::Cost => "COST",
+                Self::Security => "SECURITY",
+                Self::Performance => "PERFORMANCE",
+                Self::Manageability => "MANAGEABILITY",
+                Self::Sustainability => "SUSTAINABILITY",
+                Self::Reliability => "RELIABILITY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -758,12 +752,12 @@ pub mod recommendation_state_info {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Claimed => "CLAIMED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Dismissed => "DISMISSED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Claimed => "CLAIMED",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Dismissed => "DISMISSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -813,7 +807,7 @@ pub struct InsightTypeConfig {
     /// separated by a slash (/).
     /// Prefix must be a DNS subdomain.
     /// Name must be 63 characters or less, begin and end with alphanumerics,
-    /// with dashes (-), underscores (\_), dots (.), and alphanumerics between.
+    /// with dashes (-), underscores (_), dots (.), and alphanumerics between.
     #[prost(btree_map = "string, string", tag = "6")]
     pub annotations: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -867,7 +861,7 @@ pub struct RecommenderConfig {
     /// separated by a slash (/).
     /// Prefix must be a DNS subdomain.
     /// Name must be 63 characters or less, begin and end with alphanumerics,
-    /// with dashes (-), underscores (\_), dots (.), and alphanumerics between.
+    /// with dashes (-), underscores (_), dots (.), and alphanumerics between.
     #[prost(btree_map = "string, string", tag = "6")]
     pub annotations: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -940,7 +934,8 @@ pub struct ListInsightsRequest {
     ///
     /// * `severity = CRITICAL OR severity = HIGH`
     ///
-    /// * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+    /// * `targetResources :
+    /// //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
     ///
     /// * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
     ///
@@ -1038,7 +1033,8 @@ pub struct ListRecommendationsRequest {
     ///
     /// * `priority = P1 OR priority = P2`
     ///
-    /// * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+    /// * `targetResources :
+    /// //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
     ///
     /// * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
     ///
@@ -1134,7 +1130,7 @@ pub struct MarkRecommendationFailedRequest {
     #[prost(string, tag = "3")]
     pub etag: ::prost::alloc::string::String,
 }
-/// Request for the GetRecommenderConfig\` method.
+/// Request for the GetRecommenderConfig` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRecommenderConfigRequest {
     /// Required. Name of the Recommendation Config to get.
@@ -1165,7 +1161,7 @@ pub struct UpdateRecommenderConfigRequest {
     #[prost(bool, tag = "3")]
     pub validate_only: bool,
 }
-/// Request for the GetInsightTypeConfig\` method.
+/// Request for the GetInsightTypeConfig` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInsightTypeConfigRequest {
     /// Required. Name of the InsightTypeConfig to get.
@@ -1198,7 +1194,13 @@ pub struct UpdateInsightTypeConfigRequest {
 }
 /// Generated client implementations.
 pub mod recommender_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides insights and recommendations for cloud customers for various
@@ -1275,7 +1277,7 @@ pub mod recommender_client {
             self
         }
         /// Lists insights for the specified Cloud Resource. Requires the
-        /// recommender.\*.list IAM permission for the specified insight type.
+        /// recommender.*.list IAM permission for the specified insight type.
         pub async fn list_insights(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInsightsRequest>,
@@ -1287,8 +1289,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1306,7 +1307,7 @@ pub mod recommender_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the requested insight. Requires the recommender.\*.get IAM permission
+        /// Gets the requested insight. Requires the recommender.*.get IAM permission
         /// for the specified insight type.
         pub async fn get_insight(
             &mut self,
@@ -1316,8 +1317,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1340,7 +1340,7 @@ pub mod recommender_client {
         /// on the insight. This stops the insight content from being updated.
         ///
         /// MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
-        /// the recommender.\*.update IAM permission for the specified insight.
+        /// the recommender.*.update IAM permission for the specified insight.
         pub async fn mark_insight_accepted(
             &mut self,
             request: impl tonic::IntoRequest<super::MarkInsightAcceptedRequest>,
@@ -1349,8 +1349,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1369,7 +1368,7 @@ pub mod recommender_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists recommendations for the specified Cloud Resource. Requires the
-        /// recommender.\*.list IAM permission for the specified recommender.
+        /// recommender.*.list IAM permission for the specified recommender.
         pub async fn list_recommendations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRecommendationsRequest>,
@@ -1381,8 +1380,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1400,7 +1398,7 @@ pub mod recommender_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the requested recommendation. Requires the recommender.\*.get
+        /// Gets the requested recommendation. Requires the recommender.*.get
         /// IAM permission for the specified recommender.
         pub async fn get_recommendation(
             &mut self,
@@ -1410,8 +1408,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1436,7 +1433,7 @@ pub mod recommender_client {
         /// MarkRecommendationDismissed can be applied to recommendations in ACTIVE
         /// state.
         ///
-        /// Requires the recommender.\*.update IAM permission for the specified
+        /// Requires the recommender.*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_dismissed(
             &mut self,
@@ -1446,8 +1443,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1473,7 +1469,7 @@ pub mod recommender_client {
         /// MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
         /// SUCCEEDED, FAILED, or ACTIVE state.
         ///
-        /// Requires the recommender.\*.update IAM permission for the specified
+        /// Requires the recommender.*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_claimed(
             &mut self,
@@ -1483,8 +1479,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1511,7 +1506,7 @@ pub mod recommender_client {
         /// MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
         /// CLAIMED, SUCCEEDED, or FAILED state.
         ///
-        /// Requires the recommender.\*.update IAM permission for the specified
+        /// Requires the recommender.*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_succeeded(
             &mut self,
@@ -1521,8 +1516,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1549,7 +1543,7 @@ pub mod recommender_client {
         /// MarkRecommendationFailed can be applied to recommendations in ACTIVE,
         /// CLAIMED, SUCCEEDED, or FAILED state.
         ///
-        /// Requires the recommender.\*.update IAM permission for the specified
+        /// Requires the recommender.*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_failed(
             &mut self,
@@ -1559,8 +1553,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1591,8 +1584,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1623,8 +1615,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1655,8 +1646,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1687,8 +1677,7 @@ pub mod recommender_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

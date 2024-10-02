@@ -27,11 +27,11 @@ pub struct SecurityMarks {
     /// Mutable user specified security marks belonging to the parent resource.
     /// Constraints are as follows:
     ///
-    /// * Keys and values are treated as case insensitive
-    /// * Keys must be between 1 - 256 characters (inclusive)
-    /// * Keys must be letters, numbers, underscores, or dashes
-    /// * Values have leading and trailing whitespace trimmed, remaining
-    ///   characters must be between 1 - 4096 characters (inclusive)
+    ///    * Keys and values are treated as case insensitive
+    ///    * Keys must be between 1 - 256 characters (inclusive)
+    ///    * Keys must be letters, numbers, underscores, or dashes
+    ///    * Values have leading and trailing whitespace trimmed, remaining
+    ///      characters must be between 1 - 4096 characters (inclusive)
     #[prost(map = "string, string", tag = "2")]
     pub marks: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -267,9 +267,9 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Inactive => "INACTIVE",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Inactive => "INACTIVE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -315,11 +315,11 @@ pub mod finding {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
+                Self::Unspecified => "SEVERITY_UNSPECIFIED",
+                Self::Critical => "CRITICAL",
+                Self::High => "HIGH",
+                Self::Medium => "MEDIUM",
+                Self::Low => "LOW",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -422,8 +422,8 @@ pub mod notification_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::Finding => "FINDING",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::Finding => "FINDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -503,7 +503,7 @@ pub struct OrganizationSettings {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A flag that indicates if Asset Discovery should be enabled. If the flag is
-    /// set to `true`, then discovery of assets will occur. If it is set to \`false,
+    /// set to `true`, then discovery of assets will occur. If it is set to `false,
     /// all historical assets will remain, but discovery of future assets will not
     /// occur.
     #[prost(bool, tag = "2")]
@@ -570,9 +570,9 @@ pub mod organization_settings {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    InclusionMode::Unspecified => "INCLUSION_MODE_UNSPECIFIED",
-                    InclusionMode::IncludeOnly => "INCLUDE_ONLY",
-                    InclusionMode::Exclude => "EXCLUDE",
+                    Self::Unspecified => "INCLUSION_MODE_UNSPECIFIED",
+                    Self::IncludeOnly => "INCLUDE_ONLY",
+                    Self::Exclude => "EXCLUDE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -630,10 +630,10 @@ pub mod run_asset_discovery_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Completed => "COMPLETED",
-                State::Superseded => "SUPERSEDED",
-                State::Terminated => "TERMINATED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Completed => "COMPLETED",
+                Self::Superseded => "SUPERSEDED",
+                Self::Terminated => "TERMINATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -797,41 +797,30 @@ pub struct GroupAssetsRequest {
     /// The following field and operator combinations are supported:
     ///
     /// * name: `=`
-    ///
     /// * update_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `update_time = "2019-06-10T16:07:18-07:00"`
-    ///   `update_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `update_time = "2019-06-10T16:07:18-07:00"`
+    ///      `update_time = 1560208038000`
     ///
     /// * create_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `create_time = "2019-06-10T16:07:18-07:00"`
-    ///   `create_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `create_time = "2019-06-10T16:07:18-07:00"`
+    ///      `create_time = 1560208038000`
     ///
     /// * iam_policy.policy_blob: `=`, `:`
-    ///
     /// * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-    ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * security_center_properties.resource_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_name_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_type: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_project: `=`, `:`
-    ///
     /// * security_center_properties.resource_project_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_owners: `=`, `:`
     ///
     /// For example, `resource_properties.size = 100` is a valid filter string.
@@ -877,12 +866,12 @@ pub struct GroupAssetsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "ADDED":   indicates that the asset was not present at the start of
-    ///   compare_duration, but present at reference_time.
+    ///                 compare_duration, but present at reference_time.
     /// * "REMOVED": indicates that the asset was present at the start of
-    ///   compare_duration, but not present at reference_time.
+    ///                 compare_duration, but not present at reference_time.
     /// * "ACTIVE":  indicates that the asset was present at both the
-    ///   start and the end of the time period defined by
-    ///   compare_duration and reference_time.
+    ///                 start and the end of the time period defined by
+    ///                 compare_duration and reference_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED", which will be the state_change set for all assets present at
@@ -947,9 +936,9 @@ pub struct GroupFindingsRequest {
     /// Restrictions have the form `<field> <operator> <value>` and may have a `-`
     /// character in front of them to indicate negation. Examples include:
     ///
-    /// * name
-    /// * source_properties.a_property
-    /// * security_marks.marks.marka
+    ///   * name
+    ///   * source_properties.a_property
+    ///   * security_marks.marks.marka
     ///
     /// The supported operators are:
     ///
@@ -966,28 +955,20 @@ pub struct GroupFindingsRequest {
     /// The following field and operator combinations are supported:
     ///
     /// * name: `=`
-    ///
     /// * parent: `=`, `:`
-    ///
     /// * resource_name: `=`, `:`
-    ///
     /// * state: `=`, `:`
-    ///
     /// * category: `=`, `:`
-    ///
     /// * external_uri: `=`, `:`
-    ///
     /// * event_time: `=`, `>`, `<`, `>=`, `<=`
-    ///
     /// * severity: `=`, `:`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `event_time = "2019-06-10T16:07:18-07:00"`
-    ///   `event_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `event_time = "2019-06-10T16:07:18-07:00"`
+    ///      `event_time = 1560208038000`
     ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
     ///
     /// For example, `source_properties.size = 100` is a valid filter string.
@@ -1036,17 +1017,17 @@ pub struct GroupFindingsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "CHANGED":   indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration, but changed its
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration, but changed its
+    ///                   state at read_time.
     /// * "UNCHANGED": indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration and did not change
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration and did not change
+    ///                   state at read_time.
     /// * "ADDED":     indicates that the finding did not match the given filter or
-    ///   was not present at the start of compare_duration, but was
-    ///   present at read_time.
+    ///                   was not present at the start of compare_duration, but was
+    ///                   present at read_time.
     /// * "REMOVED":   indicates that the finding was present and matched the
-    ///   filter at the start of compare_duration, but did not match
-    ///   the filter at read_time.
+    ///                   filter at the start of compare_duration, but did not match
+    ///                   the filter at read_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED",  which will be the state_change set for all findings present
@@ -1192,41 +1173,30 @@ pub struct ListAssetsRequest {
     /// The following are the allowed field and operator combinations:
     ///
     /// * name: `=`
-    ///
     /// * update_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `update_time = "2019-06-10T16:07:18-07:00"`
-    ///   `update_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `update_time = "2019-06-10T16:07:18-07:00"`
+    ///      `update_time = 1560208038000`
     ///
     /// * create_time: `=`, `>`, `<`, `>=`, `<=`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `create_time = "2019-06-10T16:07:18-07:00"`
-    ///   `create_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `create_time = "2019-06-10T16:07:18-07:00"`
+    ///      `create_time = 1560208038000`
     ///
     /// * iam_policy.policy_blob: `=`, `:`
-    ///
     /// * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-    ///
     /// * security_marks.marks: `=`, `:`
-    ///
     /// * security_center_properties.resource_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_type: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent: `=`, `:`
-    ///
     /// * security_center_properties.resource_parent_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_project: `=`, `:`
-    ///
     /// * security_center_properties.resource_project_display_name: `=`, `:`
-    ///
     /// * security_center_properties.resource_owners: `=`, `:`
     ///
     /// For example, `resource_properties.size = 100` is a valid filter string.
@@ -1281,12 +1251,12 @@ pub struct ListAssetsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "ADDED":   indicates that the asset was not present at the start of
-    ///   compare_duration, but present at read_time.
+    ///                 compare_duration, but present at read_time.
     /// * "REMOVED": indicates that the asset was present at the start of
-    ///   compare_duration, but not present at read_time.
+    ///                 compare_duration, but not present at read_time.
     /// * "ACTIVE":  indicates that the asset was present at both the
-    ///   start and the end of the time period defined by
-    ///   compare_duration and read_time.
+    ///                 start and the end of the time period defined by
+    ///                 compare_duration and read_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED",  which will be the state_change set for all assets present at
@@ -1376,10 +1346,10 @@ pub mod list_assets_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    StateChange::Unused => "UNUSED",
-                    StateChange::Added => "ADDED",
-                    StateChange::Removed => "REMOVED",
-                    StateChange::Active => "ACTIVE",
+                    Self::Unused => "UNUSED",
+                    Self::Added => "ADDED",
+                    Self::Removed => "REMOVED",
+                    Self::Active => "ACTIVE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1415,9 +1385,9 @@ pub struct ListFindingsRequest {
     /// Restrictions have the form `<field> <operator> <value>` and may have a `-`
     /// character in front of them to indicate negation. Examples include:
     ///
-    /// * name
-    /// * source_properties.a_property
-    /// * security_marks.marks.marka
+    ///   * name
+    ///   * source_properties.a_property
+    ///   * security_marks.marks.marka
     ///
     /// The supported operators are:
     ///
@@ -1434,25 +1404,18 @@ pub struct ListFindingsRequest {
     /// The following field and operator combinations are supported:
     ///
     /// * name: `=`
-    ///
     /// * parent: `=`, `:`
-    ///
     /// * resource_name: `=`, `:`
-    ///
     /// * state: `=`, `:`
-    ///
     /// * category: `=`, `:`
-    ///
     /// * external_uri: `=`, `:`
-    ///
     /// * event_time: `=`, `>`, `<`, `>=`, `<=`
-    ///
     /// * severity: `=`, `:`
     ///
-    ///   Usage: This should be milliseconds since epoch or an RFC3339 string.
-    ///   Examples:
-    ///   `event_time = "2019-06-10T16:07:18-07:00"`
-    ///   `event_time = 1560208038000`
+    ///    Usage: This should be milliseconds since epoch or an RFC3339 string.
+    ///    Examples:
+    ///      `event_time = "2019-06-10T16:07:18-07:00"`
+    ///      `event_time = 1560208038000`
     ///
     /// security_marks.marks: `=`, `:`
     /// source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
@@ -1507,17 +1470,17 @@ pub struct ListFindingsRequest {
     /// Possible "state_change" values when compare_duration is specified:
     ///
     /// * "CHANGED":   indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration, but changed its
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration, but changed its
+    ///                   state at read_time.
     /// * "UNCHANGED": indicates that the finding was present and matched the given
-    ///   filter at the start of compare_duration and did not change
-    ///   state at read_time.
+    ///                   filter at the start of compare_duration and did not change
+    ///                   state at read_time.
     /// * "ADDED":     indicates that the finding did not match the given filter or
-    ///   was not present at the start of compare_duration, but was
-    ///   present at read_time.
+    ///                   was not present at the start of compare_duration, but was
+    ///                   present at read_time.
     /// * "REMOVED":   indicates that the finding was present and matched the
-    ///   filter at the start of compare_duration, but did not match
-    ///   the filter at read_time.
+    ///                   filter at the start of compare_duration, but did not match
+    ///                   the filter at read_time.
     ///
     /// If compare_duration is not specified, then the only possible state_change
     /// is "UNUSED", which will be the state_change set for all findings present at
@@ -1642,11 +1605,11 @@ pub mod list_findings_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    StateChange::Unused => "UNUSED",
-                    StateChange::Changed => "CHANGED",
-                    StateChange::Unchanged => "UNCHANGED",
-                    StateChange::Added => "ADDED",
-                    StateChange::Removed => "REMOVED",
+                    Self::Unused => "UNUSED",
+                    Self::Changed => "CHANGED",
+                    Self::Unchanged => "UNCHANGED",
+                    Self::Added => "ADDED",
+                    Self::Removed => "REMOVED",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1754,7 +1717,7 @@ pub struct UpdateSecurityMarksRequest {
     ///
     /// The field mask must not contain duplicate fields.
     /// If empty or set to "marks", all marks will be replaced.  Individual
-    /// marks can be updated using "marks.\<mark_key>".
+    /// marks can be updated using "marks.<mark_key>".
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// The time at which the updated SecurityMarks take effect.
@@ -1765,7 +1728,13 @@ pub struct UpdateSecurityMarksRequest {
 }
 /// Generated client implementations.
 pub mod security_center_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// V1p1Beta1 APIs for Security Center service.
@@ -1847,8 +1816,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1876,8 +1844,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1907,8 +1874,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1935,8 +1901,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1968,8 +1933,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1999,8 +1963,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2030,8 +1993,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2058,8 +2020,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2090,8 +2051,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2127,8 +2087,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2158,8 +2117,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2192,8 +2150,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2223,8 +2180,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2254,8 +2210,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2290,8 +2245,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2318,8 +2272,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2351,8 +2304,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2386,8 +2338,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2415,8 +2366,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2447,8 +2397,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2478,8 +2427,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2506,8 +2454,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2534,8 +2481,7 @@ pub mod security_center_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

@@ -77,12 +77,11 @@ pub mod part {
 pub struct Blob {
     /// The IANA standard MIME type of the source data.
     /// Examples:
-    ///
-    /// * image/png
-    /// * image/jpeg
-    ///   If an unsupported MIME type is provided, an error will be returned. For a
-    ///   complete list of supported types, see [Supported file
-    ///   formats](<https://ai.google.dev/gemini-api/docs/prompting_with_media#supported_file_formats>).
+    ///    - image/png
+    ///    - image/jpeg
+    /// If an unsupported MIME type is provided, an error will be returned. For a
+    /// complete list of supported types, see [Supported file
+    /// formats](<https://ai.google.dev/gemini-api/docs/prompting_with_media#supported_file_formats>).
     #[prost(string, tag = "1")]
     pub mime_type: ::prost::alloc::string::String,
     /// Raw bytes for media formats.
@@ -145,11 +144,11 @@ pub mod safety_rating {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HarmProbability::Unspecified => "HARM_PROBABILITY_UNSPECIFIED",
-                HarmProbability::Negligible => "NEGLIGIBLE",
-                HarmProbability::Low => "LOW",
-                HarmProbability::Medium => "MEDIUM",
-                HarmProbability::High => "HIGH",
+                Self::Unspecified => "HARM_PROBABILITY_UNSPECIFIED",
+                Self::Negligible => "NEGLIGIBLE",
+                Self::Low => "LOW",
+                Self::Medium => "MEDIUM",
+                Self::High => "HIGH",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -214,12 +213,12 @@ pub mod safety_setting {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HarmBlockThreshold::Unspecified => "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
-                HarmBlockThreshold::BlockLowAndAbove => "BLOCK_LOW_AND_ABOVE",
-                HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
-                HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
-                HarmBlockThreshold::BlockNone => "BLOCK_NONE",
-                HarmBlockThreshold::Off => "OFF",
+                Self::Unspecified => "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+                Self::BlockLowAndAbove => "BLOCK_LOW_AND_ABOVE",
+                Self::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
+                Self::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
+                Self::BlockNone => "BLOCK_NONE",
+                Self::Off => "OFF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -278,18 +277,18 @@ impl HarmCategory {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            HarmCategory::Unspecified => "HARM_CATEGORY_UNSPECIFIED",
-            HarmCategory::Derogatory => "HARM_CATEGORY_DEROGATORY",
-            HarmCategory::Toxicity => "HARM_CATEGORY_TOXICITY",
-            HarmCategory::Violence => "HARM_CATEGORY_VIOLENCE",
-            HarmCategory::Sexual => "HARM_CATEGORY_SEXUAL",
-            HarmCategory::Medical => "HARM_CATEGORY_MEDICAL",
-            HarmCategory::Dangerous => "HARM_CATEGORY_DANGEROUS",
-            HarmCategory::Harassment => "HARM_CATEGORY_HARASSMENT",
-            HarmCategory::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
-            HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
-            HarmCategory::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
+            Self::Unspecified => "HARM_CATEGORY_UNSPECIFIED",
+            Self::Derogatory => "HARM_CATEGORY_DEROGATORY",
+            Self::Toxicity => "HARM_CATEGORY_TOXICITY",
+            Self::Violence => "HARM_CATEGORY_VIOLENCE",
+            Self::Sexual => "HARM_CATEGORY_SEXUAL",
+            Self::Medical => "HARM_CATEGORY_MEDICAL",
+            Self::Dangerous => "HARM_CATEGORY_DANGEROUS",
+            Self::Harassment => "HARM_CATEGORY_HARASSMENT",
+            Self::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
+            Self::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            Self::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
+            Self::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -413,7 +412,7 @@ pub struct GenerationConfig {
     ///
     /// This penalty is binary on/off and not dependant on the number of times the
     /// token is used (after the first). Use
-    /// \[frequency_penalty\]\[google.ai.generativelanguage.v1.GenerationConfig.frequency_penalty\]
+    /// [frequency_penalty][google.ai.generativelanguage.v1.GenerationConfig.frequency_penalty]
     /// for a penalty that increases with each use.
     ///
     /// A positive penalty will discourage the use of tokens that have already
@@ -432,12 +431,12 @@ pub struct GenerationConfig {
     /// The more a token is used, the more dificult it is for the model to use
     /// that token again increasing the vocabulary of responses.
     ///
-    /// Caution: A *negative* penalty will encourage the model to reuse tokens
+    /// Caution: A _negative_ penalty will encourage the model to reuse tokens
     /// proportional to the number of times the token has been used. Small
     /// negative values will reduce the vocabulary of a response. Larger negative
     /// values will cause the model to start repeating a common token  until it
     /// hits the
-    /// \[max_output_tokens\]\[google.ai.generativelanguage.v1.GenerationConfig.max_output_tokens\]
+    /// [max_output_tokens][google.ai.generativelanguage.v1.GenerationConfig.max_output_tokens]
     /// limit: "...the the the the the...".
     #[prost(float, optional, tag = "16")]
     pub frequency_penalty: ::core::option::Option<f32>,
@@ -445,9 +444,9 @@ pub struct GenerationConfig {
     #[prost(bool, optional, tag = "17")]
     pub response_logprobs: ::core::option::Option<bool>,
     /// Optional. Only valid if
-    /// \[response_logprobs=True\]\[google.ai.generativelanguage.v1.GenerationConfig.response_logprobs\].
+    /// [response_logprobs=True][google.ai.generativelanguage.v1.GenerationConfig.response_logprobs].
     /// This sets the number of top logprobs to return at each decoding step in the
-    /// \[Candidate.logprobs_result\]\[google.ai.generativelanguage.v1.Candidate.logprobs_result\].
+    /// [Candidate.logprobs_result][google.ai.generativelanguage.v1.Candidate.logprobs_result].
     #[prost(int32, optional, tag = "18")]
     pub logprobs: ::core::option::Option<i32>,
 }
@@ -456,12 +455,11 @@ pub struct GenerationConfig {
 /// Safety ratings and content filtering are reported for both
 /// prompt in `GenerateContentResponse.prompt_feedback` and for each candidate
 /// in `finish_reason` and in `safety_ratings`. The API:
-///
-/// * Returns either all requested candidates or none of them
-/// * Returns no candidates at all only if there was something wrong with the
-///   prompt (check `prompt_feedback`)
-/// * Reports feedback on each candidate in `finish_reason` and
-///   `safety_ratings`.
+///   - Returns either all requested candidates or none of them
+///   - Returns no candidates at all only if there was something wrong with the
+///     prompt (check `prompt_feedback`)
+///   - Reports feedback on each candidate in `finish_reason` and
+///     `safety_ratings`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateContentResponse {
     /// Candidate responses from the model.
@@ -527,11 +525,11 @@ pub mod generate_content_response {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
-                    BlockReason::Safety => "SAFETY",
-                    BlockReason::Other => "OTHER",
-                    BlockReason::Blocklist => "BLOCKLIST",
-                    BlockReason::ProhibitedContent => "PROHIBITED_CONTENT",
+                    Self::Unspecified => "BLOCK_REASON_UNSPECIFIED",
+                    Self::Safety => "SAFETY",
+                    Self::Other => "OTHER",
+                    Self::Blocklist => "BLOCKLIST",
+                    Self::ProhibitedContent => "PROHIBITED_CONTENT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -648,17 +646,17 @@ pub mod candidate {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                FinishReason::Unspecified => "FINISH_REASON_UNSPECIFIED",
-                FinishReason::Stop => "STOP",
-                FinishReason::MaxTokens => "MAX_TOKENS",
-                FinishReason::Safety => "SAFETY",
-                FinishReason::Recitation => "RECITATION",
-                FinishReason::Language => "LANGUAGE",
-                FinishReason::Other => "OTHER",
-                FinishReason::Blocklist => "BLOCKLIST",
-                FinishReason::ProhibitedContent => "PROHIBITED_CONTENT",
-                FinishReason::Spii => "SPII",
-                FinishReason::MalformedFunctionCall => "MALFORMED_FUNCTION_CALL",
+                Self::Unspecified => "FINISH_REASON_UNSPECIFIED",
+                Self::Stop => "STOP",
+                Self::MaxTokens => "MAX_TOKENS",
+                Self::Safety => "SAFETY",
+                Self::Recitation => "RECITATION",
+                Self::Language => "LANGUAGE",
+                Self::Other => "OTHER",
+                Self::Blocklist => "BLOCKLIST",
+                Self::ProhibitedContent => "PROHIBITED_CONTENT",
+                Self::Spii => "SPII",
+                Self::MalformedFunctionCall => "MALFORMED_FUNCTION_CALL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -852,14 +850,14 @@ impl TaskType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            TaskType::Unspecified => "TASK_TYPE_UNSPECIFIED",
-            TaskType::RetrievalQuery => "RETRIEVAL_QUERY",
-            TaskType::RetrievalDocument => "RETRIEVAL_DOCUMENT",
-            TaskType::SemanticSimilarity => "SEMANTIC_SIMILARITY",
-            TaskType::Classification => "CLASSIFICATION",
-            TaskType::Clustering => "CLUSTERING",
-            TaskType::QuestionAnswering => "QUESTION_ANSWERING",
-            TaskType::FactVerification => "FACT_VERIFICATION",
+            Self::Unspecified => "TASK_TYPE_UNSPECIFIED",
+            Self::RetrievalQuery => "RETRIEVAL_QUERY",
+            Self::RetrievalDocument => "RETRIEVAL_DOCUMENT",
+            Self::SemanticSimilarity => "SEMANTIC_SIMILARITY",
+            Self::Classification => "CLASSIFICATION",
+            Self::Clustering => "CLUSTERING",
+            Self::QuestionAnswering => "QUESTION_ANSWERING",
+            Self::FactVerification => "FACT_VERIFICATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -879,7 +877,13 @@ impl TaskType {
 }
 /// Generated client implementations.
 pub mod generative_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API for using Large Models that generate multimodal content and have
@@ -971,8 +975,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1004,8 +1007,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1037,8 +1039,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1070,8 +1071,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1103,8 +1103,7 @@ pub mod generative_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1251,7 +1250,13 @@ pub struct ListModelsResponse {
 }
 /// Generated client implementations.
 pub mod model_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Provides methods for getting metadata information about Generative Models.
@@ -1338,8 +1343,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1370,8 +1374,7 @@ pub mod model_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

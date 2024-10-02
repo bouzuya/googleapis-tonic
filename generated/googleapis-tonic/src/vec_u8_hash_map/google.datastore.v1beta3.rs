@@ -7,13 +7,13 @@
 ///
 /// Partition dimensions:
 ///
-/// * May be `""`.
-/// * Must be valid UTF-8 bytes.
-/// * Must have values that match regex `\[A-Za-z\d\.\-_\]{1,100}`
-///   If the value of any dimension matches regex `__.*__`, the partition is
-///   reserved/read-only.
-///   A reserved/read-only partition ID is forbidden in certain documented
-///   contexts.
+/// - May be `""`.
+/// - Must be valid UTF-8 bytes.
+/// - Must have values that match regex `\[A-Za-z\d\.\-_\]{1,100}`
+/// If the value of any dimension matches regex `__.*__`, the partition is
+/// reserved/read-only.
+/// A reserved/read-only partition ID is forbidden in certain documented
+/// contexts.
 ///
 /// Foreign partition IDs (in which the project ID does
 /// not match the context project ID ) are discouraged.
@@ -42,10 +42,10 @@ pub struct Key {
     /// The entity path.
     /// An entity path consists of one or more elements composed of a kind and a
     /// string or numerical identifier, which identify entities. The first
-    /// element identifies a *root entity*, the second element identifies
-    /// a *child* of the root entity, the third element identifies a child of the
+    /// element identifies a _root entity_, the second element identifies
+    /// a _child_ of the root entity, the third element identifies a child of the
     /// second entity, and so forth. The entities identified by all prefixes of
-    /// the path are called the element's *ancestors*.
+    /// the path are called the element's _ancestors_.
     ///
     /// An entity path is always fully complete: *all* of the entity's ancestors
     /// are required to be in the path along with the entity identifier itself.
@@ -160,9 +160,9 @@ pub mod value {
         GeoPointValue(super::super::super::r#type::LatLng),
         /// An entity value.
         ///
-        /// * May have no key.
-        /// * May have a key with an incomplete key path.
-        /// * May have a reserved/read-only key.
+        /// - May have no key.
+        /// - May have a key with an incomplete key path.
+        /// - May have a reserved/read-only key.
         #[prost(message, tag = "6")]
         EntityValue(super::Entity),
         /// An array value.
@@ -175,7 +175,7 @@ pub mod value {
 }
 /// A Datastore data object.
 ///
-/// An entity is limited to 1 megabyte when stored. That *roughly*
+/// An entity is limited to 1 megabyte when stored. That _roughly_
 /// corresponds to a limit of 1 megabyte for the serialized form of this
 /// message.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -207,10 +207,10 @@ pub struct EntityResult {
     /// increases with changes to the entity.
     ///
     /// This field is set for
-    /// \[`FULL`\]\[google.datastore.v1beta3.EntityResult.ResultType.FULL\] entity
+    /// [`FULL`][google.datastore.v1beta3.EntityResult.ResultType.FULL] entity
     /// results.
     ///
-    /// For \[missing\]\[google.datastore.v1beta3.LookupResponse.missing\] entities in
+    /// For [missing][google.datastore.v1beta3.LookupResponse.missing] entities in
     /// `LookupResponse`, this is the version of the snapshot that was used to look
     /// up the entity, and it is always set except for eventually consistent reads.
     #[prost(int64, tag = "4")]
@@ -256,10 +256,10 @@ pub mod entity_result {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ResultType::Unspecified => "RESULT_TYPE_UNSPECIFIED",
-                ResultType::Full => "FULL",
-                ResultType::Projection => "PROJECTION",
-                ResultType::KeyOnly => "KEY_ONLY",
+                Self::Unspecified => "RESULT_TYPE_UNSPECIFIED",
+                Self::Full => "FULL",
+                Self::Projection => "PROJECTION",
+                Self::KeyOnly => "KEY_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -380,9 +380,9 @@ pub mod property_order {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Direction::Unspecified => "DIRECTION_UNSPECIFIED",
-                Direction::Ascending => "ASCENDING",
-                Direction::Descending => "DESCENDING",
+                Self::Unspecified => "DIRECTION_UNSPECIFIED",
+                Self::Ascending => "ASCENDING",
+                Self::Descending => "DESCENDING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -455,8 +455,8 @@ pub mod composite_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                Operator::And => "AND",
+                Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                Self::And => "AND",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -520,13 +520,13 @@ pub mod property_filter {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                Operator::LessThan => "LESS_THAN",
-                Operator::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-                Operator::GreaterThan => "GREATER_THAN",
-                Operator::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
-                Operator::Equal => "EQUAL",
-                Operator::HasAncestor => "HAS_ANCESTOR",
+                Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                Self::LessThan => "LESS_THAN",
+                Self::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+                Self::GreaterThan => "GREATER_THAN",
+                Self::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                Self::Equal => "EQUAL",
+                Self::HasAncestor => "HAS_ANCESTOR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -666,11 +666,11 @@ pub mod query_result_batch {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MoreResultsType::Unspecified => "MORE_RESULTS_TYPE_UNSPECIFIED",
-                MoreResultsType::NotFinished => "NOT_FINISHED",
-                MoreResultsType::MoreResultsAfterLimit => "MORE_RESULTS_AFTER_LIMIT",
-                MoreResultsType::MoreResultsAfterCursor => "MORE_RESULTS_AFTER_CURSOR",
-                MoreResultsType::NoMoreResults => "NO_MORE_RESULTS",
+                Self::Unspecified => "MORE_RESULTS_TYPE_UNSPECIFIED",
+                Self::NotFinished => "NOT_FINISHED",
+                Self::MoreResultsAfterLimit => "MORE_RESULTS_AFTER_LIMIT",
+                Self::MoreResultsAfterCursor => "MORE_RESULTS_AFTER_CURSOR",
+                Self::NoMoreResults => "NO_MORE_RESULTS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -687,7 +687,7 @@ pub mod query_result_batch {
     }
 }
 /// The request for
-/// \[Datastore.Lookup\]\[google.datastore.v1beta3.Datastore.Lookup\].
+/// [Datastore.Lookup][google.datastore.v1beta3.Datastore.Lookup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupRequest {
     /// The ID of the project against which to make the request.
@@ -701,7 +701,7 @@ pub struct LookupRequest {
     pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 /// The response for
-/// \[Datastore.Lookup\]\[google.datastore.v1beta3.Datastore.Lookup\].
+/// [Datastore.Lookup][google.datastore.v1beta3.Datastore.Lookup].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupResponse {
     /// Entities found as `ResultType.FULL` entities. The order of results in this
@@ -721,7 +721,7 @@ pub struct LookupResponse {
     pub deferred: ::prost::alloc::vec::Vec<Key>,
 }
 /// The request for
-/// \[Datastore.RunQuery\]\[google.datastore.v1beta3.Datastore.RunQuery\].
+/// [Datastore.RunQuery][google.datastore.v1beta3.Datastore.RunQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryRequest {
     /// The ID of the project against which to make the request.
@@ -754,7 +754,7 @@ pub mod run_query_request {
     }
 }
 /// The response for
-/// \[Datastore.RunQuery\]\[google.datastore.v1beta3.Datastore.RunQuery\].
+/// [Datastore.RunQuery][google.datastore.v1beta3.Datastore.RunQuery].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryResponse {
     /// A batch of query results (always present).
@@ -765,7 +765,7 @@ pub struct RunQueryResponse {
     pub query: ::core::option::Option<Query>,
 }
 /// The request for
-/// \[Datastore.BeginTransaction\]\[google.datastore.v1beta3.Datastore.BeginTransaction\].
+/// [Datastore.BeginTransaction][google.datastore.v1beta3.Datastore.BeginTransaction].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionRequest {
     /// The ID of the project against which to make the request.
@@ -776,7 +776,7 @@ pub struct BeginTransactionRequest {
     pub transaction_options: ::core::option::Option<TransactionOptions>,
 }
 /// The response for
-/// \[Datastore.BeginTransaction\]\[google.datastore.v1beta3.Datastore.BeginTransaction\].
+/// [Datastore.BeginTransaction][google.datastore.v1beta3.Datastore.BeginTransaction].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionResponse {
     /// The transaction identifier (always present).
@@ -784,24 +784,24 @@ pub struct BeginTransactionResponse {
     pub transaction: ::prost::alloc::vec::Vec<u8>,
 }
 /// The request for
-/// \[Datastore.Rollback\]\[google.datastore.v1beta3.Datastore.Rollback\].
+/// [Datastore.Rollback][google.datastore.v1beta3.Datastore.Rollback].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RollbackRequest {
     /// The ID of the project against which to make the request.
     #[prost(string, tag = "8")]
     pub project_id: ::prost::alloc::string::String,
     /// The transaction identifier, returned by a call to
-    /// \[Datastore.BeginTransaction\]\[google.datastore.v1beta3.Datastore.BeginTransaction\].
+    /// [Datastore.BeginTransaction][google.datastore.v1beta3.Datastore.BeginTransaction].
     #[prost(bytes = "vec", tag = "1")]
     pub transaction: ::prost::alloc::vec::Vec<u8>,
 }
 /// The response for
-/// \[Datastore.Rollback\]\[google.datastore.v1beta3.Datastore.Rollback\]. (an empty
+/// [Datastore.Rollback][google.datastore.v1beta3.Datastore.Rollback]. (an empty
 /// message).
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RollbackResponse {}
 /// The request for
-/// \[Datastore.Commit\]\[google.datastore.v1beta3.Datastore.Commit\].
+/// [Datastore.Commit][google.datastore.v1beta3.Datastore.Commit].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitRequest {
     /// The ID of the project against which to make the request.
@@ -816,10 +816,10 @@ pub struct CommitRequest {
     /// applied in order. The following sequences of mutations affecting a single
     /// entity are not permitted in a single `Commit` request:
     ///
-    /// * `insert` followed by `insert`
-    /// * `update` followed by `insert`
-    /// * `upsert` followed by `insert`
-    /// * `delete` followed by `update`
+    /// - `insert` followed by `insert`
+    /// - `update` followed by `insert`
+    /// - `upsert` followed by `insert`
+    /// - `delete` followed by `update`
     ///
     /// When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
     /// entity.
@@ -863,9 +863,9 @@ pub mod commit_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Transactional => "TRANSACTIONAL",
-                Mode::NonTransactional => "NON_TRANSACTIONAL",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Transactional => "TRANSACTIONAL",
+                Self::NonTransactional => "NON_TRANSACTIONAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -883,13 +883,13 @@ pub mod commit_request {
     pub enum TransactionSelector {
         /// The identifier of the transaction associated with the commit. A
         /// transaction identifier is returned by a call to
-        /// \[Datastore.BeginTransaction\]\[google.datastore.v1beta3.Datastore.BeginTransaction\].
+        /// [Datastore.BeginTransaction][google.datastore.v1beta3.Datastore.BeginTransaction].
         #[prost(bytes, tag = "1")]
         Transaction(::prost::alloc::vec::Vec<u8>),
     }
 }
 /// The response for
-/// \[Datastore.Commit\]\[google.datastore.v1beta3.Datastore.Commit\].
+/// [Datastore.Commit][google.datastore.v1beta3.Datastore.Commit].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitResponse {
     /// The result of performing the mutations.
@@ -902,7 +902,7 @@ pub struct CommitResponse {
     pub index_updates: i32,
 }
 /// The request for
-/// \[Datastore.AllocateIds\]\[google.datastore.v1beta3.Datastore.AllocateIds\].
+/// [Datastore.AllocateIds][google.datastore.v1beta3.Datastore.AllocateIds].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateIdsRequest {
     /// The ID of the project against which to make the request.
@@ -914,7 +914,7 @@ pub struct AllocateIdsRequest {
     pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 /// The response for
-/// \[Datastore.AllocateIds\]\[google.datastore.v1beta3.Datastore.AllocateIds\].
+/// [Datastore.AllocateIds][google.datastore.v1beta3.Datastore.AllocateIds].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateIdsResponse {
     /// The keys specified in the request (in the same order), each with
@@ -923,7 +923,7 @@ pub struct AllocateIdsResponse {
     pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 /// The request for
-/// \[Datastore.ReserveIds\]\[google.datastore.v1beta3.Datastore.ReserveIds\].
+/// [Datastore.ReserveIds][google.datastore.v1beta3.Datastore.ReserveIds].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReserveIdsRequest {
     /// The ID of the project against which to make the request.
@@ -938,7 +938,7 @@ pub struct ReserveIdsRequest {
     pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 /// The response for
-/// \[Datastore.ReserveIds\]\[google.datastore.v1beta3.Datastore.ReserveIds\].
+/// [Datastore.ReserveIds][google.datastore.v1beta3.Datastore.ReserveIds].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReserveIdsResponse {}
 /// A mutation to apply to an entity.
@@ -947,12 +947,11 @@ pub struct Mutation {
     /// The mutation operation.
     ///
     /// For `insert`, `update`, and `upsert`:
-    ///
-    /// * The entity's key must not be reserved/read-only.
-    /// * No property in the entity may have a reserved name,
-    ///   not even a property in an entity in a value.
-    /// * No value in the entity may have meaning 18,
-    ///   not even a value in an entity in another value.
+    /// - The entity's key must not be reserved/read-only.
+    /// - No property in the entity may have a reserved name,
+    ///    not even a property in an entity in a value.
+    /// - No value in the entity may have meaning 18,
+    ///    not even a value in an entity in another value.
     #[prost(oneof = "mutation::Operation", tags = "4, 5, 6, 7")]
     pub operation: ::core::option::Option<mutation::Operation>,
     /// When set, the server will detect whether or not this mutation conflicts
@@ -968,12 +967,11 @@ pub mod mutation {
     /// The mutation operation.
     ///
     /// For `insert`, `update`, and `upsert`:
-    ///
-    /// * The entity's key must not be reserved/read-only.
-    /// * No property in the entity may have a reserved name,
-    ///   not even a property in an entity in a value.
-    /// * No value in the entity may have meaning 18,
-    ///   not even a value in an entity in another value.
+    /// - The entity's key must not be reserved/read-only.
+    /// - No property in the entity may have a reserved name,
+    ///    not even a property in an entity in a value.
+    /// - No value in the entity may have meaning 18,
+    ///    not even a value in an entity in another value.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Operation {
         /// The entity to insert. The entity must not already exist.
@@ -1062,9 +1060,9 @@ pub mod read_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ReadConsistency::Unspecified => "READ_CONSISTENCY_UNSPECIFIED",
-                ReadConsistency::Strong => "STRONG",
-                ReadConsistency::Eventual => "EVENTUAL",
+                Self::Unspecified => "READ_CONSISTENCY_UNSPECIFIED",
+                Self::Strong => "STRONG",
+                Self::Eventual => "EVENTUAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1088,7 +1086,7 @@ pub mod read_options {
         ReadConsistency(i32),
         /// The identifier of the transaction in which to read. A
         /// transaction identifier is returned by a call to
-        /// \[Datastore.BeginTransaction\]\[google.datastore.v1beta3.Datastore.BeginTransaction\].
+        /// [Datastore.BeginTransaction][google.datastore.v1beta3.Datastore.BeginTransaction].
         #[prost(bytes, tag = "2")]
         Transaction(::prost::alloc::vec::Vec<u8>),
     }
@@ -1096,9 +1094,9 @@ pub mod read_options {
 /// Options for beginning a new transaction.
 ///
 /// Transactions can be created explicitly with calls to
-/// \[Datastore.BeginTransaction\]\[google.datastore.v1beta3.Datastore.BeginTransaction\]
+/// [Datastore.BeginTransaction][google.datastore.v1beta3.Datastore.BeginTransaction]
 /// or implicitly by setting
-/// \[ReadOptions.new_transaction\]\[google.datastore.v1beta3.ReadOptions.new_transaction\]
+/// [ReadOptions.new_transaction][google.datastore.v1beta3.ReadOptions.new_transaction]
 /// in read requests.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransactionOptions {
@@ -1133,7 +1131,13 @@ pub mod transaction_options {
 }
 /// Generated client implementations.
 pub mod datastore_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Each RPC normalizes the partition IDs of the keys in its input entities,
@@ -1142,6 +1146,7 @@ pub mod datastore_client {
     /// with both an empty path and an empty or unset partition ID. Normalization of
     /// input keys sets the project ID (if not already set) to the project ID from
     /// the request.
+    ///
     #[derive(Debug, Clone)]
     pub struct DatastoreClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1220,8 +1225,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1246,8 +1250,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1274,8 +1277,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1303,8 +1305,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1329,8 +1330,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1358,8 +1358,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1387,8 +1386,7 @@ pub mod datastore_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

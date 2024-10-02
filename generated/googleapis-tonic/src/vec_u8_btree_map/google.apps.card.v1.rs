@@ -12,9 +12,9 @@
 /// to build cards, see the following documentation:
 ///
 /// * For Google Chat apps, see [Design the components of a card or
-///   dialog](<https://developers.google.com/workspace/chat/design-components-card-dialog>).
+///    dialog](<https://developers.google.com/workspace/chat/design-components-card-dialog>).
 /// * For Google Workspace Add-ons, see [Card-based
-///   interfaces](<https://developers.google.com/apps-script/add-ons/concepts/cards>).
+/// interfaces](<https://developers.google.com/apps-script/add-ons/concepts/cards>).
 ///
 /// **Example: Card message for a Google Chat app**
 ///
@@ -23,84 +23,84 @@
 ///
 /// To create the sample card message in Google Chat, use the following JSON:
 ///
-/// ```text,
+/// ```
 /// {
-///   "cardsV2": [
-///     {
-///       "cardId": "unique-card-id",
-///       "card": {
-///         "header": {
-///            "title": "Sasha",
-///            "subtitle": "Software Engineer",
-///            "imageUrl":
-///            "<https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",>
-///            "imageType": "CIRCLE",
-///            "imageAltText": "Avatar for Sasha"
-///          },
-///          "sections": [
-///            {
-///              "header": "Contact Info",
-///              "collapsible": true,
-///              "uncollapsibleWidgetsCount": 1,
-///              "widgets": [
-///                {
-///                  "decoratedText": {
-///                    "startIcon": {
-///                      "knownIcon": "EMAIL"
-///                    },
-///                    "text": "sasha@example.com"
-///                  }
-///                },
-///                {
-///                  "decoratedText": {
-///                    "startIcon": {
-///                      "knownIcon": "PERSON"
-///                    },
-///                    "text": "<font color=\"#80e27e\">Online</font>"
-///                  }
-///                },
-///                {
-///                  "decoratedText": {
-///                    "startIcon": {
-///                      "knownIcon": "PHONE"
-///                    },
-///                    "text": "+1 (555) 555-1234"
-///                  }
-///                },
-///                {
-///                  "buttonList": {
-///                    "buttons": [
-///                      {
-///                        "text": "Share",
-///                        "onClick": {
-///                         "openLink": {
-///                            "url": "<https://example.com/share">
-///                          }
-///                        }
-///                      },
-///                      {
-///                        "text": "Edit",
-///                        "onClick": {
-///                          "action": {
-///                            "function": "goToView",
-///                            "parameters": [
-///                              {
-///                                "key": "viewType",
-///                                "value": "EDIT"
-///                              }
-///                            ]
-///                          }
-///                        }
-///                      }
-///                    ]
-///                  }
-///                }
-///              ]
-///            }
-///          ]
-///        }
-///     }
-///   ]
+///    "cardsV2": [
+///      {
+///        "cardId": "unique-card-id",
+///        "card": {
+///          "header": {
+///             "title": "Sasha",
+///             "subtitle": "Software Engineer",
+///             "imageUrl":
+///             "<https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",>
+///             "imageType": "CIRCLE",
+///             "imageAltText": "Avatar for Sasha"
+///           },
+///           "sections": [
+///             {
+///               "header": "Contact Info",
+///               "collapsible": true,
+///               "uncollapsibleWidgetsCount": 1,
+///               "widgets": [
+///                 {
+///                   "decoratedText": {
+///                     "startIcon": {
+///                       "knownIcon": "EMAIL"
+///                     },
+///                     "text": "sasha@example.com"
+///                   }
+///                 },
+///                 {
+///                   "decoratedText": {
+///                     "startIcon": {
+///                       "knownIcon": "PERSON"
+///                     },
+///                     "text": "<font color=\"#80e27e\">Online</font>"
+///                   }
+///                 },
+///                 {
+///                   "decoratedText": {
+///                     "startIcon": {
+///                       "knownIcon": "PHONE"
+///                     },
+///                     "text": "+1 (555) 555-1234"
+///                   }
+///                 },
+///                 {
+///                   "buttonList": {
+///                     "buttons": [
+///                       {
+///                         "text": "Share",
+///                         "onClick": {
+///                          "openLink": {
+///                             "url": "<https://example.com/share">
+///                           }
+///                         }
+///                       },
+///                       {
+///                         "text": "Edit",
+///                         "onClick": {
+///                           "action": {
+///                             "function": "goToView",
+///                             "parameters": [
+///                               {
+///                                 "key": "viewType",
+///                                 "value": "EDIT"
+///                               }
+///                             ]
+///                           }
+///                         }
+///                       }
+///                     ]
+///                   }
+///                 }
+///               ]
+///             }
+///           ]
+///         }
+///      }
+///    ]
 /// }
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -126,31 +126,31 @@ pub struct Card {
     /// For example, the following JSON constructs a card action menu with
     /// `Settings` and `Send Feedback` options:
     ///
-    /// ```text,
+    /// ```
     /// "card_actions": [
-    ///   {
-    ///     "actionLabel": "Settings",
-    ///     "onClick": {
-    ///       "action": {
-    ///         "functionName": "goToView",
-    ///         "parameters": [
-    ///           {
-    ///             "key": "viewType",
-    ///             "value": "SETTING"
-    ///          }
-    ///         ],
-    ///         "loadIndicator": "LoadIndicator.SPINNER"
-    ///       }
-    ///     }
-    ///   },
-    ///   {
-    ///     "actionLabel": "Send Feedback",
-    ///     "onClick": {
-    ///       "openLink": {
-    ///         "url": "<https://example.com/feedback">
-    ///       }
-    ///     }
-    ///   }
+    ///    {
+    ///      "actionLabel": "Settings",
+    ///      "onClick": {
+    ///        "action": {
+    ///          "functionName": "goToView",
+    ///          "parameters": [
+    ///            {
+    ///              "key": "viewType",
+    ///              "value": "SETTING"
+    ///           }
+    ///          ],
+    ///          "loadIndicator": "LoadIndicator.SPINNER"
+    ///        }
+    ///      }
+    ///    },
+    ///    {
+    ///      "actionLabel": "Send Feedback",
+    ///      "onClick": {
+    ///        "openLink": {
+    ///          "url": "<https://example.com/feedback">
+    ///        }
+    ///      }
+    ///    }
     /// ]
     /// ```
     #[prost(message, repeated, tag = "3")]
@@ -344,9 +344,9 @@ pub mod card {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DividerStyle::Unspecified => "DIVIDER_STYLE_UNSPECIFIED",
-                DividerStyle::SolidDivider => "SOLID_DIVIDER",
-                DividerStyle::NoDivider => "NO_DIVIDER",
+                Self::Unspecified => "DIVIDER_STYLE_UNSPECIFIED",
+                Self::SolidDivider => "SOLID_DIVIDER",
+                Self::NoDivider => "NO_DIVIDER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -395,9 +395,9 @@ pub mod card {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DisplayStyle::Unspecified => "DISPLAY_STYLE_UNSPECIFIED",
-                DisplayStyle::Peek => "PEEK",
-                DisplayStyle::Replace => "REPLACE",
+                Self::Unspecified => "DISPLAY_STYLE_UNSPECIFIED",
+                Self::Peek => "PEEK",
+                Self::Replace => "REPLACE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -458,8 +458,8 @@ pub mod widget {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ImageType::Square => "SQUARE",
-                ImageType::Circle => "CIRCLE",
+                Self::Square => "SQUARE",
+                Self::Circle => "CIRCLE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -507,10 +507,10 @@ pub mod widget {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                HorizontalAlignment::Unspecified => "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
-                HorizontalAlignment::Start => "START",
-                HorizontalAlignment::Center => "CENTER",
-                HorizontalAlignment::End => "END",
+                Self::Unspecified => "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+                Self::Start => "START",
+                Self::Center => "CENTER",
+                Self::End => "END",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -538,10 +538,9 @@ pub mod widget {
         /// Add-ons](<https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting>).
         ///
         /// For example, the following JSON creates a bolded text:
-        ///
-        /// ```text,
+        /// ```
         /// "textParagraph": {
-        ///   "text": "  <b>bold text</b>"
+        ///    "text": "  <b>bold text</b>"
         /// }
         /// ```
         #[prost(message, tag = "1")]
@@ -549,12 +548,11 @@ pub mod widget {
         /// Displays an image.
         ///
         /// For example, the following JSON creates an image with alternative text:
-        ///
-        /// ```text,
+        /// ```
         /// "image": {
-        ///   "imageUrl":
-        ///   "<https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",>
-        ///   "altText": "Chat app avatar"
+        ///    "imageUrl":
+        ///    "<https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",>
+        ///    "altText": "Chat app avatar"
         /// }
         /// ```
         #[prost(message, tag = "2")]
@@ -564,19 +562,19 @@ pub mod widget {
         /// For example, the following JSON creates a decorated text widget showing
         /// email address:
         ///
-        /// ```text,
+        /// ```
         /// "decoratedText": {
-        ///   "icon": {
-        ///     "knownIcon": "EMAIL"
-        ///   },
-        ///   "topLabel": "Email Address",
-        ///   "text": "sasha@example.com",
-        ///   "bottomLabel": "This is a new Email address!",
-        ///   "switchControl": {
-        ///     "name": "has_send_welcome_email_to_sasha",
-        ///     "selected": false,
-        ///     "controlType": "CHECKBOX"
-        ///   }
+        ///    "icon": {
+        ///      "knownIcon": "EMAIL"
+        ///    },
+        ///    "topLabel": "Email Address",
+        ///    "text": "sasha@example.com",
+        ///    "bottomLabel": "This is a new Email address!",
+        ///    "switchControl": {
+        ///      "name": "has_send_welcome_email_to_sasha",
+        ///      "selected": false,
+        ///      "controlType": "CHECKBOX"
+        ///    }
         /// }
         /// ```
         #[prost(message, tag = "3")]
@@ -586,32 +584,31 @@ pub mod widget {
         /// For example, the following JSON creates two buttons. The first
         /// is a blue text button and the second is an image button that opens a
         /// link:
-        ///
-        /// ```text,
+        /// ```
         /// "buttonList": {
-        ///   "buttons": [
-        ///     {
-        ///       "text": "Edit",
-        ///       "color": {
-        ///         "red": 0,
-        ///         "green": 0,
-        ///         "blue": 1,
-        ///         "alpha": 1
-        ///       },
-        ///       "disabled": true,
-        ///     },
-        ///     {
-        ///       "icon": {
-        ///         "knownIcon": "INVITE",
-        ///         "altText": "check calendar"
-        ///       },
-        ///       "onClick": {
-        ///         "openLink": {
-        ///           "url": "<https://example.com/calendar">
-        ///         }
-        ///       }
-        ///     }
-        ///   ]
+        ///    "buttons": [
+        ///      {
+        ///        "text": "Edit",
+        ///        "color": {
+        ///          "red": 0,
+        ///          "green": 0,
+        ///          "blue": 1,
+        ///          "alpha": 1
+        ///        },
+        ///        "disabled": true,
+        ///      },
+        ///      {
+        ///        "icon": {
+        ///          "knownIcon": "INVITE",
+        ///          "altText": "check calendar"
+        ///        },
+        ///        "onClick": {
+        ///          "openLink": {
+        ///            "url": "<https://example.com/calendar">
+        ///          }
+        ///        }
+        ///      }
+        ///    ]
         /// }
         /// ```
         #[prost(message, tag = "4")]
@@ -621,36 +618,35 @@ pub mod widget {
         /// For example, the following JSON creates a text input for an email
         /// address:
         ///
-        /// ```text,
+        /// ```
         /// "textInput": {
-        ///   "name": "mailing_address",
-        ///   "label": "Mailing Address"
+        ///    "name": "mailing_address",
+        ///    "label": "Mailing Address"
         /// }
         /// ```
         ///
         /// As another example, the following JSON creates a text input for a
         /// programming language with static suggestions:
-        ///
-        /// ```text,
+        /// ```
         /// "textInput": {
-        ///   "name": "preferred_programing_language",
-        ///   "label": "Preferred Language",
-        ///   "initialSuggestions": {
-        ///     "items": [
-        ///       {
-        ///         "text": "C++"
-        ///       },
-        ///       {
-        ///         "text": "Java"
-        ///       },
-        ///       {
-        ///         "text": "JavaScript"
-        ///       },
-        ///       {
-        ///         "text": "Python"
-        ///       }
-        ///     ]
-        ///   }
+        ///    "name": "preferred_programing_language",
+        ///    "label": "Preferred Language",
+        ///    "initialSuggestions": {
+        ///      "items": [
+        ///        {
+        ///          "text": "C++"
+        ///        },
+        ///        {
+        ///          "text": "Java"
+        ///        },
+        ///        {
+        ///          "text": "JavaScript"
+        ///        },
+        ///        {
+        ///          "text": "Python"
+        ///        }
+        ///      ]
+        ///    }
         /// }
         /// ```
         #[prost(message, tag = "5")]
@@ -661,33 +657,33 @@ pub mod widget {
         /// For example, the following JSON creates a dropdown menu that lets users
         /// choose a size:
         ///
-        /// ```text,
+        /// ```
         /// "selectionInput": {
-        ///   "name": "size",
-        ///   "label": "Size"
-        ///   "type": "DROPDOWN",
-        ///   "items": [
-        ///     {
-        ///       "text": "S",
-        ///       "value": "small",
-        ///       "selected": false
-        ///     },
-        ///     {
-        ///       "text": "M",
-        ///       "value": "medium",
-        ///       "selected": true
-        ///     },
-        ///     {
-        ///       "text": "L",
-        ///       "value": "large",
-        ///       "selected": false
-        ///     },
-        ///     {
-        ///       "text": "XL",
-        ///       "value": "extra_large",
-        ///       "selected": false
-        ///     }
-        ///   ]
+        ///    "name": "size",
+        ///    "label": "Size"
+        ///    "type": "DROPDOWN",
+        ///    "items": [
+        ///      {
+        ///        "text": "S",
+        ///        "value": "small",
+        ///        "selected": false
+        ///      },
+        ///      {
+        ///        "text": "M",
+        ///        "value": "medium",
+        ///        "selected": true
+        ///      },
+        ///      {
+        ///        "text": "L",
+        ///        "value": "large",
+        ///        "selected": false
+        ///      },
+        ///      {
+        ///        "text": "XL",
+        ///        "value": "extra_large",
+        ///        "selected": false
+        ///      }
+        ///    ]
         /// }
         /// ```
         #[prost(message, tag = "6")]
@@ -697,12 +693,13 @@ pub mod widget {
         /// For example, the following JSON creates a date time picker to schedule an
         /// appointment:
         ///
-        /// ```text,
+        ///
+        /// ```
         /// "dateTimePicker": {
-        ///   "name": "appointment_time",
-        ///   "label": "Book your appointment at:",
-        ///   "type": "DATE_AND_TIME",
-        ///   "valueMsEpoch": "796435200000"
+        ///    "name": "appointment_time",
+        ///    "label": "Book your appointment at:",
+        ///    "type": "DATE_AND_TIME",
+        ///    "valueMsEpoch": "796435200000"
         /// }
         /// ```
         #[prost(message, tag = "7")]
@@ -710,8 +707,7 @@ pub mod widget {
         /// Displays a horizontal line divider between widgets.
         ///
         /// For example, the following JSON creates a divider:
-        ///
-        /// ```text,
+        /// ```
         /// "divider": {
         /// }
         /// ```
@@ -730,34 +726,34 @@ pub mod widget {
         /// For example, the following JSON creates a 2 column grid with a single
         /// item:
         ///
-        /// ```text,
+        /// ```
         /// "grid": {
-        ///   "title": "A fine collection of items",
-        ///   "columnCount": 2,
-        ///   "borderStyle": {
-        ///     "type": "STROKE",
-        ///     "cornerRadius": 4
-        ///   },
-        ///   "items": [
-        ///     {
-        ///       "image": {
-        ///         "imageUri": "<https://www.example.com/image.png",>
-        ///         "cropStyle": {
-        ///           "type": "SQUARE"
-        ///         },
-        ///         "borderStyle": {
-        ///           "type": "STROKE"
-        ///         }
-        ///       },
-        ///       "title": "An item",
-        ///       "textAlignment": "CENTER"
-        ///     }
-        ///   ],
-        ///   "onClick": {
-        ///     "openLink": {
-        ///       "url": "<https://www.example.com">
-        ///     }
-        ///   }
+        ///    "title": "A fine collection of items",
+        ///    "columnCount": 2,
+        ///    "borderStyle": {
+        ///      "type": "STROKE",
+        ///      "cornerRadius": 4
+        ///    },
+        ///    "items": [
+        ///      {
+        ///        "image": {
+        ///          "imageUri": "<https://www.example.com/image.png",>
+        ///          "cropStyle": {
+        ///            "type": "SQUARE"
+        ///          },
+        ///          "borderStyle": {
+        ///            "type": "STROKE"
+        ///          }
+        ///        },
+        ///        "title": "An item",
+        ///        "textAlignment": "CENTER"
+        ///      }
+        ///    ],
+        ///    "onClick": {
+        ///      "openLink": {
+        ///        "url": "<https://www.example.com">
+        ///      }
+        ///    }
         /// }
         /// ```
         #[prost(message, tag = "10")]
@@ -769,34 +765,34 @@ pub mod widget {
         /// For example, the following JSON creates 2 columns that each contain
         /// text paragraphs:
         ///
-        /// ```text,
+        /// ```
         /// "columns": {
-        ///   "columnItems": [
-        ///     {
-        ///       "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
-        ///       "horizontalAlignment": "CENTER",
-        ///       "verticalAlignment": "CENTER",
-        ///       "widgets": [
-        ///         {
-        ///           "textParagraph": {
-        ///             "text": "First column text paragraph"
-        ///           }
-        ///         }
-        ///       ]
-        ///     },
-        ///     {
-        ///       "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
-        ///       "horizontalAlignment": "CENTER",
-        ///       "verticalAlignment": "CENTER",
-        ///       "widgets": [
-        ///         {
-        ///           "textParagraph": {
-        ///             "text": "Second column text paragraph"
-        ///           }
-        ///         }
-        ///       ]
-        ///     }
-        ///   ]
+        ///    "columnItems": [
+        ///      {
+        ///        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+        ///        "horizontalAlignment": "CENTER",
+        ///        "verticalAlignment": "CENTER",
+        ///        "widgets": [
+        ///          {
+        ///            "textParagraph": {
+        ///              "text": "First column text paragraph"
+        ///            }
+        ///          }
+        ///        ]
+        ///      },
+        ///      {
+        ///        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+        ///        "horizontalAlignment": "CENTER",
+        ///        "verticalAlignment": "CENTER",
+        ///        "widgets": [
+        ///          {
+        ///            "textParagraph": {
+        ///              "text": "Second column text paragraph"
+        ///            }
+        ///          }
+        ///        ]
+        ///      }
+        ///    ]
         /// }
         /// ```
         #[prost(message, tag = "11")]
@@ -835,7 +831,7 @@ pub struct Image {
     ///
     /// For example:
     ///
-    /// ```text,
+    /// ```
     /// <https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png>
     /// ```
     #[prost(string, tag = "1")]
@@ -857,7 +853,7 @@ pub struct Image {
 ///
 /// For example, the following JSON creates a divider:
 ///
-/// ```text,
+/// ```
 /// "divider": {}
 /// ```
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -937,7 +933,7 @@ pub mod decorated_text {
         #[prost(bool, tag = "3")]
         pub selected: bool,
         /// The action to perform when the switch state is changed, such as what
-        /// function to run.
+        ///   function to run.
         #[prost(message, optional, tag = "4")]
         pub on_change_action: ::core::option::Option<super::Action>,
         /// How the switch appears in the user interface.
@@ -980,9 +976,9 @@ pub mod decorated_text {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    ControlType::Switch => "SWITCH",
-                    ControlType::Checkbox => "CHECKBOX",
-                    ControlType::CheckBox => "CHECK_BOX",
+                    Self::Switch => "SWITCH",
+                    Self::Checkbox => "CHECKBOX",
+                    Self::CheckBox => "CHECK_BOX",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1029,7 +1025,7 @@ pub mod decorated_text {
 ///
 /// When you need to collect undefined or abstract data from users,
 /// use a text input. To collect defined or enumerated data from users, use the
-/// \[SelectionInput\]\[google.apps.card.v1.SelectionInput\] widget.
+/// [SelectionInput][google.apps.card.v1.SelectionInput] widget.
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
@@ -1108,7 +1104,8 @@ pub struct TextInput {
     #[prost(message, optional, tag = "8")]
     pub auto_complete_action: ::core::option::Option<Action>,
     /// Text that appears in the text input field when the field is empty.
-    /// Use this text to prompt users to enter a value. For example, `Enter a number from 0 to 100`.
+    /// Use this text to prompt users to enter a value. For example, `Enter a
+    /// number from 0 to 100`.
     ///
     /// [Google Chat apps](<https://developers.google.com/workspace/chat>):
     #[prost(string, tag = "12")]
@@ -1148,8 +1145,8 @@ pub mod text_input {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::SingleLine => "SINGLE_LINE",
-                Type::MultipleLine => "MULTIPLE_LINE",
+                Self::SingleLine => "SINGLE_LINE",
+                Self::MultipleLine => "MULTIPLE_LINE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1233,7 +1230,7 @@ pub struct ButtonList {
 /// data](<https://developers.google.com/workspace/chat/read-form-data>).
 ///
 /// To collect undefined or abstract data from users, use
-/// the \[TextInput\]\[google.apps.card.v1.TextInput\] widget.
+/// the [TextInput][google.apps.card.v1.TextInput] widget.
 ///
 /// [Google Workspace Add-ons
 /// and Chat apps](<https://developers.google.com/workspace/extend>):
@@ -1327,7 +1324,7 @@ pub mod selection_input {
         pub bottom_text: ::prost::alloc::string::String,
     }
     /// For a
-    /// \[`SelectionInput`\]\[google.apps.card.v1.SelectionInput\] widget that uses a
+    /// [`SelectionInput`][google.apps.card.v1.SelectionInput] widget that uses a
     /// multiselect menu, a data source from Google Workspace. Used to populate
     /// items in a multiselect menu.
     ///
@@ -1340,8 +1337,8 @@ pub mod selection_input {
     }
     /// Nested message and enum types in `PlatformDataSource`.
     pub mod platform_data_source {
-        /// A data source shared by all \[Google Workspace
-        /// applications\]
+        /// A data source shared by all [Google Workspace
+        /// applications]
         /// (<https://developers.google.com/workspace/chat/api/reference/rest/v1/HostApp>).
         ///
         /// [Google Chat apps](<https://developers.google.com/workspace/chat>):
@@ -1371,8 +1368,8 @@ pub mod selection_input {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    CommonDataSource::Unknown => "UNKNOWN",
-                    CommonDataSource::User => "USER",
+                    Self::Unknown => "UNKNOWN",
+                    Self::User => "USER",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1431,12 +1428,12 @@ pub mod selection_input {
         /// To populate items for a multiselect menu, you can use one of the
         /// following types of data sources:
         ///
-        /// * Static data: Items are specified as `SelectionItem` objects in the
-        ///   widget. Up to 100 items.
-        /// * Google Workspace data: Items are populated using data from Google
-        ///   Workspace, such as Google Workspace users or Google Chat spaces.
-        /// * External data: Items are populated from an external data
-        ///   source outside of Google Workspace.
+        ///   * Static data: Items are specified as `SelectionItem` objects in the
+        ///     widget. Up to 100 items.
+        ///   * Google Workspace data: Items are populated using data from Google
+        ///     Workspace, such as Google Workspace users or Google Chat spaces.
+        ///   * External data: Items are populated from an external data
+        ///     source outside of Google Workspace.
         ///
         /// For examples of how to implement multiselect menus, see
         /// [Add a multiselect
@@ -1455,11 +1452,11 @@ pub mod selection_input {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                SelectionType::CheckBox => "CHECK_BOX",
-                SelectionType::RadioButton => "RADIO_BUTTON",
-                SelectionType::Switch => "SWITCH",
-                SelectionType::Dropdown => "DROPDOWN",
-                SelectionType::MultiSelect => "MULTI_SELECT",
+                Self::CheckBox => "CHECK_BOX",
+                Self::RadioButton => "RADIO_BUTTON",
+                Self::Switch => "SWITCH",
+                Self::Dropdown => "DROPDOWN",
+                Self::MultiSelect => "MULTI_SELECT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1520,11 +1517,11 @@ pub struct DateTimePicker {
     /// Specify the value based on the type of picker (`DateTimePickerType`):
     ///
     /// * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to
-    ///   represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`.
+    ///    represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`.
     /// * `DATE_ONLY`: a calendar date at 00:00:00 UTC. For example, to represent
-    ///   January 1, 2023, use `1672531200000`.
+    ///    January 1, 2023, use `1672531200000`.
     /// * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use
-    ///   `43200000` (or `12 * 60 * 60 * 1000`).
+    ///    `43200000` (or `12 * 60 * 60 * 1000`).
     #[prost(int64, tag = "4")]
     pub value_ms_epoch: i64,
     /// The number representing the time zone offset from UTC, in minutes.
@@ -1571,9 +1568,9 @@ pub mod date_time_picker {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DateTimePickerType::DateAndTime => "DATE_AND_TIME",
-                DateTimePickerType::DateOnly => "DATE_ONLY",
-                DateTimePickerType::TimeOnly => "TIME_ONLY",
+                Self::DateAndTime => "DATE_AND_TIME",
+                Self::DateOnly => "DATE_ONLY",
+                Self::TimeOnly => "TIME_ONLY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1593,8 +1590,8 @@ pub mod date_time_picker {
 /// button](<https://developers.google.com/workspace/chat/design-interactive-card-dialog#add_a_button>).
 ///
 /// To make an image a clickable button, specify an
-/// \[`Image`\]\[google.apps.card.v1.Image\] (not an
-/// \[`ImageComponent`\]\[google.apps.card.v1.ImageComponent\]) and set an
+/// [`Image`][google.apps.card.v1.Image] (not an
+/// [`ImageComponent`][google.apps.card.v1.ImageComponent]) and set an
 /// `onClick` action.
 ///
 /// [Google Workspace
@@ -1623,7 +1620,7 @@ pub struct Button {
     /// Optionally set `alpha`, which sets a level of transparency using this
     /// equation:
     ///
-    /// ```text,
+    /// ```
     /// pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
     /// ```
     ///
@@ -1632,12 +1629,12 @@ pub struct Button {
     ///
     /// For example, the following color represents a half transparent red:
     ///
-    /// ```text,
+    /// ```
     /// "color": {
-    ///    "red": 1,
-    ///    "green": 0,
-    ///    "blue": 0,
-    ///    "alpha": 0.5
+    ///     "red": 1,
+    ///     "green": 0,
+    ///     "blue": 0,
+    ///     "alpha": 0.5
     /// }
     /// ```
     #[prost(message, optional, tag = "3")]
@@ -1677,9 +1674,10 @@ pub struct Icon {
     /// If unspecified, the default value `Button` is provided. As a best practice,
     /// you should set a helpful description for what the icon displays, and if
     /// applicable, what it does. For example, `A user's account portrait`, or
-    /// `Opens a new browser tab and navigates to the Google Chat developer documentation at <https://developers.google.com/workspace/chat`.>
+    /// `Opens a new browser tab and navigates to the Google Chat developer
+    /// documentation at <https://developers.google.com/workspace/chat`.>
     ///
-    /// If the icon is set in a \[`Button`\]\[google.apps.card.v1.Button\], the
+    /// If the icon is set in a [`Button`][google.apps.card.v1.Button], the
     /// `altText` appears as helper text when the user hovers over the button.
     /// However, if the button also sets `text`, the icon's `altText` is ignored.
     #[prost(string, tag = "3")]
@@ -1711,7 +1709,7 @@ pub mod icon {
         ///
         /// For example:
         ///
-        /// ```text,
+        /// ```
         /// "iconUrl":
         /// "<https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png">
         /// ```
@@ -1725,10 +1723,9 @@ pub mod icon {
         /// For example, to display a [checkbox
         /// icon](<https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048>),
         /// use
-        ///
-        /// ```text,
+        /// ```
         /// "material_icon": {
-        ///   "name": "check_box"
+        ///    "name": "check_box"
         /// }
         /// ```
         ///
@@ -1744,12 +1741,12 @@ pub mod icon {
 /// icon](<https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048>)
 /// with customized weight and grade, write the following:
 ///
-/// ```text,
+/// ```
 /// {
-///   "name": "check_box",
-///   "fill": true,
-///   "weight": 300,
-///   "grade": -25
+///    "name": "check_box",
+///    "fill": true,
+///    "weight": 300,
+///    "grade": -25
 /// }
 /// ```
 ///
@@ -1796,10 +1793,10 @@ pub struct MaterialIcon {
 ///
 /// For example, here's how to apply a 16:9 aspect ratio:
 ///
-/// ```text,
+/// ```
 /// cropStyle {
-/// "type": "RECTANGLE_CUSTOM",
-/// "aspectRatio": 16/9
+///   "type": "RECTANGLE_CUSTOM",
+///   "aspectRatio": 16/9
 /// }
 /// ```
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1811,10 +1808,10 @@ pub struct ImageCropStyle {
     ///
     /// For example, here's how to apply a 16:9 aspect ratio:
     ///
-    /// ```text,
+    /// ```
     /// cropStyle {
-    /// "type": "RECTANGLE_CUSTOM",
-    /// "aspectRatio": 16/9
+    ///   "type": "RECTANGLE_CUSTOM",
+    ///   "aspectRatio": 16/9
     /// }
     /// ```
     #[prost(double, tag = "2")]
@@ -1858,11 +1855,11 @@ pub mod image_crop_style {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ImageCropType::Unspecified => "IMAGE_CROP_TYPE_UNSPECIFIED",
-                ImageCropType::Square => "SQUARE",
-                ImageCropType::Circle => "CIRCLE",
-                ImageCropType::RectangleCustom => "RECTANGLE_CUSTOM",
-                ImageCropType::Rectangle43 => "RECTANGLE_4_3",
+                Self::Unspecified => "IMAGE_CROP_TYPE_UNSPECIFIED",
+                Self::Square => "SQUARE",
+                Self::Circle => "CIRCLE",
+                Self::RectangleCustom => "RECTANGLE_CUSTOM",
+                Self::Rectangle43 => "RECTANGLE_4_3",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1928,9 +1925,9 @@ pub mod border_style {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                BorderType::Unspecified => "BORDER_TYPE_UNSPECIFIED",
-                BorderType::NoBorder => "NO_BORDER",
-                BorderType::Stroke => "STROKE",
+                Self::Unspecified => "BORDER_TYPE_UNSPECIFIED",
+                Self::NoBorder => "NO_BORDER",
+                Self::Stroke => "STROKE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1965,7 +1962,7 @@ pub struct ImageComponent {
 }
 /// Displays a grid with a collection of items. Items can only include text or
 /// images. For responsive columns, or to include more than text or images, use
-/// \[`Columns`\]\[google.apps.card.v1.Columns\]. For an example in Google Chat apps,
+/// [`Columns`][google.apps.card.v1.Columns]. For an example in Google Chat apps,
 /// see [Display a Grid with a collection of
 /// items](<https://developers.google.com/workspace/chat/format-structure-card-dialog#display_a_grid_with_a_collection_of_items>).
 ///
@@ -1980,34 +1977,34 @@ pub struct ImageComponent {
 /// For example, the following JSON creates a 2 column grid with a single
 /// item:
 ///
-/// ```text,
+/// ```
 /// "grid": {
-///   "title": "A fine collection of items",
-///   "columnCount": 2,
-///   "borderStyle": {
-///     "type": "STROKE",
-///     "cornerRadius": 4
-///   },
-///   "items": [
-///     {
-///       "image": {
-///         "imageUri": "<https://www.example.com/image.png",>
-///         "cropStyle": {
-///           "type": "SQUARE"
-///         },
-///         "borderStyle": {
-///           "type": "STROKE"
-///         }
-///       },
-///       "title": "An item",
-///       "textAlignment": "CENTER"
-///     }
-///   ],
-///   "onClick": {
-///     "openLink": {
-///       "url": "<https://www.example.com">
-///     }
-///   }
+///    "title": "A fine collection of items",
+///    "columnCount": 2,
+///    "borderStyle": {
+///      "type": "STROKE",
+///      "cornerRadius": 4
+///    },
+///    "items": [
+///      {
+///        "image": {
+///          "imageUri": "<https://www.example.com/image.png",>
+///          "cropStyle": {
+///            "type": "SQUARE"
+///          },
+///          "borderStyle": {
+///            "type": "STROKE"
+///          }
+///        },
+///        "title": "An item",
+///        "textAlignment": "CENTER"
+///      }
+///    ],
+///    "onClick": {
+///      "openLink": {
+///        "url": "<https://www.example.com">
+///      }
+///    }
 /// }
 /// ```
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2091,9 +2088,9 @@ pub mod grid {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    GridItemLayout::Unspecified => "GRID_ITEM_LAYOUT_UNSPECIFIED",
-                    GridItemLayout::TextBelow => "TEXT_BELOW",
-                    GridItemLayout::TextAbove => "TEXT_ABOVE",
+                    Self::Unspecified => "GRID_ITEM_LAYOUT_UNSPECIFIED",
+                    Self::TextBelow => "TEXT_BELOW",
+                    Self::TextAbove => "TEXT_ABOVE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2125,14 +2122,14 @@ pub mod grid {
 /// screen width is too narrow, the second column wraps below the first:
 ///
 /// * On web, the second column wraps if the screen width is less than or equal
-///   to 480 pixels.
+///    to 480 pixels.
 /// * On iOS devices, the second column wraps if the screen width is
-///   less than or equal to 300 pt.
+///    less than or equal to 300 pt.
 /// * On Android devices, the second column wraps if the screen width is
-///   less than or equal to 320 dp.
+///    less than or equal to 320 dp.
 ///
 /// To include more than 2 columns, or to use rows, use the
-/// \[`Grid`\]\[google.apps.card.v1.Grid\] widget.
+/// [`Grid`][google.apps.card.v1.Grid] widget.
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
@@ -2187,25 +2184,25 @@ pub mod columns {
         pub mod widgets {
             #[derive(Clone, PartialEq, ::prost::Oneof)]
             pub enum Data {
-                /// \[TextParagraph\]\[google.apps.card.v1.TextParagraph\] widget.
+                /// [TextParagraph][google.apps.card.v1.TextParagraph] widget.
                 #[prost(message, tag = "1")]
                 TextParagraph(super::super::super::TextParagraph),
-                /// \[Image\]\[google.apps.card.v1.Image\] widget.
+                /// [Image][google.apps.card.v1.Image] widget.
                 #[prost(message, tag = "2")]
                 Image(super::super::super::Image),
-                /// \[DecoratedText\]\[google.apps.card.v1.DecoratedText\] widget.
+                /// [DecoratedText][google.apps.card.v1.DecoratedText] widget.
                 #[prost(message, tag = "3")]
                 DecoratedText(super::super::super::DecoratedText),
-                /// \[ButtonList\]\[google.apps.card.v1.ButtonList\] widget.
+                /// [ButtonList][google.apps.card.v1.ButtonList] widget.
                 #[prost(message, tag = "4")]
                 ButtonList(super::super::super::ButtonList),
-                /// \[TextInput\]\[google.apps.card.v1.TextInput\] widget.
+                /// [TextInput][google.apps.card.v1.TextInput] widget.
                 #[prost(message, tag = "5")]
                 TextInput(super::super::super::TextInput),
-                /// \[SelectionInput\]\[google.apps.card.v1.SelectionInput\] widget.
+                /// [SelectionInput][google.apps.card.v1.SelectionInput] widget.
                 #[prost(message, tag = "6")]
                 SelectionInput(super::super::super::SelectionInput),
-                /// \[DateTimePicker\]\[google.apps.card.v1.DateTimePicker\] widget.
+                /// [DateTimePicker][google.apps.card.v1.DateTimePicker] widget.
                 #[prost(message, tag = "7")]
                 DateTimePicker(super::super::super::DateTimePicker),
             }
@@ -2248,11 +2245,9 @@ pub mod columns {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    HorizontalSizeStyle::Unspecified => {
-                        "HORIZONTAL_SIZE_STYLE_UNSPECIFIED"
-                    }
-                    HorizontalSizeStyle::FillAvailableSpace => "FILL_AVAILABLE_SPACE",
-                    HorizontalSizeStyle::FillMinimumSpace => "FILL_MINIMUM_SPACE",
+                    Self::Unspecified => "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
+                    Self::FillAvailableSpace => "FILL_AVAILABLE_SPACE",
+                    Self::FillMinimumSpace => "FILL_MINIMUM_SPACE",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2301,10 +2296,10 @@ pub mod columns {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    VerticalAlignment::Unspecified => "VERTICAL_ALIGNMENT_UNSPECIFIED",
-                    VerticalAlignment::Center => "CENTER",
-                    VerticalAlignment::Top => "TOP",
-                    VerticalAlignment::Bottom => "BOTTOM",
+                    Self::Unspecified => "VERTICAL_ALIGNMENT_UNSPECIFIED",
+                    Self::Center => "CENTER",
+                    Self::Top => "TOP",
+                    Self::Bottom => "BOTTOM",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2416,8 +2411,8 @@ pub mod open_link {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OpenAs::FullSize => "FULL_SIZE",
-                OpenAs::Overlay => "OVERLAY",
+                Self::FullSize => "FULL_SIZE",
+                Self::Overlay => "OVERLAY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2469,8 +2464,8 @@ pub mod open_link {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OnClose::Nothing => "NOTHING",
-                OnClose::Reload => "RELOAD",
+                Self::Nothing => "NOTHING",
+                Self::Reload => "RELOAD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2596,8 +2591,8 @@ pub mod action {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LoadIndicator::Spinner => "SPINNER",
-                LoadIndicator::None => "NONE",
+                Self::Spinner => "SPINNER",
+                Self::None => "NONE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2659,8 +2654,8 @@ pub mod action {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Interaction::Unspecified => "INTERACTION_UNSPECIFIED",
-                Interaction::OpenDialog => "OPEN_DIALOG",
+                Self::Unspecified => "INTERACTION_UNSPECIFIED",
+                Self::OpenDialog => "OPEN_DIALOG",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.

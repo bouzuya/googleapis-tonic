@@ -9,7 +9,7 @@ pub struct Folder {
     pub name: ::prost::alloc::string::String,
     /// Required. The folder's parent's resource name.
     /// Updates to the folder's parent must be performed using
-    /// \[MoveFolder\]\[google.cloud.resourcemanager.v3.Folders.MoveFolder\].
+    /// [MoveFolder][google.cloud.resourcemanager.v3.Folders.MoveFolder].
     #[prost(string, tag = "2")]
     pub parent: ::prost::alloc::string::String,
     /// The folder's display name.
@@ -23,8 +23,8 @@ pub struct Folder {
     pub display_name: ::prost::alloc::string::String,
     /// Output only. The lifecycle state of the folder.
     /// Updates to the state must be performed using
-    /// \[DeleteFolder\]\[google.cloud.resourcemanager.v3.Folders.DeleteFolder\] and
-    /// \[UndeleteFolder\]\[google.cloud.resourcemanager.v3.Folders.UndeleteFolder\].
+    /// [DeleteFolder][google.cloud.resourcemanager.v3.Folders.DeleteFolder] and
+    /// [UndeleteFolder][google.cloud.resourcemanager.v3.Folders.UndeleteFolder].
     #[prost(enumeration = "folder::State", tag = "4")]
     pub state: i32,
     /// Output only. Timestamp when the folder was created.
@@ -72,9 +72,9 @@ pub mod folder {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::DeleteRequested => "DELETE_REQUESTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::DeleteRequested => "DELETE_REQUESTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -120,7 +120,7 @@ pub struct ListFoldersRequest {
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
     /// Optional. Controls whether folders in the
-    /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED\]
+    /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
     /// state should be returned. Defaults to false.
     #[prost(bool, tag = "4")]
     pub show_deleted: bool,
@@ -160,7 +160,7 @@ pub struct SearchFoldersRequest {
     /// The `displayName` field in a query expression should use escaped quotes
     /// for values that include whitespace to prevent unexpected behavior.
     ///
-    /// ```text,
+    /// ```
     /// | Field                   | Description                            |
     /// |-------------------------|----------------------------------------|
     /// | displayName             | Filters by displayName.                |
@@ -171,15 +171,15 @@ pub struct SearchFoldersRequest {
     /// Some example queries are:
     ///
     /// * Query `displayName=Test*` returns Folder resources whose display name
-    ///   starts with "Test".
+    /// starts with "Test".
     /// * Query `state=ACTIVE` returns Folder resources with
-    ///   `state` set to `ACTIVE`.
+    /// `state` set to `ACTIVE`.
     /// * Query `parent=folders/123` returns Folder resources that have
-    ///   `folders/123` as a parent resource.
+    /// `folders/123` as a parent resource.
     /// * Query `parent=folders/123 AND state=ACTIVE` returns active
-    ///   Folder resources that have `folders/123` as a parent resource.
+    /// Folder resources that have `folders/123` as a parent resource.
     /// * Query `displayName=\\"Test String\\"` returns Folder resources with
-    ///   display names that include both "Test" and "String".
+    /// display names that include both "Test" and "String".
     #[prost(string, tag = "3")]
     pub query: ::prost::alloc::string::String,
 }
@@ -215,12 +215,12 @@ pub struct CreateFolderMetadata {
     pub parent: ::prost::alloc::string::String,
 }
 /// The request sent to the
-/// \[UpdateFolder\]\[google.cloud.resourcemanager.v3.Folder.UpdateFolder\]
+/// [UpdateFolder][google.cloud.resourcemanager.v3.Folder.UpdateFolder]
 /// method.
 ///
 /// Only the `display_name` field can be changed. All other fields will be
 /// ignored. Use the
-/// \[MoveFolder\]\[google.cloud.resourcemanager.v3.Folders.MoveFolder\] method to
+/// [MoveFolder][google.cloud.resourcemanager.v3.Folders.MoveFolder] method to
 /// change the `parent` field.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFolderRequest {
@@ -289,7 +289,13 @@ pub struct UndeleteFolderRequest {
 pub struct UndeleteFolderMetadata {}
 /// Generated client implementations.
 pub mod folders_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages Cloud Platform folder resources.
@@ -377,8 +383,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -414,8 +419,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -450,8 +454,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -478,14 +481,14 @@ pub mod folders_client {
         /// In order to succeed, the addition of this new folder must not violate
         /// the folder naming, height, or fanout constraints.
         ///
-        /// * The folder's `display_name` must be distinct from all other folders that
-        ///  share its parent.
-        /// * The addition of the folder must not cause the active folder hierarchy
-        ///  to exceed a height of 10. Note, the full active + deleted folder hierarchy
-        ///  is allowed to reach a height of 20; this provides additional headroom when
-        ///  moving folders that contain deleted folders.
-        /// * The addition of the folder must not cause the total number of folders
-        ///  under its parent to exceed 300.
+        /// + The folder's `display_name` must be distinct from all other folders that
+        /// share its parent.
+        /// + The addition of the folder must not cause the active folder hierarchy
+        /// to exceed a height of 10. Note, the full active + deleted folder hierarchy
+        /// is allowed to reach a height of 20; this provides additional headroom when
+        /// moving folders that contain deleted folders.
+        /// + The addition of the folder must not cause the total number of folders
+        /// under its parent to exceed 300.
         ///
         /// If the operation fails due to a folder constraint violation, some errors
         /// may be returned by the `CreateFolder` request, with status code
@@ -507,8 +510,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -530,7 +532,7 @@ pub mod folders_client {
         /// Changes to the folder `display_name` will be rejected if they violate
         /// either the `display_name` formatting rules or the naming constraints
         /// described in the
-        /// \[CreateFolder\]\[google.cloud.resourcemanager.v3.Folders.CreateFolder\]
+        /// [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
         /// documentation.
         ///
         /// The folder's `display_name` must start and end with a letter or digit,
@@ -554,8 +556,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -587,7 +588,7 @@ pub mod folders_client {
         /// `FolderOperation` message as an aid to stateless clients.
         /// Folder moves will be rejected if they violate either the naming, height,
         /// or fanout constraints described in the
-        /// \[CreateFolder\]\[google.cloud.resourcemanager.v3.Folders.CreateFolder\]
+        /// [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
         /// documentation. The caller must have `resourcemanager.folders.move`
         /// permission on the folder's current and proposed new parent.
         pub async fn move_folder(
@@ -601,8 +602,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -621,13 +621,13 @@ pub mod folders_client {
             self.inner.unary(req, path, codec).await
         }
         /// Requests deletion of a folder. The folder is moved into the
-        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED\]
+        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
         /// state immediately, and is deleted approximately 30 days later. This method
         /// may only be called on an empty folder, where a folder is empty if it
         /// doesn't contain any folders or projects in the
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Folder.State.ACTIVE\] state. If
+        /// [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. If
         /// called on a folder in
-        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED\]
+        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
         /// state the operation will result in a no-op success.
         /// The caller must have `resourcemanager.folders.delete` permission on the
         /// identified folder.
@@ -642,8 +642,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -663,13 +662,13 @@ pub mod folders_client {
         }
         /// Cancels the deletion request for a folder. This method may be called on a
         /// folder in any state. If the folder is in the
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Folder.State.ACTIVE\] state the
+        /// [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state the
         /// result will be a no-op success. In order to succeed, the folder's parent
         /// must be in the
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Folder.State.ACTIVE\] state. In
+        /// [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. In
         /// addition, reintroducing the folder into the tree must not violate folder
         /// naming, height, and fanout constraints described in the
-        /// \[CreateFolder\]\[google.cloud.resourcemanager.v3.Folders.CreateFolder\]
+        /// [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
         /// documentation. The caller must have `resourcemanager.folders.undelete`
         /// permission on the identified folder.
         pub async fn undelete_folder(
@@ -683,8 +682,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -720,8 +718,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -757,8 +754,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -796,8 +792,7 @@ pub mod folders_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -888,9 +883,9 @@ pub mod organization {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::DeleteRequested => "DELETE_REQUESTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::DeleteRequested => "DELETE_REQUESTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -941,7 +936,8 @@ pub struct SearchOrganizationsRequest {
     /// Optional. An optional query string used to filter the Organizations to
     /// return in the response. Query rules are case-insensitive.
     ///
-    /// ```text,
+    ///
+    /// ```
     /// | Field            | Description                                |
     /// |------------------|--------------------------------------------|
     /// | directoryCustomerId, owner.directoryCustomerId | Filters by directory
@@ -953,9 +949,9 @@ pub struct SearchOrganizationsRequest {
     /// `domain`, where the domain is a G Suite domain, for example:
     ///
     /// * Query `directorycustomerid:123456789` returns Organization
-    ///   resources with `owner.directory_customer_id` equal to `123456789`.
+    /// resources with `owner.directory_customer_id` equal to `123456789`.
     /// * Query `domain:google.com` returns Organization resources corresponding
-    ///   to the domain `google.com`.
+    /// to the domain `google.com`.
     #[prost(string, tag = "3")]
     pub query: ::prost::alloc::string::String,
 }
@@ -984,7 +980,13 @@ pub struct DeleteOrganizationMetadata {}
 pub struct UndeleteOrganizationMetadata {}
 /// Generated client implementations.
 pub mod organizations_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Allows users to manage their organization resources.
@@ -1066,8 +1068,7 @@ pub mod organizations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1103,8 +1104,7 @@ pub mod organizations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1141,8 +1141,7 @@ pub mod organizations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1179,8 +1178,7 @@ pub mod organizations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1218,8 +1216,7 @@ pub mod organizations_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1290,10 +1287,10 @@ pub struct Project {
     /// Optional. The labels associated with this project.
     ///
     /// Label keys must be between 1 and 63 characters long and must conform
-    /// to the following regular expression: \[a-z\](\[-a-z0-9\]\*\[a-z0-9\])?.
+    /// to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
     ///
     /// Label values must be between 0 and 63 characters long and must conform
-    /// to the regular expression (\[a-z\](\[-a-z0-9\]\*\[a-z0-9\])?)?.
+    /// to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
     ///
     /// No more than 64 labels can be associated with a given resource.
     ///
@@ -1330,7 +1327,7 @@ pub mod project {
         Active = 1,
         /// The project has been marked for deletion by the user
         /// (by invoking
-        /// \[DeleteProject\]\[google.cloud.resourcemanager.v3.Projects.DeleteProject\])
+        /// [DeleteProject][google.cloud.resourcemanager.v3.Projects.DeleteProject])
         /// or by the system (Google Cloud Platform).
         /// This can generally be reversed by invoking \[UndeleteProject\]
         /// \[google.cloud.resourcemanager.v3.Projects.UndeleteProject\].
@@ -1343,9 +1340,9 @@ pub mod project {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::DeleteRequested => "DELETE_REQUESTED",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::DeleteRequested => "DELETE_REQUESTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1360,7 +1357,7 @@ pub mod project {
     }
 }
 /// The request sent to the
-/// \[GetProject\]\[google.cloud.resourcemanager.v3.Projects.GetProject\]
+/// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProjectRequest {
@@ -1369,7 +1366,7 @@ pub struct GetProjectRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request sent to the
-/// \[ListProjects\]\[google.cloud.resourcemanager.v3.Projects.ListProjects\]
+/// [ListProjects][google.cloud.resourcemanager.v3.Projects.ListProjects]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProjectsRequest {
@@ -1382,7 +1379,7 @@ pub struct ListProjectsRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. A pagination token returned from a previous call to
-    /// \[ListProjects\] \[google.cloud.resourcemanager.v3.Projects.ListProjects\] that
+    /// \[ListProjects\] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
     /// indicates from where listing should continue.
     #[prost(string, tag = "2")]
     pub page_token: ::prost::alloc::string::String,
@@ -1397,7 +1394,7 @@ pub struct ListProjectsRequest {
     pub show_deleted: bool,
 }
 /// A page of the response received from the
-/// \[ListProjects\]\[google.cloud.resourcemanager.v3.Projects.ListProjects\]
+/// [ListProjects][google.cloud.resourcemanager.v3.Projects.ListProjects]
 /// method.
 ///
 /// A paginated response where more pages are available has
@@ -1426,7 +1423,7 @@ pub struct ListProjectsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request sent to the
-/// \[SearchProjects\]\[google.cloud.resourcemanager.v3.Projects.SearchProjects\]
+/// [SearchProjects][google.cloud.resourcemanager.v3.Projects.SearchProjects]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchProjectsRequest {
@@ -1435,37 +1432,38 @@ pub struct SearchProjectsRequest {
     /// included in the query, then it will return results that match any of the
     /// fields. Some eligible fields are:
     ///
-    /// * **`displayName`, `name`**: Filters by displayName.
-    /// * **`parent`**: Project's parent (for example: `folders/123`,
-    ///   `organizations/*`). Prefer `parent` field over `parent.type` and
-    ///   `parent.id`.
-    /// * **`parent.type`**: Parent's type: `folder` or `organization`.
-    /// * **`parent.id`**: Parent's id number (for example: `123`).
-    /// * **`id`, `projectId`**: Filters by projectId.
-    /// * **`state`, `lifecycleState`**: Filters by state.
-    /// * **`labels`**: Filters by label name or value.
-    /// * **`labels.<key>` (where `<key>` is the name of a label)**: Filters by label
-    ///   name.
+    /// - **`displayName`, `name`**: Filters by displayName.
+    /// - **`parent`**: Project's parent (for example: `folders/123`,
+    /// `organizations/*`). Prefer `parent` field over `parent.type` and
+    /// `parent.id`.
+    /// - **`parent.type`**: Parent's type: `folder` or `organization`.
+    /// - **`parent.id`**: Parent's id number (for example: `123`).
+    /// - **`id`, `projectId`**: Filters by projectId.
+    /// - **`state`, `lifecycleState`**: Filters by state.
+    /// - **`labels`**: Filters by label name or value.
+    /// - **`labels.<key>` (where `<key>` is the name of a label)**: Filters by label
+    /// name.
     ///
     /// Search expressions are case insensitive.
     ///
     /// Some examples queries:
     ///
-    /// * **`name:how*`**: The project's name starts with "how".
-    /// * **`name:Howl`**: The project's name is `Howl` or `howl`.
-    /// * **`name:HOWL`**: Equivalent to above.
-    /// * **`NAME:howl`**: Equivalent to above.
-    /// * **`labels.color:*`**: The project has the label `color`.
-    /// * **`labels.color:red`**:  The project's label `color` has the value `red`.
-    /// * **`labels.color:red labels.size:big`**: The project's label `color` has
-    ///   the value `red` or its label `size` has the value `big`.
+    ///
+    /// - **`name:how*`**: The project's name starts with "how".
+    /// - **`name:Howl`**: The project's name is `Howl` or `howl`.
+    /// - **`name:HOWL`**: Equivalent to above.
+    /// - **`NAME:howl`**: Equivalent to above.
+    /// - **`labels.color:*`**: The project has the label `color`.
+    /// - **`labels.color:red`**:  The project's label `color` has the value `red`.
+    /// - **`labels.color:red labels.size:big`**: The project's label `color` has
+    /// the value `red` or its label `size` has the value `big`.
     ///
     /// If no query is specified, the call will return projects for which the user
     /// has the `resourcemanager.projects.get` permission.
     #[prost(string, tag = "1")]
     pub query: ::prost::alloc::string::String,
     /// Optional. A pagination token returned from a previous call to
-    /// \[ListProjects\] \[google.cloud.resourcemanager.v3.Projects.ListProjects\] that
+    /// \[ListProjects\] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
     /// indicates from where listing should continue.
     #[prost(string, tag = "2")]
     pub page_token: ::prost::alloc::string::String,
@@ -1476,7 +1474,7 @@ pub struct SearchProjectsRequest {
     pub page_size: i32,
 }
 /// A page of the response received from the
-/// \[SearchProjects\]\[google.cloud.resourcemanager.v3.Projects.SearchProjects\]
+/// [SearchProjects][google.cloud.resourcemanager.v3.Projects.SearchProjects]
 /// method.
 ///
 /// A paginated response where more pages are available has
@@ -1503,7 +1501,7 @@ pub struct SearchProjectsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request sent to the
-/// \[CreateProject\]\[google.cloud.resourcemanager.v3.Projects.CreateProject\]
+/// [CreateProject][google.cloud.resourcemanager.v3.Projects.CreateProject]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProjectRequest {
@@ -1537,11 +1535,11 @@ pub struct CreateProjectMetadata {
     pub ready: bool,
 }
 /// The request sent to the
-/// \[UpdateProject\]\[google.cloud.resourcemanager.v3.Projects.UpdateProject\]
+/// [UpdateProject][google.cloud.resourcemanager.v3.Projects.UpdateProject]
 /// method.
 ///
 /// Only the `display_name` and `labels` fields can be change. Use the
-/// \[MoveProject\]\[google.cloud.resourcemanager.v3.Projects.MoveProject\] method to
+/// [MoveProject][google.cloud.resourcemanager.v3.Projects.MoveProject] method to
 /// change the `parent` field.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProjectRequest {
@@ -1557,7 +1555,7 @@ pub struct UpdateProjectRequest {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UpdateProjectMetadata {}
 /// The request sent to
-/// \[MoveProject\]\[google.cloud.resourcemanager.v3.Projects.MoveProject\]
+/// [MoveProject][google.cloud.resourcemanager.v3.Projects.MoveProject]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MoveProjectRequest {
@@ -1572,7 +1570,7 @@ pub struct MoveProjectRequest {
 /// returned by MoveProject.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MoveProjectMetadata {}
-/// \[DeleteProject\]\[google.cloud.resourcemanager.v3.Projects.DeleteProject\]
+/// [DeleteProject][google.cloud.resourcemanager.v3.Projects.DeleteProject]
 /// method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteProjectRequest {
@@ -1601,7 +1599,13 @@ pub struct UndeleteProjectRequest {
 pub struct UndeleteProjectMetadata {}
 /// Generated client implementations.
 pub mod projects_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages Google Cloud Projects.
@@ -1687,8 +1691,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1723,8 +1726,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1751,7 +1753,7 @@ pub mod projects_client {
         /// that a newly created project may not appear in the results or recent
         /// updates to an existing project may not be reflected in the results. To
         /// retrieve the latest state of a project, use the
-        /// \[GetProject\]\[google.cloud.resourcemanager.v3.Projects.GetProject\] method.
+        /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
         pub async fn search_projects(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchProjectsRequest>,
@@ -1763,8 +1765,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1798,8 +1799,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1834,8 +1834,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1867,6 +1866,8 @@ pub mod projects_client {
         /// If project has no current parent, or it currently does not have an
         /// associated organization resource, you will also need the
         /// `resourcemanager.projects.setIamPolicy` permission in the project.
+        ///
+        ///
         pub async fn move_project(
             &mut self,
             request: impl tonic::IntoRequest<super::MoveProjectRequest>,
@@ -1878,8 +1879,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1901,28 +1901,28 @@ pub mod projects_client {
         /// `name` (for example, `projects/415104041262`) for deletion.
         ///
         /// This method will only affect the project if it has a lifecycle state of
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Project.State.ACTIVE\].
+        /// [ACTIVE][google.cloud.resourcemanager.v3.Project.State.ACTIVE].
         ///
         /// This method changes the Project's lifecycle state from
-        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Project.State.ACTIVE\]
+        /// [ACTIVE][google.cloud.resourcemanager.v3.Project.State.ACTIVE]
         /// to
-        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED\].
+        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED].
         /// The deletion starts at an unspecified time,
         /// at which point the Project is no longer accessible.
         ///
         /// Until the deletion completes, you can check the lifecycle state
-        /// checked by retrieving the project with \[GetProject\]
-        /// \[google.cloud.resourcemanager.v3.Projects.GetProject\],
-        /// and the project remains visible to \[ListProjects\]
-        /// \[google.cloud.resourcemanager.v3.Projects.ListProjects\].
+        /// checked by retrieving the project with [GetProject]
+        /// [google.cloud.resourcemanager.v3.Projects.GetProject],
+        /// and the project remains visible to [ListProjects]
+        /// [google.cloud.resourcemanager.v3.Projects.ListProjects].
         /// However, you cannot update the project.
         ///
         /// After the deletion completes, the project is not retrievable by
-        /// the  \[GetProject\]
-        /// \[google.cloud.resourcemanager.v3.Projects.GetProject\],
-        /// \[ListProjects\]
-        /// \[google.cloud.resourcemanager.v3.Projects.ListProjects\], and
-        /// \[SearchProjects\]\[google.cloud.resourcemanager.v3.Projects.SearchProjects\]
+        /// the  [GetProject]
+        /// [google.cloud.resourcemanager.v3.Projects.GetProject],
+        /// [ListProjects]
+        /// [google.cloud.resourcemanager.v3.Projects.ListProjects], and
+        /// [SearchProjects][google.cloud.resourcemanager.v3.Projects.SearchProjects]
         /// methods.
         ///
         /// This method behaves idempotently, such that deleting a `DELETE_REQUESTED`
@@ -1941,8 +1941,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -1963,8 +1962,8 @@ pub mod projects_client {
         /// Restores the project identified by the specified
         /// `name` (for example, `projects/415104041262`).
         /// You can only use this method for a project that has a lifecycle state of
-        /// \[DELETE_REQUESTED\]
-        /// \[Projects.State.DELETE_REQUESTED\].
+        /// [DELETE_REQUESTED]
+        /// [Projects.State.DELETE_REQUESTED].
         /// After deletion starts, the project cannot be restored.
         ///
         /// The caller must have `resourcemanager.projects.undelete` permission for
@@ -1980,8 +1979,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2015,8 +2013,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2046,35 +2043,35 @@ pub mod projects_client {
         ///
         /// The following constraints apply when using `setIamPolicy()`:
         ///
-        /// * Project does not support `allUsers` and `allAuthenticatedUsers` as
-        ///  `members` in a `Binding` of a `Policy`.
+        /// + Project does not support `allUsers` and `allAuthenticatedUsers` as
+        /// `members` in a `Binding` of a `Policy`.
         ///
-        /// * The owner role can be granted to a `user`, `serviceAccount`, or a group
-        ///  that is part of an organization. For example,
-        ///  group@myownpersonaldomain.com could be added as an owner to a project in
-        ///  the myownpersonaldomain.com organization, but not the examplepetstore.com
-        ///  organization.
+        /// + The owner role can be granted to a `user`, `serviceAccount`, or a group
+        /// that is part of an organization. For example,
+        /// group@myownpersonaldomain.com could be added as an owner to a project in
+        /// the myownpersonaldomain.com organization, but not the examplepetstore.com
+        /// organization.
         ///
-        /// * Service accounts can be made owners of a project directly
-        ///  without any restrictions. However, to be added as an owner, a user must be
-        ///  invited using the Cloud Platform console and must accept the invitation.
+        /// + Service accounts can be made owners of a project directly
+        /// without any restrictions. However, to be added as an owner, a user must be
+        /// invited using the Cloud Platform console and must accept the invitation.
         ///
-        /// * A user cannot be granted the owner role using `setIamPolicy()`. The user
-        ///  must be granted the owner role using the Cloud Platform Console and must
-        ///  explicitly accept the invitation.
+        /// + A user cannot be granted the owner role using `setIamPolicy()`. The user
+        /// must be granted the owner role using the Cloud Platform Console and must
+        /// explicitly accept the invitation.
         ///
-        /// * Invitations to grant the owner role cannot be sent using
-        ///  `setIamPolicy()`;
-        ///  they must be sent only using the Cloud Platform Console.
+        /// + Invitations to grant the owner role cannot be sent using
+        /// `setIamPolicy()`;
+        /// they must be sent only using the Cloud Platform Console.
         ///
-        /// * If the project is not part of an organization, there must be at least
-        ///  one owner who has accepted the Terms of Service (ToS) agreement in the
-        ///  policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner
-        ///  from the policy will fail. This restriction also applies to legacy
-        ///  projects that no longer have owners who have accepted the ToS. Edits to
-        ///  IAM policies will be rejected until the lack of a ToS-accepting owner is
-        ///  rectified. If the project is part of an organization, you can remove all
-        ///  owners, potentially making the organization inaccessible.
+        /// + If the project is not part of an organization, there must be at least
+        /// one owner who has accepted the Terms of Service (ToS) agreement in the
+        /// policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner
+        /// from the policy will fail. This restriction also applies to legacy
+        /// projects that no longer have owners who have accepted the ToS. Edits to
+        /// IAM policies will be rejected until the lack of a ToS-accepting owner is
+        /// rectified. If the project is part of an organization, you can remove all
+        /// owners, potentially making the organization inaccessible.
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2088,8 +2085,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2124,8 +2120,7 @@ pub mod projects_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2315,7 +2310,13 @@ pub struct EffectiveTag {
 }
 /// Generated client implementations.
 pub mod tag_bindings_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Allow users to create and manage TagBindings between TagValues and
@@ -2405,8 +2406,7 @@ pub mod tag_bindings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2436,8 +2436,7 @@ pub mod tag_bindings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2467,8 +2466,7 @@ pub mod tag_bindings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2499,8 +2497,7 @@ pub mod tag_bindings_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2610,9 +2607,12 @@ pub struct ListTagHoldsRequest {
     /// the `holder` and `origin` fields are supported for filtering. Currently
     /// only `AND` syntax is supported. Some example queries are:
     ///
-    /// * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group`
-    /// * `origin = 35678234`
-    /// * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group AND origin = 35678234`
+    ///    * `holder =
+    ///      //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group`
+    ///    * `origin = 35678234`
+    ///    * `holder =
+    ///      //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group
+    ///      AND origin = 35678234`
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -2638,7 +2638,13 @@ pub struct ListTagHoldsResponse {
 }
 /// Generated client implementations.
 pub mod tag_holds_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Allow users to create and manage TagHolds for TagValues. TagHolds represent
@@ -2728,8 +2734,7 @@ pub mod tag_holds_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2759,8 +2764,7 @@ pub mod tag_holds_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2790,8 +2794,7 @@ pub mod tag_holds_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -2830,7 +2833,7 @@ pub struct TagKey {
     /// should be unique for TagKeys within the same tag namespace.
     ///
     /// The short name must be 1-63 characters, beginning and ending with
-    /// an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), underscores (\_),
+    /// an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), underscores (_),
     /// dots (.), and alphanumerics between.
     #[prost(string, tag = "3")]
     pub short_name: ::prost::alloc::string::String,
@@ -2990,19 +2993,15 @@ pub enum Purpose {
     /// intended for. The key should be `network` and the value should be in
     /// either of these two formats:
     ///
-    /// *
-    ///
+    /// -
     /// `<https://www.googleapis.com/compute/{compute_version}/projects/{project_id}/global/networks/{network_id}`>
-    ///
-    /// * `{project_id}/{network_name}`
+    /// - `{project_id}/{network_name}`
     ///
     /// Examples:
     ///
-    /// *
-    ///
+    /// -
     /// `<https://www.googleapis.com/compute/staging_v1/projects/fail-closed-load-testing/global/networks/6992953698831725600`>
-    ///
-    /// * `fail-closed-load-testing/load-testing-network`
+    /// - `fail-closed-load-testing/load-testing-network`
     GceFirewall = 1,
 }
 impl Purpose {
@@ -3012,8 +3011,8 @@ impl Purpose {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Purpose::Unspecified => "PURPOSE_UNSPECIFIED",
-            Purpose::GceFirewall => "GCE_FIREWALL",
+            Self::Unspecified => "PURPOSE_UNSPECIFIED",
+            Self::GceFirewall => "GCE_FIREWALL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3027,7 +3026,13 @@ impl Purpose {
 }
 /// Generated client implementations.
 pub mod tag_keys_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Allow users to create and manage tag keys.
@@ -3112,8 +3117,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3141,8 +3145,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3171,8 +3174,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3205,8 +3207,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3236,8 +3237,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3268,8 +3268,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3306,8 +3305,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3343,8 +3341,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3382,8 +3379,7 @@ pub mod tag_keys_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3418,7 +3414,7 @@ pub struct TagValue {
     /// should be unique for TagValues within the same parent TagKey.
     ///
     /// The short name must be 63 characters or less, beginning and ending with
-    /// an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), underscores (\_),
+    /// an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), underscores (_),
     /// dots (.), and alphanumerics between.
     #[prost(string, tag = "3")]
     pub short_name: ::prost::alloc::string::String,
@@ -3490,14 +3486,13 @@ pub struct GetTagValueRequest {
 pub struct GetNamespacedTagValueRequest {
     /// Required. A namespaced tag value name in the following format:
     ///
-    /// `{parentId}/{tagKeyShort}/{tagValueShort}`
+    ///    `{parentId}/{tagKeyShort}/{tagValueShort}`
     ///
     /// Examples:
-    ///
-    /// * `42/foo/abc` for a value with short name "abc" under the key with short
-    ///   name "foo" under the organization with ID 42
-    /// * `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
-    ///   short name "bar" under the project with ID "r2-d2"
+    /// - `42/foo/abc` for a value with short name "abc" under the key with short
+    ///    name "foo" under the organization with ID 42
+    /// - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
+    ///     short name "bar" under the project with ID "r2-d2"
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -3557,7 +3552,13 @@ pub struct DeleteTagValueRequest {
 pub struct DeleteTagValueMetadata {}
 /// Generated client implementations.
 pub mod tag_values_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Allow users to create and manage tag values.
@@ -3642,8 +3643,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3671,8 +3671,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3701,8 +3700,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3735,8 +3733,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3766,8 +3763,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3798,8 +3794,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3836,8 +3831,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3873,8 +3867,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -3912,8 +3905,7 @@ pub mod tag_values_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

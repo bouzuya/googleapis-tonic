@@ -5,15 +5,13 @@ pub struct Service {
     /// The resource name of the consumer and service.
     ///
     /// A valid name would be:
-    ///
-    /// * projects/123/services/serviceusage.googleapis.com
+    /// - projects/123/services/serviceusage.googleapis.com
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The resource name of the consumer.
     ///
     /// A valid name would be:
-    ///
-    /// * projects/123
+    /// - projects/123
     #[prost(string, tag = "5")]
     pub parent: ::prost::alloc::string::String,
     /// The service configuration of the available service.
@@ -60,8 +58,8 @@ pub struct ServiceConfig {
     #[prost(message, repeated, tag = "18")]
     pub endpoints: ::prost::alloc::vec::Vec<super::super::Endpoint>,
     /// Defines the monitored resources used by this service. This is required
-    /// by the \[Service.monitoring\]\[google.api.Service.monitoring\] and
-    /// \[Service.logging\]\[google.api.Service.logging\] configurations.
+    /// by the [Service.monitoring][google.api.Service.monitoring] and
+    /// [Service.logging][google.api.Service.logging] configurations.
     #[prost(message, repeated, tag = "25")]
     pub monitored_resources: ::prost::alloc::vec::Vec<
         super::super::MonitoredResourceDescriptor,
@@ -100,9 +98,9 @@ impl State {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Disabled => "DISABLED",
-            State::Enabled => "ENABLED",
+            Self::Unspecified => "STATE_UNSPECIFIED",
+            Self::Disabled => "DISABLED",
+            Self::Enabled => "ENABLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -197,11 +195,9 @@ pub mod disable_service_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CheckIfServiceHasUsage::Unspecified => {
-                    "CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED"
-                }
-                CheckIfServiceHasUsage::Skip => "SKIP",
-                CheckIfServiceHasUsage::Check => "CHECK",
+                Self::Unspecified => "CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED",
+                Self::Skip => "SKIP",
+                Self::Check => "CHECK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -350,7 +346,13 @@ pub struct BatchGetServicesResponse {
 }
 /// Generated client implementations.
 pub mod service_usage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Enables services that service consumers want to use on Google Cloud Platform,
@@ -439,8 +441,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -476,8 +477,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -504,8 +504,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -547,8 +546,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -580,8 +578,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -612,8 +609,7 @@ pub mod service_usage_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

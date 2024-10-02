@@ -19,7 +19,7 @@ pub struct ExternalAccountKey {
     pub b64_mac_key: ::prost::alloc::vec::Vec<u8>,
 }
 /// Creates a new
-/// \[ExternalAccountKey\]\[google.cloud.security.publicca.v1.ExternalAccountKey\] in
+/// [ExternalAccountKey][google.cloud.security.publicca.v1.ExternalAccountKey] in
 /// a given project.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateExternalAccountKeyRequest {
@@ -37,7 +37,13 @@ pub struct CreateExternalAccountKeyRequest {
 }
 /// Generated client implementations.
 pub mod public_certificate_authority_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Manages the resources required for ACME [external account
@@ -115,7 +121,7 @@ pub mod public_certificate_authority_service_client {
             self
         }
         /// Creates a new
-        /// \[ExternalAccountKey\]\[google.cloud.security.publicca.v1.ExternalAccountKey\]
+        /// [ExternalAccountKey][google.cloud.security.publicca.v1.ExternalAccountKey]
         /// bound to the project.
         pub async fn create_external_account_key(
             &mut self,
@@ -128,8 +134,7 @@ pub mod public_certificate_authority_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

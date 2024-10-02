@@ -73,9 +73,9 @@ pub mod linux_node_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CgroupMode::Unspecified => "CGROUP_MODE_UNSPECIFIED",
-                CgroupMode::V1 => "CGROUP_MODE_V1",
-                CgroupMode::V2 => "CGROUP_MODE_V2",
+                Self::Unspecified => "CGROUP_MODE_UNSPECIFIED",
+                Self::V1 => "CGROUP_MODE_V1",
+                Self::V2 => "CGROUP_MODE_V2",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -128,9 +128,9 @@ pub mod windows_node_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                OsVersion::Unspecified => "OS_VERSION_UNSPECIFIED",
-                OsVersion::Ltsc2019 => "OS_VERSION_LTSC2019",
-                OsVersion::Ltsc2022 => "OS_VERSION_LTSC2022",
+                Self::Unspecified => "OS_VERSION_UNSPECIFIED",
+                Self::Ltsc2019 => "OS_VERSION_LTSC2019",
+                Self::Ltsc2022 => "OS_VERSION_LTSC2022",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -152,11 +152,10 @@ pub struct NodeKubeletConfig {
     /// <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/>
     ///
     /// The following values are allowed.
-    ///
     /// * "none": the default, which represents the existing scheduling behavior.
     /// * "static": allows pods with certain resource characteristics to be granted
-    ///   increased CPU affinity and exclusivity on the node.
-    ///   The default value is 'none' if unspecified.
+    /// increased CPU affinity and exclusivity on the node.
+    /// The default value is 'none' if unspecified.
     #[prost(string, tag = "1")]
     pub cpu_manager_policy: ::prost::alloc::string::String,
     /// Enable CPU CFS quota enforcement for containers that specify CPU limits.
@@ -195,7 +194,7 @@ pub struct NodeKubeletConfig {
 ///
 /// GKE Autopilot clusters do not
 /// recognize parameters in `NodeConfig`. Use
-/// \[AutoprovisioningNodePoolDefaults\]\[google.container.v1.AutoprovisioningNodePoolDefaults\]
+/// [AutoprovisioningNodePoolDefaults][google.container.v1.AutoprovisioningNodePoolDefaults]
 /// instead.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeConfig {
@@ -218,11 +217,11 @@ pub struct NodeConfig {
     /// not included:
     ///
     /// * `<https://www.googleapis.com/auth/compute`> is required for mounting
-    ///   persistent storage on your nodes.
+    /// persistent storage on your nodes.
     /// * `<https://www.googleapis.com/auth/devstorage.read_only`> is required for
-    ///   communicating with **gcr.io**
-    ///   (the [Google Container
-    ///   Registry](<https://cloud.google.com/container-registry/>)).
+    /// communicating with **gcr.io**
+    /// (the [Google Container
+    /// Registry](<https://cloud.google.com/container-registry/>)).
     ///
     /// If unspecified, no scopes are added, unless Cloud Logging or Cloud
     /// Monitoring are enabled, in which case their required scopes will be added.
@@ -240,25 +239,25 @@ pub struct NodeConfig {
     /// Additionally, to avoid ambiguity, keys must not conflict with any other
     /// metadata keys for the project or be one of the reserved keys:
     ///
-    /// * "cluster-location"
-    /// * "cluster-name"
-    /// * "cluster-uid"
-    /// * "configure-sh"
-    /// * "containerd-configure-sh"
-    /// * "enable-os-login"
-    /// * "gci-ensure-gke-docker"
-    /// * "gci-metrics-enabled"
-    /// * "gci-update-strategy"
-    /// * "instance-template"
-    /// * "kube-env"
-    /// * "startup-script"
-    /// * "user-data"
-    /// * "disable-address-manager"
-    /// * "windows-startup-script-ps1"
-    /// * "common-psm1"
-    /// * "k8s-node-setup-psm1"
-    /// * "install-ssh-psm1"
-    /// * "user-profile-psm1"
+    ///   - "cluster-location"
+    ///   - "cluster-name"
+    ///   - "cluster-uid"
+    ///   - "configure-sh"
+    ///   - "containerd-configure-sh"
+    ///   - "enable-os-login"
+    ///   - "gci-ensure-gke-docker"
+    ///   - "gci-metrics-enabled"
+    ///   - "gci-update-strategy"
+    ///   - "instance-template"
+    ///   - "kube-env"
+    ///   - "startup-script"
+    ///   - "user-data"
+    ///   - "disable-address-manager"
+    ///   - "windows-startup-script-ps1"
+    ///   - "common-psm1"
+    ///   - "k8s-node-setup-psm1"
+    ///   - "install-ssh-psm1"
+    ///   - "user-profile-psm1"
     ///
     /// Values are free-form strings, and only have meaning as interpreted by
     /// the image running in the instance. The only restriction placed on them is
@@ -361,6 +360,7 @@ pub struct NodeConfig {
     /// Node kubelet configs.
     #[prost(message, optional, tag = "22")]
     pub kubelet_config: ::core::option::Option<NodeKubeletConfig>,
+    ///
     /// The Customer Managed Encryption Key used to encrypt the boot disk attached
     /// to each node in the node pool. This should be of the form
     /// projects/\[KEY_PROJECT_ID\]/locations/\[LOCATION\]/keyRings/\[RING_NAME\]/cryptoKeys/\[KEY_NAME\].
@@ -490,7 +490,7 @@ pub struct NodeNetworkConfig {
     pub pod_ipv4_cidr_block: ::prost::alloc::string::String,
     /// Whether nodes have internal IP addresses only.
     /// If enable_private_nodes is not specified, then the value is derived from
-    /// \[cluster.privateClusterConfig.enablePrivateNodes\]\[google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes\]
+    /// [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
     #[prost(bool, optional, tag = "9")]
     pub enable_private_nodes: ::core::option::Option<bool>,
     /// Network bandwidth tier configuration.
@@ -569,8 +569,8 @@ pub mod node_network_config {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Tier::Unspecified => "TIER_UNSPECIFIED",
-                    Tier::Tier1 => "TIER_1",
+                    Self::Unspecified => "TIER_UNSPECIFIED",
+                    Self::Tier1 => "TIER_1",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -664,8 +664,8 @@ pub mod sandbox_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "UNSPECIFIED",
-                Type::Gvisor => "GVISOR",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Gvisor => "GVISOR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -737,10 +737,10 @@ pub mod reservation_affinity {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "UNSPECIFIED",
-                Type::NoReservation => "NO_RESERVATION",
-                Type::AnyReservation => "ANY_RESERVATION",
-                Type::SpecificReservation => "SPECIFIC_RESERVATION",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::NoReservation => "NO_RESERVATION",
+                Self::AnyReservation => "ANY_RESERVATION",
+                Self::SpecificReservation => "SPECIFIC_RESERVATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -811,9 +811,9 @@ pub mod sole_tenant_config {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                    Operator::In => "IN",
-                    Operator::NotIn => "NOT_IN",
+                    Self::Unspecified => "OPERATOR_UNSPECIFIED",
+                    Self::In => "IN",
+                    Self::NotIn => "NOT_IN",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -863,14 +863,12 @@ pub mod containerd_config {
             /// Specifying port is supported.
             /// Wilcards are NOT supported.
             /// Examples:
-            ///
-            /// * my.customdomain.com
-            /// * 10.0.1.2:5000
+            /// - my.customdomain.com
+            /// - 10.0.1.2:5000
             #[prost(string, repeated, tag = "1")]
             pub fqdns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             /// Certificate access config. The following are supported:
-            ///
-            /// * GCPSecretManagerCertificateConfig
+            /// - GCPSecretManagerCertificateConfig
             #[prost(
                 oneof = "certificate_authority_domain_config::CertificateConfig",
                 tags = "2"
@@ -892,8 +890,7 @@ pub mod containerd_config {
                 pub secret_uri: ::prost::alloc::string::String,
             }
             /// Certificate access config. The following are supported:
-            ///
-            /// * GCPSecretManagerCertificateConfig
+            /// - GCPSecretManagerCertificateConfig
             #[derive(Clone, PartialEq, ::prost::Oneof)]
             pub enum CertificateConfig {
                 /// Google Secret Manager (GCP) certificate configuration.
@@ -953,10 +950,10 @@ pub mod node_taint {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Effect::Unspecified => "EFFECT_UNSPECIFIED",
-                Effect::NoSchedule => "NO_SCHEDULE",
-                Effect::PreferNoSchedule => "PREFER_NO_SCHEDULE",
-                Effect::NoExecute => "NO_EXECUTE",
+                Self::Unspecified => "EFFECT_UNSPECIFIED",
+                Self::NoSchedule => "NO_SCHEDULE",
+                Self::PreferNoSchedule => "PREFER_NO_SCHEDULE",
+                Self::NoExecute => "NO_EXECUTE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1205,7 +1202,7 @@ pub struct PrivateClusterConfig {
         PrivateClusterMasterGlobalAccessConfig,
     >,
     /// Subnet to provision the master's private endpoint during cluster creation.
-    /// Specified in projects/*/regions/*/subnetworks/\* format.
+    /// Specified in projects/*/regions/*/subnetworks/* format.
     #[prost(string, tag = "10")]
     pub private_endpoint_subnetwork: ::prost::alloc::string::String,
 }
@@ -1261,9 +1258,9 @@ pub mod cloud_run_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LoadBalancerType::Unspecified => "LOAD_BALANCER_TYPE_UNSPECIFIED",
-                LoadBalancerType::External => "LOAD_BALANCER_TYPE_EXTERNAL",
-                LoadBalancerType::Internal => "LOAD_BALANCER_TYPE_INTERNAL",
+                Self::Unspecified => "LOAD_BALANCER_TYPE_UNSPECIFIED",
+                Self::External => "LOAD_BALANCER_TYPE_EXTERNAL",
+                Self::Internal => "LOAD_BALANCER_TYPE_INTERNAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1416,8 +1413,8 @@ pub mod network_policy {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Provider::Unspecified => "PROVIDER_UNSPECIFIED",
-                Provider::Calico => "CALICO",
+                Self::Unspecified => "PROVIDER_UNSPECIFIED",
+                Self::Calico => "CALICO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1476,11 +1473,9 @@ pub mod binary_authorization {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EvaluationMode::Unspecified => "EVALUATION_MODE_UNSPECIFIED",
-                EvaluationMode::Disabled => "DISABLED",
-                EvaluationMode::ProjectSingletonPolicyEnforce => {
-                    "PROJECT_SINGLETON_POLICY_ENFORCE"
-                }
+                Self::Unspecified => "EVALUATION_MODE_UNSPECIFIED",
+                Self::Disabled => "DISABLED",
+                Self::ProjectSingletonPolicyEnforce => "PROJECT_SINGLETON_POLICY_ENFORCE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1720,9 +1715,9 @@ pub struct Cluster {
     /// Currently available options:
     ///
     /// * `logging.googleapis.com/kubernetes` - The Cloud Logging
-    ///   service with a Kubernetes-native resource model
+    /// service with a Kubernetes-native resource model
     /// * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-    ///   available as of GKE 1.15).
+    ///    available as of GKE 1.15).
     /// * `none` - no logs will be exported from the cluster.
     ///
     /// If left as an empty string,`logging.googleapis.com/kubernetes` will be
@@ -1733,9 +1728,9 @@ pub struct Cluster {
     /// Currently available options:
     ///
     /// * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
-    ///   service with a Kubernetes-native resource model
+    /// service with a Kubernetes-native resource model
     /// * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-    ///   longer available as of GKE 1.15).
+    ///    longer available as of GKE 1.15).
     /// * `none` - No metrics will be exported from the cluster.
     ///
     /// If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
@@ -1902,11 +1897,11 @@ pub struct Cluster {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// * "latest": picks the highest valid Kubernetes version
-    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// * "","-": picks the default Kubernetes version
+    /// - "latest": picks the highest valid Kubernetes version
+    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// - "","-": picks the default Kubernetes version
     #[prost(string, tag = "103")]
     pub initial_cluster_version: ::prost::alloc::string::String,
     /// Output only. The current software version of the master endpoint.
@@ -2064,13 +2059,13 @@ pub mod cluster {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Provisioning => "PROVISIONING",
-                Status::Running => "RUNNING",
-                Status::Reconciling => "RECONCILING",
-                Status::Stopping => "STOPPING",
-                Status::Error => "ERROR",
-                Status::Degraded => "DEGRADED",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Provisioning => "PROVISIONING",
+                Self::Running => "RUNNING",
+                Self::Reconciling => "RECONCILING",
+                Self::Stopping => "STOPPING",
+                Self::Error => "ERROR",
+                Self::Degraded => "DEGRADED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2142,10 +2137,10 @@ pub mod security_posture_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Disabled => "DISABLED",
-                Mode::Basic => "BASIC",
-                Mode::Enterprise => "ENTERPRISE",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Disabled => "DISABLED",
+                Self::Basic => "BASIC",
+                Self::Enterprise => "ENTERPRISE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2190,10 +2185,10 @@ pub mod security_posture_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                VulnerabilityMode::Unspecified => "VULNERABILITY_MODE_UNSPECIFIED",
-                VulnerabilityMode::VulnerabilityDisabled => "VULNERABILITY_DISABLED",
-                VulnerabilityMode::VulnerabilityBasic => "VULNERABILITY_BASIC",
-                VulnerabilityMode::VulnerabilityEnterprise => "VULNERABILITY_ENTERPRISE",
+                Self::Unspecified => "VULNERABILITY_MODE_UNSPECIFIED",
+                Self::VulnerabilityDisabled => "VULNERABILITY_DISABLED",
+                Self::VulnerabilityBasic => "VULNERABILITY_BASIC",
+                Self::VulnerabilityEnterprise => "VULNERABILITY_ENTERPRISE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2264,20 +2259,20 @@ pub struct ClusterUpdate {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// * "latest": picks the highest valid Kubernetes version
-    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// * "-": picks the Kubernetes master version
+    /// - "latest": picks the highest valid Kubernetes version
+    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// - "-": picks the Kubernetes master version
     #[prost(string, tag = "4")]
     pub desired_node_version: ::prost::alloc::string::String,
     /// The monitoring service the cluster should use to write metrics.
     /// Currently available options:
     ///
     /// * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
-    ///   service with a Kubernetes-native resource model
+    /// service with a Kubernetes-native resource model
     /// * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-    ///   longer available as of GKE 1.15).
+    ///    longer available as of GKE 1.15).
     /// * `none` - No metrics will be exported from the cluster.
     ///
     /// If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
@@ -2347,9 +2342,9 @@ pub struct ClusterUpdate {
     /// Currently available options:
     ///
     /// * `logging.googleapis.com/kubernetes` - The Cloud Logging
-    ///   service with a Kubernetes-native resource model
+    /// service with a Kubernetes-native resource model
     /// * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-    ///   available as of GKE 1.15).
+    ///    available as of GKE 1.15).
     /// * `none` - no logs will be exported from the cluster.
     ///
     /// If left as an empty string,`logging.googleapis.com/kubernetes` will be
@@ -2367,9 +2362,9 @@ pub struct ClusterUpdate {
     /// The desired private cluster configuration. master_global_access_config is
     /// the only field that can be changed via this field.
     /// See also
-    /// \[ClusterUpdate.desired_enable_private_endpoint\]\[google.container.v1.ClusterUpdate.desired_enable_private_endpoint\]
+    /// [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
     /// for modifying other fields within
-    /// \[PrivateClusterConfig\]\[google.container.v1.PrivateClusterConfig\].
+    /// [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
     #[prost(message, optional, tag = "25")]
     pub desired_private_cluster_config: ::core::option::Option<PrivateClusterConfig>,
     /// The desired config of Intra-node visibility.
@@ -2423,11 +2418,11 @@ pub struct ClusterUpdate {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// * "latest": picks the highest valid Kubernetes version
-    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// * "-": picks the default Kubernetes version
+    /// - "latest": picks the highest valid Kubernetes version
+    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// - "-": picks the default Kubernetes version
     #[prost(string, tag = "100")]
     pub desired_master_version: ::prost::alloc::string::String,
     /// The desired GCFS config for the cluster
@@ -2576,14 +2571,11 @@ pub struct Operation {
     ///
     /// Examples:
     ///
-    /// *
-    ///
+    /// -
     /// ##
-    ///
     /// `<https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`>
     ///
     /// ##
-    ///
     /// `<https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`>
     ///
     /// `<https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`>
@@ -2655,11 +2647,11 @@ pub mod operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Pending => "PENDING",
-                Status::Running => "RUNNING",
-                Status::Done => "DONE",
-                Status::Aborting => "ABORTING",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Pending => "PENDING",
+                Self::Running => "RUNNING",
+                Self::Done => "DONE",
+                Self::Aborting => "ABORTING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2693,18 +2685,18 @@ pub mod operation {
         /// The cluster is being created. The cluster should be assumed to be
         /// unusable until the operation finishes.
         ///
-        /// In the event of the operation failing, the cluster will enter the \[ERROR
-        /// state\]\[Cluster.Status.ERROR\] and eventually be deleted.
+        /// In the event of the operation failing, the cluster will enter the [ERROR
+        /// state][Cluster.Status.ERROR] and eventually be deleted.
         CreateCluster = 1,
         /// The cluster is being deleted. The cluster should be assumed to be
         /// unusable as soon as this operation starts.
         ///
-        /// In the event of the operation failing, the cluster will enter the \[ERROR
-        /// state\]\[Cluster.Status.ERROR\] and the deletion will be automatically
+        /// In the event of the operation failing, the cluster will enter the [ERROR
+        /// state][Cluster.Status.ERROR] and the deletion will be automatically
         /// retried until completed.
         DeleteCluster = 2,
-        /// The \[cluster
-        /// version\]\[google.container.v1.ClusterUpdate.desired_master_version\] is
+        /// The [cluster
+        /// version][google.container.v1.ClusterUpdate.desired_master_version] is
         /// being updated. Note that this includes "upgrades" to the same version,
         /// which are simply a recreation. This also includes
         /// [auto-upgrades](<https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-upgrades#upgrading_automatically>).
@@ -2716,8 +2708,8 @@ pub mod operation {
         /// [auto-upgrades](<https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-upgrades>).
         ///
         /// This operation sets the
-        /// \[progress\]\[google.container.v1.Operation.progress\] field and may be
-        /// \[canceled\]\[google.container.v1.ClusterManager.CancelOperation\].
+        /// [progress][google.container.v1.Operation.progress] field and may be
+        /// [canceled][google.container.v1.ClusterManager.CancelOperation].
         ///
         /// The upgrade strategy depends on [node pool
         /// configuration](<https://cloud.google.com/kubernetes-engine/docs/concepts/node-pool-upgrade-strategies>).
@@ -2753,7 +2745,7 @@ pub mod operation {
         /// The node pool is being deleted. The node pool should be assumed to be
         /// unusable as soon as this operation starts.
         DeleteNodePool = 8,
-        /// The node pool's \[manamagent\]\[google.container.v1.NodePool.management\]
+        /// The node pool's [manamagent][google.container.v1.NodePool.management]
         /// field is being updated. These operations only update metadata and may be
         /// concurrent with most other operations.
         SetNodePoolManagement = 9,
@@ -2764,22 +2756,22 @@ pub mod operation {
         /// multiple repairs occurring on the same node pool.
         AutoRepairNodes = 10,
         /// Unused. Automatic node upgrade uses
-        /// \[UPGRADE_NODES\]\[google.container.v1.Operation.Type.UPGRADE_NODES\].
+        /// [UPGRADE_NODES][google.container.v1.Operation.Type.UPGRADE_NODES].
         AutoUpgradeNodes = 11,
         /// Unused. Updating labels uses
-        /// \[UPDATE_CLUSTER\]\[google.container.v1.Operation.Type.UPDATE_CLUSTER\].
+        /// [UPDATE_CLUSTER][google.container.v1.Operation.Type.UPDATE_CLUSTER].
         SetLabels = 12,
         /// Unused. Updating master auth uses
-        /// \[UPDATE_CLUSTER\]\[google.container.v1.Operation.Type.UPDATE_CLUSTER\].
+        /// [UPDATE_CLUSTER][google.container.v1.Operation.Type.UPDATE_CLUSTER].
         SetMasterAuth = 13,
         /// The node pool is being resized. With the exception of resizing to or from
         /// size zero, the node pool is generally usable during this operation.
         SetNodePoolSize = 14,
         /// Unused. Updating network policy uses
-        /// \[UPDATE_CLUSTER\]\[google.container.v1.Operation.Type.UPDATE_CLUSTER\].
+        /// [UPDATE_CLUSTER][google.container.v1.Operation.Type.UPDATE_CLUSTER].
         SetNetworkPolicy = 15,
         /// Unused. Updating maintenance policy uses
-        /// \[UPDATE_CLUSTER\]\[google.container.v1.Operation.Type.UPDATE_CLUSTER\].
+        /// [UPDATE_CLUSTER][google.container.v1.Operation.Type.UPDATE_CLUSTER].
         SetMaintenancePolicy = 16,
         /// The control plane is being resized. This operation type is initiated by
         /// GKE. These operations are often performed preemptively to ensure that the
@@ -2799,25 +2791,25 @@ pub mod operation {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::CreateCluster => "CREATE_CLUSTER",
-                Type::DeleteCluster => "DELETE_CLUSTER",
-                Type::UpgradeMaster => "UPGRADE_MASTER",
-                Type::UpgradeNodes => "UPGRADE_NODES",
-                Type::RepairCluster => "REPAIR_CLUSTER",
-                Type::UpdateCluster => "UPDATE_CLUSTER",
-                Type::CreateNodePool => "CREATE_NODE_POOL",
-                Type::DeleteNodePool => "DELETE_NODE_POOL",
-                Type::SetNodePoolManagement => "SET_NODE_POOL_MANAGEMENT",
-                Type::AutoRepairNodes => "AUTO_REPAIR_NODES",
-                Type::AutoUpgradeNodes => "AUTO_UPGRADE_NODES",
-                Type::SetLabels => "SET_LABELS",
-                Type::SetMasterAuth => "SET_MASTER_AUTH",
-                Type::SetNodePoolSize => "SET_NODE_POOL_SIZE",
-                Type::SetNetworkPolicy => "SET_NETWORK_POLICY",
-                Type::SetMaintenancePolicy => "SET_MAINTENANCE_POLICY",
-                Type::ResizeCluster => "RESIZE_CLUSTER",
-                Type::FleetFeatureUpgrade => "FLEET_FEATURE_UPGRADE",
+                Self::Unspecified => "TYPE_UNSPECIFIED",
+                Self::CreateCluster => "CREATE_CLUSTER",
+                Self::DeleteCluster => "DELETE_CLUSTER",
+                Self::UpgradeMaster => "UPGRADE_MASTER",
+                Self::UpgradeNodes => "UPGRADE_NODES",
+                Self::RepairCluster => "REPAIR_CLUSTER",
+                Self::UpdateCluster => "UPDATE_CLUSTER",
+                Self::CreateNodePool => "CREATE_NODE_POOL",
+                Self::DeleteNodePool => "DELETE_NODE_POOL",
+                Self::SetNodePoolManagement => "SET_NODE_POOL_MANAGEMENT",
+                Self::AutoRepairNodes => "AUTO_REPAIR_NODES",
+                Self::AutoUpgradeNodes => "AUTO_UPGRADE_NODES",
+                Self::SetLabels => "SET_LABELS",
+                Self::SetMasterAuth => "SET_MASTER_AUTH",
+                Self::SetNodePoolSize => "SET_NODE_POOL_SIZE",
+                Self::SetNetworkPolicy => "SET_NETWORK_POLICY",
+                Self::SetMaintenancePolicy => "SET_MAINTENANCE_POLICY",
+                Self::ResizeCluster => "RESIZE_CLUSTER",
+                Self::FleetFeatureUpgrade => "FLEET_FEATURE_UPGRADE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2859,11 +2851,11 @@ pub struct OperationProgress {
     #[prost(enumeration = "operation::Status", tag = "2")]
     pub status: i32,
     /// Progress metric bundle, for example:
-    /// metrics: \[{name: "nodes done",     int_value: 15},
-    /// {name: "nodes total",    int_value: 32}\]
+    ///    metrics: [{name: "nodes done",     int_value: 15},
+    ///              {name: "nodes total",    int_value: 32}]
     /// or
-    /// metrics: \[{name: "progress",       double_value: 0.56},
-    /// {name: "progress scale", double_value: 1.0}\]
+    ///    metrics: [{name: "progress",       double_value: 0.56},
+    ///              {name: "progress scale", double_value: 1.0}]
     #[prost(message, repeated, tag = "3")]
     pub metrics: ::prost::alloc::vec::Vec<operation_progress::Metric>,
     /// Substages of an operation or a stage.
@@ -3011,11 +3003,11 @@ pub struct UpdateNodePoolRequest {
     /// Users may specify either explicit versions offered by Kubernetes Engine or
     /// version aliases, which have the following behavior:
     ///
-    /// * "latest": picks the highest valid Kubernetes version
-    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// * "-": picks the Kubernetes master version
+    /// - "latest": picks the highest valid Kubernetes version
+    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// - "-": picks the Kubernetes master version
     #[prost(string, tag = "5")]
     pub node_version: ::prost::alloc::string::String,
     /// Required. The desired image type for the node pool. Please see
@@ -3190,9 +3182,9 @@ pub struct SetLoggingServiceRequest {
     /// Currently available options:
     ///
     /// * `logging.googleapis.com/kubernetes` - The Cloud Logging
-    ///   service with a Kubernetes-native resource model
+    /// service with a Kubernetes-native resource model
     /// * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-    ///   available as of GKE 1.15).
+    ///    available as of GKE 1.15).
     /// * `none` - no logs will be exported from the cluster.
     ///
     /// If left as an empty string,`logging.googleapis.com/kubernetes` will be
@@ -3229,9 +3221,9 @@ pub struct SetMonitoringServiceRequest {
     /// Currently available options:
     ///
     /// * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
-    ///   service with a Kubernetes-native resource model
+    /// service with a Kubernetes-native resource model
     /// * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-    ///   longer available as of GKE 1.15).
+    ///    longer available as of GKE 1.15).
     /// * `none` - No metrics will be exported from the cluster.
     ///
     /// If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
@@ -3334,11 +3326,11 @@ pub struct UpdateMasterRequest {
     /// Users may specify either explicit versions offered by Kubernetes Engine or
     /// version aliases, which have the following behavior:
     ///
-    /// * "latest": picks the highest valid Kubernetes version
-    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// * "-": picks the default Kubernetes version
+    /// - "latest": picks the highest valid Kubernetes version
+    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// - "-": picks the default Kubernetes version
     #[prost(string, tag = "4")]
     pub master_version: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to update.
@@ -3413,10 +3405,10 @@ pub mod set_master_auth_request {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Action::Unknown => "UNKNOWN",
-                Action::SetPassword => "SET_PASSWORD",
-                Action::GeneratePassword => "GENERATE_PASSWORD",
-                Action::SetUsername => "SET_USERNAME",
+                Self::Unknown => "UNKNOWN",
+                Self::SetPassword => "SET_PASSWORD",
+                Self::GeneratePassword => "GENERATE_PASSWORD",
+                Self::SetUsername => "SET_USERNAME",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3786,7 +3778,7 @@ pub mod blue_green_settings {
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum UpdateBatchSize {
             /// Percentage of the blue pool nodes to drain in a batch.
-            /// The range of this field should be (0.0, 1.0\].
+            /// The range of this field should be (0.0, 1.0].
             #[prost(float, tag = "1")]
             BatchPercentage(f32),
             /// Number of blue nodes to drain in a batch.
@@ -3932,25 +3924,23 @@ pub mod node_pool {
     ///
     /// If the strategy is ROLLING, use max_surge and max_unavailable to control
     /// the level of parallelism and the level of disruption caused by upgrade.
-    ///
     /// 1. maxSurge controls the number of additional nodes that can be added to
-    ///    the node pool temporarily for the time of the upgrade to increase the
-    ///    number of available nodes.
-    /// 1. maxUnavailable controls the number of nodes that can be simultaneously
-    ///    unavailable.
-    /// 1. (maxUnavailable + maxSurge) determines the level of parallelism (how
-    ///    many nodes are being upgraded at the same time).
+    /// the node pool temporarily for the time of the upgrade to increase the
+    /// number of available nodes.
+    /// 2. maxUnavailable controls the number of nodes that can be simultaneously
+    /// unavailable.
+    /// 3. (maxUnavailable + maxSurge) determines the level of parallelism (how
+    /// many nodes are being upgraded at the same time).
     ///
     /// If the strategy is BLUE_GREEN, use blue_green_settings to configure the
     /// blue-green upgrade related settings.
-    ///
     /// 1. standard_rollout_policy is the default policy. The policy is used to
-    ///    control the way blue pool gets drained. The draining is executed in the
-    ///    batch mode. The batch size could be specified as either percentage of the
-    ///    node pool size or the number of nodes. batch_soak_duration is the soak
-    ///    time after each batch gets drained.
-    /// 1. node_pool_soak_duration is the soak time after all blue nodes are
-    ///    drained. After this period, the blue pool nodes will be deleted.
+    /// control the way blue pool gets drained. The draining is executed in the
+    /// batch mode. The batch size could be specified as either percentage of the
+    /// node pool size or the number of nodes. batch_soak_duration is the soak
+    /// time after each batch gets drained.
+    /// 2. node_pool_soak_duration is the soak time after all blue nodes are
+    /// drained. After this period, the blue pool nodes will be deleted.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct UpgradeSettings {
         /// The maximum number of nodes that can be created beyond the current size
@@ -4047,14 +4037,14 @@ pub mod node_pool {
                 /// (if the ProtoBuf definition does not change) and safe for programmatic use.
                 pub fn as_str_name(&self) -> &'static str {
                     match self {
-                        Phase::Unspecified => "PHASE_UNSPECIFIED",
-                        Phase::UpdateStarted => "UPDATE_STARTED",
-                        Phase::CreatingGreenPool => "CREATING_GREEN_POOL",
-                        Phase::CordoningBluePool => "CORDONING_BLUE_POOL",
-                        Phase::DrainingBluePool => "DRAINING_BLUE_POOL",
-                        Phase::NodePoolSoaking => "NODE_POOL_SOAKING",
-                        Phase::DeletingBluePool => "DELETING_BLUE_POOL",
-                        Phase::RollbackStarted => "ROLLBACK_STARTED",
+                        Self::Unspecified => "PHASE_UNSPECIFIED",
+                        Self::UpdateStarted => "UPDATE_STARTED",
+                        Self::CreatingGreenPool => "CREATING_GREEN_POOL",
+                        Self::CordoningBluePool => "CORDONING_BLUE_POOL",
+                        Self::DrainingBluePool => "DRAINING_BLUE_POOL",
+                        Self::NodePoolSoaking => "NODE_POOL_SOAKING",
+                        Self::DeletingBluePool => "DELETING_BLUE_POOL",
+                        Self::RollbackStarted => "ROLLBACK_STARTED",
                     }
                 }
                 /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4120,8 +4110,8 @@ pub mod node_pool {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::Compact => "COMPACT",
+                    Self::Unspecified => "TYPE_UNSPECIFIED",
+                    Self::Compact => "COMPACT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4186,13 +4176,13 @@ pub mod node_pool {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unspecified => "STATUS_UNSPECIFIED",
-                Status::Provisioning => "PROVISIONING",
-                Status::Running => "RUNNING",
-                Status::RunningWithError => "RUNNING_WITH_ERROR",
-                Status::Reconciling => "RECONCILING",
-                Status::Stopping => "STOPPING",
-                Status::Error => "ERROR",
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Provisioning => "PROVISIONING",
+                Self::Running => "RUNNING",
+                Self::RunningWithError => "RUNNING_WITH_ERROR",
+                Self::Reconciling => "RECONCILING",
+                Self::Stopping => "STOPPING",
+                Self::Error => "ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4364,9 +4354,9 @@ pub mod maintenance_exclusion_options {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Scope::NoUpgrades => "NO_UPGRADES",
-                Scope::NoMinorUpgrades => "NO_MINOR_UPGRADES",
-                Scope::NoMinorOrNodeUpgrades => "NO_MINOR_OR_NODE_UPGRADES",
+                Self::NoUpgrades => "NO_UPGRADES",
+                Self::NoMinorUpgrades => "NO_MINOR_UPGRADES",
+                Self::NoMinorOrNodeUpgrades => "NO_MINOR_OR_NODE_UPGRADES",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4401,8 +4391,7 @@ pub struct RecurringTimeWindow {
     ///
     /// This specifies how frequently the window starts. Eg, if you wanted to have
     /// a 9-5 UTC-4 window every weekday, you'd use something like:
-    ///
-    /// ```text,
+    /// ```
     /// start time = 2019-01-01T09:00:00-0400
     /// end time = 2019-01-01T17:00:00-0400
     /// recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
@@ -4410,8 +4399,7 @@ pub struct RecurringTimeWindow {
     ///
     /// Windows can span multiple days. Eg, to make the window encompass every
     /// weekend from midnight Saturday till the last minute of Sunday UTC:
-    ///
-    /// ```text,
+    /// ```
     /// start time = 2019-01-05T00:00:00Z
     /// end time = 2019-01-07T23:59:00Z
     /// recurrence = FREQ=WEEKLY;BYDAY=SA
@@ -4624,9 +4612,9 @@ pub mod cluster_autoscaling {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                AutoscalingProfile::ProfileUnspecified => "PROFILE_UNSPECIFIED",
-                AutoscalingProfile::OptimizeUtilization => "OPTIMIZE_UTILIZATION",
-                AutoscalingProfile::Balanced => "BALANCED",
+                Self::ProfileUnspecified => "PROFILE_UNSPECIFIED",
+                Self::OptimizeUtilization => "OPTIMIZE_UTILIZATION",
+                Self::Balanced => "BALANCED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4724,7 +4712,7 @@ pub struct NodePoolAutoscaling {
     #[prost(bool, tag = "1")]
     pub enabled: bool,
     /// Minimum number of nodes for one location in the NodePool. Must be >= 1 and
-    /// \<= max_node_count.
+    /// <= max_node_count.
     #[prost(int32, tag = "2")]
     pub min_node_count: i32,
     /// Maximum number of nodes for one location in the NodePool. Must be >=
@@ -4739,13 +4727,13 @@ pub struct NodePoolAutoscaling {
     pub location_policy: i32,
     /// Minimum number of nodes in the node pool. Must be greater than 1 less than
     /// total_max_node_count.
-    /// The total\_\*\_node_count fields are mutually exclusive with the \*\_node_count
+    /// The total_*_node_count fields are mutually exclusive with the *_node_count
     /// fields.
     #[prost(int32, tag = "6")]
     pub total_min_node_count: i32,
     /// Maximum number of nodes in the node pool. Must be greater than
     /// total_min_node_count. There has to be enough quota to scale up the cluster.
-    /// The total\_\*\_node_count fields are mutually exclusive with the \*\_node_count
+    /// The total_*_node_count fields are mutually exclusive with the *_node_count
     /// fields.
     #[prost(int32, tag = "7")]
     pub total_max_node_count: i32,
@@ -4782,9 +4770,9 @@ pub mod node_pool_autoscaling {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                LocationPolicy::Unspecified => "LOCATION_POLICY_UNSPECIFIED",
-                LocationPolicy::Balanced => "BALANCED",
-                LocationPolicy::Any => "ANY",
+                Self::Unspecified => "LOCATION_POLICY_UNSPECIFIED",
+                Self::Balanced => "BALANCED",
+                Self::Any => "ANY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4991,9 +4979,9 @@ pub mod gpu_sharing_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                GpuSharingStrategy::Unspecified => "GPU_SHARING_STRATEGY_UNSPECIFIED",
-                GpuSharingStrategy::TimeSharing => "TIME_SHARING",
-                GpuSharingStrategy::Mps => "MPS",
+                Self::Unspecified => "GPU_SHARING_STRATEGY_UNSPECIFIED",
+                Self::TimeSharing => "TIME_SHARING",
+                Self::Mps => "MPS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5051,10 +5039,10 @@ pub mod gpu_driver_installation_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                GpuDriverVersion::Unspecified => "GPU_DRIVER_VERSION_UNSPECIFIED",
-                GpuDriverVersion::InstallationDisabled => "INSTALLATION_DISABLED",
-                GpuDriverVersion::Default => "DEFAULT",
-                GpuDriverVersion::Latest => "LATEST",
+                Self::Unspecified => "GPU_DRIVER_VERSION_UNSPECIFIED",
+                Self::InstallationDisabled => "INSTALLATION_DISABLED",
+                Self::Default => "DEFAULT",
+                Self::Latest => "LATEST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5113,9 +5101,9 @@ pub mod workload_metadata_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::GceMetadata => "GCE_METADATA",
-                Mode::GkeMetadata => "GKE_METADATA",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::GceMetadata => "GCE_METADATA",
+                Self::GkeMetadata => "GKE_METADATA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5240,13 +5228,13 @@ pub mod status_condition {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Code::Unknown => "UNKNOWN",
-                Code::GceStockout => "GCE_STOCKOUT",
-                Code::GkeServiceAccountDeleted => "GKE_SERVICE_ACCOUNT_DELETED",
-                Code::GceQuotaExceeded => "GCE_QUOTA_EXCEEDED",
-                Code::SetByOperator => "SET_BY_OPERATOR",
-                Code::CloudKmsKeyError => "CLOUD_KMS_KEY_ERROR",
-                Code::CaExpiring => "CA_EXPIRING",
+                Self::Unknown => "UNKNOWN",
+                Self::GceStockout => "GCE_STOCKOUT",
+                Self::GkeServiceAccountDeleted => "GKE_SERVICE_ACCOUNT_DELETED",
+                Self::GceQuotaExceeded => "GCE_QUOTA_EXCEEDED",
+                Self::SetByOperator => "SET_BY_OPERATOR",
+                Self::CloudKmsKeyError => "CLOUD_KMS_KEY_ERROR",
+                Self::CaExpiring => "CA_EXPIRING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5268,7 +5256,7 @@ pub mod status_condition {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkConfig {
     /// Output only. The relative name of the Google Compute Engine
-    /// \[network\][google.container.v1.NetworkConfig.network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>)
+    /// [network][google.container.v1.NetworkConfig.network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>)
     /// to which the cluster is connected. Example:
     /// projects/my-project/global/networks/my-network
     #[prost(string, tag = "1")]
@@ -5372,8 +5360,8 @@ pub mod network_config {
             /// (if the ProtoBuf definition does not change) and safe for programmatic use.
             pub fn as_str_name(&self) -> &'static str {
                 match self {
-                    Tier::Unspecified => "TIER_UNSPECIFIED",
-                    Tier::Tier1 => "TIER_1",
+                    Self::Unspecified => "TIER_UNSPECIFIED",
+                    Self::Tier1 => "TIER_1",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5428,10 +5416,10 @@ pub mod gateway_api_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Channel::Unspecified => "CHANNEL_UNSPECIFIED",
-                Channel::Disabled => "CHANNEL_DISABLED",
-                Channel::Experimental => "CHANNEL_EXPERIMENTAL",
-                Channel::Standard => "CHANNEL_STANDARD",
+                Self::Unspecified => "CHANNEL_UNSPECIFIED",
+                Self::Disabled => "CHANNEL_DISABLED",
+                Self::Experimental => "CHANNEL_EXPERIMENTAL",
+                Self::Standard => "CHANNEL_STANDARD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5612,10 +5600,10 @@ pub mod autopilot_compatibility_issue {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                IssueType::Unspecified => "UNSPECIFIED",
-                IssueType::Incompatibility => "INCOMPATIBILITY",
-                IssueType::AdditionalConfigRequired => "ADDITIONAL_CONFIG_REQUIRED",
-                IssueType::PassedWithOptionalConfig => "PASSED_WITH_OPTIONAL_CONFIG",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Incompatibility => "INCOMPATIBILITY",
+                Self::AdditionalConfigRequired => "ADDITIONAL_CONFIG_REQUIRED",
+                Self::PassedWithOptionalConfig => "PASSED_WITH_OPTIONAL_CONFIG",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5695,11 +5683,11 @@ pub mod release_channel {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Channel::Unspecified => "UNSPECIFIED",
-                Channel::Rapid => "RAPID",
-                Channel::Regular => "REGULAR",
-                Channel::Stable => "STABLE",
-                Channel::Extended => "EXTENDED",
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Rapid => "RAPID",
+                Self::Regular => "REGULAR",
+                Self::Stable => "STABLE",
+                Self::Extended => "EXTENDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5786,10 +5774,10 @@ pub mod dns_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Provider::Unspecified => "PROVIDER_UNSPECIFIED",
-                Provider::PlatformDefault => "PLATFORM_DEFAULT",
-                Provider::CloudDns => "CLOUD_DNS",
-                Provider::KubeDns => "KUBE_DNS",
+                Self::Unspecified => "PROVIDER_UNSPECIFIED",
+                Self::PlatformDefault => "PLATFORM_DEFAULT",
+                Self::CloudDns => "CLOUD_DNS",
+                Self::KubeDns => "KUBE_DNS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5831,9 +5819,9 @@ pub mod dns_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                DnsScope::Unspecified => "DNS_SCOPE_UNSPECIFIED",
-                DnsScope::ClusterScope => "CLUSTER_SCOPE",
-                DnsScope::VpcScope => "VPC_SCOPE",
+                Self::Unspecified => "DNS_SCOPE_UNSPECIFIED",
+                Self::ClusterScope => "CLUSTER_SCOPE",
+                Self::VpcScope => "VPC_SCOPE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5880,7 +5868,7 @@ pub struct MeshCertificates {
     /// WorkloadCertificateConfig Custom Resource.
     ///
     /// Requires Workload Identity
-    /// (\[workload_pool\]\[google.container.v1.WorkloadIdentityConfig.workload_pool\]
+    /// ([workload_pool][google.container.v1.WorkloadIdentityConfig.workload_pool]
     /// must be non-empty).
     #[prost(message, optional, tag = "1")]
     pub enable_certificates: ::core::option::Option<bool>,
@@ -5956,9 +5944,9 @@ pub mod database_encryption {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unknown => "UNKNOWN",
-                State::Encrypted => "ENCRYPTED",
-                State::Decrypted => "DECRYPTED",
+                Self::Unknown => "UNKNOWN",
+                Self::Encrypted => "ENCRYPTED",
+                Self::Decrypted => "DECRYPTED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6010,13 +5998,13 @@ pub mod database_encryption {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                CurrentState::Unspecified => "CURRENT_STATE_UNSPECIFIED",
-                CurrentState::Encrypted => "CURRENT_STATE_ENCRYPTED",
-                CurrentState::Decrypted => "CURRENT_STATE_DECRYPTED",
-                CurrentState::EncryptionPending => "CURRENT_STATE_ENCRYPTION_PENDING",
-                CurrentState::EncryptionError => "CURRENT_STATE_ENCRYPTION_ERROR",
-                CurrentState::DecryptionPending => "CURRENT_STATE_DECRYPTION_PENDING",
-                CurrentState::DecryptionError => "CURRENT_STATE_DECRYPTION_ERROR",
+                Self::Unspecified => "CURRENT_STATE_UNSPECIFIED",
+                Self::Encrypted => "CURRENT_STATE_ENCRYPTED",
+                Self::Decrypted => "CURRENT_STATE_DECRYPTED",
+                Self::EncryptionPending => "CURRENT_STATE_ENCRYPTION_PENDING",
+                Self::EncryptionError => "CURRENT_STATE_ENCRYPTION_ERROR",
+                Self::DecryptionPending => "CURRENT_STATE_DECRYPTION_PENDING",
+                Self::DecryptionError => "CURRENT_STATE_DECRYPTION_ERROR",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6126,11 +6114,11 @@ pub mod usable_subnetwork_secondary_range {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Status::Unknown => "UNKNOWN",
-                Status::Unused => "UNUSED",
-                Status::InUseService => "IN_USE_SERVICE",
-                Status::InUseShareablePod => "IN_USE_SHAREABLE_POD",
-                Status::InUseManagedPod => "IN_USE_MANAGED_POD",
+                Self::Unknown => "UNKNOWN",
+                Self::Unused => "UNUSED",
+                Self::InUseService => "IN_USE_SERVICE",
+                Self::InUseShareablePod => "IN_USE_SHAREABLE_POD",
+                Self::InUseManagedPod => "IN_USE_MANAGED_POD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6312,10 +6300,10 @@ pub mod notification_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::UpgradeAvailableEvent => "UPGRADE_AVAILABLE_EVENT",
-                EventType::UpgradeEvent => "UPGRADE_EVENT",
-                EventType::SecurityBulletinEvent => "SECURITY_BULLETIN_EVENT",
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::UpgradeAvailableEvent => "UPGRADE_AVAILABLE_EVENT",
+                Self::UpgradeEvent => "UPGRADE_EVENT",
+                Self::SecurityBulletinEvent => "SECURITY_BULLETIN_EVENT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6494,12 +6482,12 @@ pub mod logging_component_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Component::Unspecified => "COMPONENT_UNSPECIFIED",
-                Component::SystemComponents => "SYSTEM_COMPONENTS",
-                Component::Workloads => "WORKLOADS",
-                Component::Apiserver => "APISERVER",
-                Component::Scheduler => "SCHEDULER",
-                Component::ControllerManager => "CONTROLLER_MANAGER",
+                Self::Unspecified => "COMPONENT_UNSPECIFIED",
+                Self::SystemComponents => "SYSTEM_COMPONENTS",
+                Self::Workloads => "WORKLOADS",
+                Self::Apiserver => "APISERVER",
+                Self::Scheduler => "SCHEDULER",
+                Self::ControllerManager => "CONTROLLER_MANAGER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6588,10 +6576,10 @@ pub mod advanced_datapath_observability_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                RelayMode::Unspecified => "RELAY_MODE_UNSPECIFIED",
-                RelayMode::Disabled => "DISABLED",
-                RelayMode::InternalVpcLb => "INTERNAL_VPC_LB",
-                RelayMode::ExternalLb => "EXTERNAL_LB",
+                Self::Unspecified => "RELAY_MODE_UNSPECIFIED",
+                Self::Disabled => "DISABLED",
+                Self::InternalVpcLb => "INTERNAL_VPC_LB",
+                Self::ExternalLb => "EXTERNAL_LB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6658,9 +6646,9 @@ pub mod logging_variant_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Variant::Unspecified => "VARIANT_UNSPECIFIED",
-                Variant::Default => "DEFAULT",
-                Variant::MaxThroughput => "MAX_THROUGHPUT",
+                Self::Unspecified => "VARIANT_UNSPECIFIED",
+                Self::Default => "DEFAULT",
+                Self::MaxThroughput => "MAX_THROUGHPUT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6734,20 +6722,20 @@ pub mod monitoring_component_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Component::Unspecified => "COMPONENT_UNSPECIFIED",
-                Component::SystemComponents => "SYSTEM_COMPONENTS",
-                Component::Apiserver => "APISERVER",
-                Component::Scheduler => "SCHEDULER",
-                Component::ControllerManager => "CONTROLLER_MANAGER",
-                Component::Storage => "STORAGE",
-                Component::Hpa => "HPA",
-                Component::Pod => "POD",
-                Component::Daemonset => "DAEMONSET",
-                Component::Deployment => "DEPLOYMENT",
-                Component::Statefulset => "STATEFULSET",
-                Component::Cadvisor => "CADVISOR",
-                Component::Kubelet => "KUBELET",
-                Component::Dcgm => "DCGM",
+                Self::Unspecified => "COMPONENT_UNSPECIFIED",
+                Self::SystemComponents => "SYSTEM_COMPONENTS",
+                Self::Apiserver => "APISERVER",
+                Self::Scheduler => "SCHEDULER",
+                Self::ControllerManager => "CONTROLLER_MANAGER",
+                Self::Storage => "STORAGE",
+                Self::Hpa => "HPA",
+                Self::Pod => "POD",
+                Self::Daemonset => "DAEMONSET",
+                Self::Deployment => "DEPLOYMENT",
+                Self::Statefulset => "STATEFULSET",
+                Self::Cadvisor => "CADVISOR",
+                Self::Kubelet => "KUBELET",
+                Self::Dcgm => "DCGM",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6809,16 +6797,15 @@ pub struct LocalNvmeSsdBlockConfig {
     ///
     /// A zero (or unset) value has different meanings depending on machine type
     /// being used:
-    ///
     /// 1. For pre-Gen3 machines, which support flexible numbers of local ssds,
-    ///    zero (or unset) means to disable using local SSDs as ephemeral storage.
-    /// 1. For Gen3 machines which dictate a specific number of local ssds, zero
-    ///    (or unset) means to use the default number of local ssds that goes with
-    ///    that machine type. For example, for a c3-standard-8-lssd machine, 2 local
-    ///    ssds would be provisioned. For c3-standard-8 (which doesn't support local
-    ///    ssds), 0 will be provisioned. See
-    ///    <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
-    ///    for more info.
+    /// zero (or unset) means to disable using local SSDs as ephemeral storage.
+    /// 2. For Gen3 machines which dictate a specific number of local ssds, zero
+    /// (or unset) means to use the default number of local ssds that goes with
+    /// that machine type. For example, for a c3-standard-8-lssd machine, 2 local
+    /// ssds would be provisioned. For c3-standard-8 (which doesn't support local
+    /// ssds), 0 will be provisioned. See
+    /// <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
+    /// for more info.
     #[prost(int32, tag = "1")]
     pub local_ssd_count: i32,
 }
@@ -6831,20 +6818,19 @@ pub struct EphemeralStorageLocalSsdConfig {
     ///
     /// A zero (or unset) value has different meanings depending on machine type
     /// being used:
-    ///
     /// 1. For pre-Gen3 machines, which support flexible numbers of local ssds,
-    ///    zero (or unset) means to disable using local SSDs as ephemeral storage. The
-    ///    limit for this value is dependent upon the maximum number of disk
-    ///    available on a machine per zone. See:
-    ///    <https://cloud.google.com/compute/docs/disks/local-ssd>
-    ///    for more information.
-    /// 1. For Gen3 machines which dictate a specific number of local ssds, zero
-    ///    (or unset) means to use the default number of local ssds that goes with
-    ///    that machine type. For example, for a c3-standard-8-lssd machine, 2 local
-    ///    ssds would be provisioned. For c3-standard-8 (which doesn't support local
-    ///    ssds), 0 will be provisioned. See
-    ///    <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
-    ///    for more info.
+    /// zero (or unset) means to disable using local SSDs as ephemeral storage. The
+    /// limit for this value is dependent upon the maximum number of disk
+    /// available on a machine per zone. See:
+    /// <https://cloud.google.com/compute/docs/disks/local-ssd>
+    /// for more information.
+    /// 2. For Gen3 machines which dictate a specific number of local ssds, zero
+    /// (or unset) means to use the default number of local ssds that goes with
+    /// that machine type. For example, for a c3-standard-8-lssd machine, 2 local
+    /// ssds would be provisioned. For c3-standard-8 (which doesn't support local
+    /// ssds), 0 will be provisioned. See
+    /// <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
+    /// for more info.
     #[prost(int32, tag = "1")]
     pub local_ssd_count: i32,
 }
@@ -6856,11 +6842,10 @@ pub struct EphemeralStorageLocalSsdConfig {
 /// Existing tags will be replaced with new values.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceManagerTags {
-    /// TagKeyValue must be in one of the following formats (\[KEY\]=\[VALUE\])
-    ///
+    /// TagKeyValue must be in one of the following formats (\[KEY\]=[VALUE])
     /// 1. `tagKeys/{tag_key_id}=tagValues/{tag_value_id}`
-    /// 1. `{org_id}/{tag_key_name}={tag_value_name}`
-    /// 1. `{project_id}/{tag_key_name}={tag_value_name}`
+    /// 2. `{org_id}/{tag_key_name}={tag_value_name}`
+    /// 3. `{project_id}/{tag_key_name}={tag_value_name}`
     #[prost(btree_map = "string, string", tag = "1")]
     pub tags: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -6904,9 +6889,9 @@ pub mod enterprise_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ClusterTier::Unspecified => "CLUSTER_TIER_UNSPECIFIED",
-                ClusterTier::Standard => "STANDARD",
-                ClusterTier::Enterprise => "ENTERPRISE",
+                Self::Unspecified => "CLUSTER_TIER_UNSPECIFIED",
+                Self::Standard => "STANDARD",
+                Self::Enterprise => "ENTERPRISE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6961,8 +6946,8 @@ pub mod secondary_boot_disk {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::ContainerImageCache => "CONTAINER_IMAGE_CACHE",
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::ContainerImageCache => "CONTAINER_IMAGE_CACHE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7000,16 +6985,16 @@ impl PrivateIPv6GoogleAccess {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PrivateIPv6GoogleAccess::PrivateIpv6GoogleAccessUnspecified => {
+            Self::PrivateIpv6GoogleAccessUnspecified => {
                 "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED"
             }
-            PrivateIPv6GoogleAccess::PrivateIpv6GoogleAccessDisabled => {
+            Self::PrivateIpv6GoogleAccessDisabled => {
                 "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED"
             }
-            PrivateIPv6GoogleAccess::PrivateIpv6GoogleAccessToGoogle => {
+            Self::PrivateIpv6GoogleAccessToGoogle => {
                 "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE"
             }
-            PrivateIPv6GoogleAccess::PrivateIpv6GoogleAccessBidirectional => {
+            Self::PrivateIpv6GoogleAccessBidirectional => {
                 "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
             }
         }
@@ -7052,9 +7037,9 @@ impl UpgradeResourceType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            UpgradeResourceType::Unspecified => "UPGRADE_RESOURCE_TYPE_UNSPECIFIED",
-            UpgradeResourceType::Master => "MASTER",
-            UpgradeResourceType::NodePool => "NODE_POOL",
+            Self::Unspecified => "UPGRADE_RESOURCE_TYPE_UNSPECIFIED",
+            Self::Master => "MASTER",
+            Self::NodePool => "NODE_POOL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7089,9 +7074,9 @@ impl DatapathProvider {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            DatapathProvider::Unspecified => "DATAPATH_PROVIDER_UNSPECIFIED",
-            DatapathProvider::LegacyDatapath => "LEGACY_DATAPATH",
-            DatapathProvider::AdvancedDatapath => "ADVANCED_DATAPATH",
+            Self::Unspecified => "DATAPATH_PROVIDER_UNSPECIFIED",
+            Self::LegacyDatapath => "LEGACY_DATAPATH",
+            Self::AdvancedDatapath => "ADVANCED_DATAPATH",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7124,11 +7109,9 @@ impl NodePoolUpdateStrategy {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NodePoolUpdateStrategy::Unspecified => {
-                "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED"
-            }
-            NodePoolUpdateStrategy::BlueGreen => "BLUE_GREEN",
-            NodePoolUpdateStrategy::Surge => "SURGE",
+            Self::Unspecified => "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED",
+            Self::BlueGreen => "BLUE_GREEN",
+            Self::Surge => "SURGE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7159,9 +7142,9 @@ impl StackType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            StackType::Unspecified => "STACK_TYPE_UNSPECIFIED",
-            StackType::Ipv4 => "IPV4",
-            StackType::Ipv4Ipv6 => "IPV4_IPV6",
+            Self::Unspecified => "STACK_TYPE_UNSPECIFIED",
+            Self::Ipv4 => "IPV4",
+            Self::Ipv4Ipv6 => "IPV4_IPV6",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7192,9 +7175,9 @@ impl IPv6AccessType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            IPv6AccessType::Ipv6AccessTypeUnspecified => "IPV6_ACCESS_TYPE_UNSPECIFIED",
-            IPv6AccessType::Internal => "INTERNAL",
-            IPv6AccessType::External => "EXTERNAL",
+            Self::Ipv6AccessTypeUnspecified => "IPV6_ACCESS_TYPE_UNSPECIFIED",
+            Self::Internal => "INTERNAL",
+            Self::External => "EXTERNAL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7226,13 +7209,9 @@ impl InTransitEncryptionConfig {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            InTransitEncryptionConfig::Unspecified => {
-                "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED"
-            }
-            InTransitEncryptionConfig::InTransitEncryptionDisabled => {
-                "IN_TRANSIT_ENCRYPTION_DISABLED"
-            }
-            InTransitEncryptionConfig::InTransitEncryptionInterNodeTransparent => {
+            Self::Unspecified => "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
+            Self::InTransitEncryptionDisabled => "IN_TRANSIT_ENCRYPTION_DISABLED",
+            Self::InTransitEncryptionInterNodeTransparent => {
                 "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT"
             }
         }
@@ -7251,7 +7230,13 @@ impl InTransitEncryptionConfig {
 }
 /// Generated client implementations.
 pub mod cluster_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Google Kubernetes Engine Cluster Manager v1
@@ -7337,8 +7322,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7362,8 +7346,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7400,8 +7383,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7428,8 +7410,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7456,8 +7437,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7484,8 +7464,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7512,8 +7491,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7540,8 +7518,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7568,8 +7545,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7591,6 +7567,7 @@ pub mod cluster_manager_client {
         /// Deprecated. Use
         /// [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
         /// instead.
+        #[deprecated]
         pub async fn set_locations(
             &mut self,
             request: impl tonic::IntoRequest<super::SetLocationsRequest>,
@@ -7599,8 +7576,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7624,8 +7600,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7651,8 +7626,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7687,8 +7661,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7718,8 +7691,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7746,8 +7718,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7771,8 +7742,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7799,8 +7769,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7831,8 +7800,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7862,8 +7830,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7890,8 +7857,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7915,8 +7881,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7943,8 +7908,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -7972,8 +7936,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8001,8 +7964,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8029,8 +7991,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8057,8 +8018,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8082,8 +8042,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8110,8 +8069,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8138,8 +8096,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8159,7 +8116,7 @@ pub mod cluster_manager_client {
         }
         /// Sets the size for a specific node pool. The new size will be used for all
         /// replicas, including future replicas created by modifying
-        /// \[NodePool.locations\]\[google.container.v1.NodePool.locations\].
+        /// [NodePool.locations][google.container.v1.NodePool.locations].
         pub async fn set_node_pool_size(
             &mut self,
             request: impl tonic::IntoRequest<super::SetNodePoolSizeRequest>,
@@ -8168,8 +8125,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8196,8 +8152,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8224,8 +8179,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8255,8 +8209,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -8287,8 +8240,7 @@ pub mod cluster_manager_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;

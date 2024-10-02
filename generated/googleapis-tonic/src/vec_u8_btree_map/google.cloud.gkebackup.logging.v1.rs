@@ -67,12 +67,12 @@ pub mod logged_backup {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::InProgress => "IN_PROGRESS",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -155,10 +155,9 @@ pub struct LoggedBackupPlan {
 /// Nested message and enum types in `LoggedBackupPlan`.
 pub mod logged_backup_plan {
     /// RentionPolicy is an inner message type to define:
-    ///
     /// 1. When to automatically delete Backups created under this BackupPlan
-    /// 1. A plan level minimum Backup retain days which blocks deletion
-    /// 1. Lock to disallow any policy updates
+    /// 2. A plan level minimum Backup retain days which blocks deletion
+    /// 3. Lock to disallow any policy updates
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct RetentionPolicy {
         /// Number of days during which deletion of a Backup created under this
@@ -285,12 +284,12 @@ pub mod logged_restore {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::InProgress => "IN_PROGRESS",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::InProgress => "IN_PROGRESS",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Failed => "FAILED",
+                Self::Deleting => "DELETING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -317,16 +316,15 @@ pub struct LoggedRestorePlan {
     pub description: ::prost::alloc::string::String,
     /// The BackupPlan from which Backups may be used as the source
     /// for Restores created via this RestorePlan.
-    /// Format: projects/*/locations/*/backupPlans/\*.
+    /// Format: projects/*/locations/*/backupPlans/*.
     #[prost(string, tag = "2")]
     pub backup_plan: ::prost::alloc::string::String,
     /// The target cluster into which Restores created via this RestorePlan
     /// will restore data. NOTE: the cluster's region must be the same as the
     /// RestorePlan.
     /// Possible formats:
-    ///
-    /// 1. projects/*/locations/*/clusters/\*
-    /// 1. projects/*/zones/*/clusters/\*
+    ///    1. projects/*/locations/*/clusters/*
+    ///    2. projects/*/zones/*/clusters/*
     #[prost(string, tag = "3")]
     pub cluster: ::prost::alloc::string::String,
     /// Configuration of Restores created via this RestorePlan.
@@ -430,7 +428,7 @@ pub mod restore_config {
         #[prost(message, repeated, tag = "2")]
         pub target_group_kinds: ::prost::alloc::vec::Vec<GroupKind>,
         /// This is a \[JSONPath\]
-        /// (\[<https://kubernetes.io/docs/reference/kubectl/jsonpath/>)
+        /// ([<https://kubernetes.io/docs/reference/kubectl/jsonpath/>)
         /// expression that matches specific fields of candidate
         /// resources and it operates as both a filtering parameter (resources that
         /// are not matched with this expression will not be candidates for
@@ -491,18 +489,10 @@ pub mod restore_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                VolumeDataRestorePolicy::Unspecified => {
-                    "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED"
-                }
-                VolumeDataRestorePolicy::RestoreVolumeDataFromBackup => {
-                    "RESTORE_VOLUME_DATA_FROM_BACKUP"
-                }
-                VolumeDataRestorePolicy::ReuseVolumeHandleFromBackup => {
-                    "REUSE_VOLUME_HANDLE_FROM_BACKUP"
-                }
-                VolumeDataRestorePolicy::NoVolumeDataRestoration => {
-                    "NO_VOLUME_DATA_RESTORATION"
-                }
+                Self::Unspecified => "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+                Self::RestoreVolumeDataFromBackup => "RESTORE_VOLUME_DATA_FROM_BACKUP",
+                Self::ReuseVolumeHandleFromBackup => "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+                Self::NoVolumeDataRestoration => "NO_VOLUME_DATA_RESTORATION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -553,13 +543,9 @@ pub mod restore_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ClusterResourceConflictPolicy::Unspecified => {
-                    "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED"
-                }
-                ClusterResourceConflictPolicy::UseExistingVersion => {
-                    "USE_EXISTING_VERSION"
-                }
-                ClusterResourceConflictPolicy::UseBackupVersion => "USE_BACKUP_VERSION",
+                Self::Unspecified => "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
+                Self::UseExistingVersion => "USE_EXISTING_VERSION",
+                Self::UseBackupVersion => "USE_BACKUP_VERSION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -611,11 +597,9 @@ pub mod restore_config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                NamespacedResourceRestoreMode::Unspecified => {
-                    "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED"
-                }
-                NamespacedResourceRestoreMode::DeleteAndRestore => "DELETE_AND_RESTORE",
-                NamespacedResourceRestoreMode::FailOnConflict => "FAIL_ON_CONFLICT",
+                Self::Unspecified => "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
+                Self::DeleteAndRestore => "DELETE_AND_RESTORE",
+                Self::FailOnConflict => "FAIL_ON_CONFLICT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -707,7 +691,7 @@ pub struct BackupChange {
 pub struct RestorePlanChange {
     /// The full name of the RestorePlan resource that is being modified.
     /// Empty for creation.
-    /// Format: projects/*/locations/*/restorePlans/\*
+    /// Format: projects/*/locations/*/restorePlans/*
     #[prost(string, tag = "1")]
     pub restore_plan: ::prost::alloc::string::String,
     /// Type of the change is being made.
@@ -768,10 +752,10 @@ impl ChangeType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
-            ChangeType::Creation => "CREATION",
-            ChangeType::Update => "UPDATE",
-            ChangeType::Deletion => "DELETION",
+            Self::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
+            Self::Creation => "CREATION",
+            Self::Update => "UPDATE",
+            Self::Deletion => "DELETION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.

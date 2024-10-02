@@ -55,15 +55,14 @@ pub struct ImageConfig {
 }
 /// ResourceInfo represents the information/status of an app connector resource.
 /// Such as:
-///
-/// * remote_agent
-///   * container
-///     * runtime
-///     * appgateway
-///       * appconnector
-///         * appconnection
-///           * tunnel
-///       * logagent
+/// - remote_agent
+///    - container
+///      - runtime
+///      - appgateway
+///        - appconnector
+///          - appconnection
+///            - tunnel
+///        - logagent
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceInfo {
     /// Required. Unique Id for the resource.
@@ -106,11 +105,11 @@ impl HealthStatus {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            HealthStatus::Unspecified => "HEALTH_STATUS_UNSPECIFIED",
-            HealthStatus::Healthy => "HEALTHY",
-            HealthStatus::Unhealthy => "UNHEALTHY",
-            HealthStatus::Unresponsive => "UNRESPONSIVE",
-            HealthStatus::Degraded => "DEGRADED",
+            Self::Unspecified => "HEALTH_STATUS_UNSPECIFIED",
+            Self::Healthy => "HEALTHY",
+            Self::Unhealthy => "UNHEALTHY",
+            Self::Unresponsive => "UNRESPONSIVE",
+            Self::Degraded => "DEGRADED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -136,7 +135,7 @@ pub struct ListAppConnectorsRequest {
     /// If not specified, a default value of 50 will be used by the service.
     /// Regardless of the page_size value, the response may include a partial list
     /// and a caller should only rely on response's
-    /// \[next_page_token\]\[BeyondCorp.ListAppConnectorsResponse.next_page_token\] to
+    /// [next_page_token][BeyondCorp.ListAppConnectorsResponse.next_page_token] to
     /// determine if there are more instances left to be queried.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
@@ -185,9 +184,9 @@ pub struct CreateAppConnectorRequest {
     pub parent: ::prost::alloc::string::String,
     /// Optional. User-settable AppConnector resource ID.
     ///
-    /// * Must start with a letter.
-    /// * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
-    /// * Must end with a number or a letter.
+    ///   * Must start with a letter.
+    ///   * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
+    ///   * Must end with a number or a letter.
     #[prost(string, tag = "2")]
     pub app_connector_id: ::prost::alloc::string::String,
     /// Required. A BeyondCorp AppConnector resource.
@@ -219,7 +218,6 @@ pub struct UpdateAppConnectorRequest {
     /// Required. Mask of fields to update. At least one path must be supplied in
     /// this field. The elements of the repeated paths field may only include these
     /// fields from \[BeyondCorp.AppConnector\]:
-    ///
     /// * `labels`
     /// * `display_name`
     #[prost(message, optional, tag = "1")]
@@ -405,12 +403,12 @@ pub mod app_connector {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Created => "CREATED",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Down => "DOWN",
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Creating => "CREATING",
+                Self::Created => "CREATED",
+                Self::Updating => "UPDATING",
+                Self::Deleting => "DELETING",
+                Self::Down => "DOWN",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -447,8 +445,8 @@ pub struct AppConnectorOperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
+    /// have [Operation.error][] value with a
+    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -458,7 +456,13 @@ pub struct AppConnectorOperationMetadata {
 }
 /// Generated client implementations.
 pub mod app_connectors_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// API Overview:
@@ -471,7 +475,7 @@ pub mod app_connectors_service_client {
     /// The AppConnectorsService exposes the following resource:
     ///
     /// * AppConnectors, named as follows:
-    ///  `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`.
+    ///   `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`.
     ///
     /// The AppConnectorsService provides methods to manage
     /// (create/read/update/delete) BeyondCorp AppConnectors.
@@ -556,8 +560,7 @@ pub mod app_connectors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -584,8 +587,7 @@ pub mod app_connectors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -615,8 +617,7 @@ pub mod app_connectors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -646,8 +647,7 @@ pub mod app_connectors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -677,8 +677,7 @@ pub mod app_connectors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -708,8 +707,7 @@ pub mod app_connectors_service_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
