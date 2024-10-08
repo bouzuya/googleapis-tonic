@@ -8363,6 +8363,12 @@ pub struct PrivateServiceConnectConfig {
     /// attachment.
     #[prost(string, repeated, tag = "2")]
     pub project_allowlist: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. If set to true, enable secure private service connect with IAM
+    /// authorization. Otherwise, private service connect will be done without
+    /// authorization. Note latency will be slightly increased if authorization is
+    /// enabled.
+    #[prost(bool, tag = "4")]
+    pub enable_secure_private_service_connect: bool,
     /// Output only. The name of the generated service attachment resource.
     /// This is only populated if the endpoint is deployed with
     /// PrivateServiceConnect.

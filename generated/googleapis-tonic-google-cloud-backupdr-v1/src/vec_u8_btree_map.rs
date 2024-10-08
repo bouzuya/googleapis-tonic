@@ -9,11 +9,6 @@ pub mod google {
             }
         }
     }
-    pub mod iam {
-        pub mod v1 {
-            pub use googleapis_tonic_google_iam_v1::google::iam::v1::*;
-        }
-    }
     pub mod longrunning {
         pub use googleapis_tonic_google_longrunning::google::longrunning::*;
     }

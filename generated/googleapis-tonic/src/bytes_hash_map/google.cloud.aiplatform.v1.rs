@@ -3855,7 +3855,64 @@ pub struct VertexAiSearch {
 }
 /// Tool to retrieve public web data for grounding, powered by Google.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct GoogleSearchRetrieval {}
+pub struct GoogleSearchRetrieval {
+    /// Specifies the dynamic retrieval configuration for the given source.
+    #[prost(message, optional, tag = "2")]
+    pub dynamic_retrieval_config: ::core::option::Option<DynamicRetrievalConfig>,
+}
+/// Describes the options to customize dynamic retrieval.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DynamicRetrievalConfig {
+    /// The mode of the predictor to be used in dynamic retrieval.
+    #[prost(enumeration = "dynamic_retrieval_config::Mode", tag = "1")]
+    pub mode: i32,
+    /// Optional. The threshold to be used in dynamic retrieval.
+    /// If not set, a system default value is used.
+    #[prost(float, optional, tag = "2")]
+    pub dynamic_threshold: ::core::option::Option<f32>,
+}
+/// Nested message and enum types in `DynamicRetrievalConfig`.
+pub mod dynamic_retrieval_config {
+    /// The mode of the predictor to be used in dynamic retrieval.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Mode {
+        /// Always trigger retrieval.
+        Unspecified = 0,
+        /// Run retrieval only when system decides it is necessary.
+        Dynamic = 1,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "MODE_UNSPECIFIED",
+                Self::Dynamic => "MODE_DYNAMIC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "MODE_DYNAMIC" => Some(Self::Dynamic),
+                _ => None,
+            }
+        }
+    }
+}
 /// Tool config. This config is shared for all tools provided in the request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ToolConfig {
@@ -4696,6 +4753,9 @@ pub struct GroundingMetadata {
     /// Optional. List of grounding support.
     #[prost(message, repeated, tag = "6")]
     pub grounding_supports: ::prost::alloc::vec::Vec<GroundingSupport>,
+    /// Optional. Output only. Retrieval metadata.
+    #[prost(message, optional, tag = "7")]
+    pub retrieval_metadata: ::core::option::Option<RetrievalMetadata>,
 }
 /// Google search entry point.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4708,6 +4768,17 @@ pub struct SearchEntryPoint {
     /// url> tuple.
     #[prost(bytes = "bytes", tag = "2")]
     pub sdk_blob: ::prost::bytes::Bytes,
+}
+/// Metadata related to retrieval in the grounding flow.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RetrievalMetadata {
+    /// Optional. Score indicating how likely information from google search could
+    /// help answer the prompt. The score is in the range `\[0, 1\]`, where 0 is the
+    /// least likely and 1 is the most likely. This score is only populated when
+    /// google search grounding and dynamic retrieval is enabled. It will be
+    /// compared to the threshold to determine whether to trigger google search.
+    #[prost(float, tag = "2")]
+    pub google_search_dynamic_retrieval_score: f32,
 }
 /// Harm categories that will block the content.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -11245,6 +11316,10 @@ pub mod feature_view {
         /// "TZ=America/New_York 1 * * * *".
         #[prost(string, tag = "1")]
         pub cron: ::prost::alloc::string::String,
+        /// Optional. If true, syncs the FeatureView in a continuous manner to Online
+        /// Store.
+        #[prost(bool, tag = "2")]
+        pub continuous: bool,
     }
     /// Configuration for vector indexing.
     #[derive(Clone, PartialEq, ::prost::Message)]

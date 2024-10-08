@@ -3,9 +3,9 @@ pub mod google {
         pub use googleapis_tonic_google_api::google::api::*;
     }
     pub mod cloud {
-        pub mod documentai {
-            pub mod v1beta2 {
-                include!("vec_u8_btree_map/google.cloud.documentai.v1beta2.rs");
+        pub mod parallelstore {
+            pub mod v1 {
+                include!("bytes_btree_map/google.cloud.parallelstore.v1.rs");
             }
         }
     }
@@ -14,8 +14,5 @@ pub mod google {
     }
     pub mod rpc {
         pub use googleapis_tonic_google_rpc::google::rpc::*;
-    }
-    pub mod r#type {
-        pub use googleapis_tonic_google_type::google::r#type::*;
     }
 }
