@@ -18896,7 +18896,7 @@ pub struct TuningJob {
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     #[prost(oneof = "tuning_job::SourceModel", tags = "4")]
     pub source_model: ::core::option::Option<tuning_job::SourceModel>,
-    #[prost(oneof = "tuning_job::TuningSpec", tags = "5, 17")]
+    #[prost(oneof = "tuning_job::TuningSpec", tags = "5, 17, 21")]
     pub tuning_spec: ::core::option::Option<tuning_job::TuningSpec>,
 }
 /// Nested message and enum types in `TuningJob`.
@@ -18915,6 +18915,9 @@ pub mod tuning_job {
         /// Tuning Spec for Distillation.
         #[prost(message, tag = "17")]
         DistillationSpec(super::DistillationSpec),
+        /// Tuning Spec for open sourced and third party partner models.
+        #[prost(message, tag = "21")]
+        PartnerModelTuningSpec(super::PartnerModelTuningSpec),
     }
 }
 /// The Model Registry Model and Online Prediction Endpoint assiociated with
@@ -19264,6 +19267,25 @@ pub struct DistillationHyperParameters {
     /// Optional. Adapter size for distillation.
     #[prost(enumeration = "supervised_hyper_parameters::AdapterSize", tag = "3")]
     pub adapter_size: i32,
+}
+/// Tuning spec for Partner models.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PartnerModelTuningSpec {
+    /// Required. Cloud Storage path to file containing training dataset for
+    /// tuning. The dataset must be formatted as a JSONL file.
+    #[prost(string, tag = "1")]
+    pub training_dataset_uri: ::prost::alloc::string::String,
+    /// Optional. Cloud Storage path to file containing validation dataset for
+    /// tuning. The dataset must be formatted as a JSONL file.
+    #[prost(string, tag = "2")]
+    pub validation_dataset_uri: ::prost::alloc::string::String,
+    /// Hyperparameters for tuning. The accepted hyper_parameters and their valid
+    /// range of values will differ depending on the base model.
+    #[prost(btree_map = "string, message", tag = "3")]
+    pub hyper_parameters: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost_types::Value,
+    >,
 }
 /// TunedModel Reference for legacy model migration.
 #[derive(Clone, PartialEq, ::prost::Message)]

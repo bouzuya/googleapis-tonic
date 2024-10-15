@@ -299,6 +299,15 @@ pub mod entity_result {
     }
 }
 /// A query for entities.
+///
+/// The query stages are executed in the following order:
+/// 1. kind
+/// 2. filter
+/// 3. projection
+/// 4. order + start_cursor + end_cursor
+/// 5. offset
+/// 6. limit
+/// 7. find_nearest
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Query {
     /// The projection to return. Defaults to returning all properties.
@@ -346,6 +355,13 @@ pub struct Query {
     /// Must be >= 0 if specified.
     #[prost(message, optional, tag = "12")]
     pub limit: ::core::option::Option<i32>,
+    /// Optional. A potential Nearest Neighbors Search.
+    ///
+    /// Applies after all other filters and ordering.
+    ///
+    /// Finds the closest vector embeddings to the given query vector.
+    #[prost(message, optional, tag = "13")]
+    pub find_nearest: ::core::option::Option<FindNearest>,
 }
 /// Datastore query for running an aggregation over a
 /// [Query][google.datastore.v1.Query].
@@ -789,6 +805,104 @@ pub mod property_filter {
                 "NOT_EQUAL" => Some(Self::NotEqual),
                 "HAS_ANCESTOR" => Some(Self::HasAncestor),
                 "NOT_IN" => Some(Self::NotIn),
+                _ => None,
+            }
+        }
+    }
+}
+/// Nearest Neighbors search config. The ordering provided by FindNearest
+/// supersedes the order_by stage. If multiple documents have the same vector
+/// distance, the returned document order is not guaranteed to be stable between
+/// queries.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FindNearest {
+    /// Required. An indexed vector property to search upon. Only documents which
+    /// contain vectors whose dimensionality match the query_vector can be
+    /// returned.
+    #[prost(message, optional, tag = "1")]
+    pub vector_property: ::core::option::Option<PropertyReference>,
+    /// Required. The query vector that we are searching on. Must be a vector of no
+    /// more than 2048 dimensions.
+    #[prost(message, optional, tag = "2")]
+    pub query_vector: ::core::option::Option<Value>,
+    /// Required. The Distance Measure to use, required.
+    #[prost(enumeration = "find_nearest::DistanceMeasure", tag = "3")]
+    pub distance_measure: i32,
+    /// Required. The number of nearest neighbors to return. Must be a positive
+    /// integer of no more than 100.
+    #[prost(message, optional, tag = "4")]
+    pub limit: ::core::option::Option<i32>,
+    /// Optional. Optional name of the field to output the result of the vector
+    /// distance calculation. Must conform to [entity
+    /// property][google.datastore.v1.Entity.properties] limitations.
+    #[prost(string, tag = "5")]
+    pub distance_result_property: ::prost::alloc::string::String,
+    /// Optional. Option to specify a threshold for which no less similar documents
+    /// will be returned. The behavior of the specified `distance_measure` will
+    /// affect the meaning of the distance threshold. Since DOT_PRODUCT distances
+    /// increase when the vectors are more similar, the comparison is inverted.
+    ///
+    /// For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+    /// For DOT_PRODUCT:       WHERE distance >= distance_threshold
+    #[prost(message, optional, tag = "6")]
+    pub distance_threshold: ::core::option::Option<f64>,
+}
+/// Nested message and enum types in `FindNearest`.
+pub mod find_nearest {
+    /// The distance measure to use when comparing vectors.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DistanceMeasure {
+        /// Should not be set.
+        Unspecified = 0,
+        /// Measures the EUCLIDEAN distance between the vectors. See
+        /// [Euclidean](<https://en.wikipedia.org/wiki/Euclidean_distance>) to learn
+        /// more. The resulting distance decreases the more similar two vectors are.
+        Euclidean = 1,
+        /// COSINE distance compares vectors based on the angle between them, which
+        /// allows you to measure similarity that isn't based on the vectors
+        /// magnitude. We recommend using DOT_PRODUCT with unit normalized vectors
+        /// instead of COSINE distance, which is mathematically equivalent with
+        /// better performance. See [Cosine
+        /// Similarity](<https://en.wikipedia.org/wiki/Cosine_similarity>) to learn
+        /// more about COSINE similarity and COSINE distance. The resulting COSINE
+        /// distance decreases the more similar two vectors are.
+        Cosine = 2,
+        /// Similar to cosine but is affected by the magnitude of the vectors. See
+        /// [Dot Product](<https://en.wikipedia.org/wiki/Dot_product>) to learn more.
+        /// The resulting distance increases the more similar two vectors are.
+        DotProduct = 3,
+    }
+    impl DistanceMeasure {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "DISTANCE_MEASURE_UNSPECIFIED",
+                Self::Euclidean => "EUCLIDEAN",
+                Self::Cosine => "COSINE",
+                Self::DotProduct => "DOT_PRODUCT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DISTANCE_MEASURE_UNSPECIFIED" => Some(Self::Unspecified),
+                "EUCLIDEAN" => Some(Self::Euclidean),
+                "COSINE" => Some(Self::Cosine),
+                "DOT_PRODUCT" => Some(Self::DotProduct),
                 _ => None,
             }
         }
