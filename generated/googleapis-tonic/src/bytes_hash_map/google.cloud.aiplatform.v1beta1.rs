@@ -4974,10 +4974,10 @@ pub mod vertex_rag_store {
     }
 }
 /// Retrieve from Vertex AI Search datastore for grounding.
-/// See <https://cloud.google.com/vertex-ai-search-and-conversation>
+/// See <https://cloud.google.com/products/agent-builder>
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VertexAiSearch {
-    /// Required. Fully-qualified Vertex AI Search's datastore resource ID.
+    /// Required. Fully-qualified Vertex AI Search data store resource ID.
     /// Format:
     /// `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
     #[prost(string, tag = "1")]
@@ -5272,6 +5272,10 @@ pub struct GenerationConfig {
     /// Optional. Routing configuration.
     #[prost(message, optional, tag = "17")]
     pub routing_config: ::core::option::Option<generation_config::RoutingConfig>,
+    /// Optional. If enabled, audio timestamp will be included in the request to
+    /// the model.
+    #[prost(bool, optional, tag = "20")]
+    pub audio_timestamp: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `GenerationConfig`.
 pub mod generation_config {
@@ -5835,6 +5839,9 @@ pub mod grounding_chunk {
         /// Title of the attribution.
         #[prost(string, optional, tag = "2")]
         pub title: ::core::option::Option<::prost::alloc::string::String>,
+        /// Text of the attribution.
+        #[prost(string, optional, tag = "3")]
+        pub text: ::core::option::Option<::prost::alloc::string::String>,
     }
     /// Chunk type.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -5902,11 +5909,11 @@ pub struct SearchEntryPoint {
 /// Metadata related to retrieval in the grounding flow.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RetrievalMetadata {
-    /// Optional. Score indicating how likely information from google search could
-    /// help answer the prompt. The score is in the range \[0, 1\], where 0 is the
+    /// Optional. Score indicating how likely information from Google Search could
+    /// help answer the prompt. The score is in the range `\[0, 1\]`, where 0 is the
     /// least likely and 1 is the most likely. This score is only populated when
-    /// google search grounding and dynamic retrieval is enabled. It will be
-    /// compared to the threshold to determine whether to trigger google search.
+    /// Google Search grounding and dynamic retrieval is enabled. It will be
+    /// compared to the threshold to determine whether to trigger Google Search.
     #[prost(float, tag = "2")]
     pub google_search_dynamic_retrieval_score: f32,
 }
@@ -34193,6 +34200,12 @@ pub mod pipeline_job {
             ::prost::alloc::string::String,
             runtime_config::InputArtifact,
         >,
+        /// Optional. The default runtime for the PipelineJob. If not provided,
+        /// Vertex Custom Job(on demand) is used as the runtime. For Vertex Custom
+        /// Job, please refer to
+        /// <https://cloud.google.com/vertex-ai/docs/training/overview.>
+        #[prost(message, optional, tag = "6")]
+        pub default_runtime: ::core::option::Option<runtime_config::DefaultRuntime>,
     }
     /// Nested message and enum types in `RuntimeConfig`.
     pub mod runtime_config {
@@ -34213,6 +34226,92 @@ pub mod pipeline_job {
                 /// metadatastore as the pipeline.
                 #[prost(string, tag = "1")]
                 ArtifactId(::prost::alloc::string::String),
+            }
+        }
+        /// Persistent resource based runtime detail. For more information, refer to
+        /// <https://cloud.google.com/vertex-ai/docs/training/persistent-resource-overview>
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct PersistentResourceRuntimeDetail {
+            /// Persistent resource name.
+            /// Format:
+            /// `projects/{project}/locations/{location}/persistentResources/{persistent_resource}`
+            #[prost(string, tag = "1")]
+            pub persistent_resource_name: ::prost::alloc::string::String,
+            /// The max time a pipeline task waits for the required CPU, memory, or
+            /// accelerator resource to become available from the specified persistent
+            /// resource. Default wait time is 0.
+            #[prost(int64, tag = "2")]
+            pub task_resource_unavailable_wait_time_ms: i64,
+            /// Specifies the behavior to take if the timeout is reached.
+            #[prost(
+                enumeration = "persistent_resource_runtime_detail::TaskResourceUnavailableTimeoutBehavior",
+                tag = "3"
+            )]
+            pub task_resource_unavailable_timeout_behavior: i32,
+        }
+        /// Nested message and enum types in `PersistentResourceRuntimeDetail`.
+        pub mod persistent_resource_runtime_detail {
+            /// An enum that specifies the behavior to take if the timeout is reached.
+            #[derive(
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
+            )]
+            #[repr(i32)]
+            pub enum TaskResourceUnavailableTimeoutBehavior {
+                /// Unspecified. Behavior is same as `FAIL`.
+                Unspecified = 0,
+                /// Fail the task if the timeout is reached.
+                Fail = 1,
+                /// Fall back to on-demand execution if the timeout is reached.
+                FallBackToOnDemand = 2,
+            }
+            impl TaskResourceUnavailableTimeoutBehavior {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        Self::Unspecified => {
+                            "TASK_RESOURCE_UNAVAILABLE_TIMEOUT_BEHAVIOR_UNSPECIFIED"
+                        }
+                        Self::Fail => "FAIL",
+                        Self::FallBackToOnDemand => "FALL_BACK_TO_ON_DEMAND",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "TASK_RESOURCE_UNAVAILABLE_TIMEOUT_BEHAVIOR_UNSPECIFIED" => {
+                            Some(Self::Unspecified)
+                        }
+                        "FAIL" => Some(Self::Fail),
+                        "FALL_BACK_TO_ON_DEMAND" => Some(Self::FallBackToOnDemand),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        /// The default runtime for the PipelineJob.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct DefaultRuntime {
+            #[prost(oneof = "default_runtime::RuntimeDetail", tags = "1")]
+            pub runtime_detail: ::core::option::Option<default_runtime::RuntimeDetail>,
+        }
+        /// Nested message and enum types in `DefaultRuntime`.
+        pub mod default_runtime {
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum RuntimeDetail {
+                /// Persistent resource based runtime detail.
+                #[prost(message, tag = "1")]
+                PersistentResourceRuntimeDetail(super::PersistentResourceRuntimeDetail),
             }
         }
     }

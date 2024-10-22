@@ -3844,10 +3844,10 @@ pub mod retrieval {
     }
 }
 /// Retrieve from Vertex AI Search datastore for grounding.
-/// See <https://cloud.google.com/vertex-ai-search-and-conversation>
+/// See <https://cloud.google.com/products/agent-builder>
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VertexAiSearch {
-    /// Required. Fully-qualified Vertex AI Search's datastore resource ID.
+    /// Required. Fully-qualified Vertex AI Search data store resource ID.
     /// Format:
     /// `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
     #[prost(string, tag = "1")]
@@ -4708,6 +4708,9 @@ pub mod grounding_chunk {
         /// Title of the attribution.
         #[prost(string, optional, tag = "2")]
         pub title: ::core::option::Option<::prost::alloc::string::String>,
+        /// Text of the attribution.
+        #[prost(string, optional, tag = "3")]
+        pub text: ::core::option::Option<::prost::alloc::string::String>,
     }
     /// Chunk type.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -4772,11 +4775,11 @@ pub struct SearchEntryPoint {
 /// Metadata related to retrieval in the grounding flow.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RetrievalMetadata {
-    /// Optional. Score indicating how likely information from google search could
+    /// Optional. Score indicating how likely information from Google Search could
     /// help answer the prompt. The score is in the range `\[0, 1\]`, where 0 is the
     /// least likely and 1 is the most likely. This score is only populated when
-    /// google search grounding and dynamic retrieval is enabled. It will be
-    /// compared to the threshold to determine whether to trigger google search.
+    /// Google Search grounding and dynamic retrieval is enabled. It will be
+    /// compared to the threshold to determine whether to trigger Google Search.
     #[prost(float, tag = "2")]
     pub google_search_dynamic_retrieval_score: f32,
 }

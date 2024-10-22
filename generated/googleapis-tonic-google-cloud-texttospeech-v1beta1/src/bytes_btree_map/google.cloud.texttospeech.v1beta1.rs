@@ -260,6 +260,11 @@ pub struct VoiceSelectionParams {
     /// configuration.
     #[prost(message, optional, tag = "4")]
     pub custom_voice: ::core::option::Option<CustomVoiceParams>,
+    /// Optional. The configuration for a voice clone. If
+    /// \[VoiceCloneParams.voice_clone_key\] is set, the service will choose the
+    /// voice clone matching the specified configuration.
+    #[prost(message, optional, tag = "5")]
+    pub voice_clone: ::core::option::Option<VoiceCloneParams>,
 }
 /// Description of audio data to be synthesized.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -366,6 +371,13 @@ pub mod custom_voice_params {
             }
         }
     }
+}
+/// The configuration of Voice Clone feature.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VoiceCloneParams {
+    /// Required. Created by GenerateVoiceCloningKey.
+    #[prost(string, tag = "1")]
+    pub voice_cloning_key: ::prost::alloc::string::String,
 }
 /// The message returned to the client by the `SynthesizeSpeech` method.
 #[derive(Clone, PartialEq, ::prost::Message)]

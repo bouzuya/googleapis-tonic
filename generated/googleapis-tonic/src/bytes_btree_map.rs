@@ -52,6 +52,11 @@ pub mod maps {
     feature = "google-ads-googleads-v17-errors",
     feature = "google-ads-googleads-v17-resources",
     feature = "google-ads-googleads-v17-services",
+    feature = "google-ads-googleads-v18-common",
+    feature = "google-ads-googleads-v18-enums",
+    feature = "google-ads-googleads-v18-errors",
+    feature = "google-ads-googleads-v18-resources",
+    feature = "google-ads-googleads-v18-services",
     feature = "google-ads-searchads360-v0-common",
     feature = "google-ads-searchads360-v0-enums",
     feature = "google-ads-searchads360-v0-errors",
@@ -233,6 +238,7 @@ pub mod maps {
     feature = "google-cloud-edgenetwork-v1",
     feature = "google-cloud-enterpriseknowledgegraph-v1",
     feature = "google-cloud-essentialcontacts-v1",
+    feature = "google-cloud-eventarc-logging-v1",
     feature = "google-cloud-eventarc-publishing-v1",
     feature = "google-cloud-eventarc-v1",
     feature = "google-cloud-filestore-v1",
@@ -672,6 +678,7 @@ pub mod google {
         feature = "google-cloud-edgenetwork-v1",
         feature = "google-cloud-enterpriseknowledgegraph-v1",
         feature = "google-cloud-essentialcontacts-v1",
+        feature = "google-cloud-eventarc-logging-v1",
         feature = "google-cloud-eventarc-publishing-v1",
         feature = "google-cloud-eventarc-v1",
         feature = "google-cloud-filestore-v1",
@@ -2977,6 +2984,7 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-eventarc-logging-v1",
             feature = "google-cloud-eventarc-publishing-v1",
             feature = "google-cloud-eventarc-v1",
         ))]
@@ -2993,6 +3001,20 @@ pub mod google {
                         feature = "google-cloud-eventarc-publishing-v1",
                     ))]
                     include!("bytes_btree_map/google.cloud.eventarc.publishing.v1.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-cloud-eventarc-logging-v1",
+            ))]
+            pub mod logging {
+                #[cfg(any(
+                    feature = "google-cloud-eventarc-logging-v1",
+                ))]
+                pub mod v1 {
+                    #[cfg(any(
+                        feature = "google-cloud-eventarc-logging-v1",
+                    ))]
+                    include!("bytes_btree_map/google.cloud.eventarc.logging.v1.rs");
                 }
             }
             #[cfg(any(
@@ -5894,6 +5916,11 @@ pub mod google {
         feature = "google-ads-googleads-v17-errors",
         feature = "google-ads-googleads-v17-resources",
         feature = "google-ads-googleads-v17-services",
+        feature = "google-ads-googleads-v18-common",
+        feature = "google-ads-googleads-v18-enums",
+        feature = "google-ads-googleads-v18-errors",
+        feature = "google-ads-googleads-v18-resources",
+        feature = "google-ads-googleads-v18-services",
         feature = "google-ads-searchads360-v0-common",
         feature = "google-ads-searchads360-v0-enums",
         feature = "google-ads-searchads360-v0-errors",
@@ -5912,6 +5939,11 @@ pub mod google {
             feature = "google-ads-googleads-v17-errors",
             feature = "google-ads-googleads-v17-resources",
             feature = "google-ads-googleads-v17-services",
+            feature = "google-ads-googleads-v18-common",
+            feature = "google-ads-googleads-v18-enums",
+            feature = "google-ads-googleads-v18-errors",
+            feature = "google-ads-googleads-v18-resources",
+            feature = "google-ads-googleads-v18-services",
         ))]
         pub mod googleads {
             #[cfg(any(
@@ -5966,6 +5998,60 @@ pub mod google {
                         feature = "google-ads-googleads-v17-common",
                     ))]
                     include!("bytes_btree_map/google.ads.googleads.v17.common.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-ads-googleads-v18-common",
+                feature = "google-ads-googleads-v18-enums",
+                feature = "google-ads-googleads-v18-errors",
+                feature = "google-ads-googleads-v18-resources",
+                feature = "google-ads-googleads-v18-services",
+            ))]
+            pub mod v18 {
+                #[cfg(any(
+                    feature = "google-ads-googleads-v18-enums",
+                ))]
+                pub mod enums {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v18-enums",
+                    ))]
+                    include!("bytes_btree_map/google.ads.googleads.v18.enums.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v18-common",
+                ))]
+                pub mod common {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v18-common",
+                    ))]
+                    include!("bytes_btree_map/google.ads.googleads.v18.common.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v18-services",
+                ))]
+                pub mod services {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v18-services",
+                    ))]
+                    include!("bytes_btree_map/google.ads.googleads.v18.services.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v18-errors",
+                ))]
+                pub mod errors {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v18-errors",
+                    ))]
+                    include!("bytes_btree_map/google.ads.googleads.v18.errors.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v18-resources",
+                ))]
+                pub mod resources {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v18-resources",
+                    ))]
+                    include!("bytes_btree_map/google.ads.googleads.v18.resources.rs");
                 }
             }
             #[cfg(any(
