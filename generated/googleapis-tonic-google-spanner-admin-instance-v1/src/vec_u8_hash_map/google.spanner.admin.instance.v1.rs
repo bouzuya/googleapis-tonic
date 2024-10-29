@@ -602,6 +602,17 @@ pub struct Instance {
     /// Optional. The `Edition` of the current instance.
     #[prost(enumeration = "instance::Edition", tag = "20")]
     pub edition: i32,
+    /// Optional. Controls the default backup behavior for new databases within the
+    /// instance.
+    ///
+    /// Note that `AUTOMATIC` is not permitted for free instances, as backups and
+    /// backup schedules are not allowed for free instances.
+    ///
+    /// In the `GetInstance` or `ListInstances` response, if the value of
+    /// default_backup_schedule_type is unset or NONE, no default backup
+    /// schedule will be created for new databases within the instance.
+    #[prost(enumeration = "instance::DefaultBackupScheduleType", tag = "23")]
+    pub default_backup_schedule_type: i32,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
@@ -695,6 +706,55 @@ pub mod instance {
                 "STANDARD" => Some(Self::Standard),
                 "ENTERPRISE" => Some(Self::Enterprise),
                 "ENTERPRISE_PLUS" => Some(Self::EnterprisePlus),
+                _ => None,
+            }
+        }
+    }
+    /// Indicates the default backup behavior for new databases within the
+    /// instance.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DefaultBackupScheduleType {
+        /// Not specified.
+        Unspecified = 0,
+        /// No default backup schedule will be created automatically on creation of a
+        /// database within the instance.
+        None = 1,
+        /// A default backup schedule will be created automatically on creation of a
+        /// database within the instance. The default backup schedule creates a full
+        /// backup every 24 hours and retains the backup for a period of 7 days. Once
+        /// created, the default backup schedule can be edited/deleted similar to any
+        /// other backup schedule.
+        Automatic = 2,
+    }
+    impl DefaultBackupScheduleType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::Automatic => "AUTOMATIC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NONE" => Some(Self::None),
+                "AUTOMATIC" => Some(Self::Automatic),
                 _ => None,
             }
         }

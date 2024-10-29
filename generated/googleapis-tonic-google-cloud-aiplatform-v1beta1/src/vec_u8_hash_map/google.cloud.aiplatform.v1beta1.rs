@@ -6102,6 +6102,76 @@ pub struct Context {
     #[prost(string, tag = "16")]
     pub description: ::prost::alloc::string::String,
 }
+/// PSC config that is used to automatically create forwarding rule via
+/// ServiceConnectionMap.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscAutomationConfig {
+    /// Required. Project id used to create forwarding rule.
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Required. The full name of the Google Compute Engine
+    /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>).
+    /// [Format](<https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert>):
+    /// `projects/{project}/global/networks/{network}`.
+    /// Where {project} is a project number, as in '12345', and {network} is
+    /// network name.
+    #[prost(string, tag = "2")]
+    pub network: ::prost::alloc::string::String,
+}
+/// Represents configuration for private service connect.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PrivateServiceConnectConfig {
+    /// Required. If true, expose the IndexEndpoint via private service connect.
+    #[prost(bool, tag = "1")]
+    pub enable_private_service_connect: bool,
+    /// A list of Projects from which the forwarding rule will target the service
+    /// attachment.
+    #[prost(string, repeated, tag = "2")]
+    pub project_allowlist: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. If set to true, enable secure private service connect with IAM
+    /// authorization. Otherwise, private service connect will be done without
+    /// authorization. Note latency will be slightly increased if authorization is
+    /// enabled.
+    #[prost(bool, tag = "4")]
+    pub enable_secure_private_service_connect: bool,
+    /// Output only. The name of the generated service attachment resource.
+    /// This is only populated if the endpoint is deployed with
+    /// PrivateServiceConnect.
+    #[prost(string, tag = "5")]
+    pub service_attachment: ::prost::alloc::string::String,
+}
+/// PscAutomatedEndpoints defines the output of the forwarding rule
+/// automatically created by each PscAutomationConfig.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscAutomatedEndpoints {
+    /// Corresponding project_id in pscAutomationConfigs
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Corresponding network in pscAutomationConfigs.
+    #[prost(string, tag = "2")]
+    pub network: ::prost::alloc::string::String,
+    /// Ip Address created by the automated forwarding rule.
+    #[prost(string, tag = "3")]
+    pub match_address: ::prost::alloc::string::String,
+}
+/// Configuration for PSC-I.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscInterfaceConfig {
+    /// Optional. The full name of the Compute Engine
+    /// [network
+    /// attachment](<https://cloud.google.com/vpc/docs/about-network-attachments>) to
+    /// attach to the resource.
+    /// For example, `projects/12345/regions/us-central1/networkAttachments/myNA`.
+    /// is of the form
+    /// `projects/{project}/regions/{region}/networkAttachments/{networkAttachment}`.
+    /// Where {project} is a project number, as in `12345`, and {networkAttachment}
+    /// is a network attachment name.
+    /// To specify this field, you must have already \[created a network attachment\]
+    /// (<https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments>).
+    /// This field is only used for resources using PSC-I.
+    #[prost(string, tag = "1")]
+    pub network_attachment: ::prost::alloc::string::String,
+}
 /// Represents a job that runs custom workloads such as a Docker container or a
 /// Python package. A CustomJob can have multiple worker pools and each worker
 /// pool can have its own machine and input spec. A CustomJob will be cleaned up
@@ -6233,6 +6303,9 @@ pub struct CustomJobSpec {
     /// Example: \['vertex-ai-ip-range'\].
     #[prost(string, repeated, tag = "13")]
     pub reserved_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Configuration for PSC-I for CustomJob.
+    #[prost(message, optional, tag = "21")]
+    pub psc_interface_config: ::core::option::Option<PscInterfaceConfig>,
     /// The Cloud Storage location to store the output of this CustomJob or
     /// HyperparameterTuningJob. For HyperparameterTuningJob,
     /// the baseOutputDirectory of
@@ -8344,76 +8417,6 @@ pub struct DeploymentResourcePool {
     #[prost(bool, tag = "9")]
     pub satisfies_pzi: bool,
 }
-/// PSC config that is used to automatically create forwarding rule via
-/// ServiceConnectionMap.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PscAutomationConfig {
-    /// Required. Project id used to create forwarding rule.
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    /// Required. The full name of the Google Compute Engine
-    /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>).
-    /// [Format](<https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert>):
-    /// `projects/{project}/global/networks/{network}`.
-    /// Where {project} is a project number, as in '12345', and {network} is
-    /// network name.
-    #[prost(string, tag = "2")]
-    pub network: ::prost::alloc::string::String,
-}
-/// Represents configuration for private service connect.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PrivateServiceConnectConfig {
-    /// Required. If true, expose the IndexEndpoint via private service connect.
-    #[prost(bool, tag = "1")]
-    pub enable_private_service_connect: bool,
-    /// A list of Projects from which the forwarding rule will target the service
-    /// attachment.
-    #[prost(string, repeated, tag = "2")]
-    pub project_allowlist: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Optional. If set to true, enable secure private service connect with IAM
-    /// authorization. Otherwise, private service connect will be done without
-    /// authorization. Note latency will be slightly increased if authorization is
-    /// enabled.
-    #[prost(bool, tag = "4")]
-    pub enable_secure_private_service_connect: bool,
-    /// Output only. The name of the generated service attachment resource.
-    /// This is only populated if the endpoint is deployed with
-    /// PrivateServiceConnect.
-    #[prost(string, tag = "5")]
-    pub service_attachment: ::prost::alloc::string::String,
-}
-/// PscAutomatedEndpoints defines the output of the forwarding rule
-/// automatically created by each PscAutomationConfig.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PscAutomatedEndpoints {
-    /// Corresponding project_id in pscAutomationConfigs
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    /// Corresponding network in pscAutomationConfigs.
-    #[prost(string, tag = "2")]
-    pub network: ::prost::alloc::string::String,
-    /// Ip Address created by the automated forwarding rule.
-    #[prost(string, tag = "3")]
-    pub match_address: ::prost::alloc::string::String,
-}
-/// Configuration for PSC-I.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PscInterfaceConfig {
-    /// Optional. The full name of the Compute Engine
-    /// [network
-    /// attachment](<https://cloud.google.com/vpc/docs/about-network-attachments>) to
-    /// attach to the resource.
-    /// For example, `projects/12345/regions/us-central1/networkAttachments/myNA`.
-    /// is of the form
-    /// `projects/{project}/regions/{region}/networkAttachments/{networkAttachment}`.
-    /// Where {project} is a project number, as in `12345`, and {networkAttachment}
-    /// is a network attachment name.
-    /// To specify this field, you must have already \[created a network attachment\]
-    /// (<https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments>).
-    /// This field is only used for resources using PSC-I.
-    #[prost(string, tag = "1")]
-    pub network_attachment: ::prost::alloc::string::String,
-}
 /// Models are deployed into it, and afterwards Endpoint is called to obtain
 /// predictions and explanations.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -8632,6 +8635,9 @@ pub struct DeployedModel {
     /// [network][google.cloud.aiplatform.v1beta1.Endpoint.network] is configured.
     #[prost(message, optional, tag = "14")]
     pub private_endpoints: ::core::option::Option<PrivateEndpoints>,
+    /// Configuration for faster model deployment.
+    #[prost(message, optional, tag = "23")]
+    pub faster_deployment_config: ::core::option::Option<FasterDeploymentConfig>,
     /// The prediction (for example, the machine) resources that the DeployedModel
     /// uses. The user is billed for the resources (at least their minimal amount)
     /// even if the DeployedModel receives no traffic.
@@ -8707,6 +8713,13 @@ pub struct PredictRequestResponseLoggingConfig {
     /// given, a new table will be created with name `request_response_logging`
     #[prost(message, optional, tag = "3")]
     pub bigquery_destination: ::core::option::Option<BigQueryDestination>,
+}
+/// Configuration for faster model deployment.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FasterDeploymentConfig {
+    /// If true, enable fast tryout feature for this deployed model.
+    #[prost(bool, tag = "2")]
+    pub fast_tryout_enabled: bool,
 }
 /// Request message for CreateDeploymentResourcePool method.
 #[derive(Clone, PartialEq, ::prost::Message)]

@@ -186,6 +186,27 @@ pub struct CustomPronunciations {
     #[prost(message, repeated, tag = "1")]
     pub pronunciations: ::prost::alloc::vec::Vec<CustomPronunciationParams>,
 }
+/// A collection of turns for multi-speaker synthesis.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MultiSpeakerMarkup {
+    /// Required. Speaker turns.
+    #[prost(message, repeated, tag = "1")]
+    pub turns: ::prost::alloc::vec::Vec<multi_speaker_markup::Turn>,
+}
+/// Nested message and enum types in `MultiSpeakerMarkup`.
+pub mod multi_speaker_markup {
+    /// A Multi-speaker turn.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Turn {
+        /// Required. The speaker of the turn, for example, 'O' or 'Q'. Please refer
+        /// to documentation for available speakers.
+        #[prost(string, tag = "1")]
+        pub speaker: ::prost::alloc::string::String,
+        /// Required. The text to speak.
+        #[prost(string, tag = "2")]
+        pub text: ::prost::alloc::string::String,
+    }
+}
 /// Contains text input to be synthesized. Either `text` or `ssml` must be
 /// supplied. Supplying both or neither returns
 /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. The
@@ -207,7 +228,7 @@ pub struct SynthesisInput {
     #[prost(message, optional, tag = "3")]
     pub custom_pronunciations: ::core::option::Option<CustomPronunciations>,
     /// The input source, which is either plain text or SSML.
-    #[prost(oneof = "synthesis_input::InputSource", tags = "1, 2")]
+    #[prost(oneof = "synthesis_input::InputSource", tags = "1, 2, 4")]
     pub input_source: ::core::option::Option<synthesis_input::InputSource>,
 }
 /// Nested message and enum types in `SynthesisInput`.
@@ -225,6 +246,10 @@ pub mod synthesis_input {
         /// [SSML](<https://cloud.google.com/text-to-speech/docs/ssml>).
         #[prost(string, tag = "2")]
         Ssml(::prost::alloc::string::String),
+        /// The multi-speaker input to be synthesized. Only applicable for
+        /// multi-speaker synthesis.
+        #[prost(message, tag = "4")]
+        MultiSpeakerMarkup(super::MultiSpeakerMarkup),
     }
 }
 /// Description of which voice to use for a synthesis request.

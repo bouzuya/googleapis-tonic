@@ -517,6 +517,11 @@ pub mod answer {
         ///
         /// Google skips the answer if the query doesn't have clear intent.
         NonAnswerSeekingQueryIgnoredV2 = 8,
+        /// The low-grounded answer case.
+        ///
+        /// Google skips the answer if a well grounded answer was unable to be
+        /// generated.
+        LowGroundedAnswer = 9,
     }
     impl AnswerSkippedReason {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -536,6 +541,7 @@ pub mod answer {
                 Self::NonAnswerSeekingQueryIgnoredV2 => {
                     "NON_ANSWER_SEEKING_QUERY_IGNORED_V2"
                 }
+                Self::LowGroundedAnswer => "LOW_GROUNDED_ANSWER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -554,6 +560,7 @@ pub mod answer {
                 "NON_ANSWER_SEEKING_QUERY_IGNORED_V2" => {
                     Some(Self::NonAnswerSeekingQueryIgnoredV2)
                 }
+                "LOW_GROUNDED_ANSWER" => Some(Self::LowGroundedAnswer),
                 _ => None,
             }
         }
@@ -3148,6 +3155,9 @@ pub mod completion_service_client {
 pub struct Condition {
     /// Search only
     /// A list of terms to match the query on.
+    /// Cannot be set when
+    /// [Condition.query_regex][google.cloud.discoveryengine.v1.Condition.query_regex]
+    /// is set.
     ///
     /// Maximum of 10 query terms.
     #[prost(message, repeated, tag = "2")]
@@ -3157,6 +3167,12 @@ pub struct Condition {
     /// Maximum of 10 time ranges.
     #[prost(message, repeated, tag = "3")]
     pub active_time_range: ::prost::alloc::vec::Vec<condition::TimeRange>,
+    /// Optional. Query regex to match the whole search query.
+    /// Cannot be set when
+    /// [Condition.query_terms][google.cloud.discoveryengine.v1.Condition.query_terms]
+    /// is set. This is currently supporting promotion use case.
+    #[prost(string, tag = "4")]
+    pub query_regex: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Condition`.
 pub mod condition {
@@ -5299,6 +5315,45 @@ pub mod search_service_client {
                     GrpcMethod::new(
                         "google.cloud.discoveryengine.v1.SearchService",
                         "Search",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Performs a search. Similar to the
+        /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+        /// method, but a lite version that allows API key for authentication, where
+        /// OAuth and IAM checks are not required.
+        ///
+        /// Only public website search is supported by this method. If data stores and
+        /// engines not associated with public website search are specified, a
+        /// `FAILED_PRECONDITION` error is returned.
+        ///
+        /// This method can be used for easy onboarding without having to implement an
+        /// authentication backend. However, it is strongly recommended to use
+        /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+        /// instead with required OAuth and IAM checks to provide better data security.
+        pub async fn search_lite(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchResponse>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.discoveryengine.v1.SearchService/SearchLite",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.SearchService",
+                        "SearchLite",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -7988,7 +8043,7 @@ pub mod batch_get_documents_metadata_response {
                 /// [Document][google.cloud.discoveryengine.v1.Document].
                 #[prost(string, tag = "1")]
                 Uri(::prost::alloc::string::String),
-                /// Required. Format:
+                /// Format:
                 /// projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
                 #[prost(string, tag = "2")]
                 FhirResource(::prost::alloc::string::String),
