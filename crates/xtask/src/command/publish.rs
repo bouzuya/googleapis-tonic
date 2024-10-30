@@ -58,7 +58,7 @@ pub async fn execute(Args { crate_name }: Args) -> anyhow::Result<()> {
         let sleep_time =
             match publish_recursive(&mut published, &generated_dir, &crate_name).await? {
                 PublishResult::New => 600,
-                PublishResult::Update => 300,
+                PublishResult::Update => 60,
                 PublishResult::UpToDate => 0,
             };
         if sleep_time > 0 {
