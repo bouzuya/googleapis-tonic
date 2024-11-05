@@ -19,6 +19,11 @@ pub mod google {
                     include!("vec_u8_btree_map/google.cloud.gkehub.multiclusteringress.v1beta.rs");
                 }
             }
+            pub mod policycontroller {
+                pub mod v1beta {
+                    pub use googleapis_tonic_google_cloud_gkehub_policycontroller_v1beta::google::cloud::gkehub::policycontroller::v1beta::*;
+                }
+            }
             pub mod servicemesh {
                 pub mod v1beta {
                     pub use googleapis_tonic_google_cloud_gkehub_servicemesh_v1beta::google::cloud::gkehub::servicemesh::v1beta::*;

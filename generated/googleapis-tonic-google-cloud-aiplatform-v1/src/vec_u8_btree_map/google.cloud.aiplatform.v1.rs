@@ -3630,9 +3630,12 @@ pub struct Schema {
     /// Optional. Maximum number of the elements for Type.ARRAY.
     #[prost(int64, tag = "22")]
     pub max_items: i64,
-    /// Optional. Possible values of the element of Type.STRING with enum format.
-    /// For example we can define an Enum Direction as :
-    /// {type:STRING, format:enum, enum:\["EAST", NORTH", "SOUTH", "WEST"\]}
+    /// Optional. Possible values of the element of primitive type with enum
+    /// format. Examples:
+    /// 1. We can define direction as :
+    /// ```{type:STRING, format:enum, enum:\["EAST", "NORTH", "SOUTH", "WEST"\]}```
+    /// 2. We can define apartment number as :
+    /// ```{type:INTEGER, format:enum, enum:\["101", "201", "301"\]}```
     #[prost(string, repeated, tag = "9")]
     pub r#enum: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. SCHEMA FIELDS FOR TYPE OBJECT
@@ -3749,7 +3752,7 @@ pub struct Tool {
     /// User should provide a [FunctionResponse][content.part.function_response]
     /// for each function call in the next turn. Based on the function responses,
     /// Model will generate the final response back to the user.
-    /// Maximum 64 function declarations can be provided.
+    /// Maximum 128 function declarations can be provided.
     #[prost(message, repeated, tag = "1")]
     pub function_declarations: ::prost::alloc::vec::Vec<FunctionDeclaration>,
     /// Optional. Retrieval tool type.
@@ -3765,9 +3768,9 @@ pub struct Tool {
 }
 /// Structured representation of a function declaration as defined by the
 /// [OpenAPI 3.0 specification](<https://spec.openapis.org/oas/v3.0.3>). Included
-/// in this declaration are the function name and parameters. This
-/// FunctionDeclaration is a representation of a block of code that can be used
-/// as a `Tool` by the model and executed by the client.
+/// in this declaration are the function name, description, parameters and
+/// response type. This FunctionDeclaration is a representation of a block of
+/// code that can be used as a `Tool` by the model and executed by the client.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunctionDeclaration {
     /// Required. The name of the function to call.
@@ -3796,6 +3799,11 @@ pub struct FunctionDeclaration {
     ///   - param1
     #[prost(message, optional, tag = "3")]
     pub parameters: ::core::option::Option<Schema>,
+    /// Optional. Describes the output from this function in JSON Schema format.
+    /// Reflects the Open API 3.03 Response Object. The Schema defines the type
+    /// used for the response value of the function.
+    #[prost(message, optional, tag = "4")]
+    pub response: ::core::option::Option<Schema>,
 }
 /// A predicted \[FunctionCall\] returned from the model that contains a string
 /// representing the \[FunctionDeclaration.name\] and a structured JSON object
@@ -3822,6 +3830,9 @@ pub struct FunctionResponse {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The function response in JSON object format.
+    /// Use "output" key to specify function output and "error" key to specify
+    /// error details (if any). If "output" and "error" keys are not specified,
+    /// then whole "response" is treated as function output.
     #[prost(message, optional, tag = "2")]
     pub response: ::core::option::Option<::prost_types::Struct>,
 }
@@ -7535,6 +7546,13 @@ pub struct DeployedModel {
     /// [network][google.cloud.aiplatform.v1.Endpoint.network] is configured.
     #[prost(message, optional, tag = "14")]
     pub private_endpoints: ::core::option::Option<PrivateEndpoints>,
+    /// System labels to apply to Model Garden deployments.
+    /// System labels are managed by Google for internal use only.
+    #[prost(btree_map = "string, string", tag = "28")]
+    pub system_labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// The prediction (for example, the machine) resources that the DeployedModel
     /// uses. The user is billed for the resources (at least their minimal amount)
     /// even if the DeployedModel receives no traffic.
@@ -14369,18 +14387,21 @@ pub struct CreateFeatureRequest {
 }
 /// Request message for
 /// [FeaturestoreService.BatchCreateFeatures][google.cloud.aiplatform.v1.FeaturestoreService.BatchCreateFeatures].
+/// Request message for
+/// [FeatureRegistryService.BatchCreateFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.BatchCreateFeatures].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateFeaturesRequest {
-    /// Required. The resource name of the EntityType to create the batch of
-    /// Features under. Format:
+    /// Required. The resource name of the EntityType/FeatureGroup to create the
+    /// batch of Features under. Format:
     /// `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+    /// `projects/{project}/locations/{location}/featureGroups/{feature_group}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The request message specifying the Features to create. All
-    /// Features must be created under the same parent EntityType. The `parent`
-    /// field in each child request message can be omitted. If `parent` is set in a
-    /// child request, then the value must match the `parent` value in this request
-    /// message.
+    /// Features must be created under the same parent EntityType / FeatureGroup.
+    /// The `parent` field in each child request message can be omitted. If
+    /// `parent` is set in a child request, then the value must match the `parent`
+    /// value in this request message.
     #[prost(message, repeated, tag = "2")]
     pub requests: ::prost::alloc::vec::Vec<CreateFeatureRequest>,
 }
@@ -15629,7 +15650,7 @@ pub struct CreateFeatureGroupRequest {
     /// Required. The ID to use for this FeatureGroup, which will become the final
     /// component of the FeatureGroup's resource name.
     ///
-    /// This value may be up to 60 characters, and valid characters are
+    /// This value may be up to 128 characters, and valid characters are
     /// `\[a-z0-9_\]`. The first character cannot be a number.
     ///
     /// The value must be unique within the project and location.
@@ -16036,6 +16057,36 @@ pub mod feature_registry_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.FeatureRegistryService",
                         "CreateFeature",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a batch of Features in a given FeatureGroup.
+        pub async fn batch_create_features(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateFeaturesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeatureRegistryService/BatchCreateFeatures",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureRegistryService",
+                        "BatchCreateFeatures",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -29771,6 +29822,29 @@ pub struct StartNotebookRuntimeOperationMetadata {
 /// [NotebookService.StartNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StartNotebookRuntime].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StartNotebookRuntimeResponse {}
+/// Request message for
+/// [NotebookService.StopNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StopNotebookRuntimeRequest {
+    /// Required. The name of the NotebookRuntime resource to be stopped.
+    /// Instead of checking whether the name is in valid NotebookRuntime resource
+    /// name format, directly throw NotFound exception if there is no such
+    /// NotebookRuntime in spanner.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Metadata information for
+/// [NotebookService.StopNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StopNotebookRuntimeOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Response message for
+/// [NotebookService.StopNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime].
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct StopNotebookRuntimeResponse {}
 /// Request message for \[NotebookService.CreateNotebookExecutionJob\]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNotebookExecutionJobRequest {
@@ -30313,6 +30387,36 @@ pub mod notebook_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.NotebookService",
                         "StartNotebookRuntime",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Stops a NotebookRuntime.
+        pub async fn stop_notebook_runtime(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StopNotebookRuntimeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.NotebookService/StopNotebookRuntime",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "StopNotebookRuntime",
                     ),
                 );
             self.inner.unary(req, path, codec).await

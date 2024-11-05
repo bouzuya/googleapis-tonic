@@ -9,4 +9,7 @@ pub mod google {
             }
         }
     }
+    pub mod r#type {
+        pub use googleapis_tonic_google_type::google::r#type::*;
+    }
 }

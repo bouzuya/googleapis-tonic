@@ -723,14 +723,9 @@ pub struct EnvVar {
 pub mod env_var {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Values {
-        /// Variable references $(VAR_NAME) are expanded
-        /// using the previous defined environment variables in the container and
-        /// any route environment variables. If a variable cannot be resolved,
-        /// the reference in the input string will be unchanged. The $(VAR_NAME)
-        /// syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped
-        /// references will never be expanded, regardless of whether the variable
-        /// exists or not.
+        /// Literal value of the environment variable.
         /// Defaults to "", and the maximum length is 32768 bytes.
+        /// Variable references are not supported in Cloud Run.
         #[prost(string, tag = "2")]
         Value(::prost::alloc::string::String),
         /// Source for the environment variable's value.
@@ -989,6 +984,10 @@ pub struct GcsVolumeSource {
     /// If true, the volume will be mounted as read only for all mounts.
     #[prost(bool, tag = "2")]
     pub read_only: bool,
+    /// A list of additional flags to pass to the gcsfuse CLI.
+    /// Options should be specified without the leading "--".
+    #[prost(string, repeated, tag = "3")]
+    pub mount_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Probe describes a health check to be performed against a container to
 /// determine whether it is alive or ready to receive traffic.
@@ -3367,7 +3366,9 @@ pub struct Service {
     #[prost(message, optional, tag = "20")]
     pub scaling: ::core::option::Option<ServiceScaling>,
     /// Optional. Disables IAM permission check for run.routes.invoke for callers
-    /// of this service. This setting should not be used with external ingress.
+    /// of this service. This feature is available by invitation only. For more
+    /// information, visit
+    /// <https://cloud.google.com/run/docs/securing/managing-access#invoker_check.>
     #[prost(bool, tag = "21")]
     pub invoker_iam_disabled: bool,
     /// Optional. Disables public resolution of the default URI of this service.

@@ -261,6 +261,7 @@ pub mod maps {
     feature = "google-cloud-gkehub-multiclusteringress-v1",
     feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
     feature = "google-cloud-gkehub-multiclusteringress-v1beta",
+    feature = "google-cloud-gkehub-policycontroller-v1beta",
     feature = "google-cloud-gkehub-servicemesh-v1alpha",
     feature = "google-cloud-gkehub-servicemesh-v1beta",
     feature = "google-cloud-gkehub-v1",
@@ -295,6 +296,8 @@ pub mod maps {
     feature = "google-cloud-mediatranslation-v1beta1",
     feature = "google-cloud-memcache-v1",
     feature = "google-cloud-memcache-v1beta2",
+    feature = "google-cloud-memorystore-v1",
+    feature = "google-cloud-memorystore-v1beta",
     feature = "google-cloud-metastore-logging-v1",
     feature = "google-cloud-metastore-v1",
     feature = "google-cloud-metastore-v1alpha",
@@ -701,6 +704,7 @@ pub mod google {
         feature = "google-cloud-gkehub-multiclusteringress-v1",
         feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
         feature = "google-cloud-gkehub-multiclusteringress-v1beta",
+        feature = "google-cloud-gkehub-policycontroller-v1beta",
         feature = "google-cloud-gkehub-servicemesh-v1alpha",
         feature = "google-cloud-gkehub-servicemesh-v1beta",
         feature = "google-cloud-gkehub-v1",
@@ -735,6 +739,8 @@ pub mod google {
         feature = "google-cloud-mediatranslation-v1beta1",
         feature = "google-cloud-memcache-v1",
         feature = "google-cloud-memcache-v1beta2",
+        feature = "google-cloud-memorystore-v1",
+        feature = "google-cloud-memorystore-v1beta",
         feature = "google-cloud-metastore-logging-v1",
         feature = "google-cloud-metastore-v1",
         feature = "google-cloud-metastore-v1alpha",
@@ -904,6 +910,30 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-memorystore-v1",
+            feature = "google-cloud-memorystore-v1beta",
+        ))]
+        pub mod memorystore {
+            #[cfg(any(
+                feature = "google-cloud-memorystore-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-memorystore-v1",
+                ))]
+                include!("bytes_hash_map/google.cloud.memorystore.v1.rs");
+            }
+            #[cfg(any(
+                feature = "google-cloud-memorystore-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-memorystore-v1beta",
+                ))]
+                include!("bytes_hash_map/google.cloud.memorystore.v1beta.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-gkehub-cloudauditlogging-v1alpha",
             feature = "google-cloud-gkehub-configmanagement-v1",
             feature = "google-cloud-gkehub-configmanagement-v1alpha",
@@ -913,6 +943,7 @@ pub mod google {
             feature = "google-cloud-gkehub-multiclusteringress-v1",
             feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
             feature = "google-cloud-gkehub-multiclusteringress-v1beta",
+            feature = "google-cloud-gkehub-policycontroller-v1beta",
             feature = "google-cloud-gkehub-servicemesh-v1alpha",
             feature = "google-cloud-gkehub-servicemesh-v1beta",
             feature = "google-cloud-gkehub-v1",
@@ -991,6 +1022,20 @@ pub mod google {
                         feature = "google-cloud-gkehub-cloudauditlogging-v1alpha",
                     ))]
                     include!("bytes_hash_map/google.cloud.gkehub.cloudauditlogging.v1alpha.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-cloud-gkehub-policycontroller-v1beta",
+            ))]
+            pub mod policycontroller {
+                #[cfg(any(
+                    feature = "google-cloud-gkehub-policycontroller-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-cloud-gkehub-policycontroller-v1beta",
+                    ))]
+                    include!("bytes_hash_map/google.cloud.gkehub.policycontroller.v1beta.rs");
                 }
             }
             #[cfg(any(
