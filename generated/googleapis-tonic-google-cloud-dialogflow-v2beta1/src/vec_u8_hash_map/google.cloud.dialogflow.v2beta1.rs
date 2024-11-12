@@ -1126,6 +1126,9 @@ pub struct InputAudioConfig {
     /// no-speech timeout itself.
     #[prost(message, optional, tag = "18")]
     pub default_no_speech_timeout: ::core::option::Option<::prost_types::Duration>,
+    /// A collection of phrase set resources to use for speech adaptation.
+    #[prost(string, repeated, tag = "20")]
+    pub phrase_sets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If `true`, the request will opt out for STT conformer model migration.
     /// This field will be deprecated once force migration takes place in June
     /// 2024. Please refer to [Dialogflow ES Speech model
@@ -1251,6 +1254,9 @@ pub struct SpeechToTextConfig {
     /// for model selection.
     #[prost(string, tag = "2")]
     pub model: ::prost::alloc::string::String,
+    /// List of names of Cloud Speech phrase sets that are used for transcription.
+    #[prost(string, repeated, tag = "4")]
+    pub phrase_sets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Audio encoding of the audio content to process.
     #[prost(enumeration = "AudioEncoding", tag = "6")]
     pub audio_encoding: i32,
@@ -1413,6 +1419,8 @@ pub enum AudioEncoding {
     /// is replaced with a single byte containing the block length. Only Speex
     /// wideband is supported. `sample_rate_hertz` must be 16000.
     SpeexWithHeaderByte = 7,
+    /// 8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law.
+    Alaw = 8,
 }
 impl AudioEncoding {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1429,6 +1437,7 @@ impl AudioEncoding {
             Self::AmrWb => "AUDIO_ENCODING_AMR_WB",
             Self::OggOpus => "AUDIO_ENCODING_OGG_OPUS",
             Self::SpeexWithHeaderByte => "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            Self::Alaw => "AUDIO_ENCODING_ALAW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1442,6 +1451,7 @@ impl AudioEncoding {
             "AUDIO_ENCODING_AMR_WB" => Some(Self::AmrWb),
             "AUDIO_ENCODING_OGG_OPUS" => Some(Self::OggOpus),
             "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE" => Some(Self::SpeexWithHeaderByte),
+            "AUDIO_ENCODING_ALAW" => Some(Self::Alaw),
             _ => None,
         }
     }
@@ -1571,6 +1581,8 @@ pub enum OutputAudioEncoding {
     OggOpus = 3,
     /// 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
     Mulaw = 5,
+    /// 8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law.
+    Alaw = 6,
 }
 impl OutputAudioEncoding {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1585,6 +1597,7 @@ impl OutputAudioEncoding {
             Self::Mp364Kbps => "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
             Self::OggOpus => "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
             Self::Mulaw => "OUTPUT_AUDIO_ENCODING_MULAW",
+            Self::Alaw => "OUTPUT_AUDIO_ENCODING_ALAW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1596,6 +1609,7 @@ impl OutputAudioEncoding {
             "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS" => Some(Self::Mp364Kbps),
             "OUTPUT_AUDIO_ENCODING_OGG_OPUS" => Some(Self::OggOpus),
             "OUTPUT_AUDIO_ENCODING_MULAW" => Some(Self::Mulaw),
+            "OUTPUT_AUDIO_ENCODING_ALAW" => Some(Self::Alaw),
             _ => None,
         }
     }
@@ -6421,7 +6435,7 @@ pub struct SentimentAnalysisResult {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Sentiment {
     /// Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-    /// sentiment).
+    ///   sentiment).
     #[prost(float, tag = "1")]
     pub score: f32,
     /// A non-negative number in the [0, +inf) range, which represents the absolute
@@ -8116,7 +8130,8 @@ pub mod response_message {
     /// The text response message.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Text {
-        /// A collection of text responses.
+        /// A collection of text response variants. If multiple variants are
+        /// defined, only one text response variant is returned at runtime.
         #[prost(string, repeated, tag = "1")]
         pub text: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
@@ -8347,6 +8362,9 @@ pub mod knowledge_assist_answer {
                 /// Title of the document.
                 #[prost(string, tag = "4")]
                 pub title: ::prost::alloc::string::String,
+                /// Metadata of the document.
+                #[prost(message, optional, tag = "5")]
+                pub metadata: ::core::option::Option<::prost_types::Struct>,
             }
         }
         /// Source of result.
@@ -9757,6 +9775,10 @@ pub mod human_agent_assistant_config {
         /// summary of a conversation.
         #[prost(message, optional, tag = "8")]
         pub sections: ::core::option::Option<suggestion_query_config::Sections>,
+        /// Optional. The number of recent messages to include in the context.
+        /// Supported features: KNOWLEDGE_ASSIST.
+        #[prost(int32, tag = "9")]
+        pub context_size: i32,
         /// Source of query.
         #[prost(oneof = "suggestion_query_config::QuerySource", tags = "1, 2, 3")]
         pub query_source: ::core::option::Option<suggestion_query_config::QuerySource>,
@@ -10627,10 +10649,10 @@ pub struct CreateGeneratorRequest {
     /// Optional. The ID to use for the generator, which will become the final
     /// component of the generator's resource name.
     ///
-    /// The generator ID must be compliant with the regression fomula
+    /// The generator ID must be compliant with the regression formula
     /// `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of \[3,64\].
     /// If the field is not provided, an Id will be auto-generated.
-    /// If the field is provided, the caller is resposible for
+    /// If the field is provided, the caller is responsible for
     /// 1. the uniqueness of the ID, otherwise the request will be rejected.
     /// 2. the consistency for whether to use custom ID or not under a project to
     /// better ensure uniqueness.
@@ -10775,7 +10797,6 @@ pub struct SummarizationSectionList {
 }
 /// Providing examples in the generator (i.e. building a few-shot generator)
 /// helps convey the desired format of the LLM response.
-/// NEXT_ID: 10
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FewShotExample {
     /// Optional. Conversation transcripts.
@@ -10981,7 +11002,7 @@ pub mod generator {
     /// Required. Input context of the generator.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Context {
-        /// Input of prebuilt Summarization feature.
+        /// Input of Summarization feature.
         #[prost(message, tag = "13")]
         SummarizationContext(super::SummarizationContext),
     }
@@ -14766,6 +14787,477 @@ pub mod knowledge_bases_client {
                     GrpcMethod::new(
                         "google.cloud.dialogflow.v2beta1.KnowledgeBases",
                         "UpdateKnowledgeBase",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// The request message for
+/// [SipTrunks.CreateSipTrunk][google.cloud.dialogflow.v2beta1.SipTrunks.CreateSipTrunk].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateSipTrunkRequest {
+    /// Required. The location to create a SIP trunk for.
+    /// Format: `projects/<Project ID>/locations/<Location ID>`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The SIP trunk to create.
+    #[prost(message, optional, tag = "2")]
+    pub sip_trunk: ::core::option::Option<SipTrunk>,
+}
+/// The request message for
+/// [SipTrunks.DeleteSipTrunk][google.cloud.dialogflow.v2beta1.SipTrunks.DeleteSipTrunk].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteSipTrunkRequest {
+    /// Required. The name of the SIP trunk to delete.
+    /// Format: `projects/<Project ID>/locations/<Location ID>/sipTrunks/<SipTrunk
+    /// ID>`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The request message for
+/// [SipTrunks.ListSipTrunks][google.cloud.dialogflow.v2beta1.SipTrunks.ListSipTrunks].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListSipTrunksRequest {
+    /// Required. The location to list SIP trunks from.
+    /// Format: `projects/<Project ID>/locations/<Location ID>`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The maximum number of items to return in a single page. By
+    /// default 100 and at most 1000.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. The next_page_token value returned from a previous list request.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// The response message for
+/// [SipTrunks.ListSipTrunks][google.cloud.dialogflow.v2beta1.SipTrunks.ListSipTrunks].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListSipTrunksResponse {
+    /// The list of SIP trunks.
+    #[prost(message, repeated, tag = "1")]
+    pub sip_trunks: ::prost::alloc::vec::Vec<SipTrunk>,
+    /// Token to retrieve the next page of results, or empty if there are no
+    /// more results in the list.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// The request message for
+/// [SipTrunks.GetSipTrunk][google.cloud.dialogflow.v2beta1.SipTrunks.GetSipTrunk].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetSipTrunkRequest {
+    /// Required. The name of the SIP trunk to delete.
+    /// Format: `projects/<Project ID>/locations/<Location ID>/sipTrunks/<SipTrunk
+    /// ID>`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The request message for
+/// [SipTrunks.UpdateSipTrunk][google.cloud.dialogflow.v2beta1.SipTrunks.UpdateSipTrunk].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateSipTrunkRequest {
+    /// Required. The SipTrunk to update.
+    #[prost(message, optional, tag = "1")]
+    pub sip_trunk: ::core::option::Option<SipTrunk>,
+    /// Optional. The mask to control which fields get updated. If the mask is not
+    /// present, all fields will be updated.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// SipTrunk is the resource that represents a SIP trunk to connect to Google
+/// Telephony platform SIP trunking service.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SipTrunk {
+    /// Identifier. The unique identifier of the SIP trunk.
+    /// Format: `projects/<Project ID>/locations/<Location ID>/sipTrunks/<SipTrunk
+    /// ID>`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The expected hostnames in the peer certificate from partner that
+    /// is used for TLS authentication.
+    #[prost(string, repeated, tag = "2")]
+    pub expected_hostname: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Output only. Connections of the SIP trunk.
+    #[prost(message, repeated, tag = "3")]
+    pub connections: ::prost::alloc::vec::Vec<Connection>,
+    /// Optional. Human readable alias for this trunk.
+    #[prost(string, tag = "4")]
+    pub display_name: ::prost::alloc::string::String,
+}
+/// Represents a connection for SIP Trunk.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Connection {
+    /// Output only. The unique identifier of the SIP Trunk connection.
+    #[prost(string, tag = "1")]
+    pub connection_id: ::prost::alloc::string::String,
+    /// Output only. State of the connection.
+    #[prost(enumeration = "connection::State", tag = "2")]
+    pub state: i32,
+    /// Output only. When the connection status changed.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The error details for the connection. Only populated when
+    /// authentication errors occur.
+    #[prost(message, optional, tag = "4")]
+    pub error_details: ::core::option::Option<connection::ErrorDetails>,
+}
+/// Nested message and enum types in `Connection`.
+pub mod connection {
+    /// The error details of Sip Trunk connection authentication.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ErrorDetails {
+        /// Output only. The status of the certificate authentication.
+        #[prost(enumeration = "CertificateState", optional, tag = "1")]
+        pub certificate_state: ::core::option::Option<i32>,
+        /// The error message provided from SIP trunking auth service
+        #[prost(string, optional, tag = "2")]
+        pub error_message: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    /// The state of Sip Trunk connection.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// SIP Trunk connection state is Not specified.
+        Unspecified = 0,
+        /// SIP Trunk connection is connected.
+        Connected = 1,
+        /// SIP Trunk connection is disconnected.
+        Disconnected = 2,
+        /// SIP Trunk connection has authentication error.
+        AuthenticationFailed = 3,
+        /// SIP Trunk connection is keepalive.
+        Keepalive = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Connected => "CONNECTED",
+                Self::Disconnected => "DISCONNECTED",
+                Self::AuthenticationFailed => "AUTHENTICATION_FAILED",
+                Self::Keepalive => "KEEPALIVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONNECTED" => Some(Self::Connected),
+                "DISCONNECTED" => Some(Self::Disconnected),
+                "AUTHENTICATION_FAILED" => Some(Self::AuthenticationFailed),
+                "KEEPALIVE" => Some(Self::Keepalive),
+                _ => None,
+            }
+        }
+    }
+    /// The state of Sip Trunk certificate authentication.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum CertificateState {
+        /// Certificate state is not specified.
+        Unspecified = 0,
+        /// Certificate is valid.
+        CertificateValid = 1,
+        /// Catch all for any error not specified.
+        CertificateInvalid = 2,
+        /// Certificate leaf node has expired.
+        CertificateExpired = 3,
+        /// There is no hostname defined to authenticate in SipTrunkingServer.
+        CertificateHostnameNotFound = 4,
+        /// No path found from the leaf certificate to any root.
+        CertificateUnauthenticated = 5,
+        /// Trust store does not exist.
+        CertificateTrustStoreNotFound = 6,
+        /// Hostname has invalid format.
+        CertificateHostnameInvalidFormat = 7,
+        /// Certificate has exhausted its quota.
+        CertificateQuotaExceeded = 8,
+    }
+    impl CertificateState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "CERTIFICATE_STATE_UNSPECIFIED",
+                Self::CertificateValid => "CERTIFICATE_VALID",
+                Self::CertificateInvalid => "CERTIFICATE_INVALID",
+                Self::CertificateExpired => "CERTIFICATE_EXPIRED",
+                Self::CertificateHostnameNotFound => "CERTIFICATE_HOSTNAME_NOT_FOUND",
+                Self::CertificateUnauthenticated => "CERTIFICATE_UNAUTHENTICATED",
+                Self::CertificateTrustStoreNotFound => {
+                    "CERTIFICATE_TRUST_STORE_NOT_FOUND"
+                }
+                Self::CertificateHostnameInvalidFormat => {
+                    "CERTIFICATE_HOSTNAME_INVALID_FORMAT"
+                }
+                Self::CertificateQuotaExceeded => "CERTIFICATE_QUOTA_EXCEEDED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CERTIFICATE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CERTIFICATE_VALID" => Some(Self::CertificateValid),
+                "CERTIFICATE_INVALID" => Some(Self::CertificateInvalid),
+                "CERTIFICATE_EXPIRED" => Some(Self::CertificateExpired),
+                "CERTIFICATE_HOSTNAME_NOT_FOUND" => {
+                    Some(Self::CertificateHostnameNotFound)
+                }
+                "CERTIFICATE_UNAUTHENTICATED" => Some(Self::CertificateUnauthenticated),
+                "CERTIFICATE_TRUST_STORE_NOT_FOUND" => {
+                    Some(Self::CertificateTrustStoreNotFound)
+                }
+                "CERTIFICATE_HOSTNAME_INVALID_FORMAT" => {
+                    Some(Self::CertificateHostnameInvalidFormat)
+                }
+                "CERTIFICATE_QUOTA_EXCEEDED" => Some(Self::CertificateQuotaExceeded),
+                _ => None,
+            }
+        }
+    }
+}
+/// Generated client implementations.
+pub mod sip_trunks_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service for managing [SipTrunks][google.cloud.dialogflow.v2beta1.SipTrunk].
+    #[derive(Debug, Clone)]
+    pub struct SipTrunksClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SipTrunksClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SipTrunksClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            SipTrunksClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a SipTrunk for a specified location.
+        pub async fn create_sip_trunk(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateSipTrunkRequest>,
+        ) -> std::result::Result<tonic::Response<super::SipTrunk>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.dialogflow.v2beta1.SipTrunks/CreateSipTrunk",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.v2beta1.SipTrunks",
+                        "CreateSipTrunk",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specified SipTrunk.
+        pub async fn delete_sip_trunk(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteSipTrunkRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.dialogflow.v2beta1.SipTrunks/DeleteSipTrunk",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.v2beta1.SipTrunks",
+                        "DeleteSipTrunk",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a list of SipTrunks in the specified location.
+        pub async fn list_sip_trunks(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListSipTrunksRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListSipTrunksResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.dialogflow.v2beta1.SipTrunks/ListSipTrunks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.v2beta1.SipTrunks",
+                        "ListSipTrunks",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves the specified SipTrunk.
+        pub async fn get_sip_trunk(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSipTrunkRequest>,
+        ) -> std::result::Result<tonic::Response<super::SipTrunk>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.dialogflow.v2beta1.SipTrunks/GetSipTrunk",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.v2beta1.SipTrunks",
+                        "GetSipTrunk",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the specified SipTrunk.
+        pub async fn update_sip_trunk(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateSipTrunkRequest>,
+        ) -> std::result::Result<tonic::Response<super::SipTrunk>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.dialogflow.v2beta1.SipTrunks/UpdateSipTrunk",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.dialogflow.v2beta1.SipTrunks",
+                        "UpdateSipTrunk",
                     ),
                 );
             self.inner.unary(req, path, codec).await

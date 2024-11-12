@@ -13815,6 +13815,10 @@ pub struct FeatureView {
     /// performed during online serving.
     #[prost(message, optional, tag = "15")]
     pub index_config: ::core::option::Option<feature_view::IndexConfig>,
+    /// Optional. Configuration for FeatureView created under Optimized
+    /// FeatureOnlineStore.
+    #[prost(message, optional, tag = "16")]
+    pub optimized_config: ::core::option::Option<feature_view::OptimizedConfig>,
     /// Optional. Service agent type used during data sync. By default, the Vertex
     /// AI Service Agent is used. When using an IAM Policy to isolate this
     /// FeatureView within a project, a separate service account should be
@@ -14142,6 +14146,17 @@ pub mod feature_view {
         /// Optional. The RAG corpus id corresponding to this FeatureView.
         #[prost(int64, tag = "2")]
         pub rag_corpus_id: i64,
+    }
+    /// Configuration for FeatureViews created in Optimized FeatureOnlineStore.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct OptimizedConfig {
+        /// Optional. A description of resources that the FeatureView uses, which to
+        /// large degree are decided by Vertex AI, and optionally allows only a
+        /// modest additional configuration. If min_replica_count is not set, the
+        /// default value is 2. If max_replica_count is not set, the default value
+        /// is 6. The max allowed replica count is 1000.
+        #[prost(message, optional, tag = "7")]
+        pub automatic_resources: ::core::option::Option<super::AutomaticResources>,
     }
     /// Service agent type used during data sync.
     #[derive(
@@ -19798,6 +19813,15 @@ pub struct TuningJob {
     /// provided encryption key.
     #[prost(message, optional, tag = "16")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// The service account that the tuningJob workload runs as.
+    /// If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the
+    /// project will be used. See
+    /// <https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent>
+    ///
+    /// Users starting the pipeline must have the `iam.serviceAccounts.actAs`
+    /// permission on this service account.
+    #[prost(string, tag = "22")]
+    pub service_account: ::prost::alloc::string::String,
     #[prost(oneof = "tuning_job::SourceModel", tags = "4")]
     pub source_model: ::core::option::Option<tuning_job::SourceModel>,
     #[prost(oneof = "tuning_job::TuningSpec", tags = "5, 17, 21")]

@@ -16284,6 +16284,15 @@ pub struct TuningJob {
     /// provided encryption key.
     #[prost(message, optional, tag = "16")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// The service account that the tuningJob workload runs as.
+    /// If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the
+    /// project will be used. See
+    /// <https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent>
+    ///
+    /// Users starting the pipeline must have the `iam.serviceAccounts.actAs`
+    /// permission on this service account.
+    #[prost(string, tag = "22")]
+    pub service_account: ::prost::alloc::string::String,
     #[prost(oneof = "tuning_job::SourceModel", tags = "4")]
     pub source_model: ::core::option::Option<tuning_job::SourceModel>,
     #[prost(oneof = "tuning_job::TuningSpec", tags = "5")]
