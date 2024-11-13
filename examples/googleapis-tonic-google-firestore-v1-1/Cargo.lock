@@ -317,7 +317,7 @@ dependencies = [
  "google-cloud-auth",
  "google-cloud-token",
  "googleapis-tonic-google-firestore-v1",
- "thiserror 1.0.69",
+ "thiserror 2.0.3",
  "tokio",
  "tonic",
 ]
