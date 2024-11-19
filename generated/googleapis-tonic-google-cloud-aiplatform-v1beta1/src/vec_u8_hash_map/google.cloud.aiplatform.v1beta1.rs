@@ -10441,7 +10441,7 @@ pub struct EvaluateInstancesRequest {
     /// Instances and specs for evaluation
     #[prost(
         oneof = "evaluate_instances_request::MetricInputs",
-        tags = "2, 3, 4, 5, 6, 8, 9, 12, 7, 23, 14, 15, 10, 24, 16, 17, 18, 28, 29, 19, 20, 21, 22"
+        tags = "2, 3, 4, 5, 6, 8, 9, 12, 7, 23, 14, 15, 10, 24, 16, 17, 18, 28, 29, 19, 20, 21, 22, 33, 34, 35, 37, 38, 39"
     )]
     pub metric_inputs: ::core::option::Option<evaluate_instances_request::MetricInputs>,
 }
@@ -10527,6 +10527,24 @@ pub mod evaluate_instances_request {
         /// Input for tool parameter key value match metric.
         #[prost(message, tag = "22")]
         ToolParameterKvMatchInput(super::ToolParameterKvMatchInput),
+        /// Input for trajectory exact match metric.
+        #[prost(message, tag = "33")]
+        TrajectoryExactMatchInput(super::TrajectoryExactMatchInput),
+        /// Input for trajectory in order match metric.
+        #[prost(message, tag = "34")]
+        TrajectoryInOrderMatchInput(super::TrajectoryInOrderMatchInput),
+        /// Input for trajectory match any order metric.
+        #[prost(message, tag = "35")]
+        TrajectoryAnyOrderMatchInput(super::TrajectoryAnyOrderMatchInput),
+        /// Input for trajectory precision metric.
+        #[prost(message, tag = "37")]
+        TrajectoryPrecisionInput(super::TrajectoryPrecisionInput),
+        /// Input for trajectory recall metric.
+        #[prost(message, tag = "38")]
+        TrajectoryRecallInput(super::TrajectoryRecallInput),
+        /// Input for trajectory single tool use metric.
+        #[prost(message, tag = "39")]
+        TrajectorySingleToolUseInput(super::TrajectorySingleToolUseInput),
     }
 }
 /// Response message for EvaluationService.EvaluateInstances.
@@ -10536,7 +10554,7 @@ pub struct EvaluateInstancesResponse {
     /// EvaluationRequest.instances.
     #[prost(
         oneof = "evaluate_instances_response::EvaluationResults",
-        tags = "1, 2, 3, 4, 5, 7, 8, 11, 6, 22, 13, 14, 9, 23, 15, 16, 17, 27, 28, 18, 19, 20, 21"
+        tags = "1, 2, 3, 4, 5, 7, 8, 11, 6, 22, 13, 14, 9, 23, 15, 16, 17, 27, 28, 18, 19, 20, 21, 31, 32, 33, 35, 36, 37"
     )]
     pub evaluation_results: ::core::option::Option<
         evaluate_instances_response::EvaluationResults,
@@ -10626,6 +10644,24 @@ pub mod evaluate_instances_response {
         /// Results for tool parameter key value match metric.
         #[prost(message, tag = "21")]
         ToolParameterKvMatchResults(super::ToolParameterKvMatchResults),
+        /// Result for trajectory exact match metric.
+        #[prost(message, tag = "31")]
+        TrajectoryExactMatchResults(super::TrajectoryExactMatchResults),
+        /// Result for trajectory in order match metric.
+        #[prost(message, tag = "32")]
+        TrajectoryInOrderMatchResults(super::TrajectoryInOrderMatchResults),
+        /// Result for trajectory any order match metric.
+        #[prost(message, tag = "33")]
+        TrajectoryAnyOrderMatchResults(super::TrajectoryAnyOrderMatchResults),
+        /// Result for trajectory precision metric.
+        #[prost(message, tag = "35")]
+        TrajectoryPrecisionResults(super::TrajectoryPrecisionResults),
+        /// Results for trajectory recall metric.
+        #[prost(message, tag = "36")]
+        TrajectoryRecallResults(super::TrajectoryRecallResults),
+        /// Results for trajectory single tool use metric.
+        #[prost(message, tag = "37")]
+        TrajectorySingleToolUseResults(super::TrajectorySingleToolUseResults),
     }
 }
 /// Input for exact match metric.
@@ -11628,7 +11664,7 @@ pub struct ToolParameterKvMatchInput {
 /// Spec for tool parameter key value match metric.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ToolParameterKvMatchSpec {
-    /// Optional. Whether to use STRCIT string match on parameter values.
+    /// Optional. Whether to use STRICT string match on parameter values.
     #[prost(bool, tag = "1")]
     pub use_strict_string_match: bool,
 }
@@ -11657,6 +11693,266 @@ pub struct ToolParameterKvMatchMetricValue {
     /// Output only. Tool parameter key value match score.
     #[prost(float, optional, tag = "1")]
     pub score: ::core::option::Option<f32>,
+}
+/// Instances and metric spec for TrajectoryExactMatch metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryExactMatchInput {
+    /// Required. Spec for TrajectoryExactMatch metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<TrajectoryExactMatchSpec>,
+    /// Required. Repeated TrajectoryExactMatch instance.
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<TrajectoryExactMatchInstance>,
+}
+/// Spec for TrajectoryExactMatch metric - returns 1 if tool calls in the
+/// reference trajectory exactly match the predicted trajectory, else 0.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryExactMatchSpec {}
+/// Spec for TrajectoryExactMatch instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryExactMatchInstance {
+    /// Required. Spec for predicted tool call trajectory.
+    #[prost(message, optional, tag = "1")]
+    pub predicted_trajectory: ::core::option::Option<Trajectory>,
+    /// Required. Spec for reference tool call trajectory.
+    #[prost(message, optional, tag = "2")]
+    pub reference_trajectory: ::core::option::Option<Trajectory>,
+}
+/// Results for TrajectoryExactMatch metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryExactMatchResults {
+    /// Output only. TrajectoryExactMatch metric values.
+    #[prost(message, repeated, tag = "1")]
+    pub trajectory_exact_match_metric_values: ::prost::alloc::vec::Vec<
+        TrajectoryExactMatchMetricValue,
+    >,
+}
+/// TrajectoryExactMatch metric value for an instance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryExactMatchMetricValue {
+    /// Output only. TrajectoryExactMatch score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Instances and metric spec for TrajectoryInOrderMatch metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryInOrderMatchInput {
+    /// Required. Spec for TrajectoryInOrderMatch metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<TrajectoryInOrderMatchSpec>,
+    /// Required. Repeated TrajectoryInOrderMatch instance.
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<TrajectoryInOrderMatchInstance>,
+}
+/// Spec for TrajectoryInOrderMatch metric - returns 1 if tool calls in the
+/// reference trajectory appear in the predicted trajectory in the same order,
+/// else 0.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryInOrderMatchSpec {}
+/// Spec for TrajectoryInOrderMatch instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryInOrderMatchInstance {
+    /// Required. Spec for predicted tool call trajectory.
+    #[prost(message, optional, tag = "1")]
+    pub predicted_trajectory: ::core::option::Option<Trajectory>,
+    /// Required. Spec for reference tool call trajectory.
+    #[prost(message, optional, tag = "2")]
+    pub reference_trajectory: ::core::option::Option<Trajectory>,
+}
+/// Results for TrajectoryInOrderMatch metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryInOrderMatchResults {
+    /// Output only. TrajectoryInOrderMatch metric values.
+    #[prost(message, repeated, tag = "1")]
+    pub trajectory_in_order_match_metric_values: ::prost::alloc::vec::Vec<
+        TrajectoryInOrderMatchMetricValue,
+    >,
+}
+/// TrajectoryInOrderMatch metric value for an instance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryInOrderMatchMetricValue {
+    /// Output only. TrajectoryInOrderMatch score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Instances and metric spec for TrajectoryAnyOrderMatch metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryAnyOrderMatchInput {
+    /// Required. Spec for TrajectoryAnyOrderMatch metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<TrajectoryAnyOrderMatchSpec>,
+    /// Required. Repeated TrajectoryAnyOrderMatch instance.
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<TrajectoryAnyOrderMatchInstance>,
+}
+/// Spec for TrajectoryAnyOrderMatch metric - returns 1 if all tool calls in the
+/// reference trajectory appear in the predicted trajectory in any order, else
+/// 0.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryAnyOrderMatchSpec {}
+/// Spec for TrajectoryAnyOrderMatch instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryAnyOrderMatchInstance {
+    /// Required. Spec for predicted tool call trajectory.
+    #[prost(message, optional, tag = "1")]
+    pub predicted_trajectory: ::core::option::Option<Trajectory>,
+    /// Required. Spec for reference tool call trajectory.
+    #[prost(message, optional, tag = "2")]
+    pub reference_trajectory: ::core::option::Option<Trajectory>,
+}
+/// Results for TrajectoryAnyOrderMatch metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryAnyOrderMatchResults {
+    /// Output only. TrajectoryAnyOrderMatch metric values.
+    #[prost(message, repeated, tag = "1")]
+    pub trajectory_any_order_match_metric_values: ::prost::alloc::vec::Vec<
+        TrajectoryAnyOrderMatchMetricValue,
+    >,
+}
+/// TrajectoryAnyOrderMatch metric value for an instance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryAnyOrderMatchMetricValue {
+    /// Output only. TrajectoryAnyOrderMatch score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Instances and metric spec for TrajectoryPrecision metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryPrecisionInput {
+    /// Required. Spec for TrajectoryPrecision metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<TrajectoryPrecisionSpec>,
+    /// Required. Repeated TrajectoryPrecision instance.
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<TrajectoryPrecisionInstance>,
+}
+/// Spec for TrajectoryPrecision metric - returns a float score based on average
+/// precision of individual tool calls.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryPrecisionSpec {}
+/// Spec for TrajectoryPrecision instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryPrecisionInstance {
+    /// Required. Spec for predicted tool call trajectory.
+    #[prost(message, optional, tag = "1")]
+    pub predicted_trajectory: ::core::option::Option<Trajectory>,
+    /// Required. Spec for reference tool call trajectory.
+    #[prost(message, optional, tag = "2")]
+    pub reference_trajectory: ::core::option::Option<Trajectory>,
+}
+/// Results for TrajectoryPrecision metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryPrecisionResults {
+    /// Output only. TrajectoryPrecision metric values.
+    #[prost(message, repeated, tag = "1")]
+    pub trajectory_precision_metric_values: ::prost::alloc::vec::Vec<
+        TrajectoryPrecisionMetricValue,
+    >,
+}
+/// TrajectoryPrecision metric value for an instance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryPrecisionMetricValue {
+    /// Output only. TrajectoryPrecision score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Instances and metric spec for TrajectoryRecall metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryRecallInput {
+    /// Required. Spec for TrajectoryRecall metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<TrajectoryRecallSpec>,
+    /// Required. Repeated TrajectoryRecall instance.
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<TrajectoryRecallInstance>,
+}
+/// Spec for TrajectoryRecall metric - returns a float score based on average
+/// recall of individual tool calls.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryRecallSpec {}
+/// Spec for TrajectoryRecall instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryRecallInstance {
+    /// Required. Spec for predicted tool call trajectory.
+    #[prost(message, optional, tag = "1")]
+    pub predicted_trajectory: ::core::option::Option<Trajectory>,
+    /// Required. Spec for reference tool call trajectory.
+    #[prost(message, optional, tag = "2")]
+    pub reference_trajectory: ::core::option::Option<Trajectory>,
+}
+/// Results for TrajectoryRecall metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectoryRecallResults {
+    /// Output only. TrajectoryRecall metric values.
+    #[prost(message, repeated, tag = "1")]
+    pub trajectory_recall_metric_values: ::prost::alloc::vec::Vec<
+        TrajectoryRecallMetricValue,
+    >,
+}
+/// TrajectoryRecall metric value for an instance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectoryRecallMetricValue {
+    /// Output only. TrajectoryRecall score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Instances and metric spec for TrajectorySingleToolUse metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectorySingleToolUseInput {
+    /// Required. Spec for TrajectorySingleToolUse metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<TrajectorySingleToolUseSpec>,
+    /// Required. Repeated TrajectorySingleToolUse instance.
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<TrajectorySingleToolUseInstance>,
+}
+/// Spec for TrajectorySingleToolUse metric - returns 1 if tool is present in the
+/// predicted trajectory, else 0.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectorySingleToolUseSpec {
+    /// Required. Spec for tool name to be checked for in the predicted trajectory.
+    #[prost(string, optional, tag = "1")]
+    pub tool_name: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Spec for TrajectorySingleToolUse instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectorySingleToolUseInstance {
+    /// Required. Spec for predicted tool call trajectory.
+    #[prost(message, optional, tag = "1")]
+    pub predicted_trajectory: ::core::option::Option<Trajectory>,
+}
+/// Results for TrajectorySingleToolUse metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrajectorySingleToolUseResults {
+    /// Output only. TrajectorySingleToolUse metric values.
+    #[prost(message, repeated, tag = "1")]
+    pub trajectory_single_tool_use_metric_values: ::prost::alloc::vec::Vec<
+        TrajectorySingleToolUseMetricValue,
+    >,
+}
+/// TrajectorySingleToolUse metric value for an instance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TrajectorySingleToolUseMetricValue {
+    /// Output only. TrajectorySingleToolUse score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Spec for trajectory.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Trajectory {
+    /// Required. Tool calls in the trajectory.
+    #[prost(message, repeated, tag = "1")]
+    pub tool_calls: ::prost::alloc::vec::Vec<ToolCall>,
+}
+/// Spec for tool call.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ToolCall {
+    /// Required. Spec for tool name
+    #[prost(string, optional, tag = "1")]
+    pub tool_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. Spec for tool input
+    #[prost(string, optional, tag = "2")]
+    pub tool_input: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Pairwise prediction autorater preference.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -32623,7 +32919,7 @@ pub struct NotebookExecutionJob {
     #[prost(oneof = "notebook_execution_job::NotebookSource", tags = "3, 4, 17")]
     pub notebook_source: ::core::option::Option<notebook_execution_job::NotebookSource>,
     /// The compute config to use for an execution job.
-    #[prost(oneof = "notebook_execution_job::EnvironmentSpec", tags = "14")]
+    #[prost(oneof = "notebook_execution_job::EnvironmentSpec", tags = "14, 16")]
     pub environment_spec: ::core::option::Option<
         notebook_execution_job::EnvironmentSpec,
     >,
@@ -32670,6 +32966,19 @@ pub mod notebook_execution_job {
         #[prost(bytes = "vec", tag = "1")]
         pub content: ::prost::alloc::vec::Vec<u8>,
     }
+    /// Compute configuration to use for an execution job.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CustomEnvironmentSpec {
+        /// The specification of a single machine for the execution job.
+        #[prost(message, optional, tag = "1")]
+        pub machine_spec: ::core::option::Option<super::MachineSpec>,
+        /// The specification of a persistent disk to attach for the execution job.
+        #[prost(message, optional, tag = "2")]
+        pub persistent_disk_spec: ::core::option::Option<super::PersistentDiskSpec>,
+        /// The network configuration to use for the execution job.
+        #[prost(message, optional, tag = "3")]
+        pub network_spec: ::core::option::Option<super::NetworkSpec>,
+    }
     /// The input notebook.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum NotebookSource {
@@ -32690,6 +32999,9 @@ pub mod notebook_execution_job {
         /// The NotebookRuntimeTemplate to source compute configuration from.
         #[prost(string, tag = "14")]
         NotebookRuntimeTemplateResourceName(::prost::alloc::string::String),
+        /// The custom compute configuration for an execution job.
+        #[prost(message, tag = "16")]
+        CustomEnvironmentSpec(CustomEnvironmentSpec),
     }
     /// The location to store the notebook execution result.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -34192,6 +34504,12 @@ pub struct PersistentResource {
     /// Example: \['vertex-ai-ip-range'\].
     #[prost(string, repeated, tag = "15")]
     pub reserved_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "18")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzi: bool,
 }
 /// Nested message and enum types in `PersistentResource`.
 pub mod persistent_resource {
@@ -34335,6 +34653,9 @@ pub struct RaySpec {
     /// the {@code resource_pool_images} field.
     #[prost(string, tag = "1")]
     pub image_uri: ::prost::alloc::string::String,
+    /// Optional. Use if you want to mount to any NFS storages.
+    #[prost(message, repeated, tag = "11")]
+    pub nfs_mounts: ::prost::alloc::vec::Vec<NfsMount>,
     /// Optional. Required if image_uri isn't set. A map of resource_pool_id to
     /// prebuild Ray image if user need to use different images for different
     /// head/worker pools. This map needs to cover all the resource pool ids.

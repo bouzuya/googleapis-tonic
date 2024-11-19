@@ -3024,6 +3024,16 @@ pub struct ConnectivityTest {
     /// existing test.
     #[prost(message, optional, tag = "14")]
     pub probing_details: ::core::option::Option<ProbingDetails>,
+    /// Whether run analysis for the return path from destination to source.
+    /// Default value is false.
+    #[prost(bool, tag = "15")]
+    pub round_trip: bool,
+    /// Output only. The reachability details of this test from the latest run for
+    /// the return path. The details are updated when creating a new test,
+    /// updating an existing test, or triggering a one-time rerun of an existing
+    /// test.
+    #[prost(message, optional, tag = "16")]
+    pub return_reachability_details: ::core::option::Option<ReachabilityDetails>,
     /// Whether the test should skip firewall checking.
     /// If not provided, we assume false.
     #[prost(bool, tag = "17")]

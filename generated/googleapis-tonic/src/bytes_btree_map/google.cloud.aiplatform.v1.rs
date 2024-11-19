@@ -1054,8 +1054,8 @@ pub struct Explanation {
     /// If users set
     /// [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k],
     /// the attributions are sorted by
-    /// [instance_output_value][Attributions.instance_output_value] in descending
-    /// order. If
+    /// [instance_output_value][google.cloud.aiplatform.v1.Attribution.instance_output_value]
+    /// in descending order. If
     /// [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices]
     /// is specified, the attributions are stored by
     /// [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
@@ -2448,7 +2448,7 @@ pub struct Model {
     /// Stats of data used for training or evaluating the Model.
     ///
     /// Only populated when the Model is trained by a TrainingPipeline with
-    /// [data_input_config][TrainingPipeline.data_input_config].
+    /// [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
     #[prost(message, optional, tag = "21")]
     pub data_stats: ::core::option::Option<model::DataStats>,
     /// Customer-managed encryption key spec for a Model. If set, this
@@ -3633,9 +3633,9 @@ pub struct Schema {
     /// Optional. Possible values of the element of primitive type with enum
     /// format. Examples:
     /// 1. We can define direction as :
-    /// ```{type:STRING, format:enum, enum:\["EAST", "NORTH", "SOUTH", "WEST"\]}```
+    /// {type:STRING, format:enum, enum:\["EAST", NORTH", "SOUTH", "WEST"\]}
     /// 2. We can define apartment number as :
-    /// ```{type:INTEGER, format:enum, enum:\["101", "201", "301"\]}```
+    /// {type:INTEGER, format:enum, enum:\["101", "201", "301"\]}
     #[prost(string, repeated, tag = "9")]
     pub r#enum: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. SCHEMA FIELDS FOR TYPE OBJECT
@@ -5199,10 +5199,10 @@ pub struct PythonPackageSpec {
 /// All parameters related to queuing and scheduling of custom jobs.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Scheduling {
-    /// The maximum job running time. The default is 7 days.
+    /// Optional. The maximum job running time. The default is 7 days.
     #[prost(message, optional, tag = "1")]
     pub timeout: ::core::option::Option<::prost_types::Duration>,
-    /// Restarts the entire CustomJob if a worker gets restarted.
+    /// Optional. Restarts the entire CustomJob if a worker gets restarted.
     /// This feature can be used by distributed training jobs that are not
     /// resilient to workers leaving and joining a job.
     #[prost(bool, tag = "3")]
@@ -5767,7 +5767,8 @@ pub struct ExportDataConfig {
     #[prost(string, tag = "2")]
     pub annotations_filter: ::prost::alloc::string::String,
     /// The ID of a SavedQuery (annotation set) under the Dataset specified by
-    /// [dataset_id][] used for filtering Annotations for training.
+    /// [ExportDataRequest.name][google.cloud.aiplatform.v1.ExportDataRequest.name]
+    /// used for filtering Annotations for training.
     ///
     /// Only used for custom training data export use cases.
     /// Only applicable to Datasets that have SavedQueries.
@@ -5794,7 +5795,8 @@ pub struct ExportDataConfig {
     /// gs://google-cloud-aiplatform/schema/dataset/annotation/, note that the
     /// chosen schema must be consistent with
     /// [metadata][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] of the
-    /// Dataset specified by [dataset_id][].
+    /// Dataset specified by
+    /// [ExportDataRequest.name][google.cloud.aiplatform.v1.ExportDataRequest.name].
     ///
     /// Only used for custom training data export use cases.
     /// Only applicable to Datasets that have DataItems and Annotations.
@@ -6033,6 +6035,7 @@ pub struct CreateDatasetOperationMetadata {
 }
 /// Request message for
 /// [DatasetService.GetDataset][google.cloud.aiplatform.v1.DatasetService.GetDataset].
+/// Next ID: 4
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDatasetRequest {
     /// Required. The name of the Dataset resource.
@@ -6240,6 +6243,7 @@ pub struct DeleteDatasetVersionRequest {
 }
 /// Request message for
 /// [DatasetService.GetDatasetVersion][google.cloud.aiplatform.v1.DatasetService.GetDatasetVersion].
+/// Next ID: 4
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDatasetVersionRequest {
     /// Required. The resource name of the Dataset version to delete.
@@ -7186,6 +7190,8 @@ pub mod dataset_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists Annotations belongs to a dataitem
+        /// This RPC is only available in InternalDatasetService. It is only used for
+        /// exporting conversation data to CCAI Insights.
         pub async fn list_annotations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAnnotationsRequest>,
@@ -7448,6 +7454,9 @@ pub struct Endpoint {
     /// `<https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.>
     #[prost(string, tag = "25")]
     pub dedicated_endpoint_dns: ::prost::alloc::string::String,
+    /// Configurations that are applied to the endpoint for online prediction.
+    #[prost(message, optional, tag = "23")]
+    pub client_connection_config: ::core::option::Option<ClientConnectionConfig>,
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "27")]
     pub satisfies_pzs: bool,
@@ -7546,6 +7555,9 @@ pub struct DeployedModel {
     /// [network][google.cloud.aiplatform.v1.Endpoint.network] is configured.
     #[prost(message, optional, tag = "14")]
     pub private_endpoints: ::core::option::Option<PrivateEndpoints>,
+    /// Configuration for faster model deployment.
+    #[prost(message, optional, tag = "23")]
+    pub faster_deployment_config: ::core::option::Option<FasterDeploymentConfig>,
     /// System labels to apply to Model Garden deployments.
     /// System labels are managed by Google for internal use only.
     #[prost(btree_map = "string, string", tag = "28")]
@@ -7628,6 +7640,20 @@ pub struct PredictRequestResponseLoggingConfig {
     /// given, a new table will be created with name `request_response_logging`
     #[prost(message, optional, tag = "3")]
     pub bigquery_destination: ::core::option::Option<BigQueryDestination>,
+}
+/// Configuration for faster model deployment.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FasterDeploymentConfig {
+    /// If true, enable fast tryout feature for this deployed model.
+    #[prost(bool, tag = "2")]
+    pub fast_tryout_enabled: bool,
+}
+/// Configurations (e.g. inference timeout) that are applied on your endpoints.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ClientConnectionConfig {
+    /// Customizable online prediction request timeout.
+    #[prost(message, optional, tag = "1")]
+    pub inference_timeout: ::core::option::Option<::prost_types::Duration>,
 }
 /// Request message for CreateDeploymentResourcePool method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -8163,6 +8189,24 @@ pub struct UpdateEndpointRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request message for
+/// [EndpointService.UpdateEndpointLongRunning][google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateEndpointLongRunningRequest {
+    /// Required. The Endpoint which replaces the resource on the server. Currently
+    /// we only support updating the `client_connection_config` field, all the
+    /// other fields' update will be blocked.
+    #[prost(message, optional, tag = "1")]
+    pub endpoint: ::core::option::Option<Endpoint>,
+}
+/// Runtime operation information for
+/// [EndpointService.UpdateEndpointLongRunning][google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateEndpointOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Request message for
 /// [EndpointService.DeleteEndpoint][google.cloud.aiplatform.v1.EndpointService.DeleteEndpoint].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEndpointRequest {
@@ -8495,6 +8539,36 @@ pub mod endpoint_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.EndpointService",
                         "UpdateEndpoint",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an Endpoint with a long running operation.
+        pub async fn update_endpoint_long_running(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateEndpointLongRunningRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.EndpointService/UpdateEndpointLongRunning",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.EndpointService",
+                        "UpdateEndpointLongRunning",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -8928,7 +9002,7 @@ pub struct EvaluatedAnnotation {
     ///
     /// For false positive, there is one and only one prediction, which doesn't
     /// match any ground truth annotation of the corresponding
-    /// [data_item_view_id][EvaluatedAnnotation.data_item_view_id].
+    /// [data_item_view_id][google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id].
     ///
     /// For false negative, there are zero or more predictions which are similar to
     /// the only ground truth annotation in
@@ -9145,7 +9219,7 @@ pub struct EvaluateInstancesRequest {
     /// Instances and specs for evaluation
     #[prost(
         oneof = "evaluate_instances_request::MetricInputs",
-        tags = "2, 3, 4, 5, 6, 8, 9, 12, 7, 23, 14, 15, 10, 24, 16, 17, 18, 28, 29, 19, 20, 21, 22"
+        tags = "2, 3, 4, 5, 6, 8, 9, 12, 7, 23, 14, 15, 10, 24, 16, 17, 18, 28, 29, 19, 20, 21, 22, 31, 32"
     )]
     pub metric_inputs: ::core::option::Option<evaluate_instances_request::MetricInputs>,
 }
@@ -9231,6 +9305,13 @@ pub mod evaluate_instances_request {
         /// Input for tool parameter key value match metric.
         #[prost(message, tag = "22")]
         ToolParameterKvMatchInput(super::ToolParameterKvMatchInput),
+        /// Translation metrics.
+        /// Input for Comet metric.
+        #[prost(message, tag = "31")]
+        CometInput(super::CometInput),
+        /// Input for Metricx metric.
+        #[prost(message, tag = "32")]
+        MetricxInput(super::MetricxInput),
     }
 }
 /// Response message for EvaluationService.EvaluateInstances.
@@ -9240,7 +9321,7 @@ pub struct EvaluateInstancesResponse {
     /// EvaluationRequest.instances.
     #[prost(
         oneof = "evaluate_instances_response::EvaluationResults",
-        tags = "1, 2, 3, 4, 5, 7, 8, 11, 6, 22, 13, 14, 9, 23, 15, 16, 17, 27, 28, 18, 19, 20, 21"
+        tags = "1, 2, 3, 4, 5, 7, 8, 11, 6, 22, 13, 14, 9, 23, 15, 16, 17, 27, 28, 18, 19, 20, 21, 29, 30"
     )]
     pub evaluation_results: ::core::option::Option<
         evaluate_instances_response::EvaluationResults,
@@ -9330,6 +9411,13 @@ pub mod evaluate_instances_response {
         /// Results for tool parameter key value match metric.
         #[prost(message, tag = "21")]
         ToolParameterKvMatchResults(super::ToolParameterKvMatchResults),
+        /// Translation metrics.
+        /// Result for Comet metric.
+        #[prost(message, tag = "29")]
+        CometResult(super::CometResult),
+        /// Result for Metricx metric.
+        #[prost(message, tag = "30")]
+        MetricxResult(super::MetricxResult),
     }
 }
 /// Input for exact match metric.
@@ -10332,7 +10420,7 @@ pub struct ToolParameterKvMatchInput {
 /// Spec for tool parameter key value match metric.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ToolParameterKvMatchSpec {
-    /// Optional. Whether to use STRCIT string match on parameter values.
+    /// Optional. Whether to use STRICT string match on parameter values.
     #[prost(bool, tag = "1")]
     pub use_strict_string_match: bool,
 }
@@ -10359,6 +10447,192 @@ pub struct ToolParameterKvMatchResults {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ToolParameterKvMatchMetricValue {
     /// Output only. Tool parameter key value match score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Input for Comet metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CometInput {
+    /// Required. Spec for comet metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<CometSpec>,
+    /// Required. Comet instance.
+    #[prost(message, optional, tag = "2")]
+    pub instance: ::core::option::Option<CometInstance>,
+}
+/// Spec for Comet metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CometSpec {
+    /// Required. Which version to use for evaluation.
+    #[prost(enumeration = "comet_spec::CometVersion", optional, tag = "1")]
+    pub version: ::core::option::Option<i32>,
+    /// Optional. Source language in BCP-47 format.
+    #[prost(string, tag = "2")]
+    pub source_language: ::prost::alloc::string::String,
+    /// Optional. Target language in BCP-47 format. Covers both prediction and
+    /// reference.
+    #[prost(string, tag = "3")]
+    pub target_language: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `CometSpec`.
+pub mod comet_spec {
+    /// Comet version options.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum CometVersion {
+        /// Comet version unspecified.
+        Unspecified = 0,
+        /// Comet 22 for translation + source + reference
+        /// (source-reference-combined).
+        Comet22SrcRef = 2,
+    }
+    impl CometVersion {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "COMET_VERSION_UNSPECIFIED",
+                Self::Comet22SrcRef => "COMET_22_SRC_REF",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COMET_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+                "COMET_22_SRC_REF" => Some(Self::Comet22SrcRef),
+                _ => None,
+            }
+        }
+    }
+}
+/// Spec for Comet instance - The fields used for evaluation are dependent on the
+/// comet version.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CometInstance {
+    /// Required. Output of the evaluated model.
+    #[prost(string, optional, tag = "1")]
+    pub prediction: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. Ground truth used to compare against the prediction.
+    #[prost(string, optional, tag = "2")]
+    pub reference: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. Source text in original language.
+    #[prost(string, optional, tag = "3")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Spec for Comet result - calculates the comet score for the given instance
+/// using the version specified in the spec.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CometResult {
+    /// Output only. Comet score. Range depends on version.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Input for MetricX metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MetricxInput {
+    /// Required. Spec for Metricx metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<MetricxSpec>,
+    /// Required. Metricx instance.
+    #[prost(message, optional, tag = "2")]
+    pub instance: ::core::option::Option<MetricxInstance>,
+}
+/// Spec for MetricX metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MetricxSpec {
+    /// Required. Which version to use for evaluation.
+    #[prost(enumeration = "metricx_spec::MetricxVersion", optional, tag = "1")]
+    pub version: ::core::option::Option<i32>,
+    /// Optional. Source language in BCP-47 format.
+    #[prost(string, tag = "2")]
+    pub source_language: ::prost::alloc::string::String,
+    /// Optional. Target language in BCP-47 format. Covers both prediction and
+    /// reference.
+    #[prost(string, tag = "3")]
+    pub target_language: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `MetricxSpec`.
+pub mod metricx_spec {
+    /// MetricX Version options.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum MetricxVersion {
+        /// MetricX version unspecified.
+        Unspecified = 0,
+        /// MetricX 2024 (2.6) for translation + reference (reference-based).
+        Metricx24Ref = 1,
+        /// MetricX 2024 (2.6) for translation + source (QE).
+        Metricx24Src = 2,
+        /// MetricX 2024 (2.6) for translation + source + reference
+        /// (source-reference-combined).
+        Metricx24SrcRef = 3,
+    }
+    impl MetricxVersion {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "METRICX_VERSION_UNSPECIFIED",
+                Self::Metricx24Ref => "METRICX_24_REF",
+                Self::Metricx24Src => "METRICX_24_SRC",
+                Self::Metricx24SrcRef => "METRICX_24_SRC_REF",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METRICX_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+                "METRICX_24_REF" => Some(Self::Metricx24Ref),
+                "METRICX_24_SRC" => Some(Self::Metricx24Src),
+                "METRICX_24_SRC_REF" => Some(Self::Metricx24SrcRef),
+                _ => None,
+            }
+        }
+    }
+}
+/// Spec for MetricX instance - The fields used for evaluation are dependent on
+/// the MetricX version.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MetricxInstance {
+    /// Required. Output of the evaluated model.
+    #[prost(string, optional, tag = "1")]
+    pub prediction: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. Ground truth used to compare against the prediction.
+    #[prost(string, optional, tag = "2")]
+    pub reference: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. Source text in original language.
+    #[prost(string, optional, tag = "3")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Spec for MetricX result - calculates the MetricX score for the given instance
+/// using the version specified in the spec.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MetricxResult {
+    /// Output only. MetricX score. Range depends on version.
     #[prost(float, optional, tag = "1")]
     pub score: ::core::option::Option<f32>,
 }
@@ -11853,10 +12127,12 @@ pub struct UpdateFeatureViewRequest {
     ///    * `feature_registry_source.feature_groups`
     ///    * `sync_config`
     ///    * `sync_config.cron`
+    ///    * `optimized_config.automatic_resources`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
-/// Request message for [FeatureOnlineStoreAdminService.DeleteFeatureViews][].
+/// Request message for
+/// [FeatureOnlineStoreAdminService.DeleteFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.DeleteFeatureView].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFeatureViewRequest {
     /// Required. The name of the FeatureView to be deleted.
@@ -12515,35 +12791,35 @@ pub struct Tensor {
     /// be set.  The values hold the flattened representation of the tensor in
     /// row major order.
     ///
-    /// [BOOL][google.aiplatform.master.Tensor.DataType.BOOL]
+    /// [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
     #[prost(bool, repeated, tag = "3")]
     pub bool_val: ::prost::alloc::vec::Vec<bool>,
-    /// [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+    /// [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
     #[prost(string, repeated, tag = "14")]
     pub string_val: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+    /// [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
     #[prost(bytes = "bytes", repeated, tag = "15")]
     pub bytes_val: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
-    /// [FLOAT][google.aiplatform.master.Tensor.DataType.FLOAT]
+    /// [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
     #[prost(float, repeated, tag = "5")]
     pub float_val: ::prost::alloc::vec::Vec<f32>,
-    /// [DOUBLE][google.aiplatform.master.Tensor.DataType.DOUBLE]
+    /// [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
     #[prost(double, repeated, tag = "6")]
     pub double_val: ::prost::alloc::vec::Vec<f64>,
-    /// [INT_8][google.aiplatform.master.Tensor.DataType.INT8]
-    /// [INT_16][google.aiplatform.master.Tensor.DataType.INT16]
-    /// [INT_32][google.aiplatform.master.Tensor.DataType.INT32]
+    /// [INT_8][google.cloud.aiplatform.v1.Tensor.DataType.INT8]
+    /// [INT_16][google.cloud.aiplatform.v1.Tensor.DataType.INT16]
+    /// [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
     #[prost(int32, repeated, tag = "7")]
     pub int_val: ::prost::alloc::vec::Vec<i32>,
-    /// [INT64][google.aiplatform.master.Tensor.DataType.INT64]
+    /// [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
     #[prost(int64, repeated, tag = "8")]
     pub int64_val: ::prost::alloc::vec::Vec<i64>,
-    /// [UINT8][google.aiplatform.master.Tensor.DataType.UINT8]
-    /// [UINT16][google.aiplatform.master.Tensor.DataType.UINT16]
-    /// [UINT32][google.aiplatform.master.Tensor.DataType.UINT32]
+    /// [UINT8][google.cloud.aiplatform.v1.Tensor.DataType.UINT8]
+    /// [UINT16][google.cloud.aiplatform.v1.Tensor.DataType.UINT16]
+    /// [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
     #[prost(uint32, repeated, tag = "9")]
     pub uint_val: ::prost::alloc::vec::Vec<u32>,
-    /// [UINT64][google.aiplatform.master.Tensor.DataType.UINT64]
+    /// [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
     #[prost(uint64, repeated, tag = "10")]
     pub uint64_val: ::prost::alloc::vec::Vec<u64>,
     /// A list of tensor values.
@@ -12774,7 +13050,7 @@ pub mod read_feature_values_response {
     }
 }
 /// Request message for
-/// [FeaturestoreOnlineServingService.StreamingFeatureValuesRead][].
+/// [FeaturestoreOnlineServingService.StreamingReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.StreamingReadFeatureValues].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingReadFeatureValuesRequest {
     /// Required. The resource name of the entities' type.
@@ -14346,7 +14622,8 @@ pub struct UpdateEntityTypeRequest {
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
-/// Request message for [FeaturestoreService.DeleteEntityTypes][].
+/// Request message for
+/// [FeaturestoreService.DeleteEntityType][google.cloud.aiplatform.v1.FeaturestoreService.DeleteEntityType].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEntityTypeRequest {
     /// Required. The name of the EntityType to be deleted.
@@ -15700,12 +15977,12 @@ pub struct ListFeatureGroupsRequest {
     #[prost(int32, tag = "3")]
     pub page_size: i32,
     /// A page token, received from a previous
-    /// [FeatureGroupAdminService.ListFeatureGroups][] call.
-    /// Provide this to retrieve the subsequent page.
+    /// [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+    /// call. Provide this to retrieve the subsequent page.
     ///
     /// When paginating, all other parameters provided to
-    /// [FeatureGroupAdminService.ListFeatureGroups][] must
-    /// match the call that provided the page token.
+    /// [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+    /// must match the call that provided the page token.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
     /// A comma-separated list of fields to order by, sorted in ascending order.
@@ -16582,8 +16859,9 @@ pub struct ListTuningJobsRequest {
     #[prost(int32, tag = "3")]
     pub page_size: i32,
     /// Optional. The standard list page token.
-    /// Typically obtained via [ListTuningJob.next_page_token][] of the
-    /// previous GenAiTuningService.ListTuningJob][] call.
+    /// Typically obtained via
+    /// [ListTuningJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListTuningJobsResponse.next_page_token]
+    /// of the previous GenAiTuningService.ListTuningJob][] call.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
 }
@@ -16847,8 +17125,6 @@ pub mod gen_ai_tuning_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Rebase a TunedModel.
-        /// Creates a LongRunningOperation that takes a legacy Tuned GenAI model
-        /// Reference and creates a TuningJob based on newly available model.
         pub async fn rebase_tuned_model(
             &mut self,
             request: impl tonic::IntoRequest<super::RebaseTunedModelRequest>,
@@ -18657,8 +18933,10 @@ pub struct MutateDeployedIndexRequest {
     #[prost(string, tag = "1")]
     pub index_endpoint: ::prost::alloc::string::String,
     /// Required. The DeployedIndex to be updated within the IndexEndpoint.
-    /// Currently, the updatable fields are [DeployedIndex][automatic_resources]
-    /// and [DeployedIndex][dedicated_resources]
+    /// Currently, the updatable fields are
+    /// [DeployedIndex.automatic_resources][google.cloud.aiplatform.v1.DeployedIndex.automatic_resources]
+    /// and
+    /// [DeployedIndex.dedicated_resources][google.cloud.aiplatform.v1.DeployedIndex.dedicated_resources]
     #[prost(message, optional, tag = "2")]
     pub deployed_index: ::core::option::Option<DeployedIndex>,
 }
@@ -19838,9 +20116,9 @@ pub mod model_monitoring_objective_config {
 pub struct ModelMonitoringAlertConfig {
     /// Dump the anomalies to Cloud Logging. The anomalies will be put to json
     /// payload encoded from proto
-    /// [google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry][].
-    /// This can be further sinked to Pub/Sub or any other services supported
-    /// by Cloud Logging.
+    /// [ModelMonitoringStatsAnomalies][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies].
+    /// This can be further synced to Pub/Sub or any other services supported by
+    /// Cloud Logging.
     #[prost(bool, tag = "2")]
     pub enable_logging: bool,
     /// Resource names of the NotificationChannels to send alert.
@@ -26667,7 +26945,7 @@ pub mod batch_migrate_resources_operation_metadata {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PartialResult {
         /// It's the same as the value in
-        /// [MigrateResourceRequest.migrate_resource_requests][].
+        /// [BatchMigrateResourcesRequest.migrate_resource_requests][google.cloud.aiplatform.v1.BatchMigrateResourcesRequest.migrate_resource_requests].
         #[prost(message, optional, tag = "1")]
         pub request: ::core::option::Option<super::MigrateResourceRequest>,
         /// If the resource's migration is ongoing, none of the result will be set.
@@ -29072,7 +29350,7 @@ pub struct NotebookExecutionJob {
     #[prost(oneof = "notebook_execution_job::NotebookSource", tags = "3, 4, 17")]
     pub notebook_source: ::core::option::Option<notebook_execution_job::NotebookSource>,
     /// The compute config to use for an execution job.
-    #[prost(oneof = "notebook_execution_job::EnvironmentSpec", tags = "14")]
+    #[prost(oneof = "notebook_execution_job::EnvironmentSpec", tags = "14, 16")]
     pub environment_spec: ::core::option::Option<
         notebook_execution_job::EnvironmentSpec,
     >,
@@ -29119,6 +29397,19 @@ pub mod notebook_execution_job {
         #[prost(bytes = "bytes", tag = "1")]
         pub content: ::prost::bytes::Bytes,
     }
+    /// Compute configuration to use for an execution job.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CustomEnvironmentSpec {
+        /// The specification of a single machine for the execution job.
+        #[prost(message, optional, tag = "1")]
+        pub machine_spec: ::core::option::Option<super::MachineSpec>,
+        /// The specification of a persistent disk to attach for the execution job.
+        #[prost(message, optional, tag = "2")]
+        pub persistent_disk_spec: ::core::option::Option<super::PersistentDiskSpec>,
+        /// The network configuration to use for the execution job.
+        #[prost(message, optional, tag = "3")]
+        pub network_spec: ::core::option::Option<super::NetworkSpec>,
+    }
     /// The input notebook.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum NotebookSource {
@@ -29139,6 +29430,9 @@ pub mod notebook_execution_job {
         /// The NotebookRuntimeTemplate to source compute configuration from.
         #[prost(string, tag = "14")]
         NotebookRuntimeTemplateResourceName(::prost::alloc::string::String),
+        /// The custom compute configuration for an execution job.
+        #[prost(message, tag = "16")]
+        CustomEnvironmentSpec(CustomEnvironmentSpec),
     }
     /// The location to store the notebook execution result.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -29917,7 +30211,8 @@ pub struct ListNotebookExecutionJobsRequest {
     pub page_size: i32,
     /// Optional. The standard list page token.
     /// Typically obtained via
-    /// [ListNotebookExecutionJobs.next_page_token][] of the previous
+    /// [ListNotebookExecutionJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListNotebookExecutionJobsResponse.next_page_token]
+    /// of the previous
     /// [NotebookService.ListNotebookExecutionJobs][google.cloud.aiplatform.v1.NotebookService.ListNotebookExecutionJobs]
     /// call.
     #[prost(string, tag = "4")]
@@ -29943,8 +30238,9 @@ pub struct ListNotebookExecutionJobsResponse {
     #[prost(message, repeated, tag = "1")]
     pub notebook_execution_jobs: ::prost::alloc::vec::Vec<NotebookExecutionJob>,
     /// A token to retrieve next page of results.
-    /// Pass to [ListNotebookExecutionJobs.page_token][] to obtain that
-    /// page.
+    /// Pass to
+    /// [ListNotebookExecutionJobsRequest.page_token][google.cloud.aiplatform.v1.ListNotebookExecutionJobsRequest.page_token]
+    /// to obtain that page.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
@@ -30919,7 +31215,8 @@ pub struct GetPersistentResourceRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// Request message for [PersistentResourceService.ListPersistentResource][].
+/// Request message for
+/// [PersistentResourceService.ListPersistentResources][google.cloud.aiplatform.v1.PersistentResourceService.ListPersistentResources].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPersistentResourcesRequest {
     /// Required. The resource name of the Location to list the PersistentResources
@@ -30931,8 +31228,8 @@ pub struct ListPersistentResourcesRequest {
     pub page_size: i32,
     /// Optional. The standard list page token.
     /// Typically obtained via
-    /// [ListPersistentResourceResponse.next_page_token][] of the previous
-    /// [PersistentResourceService.ListPersistentResource][] call.
+    /// [ListPersistentResourcesResponse.next_page_token][google.cloud.aiplatform.v1.ListPersistentResourcesResponse.next_page_token]
+    /// of the previous [PersistentResourceService.ListPersistentResource][] call.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
 }
@@ -33587,8 +33884,9 @@ pub mod schedule_service_client {
         ///
         /// When the Schedule is resumed, new runs will be scheduled starting from the
         /// next execution time after the current time based on the time_specification
-        /// in the Schedule. If [Schedule.catchUp][] is set up true, all
-        /// missed runs will be scheduled for backfill first.
+        /// in the Schedule. If
+        /// [Schedule.catch_up][google.cloud.aiplatform.v1.Schedule.catch_up] is set up
+        /// true, all missed runs will be scheduled for backfill first.
         pub async fn resume_schedule(
             &mut self,
             request: impl tonic::IntoRequest<super::ResumeScheduleRequest>,
