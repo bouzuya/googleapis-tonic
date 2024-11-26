@@ -1189,8 +1189,8 @@ pub mod jira_source {
         pub server_uri: ::prost::alloc::string::String,
         /// Required. The SecretManager secret version resource name (e.g.
         /// projects/{project}/secrets/{secret}/versions/{version}) storing the
-        /// Jira API key
-        /// (<https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/>).
+        /// Jira API key. See [Manage API tokens for your Atlassian
+        /// account](<https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/>).
         #[prost(message, optional, tag = "7")]
         pub api_key_config: ::core::option::Option<super::api_auth::ApiKeyConfig>,
     }
@@ -5092,12 +5092,17 @@ pub struct VertexRagStore {
     #[prost(message, repeated, tag = "4")]
     pub rag_resources: ::prost::alloc::vec::Vec<vertex_rag_store::RagResource>,
     /// Optional. Number of top k results to return from the selected corpora.
+    #[deprecated]
     #[prost(int32, optional, tag = "2")]
     pub similarity_top_k: ::core::option::Option<i32>,
     /// Optional. Only return results with vector distance smaller than the
     /// threshold.
+    #[deprecated]
     #[prost(double, optional, tag = "3")]
     pub vector_distance_threshold: ::core::option::Option<f64>,
+    /// Optional. The retrieval config for the Rag query.
+    #[prost(message, optional, tag = "6")]
+    pub rag_retrieval_config: ::core::option::Option<RagRetrievalConfig>,
 }
 /// Nested message and enum types in `VertexRagStore`.
 pub mod vertex_rag_store {
@@ -5256,6 +5261,98 @@ pub mod function_calling_config {
                 "NONE" => Some(Self::None),
                 _ => None,
             }
+        }
+    }
+}
+/// Specifies the context retrieval config.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagRetrievalConfig {
+    /// Optional. The number of contexts to retrieve.
+    #[prost(int32, tag = "1")]
+    pub top_k: i32,
+    /// Optional. Config for Hybrid Search.
+    #[prost(message, optional, tag = "2")]
+    pub hybrid_search: ::core::option::Option<rag_retrieval_config::HybridSearch>,
+    /// Optional. Config for filters.
+    #[prost(message, optional, tag = "3")]
+    pub filter: ::core::option::Option<rag_retrieval_config::Filter>,
+    /// Optional. Config for ranking and reranking.
+    #[prost(message, optional, tag = "4")]
+    pub ranking: ::core::option::Option<rag_retrieval_config::Ranking>,
+}
+/// Nested message and enum types in `RagRetrievalConfig`.
+pub mod rag_retrieval_config {
+    /// Config for Hybrid Search.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct HybridSearch {
+        /// Optional. Alpha value controls the weight between dense and sparse vector
+        /// search results. The range is \[0, 1\], while 0 means sparse vector search
+        /// only and 1 means dense vector search only. The default value is 0.5 which
+        /// balances sparse and dense vector search equally.
+        #[prost(float, optional, tag = "1")]
+        pub alpha: ::core::option::Option<f32>,
+    }
+    /// Config for filters.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Filter {
+        /// Optional. String for metadata filtering.
+        #[prost(string, tag = "2")]
+        pub metadata_filter: ::prost::alloc::string::String,
+        /// Filter contexts retrieved from the vector DB based on either vector
+        /// distance or vector similarity.
+        #[prost(oneof = "filter::VectorDbThreshold", tags = "3, 4")]
+        pub vector_db_threshold: ::core::option::Option<filter::VectorDbThreshold>,
+    }
+    /// Nested message and enum types in `Filter`.
+    pub mod filter {
+        /// Filter contexts retrieved from the vector DB based on either vector
+        /// distance or vector similarity.
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum VectorDbThreshold {
+            /// Optional. Only returns contexts with vector distance smaller than the
+            /// threshold.
+            #[prost(double, tag = "3")]
+            VectorDistanceThreshold(f64),
+            /// Optional. Only returns contexts with vector similarity larger than the
+            /// threshold.
+            #[prost(double, tag = "4")]
+            VectorSimilarityThreshold(f64),
+        }
+    }
+    /// Config for ranking and reranking.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Ranking {
+        /// Config options for ranking. Currently only Rank Service is supported.
+        #[prost(oneof = "ranking::RankingConfig", tags = "1, 3")]
+        pub ranking_config: ::core::option::Option<ranking::RankingConfig>,
+    }
+    /// Nested message and enum types in `Ranking`.
+    pub mod ranking {
+        /// Config for Rank Service.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct RankService {
+            /// Optional. The model name of the rank service.
+            /// Format: `semantic-ranker-512@latest`
+            #[prost(string, optional, tag = "1")]
+            pub model_name: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        /// Config for LlmRanker.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct LlmRanker {
+            /// Optional. The model name used for ranking.
+            /// Format: `gemini-1.5-pro`
+            #[prost(string, optional, tag = "1")]
+            pub model_name: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        /// Config options for ranking. Currently only Rank Service is supported.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum RankingConfig {
+            /// Optional. Config for Rank Service.
+            #[prost(message, tag = "1")]
+            RankService(RankService),
+            /// Optional. Config for LlmRanker.
+            #[prost(message, tag = "3")]
+            LlmRanker(LlmRanker),
         }
     }
 }
@@ -38399,7 +38496,8 @@ pub struct ReasoningEngineSpec {
     /// Required. User provided package spec of the ReasoningEngine.
     #[prost(message, optional, tag = "2")]
     pub package_spec: ::core::option::Option<reasoning_engine_spec::PackageSpec>,
-    /// Optional. Declarations for object class methods.
+    /// Optional. Declarations for object class methods in OpenAPI specification
+    /// format.
     #[prost(message, repeated, tag = "3")]
     pub class_methods: ::prost::alloc::vec::Vec<::prost_types::Struct>,
 }
@@ -38462,6 +38560,10 @@ pub struct QueryReasoningEngineRequest {
     /// include text query, function calling parameters, media bytes, etc.
     #[prost(message, optional, tag = "2")]
     pub input: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. Class method to be used for the query.
+    /// It is optional and defaults to "query" if unspecified.
+    #[prost(string, tag = "3")]
+    pub class_method: ::prost::alloc::string::String,
 }
 /// Response message for [ReasoningEngineExecutionService.Query][]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -38469,6 +38571,23 @@ pub struct QueryReasoningEngineResponse {
     /// Response provided by users in JSON object format.
     #[prost(message, optional, tag = "1")]
     pub output: ::core::option::Option<::prost_types::Value>,
+}
+/// Request message for [ReasoningEngineExecutionService.StreamQuery][].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StreamQueryReasoningEngineRequest {
+    /// Required. The name of the ReasoningEngine resource to use.
+    /// Format:
+    /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. Input content provided by users in JSON object format. Examples
+    /// include text query, function calling parameters, media bytes, etc.
+    #[prost(message, optional, tag = "2")]
+    pub input: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. Class method to be used for the stream query.
+    /// It is optional and defaults to "steam_query" if unspecified.
+    #[prost(string, tag = "3")]
+    pub class_method: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod reasoning_engine_execution_service_client {
@@ -38583,6 +38702,38 @@ pub mod reasoning_engine_execution_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Streams queries using a reasoning engine.
+        pub async fn stream_query_reasoning_engine(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StreamQueryReasoningEngineRequest>,
+        ) -> std::result::Result<
+            tonic::Response<
+                tonic::codec::Streaming<super::super::super::super::api::HttpBody>,
+            >,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ReasoningEngineExecutionService/StreamQueryReasoningEngine",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ReasoningEngineExecutionService",
+                        "StreamQueryReasoningEngine",
+                    ),
+                );
+            self.inner.server_streaming(req, path, codec).await
+        }
     }
 }
 /// Request message for
@@ -38623,7 +38774,7 @@ pub struct UpdateReasoningEngineRequest {
     /// Required. The ReasoningEngine which replaces the resource on the server.
     #[prost(message, optional, tag = "1")]
     pub reasoning_engine: ::core::option::Option<ReasoningEngine>,
-    /// Required. Mask specifying which fields to update.
+    /// Optional. Mask specifying which fields to update.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -42086,6 +42237,9 @@ pub struct RagVectorDbConfig {
     /// Authentication config for the chosen Vector DB.
     #[prost(message, optional, tag = "5")]
     pub api_auth: ::core::option::Option<ApiAuth>,
+    /// Optional. Immutable. The embedding model config of the Vector DB.
+    #[prost(message, optional, tag = "7")]
+    pub rag_embedding_model_config: ::core::option::Option<RagEmbeddingModelConfig>,
     /// The config for the Vector DB.
     #[prost(oneof = "rag_vector_db_config::VectorDb", tags = "1, 2, 3, 4, 6")]
     pub vector_db: ::core::option::Option<rag_vector_db_config::VectorDb>,
@@ -42216,6 +42370,16 @@ pub mod file_status {
         }
     }
 }
+/// Config for the Vertex AI Search.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VertexAiSearchConfig {
+    /// Vertex AI Search Serving Config resource full name. For example,
+    /// `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}`
+    /// or
+    /// `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}`.
+    #[prost(string, tag = "1")]
+    pub serving_config: ::prost::alloc::string::String,
+}
 /// RagCorpus status.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CorpusStatus {
@@ -42293,9 +42457,11 @@ pub struct RagCorpus {
     #[prost(string, tag = "3")]
     pub description: ::prost::alloc::string::String,
     /// Optional. Immutable. The embedding model config of the RagCorpus.
+    #[deprecated]
     #[prost(message, optional, tag = "6")]
     pub rag_embedding_model_config: ::core::option::Option<RagEmbeddingModelConfig>,
     /// Optional. Immutable. The Vector DB config of the RagCorpus.
+    #[deprecated]
     #[prost(message, optional, tag = "7")]
     pub rag_vector_db_config: ::core::option::Option<RagVectorDbConfig>,
     /// Output only. Timestamp when this RagCorpus was created.
@@ -42307,6 +42473,24 @@ pub struct RagCorpus {
     /// Output only. RagCorpus state.
     #[prost(message, optional, tag = "8")]
     pub corpus_status: ::core::option::Option<CorpusStatus>,
+    /// The backend config of the RagCorpus.
+    /// It can be data store and/or retrieval engine.
+    #[prost(oneof = "rag_corpus::BackendConfig", tags = "9, 10")]
+    pub backend_config: ::core::option::Option<rag_corpus::BackendConfig>,
+}
+/// Nested message and enum types in `RagCorpus`.
+pub mod rag_corpus {
+    /// The backend config of the RagCorpus.
+    /// It can be data store and/or retrieval engine.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum BackendConfig {
+        /// Optional. Immutable. The config for the Vector DBs.
+        #[prost(message, tag = "9")]
+        VectorDbConfig(super::RagVectorDbConfig),
+        /// Optional. Immutable. The config for the Vertex AI Search.
+        #[prost(message, tag = "10")]
+        VertexAiSearchConfig(super::VertexAiSearchConfig),
+    }
 }
 /// A RagFile contains user data for chunking, embedding and indexing.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -42418,33 +42602,123 @@ pub mod rag_file {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RagFileChunkingConfig {
     /// The size of the chunks.
+    #[deprecated]
     #[prost(int32, tag = "1")]
     pub chunk_size: i32,
     /// The overlap between chunks.
+    #[deprecated]
     #[prost(int32, tag = "2")]
     pub chunk_overlap: i32,
+    /// Specifies the chunking config for RagFiles.
+    #[prost(oneof = "rag_file_chunking_config::ChunkingConfig", tags = "3")]
+    pub chunking_config: ::core::option::Option<
+        rag_file_chunking_config::ChunkingConfig,
+    >,
+}
+/// Nested message and enum types in `RagFileChunkingConfig`.
+pub mod rag_file_chunking_config {
+    /// Specifies the fixed length chunking config.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FixedLengthChunking {
+        /// The size of the chunks.
+        #[prost(int32, tag = "1")]
+        pub chunk_size: i32,
+        /// The overlap between chunks.
+        #[prost(int32, tag = "2")]
+        pub chunk_overlap: i32,
+    }
+    /// Specifies the chunking config for RagFiles.
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ChunkingConfig {
+        /// Specifies the fixed length chunking config.
+        #[prost(message, tag = "3")]
+        FixedLengthChunking(FixedLengthChunking),
+    }
+}
+/// Specifies the transformation config for RagFiles.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RagFileTransformationConfig {
+    /// Specifies the chunking config for RagFiles.
+    #[prost(message, optional, tag = "1")]
+    pub rag_file_chunking_config: ::core::option::Option<RagFileChunkingConfig>,
 }
 /// Specifies the parsing config for RagFiles.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RagFileParsingConfig {
     /// Whether to use advanced PDF parsing.
+    #[deprecated]
     #[prost(bool, tag = "2")]
     pub use_advanced_pdf_parsing: bool,
+    /// The parser to use for RagFiles.
+    #[prost(oneof = "rag_file_parsing_config::Parser", tags = "3, 4")]
+    pub parser: ::core::option::Option<rag_file_parsing_config::Parser>,
+}
+/// Nested message and enum types in `RagFileParsingConfig`.
+pub mod rag_file_parsing_config {
+    /// Specifies the advanced parsing for RagFiles.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AdvancedParser {
+        /// Whether to use advanced PDF parsing.
+        #[prost(bool, tag = "1")]
+        pub use_advanced_pdf_parsing: bool,
+    }
+    /// Document AI Layout Parser config.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LayoutParser {
+        /// The full resource name of a Document AI processor or processor version.
+        /// The processor must have type `LAYOUT_PARSER_PROCESSOR`. If specified, the
+        /// `additional_config.parse_as_scanned_pdf` field must be false.
+        /// Format:
+        /// * `projects/{project_id}/locations/{location}/processors/{processor_id}`
+        /// * `projects/{project_id}/locations/{location}/processors/{processor_id}/processorVersions/{processor_version_id}`
+        #[prost(string, tag = "1")]
+        pub processor_name: ::prost::alloc::string::String,
+        /// The maximum number of requests the job is allowed to make to the Document
+        /// AI processor per minute. Consult
+        /// <https://cloud.google.com/document-ai/quotas> and the Quota page for your
+        /// project to set an appropriate value here. If unspecified, a default value
+        /// of 120 QPM would be used.
+        #[prost(int32, tag = "2")]
+        pub max_parsing_requests_per_min: i32,
+    }
+    /// The parser to use for RagFiles.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Parser {
+        /// The Advanced Parser to use for RagFiles.
+        #[prost(message, tag = "3")]
+        AdvancedParser(AdvancedParser),
+        /// The Layout Parser to use for RagFiles.
+        #[prost(message, tag = "4")]
+        LayoutParser(LayoutParser),
+    }
 }
 /// Config for uploading RagFile.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UploadRagFileConfig {
     /// Specifies the size and overlap of chunks after uploading RagFile.
+    #[deprecated]
     #[prost(message, optional, tag = "1")]
     pub rag_file_chunking_config: ::core::option::Option<RagFileChunkingConfig>,
+    /// Specifies the transformation config for RagFiles.
+    #[prost(message, optional, tag = "3")]
+    pub rag_file_transformation_config: ::core::option::Option<
+        RagFileTransformationConfig,
+    >,
 }
 /// Config for importing RagFiles.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportRagFilesConfig {
     /// Specifies the size and overlap of chunks after importing RagFiles.
+    #[deprecated]
     #[prost(message, optional, tag = "4")]
     pub rag_file_chunking_config: ::core::option::Option<RagFileChunkingConfig>,
-    /// Specifies the parsing config for RagFiles.
+    /// Specifies the transformation config for RagFiles.
+    #[prost(message, optional, tag = "16")]
+    pub rag_file_transformation_config: ::core::option::Option<
+        RagFileTransformationConfig,
+    >,
+    /// Optional. Specifies the parsing config for RagFiles.
+    /// RAG will use the default parser if this field is not set.
     #[prost(message, optional, tag = "8")]
     pub rag_file_parsing_config: ::core::option::Option<RagFileParsingConfig>,
     /// Optional. The max number of queries per minute that this job is allowed to
@@ -42458,6 +42732,7 @@ pub struct ImportRagFilesConfig {
     #[prost(oneof = "import_rag_files_config::ImportSource", tags = "2, 3, 6, 7, 13")]
     pub import_source: ::core::option::Option<import_rag_files_config::ImportSource>,
     /// Optional. If provided, all partial failures are written to the sink.
+    /// Deprecated. Prefer to use the `import_result_sink`.
     #[prost(oneof = "import_rag_files_config::PartialFailureSink", tags = "11, 12")]
     pub partial_failure_sink: ::core::option::Option<
         import_rag_files_config::PartialFailureSink,
@@ -42489,17 +42764,20 @@ pub mod import_rag_files_config {
         SharePointSources(super::SharePointSources),
     }
     /// Optional. If provided, all partial failures are written to the sink.
+    /// Deprecated. Prefer to use the `import_result_sink`.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum PartialFailureSink {
         /// The Cloud Storage path to write partial failures to.
+        /// Deprecated. Prefer to use `import_result_gcs_sink`.
         #[prost(message, tag = "11")]
         PartialFailureGcsSink(super::GcsDestination),
         /// The BigQuery destination to write partial failures to. It should be a
         /// bigquery table resource name (e.g.
-        /// "bq://projectId.bqDatasetId.bqTableId"). If the dataset id does not
-        /// exist, it will be created. If the table does not exist, it will be
-        /// created with the expected schema. If the table exists, the schema will be
-        /// validated and data will be added to this existing table.
+        /// "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+        /// table does not exist, it will be created with the expected schema. If the
+        /// table exists, the schema will be validated and data will be added to this
+        /// existing table.
+        /// Deprecated. Prefer to use `import_result_bq_sink`.
         #[prost(message, tag = "12")]
         PartialFailureBigquerySink(super::BigQueryDestination),
     }
@@ -43140,11 +43418,16 @@ pub mod vertex_rag_data_service_client {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RagQuery {
     /// Optional. The number of contexts to retrieve.
+    #[deprecated]
     #[prost(int32, tag = "2")]
     pub similarity_top_k: i32,
     /// Optional. Configurations for hybrid search results ranking.
+    #[deprecated]
     #[prost(message, optional, tag = "4")]
     pub ranking: ::core::option::Option<rag_query::Ranking>,
+    /// Optional. The retrieval config for the query.
+    #[prost(message, optional, tag = "6")]
+    pub rag_retrieval_config: ::core::option::Option<RagRetrievalConfig>,
     /// The query to retrieve contexts.
     /// Currently only text query is supported.
     #[prost(oneof = "rag_query::Query", tags = "1")]
@@ -43206,6 +43489,7 @@ pub mod retrieve_contexts_request {
         pub rag_resources: ::prost::alloc::vec::Vec<vertex_rag_store::RagResource>,
         /// Optional. Only return contexts with vector distance smaller than the
         /// threshold.
+        #[deprecated]
         #[prost(double, optional, tag = "2")]
         pub vector_distance_threshold: ::core::option::Option<f64>,
     }
@@ -43245,22 +43529,37 @@ pub mod rag_contexts {
     /// A context of the query.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Context {
-        /// For vertex RagStore, if the file is imported from Cloud Storage or Google
-        /// Drive, source_uri will be original file URI in Cloud Storage or Google
-        /// Drive; if file is uploaded, source_uri will be file display name.
+        /// If the file is imported from Cloud Storage or Google Drive, source_uri
+        /// will be original file URI in Cloud Storage or Google Drive; if file is
+        /// uploaded, source_uri will be file display name.
         #[prost(string, tag = "1")]
         pub source_uri: ::prost::alloc::string::String,
+        /// The file display name.
+        #[prost(string, tag = "5")]
+        pub source_display_name: ::prost::alloc::string::String,
         /// The text chunk.
         #[prost(string, tag = "2")]
         pub text: ::prost::alloc::string::String,
         /// The distance between the query dense embedding vector and the context
         /// text vector.
+        #[deprecated]
         #[prost(double, tag = "3")]
         pub distance: f64,
         /// The distance between the query sparse embedding vector and the context
         /// text vector.
+        #[deprecated]
         #[prost(double, tag = "4")]
         pub sparse_distance: f64,
+        /// According to the underlying Vector DB and the selected metric type, the
+        /// score can be either the distance or the similarity between the query and
+        /// the context and its range depends on the metric type.
+        ///
+        /// For example, if the metric type is COSINE_DISTANCE, it represents the
+        /// distance between the query and the context. The larger the distance, the
+        /// less relevant the context is to the query. The range is \[0, 2\], while 0
+        /// means the most relevant and 2 means the least relevant.
+        #[prost(double, optional, tag = "6")]
+        pub score: ::core::option::Option<f64>,
     }
 }
 /// Response message for
@@ -43270,6 +43569,147 @@ pub struct RetrieveContextsResponse {
     /// The contexts of the query.
     #[prost(message, optional, tag = "1")]
     pub contexts: ::core::option::Option<RagContexts>,
+}
+/// Request message for AugmentPrompt.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AugmentPromptRequest {
+    /// Required. The resource name of the Location from which to augment prompt.
+    /// The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Input content to augment, only text format is supported for now.
+    #[prost(message, repeated, tag = "2")]
+    pub contents: ::prost::alloc::vec::Vec<Content>,
+    /// Optional. Metadata of the backend deployed model.
+    #[prost(message, optional, tag = "3")]
+    pub model: ::core::option::Option<augment_prompt_request::Model>,
+    /// The data source for retrieving contexts.
+    #[prost(oneof = "augment_prompt_request::DataSource", tags = "4")]
+    pub data_source: ::core::option::Option<augment_prompt_request::DataSource>,
+}
+/// Nested message and enum types in `AugmentPromptRequest`.
+pub mod augment_prompt_request {
+    /// Metadata of the backend deployed model.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Model {
+        /// Optional. The model that the user will send the augmented prompt for
+        /// content generation.
+        #[prost(string, tag = "1")]
+        pub model: ::prost::alloc::string::String,
+        /// Optional. The model version of the backend deployed model.
+        #[prost(string, tag = "2")]
+        pub model_version: ::prost::alloc::string::String,
+    }
+    /// The data source for retrieving contexts.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DataSource {
+        /// Optional. Retrieves contexts from the Vertex RagStore.
+        #[prost(message, tag = "4")]
+        VertexRagStore(super::VertexRagStore),
+    }
+}
+/// Response message for AugmentPrompt.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AugmentPromptResponse {
+    /// Augmented prompt, only text format is supported for now.
+    #[prost(message, repeated, tag = "1")]
+    pub augmented_prompt: ::prost::alloc::vec::Vec<Content>,
+    /// Retrieved facts from RAG data sources.
+    #[prost(message, repeated, tag = "2")]
+    pub facts: ::prost::alloc::vec::Vec<Fact>,
+}
+/// Request message for CorroborateContent.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CorroborateContentRequest {
+    /// Required. The resource name of the Location from which to corroborate text.
+    /// The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Input content to corroborate, only text format is supported for
+    /// now.
+    #[prost(message, optional, tag = "2")]
+    pub content: ::core::option::Option<Content>,
+    /// Optional. Facts used to generate the text can also be used to corroborate
+    /// the text.
+    #[prost(message, repeated, tag = "3")]
+    pub facts: ::prost::alloc::vec::Vec<Fact>,
+    /// Optional. Parameters that can be set to override default settings per
+    /// request.
+    #[prost(message, optional, tag = "4")]
+    pub parameters: ::core::option::Option<corroborate_content_request::Parameters>,
+}
+/// Nested message and enum types in `CorroborateContentRequest`.
+pub mod corroborate_content_request {
+    /// Parameters that can be overrided per request.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Parameters {
+        /// Optional. Only return claims with citation score larger than the
+        /// threshold.
+        #[prost(double, tag = "1")]
+        pub citation_threshold: f64,
+    }
+}
+/// Response message for CorroborateContent.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CorroborateContentResponse {
+    /// Confidence score of corroborating content. Value is \[0,1\] with 1 is the
+    /// most confidence.
+    #[prost(float, optional, tag = "1")]
+    pub corroboration_score: ::core::option::Option<f32>,
+    /// Claims that are extracted from the input content and facts that support the
+    /// claims.
+    #[prost(message, repeated, tag = "2")]
+    pub claims: ::prost::alloc::vec::Vec<Claim>,
+}
+/// The fact used in grounding.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Fact {
+    /// Query that is used to retrieve this fact.
+    #[prost(string, optional, tag = "1")]
+    pub query: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, it refers to the title of this fact.
+    #[prost(string, optional, tag = "2")]
+    pub title: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, this uri links to the source of the fact.
+    #[prost(string, optional, tag = "3")]
+    pub uri: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, the summary/snippet of the fact.
+    #[prost(string, optional, tag = "4")]
+    pub summary: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, the distance between the query vector and this fact vector.
+    #[deprecated]
+    #[prost(double, optional, tag = "5")]
+    pub vector_distance: ::core::option::Option<f64>,
+    /// If present, according to the underlying Vector DB and the selected metric
+    /// type, the score can be either the distance or the similarity between the
+    /// query and the fact and its range depends on the metric type.
+    ///
+    /// For example, if the metric type is COSINE_DISTANCE, it represents the
+    /// distance between the query and the fact. The larger the distance, the less
+    /// relevant the fact is to the query. The range is \[0, 2\], while 0 means the
+    /// most relevant and 2 means the least relevant.
+    #[prost(double, optional, tag = "6")]
+    pub score: ::core::option::Option<f64>,
+}
+/// Claim that is extracted from the input text and facts that support it.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Claim {
+    /// Index in the input text where the claim starts (inclusive).
+    #[prost(int32, optional, tag = "1")]
+    pub start_index: ::core::option::Option<i32>,
+    /// Index in the input text where the claim ends (exclusive).
+    #[prost(int32, optional, tag = "2")]
+    pub end_index: ::core::option::Option<i32>,
+    /// Indexes of the facts supporting this claim.
+    #[prost(int32, repeated, tag = "3")]
+    pub fact_indexes: ::prost::alloc::vec::Vec<i32>,
+    /// Confidence score of this corroboration.
+    #[prost(float, optional, tag = "4")]
+    pub score: ::core::option::Option<f32>,
 }
 /// Generated client implementations.
 pub mod vertex_rag_service_client {
@@ -43378,6 +43818,69 @@ pub mod vertex_rag_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.VertexRagService",
                         "RetrieveContexts",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Given an input prompt, it returns augmented prompt from vertex rag store
+        ///  to guide LLM towards generating grounded responses.
+        pub async fn augment_prompt(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AugmentPromptRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AugmentPromptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.VertexRagService/AugmentPrompt",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.VertexRagService",
+                        "AugmentPrompt",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Given an input text, it returns a score that evaluates the factuality of
+        /// the text. It also extracts and returns claims from the text and provides
+        /// supporting facts.
+        pub async fn corroborate_content(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CorroborateContentRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CorroborateContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.VertexRagService/CorroborateContent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.VertexRagService",
+                        "CorroborateContent",
                     ),
                 );
             self.inner.unary(req, path, codec).await

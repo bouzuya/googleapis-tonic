@@ -189,6 +189,31 @@ pub struct AnnotationSpec {
     #[prost(string, tag = "5")]
     pub etag: ::prost::alloc::string::String,
 }
+/// The generic reusable api auth config.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ApiAuth {
+    /// The auth config.
+    #[prost(oneof = "api_auth::AuthConfig", tags = "1")]
+    pub auth_config: ::core::option::Option<api_auth::AuthConfig>,
+}
+/// Nested message and enum types in `ApiAuth`.
+pub mod api_auth {
+    /// The API secret.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ApiKeyConfig {
+        /// Required. The SecretManager secret version resource name storing API key.
+        /// e.g. projects/{project}/secrets/{secret}/versions/{version}
+        #[prost(string, tag = "1")]
+        pub api_key_secret_version: ::prost::alloc::string::String,
+    }
+    /// The auth config.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AuthConfig {
+        /// The API secret.
+        #[prost(message, tag = "1")]
+        ApiKeyConfig(ApiKeyConfig),
+    }
+}
 /// Instance of a general artifact.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Artifact {
@@ -1026,6 +1051,211 @@ pub struct ContainerRegistryDestination {
     /// If a tag is not specified, "latest" will be used as the default tag.
     #[prost(string, tag = "1")]
     pub output_uri: ::prost::alloc::string::String,
+}
+/// The Google Drive location for the input content.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GoogleDriveSource {
+    /// Required. Google Drive resource IDs.
+    #[prost(message, repeated, tag = "1")]
+    pub resource_ids: ::prost::alloc::vec::Vec<google_drive_source::ResourceId>,
+}
+/// Nested message and enum types in `GoogleDriveSource`.
+pub mod google_drive_source {
+    /// The type and ID of the Google Drive resource.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ResourceId {
+        /// Required. The type of the Google Drive resource.
+        #[prost(enumeration = "resource_id::ResourceType", tag = "1")]
+        pub resource_type: i32,
+        /// Required. The ID of the Google Drive resource.
+        #[prost(string, tag = "2")]
+        pub resource_id: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `ResourceId`.
+    pub mod resource_id {
+        /// The type of the Google Drive resource.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum ResourceType {
+            /// Unspecified resource type.
+            Unspecified = 0,
+            /// File resource type.
+            File = 1,
+            /// Folder resource type.
+            Folder = 2,
+        }
+        impl ResourceType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
+                    Self::File => "RESOURCE_TYPE_FILE",
+                    Self::Folder => "RESOURCE_TYPE_FOLDER",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "RESOURCE_TYPE_FILE" => Some(Self::File),
+                    "RESOURCE_TYPE_FOLDER" => Some(Self::Folder),
+                    _ => None,
+                }
+            }
+        }
+    }
+}
+/// The input content is encapsulated and uploaded in the request.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DirectUploadSource {}
+/// The Slack source for the ImportRagFilesRequest.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlackSource {
+    /// Required. The Slack channels.
+    #[prost(message, repeated, tag = "1")]
+    pub channels: ::prost::alloc::vec::Vec<slack_source::SlackChannels>,
+}
+/// Nested message and enum types in `SlackSource`.
+pub mod slack_source {
+    /// SlackChannels contains the Slack channels and corresponding access token.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SlackChannels {
+        /// Required. The Slack channel IDs.
+        #[prost(message, repeated, tag = "1")]
+        pub channels: ::prost::alloc::vec::Vec<slack_channels::SlackChannel>,
+        /// Required. The SecretManager secret version resource name (e.g.
+        /// projects/{project}/secrets/{secret}/versions/{version}) storing the
+        /// Slack channel access token that has access to the slack channel IDs.
+        /// See: <https://api.slack.com/tutorials/tracks/getting-a-token.>
+        #[prost(message, optional, tag = "3")]
+        pub api_key_config: ::core::option::Option<super::api_auth::ApiKeyConfig>,
+    }
+    /// Nested message and enum types in `SlackChannels`.
+    pub mod slack_channels {
+        /// SlackChannel contains the Slack channel ID and the time range to import.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct SlackChannel {
+            /// Required. The Slack channel ID.
+            #[prost(string, tag = "1")]
+            pub channel_id: ::prost::alloc::string::String,
+            /// Optional. The starting timestamp for messages to import.
+            #[prost(message, optional, tag = "2")]
+            pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+            /// Optional. The ending timestamp for messages to import.
+            #[prost(message, optional, tag = "3")]
+            pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+        }
+    }
+}
+/// The Jira source for the ImportRagFilesRequest.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JiraSource {
+    /// Required. The Jira queries.
+    #[prost(message, repeated, tag = "1")]
+    pub jira_queries: ::prost::alloc::vec::Vec<jira_source::JiraQueries>,
+}
+/// Nested message and enum types in `JiraSource`.
+pub mod jira_source {
+    /// JiraQueries contains the Jira queries and corresponding authentication.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct JiraQueries {
+        /// A list of Jira projects to import in their entirety.
+        #[prost(string, repeated, tag = "3")]
+        pub projects: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// A list of custom Jira queries to import. For information about JQL (Jira
+        /// Query Language), see
+        /// <https://support.atlassian.com/jira-service-management-cloud/docs/use-advanced-search-with-jira-query-language-jql/>
+        #[prost(string, repeated, tag = "4")]
+        pub custom_queries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Required. The Jira email address.
+        #[prost(string, tag = "5")]
+        pub email: ::prost::alloc::string::String,
+        /// Required. The Jira server URI.
+        #[prost(string, tag = "6")]
+        pub server_uri: ::prost::alloc::string::String,
+        /// Required. The SecretManager secret version resource name (e.g.
+        /// projects/{project}/secrets/{secret}/versions/{version}) storing the
+        /// Jira API key. See [Manage API tokens for your Atlassian
+        /// account](<https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/>).
+        #[prost(message, optional, tag = "7")]
+        pub api_key_config: ::core::option::Option<super::api_auth::ApiKeyConfig>,
+    }
+}
+/// The SharePointSources to pass to ImportRagFiles.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SharePointSources {
+    /// The SharePoint sources.
+    #[prost(message, repeated, tag = "1")]
+    pub share_point_sources: ::prost::alloc::vec::Vec<
+        share_point_sources::SharePointSource,
+    >,
+}
+/// Nested message and enum types in `SharePointSources`.
+pub mod share_point_sources {
+    /// An individual SharePointSource.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SharePointSource {
+        /// The Application ID for the app registered in Microsoft Azure Portal.
+        /// The application must also be configured with MS Graph permissions
+        /// "Files.ReadAll", "Sites.ReadAll" and BrowserSiteLists.Read.All.
+        #[prost(string, tag = "1")]
+        pub client_id: ::prost::alloc::string::String,
+        /// The application secret for the app registered in Azure.
+        #[prost(message, optional, tag = "2")]
+        pub client_secret: ::core::option::Option<super::api_auth::ApiKeyConfig>,
+        /// Unique identifier of the Azure Active Directory Instance.
+        #[prost(string, tag = "3")]
+        pub tenant_id: ::prost::alloc::string::String,
+        /// The name of the SharePoint site to download from. This can be the site
+        /// name or the site id.
+        #[prost(string, tag = "4")]
+        pub sharepoint_site_name: ::prost::alloc::string::String,
+        /// Output only. The SharePoint file id. Output only.
+        #[prost(string, tag = "9")]
+        pub file_id: ::prost::alloc::string::String,
+        /// The SharePoint folder source. If not provided, uses "root".
+        #[prost(oneof = "share_point_source::FolderSource", tags = "5, 6")]
+        pub folder_source: ::core::option::Option<share_point_source::FolderSource>,
+        /// The SharePoint drive source.
+        #[prost(oneof = "share_point_source::DriveSource", tags = "7, 8")]
+        pub drive_source: ::core::option::Option<share_point_source::DriveSource>,
+    }
+    /// Nested message and enum types in `SharePointSource`.
+    pub mod share_point_source {
+        /// The SharePoint folder source. If not provided, uses "root".
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum FolderSource {
+            /// The path of the SharePoint folder to download from.
+            #[prost(string, tag = "5")]
+            SharepointFolderPath(::prost::alloc::string::String),
+            /// The ID of the SharePoint folder to download from.
+            #[prost(string, tag = "6")]
+            SharepointFolderId(::prost::alloc::string::String),
+        }
+        /// The SharePoint drive source.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum DriveSource {
+            /// The name of the drive to download from.
+            #[prost(string, tag = "7")]
+            DriveName(::prost::alloc::string::String),
+            /// The ID of the drive to download from.
+            #[prost(string, tag = "8")]
+            DriveId(::prost::alloc::string::String),
+        }
+    }
 }
 /// Explanation of a prediction (provided in
 /// [PredictResponse.predictions][google.cloud.aiplatform.v1.PredictResponse.predictions])
@@ -3844,7 +4074,7 @@ pub struct Retrieval {
     #[prost(bool, tag = "3")]
     pub disable_attribution: bool,
     /// The source of the retrieval.
-    #[prost(oneof = "retrieval::Source", tags = "2")]
+    #[prost(oneof = "retrieval::Source", tags = "2, 4")]
     pub source: ::core::option::Option<retrieval::Source>,
 }
 /// Nested message and enum types in `Retrieval`.
@@ -3855,6 +4085,48 @@ pub mod retrieval {
         /// Set to use data source powered by Vertex AI Search.
         #[prost(message, tag = "2")]
         VertexAiSearch(super::VertexAiSearch),
+        /// Set to use data source powered by Vertex RAG store.
+        /// User data is uploaded via the VertexRagDataService.
+        #[prost(message, tag = "4")]
+        VertexRagStore(super::VertexRagStore),
+    }
+}
+/// Retrieve from Vertex RAG Store for grounding.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VertexRagStore {
+    /// Optional. The representation of the rag source. It can be used to specify
+    /// corpus only or ragfiles. Currently only support one corpus or multiple
+    /// files from one corpus. In the future we may open up multiple corpora
+    /// support.
+    #[prost(message, repeated, tag = "4")]
+    pub rag_resources: ::prost::alloc::vec::Vec<vertex_rag_store::RagResource>,
+    /// Optional. Number of top k results to return from the selected corpora.
+    #[deprecated]
+    #[prost(int32, optional, tag = "2")]
+    pub similarity_top_k: ::core::option::Option<i32>,
+    /// Optional. Only return results with vector distance smaller than the
+    /// threshold.
+    #[deprecated]
+    #[prost(double, optional, tag = "3")]
+    pub vector_distance_threshold: ::core::option::Option<f64>,
+    /// Optional. The retrieval config for the Rag query.
+    #[prost(message, optional, tag = "6")]
+    pub rag_retrieval_config: ::core::option::Option<RagRetrievalConfig>,
+}
+/// Nested message and enum types in `VertexRagStore`.
+pub mod vertex_rag_store {
+    /// The definition of the Rag resource.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RagResource {
+        /// Optional. RagCorpora resource name.
+        /// Format:
+        /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+        #[prost(string, tag = "1")]
+        pub rag_corpus: ::prost::alloc::string::String,
+        /// Optional. rag_file_id. The files should be in the same rag_corpus set in
+        /// rag_corpus field.
+        #[prost(string, repeated, tag = "2")]
+        pub rag_file_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
 }
 /// Retrieve from Vertex AI Search datastore for grounding.
@@ -3998,6 +4270,46 @@ pub mod function_calling_config {
                 "NONE" => Some(Self::None),
                 _ => None,
             }
+        }
+    }
+}
+/// Specifies the context retrieval config.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagRetrievalConfig {
+    /// Optional. The number of contexts to retrieve.
+    #[prost(int32, tag = "1")]
+    pub top_k: i32,
+    /// Optional. Config for filters.
+    #[prost(message, optional, tag = "3")]
+    pub filter: ::core::option::Option<rag_retrieval_config::Filter>,
+}
+/// Nested message and enum types in `RagRetrievalConfig`.
+pub mod rag_retrieval_config {
+    /// Config for filters.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Filter {
+        /// Optional. String for metadata filtering.
+        #[prost(string, tag = "2")]
+        pub metadata_filter: ::prost::alloc::string::String,
+        /// Filter contexts retrieved from the vector DB based on either vector
+        /// distance or vector similarity.
+        #[prost(oneof = "filter::VectorDbThreshold", tags = "3, 4")]
+        pub vector_db_threshold: ::core::option::Option<filter::VectorDbThreshold>,
+    }
+    /// Nested message and enum types in `Filter`.
+    pub mod filter {
+        /// Filter contexts retrieved from the vector DB based on either vector
+        /// distance or vector similarity.
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum VectorDbThreshold {
+            /// Optional. Only returns contexts with vector distance smaller than the
+            /// threshold.
+            #[prost(double, tag = "3")]
+            VectorDistanceThreshold(f64),
+            /// Optional. Only returns contexts with vector similarity larger than the
+            /// threshold.
+            #[prost(double, tag = "4")]
+            VectorSimilarityThreshold(f64),
         }
     }
 }
@@ -36372,6 +36684,1503 @@ pub mod tensorboard_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.TensorboardService",
                         "ExportTensorboardTimeSeriesData",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Config for the embedding model to use for RAG.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagEmbeddingModelConfig {
+    /// The model config to use.
+    #[prost(oneof = "rag_embedding_model_config::ModelConfig", tags = "1")]
+    pub model_config: ::core::option::Option<rag_embedding_model_config::ModelConfig>,
+}
+/// Nested message and enum types in `RagEmbeddingModelConfig`.
+pub mod rag_embedding_model_config {
+    /// Config representing a model hosted on Vertex Prediction Endpoint.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VertexPredictionEndpoint {
+        /// Required. The endpoint resource name.
+        /// Format:
+        /// `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
+        /// or
+        /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
+        #[prost(string, tag = "1")]
+        pub endpoint: ::prost::alloc::string::String,
+        /// Output only. The resource name of the model that is deployed on the
+        /// endpoint. Present only when the endpoint is not a publisher model.
+        /// Pattern:
+        /// `projects/{project}/locations/{location}/models/{model}`
+        #[prost(string, tag = "2")]
+        pub model: ::prost::alloc::string::String,
+        /// Output only. Version ID of the model that is deployed on the endpoint.
+        /// Present only when the endpoint is not a publisher model.
+        #[prost(string, tag = "3")]
+        pub model_version_id: ::prost::alloc::string::String,
+    }
+    /// The model config to use.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ModelConfig {
+        /// The Vertex AI Prediction Endpoint that either refers to a publisher model
+        /// or an endpoint that is hosting a 1P fine-tuned text embedding model.
+        /// Endpoints hosting non-1P fine-tuned text embedding models are
+        /// currently not supported.
+        /// This is used for dense vector search.
+        #[prost(message, tag = "1")]
+        VertexPredictionEndpoint(VertexPredictionEndpoint),
+    }
+}
+/// Config for the Vector DB to use for RAG.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagVectorDbConfig {
+    /// Authentication config for the chosen Vector DB.
+    #[prost(message, optional, tag = "5")]
+    pub api_auth: ::core::option::Option<ApiAuth>,
+    /// Optional. Immutable. The embedding model config of the Vector DB.
+    #[prost(message, optional, tag = "7")]
+    pub rag_embedding_model_config: ::core::option::Option<RagEmbeddingModelConfig>,
+    /// The config for the Vector DB.
+    #[prost(oneof = "rag_vector_db_config::VectorDb", tags = "1, 3, 6")]
+    pub vector_db: ::core::option::Option<rag_vector_db_config::VectorDb>,
+}
+/// Nested message and enum types in `RagVectorDbConfig`.
+pub mod rag_vector_db_config {
+    /// The config for the default RAG-managed Vector DB.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct RagManagedDb {}
+    /// The config for the Pinecone.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Pinecone {
+        /// Pinecone index name.
+        /// This value cannot be changed after it's set.
+        #[prost(string, tag = "1")]
+        pub index_name: ::prost::alloc::string::String,
+    }
+    /// The config for the Vertex Vector Search.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VertexVectorSearch {
+        /// The resource name of the Index Endpoint.
+        /// Format:
+        /// `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+        #[prost(string, tag = "1")]
+        pub index_endpoint: ::prost::alloc::string::String,
+        /// The resource name of the Index.
+        /// Format:
+        /// `projects/{project}/locations/{location}/indexes/{index}`
+        #[prost(string, tag = "2")]
+        pub index: ::prost::alloc::string::String,
+    }
+    /// The config for the Vector DB.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum VectorDb {
+        /// The config for the RAG-managed Vector DB.
+        #[prost(message, tag = "1")]
+        RagManagedDb(RagManagedDb),
+        /// The config for the Pinecone.
+        #[prost(message, tag = "3")]
+        Pinecone(Pinecone),
+        /// The config for the Vertex Vector Search.
+        #[prost(message, tag = "6")]
+        VertexVectorSearch(VertexVectorSearch),
+    }
+}
+/// RagFile status.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FileStatus {
+    /// Output only. RagFile state.
+    #[prost(enumeration = "file_status::State", tag = "1")]
+    pub state: i32,
+    /// Output only. Only when the `state` field is ERROR.
+    #[prost(string, tag = "2")]
+    pub error_status: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `FileStatus`.
+pub mod file_status {
+    /// RagFile state.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// RagFile state is unspecified.
+        Unspecified = 0,
+        /// RagFile resource has been created and indexed successfully.
+        Active = 1,
+        /// RagFile resource is in a problematic state.
+        /// See `error_message` field for details.
+        Error = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::Error => "ERROR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "ERROR" => Some(Self::Error),
+                _ => None,
+            }
+        }
+    }
+}
+/// RagCorpus status.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CorpusStatus {
+    /// Output only. RagCorpus life state.
+    #[prost(enumeration = "corpus_status::State", tag = "1")]
+    pub state: i32,
+    /// Output only. Only when the `state` field is ERROR.
+    #[prost(string, tag = "2")]
+    pub error_status: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `CorpusStatus`.
+pub mod corpus_status {
+    /// RagCorpus life state.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// This state is not supposed to happen.
+        Unknown = 0,
+        /// RagCorpus resource entry is initialized, but hasn't done validation.
+        Initialized = 1,
+        /// RagCorpus is provisioned successfully and is ready to serve.
+        Active = 2,
+        /// RagCorpus is in a problematic situation.
+        /// See `error_message` field for details.
+        Error = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unknown => "UNKNOWN",
+                Self::Initialized => "INITIALIZED",
+                Self::Active => "ACTIVE",
+                Self::Error => "ERROR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "INITIALIZED" => Some(Self::Initialized),
+                "ACTIVE" => Some(Self::Active),
+                "ERROR" => Some(Self::Error),
+                _ => None,
+            }
+        }
+    }
+}
+/// A RagCorpus is a RagFile container and a project can have multiple
+/// RagCorpora.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagCorpus {
+    /// Output only. The resource name of the RagCorpus.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The display name of the RagCorpus.
+    /// The name can be up to 128 characters long and can consist of any UTF-8
+    /// characters.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Optional. The description of the RagCorpus.
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    /// Output only. Timestamp when this RagCorpus was created.
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp when this RagCorpus was last updated.
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. RagCorpus state.
+    #[prost(message, optional, tag = "8")]
+    pub corpus_status: ::core::option::Option<CorpusStatus>,
+    /// The backend config of the RagCorpus.
+    /// It can be data store and/or retrieval engine.
+    #[prost(oneof = "rag_corpus::BackendConfig", tags = "9")]
+    pub backend_config: ::core::option::Option<rag_corpus::BackendConfig>,
+}
+/// Nested message and enum types in `RagCorpus`.
+pub mod rag_corpus {
+    /// The backend config of the RagCorpus.
+    /// It can be data store and/or retrieval engine.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum BackendConfig {
+        /// Optional. Immutable. The config for the Vector DBs.
+        #[prost(message, tag = "9")]
+        VectorDbConfig(super::RagVectorDbConfig),
+    }
+}
+/// A RagFile contains user data for chunking, embedding and indexing.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagFile {
+    /// Output only. The resource name of the RagFile.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The display name of the RagFile.
+    /// The name can be up to 128 characters long and can consist of any UTF-8
+    /// characters.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Optional. The description of the RagFile.
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    /// Output only. Timestamp when this RagFile was created.
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp when this RagFile was last updated.
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. State of the RagFile.
+    #[prost(message, optional, tag = "13")]
+    pub file_status: ::core::option::Option<FileStatus>,
+    /// The origin location of the RagFile if it is imported from Google Cloud
+    /// Storage or Google Drive.
+    #[prost(oneof = "rag_file::RagFileSource", tags = "8, 9, 10, 11, 12, 14")]
+    pub rag_file_source: ::core::option::Option<rag_file::RagFileSource>,
+}
+/// Nested message and enum types in `RagFile`.
+pub mod rag_file {
+    /// The origin location of the RagFile if it is imported from Google Cloud
+    /// Storage or Google Drive.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RagFileSource {
+        /// Output only. Google Cloud Storage location of the RagFile.
+        /// It does not support wildcards in the Cloud Storage uri for now.
+        #[prost(message, tag = "8")]
+        GcsSource(super::GcsSource),
+        /// Output only. Google Drive location. Supports importing individual files
+        /// as well as Google Drive folders.
+        #[prost(message, tag = "9")]
+        GoogleDriveSource(super::GoogleDriveSource),
+        /// Output only. The RagFile is encapsulated and uploaded in the
+        /// UploadRagFile request.
+        #[prost(message, tag = "10")]
+        DirectUploadSource(super::DirectUploadSource),
+        /// The RagFile is imported from a Slack channel.
+        #[prost(message, tag = "11")]
+        SlackSource(super::SlackSource),
+        /// The RagFile is imported from a Jira query.
+        #[prost(message, tag = "12")]
+        JiraSource(super::JiraSource),
+        /// The RagFile is imported from a SharePoint source.
+        #[prost(message, tag = "14")]
+        SharePointSources(super::SharePointSources),
+    }
+}
+/// Specifies the size and overlap of chunks for RagFiles.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RagFileChunkingConfig {
+    /// Specifies the chunking config for RagFiles.
+    #[prost(oneof = "rag_file_chunking_config::ChunkingConfig", tags = "3")]
+    pub chunking_config: ::core::option::Option<
+        rag_file_chunking_config::ChunkingConfig,
+    >,
+}
+/// Nested message and enum types in `RagFileChunkingConfig`.
+pub mod rag_file_chunking_config {
+    /// Specifies the fixed length chunking config.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FixedLengthChunking {
+        /// The size of the chunks.
+        #[prost(int32, tag = "1")]
+        pub chunk_size: i32,
+        /// The overlap between chunks.
+        #[prost(int32, tag = "2")]
+        pub chunk_overlap: i32,
+    }
+    /// Specifies the chunking config for RagFiles.
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ChunkingConfig {
+        /// Specifies the fixed length chunking config.
+        #[prost(message, tag = "3")]
+        FixedLengthChunking(FixedLengthChunking),
+    }
+}
+/// Specifies the transformation config for RagFiles.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RagFileTransformationConfig {
+    /// Specifies the chunking config for RagFiles.
+    #[prost(message, optional, tag = "1")]
+    pub rag_file_chunking_config: ::core::option::Option<RagFileChunkingConfig>,
+}
+/// Config for uploading RagFile.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UploadRagFileConfig {
+    /// Specifies the transformation config for RagFiles.
+    #[prost(message, optional, tag = "3")]
+    pub rag_file_transformation_config: ::core::option::Option<
+        RagFileTransformationConfig,
+    >,
+}
+/// Config for importing RagFiles.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportRagFilesConfig {
+    /// Specifies the transformation config for RagFiles.
+    #[prost(message, optional, tag = "16")]
+    pub rag_file_transformation_config: ::core::option::Option<
+        RagFileTransformationConfig,
+    >,
+    /// Optional. The max number of queries per minute that this job is allowed to
+    /// make to the embedding model specified on the corpus. This value is specific
+    /// to this job and not shared across other import jobs. Consult the Quotas
+    /// page on the project to set an appropriate value here.
+    /// If unspecified, a default value of 1,000 QPM would be used.
+    #[prost(int32, tag = "5")]
+    pub max_embedding_requests_per_min: i32,
+    /// The source of the import.
+    #[prost(oneof = "import_rag_files_config::ImportSource", tags = "2, 3, 6, 7, 13")]
+    pub import_source: ::core::option::Option<import_rag_files_config::ImportSource>,
+    /// Optional. If provided, all partial failures are written to the sink.
+    /// Deprecated. Prefer to use the `import_result_sink`.
+    #[prost(oneof = "import_rag_files_config::PartialFailureSink", tags = "11, 12")]
+    pub partial_failure_sink: ::core::option::Option<
+        import_rag_files_config::PartialFailureSink,
+    >,
+}
+/// Nested message and enum types in `ImportRagFilesConfig`.
+pub mod import_rag_files_config {
+    /// The source of the import.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ImportSource {
+        /// Google Cloud Storage location. Supports importing individual files as
+        /// well as entire Google Cloud Storage directories. Sample formats:
+        /// - `gs://bucket_name/my_directory/object_name/my_file.txt`
+        /// - `gs://bucket_name/my_directory`
+        #[prost(message, tag = "2")]
+        GcsSource(super::GcsSource),
+        /// Google Drive location. Supports importing individual files as
+        /// well as Google Drive folders.
+        #[prost(message, tag = "3")]
+        GoogleDriveSource(super::GoogleDriveSource),
+        /// Slack channels with their corresponding access tokens.
+        #[prost(message, tag = "6")]
+        SlackSource(super::SlackSource),
+        /// Jira queries with their corresponding authentication.
+        #[prost(message, tag = "7")]
+        JiraSource(super::JiraSource),
+        /// SharePoint sources.
+        #[prost(message, tag = "13")]
+        SharePointSources(super::SharePointSources),
+    }
+    /// Optional. If provided, all partial failures are written to the sink.
+    /// Deprecated. Prefer to use the `import_result_sink`.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PartialFailureSink {
+        /// The Cloud Storage path to write partial failures to.
+        /// Deprecated. Prefer to use `import_result_gcs_sink`.
+        #[prost(message, tag = "11")]
+        PartialFailureGcsSink(super::GcsDestination),
+        /// The BigQuery destination to write partial failures to. It should be a
+        /// bigquery table resource name (e.g.
+        /// "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+        /// table does not exist, it will be created with the expected schema. If the
+        /// table exists, the schema will be validated and data will be added to this
+        /// existing table.
+        /// Deprecated. Prefer to use `import_result_bq_sink`.
+        #[prost(message, tag = "12")]
+        PartialFailureBigquerySink(super::BigQueryDestination),
+    }
+}
+/// Request message for
+/// [VertexRagDataService.CreateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.CreateRagCorpus].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateRagCorpusRequest {
+    /// Required. The resource name of the Location to create the RagCorpus in.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The RagCorpus to create.
+    #[prost(message, optional, tag = "2")]
+    pub rag_corpus: ::core::option::Option<RagCorpus>,
+}
+/// Request message for
+/// [VertexRagDataService.GetRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.GetRagCorpus]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetRagCorpusRequest {
+    /// Required. The name of the RagCorpus resource.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// [VertexRagDataService.ListRagCorpora][google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListRagCorporaRequest {
+    /// Required. The resource name of the Location from which to list the
+    /// RagCorpora. Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The standard list page size.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. The standard list page token.
+    /// Typically obtained via
+    /// [ListRagCorporaResponse.next_page_token][google.cloud.aiplatform.v1.ListRagCorporaResponse.next_page_token]
+    /// of the previous
+    /// [VertexRagDataService.ListRagCorpora][google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]
+    /// call.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response message for
+/// [VertexRagDataService.ListRagCorpora][google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListRagCorporaResponse {
+    /// List of RagCorpora in the requested page.
+    #[prost(message, repeated, tag = "1")]
+    pub rag_corpora: ::prost::alloc::vec::Vec<RagCorpus>,
+    /// A token to retrieve the next page of results.
+    /// Pass to
+    /// [ListRagCorporaRequest.page_token][google.cloud.aiplatform.v1.ListRagCorporaRequest.page_token]
+    /// to obtain that page.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request message for
+/// [VertexRagDataService.DeleteRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagCorpus].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteRagCorpusRequest {
+    /// Required. The name of the RagCorpus resource to be deleted.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. If set to true, any RagFiles in this RagCorpus will also be
+    /// deleted. Otherwise, the request will only work if the RagCorpus has no
+    /// RagFiles.
+    #[prost(bool, tag = "2")]
+    pub force: bool,
+}
+/// Request message for
+/// [VertexRagDataService.UploadRagFile][google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UploadRagFileRequest {
+    /// Required. The name of the RagCorpus resource into which to upload the file.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The RagFile to upload.
+    #[prost(message, optional, tag = "2")]
+    pub rag_file: ::core::option::Option<RagFile>,
+    /// Required. The config for the RagFiles to be uploaded into the RagCorpus.
+    /// [VertexRagDataService.UploadRagFile][google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile].
+    #[prost(message, optional, tag = "5")]
+    pub upload_rag_file_config: ::core::option::Option<UploadRagFileConfig>,
+}
+/// Response message for
+/// [VertexRagDataService.UploadRagFile][google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UploadRagFileResponse {
+    /// The result of the upload.
+    #[prost(oneof = "upload_rag_file_response::Result", tags = "1, 4")]
+    pub result: ::core::option::Option<upload_rag_file_response::Result>,
+}
+/// Nested message and enum types in `UploadRagFileResponse`.
+pub mod upload_rag_file_response {
+    /// The result of the upload.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Result {
+        /// The RagFile that had been uploaded into the RagCorpus.
+        #[prost(message, tag = "1")]
+        RagFile(super::RagFile),
+        /// The error that occurred while processing the RagFile.
+        #[prost(message, tag = "4")]
+        Error(super::super::super::super::rpc::Status),
+    }
+}
+/// Request message for
+/// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportRagFilesRequest {
+    /// Required. The name of the RagCorpus resource into which to import files.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The config for the RagFiles to be synced and imported into the
+    /// RagCorpus.
+    /// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
+    #[prost(message, optional, tag = "2")]
+    pub import_rag_files_config: ::core::option::Option<ImportRagFilesConfig>,
+}
+/// Response message for
+/// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportRagFilesResponse {
+    /// The number of RagFiles that had been imported into the RagCorpus.
+    #[prost(int64, tag = "1")]
+    pub imported_rag_files_count: i64,
+    /// The number of RagFiles that had failed while importing into the RagCorpus.
+    #[prost(int64, tag = "2")]
+    pub failed_rag_files_count: i64,
+    /// The number of RagFiles that was skipped while importing into the RagCorpus.
+    #[prost(int64, tag = "3")]
+    pub skipped_rag_files_count: i64,
+    /// The location into which the partial failures were written.
+    #[prost(oneof = "import_rag_files_response::PartialFailureSink", tags = "4, 5")]
+    pub partial_failure_sink: ::core::option::Option<
+        import_rag_files_response::PartialFailureSink,
+    >,
+}
+/// Nested message and enum types in `ImportRagFilesResponse`.
+pub mod import_rag_files_response {
+    /// The location into which the partial failures were written.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PartialFailureSink {
+        /// The Google Cloud Storage path into which the partial failures were
+        /// written.
+        #[prost(string, tag = "4")]
+        PartialFailuresGcsPath(::prost::alloc::string::String),
+        /// The BigQuery table into which the partial failures were written.
+        #[prost(string, tag = "5")]
+        PartialFailuresBigqueryTable(::prost::alloc::string::String),
+    }
+}
+/// Request message for
+/// [VertexRagDataService.GetRagFile][google.cloud.aiplatform.v1.VertexRagDataService.GetRagFile]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetRagFileRequest {
+    /// Required. The name of the RagFile resource.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListRagFilesRequest {
+    /// Required. The resource name of the RagCorpus from which to list the
+    /// RagFiles. Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The standard list page size.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. The standard list page token.
+    /// Typically obtained via
+    /// [ListRagFilesResponse.next_page_token][google.cloud.aiplatform.v1.ListRagFilesResponse.next_page_token]
+    /// of the previous
+    /// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]
+    /// call.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response message for
+/// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListRagFilesResponse {
+    /// List of RagFiles in the requested page.
+    #[prost(message, repeated, tag = "1")]
+    pub rag_files: ::prost::alloc::vec::Vec<RagFile>,
+    /// A token to retrieve the next page of results.
+    /// Pass to
+    /// [ListRagFilesRequest.page_token][google.cloud.aiplatform.v1.ListRagFilesRequest.page_token]
+    /// to obtain that page.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request message for
+/// [VertexRagDataService.DeleteRagFile][google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagFile].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteRagFileRequest {
+    /// Required. The name of the RagFile resource to be deleted.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Runtime operation information for
+/// [VertexRagDataService.CreateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.CreateRagCorpus].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateRagCorpusOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Request message for
+/// [VertexRagDataService.UpdateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagCorpus].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateRagCorpusRequest {
+    /// Required. The RagCorpus which replaces the resource on the server.
+    #[prost(message, optional, tag = "1")]
+    pub rag_corpus: ::core::option::Option<RagCorpus>,
+}
+/// Runtime operation information for
+/// [VertexRagDataService.UpdateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagCorpus].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateRagCorpusOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Runtime operation information for
+/// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportRagFilesOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+    /// The resource ID of RagCorpus that this operation is executed on.
+    #[prost(int64, tag = "2")]
+    pub rag_corpus_id: i64,
+    /// Output only. The config that was passed in the ImportRagFilesRequest.
+    #[prost(message, optional, tag = "3")]
+    pub import_rag_files_config: ::core::option::Option<ImportRagFilesConfig>,
+    /// The progress percentage of the operation. Value is in the range \[0, 100\].
+    /// This percentage is calculated as follows:
+    ///     progress_percentage = 100 * (successes + failures + skips) / total
+    #[prost(int32, tag = "4")]
+    pub progress_percentage: i32,
+}
+/// Generated client implementations.
+pub mod vertex_rag_data_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// A service for managing user data for RAG.
+    #[derive(Debug, Clone)]
+    pub struct VertexRagDataServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> VertexRagDataServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> VertexRagDataServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            VertexRagDataServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a RagCorpus.
+        pub async fn create_rag_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateRagCorpusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/CreateRagCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "CreateRagCorpus",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a RagCorpus.
+        pub async fn update_rag_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateRagCorpusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/UpdateRagCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "UpdateRagCorpus",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a RagCorpus.
+        pub async fn get_rag_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRagCorpusRequest>,
+        ) -> std::result::Result<tonic::Response<super::RagCorpus>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/GetRagCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "GetRagCorpus",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists RagCorpora in a Location.
+        pub async fn list_rag_corpora(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListRagCorporaRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListRagCorporaResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/ListRagCorpora",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "ListRagCorpora",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a RagCorpus.
+        pub async fn delete_rag_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteRagCorpusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/DeleteRagCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "DeleteRagCorpus",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Upload a file into a RagCorpus.
+        pub async fn upload_rag_file(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UploadRagFileRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UploadRagFileResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/UploadRagFile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "UploadRagFile",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Import files from Google Cloud Storage or Google Drive into a RagCorpus.
+        pub async fn import_rag_files(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportRagFilesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/ImportRagFiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "ImportRagFiles",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a RagFile.
+        pub async fn get_rag_file(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRagFileRequest>,
+        ) -> std::result::Result<tonic::Response<super::RagFile>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/GetRagFile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "GetRagFile",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists RagFiles in a RagCorpus.
+        pub async fn list_rag_files(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListRagFilesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListRagFilesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/ListRagFiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "ListRagFiles",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a RagFile.
+        pub async fn delete_rag_file(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteRagFileRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/DeleteRagFile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "DeleteRagFile",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// A query to retrieve relevant contexts.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagQuery {
+    /// Optional. The retrieval config for the query.
+    #[prost(message, optional, tag = "6")]
+    pub rag_retrieval_config: ::core::option::Option<RagRetrievalConfig>,
+    /// The query to retrieve contexts.
+    /// Currently only text query is supported.
+    #[prost(oneof = "rag_query::Query", tags = "1")]
+    pub query: ::core::option::Option<rag_query::Query>,
+}
+/// Nested message and enum types in `RagQuery`.
+pub mod rag_query {
+    /// The query to retrieve contexts.
+    /// Currently only text query is supported.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Query {
+        /// Optional. The query in text format to get relevant contexts.
+        #[prost(string, tag = "1")]
+        Text(::prost::alloc::string::String),
+    }
+}
+/// Request message for
+/// [VertexRagService.RetrieveContexts][google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RetrieveContextsRequest {
+    /// Required. The resource name of the Location from which to retrieve
+    /// RagContexts. The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. Single RAG retrieve query.
+    #[prost(message, optional, tag = "3")]
+    pub query: ::core::option::Option<RagQuery>,
+    /// Data Source to retrieve contexts.
+    #[prost(oneof = "retrieve_contexts_request::DataSource", tags = "2")]
+    pub data_source: ::core::option::Option<retrieve_contexts_request::DataSource>,
+}
+/// Nested message and enum types in `RetrieveContextsRequest`.
+pub mod retrieve_contexts_request {
+    /// The data source for Vertex RagStore.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VertexRagStore {
+        /// Optional. The representation of the rag source. It can be used to specify
+        /// corpus only or ragfiles. Currently only support one corpus or multiple
+        /// files from one corpus. In the future we may open up multiple corpora
+        /// support.
+        #[prost(message, repeated, tag = "3")]
+        pub rag_resources: ::prost::alloc::vec::Vec<vertex_rag_store::RagResource>,
+        /// Optional. Only return contexts with vector distance smaller than the
+        /// threshold.
+        #[deprecated]
+        #[prost(double, optional, tag = "2")]
+        pub vector_distance_threshold: ::core::option::Option<f64>,
+    }
+    /// Nested message and enum types in `VertexRagStore`.
+    pub mod vertex_rag_store {
+        /// The definition of the Rag resource.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct RagResource {
+            /// Optional. RagCorpora resource name.
+            /// Format:
+            /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
+            #[prost(string, tag = "1")]
+            pub rag_corpus: ::prost::alloc::string::String,
+            /// Optional. rag_file_id. The files should be in the same rag_corpus set
+            /// in rag_corpus field.
+            #[prost(string, repeated, tag = "2")]
+            pub rag_file_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        }
+    }
+    /// Data Source to retrieve contexts.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DataSource {
+        /// The data source for Vertex RagStore.
+        #[prost(message, tag = "2")]
+        VertexRagStore(VertexRagStore),
+    }
+}
+/// Relevant contexts for one query.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagContexts {
+    /// All its contexts.
+    #[prost(message, repeated, tag = "1")]
+    pub contexts: ::prost::alloc::vec::Vec<rag_contexts::Context>,
+}
+/// Nested message and enum types in `RagContexts`.
+pub mod rag_contexts {
+    /// A context of the query.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Context {
+        /// If the file is imported from Cloud Storage or Google Drive, source_uri
+        /// will be original file URI in Cloud Storage or Google Drive; if file is
+        /// uploaded, source_uri will be file display name.
+        #[prost(string, tag = "1")]
+        pub source_uri: ::prost::alloc::string::String,
+        /// The file display name.
+        #[prost(string, tag = "5")]
+        pub source_display_name: ::prost::alloc::string::String,
+        /// The text chunk.
+        #[prost(string, tag = "2")]
+        pub text: ::prost::alloc::string::String,
+        /// According to the underlying Vector DB and the selected metric type, the
+        /// score can be either the distance or the similarity between the query and
+        /// the context and its range depends on the metric type.
+        ///
+        /// For example, if the metric type is COSINE_DISTANCE, it represents the
+        /// distance between the query and the context. The larger the distance, the
+        /// less relevant the context is to the query. The range is \[0, 2\], while 0
+        /// means the most relevant and 2 means the least relevant.
+        #[prost(double, optional, tag = "6")]
+        pub score: ::core::option::Option<f64>,
+    }
+}
+/// Response message for
+/// [VertexRagService.RetrieveContexts][google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RetrieveContextsResponse {
+    /// The contexts of the query.
+    #[prost(message, optional, tag = "1")]
+    pub contexts: ::core::option::Option<RagContexts>,
+}
+/// Request message for AugmentPrompt.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AugmentPromptRequest {
+    /// Required. The resource name of the Location from which to augment prompt.
+    /// The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Input content to augment, only text format is supported for now.
+    #[prost(message, repeated, tag = "2")]
+    pub contents: ::prost::alloc::vec::Vec<Content>,
+    /// Optional. Metadata of the backend deployed model.
+    #[prost(message, optional, tag = "3")]
+    pub model: ::core::option::Option<augment_prompt_request::Model>,
+    /// The data source for retrieving contexts.
+    #[prost(oneof = "augment_prompt_request::DataSource", tags = "4")]
+    pub data_source: ::core::option::Option<augment_prompt_request::DataSource>,
+}
+/// Nested message and enum types in `AugmentPromptRequest`.
+pub mod augment_prompt_request {
+    /// Metadata of the backend deployed model.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Model {
+        /// Optional. The model that the user will send the augmented prompt for
+        /// content generation.
+        #[prost(string, tag = "1")]
+        pub model: ::prost::alloc::string::String,
+        /// Optional. The model version of the backend deployed model.
+        #[prost(string, tag = "2")]
+        pub model_version: ::prost::alloc::string::String,
+    }
+    /// The data source for retrieving contexts.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DataSource {
+        /// Optional. Retrieves contexts from the Vertex RagStore.
+        #[prost(message, tag = "4")]
+        VertexRagStore(super::VertexRagStore),
+    }
+}
+/// Response message for AugmentPrompt.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AugmentPromptResponse {
+    /// Augmented prompt, only text format is supported for now.
+    #[prost(message, repeated, tag = "1")]
+    pub augmented_prompt: ::prost::alloc::vec::Vec<Content>,
+    /// Retrieved facts from RAG data sources.
+    #[prost(message, repeated, tag = "2")]
+    pub facts: ::prost::alloc::vec::Vec<Fact>,
+}
+/// Request message for CorroborateContent.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CorroborateContentRequest {
+    /// Required. The resource name of the Location from which to corroborate text.
+    /// The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Input content to corroborate, only text format is supported for
+    /// now.
+    #[prost(message, optional, tag = "2")]
+    pub content: ::core::option::Option<Content>,
+    /// Optional. Facts used to generate the text can also be used to corroborate
+    /// the text.
+    #[prost(message, repeated, tag = "3")]
+    pub facts: ::prost::alloc::vec::Vec<Fact>,
+    /// Optional. Parameters that can be set to override default settings per
+    /// request.
+    #[prost(message, optional, tag = "4")]
+    pub parameters: ::core::option::Option<corroborate_content_request::Parameters>,
+}
+/// Nested message and enum types in `CorroborateContentRequest`.
+pub mod corroborate_content_request {
+    /// Parameters that can be overrided per request.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Parameters {
+        /// Optional. Only return claims with citation score larger than the
+        /// threshold.
+        #[prost(double, tag = "1")]
+        pub citation_threshold: f64,
+    }
+}
+/// Response message for CorroborateContent.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CorroborateContentResponse {
+    /// Confidence score of corroborating content. Value is \[0,1\] with 1 is the
+    /// most confidence.
+    #[prost(float, optional, tag = "1")]
+    pub corroboration_score: ::core::option::Option<f32>,
+    /// Claims that are extracted from the input content and facts that support the
+    /// claims.
+    #[prost(message, repeated, tag = "2")]
+    pub claims: ::prost::alloc::vec::Vec<Claim>,
+}
+/// The fact used in grounding.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Fact {
+    /// Query that is used to retrieve this fact.
+    #[prost(string, optional, tag = "1")]
+    pub query: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, it refers to the title of this fact.
+    #[prost(string, optional, tag = "2")]
+    pub title: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, this uri links to the source of the fact.
+    #[prost(string, optional, tag = "3")]
+    pub uri: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, the summary/snippet of the fact.
+    #[prost(string, optional, tag = "4")]
+    pub summary: ::core::option::Option<::prost::alloc::string::String>,
+    /// If present, the distance between the query vector and this fact vector.
+    #[deprecated]
+    #[prost(double, optional, tag = "5")]
+    pub vector_distance: ::core::option::Option<f64>,
+    /// If present, according to the underlying Vector DB and the selected metric
+    /// type, the score can be either the distance or the similarity between the
+    /// query and the fact and its range depends on the metric type.
+    ///
+    /// For example, if the metric type is COSINE_DISTANCE, it represents the
+    /// distance between the query and the fact. The larger the distance, the less
+    /// relevant the fact is to the query. The range is \[0, 2\], while 0 means the
+    /// most relevant and 2 means the least relevant.
+    #[prost(double, optional, tag = "6")]
+    pub score: ::core::option::Option<f64>,
+}
+/// Claim that is extracted from the input text and facts that support it.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Claim {
+    /// Index in the input text where the claim starts (inclusive).
+    #[prost(int32, optional, tag = "1")]
+    pub start_index: ::core::option::Option<i32>,
+    /// Index in the input text where the claim ends (exclusive).
+    #[prost(int32, optional, tag = "2")]
+    pub end_index: ::core::option::Option<i32>,
+    /// Indexes of the facts supporting this claim.
+    #[prost(int32, repeated, tag = "3")]
+    pub fact_indexes: ::prost::alloc::vec::Vec<i32>,
+    /// Confidence score of this corroboration.
+    #[prost(float, optional, tag = "4")]
+    pub score: ::core::option::Option<f32>,
+}
+/// Generated client implementations.
+pub mod vertex_rag_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// A service for retrieving relevant contexts.
+    #[derive(Debug, Clone)]
+    pub struct VertexRagServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> VertexRagServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> VertexRagServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            VertexRagServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves relevant contexts for a query.
+        pub async fn retrieve_contexts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RetrieveContextsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RetrieveContextsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagService/RetrieveContexts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagService",
+                        "RetrieveContexts",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Given an input prompt, it returns augmented prompt from vertex rag store
+        ///  to guide LLM towards generating grounded responses.
+        pub async fn augment_prompt(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AugmentPromptRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AugmentPromptResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagService/AugmentPrompt",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagService",
+                        "AugmentPrompt",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Given an input text, it returns a score that evaluates the factuality of
+        /// the text. It also extracts and returns claims from the text and provides
+        /// supporting facts.
+        pub async fn corroborate_content(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CorroborateContentRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CorroborateContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagService/CorroborateContent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagService",
+                        "CorroborateContent",
                     ),
                 );
             self.inner.unary(req, path, codec).await
