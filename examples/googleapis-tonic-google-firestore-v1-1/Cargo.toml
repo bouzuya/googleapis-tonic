@@ -5,7 +5,7 @@ publish = false
 
 [dependencies]
 anyhow = "1"
-firestore-path = "1.0.0"
+firestore-path = "1.0.1"
 google-cloud-auth = { version = "0.17.1", default-features = false, features = ["rustls-tls"] }
 google-cloud-token = "0.1.2"
 googleapis-tonic-google-firestore-v1 = "0.11.0"
