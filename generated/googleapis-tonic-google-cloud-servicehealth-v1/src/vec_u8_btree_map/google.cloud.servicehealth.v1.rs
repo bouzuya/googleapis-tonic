@@ -622,6 +622,9 @@ pub struct Product {
     /// Google Cloud product impacted by the event. Example: `"Google Cloud SQL"`
     #[prost(string, tag = "1")]
     pub product_name: ::prost::alloc::string::String,
+    /// Unique identifier for the product.
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
 }
 /// Represents the Google Cloud products and locations impacted by the event.
 #[derive(Clone, PartialEq, ::prost::Message)]

@@ -2214,6 +2214,14 @@ pub struct DedicatedResources {
     /// number of GPUs per replica in the selected machine type).
     #[prost(int32, tag = "3")]
     pub max_replica_count: i32,
+    /// Optional. Number of required available replicas for the deployment to
+    /// succeed. This field is only needed when partial model deployment/mutation
+    /// is desired. If set, the model deploy/mutate operation will succeed once
+    /// available_replica_count reaches required_replica_count, and the rest of
+    /// the replicas will be retried. If not set, the default
+    /// required_replica_count will be min_replica_count.
+    #[prost(int32, tag = "9")]
+    pub required_replica_count: i32,
     /// Immutable. The metric specifications that overrides a resource
     /// utilization metric (CPU utilization, accelerator's duty cycle, and so on)
     /// target value (default to 60 if not set). At most one entry is allowed per
@@ -7864,6 +7872,9 @@ pub struct DeployedModel {
     /// Configuration for faster model deployment.
     #[prost(message, optional, tag = "23")]
     pub faster_deployment_config: ::core::option::Option<FasterDeploymentConfig>,
+    /// Output only. Runtime status of the deployed model.
+    #[prost(message, optional, tag = "26")]
+    pub status: ::core::option::Option<deployed_model::Status>,
     /// System labels to apply to Model Garden deployments.
     /// System labels are managed by Google for internal use only.
     #[prost(map = "string, string", tag = "28")]
@@ -7884,6 +7895,19 @@ pub struct DeployedModel {
 }
 /// Nested message and enum types in `DeployedModel`.
 pub mod deployed_model {
+    /// Runtime status of the deployed model.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Status {
+        /// Output only. The latest deployed model's status message (if any).
+        #[prost(string, tag = "1")]
+        pub message: ::prost::alloc::string::String,
+        /// Output only. The time at which the status was last updated.
+        #[prost(message, optional, tag = "2")]
+        pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+        /// Output only. The number of available replicas of the deployed model.
+        #[prost(int32, tag = "3")]
+        pub available_replica_count: i32,
+    }
     /// The prediction (for example, the machine) resources that the DeployedModel
     /// uses. The user is billed for the resources (at least their minimal amount)
     /// even if the DeployedModel receives no traffic.

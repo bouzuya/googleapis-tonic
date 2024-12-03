@@ -934,7 +934,8 @@ pub struct RiskAnalysis {
     pub extended_verdict_reasons: ::prost::alloc::vec::Vec<
         ::prost::alloc::string::String,
     >,
-    /// Output only. Challenge information for SCORE_AND_CHALLENGE keys
+    /// Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+    /// keys
     #[prost(enumeration = "risk_analysis::Challenge", tag = "4")]
     pub challenge: i32,
 }
@@ -1005,7 +1006,7 @@ pub mod risk_analysis {
             }
         }
     }
-    /// Challenge information for SCORE_AND_CHALLENGE keys
+    /// Challenge information for SCORE_AND_CHALLENGE and INVISIBLE keys
     #[derive(
         Clone,
         Copy,
@@ -2241,7 +2242,7 @@ pub struct AddIpOverrideRequest {
 /// Response for AddIpOverride.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AddIpOverrideResponse {}
-/// The removeIpOverride request message.
+/// The RemoveIpOverride request message.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveIpOverrideRequest {
     /// Required. The name of the key from which the IP override is removed, in the
