@@ -538,6 +538,7 @@ pub mod maps {
     feature = "google-shopping-merchant-promotions-v1beta",
     feature = "google-shopping-merchant-quota-v1beta",
     feature = "google-shopping-merchant-reports-v1beta",
+    feature = "google-shopping-merchant-reviews-v1beta",
     feature = "google-shopping-type",
     feature = "google-spanner-admin-database-v1",
     feature = "google-spanner-admin-instance-v1",
@@ -5748,6 +5749,7 @@ pub mod google {
         feature = "google-shopping-merchant-promotions-v1beta",
         feature = "google-shopping-merchant-quota-v1beta",
         feature = "google-shopping-merchant-reports-v1beta",
+        feature = "google-shopping-merchant-reviews-v1beta",
         feature = "google-shopping-type",
     ))]
     pub mod shopping {
@@ -5762,6 +5764,7 @@ pub mod google {
             feature = "google-shopping-merchant-promotions-v1beta",
             feature = "google-shopping-merchant-quota-v1beta",
             feature = "google-shopping-merchant-reports-v1beta",
+            feature = "google-shopping-merchant-reviews-v1beta",
         ))]
         pub mod merchant {
             #[cfg(any(
@@ -5790,6 +5793,20 @@ pub mod google {
                         feature = "google-shopping-merchant-conversions-v1beta",
                     ))]
                     include!("vec_u8_btree_map/google.shopping.merchant.conversions.v1beta.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-shopping-merchant-reviews-v1beta",
+            ))]
+            pub mod reviews {
+                #[cfg(any(
+                    feature = "google-shopping-merchant-reviews-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-shopping-merchant-reviews-v1beta",
+                    ))]
+                    include!("vec_u8_btree_map/google.shopping.merchant.reviews.v1beta.rs");
                 }
             }
             #[cfg(any(

@@ -24,6 +24,8 @@ pub enum AcceleratorType {
     NvidiaL4 = 11,
     /// Nvidia H100 80Gb GPU.
     NvidiaH10080gb = 13,
+    /// Nvidia H100 Mega 80Gb GPU.
+    NvidiaH100Mega80gb = 14,
     /// TPU v2.
     TpuV2 = 6,
     /// TPU v3.
@@ -50,6 +52,7 @@ impl AcceleratorType {
             Self::NvidiaA10080gb => "NVIDIA_A100_80GB",
             Self::NvidiaL4 => "NVIDIA_L4",
             Self::NvidiaH10080gb => "NVIDIA_H100_80GB",
+            Self::NvidiaH100Mega80gb => "NVIDIA_H100_MEGA_80GB",
             Self::TpuV2 => "TPU_V2",
             Self::TpuV3 => "TPU_V3",
             Self::TpuV4Pod => "TPU_V4_POD",
@@ -69,6 +72,7 @@ impl AcceleratorType {
             "NVIDIA_A100_80GB" => Some(Self::NvidiaA10080gb),
             "NVIDIA_L4" => Some(Self::NvidiaL4),
             "NVIDIA_H100_80GB" => Some(Self::NvidiaH10080gb),
+            "NVIDIA_H100_MEGA_80GB" => Some(Self::NvidiaH100Mega80gb),
             "TPU_V2" => Some(Self::TpuV2),
             "TPU_V3" => Some(Self::TpuV3),
             "TPU_V4_POD" => Some(Self::TpuV4Pod),
@@ -29987,6 +29991,9 @@ pub struct ListPublisherModelsRequest {
     /// default English (en).
     #[prost(string, tag = "7")]
     pub language_code: ::prost::alloc::string::String,
+    /// Optional. List all publisher model versions if the flag is set to true.
+    #[prost(bool, tag = "8")]
+    pub list_all_versions: bool,
 }
 /// Response message for
 /// [ModelGardenService.ListPublisherModels][google.cloud.aiplatform.v1beta1.ModelGardenService.ListPublisherModels].
@@ -33031,9 +33038,14 @@ pub struct NotebookExecutionJob {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// The name of the kernel to use during notebook execution. If unset, the
+    /// default kernel is used.
+    #[prost(string, tag = "20")]
+    pub kernel_name: ::prost::alloc::string::String,
     /// Customer-managed encryption key spec for the notebook execution job.
     /// This field is auto-populated if the
-    /// [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+    /// [NotebookRuntimeTemplate][google.cloud.aiplatform.v1beta1.NotebookRuntimeTemplate]
+    /// has an encryption spec.
     #[prost(message, optional, tag = "22")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     /// The input notebook.
@@ -33051,6 +33063,12 @@ pub struct NotebookExecutionJob {
     #[prost(oneof = "notebook_execution_job::ExecutionIdentity", tags = "9, 18")]
     pub execution_identity: ::core::option::Option<
         notebook_execution_job::ExecutionIdentity,
+    >,
+    /// Runtime environment for the notebook execution job. If unspecified, the
+    /// default runtime of Colab is used.
+    #[prost(oneof = "notebook_execution_job::RuntimeEnvironment", tags = "23")]
+    pub runtime_environment: ::core::option::Option<
+        notebook_execution_job::RuntimeEnvironment,
     >,
 }
 /// Nested message and enum types in `NotebookExecutionJob`.
@@ -33100,6 +33118,9 @@ pub mod notebook_execution_job {
         #[prost(message, optional, tag = "3")]
         pub network_spec: ::core::option::Option<super::NetworkSpec>,
     }
+    /// Configuration for a Workbench Instances-based environment.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct WorkbenchRuntime {}
     /// The input notebook.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum NotebookSource {
@@ -33141,6 +33162,14 @@ pub mod notebook_execution_job {
         /// The service account to run the execution as.
         #[prost(string, tag = "18")]
         ServiceAccount(::prost::alloc::string::String),
+    }
+    /// Runtime environment for the notebook execution job. If unspecified, the
+    /// default runtime of Colab is used.
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum RuntimeEnvironment {
+        /// The Workbench runtime configuration to use for the notebook execution.
+        #[prost(message, tag = "23")]
+        WorkbenchRuntime(WorkbenchRuntime),
     }
 }
 /// The idle shutdown configuration of NotebookRuntimeTemplate, which contains

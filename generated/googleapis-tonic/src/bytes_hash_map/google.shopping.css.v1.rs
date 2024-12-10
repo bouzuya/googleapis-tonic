@@ -547,7 +547,7 @@ pub mod account_labels_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists the labels assigned to an account.
+        /// Lists the labels owned by an account.
         pub async fn list_account_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccountLabelsRequest>,
