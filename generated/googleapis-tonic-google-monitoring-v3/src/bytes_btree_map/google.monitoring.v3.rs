@@ -832,7 +832,7 @@ pub mod alert_policy {
         #[prost(string, tag = "6")]
         pub display_name: ::prost::alloc::string::String,
         /// Only one of the following condition types will be specified.
-        #[prost(oneof = "condition::Condition", tags = "1, 2, 20, 19, 21")]
+        #[prost(oneof = "condition::Condition", tags = "1, 2, 20, 19, 21, 22")]
         pub condition: ::core::option::Option<condition::Condition>,
     }
     /// Nested message and enum types in `Condition`.
@@ -1182,6 +1182,131 @@ pub mod alert_policy {
             /// This field may not exceed 2048 Unicode characters in length.
             #[prost(string, tag = "6")]
             pub alert_rule: ::prost::alloc::string::String,
+            /// Optional. Whether to disable metric existence validation for this
+            /// condition.
+            ///
+            /// This allows alerting policies to be defined on metrics that do not yet
+            /// exist, improving advanced customer workflows such as configuring
+            /// alerting policies using Terraform.
+            ///
+            /// Users with the `monitoring.alertPolicyViewer` role are able to see the
+            /// name of the non-existent metric in the alerting policy condition.
+            #[prost(bool, tag = "7")]
+            pub disable_metric_validation: bool,
+        }
+        /// A condition that allows alerting policies to be defined using GoogleSQL.
+        /// SQL conditions examine a sliding window of logs using GoogleSQL.
+        /// Alert policies with SQL conditions may incur additional billing.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct SqlCondition {
+            /// Required. The Log Analytics SQL query to run, as a string.  The query
+            /// must conform to the required shape. Specifically, the query must not
+            /// try to filter the input by time.  A filter will automatically be
+            /// applied to filter the input so that the query receives all rows
+            /// received since the last time the query was run.
+            ///
+            /// For example, the following query extracts all log entries containing an
+            /// HTTP request:
+            ///
+            ///      SELECT
+            ///        timestamp, log_name, severity, http_request, resource, labels
+            ///      FROM
+            ///        my-project.global._Default._AllLogs
+            ///      WHERE
+            ///        http_request IS NOT NULL
+            #[prost(string, tag = "1")]
+            pub query: ::prost::alloc::string::String,
+            /// The schedule indicates how often the query should be run.
+            #[prost(oneof = "sql_condition::Schedule", tags = "2, 3, 4")]
+            pub schedule: ::core::option::Option<sql_condition::Schedule>,
+            /// The test to be run against the SQL result set.
+            #[prost(oneof = "sql_condition::Evaluate", tags = "5, 6")]
+            pub evaluate: ::core::option::Option<sql_condition::Evaluate>,
+        }
+        /// Nested message and enum types in `SqlCondition`.
+        pub mod sql_condition {
+            /// Used to schedule the query to run every so many minutes.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Minutes {
+                /// Required. Number of minutes between runs. The interval must be
+                /// greater than or equal to 5 minutes and less than or equal to 1440
+                /// minutes.
+                #[prost(int32, tag = "1")]
+                pub periodicity: i32,
+            }
+            /// Used to schedule the query to run every so many hours.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Hourly {
+                /// Required. The number of hours between runs. Must be greater than or
+                /// equal to 1 hour and less than or equal to 48 hours.
+                #[prost(int32, tag = "1")]
+                pub periodicity: i32,
+                /// Optional. The number of minutes after the hour (in UTC) to run the
+                /// query. Must be greater than or equal to 0 minutes and less than or
+                /// equal to 59 minutes.  If left unspecified, then an arbitrary offset
+                /// is used.
+                #[prost(int32, optional, tag = "2")]
+                pub minute_offset: ::core::option::Option<i32>,
+            }
+            /// Used to schedule the query to run every so many days.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Daily {
+                /// Required. The number of days between runs. Must be greater than or
+                /// equal to 1 day and less than or equal to 31 days.
+                #[prost(int32, tag = "1")]
+                pub periodicity: i32,
+                /// Optional. The time of day (in UTC) at which the query should run. If
+                /// left unspecified, the server picks an arbitrary time of day and runs
+                /// the query at the same time each day.
+                #[prost(message, optional, tag = "2")]
+                pub execution_time: ::core::option::Option<
+                    super::super::super::super::super::r#type::TimeOfDay,
+                >,
+            }
+            /// A test that checks if the number of rows in the result set
+            /// violates some threshold.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct RowCountTest {
+                /// Required. The comparison to apply between the number of rows returned
+                /// by the query and the threshold.
+                #[prost(enumeration = "super::super::super::ComparisonType", tag = "1")]
+                pub comparison: i32,
+                /// Required. The value against which to compare the row count.
+                #[prost(int64, tag = "2")]
+                pub threshold: i64,
+            }
+            /// A test that uses an alerting result in a boolean column produced by
+            /// the SQL query.
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct BooleanTest {
+                /// Required. The name of the column containing the boolean value. If the
+                /// value in a row is NULL, that row is ignored.
+                #[prost(string, tag = "1")]
+                pub column: ::prost::alloc::string::String,
+            }
+            /// The schedule indicates how often the query should be run.
+            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            pub enum Schedule {
+                /// Schedule the query to execute every so many minutes.
+                #[prost(message, tag = "2")]
+                Minutes(Minutes),
+                /// Schedule the query to execute every so many hours.
+                #[prost(message, tag = "3")]
+                Hourly(Hourly),
+                /// Schedule the query to execute every so many days.
+                #[prost(message, tag = "4")]
+                Daily(Daily),
+            }
+            /// The test to be run against the SQL result set.
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum Evaluate {
+                /// Test the row count against a threshold.
+                #[prost(message, tag = "5")]
+                RowCountTest(RowCountTest),
+                /// Test the boolean value in the indicated column.
+                #[prost(message, tag = "6")]
+                BooleanTest(BooleanTest),
+            }
         }
         /// A condition control that determines how metric-threshold conditions
         /// are evaluated when data stops arriving.
@@ -1256,6 +1381,9 @@ pub mod alert_policy {
             /// A condition that uses the Prometheus query language to define alerts.
             #[prost(message, tag = "21")]
             ConditionPrometheusQueryLanguage(PrometheusQueryLanguageCondition),
+            /// A condition that periodically evaluates a SQL query result.
+            #[prost(message, tag = "22")]
+            ConditionSql(SqlCondition),
         }
     }
     /// Control over how the notification channels in `notification_channels`
@@ -2416,9 +2544,16 @@ pub struct TimeSeries {
     pub points: ::prost::alloc::vec::Vec<Point>,
     /// The units in which the metric value is reported. It is only applicable
     /// if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
-    /// defines the representation of the stored metric values.
+    /// defines the representation of the stored metric values. This field can only
+    /// be changed through CreateTimeSeries when it is empty.
     #[prost(string, tag = "8")]
     pub unit: ::prost::alloc::string::String,
+    /// Input only. A detailed description of the time series that will be
+    /// associated with the
+    /// [google.api.MetricDescriptor][google.api.MetricDescriptor] for the metric.
+    /// Once set, this field cannot be changed through CreateTimeSeries.
+    #[prost(string, tag = "9")]
+    pub description: ::prost::alloc::string::String,
 }
 /// A descriptor for the labels and points in a time series.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2653,7 +2788,7 @@ pub struct ListMetricDescriptorsRequest {
     ///      projects/\[PROJECT_ID_OR_NUMBER\]
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
-    /// If this field is empty, all custom and
+    /// Optional. If this field is empty, all custom and
     /// system-defined metric descriptors are returned.
     /// Otherwise, the [filter](<https://cloud.google.com/monitoring/api/v3/filters>)
     /// specifies which metric descriptors are to be
@@ -2663,14 +2798,15 @@ pub struct ListMetricDescriptorsRequest {
     ///      metric.type = starts_with("custom.googleapis.com/")
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
-    /// A positive number that is the maximum number of results to return. The
-    /// default and maximum value is 10,000. If a page_size <= 0 or > 10,000 is
-    /// submitted, will instead return a maximum of 10,000 results.
+    /// Optional. A positive number that is the maximum number of results to
+    /// return. The default and maximum value is 10,000. If a page_size <= 0 or >
+    /// 10,000 is submitted, will instead return a maximum of 10,000 results.
     #[prost(int32, tag = "3")]
     pub page_size: i32,
-    /// If this field is not empty then it must contain the `nextPageToken` value
-    /// returned by a previous call to this method.  Using this field causes the
-    /// method to return additional results from the previous method call.
+    /// Optional. If this field is not empty then it must contain the
+    /// `nextPageToken` value returned by a previous call to this method.  Using
+    /// this field causes the method to return additional results from the previous
+    /// method call.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
 }
@@ -2914,7 +3050,9 @@ pub mod create_time_series_summary {
         pub point_count: i32,
     }
 }
-/// The `QueryTimeSeries` request.
+/// The `QueryTimeSeries` request. For information about the status of
+/// Monitoring Query Language (MQL), see the [MQL deprecation
+/// notice](<https://cloud.google.com/stackdriver/docs/deprecations/mql>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTimeSeriesRequest {
     /// Required. The
@@ -2938,7 +3076,9 @@ pub struct QueryTimeSeriesRequest {
     #[prost(string, tag = "10")]
     pub page_token: ::prost::alloc::string::String,
 }
-/// The `QueryTimeSeries` response.
+/// The `QueryTimeSeries` response. For information about the status of
+/// Monitoring Query Language (MQL), see the [MQL deprecation
+/// notice](<https://cloud.google.com/stackdriver/docs/deprecations/mql>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTimeSeriesResponse {
     /// The descriptor for the time series data.
@@ -4272,7 +4412,11 @@ pub mod query_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Queries time series using Monitoring Query Language.
+        /// Queries time series by using Monitoring Query Language (MQL). We recommend
+        /// using PromQL instead of MQL. For more information about the status of MQL,
+        /// see the [MQL deprecation
+        /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
+        #[deprecated]
         pub async fn query_time_series(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTimeSeriesRequest>,
@@ -4605,7 +4749,7 @@ pub struct ServiceLevelObjective {
     #[prost(message, optional, tag = "3")]
     pub service_level_indicator: ::core::option::Option<ServiceLevelIndicator>,
     /// The fraction of service that must be good in order for this objective to be
-    /// met. `0 < goal <= 0.999`.
+    /// met. `0 < goal <= 0.9999`.
     #[prost(double, tag = "4")]
     pub goal: f64,
     /// Labels which have been used to annotate the service-level objective. Label
@@ -6314,10 +6458,11 @@ pub mod uptime_check_config {
                 StatusClass(i32),
             }
         }
-        /// Contains information needed for generating an
+        /// Contains information needed for generating either an
         /// [OpenID Connect
-        /// token](<https://developers.google.com/identity/protocols/OpenIDConnect>).
-        /// The OIDC token will be generated for the Monitoring service agent service
+        /// token](<https://developers.google.com/identity/protocols/OpenIDConnect>) or
+        /// [OAuth token](<https://developers.google.com/identity/protocols/oauth2>).
+        /// The token will be generated for the Monitoring service agent service
         /// account.
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct ServiceAgentAuthentication {
@@ -7236,7 +7381,7 @@ pub mod uptime_check_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the list of IP addresses that checkers run from
+        /// Returns the list of IP addresses that checkers run from.
         pub async fn list_uptime_check_ips(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUptimeCheckIpsRequest>,
