@@ -23,3 +23,7 @@ jobs:
       # - run: cargo fmt -- --check
       - run: cargo clippy -- --deny warnings
       - run: cargo check
+      - run: cargo check
+        working-directory: ./examples/googleapis-tonic-google-firestore-v1-1
+      - run: cargo check
+        working-directory: ./examples/googleapis-tonic-google-storage-v1-1
