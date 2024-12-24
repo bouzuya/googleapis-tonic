@@ -29831,6 +29831,10 @@ pub mod publisher_model {
         /// Optional. Deploy the PublisherModel to Vertex Endpoint.
         #[prost(message, optional, tag = "7")]
         pub deploy: ::core::option::Option<call_to_action::Deploy>,
+        /// Optional. Multiple setups to deploy the PublisherModel to Vertex
+        /// Endpoint.
+        #[prost(message, optional, tag = "16")]
+        pub multi_deploy_vertex: ::core::option::Option<call_to_action::DeployVertex>,
         /// Optional. Deploy PublisherModel to Google Kubernetes Engine.
         #[prost(message, optional, tag = "14")]
         pub deploy_gke: ::core::option::Option<call_to_action::DeployGke>,
@@ -29905,6 +29909,13 @@ pub mod publisher_model {
                 RegionalResourceReferences,
             >,
         }
+        /// Multiple setups to deploy the PublisherModel.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct DeployVertex {
+            /// Optional. One click deployment configurations.
+            #[prost(message, repeated, tag = "1")]
+            pub multi_deploy_vertex: ::prost::alloc::vec::Vec<Deploy>,
+        }
         /// Model metadata that is needed for UploadModel or
         /// DeployModel/CreateEndpoint requests.
         #[derive(Clone, PartialEq, ::prost::Message)]
@@ -29953,8 +29964,8 @@ pub mod publisher_model {
             /// config.
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct DeployMetadata {
-                /// Optional. Labels for the deployment. For managing deployment config
-                /// like verifying, source of deployment config, etc.
+                /// Optional. Labels for the deployment config. For managing deployment
+                /// config like verifying, source of deployment config, etc.
                 #[prost(btree_map = "string, string", tag = "1")]
                 pub labels: ::prost::alloc::collections::BTreeMap<
                     ::prost::alloc::string::String,
@@ -30235,6 +30246,82 @@ pub struct ListPublisherModelsResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
+/// Request message for
+/// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeployPublisherModelRequest {
+    /// Required. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`
+    /// or Hugging Face model ID like `google/gemma-2-2b-it`.
+    #[prost(string, tag = "1")]
+    pub model: ::prost::alloc::string::String,
+    /// Required. The resource name of the Location to deploy the model in.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "2")]
+    pub destination: ::prost::alloc::string::String,
+    /// Optional. The user-specified display name of the endpoint. If not set, a
+    /// default name will be used.
+    #[prost(string, tag = "3")]
+    pub endpoint_display_name: ::prost::alloc::string::String,
+    /// Optional. The dedicated resources to use for the endpoint. If not set, the
+    /// default resources will be used.
+    #[prost(message, optional, tag = "4")]
+    pub dedicated_resources: ::core::option::Option<DedicatedResources>,
+    /// Optional. The user-specified display name of the uploaded model. If not
+    /// set, a default name will be used.
+    #[prost(string, tag = "5")]
+    pub model_display_name: ::prost::alloc::string::String,
+    /// Optional. The Hugging Face read access token used to access the model
+    /// artifacts of gated models.
+    #[prost(string, tag = "6")]
+    pub hugging_face_access_token: ::prost::alloc::string::String,
+    /// Optional. Whether the user accepts the End User License Agreement (EULA)
+    /// for the model.
+    #[prost(bool, tag = "7")]
+    pub accept_eula: bool,
+}
+/// Response message for
+/// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeployPublisherModelResponse {
+    /// Output only. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`
+    #[prost(string, tag = "1")]
+    pub publisher_model: ::prost::alloc::string::String,
+    /// Output only. The name of the Endpoint created.
+    /// Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
+    #[prost(string, tag = "2")]
+    pub endpoint: ::prost::alloc::string::String,
+    /// Output only. The name of the Model created.
+    /// Format: `projects/{project}/locations/{location}/models/{model}`
+    #[prost(string, tag = "3")]
+    pub model: ::prost::alloc::string::String,
+}
+/// Runtime operation information for
+/// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeployPublisherModelOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+    /// Output only. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`
+    #[prost(string, tag = "2")]
+    pub publisher_model: ::prost::alloc::string::String,
+    /// Output only. The resource name of the Location to deploy the model in.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "3")]
+    pub destination: ::prost::alloc::string::String,
+    /// Output only. The project number where the deploy model request is sent.
+    #[prost(int64, tag = "4")]
+    pub project_number: i64,
+}
 /// View enumeration of PublisherModel.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -30409,6 +30496,36 @@ pub mod model_garden_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.ModelGardenService",
                         "ListPublisherModels",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deploys publisher models.
+        pub async fn deploy_publisher_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeployPublisherModelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ModelGardenService/DeployPublisherModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ModelGardenService",
+                        "DeployPublisherModel",
                     ),
                 );
             self.inner.unary(req, path, codec).await

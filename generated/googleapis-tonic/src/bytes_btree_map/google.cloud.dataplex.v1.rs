@@ -4613,7 +4613,7 @@ pub struct UpdateEntryRequest {
     /// specified path. For example, to attach an aspect to a field that is
     /// specified by the `schema` aspect, the path should have the format
     /// `Schema.<field_name>`.
-    /// * `<aspect_type_reference>*` - matches aspects of the given type for all
+    /// * `<aspect_type_reference>@*` - matches aspects of the given type for all
     /// paths.
     /// * `*@path` - matches aspects of all types on the given path.
     ///
@@ -4736,6 +4736,8 @@ pub struct SearchEntriesRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The query against which entries in scope should be matched.
+    /// The query syntax is defined in [Search syntax for Dataplex
+    /// Catalog](<https://cloud.google.com/dataplex/docs/search-syntax>).
     #[prost(string, tag = "2")]
     pub query: ::prost::alloc::string::String,
     /// Optional. Number of results in the search page. If <=0, then defaults
@@ -4748,6 +4750,10 @@ pub struct SearchEntriesRequest {
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
     /// Optional. Specifies the ordering of results.
+    /// Supported values are:
+    /// * `relevance` (default)
+    /// * `last_modified_timestamp`
+    /// * `last_modified_timestamp asc`
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
     /// Optional. The scope under which the search should be operating. It must
@@ -4840,9 +4846,9 @@ pub struct ImportItem {
     /// aspect type and are attached directly to the entry.
     /// * `{aspect_type_reference}@{path}`: matches aspects that belong to the
     /// specified aspect type and path.
-    /// * `{aspect_type_reference}@*`: matches aspects that belong to the specified
-    /// aspect type for all paths.
-    ///
+    /// * `<aspect_type_reference>@*` : matches aspects of the given type for all
+    /// paths.
+    /// * `*@path` : matches aspects of all types on the given path.
     /// Replace `{aspect_type_reference}` with a reference to the aspect type, in
     /// the format
     /// `{project_id_or_number}.{location_id}.{aspect_type_id}`.
@@ -9005,7 +9011,7 @@ pub struct UpdateDataScanRequest {
     /// Only fields specified in `update_mask` are updated.
     #[prost(message, optional, tag = "1")]
     pub data_scan: ::core::option::Option<DataScan>,
-    /// Required. Mask of fields to update.
+    /// Optional. Mask of fields to update.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Optional. Only validate the request, but do not perform mutations.
@@ -9022,6 +9028,11 @@ pub struct DeleteDataScanRequest {
     /// `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If set to true, any child resources of this data scan will also
+    /// be deleted. (Otherwise, the request will only work if the data scan has no
+    /// child resources.)
+    #[prost(bool, tag = "2")]
+    pub force: bool,
 }
 /// Get dataScan request.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -9286,8 +9297,8 @@ pub struct GenerateDataQualityRulesResponse {
 ///    cardinality, min/max/mean, etc).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataScan {
-    /// Output only. The relative resource name of the scan, of the form:
-    /// `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+    /// Output only. Identifier. The relative resource name of the scan, of the
+    /// form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
     /// where `project` refers to a *project_id* or *project_number* and
     /// `location_id` refers to a GCP region.
     #[prost(string, tag = "1")]
@@ -9384,10 +9395,10 @@ pub mod data_scan {
     /// Status of the data scan execution.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ExecutionStatus {
-        /// The time when the latest DataScanJob started.
+        /// Optional. The time when the latest DataScanJob started.
         #[prost(message, optional, tag = "4")]
         pub latest_job_start_time: ::core::option::Option<::prost_types::Timestamp>,
-        /// The time when the latest DataScanJob ended.
+        /// Optional. The time when the latest DataScanJob ended.
         #[prost(message, optional, tag = "5")]
         pub latest_job_end_time: ::core::option::Option<::prost_types::Timestamp>,
         /// Optional. The time when the DataScanJob execution was created.
@@ -9427,7 +9438,8 @@ pub mod data_scan {
 /// A DataScanJob represents an instance of DataScan execution.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataScanJob {
-    /// Output only. The relative resource name of the DataScanJob, of the form:
+    /// Output only. Identifier. The relative resource name of the DataScanJob, of
+    /// the form:
     /// `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
     /// where `project` refers to a *project_id* or *project_number* and
     /// `location_id` refers to a GCP region.

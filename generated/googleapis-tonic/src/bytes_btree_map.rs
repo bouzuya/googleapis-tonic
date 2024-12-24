@@ -335,6 +335,7 @@ pub mod maps {
     feature = "google-cloud-oslogin-v1beta",
     feature = "google-cloud-parallelstore-v1",
     feature = "google-cloud-parallelstore-v1beta",
+    feature = "google-cloud-parametermanager-v1",
     feature = "google-cloud-paymentgateway-issuerswitch-accountmanager-v1",
     feature = "google-cloud-paymentgateway-issuerswitch-v1",
     feature = "google-cloud-phishingprotection-v1beta1",
@@ -494,6 +495,8 @@ pub mod maps {
     feature = "google-iam-v1beta",
     feature = "google-iam-v2",
     feature = "google-iam-v2beta",
+    feature = "google-iam-v3",
+    feature = "google-iam-v3beta",
     feature = "google-identity-accesscontextmanager-type",
     feature = "google-identity-accesscontextmanager-v1",
     feature = "google-logging-type",
@@ -779,6 +782,7 @@ pub mod google {
         feature = "google-cloud-oslogin-v1beta",
         feature = "google-cloud-parallelstore-v1",
         feature = "google-cloud-parallelstore-v1beta",
+        feature = "google-cloud-parametermanager-v1",
         feature = "google-cloud-paymentgateway-issuerswitch-accountmanager-v1",
         feature = "google-cloud-paymentgateway-issuerswitch-v1",
         feature = "google-cloud-phishingprotection-v1beta1",
@@ -4883,6 +4887,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-parametermanager-v1",
+        ))]
+        pub mod parametermanager {
+            #[cfg(any(
+                feature = "google-cloud-parametermanager-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-parametermanager-v1",
+                ))]
+                include!("bytes_btree_map/google.cloud.parametermanager.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-secrets-v1beta1",
         ))]
         pub mod secrets {
@@ -6315,6 +6333,8 @@ pub mod google {
         feature = "google-iam-v1beta",
         feature = "google-iam-v2",
         feature = "google-iam-v2beta",
+        feature = "google-iam-v3",
+        feature = "google-iam-v3beta",
     ))]
     pub mod iam {
         #[cfg(any(
@@ -6365,6 +6385,15 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-iam-v3",
+        ))]
+        pub mod v3 {
+            #[cfg(any(
+                feature = "google-iam-v3",
+            ))]
+            include!("bytes_btree_map/google.iam.v3.rs");
+        }
+        #[cfg(any(
             feature = "google-iam-v2",
         ))]
         pub mod v2 {
@@ -6390,6 +6419,15 @@ pub mod google {
                 feature = "google-iam-v1beta",
             ))]
             include!("bytes_btree_map/google.iam.v1beta.rs");
+        }
+        #[cfg(any(
+            feature = "google-iam-v3beta",
+        ))]
+        pub mod v3beta {
+            #[cfg(any(
+                feature = "google-iam-v3beta",
+            ))]
+            include!("bytes_btree_map/google.iam.v3beta.rs");
         }
     }
     #[cfg(any(
