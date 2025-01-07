@@ -2613,7 +2613,7 @@ pub struct CloudVmClusterProperties {
     /// Required. Number of enabled CPU cores.
     #[prost(int32, tag = "26")]
     pub cpu_core_count: i32,
-    /// Output only. Operating system version of the image.
+    /// Optional. Operating system version of the image.
     #[prost(string, tag = "27")]
     pub system_version: ::prost::alloc::string::String,
     /// Output only. OCIDs of scan IPs.
