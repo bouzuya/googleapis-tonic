@@ -7,6 +7,9 @@ pub mod google {
             pub use googleapis_tonic_google_iam_v1::google::iam::v1::*;
         }
     }
+    pub mod rpc {
+        pub use googleapis_tonic_google_rpc::google::rpc::*;
+    }
     pub mod storage {
         pub mod v2 {
             include!("bytes_btree_map/google.storage.v2.rs");

@@ -63,6 +63,7 @@ pub mod maps {
     feature = "google-ads-searchads360-v0-resources",
     feature = "google-ads-searchads360-v0-services",
     feature = "google-ai-generativelanguage-v1",
+    feature = "google-ai-generativelanguage-v1alpha",
     feature = "google-ai-generativelanguage-v1beta",
     feature = "google-ai-generativelanguage-v1beta2",
     feature = "google-ai-generativelanguage-v1beta3",
@@ -74,6 +75,7 @@ pub mod maps {
     feature = "google-api",
     feature = "google-api-apikeys-v2",
     feature = "google-api-cloudquotas-v1",
+    feature = "google-api-cloudquotas-v1beta",
     feature = "google-api-expr-conformance-v1alpha1",
     feature = "google-api-expr-v1alpha1",
     feature = "google-api-expr-v1beta1",
@@ -303,6 +305,7 @@ pub mod maps {
     feature = "google-cloud-metastore-v1alpha",
     feature = "google-cloud-metastore-v1beta",
     feature = "google-cloud-migrationcenter-v1",
+    feature = "google-cloud-modelarmor-v1",
     feature = "google-cloud-netapp-v1",
     feature = "google-cloud-networkanalyzer-logging-v1",
     feature = "google-cloud-networkconnectivity-v1",
@@ -750,6 +753,7 @@ pub mod google {
         feature = "google-cloud-metastore-v1alpha",
         feature = "google-cloud-metastore-v1beta",
         feature = "google-cloud-migrationcenter-v1",
+        feature = "google-cloud-modelarmor-v1",
         feature = "google-cloud-netapp-v1",
         feature = "google-cloud-networkanalyzer-logging-v1",
         feature = "google-cloud-networkconnectivity-v1",
@@ -4312,6 +4316,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-modelarmor-v1",
+        ))]
+        pub mod modelarmor {
+            #[cfg(any(
+                feature = "google-cloud-modelarmor-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-modelarmor-v1",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.modelarmor.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-cloudcontrolspartner-v1",
             feature = "google-cloud-cloudcontrolspartner-v1beta",
         ))]
@@ -5540,6 +5558,7 @@ pub mod google {
         feature = "google-api",
         feature = "google-api-apikeys-v2",
         feature = "google-api-cloudquotas-v1",
+        feature = "google-api-cloudquotas-v1beta",
         feature = "google-api-expr-conformance-v1alpha1",
         feature = "google-api-expr-v1alpha1",
         feature = "google-api-expr-v1beta1",
@@ -5633,6 +5652,7 @@ pub mod google {
         }
         #[cfg(any(
             feature = "google-api-cloudquotas-v1",
+            feature = "google-api-cloudquotas-v1beta",
         ))]
         pub mod cloudquotas {
             #[cfg(any(
@@ -5643,6 +5663,15 @@ pub mod google {
                     feature = "google-api-cloudquotas-v1",
                 ))]
                 include!("vec_u8_hash_map/google.api.cloudquotas.v1.rs");
+            }
+            #[cfg(any(
+                feature = "google-api-cloudquotas-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-api-cloudquotas-v1beta",
+                ))]
+                include!("vec_u8_hash_map/google.api.cloudquotas.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -7435,6 +7464,7 @@ pub mod google {
     }
     #[cfg(any(
         feature = "google-ai-generativelanguage-v1",
+        feature = "google-ai-generativelanguage-v1alpha",
         feature = "google-ai-generativelanguage-v1beta",
         feature = "google-ai-generativelanguage-v1beta2",
         feature = "google-ai-generativelanguage-v1beta3",
@@ -7442,6 +7472,7 @@ pub mod google {
     pub mod ai {
         #[cfg(any(
             feature = "google-ai-generativelanguage-v1",
+            feature = "google-ai-generativelanguage-v1alpha",
             feature = "google-ai-generativelanguage-v1beta",
             feature = "google-ai-generativelanguage-v1beta2",
             feature = "google-ai-generativelanguage-v1beta3",
@@ -7482,6 +7513,15 @@ pub mod google {
                     feature = "google-ai-generativelanguage-v1",
                 ))]
                 include!("vec_u8_hash_map/google.ai.generativelanguage.v1.rs");
+            }
+            #[cfg(any(
+                feature = "google-ai-generativelanguage-v1alpha",
+            ))]
+            pub mod v1alpha {
+                #[cfg(any(
+                    feature = "google-ai-generativelanguage-v1alpha",
+                ))]
+                include!("vec_u8_hash_map/google.ai.generativelanguage.v1alpha.rs");
             }
         }
     }

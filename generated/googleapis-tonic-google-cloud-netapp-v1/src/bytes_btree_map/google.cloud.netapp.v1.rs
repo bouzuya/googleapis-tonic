@@ -1135,6 +1135,35 @@ impl EncryptionType {
         }
     }
 }
+/// Type of directory service
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DirectoryServiceType {
+    /// Directory service type is not specified.
+    Unspecified = 0,
+    /// Active directory policy attached to the storage pool.
+    ActiveDirectory = 1,
+}
+impl DirectoryServiceType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "DIRECTORY_SERVICE_TYPE_UNSPECIFIED",
+            Self::ActiveDirectory => "ACTIVE_DIRECTORY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DIRECTORY_SERVICE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "ACTIVE_DIRECTORY" => Some(Self::ActiveDirectory),
+            _ => None,
+        }
+    }
+}
 /// Message for requesting list of Volumes
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumesRequest {
@@ -1705,9 +1734,7 @@ pub mod tiering_policy {
 /// The Hybrid Replication parameters for the volume.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HybridReplicationParameters {
-    /// Required. Desired Identifier (name) of the replication which will be created for this volume.
-    /// Format:
-    /// `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
+    /// Required. Desired name for the replication of this volume.
     #[prost(string, tag = "1")]
     pub replication: ::prost::alloc::string::String,
     /// Required. Name of the user's local source volume to be peered with the
@@ -2889,6 +2916,17 @@ pub mod storage_pool {
         }
     }
 }
+/// ValidateDirectoryServiceRequest validates the directory service policy
+/// attached to the storage pool.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ValidateDirectoryServiceRequest {
+    /// Required. Name of the storage pool
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Type of directory service policy attached to the storage pool.
+    #[prost(enumeration = "DirectoryServiceType", tag = "2")]
+    pub directory_service_type: i32,
+}
 /// Represents the metadata of the long-running operation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
@@ -3128,6 +3166,37 @@ pub mod net_app_client {
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteStoragePool"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// ValidateDirectoryService does a connectivity check for a directory service
+        /// policy attached to the storage pool.
+        pub async fn validate_directory_service(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ValidateDirectoryServiceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.netapp.v1.NetApp/ValidateDirectoryService",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.netapp.v1.NetApp",
+                        "ValidateDirectoryService",
+                    ),
                 );
             self.inner.unary(req, path, codec).await
         }
