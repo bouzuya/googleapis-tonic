@@ -509,19 +509,6 @@ pub struct SanitizeUserPromptRequest {
     /// Required. User prompt data to sanitize.
     #[prost(message, optional, tag = "2")]
     pub user_prompt_data: ::core::option::Option<DataItem>,
-    /// Optional. Optional Filter configuration to Sanitize User Prompt.
-    ///
-    /// If below configuration is specified then Sanitization will be performed
-    /// using settings in this configuration along with settings defined at
-    /// template level (union of both).
-    ///
-    /// If a filter setting overlaps, then the lowest threshold value i.e. value
-    /// with greater false positives will be applied. For example, the
-    /// `filter_configuration` defines LOW_AND_ABOVE confidence level for TOXICITY,
-    /// and template defines HIGH confidence level, then Sanitization is performed
-    /// using LOW_AND_ABOVE confidence level.
-    #[prost(message, optional, tag = "3")]
-    pub filter_config: ::core::option::Option<FilterConfig>,
 }
 /// Sanitize Model Response request.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -533,18 +520,6 @@ pub struct SanitizeModelResponseRequest {
     /// Required. Model response data to sanitize.
     #[prost(message, optional, tag = "2")]
     pub model_response_data: ::core::option::Option<DataItem>,
-    /// Optional. Optional Filter configuration to Sanitize User Prompt.
-    ///
-    /// If below configuration is specified then Sanitization will be performed
-    /// using settings in this configuration along with settings defined at
-    /// template level (union of both).
-    ///
-    /// If a filter overlaps, then the highest level of strictness will be applied.
-    /// For example, the filter_configuration specifies LOW_AND_ABOVE confidence
-    /// level for TOXICITY filter and template uses HIGH confidence level,
-    /// then Sanitization is performed using LOW_AND_ABOVE confidence level.
-    #[prost(message, optional, tag = "3")]
-    pub filter_config: ::core::option::Option<FilterConfig>,
     /// Optional. User Prompt associated with Model response.
     #[prost(string, tag = "4")]
     pub user_prompt: ::prost::alloc::string::String,

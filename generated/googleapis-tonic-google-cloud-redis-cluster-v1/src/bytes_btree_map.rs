@@ -17,4 +17,7 @@ pub mod google {
     pub mod rpc {
         pub use googleapis_tonic_google_rpc::google::rpc::*;
     }
+    pub mod r#type {
+        pub use googleapis_tonic_google_type::google::r#type::*;
+    }
 }
