@@ -1488,6 +1488,69 @@ pub mod ingestion_failure_event {
         ConfluentCloudFailure(ConfluentCloudFailureReason),
     }
 }
+/// User-defined JavaScript function that can transform or filter a Pub/Sub
+/// message.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JavaScriptUdf {
+    /// Required. Name of the JavasScript function that should applied to Pub/Sub
+    /// messages.
+    #[prost(string, tag = "1")]
+    pub function_name: ::prost::alloc::string::String,
+    /// Required. JavaScript code that contains a function `function_name` with the
+    /// below signature:
+    ///
+    /// ```
+    ///    /**
+    ///    * Transforms a Pub/Sub message.
+    ///
+    ///    * @return {(Object<string, (string | Object<string, string>)>|null)} - To
+    ///    * filter a message, return `null`. To transform a message return a map
+    ///    * with the following keys:
+    ///    *   - (required) 'data' : {string}
+    ///    *   - (optional) 'attributes' : {Object<string, string>}
+    ///    * Returning empty `attributes` will remove all attributes from the
+    ///    * message.
+    ///    *
+    ///    * @param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
+    ///    * message. Keys:
+    ///    *   - (required) 'data' : {string}
+    ///    *   - (required) 'attributes' : {Object<string, string>}
+    ///    *
+    ///    * @param  {Object<string, any>} metadata - Pub/Sub message metadata.
+    ///    * Keys:
+    ///    *   - (required) 'message_id'  : {string}
+    ///    *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
+    ///    *   - (optional) 'ordering_key': {string}
+    ///    */
+    ///
+    ///    function <function_name>(message, metadata) {
+    ///    }
+    /// ```
+    #[prost(string, tag = "2")]
+    pub code: ::prost::alloc::string::String,
+}
+/// All supported message transforms types.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MessageTransform {
+    /// Optional. If set to true, the transform is enabled. If false, the transform
+    /// is disabled and will not be applied to messages. Defaults to `true`.
+    #[prost(bool, tag = "3")]
+    pub enabled: bool,
+    /// The type of transform to apply to messages.
+    #[prost(oneof = "message_transform::Transform", tags = "2")]
+    pub transform: ::core::option::Option<message_transform::Transform>,
+}
+/// Nested message and enum types in `MessageTransform`.
+pub mod message_transform {
+    /// The type of transform to apply to messages.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Transform {
+        /// Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
+        /// are specified on a resource, each must have a unique `function_name`.
+        #[prost(message, tag = "2")]
+        JavascriptUdf(super::JavaScriptUdf),
+    }
+}
 /// A topic resource.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Topic {
@@ -1543,6 +1606,10 @@ pub struct Topic {
     pub ingestion_data_source_settings: ::core::option::Option<
         IngestionDataSourceSettings,
     >,
+    /// Optional. Transforms to be applied to messages published to the topic.
+    /// Transforms are applied in the order specified.
+    #[prost(message, repeated, tag = "13")]
+    pub message_transforms: ::prost::alloc::vec::Vec<MessageTransform>,
 }
 /// Nested message and enum types in `Topic`.
 pub mod topic {
@@ -1938,11 +2005,15 @@ pub struct Subscription {
     pub analytics_hub_subscription_info: ::core::option::Option<
         subscription::AnalyticsHubSubscriptionInfo,
     >,
+    /// Optional. Transforms to be applied to messages before they are delivered to
+    /// subscribers. Transforms are applied in the order specified.
+    #[prost(message, repeated, tag = "25")]
+    pub message_transforms: ::prost::alloc::vec::Vec<MessageTransform>,
 }
 /// Nested message and enum types in `Subscription`.
 pub mod subscription {
-    /// Information about an associated Analytics Hub subscription
-    /// (<https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions>).
+    /// Information about an associated [Analytics Hub
+    /// subscription](<https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions>).
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AnalyticsHubSubscriptionInfo {
         /// Optional. The name of the associated Analytics Hub listing resource.

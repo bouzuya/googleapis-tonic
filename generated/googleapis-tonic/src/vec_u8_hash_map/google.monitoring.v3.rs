@@ -5713,8 +5713,26 @@ pub mod snooze {
         ///
         /// There is a limit of 16 policies per snooze. This limit is checked during
         /// snooze creation.
+        /// Exactly 1 alert policy is required if `filter` is specified at the same
+        /// time.
         #[prost(string, repeated, tag = "1")]
         pub policies: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Optional. The filter string to match on Alert fields when silencing the
+        /// alerts. It follows the standard <https://google.aip.dev/160> syntax.
+        /// A filter string used to apply the snooze to specific incidents
+        /// that have matching filter values.
+        /// Filters can be defined for snoozes that apply to one alerting
+        /// policy.
+        /// Filters must be a string formatted as one or more resource labels with
+        /// specific label values. If multiple resource labels are used, then they
+        /// must be connected with an AND operator. For example, the following filter
+        /// applies the snooze to incidents that have an instance ID of
+        /// `1234567890` and a zone of `us-central1-a`:
+        ///
+        ///      resource.labels.instance_id="1234567890" AND
+        ///      resource.labels.zone="us-central1-a"
+        #[prost(string, tag = "2")]
+        pub filter: ::prost::alloc::string::String,
     }
 }
 /// The message definition for creating a `Snooze`. Users must provide the body
@@ -5752,10 +5770,8 @@ pub struct ListSnoozesRequest {
     ///
     /// For example:
     ///
-    ///      ```
     ///      interval.start_time > "2022-03-11T00:00:00-08:00" AND
     ///          interval.end_time < "2022-03-12T00:00:00-08:00"
-    ///      ```
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return for a single query. The

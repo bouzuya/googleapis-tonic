@@ -43368,6 +43368,9 @@ pub struct RagCorpus {
     /// Output only. RagCorpus state.
     #[prost(message, optional, tag = "8")]
     pub corpus_status: ::core::option::Option<CorpusStatus>,
+    /// Output only. The number of RagFiles in the RagCorpus.
+    #[prost(int32, tag = "11")]
+    pub rag_files_count: i32,
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
     #[prost(oneof = "rag_corpus::BackendConfig", tags = "9, 10")]
