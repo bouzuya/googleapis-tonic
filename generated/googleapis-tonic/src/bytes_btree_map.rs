@@ -7,11 +7,6 @@
     feature = "google-actions-type",
     feature = "google-ads-admanager-v1",
     feature = "google-ads-admob-v1",
-    feature = "google-ads-googleads-v16-common",
-    feature = "google-ads-googleads-v16-enums",
-    feature = "google-ads-googleads-v16-errors",
-    feature = "google-ads-googleads-v16-resources",
-    feature = "google-ads-googleads-v16-services",
     feature = "google-ads-googleads-v17-common",
     feature = "google-ads-googleads-v17-enums",
     feature = "google-ads-googleads-v17-errors",
@@ -516,6 +511,7 @@
     feature = "google-spanner-executor-v1",
     feature = "google-spanner-v1",
     feature = "google-storage-control-v2",
+    feature = "google-storage-platformlogs-v1",
     feature = "google-storage-v1",
     feature = "google-storage-v2",
     feature = "google-storagetransfer-logging",
@@ -6252,11 +6248,6 @@ pub mod google {
     #[cfg(any(
         feature = "google-ads-admanager-v1",
         feature = "google-ads-admob-v1",
-        feature = "google-ads-googleads-v16-common",
-        feature = "google-ads-googleads-v16-enums",
-        feature = "google-ads-googleads-v16-errors",
-        feature = "google-ads-googleads-v16-resources",
-        feature = "google-ads-googleads-v16-services",
         feature = "google-ads-googleads-v17-common",
         feature = "google-ads-googleads-v17-enums",
         feature = "google-ads-googleads-v17-errors",
@@ -6338,11 +6329,6 @@ pub mod google {
             }
         }
         #[cfg(any(
-            feature = "google-ads-googleads-v16-common",
-            feature = "google-ads-googleads-v16-enums",
-            feature = "google-ads-googleads-v16-errors",
-            feature = "google-ads-googleads-v16-resources",
-            feature = "google-ads-googleads-v16-services",
             feature = "google-ads-googleads-v17-common",
             feature = "google-ads-googleads-v17-enums",
             feature = "google-ads-googleads-v17-errors",
@@ -6461,60 +6447,6 @@ pub mod google {
                         feature = "google-ads-googleads-v17-services",
                     ))]
                     include!("bytes_btree_map/google.ads.googleads.v17.services.rs");
-                }
-            }
-            #[cfg(any(
-                feature = "google-ads-googleads-v16-common",
-                feature = "google-ads-googleads-v16-enums",
-                feature = "google-ads-googleads-v16-errors",
-                feature = "google-ads-googleads-v16-resources",
-                feature = "google-ads-googleads-v16-services",
-            ))]
-            pub mod v16 {
-                #[cfg(any(
-                    feature = "google-ads-googleads-v16-services",
-                ))]
-                pub mod services {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v16-services",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v16.services.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v16-enums",
-                ))]
-                pub mod enums {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v16-enums",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v16.enums.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v16-common",
-                ))]
-                pub mod common {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v16-common",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v16.common.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v16-resources",
-                ))]
-                pub mod resources {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v16-resources",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v16.resources.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v16-errors",
-                ))]
-                pub mod errors {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v16-errors",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v16.errors.rs");
                 }
             }
         }
@@ -7587,6 +7519,7 @@ pub mod google {
     }
     #[cfg(any(
         feature = "google-storage-control-v2",
+        feature = "google-storage-platformlogs-v1",
         feature = "google-storage-v1",
         feature = "google-storage-v2",
     ))]
@@ -7599,6 +7532,20 @@ pub mod google {
                 feature = "google-storage-v2",
             ))]
             include!("bytes_btree_map/google.storage.v2.rs");
+        }
+        #[cfg(any(
+            feature = "google-storage-platformlogs-v1",
+        ))]
+        pub mod platformlogs {
+            #[cfg(any(
+                feature = "google-storage-platformlogs-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-storage-platformlogs-v1",
+                ))]
+                include!("bytes_btree_map/google.storage.platformlogs.v1.rs");
+            }
         }
         #[cfg(any(
             feature = "google-storage-v1",
