@@ -1723,7 +1723,7 @@ pub struct MatchedUrl {
     pub url: ::prost::alloc::string::String,
 }
 /// A [slash
-/// command](<https://developers.google.com/workspace/chat/slash-commands>) in
+/// command](<https://developers.google.com/workspace/chat/commands>) in
 /// Google Chat.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SlashCommand {
