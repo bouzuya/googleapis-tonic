@@ -481,6 +481,7 @@
     feature = "google-maps-routing-v2",
     feature = "google-maps-solar-v1",
     feature = "google-maps-unity",
+    feature = "google-maps-weather-v1",
     feature = "google-marketingplatform-admin-v1alpha",
     feature = "google-monitoring-dashboard-v1",
     feature = "google-monitoring-metricsscope-v1",
@@ -6579,6 +6580,7 @@ pub mod google {
         feature = "google-maps-routing-v2",
         feature = "google-maps-solar-v1",
         feature = "google-maps-unity",
+        feature = "google-maps-weather-v1",
     ))]
     pub mod maps {
         #[cfg(any(
@@ -6674,6 +6676,20 @@ pub mod google {
                     feature = "google-maps-places-v1",
                 ))]
                 include!("bytes_hash_map/google.maps.places.v1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-maps-weather-v1",
+        ))]
+        pub mod weather {
+            #[cfg(any(
+                feature = "google-maps-weather-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-maps-weather-v1",
+                ))]
+                include!("bytes_hash_map/google.maps.weather.v1.rs");
             }
         }
         #[cfg(any(

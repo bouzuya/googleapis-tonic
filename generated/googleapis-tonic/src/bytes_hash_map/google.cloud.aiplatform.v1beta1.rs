@@ -30980,6 +30980,100 @@ pub struct ListPublisherModelsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for
+/// [ModelGardenService.Deploy][google.cloud.aiplatform.v1beta1.ModelGardenService.Deploy].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeployRequest {
+    /// Required. The resource name of the Location to deploy the model in.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "4")]
+    pub destination: ::prost::alloc::string::String,
+    /// Optional. The model config to use for the deployment.
+    /// If not specified, the default model config will be used.
+    #[prost(message, optional, tag = "5")]
+    pub model_config: ::core::option::Option<deploy_request::ModelConfig>,
+    /// Optional. The endpoint config to use for the deployment.
+    /// If not specified, the default endpoint config will be used.
+    #[prost(message, optional, tag = "6")]
+    pub endpoint_config: ::core::option::Option<deploy_request::EndpointConfig>,
+    /// Optional. The deploy config to use for the deployment.
+    /// If not specified, the default deploy config will be used.
+    #[prost(message, optional, tag = "7")]
+    pub deploy_config: ::core::option::Option<deploy_request::DeployConfig>,
+    /// The artifacts to deploy.
+    #[prost(oneof = "deploy_request::Artifacts", tags = "1, 2")]
+    pub artifacts: ::core::option::Option<deploy_request::Artifacts>,
+}
+/// Nested message and enum types in `DeployRequest`.
+pub mod deploy_request {
+    /// The model config to use for the deployment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ModelConfig {
+        /// Optional. Whether the user accepts the End User License Agreement (EULA)
+        /// for the model.
+        #[prost(bool, tag = "1")]
+        pub accept_eula: bool,
+        /// Optional. The Hugging Face read access token used to access the model
+        /// artifacts of gated models.
+        #[prost(string, tag = "2")]
+        pub hugging_face_access_token: ::prost::alloc::string::String,
+        /// Optional. If true, the model will deploy with a cached version instead of
+        /// directly downloading the model artifacts from Hugging Face. This is
+        /// suitable for VPC-SC users with limited internet access.
+        #[prost(bool, tag = "3")]
+        pub hugging_face_cache_enabled: bool,
+        /// Optional. The user-specified display name of the uploaded model. If not
+        /// set, a default name will be used.
+        #[prost(string, tag = "4")]
+        pub model_display_name: ::prost::alloc::string::String,
+        /// Optional. The specification of the container that is to be used when
+        /// deploying. If not set, the default container spec will be used.
+        #[prost(message, optional, tag = "5")]
+        pub container_spec: ::core::option::Option<super::ModelContainerSpec>,
+    }
+    /// The endpoint config to use for the deployment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EndpointConfig {
+        /// Optional. The user-specified display name of the endpoint. If not set, a
+        /// default name will be used.
+        #[prost(string, tag = "1")]
+        pub endpoint_display_name: ::prost::alloc::string::String,
+        /// Optional. If true, the endpoint will be exposed through a dedicated
+        /// DNS \[Endpoint.dedicated_endpoint_dns\]. Your request to the dedicated DNS
+        /// will be isolated from other users' traffic and will have better
+        /// performance and reliability. Note: Once you enabled dedicated endpoint,
+        /// you won't be able to send request to the shared DNS
+        /// {region}-aiplatform.googleapis.com. The limitations will be removed soon.
+        #[prost(bool, tag = "2")]
+        pub dedicated_endpoint_enabled: bool,
+    }
+    /// The deploy config to use for the deployment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DeployConfig {
+        /// Optional. The dedicated resources to use for the endpoint. If not set,
+        /// the default resources will be used.
+        #[prost(message, optional, tag = "1")]
+        pub dedicated_resources: ::core::option::Option<super::DedicatedResources>,
+        /// Optional. If true, enable the QMT fast tryout feature for this model if
+        /// possible.
+        #[prost(bool, tag = "2")]
+        pub fast_tryout_enabled: bool,
+    }
+    /// The artifacts to deploy.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Artifacts {
+        /// The Model Garden model to deploy.
+        /// Format:
+        /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+        /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`.
+        #[prost(string, tag = "1")]
+        PublisherModelName(::prost::alloc::string::String),
+        /// The Hugging Face model to deploy.
+        /// Format: Hugging Face model ID like `google/gemma-2-2b-it`.
+        #[prost(string, tag = "2")]
+        HuggingFaceModelId(::prost::alloc::string::String),
+    }
+}
+/// Request message for
 /// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployPublisherModelRequest {
@@ -31016,6 +31110,25 @@ pub struct DeployPublisherModelRequest {
     pub accept_eula: bool,
 }
 /// Response message for
+/// [ModelGardenService.Deploy][google.cloud.aiplatform.v1beta1.ModelGardenService.Deploy].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeployResponse {
+    /// Output only. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`
+    #[prost(string, tag = "1")]
+    pub publisher_model: ::prost::alloc::string::String,
+    /// Output only. The name of the Endpoint created.
+    /// Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
+    #[prost(string, tag = "2")]
+    pub endpoint: ::prost::alloc::string::String,
+    /// Output only. The name of the Model created.
+    /// Format: `projects/{project}/locations/{location}/models/{model}`
+    #[prost(string, tag = "3")]
+    pub model: ::prost::alloc::string::String,
+}
+/// Response message for
 /// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployPublisherModelResponse {
@@ -31033,6 +31146,24 @@ pub struct DeployPublisherModelResponse {
     /// Format: `projects/{project}/locations/{location}/models/{model}`
     #[prost(string, tag = "3")]
     pub model: ::prost::alloc::string::String,
+}
+/// Runtime operation information for
+/// [ModelGardenService.Deploy][google.cloud.aiplatform.v1beta1.ModelGardenService.Deploy].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeployOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+    /// Output only. The name of the model resource.
+    #[prost(string, tag = "2")]
+    pub publisher_model: ::prost::alloc::string::String,
+    /// Output only. The resource name of the Location to deploy the model in.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "3")]
+    pub destination: ::prost::alloc::string::String,
+    /// Output only. The project number where the deploy model request is sent.
+    #[prost(int64, tag = "4")]
+    pub project_number: i64,
 }
 /// Runtime operation information for
 /// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
@@ -31229,6 +31360,36 @@ pub mod model_garden_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.ModelGardenService",
                         "ListPublisherModels",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deploys a model to a new endpoint.
+        pub async fn deploy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeployRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ModelGardenService/Deploy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ModelGardenService",
+                        "Deploy",
                     ),
                 );
             self.inner.unary(req, path, codec).await
