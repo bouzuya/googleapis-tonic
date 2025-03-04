@@ -63,8 +63,7 @@ pub struct Instance {
     /// to avoid confusion.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
-    /// (`OutputOnly`)
-    /// The current state of the instance.
+    /// Output only. The current state of the instance.
     #[prost(enumeration = "instance::State", tag = "3")]
     pub state: i32,
     /// The type of the instance. Defaults to `PRODUCTION`.
@@ -86,14 +85,17 @@ pub struct Instance {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
-    /// Output only. A server-assigned timestamp representing when this Instance
-    /// was created. For instances created before this field was added (August
-    /// 2021), this value is `seconds: 0, nanos: 1`.
+    /// Output only. A commit timestamp representing when this Instance was
+    /// created. For instances created before this field was added (August 2021),
+    /// this value is `seconds: 0, nanos: 1`.
     #[prost(message, optional, tag = "7")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. Reserved for future use.
     #[prost(bool, optional, tag = "8")]
     pub satisfies_pzs: ::core::option::Option<bool>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, optional, tag = "11")]
+    pub satisfies_pzi: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
@@ -236,8 +238,9 @@ pub struct Cluster {
     /// Output only. The current state of the cluster.
     #[prost(enumeration = "cluster::State", tag = "3")]
     pub state: i32,
-    /// The number of nodes allocated to this cluster. More nodes enable higher
-    /// throughput and more consistent performance.
+    /// The number of nodes in the cluster. If no value is set,
+    /// Cloud Bigtable automatically allocates nodes based on your data footprint
+    /// and optimized for 50% storage utilization.
     #[prost(int32, tag = "4")]
     pub serve_nodes: i32,
     /// Immutable. The node scaling factor of this cluster.
@@ -283,7 +286,6 @@ pub mod cluster {
         ///   `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
         ///   2) Only regional keys can be used and the region of the CMEK key must
         ///   match the region of the cluster.
-        ///   3) All clusters within an instance must use the same CMEK key.
         /// Values are of the form
         /// `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
         #[prost(string, tag = "1")]
@@ -505,17 +507,10 @@ pub mod app_profile {
         pub priority: i32,
     }
     /// Data Boost is a serverless compute capability that lets you run
-    /// high-throughput read jobs on your Bigtable data, without impacting the
-    /// performance of the clusters that handle your application traffic.
-    /// Currently, Data Boost exclusively supports read-only use-cases with
-    /// single-cluster routing.
-    ///
-    /// Data Boost reads are only guaranteed to see the results of writes that
-    /// were written at least 30 minutes ago. This means newly written values may
-    /// not become visible for up to 30m, and also means that old values may
-    /// remain visible for up to 30m after being deleted or overwritten. To
-    /// mitigate the staleness of the data, users may either wait 30m, or use
-    /// CheckConsistency.
+    /// high-throughput read jobs and queries on your Bigtable data, without
+    /// impacting the performance of the clusters that handle your application
+    /// traffic. Data Boost supports read-only use cases with single-cluster
+    /// routing.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct DataBoostIsolationReadOnly {
         /// The Compute Billing Owner for this Data Boost App Profile.
@@ -681,6 +676,45 @@ pub struct HotTablet {
     #[prost(float, tag = "7")]
     pub node_cpu_usage_percent: f32,
 }
+/// A SQL logical view object that can be referenced in SQL queries.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LogicalView {
+    /// Identifier. The unique name of the logical view.
+    /// Format:
+    /// `projects/{project}/instances/{instance}/logicalViews/{logical_view}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The logical view's select query.
+    #[prost(string, tag = "2")]
+    pub query: ::prost::alloc::string::String,
+    /// Optional. The etag for this logical view.
+    /// This may be sent on update requests to ensure that the client has an
+    /// up-to-date value before proceeding. The server returns an ABORTED error on
+    /// a mismatched etag.
+    #[prost(string, tag = "3")]
+    pub etag: ::prost::alloc::string::String,
+}
+/// A materialized view object that can be referenced in SQL queries.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MaterializedView {
+    /// Identifier. The unique name of the materialized view.
+    /// Format:
+    /// `projects/{project}/instances/{instance}/materializedViews/{materialized_view}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. Immutable. The materialized view's select query.
+    #[prost(string, tag = "2")]
+    pub query: ::prost::alloc::string::String,
+    /// Optional. The etag for this materialized view.
+    /// This may be sent on update requests to ensure that the client has an
+    /// up-to-date value before proceeding. The server returns an ABORTED error on
+    /// a mismatched etag.
+    #[prost(string, tag = "3")]
+    pub etag: ::prost::alloc::string::String,
+    /// Set to true to make the MaterializedView protected against deletion.
+    #[prost(bool, tag = "6")]
+    pub deletion_protection: bool,
+}
 /// Request message for BigtableInstanceAdmin.CreateInstance.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceRequest {
@@ -701,7 +735,6 @@ pub struct CreateInstanceRequest {
     /// cluster ID, e.g., just `mycluster` rather than
     /// `projects/myproject/instances/myinstance/clusters/mycluster`.
     /// Fields marked `OutputOnly` must be left blank.
-    /// Currently, at most four clusters can be specified.
     #[prost(btree_map = "string, message", tag = "4")]
     pub clusters: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -1137,6 +1170,92 @@ pub struct ListHotTabletsResponse {
     /// page of results.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request message for BigtableInstanceAdmin.CreateLogicalView.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateLogicalViewRequest {
+    /// Required. The parent instance where this logical view will be created.
+    /// Format: `projects/{project}/instances/{instance}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The ID to use for the logical view, which will become the final
+    /// component of the logical view's resource name.
+    #[prost(string, tag = "2")]
+    pub logical_view_id: ::prost::alloc::string::String,
+    /// Required. The logical view to create.
+    #[prost(message, optional, tag = "3")]
+    pub logical_view: ::core::option::Option<LogicalView>,
+}
+/// The metadata for the Operation returned by CreateLogicalView.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateLogicalViewMetadata {
+    /// The request that prompted the initiation of this CreateLogicalView
+    /// operation.
+    #[prost(message, optional, tag = "1")]
+    pub original_request: ::core::option::Option<CreateLogicalViewRequest>,
+    /// The time at which this operation started.
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// If set, the time at which this operation finished or was canceled.
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Request message for BigtableInstanceAdmin.UpdateLogicalView.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateLogicalViewRequest {
+    /// Required. The logical view to update.
+    ///
+    /// The logical view's `name` field is used to identify the view to update.
+    /// Format:
+    /// `projects/{project}/instances/{instance}/logicalViews/{logical_view}`.
+    #[prost(message, optional, tag = "1")]
+    pub logical_view: ::core::option::Option<LogicalView>,
+    /// Optional. The list of fields to update.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// The metadata for the Operation returned by UpdateLogicalView.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateLogicalViewMetadata {
+    /// The request that prompted the initiation of this UpdateLogicalView
+    /// operation.
+    #[prost(message, optional, tag = "1")]
+    pub original_request: ::core::option::Option<UpdateLogicalViewRequest>,
+    /// The time at which this operation was started.
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// If set, the time at which this operation finished or was canceled.
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Request message for BigtableInstanceAdmin.CreateMaterializedView.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateMaterializedViewRequest {
+    /// Required. The parent instance where this materialized view will be created.
+    /// Format: `projects/{project}/instances/{instance}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The ID to use for the materialized view, which will become the
+    /// final component of the materialized view's resource name.
+    #[prost(string, tag = "2")]
+    pub materialized_view_id: ::prost::alloc::string::String,
+    /// Required. The materialized view to create.
+    #[prost(message, optional, tag = "3")]
+    pub materialized_view: ::core::option::Option<MaterializedView>,
+}
+/// The metadata for the Operation returned by CreateMaterializedView.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateMaterializedViewMetadata {
+    /// The request that prompted the initiation of this CreateMaterializedView
+    /// operation.
+    #[prost(message, optional, tag = "1")]
+    pub original_request: ::core::option::Option<CreateMaterializedViewRequest>,
+    /// The time at which this operation started.
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// If set, the time at which this operation finished or was canceled.
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Generated client implementations.
 pub mod bigtable_instance_admin_client {
@@ -1875,25 +1994,23 @@ pub mod bigtable_instance_admin_client {
 /// familiarity and consistency across products and features.
 ///
 /// For compatibility with Bigtable's existing untyped APIs, each `Type` includes
-/// an `Encoding` which describes how to convert to/from the underlying data.
+/// an `Encoding` which describes how to convert to or from the underlying data.
 ///
-/// Each encoding also defines the following properties:
+/// Each encoding can operate in one of two modes:
 ///
-///   * Order-preserving: Does the encoded value sort consistently with the
-///     original typed value? Note that Bigtable will always sort data based on
-///     the raw encoded value, *not* the decoded type.
-///      - Example: BYTES values sort in the same order as their raw encodings.
-///      - Counterexample: Encoding INT64 as a fixed-width decimal string does
-///        *not* preserve sort order when dealing with negative numbers.
-///        `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
-///   * Self-delimiting: If we concatenate two encoded values, can we always tell
-///     where the first one ends and the second one begins?
-///      - Example: If we encode INT64s to fixed-width STRINGs, the first value
-///        will always contain exactly N digits, possibly preceded by a sign.
-///      - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
-///        no way to tell where the first one ends.
-///   * Compatibility: Which other systems have matching encoding schemes? For
-///     example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+///   - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)`
+///     if and only if `X <= Y`. This is useful anywhere sort order is important,
+///     for example when encoding keys.
+///   - Distinct: In this mode, Bigtable guarantees that if `X != Y` then
+///    `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For
+///     example, both "{'foo': '1', 'bar': '2'}" and "{'bar': '2', 'foo': '1'}"
+///     are valid encodings of the same JSON value.
+///
+/// The API clearly documents which mode is used wherever an encoding can be
+/// configured. Each encoding also documents which values are supported in which
+/// modes. For example, when encoding INT64 as a numeric STRING, negative numbers
+/// cannot be encoded in sorted mode. This is because `INT64(1) > INT64(-1)`, but
+/// `STRING("-00001") > STRING("00001")`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Type {
     /// The kind of type that this represents.
@@ -1906,13 +2023,13 @@ pub mod r#type {
     /// Values of type `Bytes` are stored in `Value.bytes_value`.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct Bytes {
-        /// The encoding to use when converting to/from lower level types.
+        /// The encoding to use when converting to or from lower level types.
         #[prost(message, optional, tag = "1")]
         pub encoding: ::core::option::Option<bytes::Encoding>,
     }
     /// Nested message and enum types in `Bytes`.
     pub mod bytes {
-        /// Rules used to convert to/from lower level types.
+        /// Rules used to convert to or from lower level types.
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct Encoding {
             /// Which encoding to use.
@@ -1921,10 +2038,11 @@ pub mod r#type {
         }
         /// Nested message and enum types in `Encoding`.
         pub mod encoding {
-            /// Leaves the value "as-is"
-            /// * Order-preserving? Yes
-            /// * Self-delimiting? No
-            /// * Compatibility? N/A
+            /// Leaves the value as-is.
+            ///
+            /// Sorted mode: all values are supported.
+            ///
+            /// Distinct mode: all values are supported.
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Raw {}
             /// Which encoding to use.
@@ -1940,13 +2058,13 @@ pub mod r#type {
     /// Values of type `String` are stored in `Value.string_value`.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct String {
-        /// The encoding to use when converting to/from lower level types.
+        /// The encoding to use when converting to or from lower level types.
         #[prost(message, optional, tag = "1")]
         pub encoding: ::core::option::Option<string::Encoding>,
     }
     /// Nested message and enum types in `String`.
     pub mod string {
-        /// Rules used to convert to/from lower level types.
+        /// Rules used to convert to or from lower level types.
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct Encoding {
             /// Which encoding to use.
@@ -1958,13 +2076,19 @@ pub mod r#type {
             /// Deprecated: prefer the equivalent `Utf8Bytes`.
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Utf8Raw {}
-            /// UTF-8 encoding
-            /// * Order-preserving? Yes (code point order)
-            /// * Self-delimiting? No
-            /// * Compatibility?
-            ///     - BigQuery Federation `TEXT` encoding
-            ///     - HBase `Bytes.toBytes`
-            ///     - Java `String#getBytes(StandardCharsets.UTF_8)`
+            /// UTF-8 encoding.
+            ///
+            /// Sorted mode:
+            ///   - All values are supported.
+            ///   - Code point order is preserved.
+            ///
+            /// Distinct mode: all values are supported.
+            ///
+            /// Compatible with:
+            ///
+            ///   - BigQuery `TEXT` encoding
+            ///   - HBase `Bytes.toBytes`
+            ///   - Java `String#getBytes(StandardCharsets.UTF_8)`
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Utf8Bytes {}
             /// Which encoding to use.
@@ -1983,41 +2107,56 @@ pub mod r#type {
     /// Values of type `Int64` are stored in `Value.int_value`.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct Int64 {
-        /// The encoding to use when converting to/from lower level types.
+        /// The encoding to use when converting to or from lower level types.
         #[prost(message, optional, tag = "1")]
         pub encoding: ::core::option::Option<int64::Encoding>,
     }
     /// Nested message and enum types in `Int64`.
     pub mod int64 {
-        /// Rules used to convert to/from lower level types.
+        /// Rules used to convert to or from lower level types.
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct Encoding {
             /// Which encoding to use.
-            #[prost(oneof = "encoding::Encoding", tags = "1")]
+            #[prost(oneof = "encoding::Encoding", tags = "1, 2")]
             pub encoding: ::core::option::Option<encoding::Encoding>,
         }
         /// Nested message and enum types in `Encoding`.
         pub mod encoding {
-            /// Encodes the value as an 8-byte big endian twos complement `Bytes`
-            /// value.
-            /// * Order-preserving? No (positive values only)
-            /// * Self-delimiting? Yes
-            /// * Compatibility?
-            ///     - BigQuery Federation `BINARY` encoding
-            ///     - HBase `Bytes.toBytes`
-            ///     - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+            /// Encodes the value as an 8-byte big-endian two's complement value.
+            ///
+            /// Sorted mode: non-negative values are supported.
+            ///
+            /// Distinct mode: all values are supported.
+            ///
+            /// Compatible with:
+            ///
+            ///   - BigQuery `BINARY` encoding
+            ///   - HBase `Bytes.toBytes`
+            ///   - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct BigEndianBytes {
                 /// Deprecated: ignored if set.
+                #[deprecated]
                 #[prost(message, optional, tag = "1")]
                 pub bytes_type: ::core::option::Option<super::super::Bytes>,
             }
+            /// Encodes the value in a variable length binary format of up to 10 bytes.
+            /// Values that are closer to zero use fewer bytes.
+            ///
+            /// Sorted mode: all values are supported.
+            ///
+            /// Distinct mode: all values are supported.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct OrderedCodeBytes {}
             /// Which encoding to use.
             #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
             pub enum Encoding {
                 /// Use `BigEndianBytes` encoding.
                 #[prost(message, tag = "1")]
                 BigEndianBytes(BigEndianBytes),
+                /// Use `OrderedCodeBytes` encoding.
+                #[prost(message, tag = "2")]
+                OrderedCodeBytes(OrderedCodeBytes),
             }
         }
     }
@@ -2036,7 +2175,36 @@ pub mod r#type {
     /// Timestamp
     /// Values of type `Timestamp` are stored in `Value.timestamp_value`.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Timestamp {}
+    pub struct Timestamp {
+        /// The encoding to use when converting to or from lower level types.
+        #[prost(message, optional, tag = "1")]
+        pub encoding: ::core::option::Option<timestamp::Encoding>,
+    }
+    /// Nested message and enum types in `Timestamp`.
+    pub mod timestamp {
+        /// Rules used to convert to or from lower level types.
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Encoding {
+            /// Which encoding to use.
+            #[prost(oneof = "encoding::Encoding", tags = "1")]
+            pub encoding: ::core::option::Option<encoding::Encoding>,
+        }
+        /// Nested message and enum types in `Encoding`.
+        pub mod encoding {
+            /// Which encoding to use.
+            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            pub enum Encoding {
+                /// Encodes the number of microseconds since the Unix epoch using the
+                /// given `Int64` encoding. Values must be microsecond-aligned.
+                ///
+                /// Compatible with:
+                ///
+                ///   - Java `Instant.truncatedTo()` with `ChronoUnit.MICROS`
+                #[prost(message, tag = "1")]
+                UnixMicrosInt64(super::super::int64::Encoding),
+            }
+        }
+    }
     /// Date
     /// Values of type `Date` are stored in `Value.date_value`.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2050,6 +2218,9 @@ pub mod r#type {
         /// The names and types of the fields in this struct.
         #[prost(message, repeated, tag = "1")]
         pub fields: ::prost::alloc::vec::Vec<r#struct::Field>,
+        /// The encoding to use when converting to or from lower level types.
+        #[prost(message, optional, tag = "2")]
+        pub encoding: ::core::option::Option<r#struct::Encoding>,
     }
     /// Nested message and enum types in `Struct`.
     pub mod r#struct {
@@ -2063,6 +2234,99 @@ pub mod r#type {
             /// The type of values in this field.
             #[prost(message, optional, tag = "2")]
             pub r#type: ::core::option::Option<super::super::Type>,
+        }
+        /// Rules used to convert to or from lower level types.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Encoding {
+            /// Which encoding to use.
+            #[prost(oneof = "encoding::Encoding", tags = "1, 2, 3")]
+            pub encoding: ::core::option::Option<encoding::Encoding>,
+        }
+        /// Nested message and enum types in `Encoding`.
+        pub mod encoding {
+            /// Uses the encoding of `fields\[0\].type` as-is.
+            /// Only valid if `fields.size == 1`.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Singleton {}
+            /// Fields are encoded independently and concatenated with a configurable
+            /// `delimiter` in between.
+            ///
+            /// A struct with no fields defined is encoded as a single `delimiter`.
+            ///
+            /// Sorted mode:
+            ///
+            ///   - Fields are encoded in sorted mode.
+            ///   - Encoded field values must not contain any bytes <= `delimiter\[0\]`
+            ///   - Element-wise order is preserved: `A < B` if `A\[0\] < B\[0\]`, or if
+            ///     `A\[0\] == B\[0\] && A\[1\] < B\[1\]`, etc. Strict prefixes sort first.
+            ///
+            /// Distinct mode:
+            ///
+            ///   - Fields are encoded in distinct mode.
+            ///   - Encoded field values must not contain `delimiter\[0\]`.
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct DelimitedBytes {
+                /// Byte sequence used to delimit concatenated fields. The delimiter must
+                /// contain at least 1 character and at most 50 characters.
+                #[prost(bytes = "bytes", tag = "1")]
+                pub delimiter: ::prost::bytes::Bytes,
+            }
+            /// Fields are encoded independently and concatenated with the fixed byte
+            /// pair {0x00, 0x01} in between.
+            ///
+            /// Any null (0x00) byte in an encoded field is replaced by the fixed byte
+            /// pair {0x00, 0xFF}.
+            ///
+            /// Fields that encode to the empty string "" have special handling:
+            ///
+            ///   - If *every* field encodes to "", or if the STRUCT has no fields
+            ///     defined, then the STRUCT is encoded as the fixed byte pair
+            ///     {0x00, 0x00}.
+            ///   - Otherwise, the STRUCT only encodes until the last non-empty field,
+            ///     omitting any trailing empty fields. Any empty fields that aren't
+            ///     omitted are replaced with the fixed byte pair {0x00, 0x00}.
+            ///
+            /// Examples:
+            ///
+            ///   - STRUCT()             -> "\00\00"
+            ///   - STRUCT("")           -> "\00\00"
+            ///   - STRUCT("", "")       -> "\00\00"
+            ///   - STRUCT("", "B")      -> "\00\00" + "\00\01" + "B"
+            ///   - STRUCT("A", "")      -> "A"
+            ///   - STRUCT("", "B", "")  -> "\00\00" + "\00\01" + "B"
+            ///   - STRUCT("A", "", "C") -> "A" + "\00\01" + "\00\00" + "\00\01" + "C"
+            ///
+            ///
+            /// Since null bytes are always escaped, this encoding can cause size
+            /// blowup for encodings like `Int64.BigEndianBytes` that are likely to
+            /// produce many such bytes.
+            ///
+            /// Sorted mode:
+            ///
+            ///   - Fields are encoded in sorted mode.
+            ///   - All values supported by the field encodings are allowed
+            ///   - Element-wise order is preserved: `A < B` if `A\[0\] < B\[0\]`, or if
+            ///     `A\[0\] == B\[0\] && A\[1\] < B\[1\]`, etc. Strict prefixes sort first.
+            ///
+            /// Distinct mode:
+            ///
+            ///   - Fields are encoded in distinct mode.
+            ///   - All values supported by the field encodings are allowed.
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct OrderedCodeBytes {}
+            /// Which encoding to use.
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum Encoding {
+                /// Use `Singleton` encoding.
+                #[prost(message, tag = "1")]
+                Singleton(Singleton),
+                /// Use `DelimitedBytes` encoding.
+                #[prost(message, tag = "2")]
+                DelimitedBytes(DelimitedBytes),
+                /// User `OrderedCodeBytes` encoding.
+                #[prost(message, tag = "3")]
+                OrderedCodeBytes(OrderedCodeBytes),
+            }
         }
     }
     /// An ordered list of elements of a given type.
@@ -2280,6 +2544,64 @@ pub struct Table {
     /// Note one can still delete the data stored in the table through Data APIs.
     #[prost(bool, tag = "9")]
     pub deletion_protection: bool,
+    /// The row key schema for this table. The schema is used to decode the raw row
+    /// key bytes into a structured format. The order of field declarations in this
+    /// schema is important, as it reflects how the raw row key bytes are
+    /// structured. Currently, this only affects how the key is read via a
+    /// GoogleSQL query from the ExecuteQuery API.
+    ///
+    /// For a SQL query, the _key column is still read as raw bytes. But queries
+    /// can reference the key fields by name, which will be decoded from _key using
+    /// provided type and encoding. Queries that reference key fields will fail if
+    /// they encounter an invalid row key.
+    ///
+    /// For example, if _key = "some_id#2024-04-30#\x00\x13\x00\xf3" with the
+    /// following schema:
+    /// {
+    ///    fields {
+    ///      field_name: "id"
+    ///      type { string { encoding: utf8_bytes {} } }
+    ///    }
+    ///    fields {
+    ///      field_name: "date"
+    ///      type { string { encoding: utf8_bytes {} } }
+    ///    }
+    ///    fields {
+    ///      field_name: "product_code"
+    ///      type { int64 { encoding: big_endian_bytes {} } }
+    ///    }
+    ///    encoding { delimited_bytes { delimiter: "#" } }
+    /// }
+    ///
+    /// The decoded key parts would be:
+    ///    id = "some_id", date = "2024-04-30", product_code = 1245427
+    /// The query "SELECT _key, product_code FROM table" will return two columns:
+    /// /------------------------------------------------------\
+    /// |              _key                     | product_code |
+    /// | --------------------------------------|--------------|
+    /// | "some_id#2024-04-30#\x00\x13\x00\xf3" |   1245427    |
+    /// \------------------------------------------------------/
+    ///
+    /// The schema has the following invariants:
+    /// (1) The decoded field values are order-preserved. For read, the field
+    /// values will be decoded in sorted mode from the raw bytes.
+    /// (2) Every field in the schema must specify a non-empty name.
+    /// (3) Every field must specify a type with an associated encoding. The type
+    /// is limited to scalar types only: Array, Map, Aggregate, and Struct are not
+    /// allowed.
+    /// (4) The field names must not collide with existing column family
+    /// names and reserved keywords "_key" and "_timestamp".
+    ///
+    /// The following update operations are allowed for row_key_schema:
+    /// - Update from an empty schema to a new schema.
+    /// - Remove the existing schema. This operation requires setting the
+    ///    `ignore_warnings` flag to `true`, since it might be a backward
+    ///    incompatible change. Without the flag, the update request will fail with
+    ///    an INVALID_ARGUMENT error.
+    /// Any other row key schema update operation (e.g. update existing schema
+    /// columns names or types) is currently unsupported.
+    #[prost(message, optional, tag = "15")]
+    pub row_key_schema: ::core::option::Option<r#type::Struct>,
     #[prost(oneof = "table::AutomatedBackupConfig", tags = "13")]
     pub automated_backup_config: ::core::option::Option<table::AutomatedBackupConfig>,
 }
@@ -3287,11 +3609,15 @@ pub struct UpdateTableRequest {
     /// * `change_stream_config`
     /// * `change_stream_config.retention_period`
     /// * `deletion_protection`
+    /// * `row_key_schema`
     ///
     /// If `column_families` is set in `update_mask`, it will return an
     /// UNIMPLEMENTED error.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    /// Optional. If true, ignore safety checks when updating the table.
+    #[prost(bool, tag = "3")]
+    pub ignore_warnings: bool,
 }
 /// Metadata type for the operation returned by
 /// [UpdateTable][google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable].

@@ -1184,7 +1184,7 @@ pub struct SpeechToTextConfig {
     /// information.
     #[prost(bool, tag = "9")]
     pub enable_word_info: bool,
-    /// Use timeout based endpointing, interpreting endpointer sensitivy as
+    /// Use timeout based endpointing, interpreting endpointer sensitivity as
     /// seconds of timeout value.
     #[prost(bool, tag = "11")]
     pub use_timeout_based_endpointing: bool,
@@ -5855,7 +5855,8 @@ pub struct Message {
     /// Output only. The time when the message was created in Contact Center AI.
     #[prost(message, optional, tag = "6")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Optional. The time when the message was sent.
+    /// Optional. The time when the message was sent. For voice messages, this is
+    /// the time when an utterance started.
     #[prost(message, optional, tag = "9")]
     pub send_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. The annotation for the message.
@@ -5965,7 +5966,7 @@ pub struct AnalyzeContentRequest {
     #[prost(string, tag = "11")]
     pub request_id: ::prost::alloc::string::String,
     /// Required. The input content.
-    #[prost(oneof = "analyze_content_request::Input", tags = "6, 8, 12")]
+    #[prost(oneof = "analyze_content_request::Input", tags = "6, 7, 8, 12")]
     pub input: ::core::option::Option<analyze_content_request::Input>,
 }
 /// Nested message and enum types in `AnalyzeContentRequest`.
@@ -5976,6 +5977,9 @@ pub mod analyze_content_request {
         /// The natural language text to be processed.
         #[prost(message, tag = "6")]
         TextInput(super::TextInput),
+        /// The natural language speech audio to be processed.
+        #[prost(message, tag = "7")]
+        AudioInput(super::AudioInput),
         /// An input event to send to Dialogflow.
         #[prost(message, tag = "8")]
         EventInput(super::EventInput),
@@ -6140,10 +6144,10 @@ pub struct StreamingAnalyzeContentRequest {
     /// <https://cloud.google.com/agent-assist/docs/extended-streaming>
     #[prost(bool, tag = "11")]
     pub enable_extended_streaming: bool,
-    /// Enable partial virtual agent responses. If this flag is not enabled,
-    /// response stream still contains only one final response even if some
-    /// `Fulfillment`s in Dialogflow virtual agent have been configured to return
-    /// partial responses.
+    /// Optional. Enable partial responses from Dialogflow CX agent. If this flag
+    /// is not enabled, response stream still contains only one final response even
+    /// if some `Fulfillment`s in Dialogflow CX agent have been configured to
+    /// return partial responses.
     #[prost(bool, tag = "12")]
     pub enable_partial_automated_agent_reply: bool,
     /// If true, `StreamingAnalyzeContentResponse.debugging_info` will get
@@ -6265,6 +6269,9 @@ pub struct StreamingAnalyzeContentResponse {
     /// `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
     #[prost(message, optional, tag = "11")]
     pub debugging_info: ::core::option::Option<CloudConversationDebuggingInfo>,
+    /// The name of the actual Cloud speech model used for speech recognition.
+    #[prost(string, tag = "13")]
+    pub speech_model: ::prost::alloc::string::String,
 }
 /// The request message for
 /// [Participants.SuggestArticles][google.cloud.dialogflow.v2.Participants.SuggestArticles].
@@ -6414,6 +6421,19 @@ pub struct SuggestSmartRepliesResponse {
     /// conversation.
     #[prost(int32, tag = "3")]
     pub context_size: i32,
+}
+/// Represents the natural language speech audio to be processed.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AudioInput {
+    /// Required. Instructs the speech recognizer how to process the speech audio.
+    #[prost(message, optional, tag = "1")]
+    pub config: ::core::option::Option<InputAudioConfig>,
+    /// Required. The natural language speech audio to be processed.
+    /// A single request can contain up to 2 minutes of speech audio data.
+    /// The transcribed text cannot contain more than 256 bytes for virtual agent
+    /// interactions.
+    #[prost(bytes = "vec", tag = "2")]
+    pub audio: ::prost::alloc::vec::Vec<u8>,
 }
 /// Represents the natural language speech audio to be played to the end user.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6774,7 +6794,7 @@ pub struct SuggestKnowledgeAssistRequest {
     #[prost(int32, tag = "3")]
     pub context_size: i32,
     /// Optional. The previously suggested query for the given conversation. This
-    /// helps identify whether the next suggestion we generate is resonably
+    /// helps identify whether the next suggestion we generate is reasonably
     /// different from the previous one. This is useful to avoid similar
     /// suggestions within the conversation.
     #[prost(string, tag = "4")]
@@ -7351,13 +7371,22 @@ pub struct ListAnswerRecordsRequest {
     /// ID>`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Optional. Filters to restrict results to specific answer records.
+    /// Optional. Filters to restrict results to specific answer records. The
+    /// expression has the following syntax:
     ///
-    /// Marked deprecated as it hasn't been, and isn't currently, supported.
+    ///      <field> <operator> <value> \[AND <field> <operator> <value>\] ...
+    ///
+    /// The following fields and operators are supported:
+    /// * conversation_id with equals(=) operator
+    ///
+    /// Examples:
+    ///
+    /// * `conversation_id=bar` matches answer records in the
+    ///    `projects/foo/locations/global/conversations/bar` conversation
+    ///    (assuming the parent is `projects/foo/locations/global`).
     ///
     /// For more information about filtering, see
     /// [API Filtering](<https://aip.dev/160>).
-    #[deprecated]
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. The maximum number of records to return in a single page.
@@ -7504,7 +7533,7 @@ pub struct AgentAssistantFeedback {
     /// * Suggested document says: "Items must be returned/exchanged within 60
     ///    days of the purchase date."
     /// * Ground truth: "No return or exchange is allowed."
-    /// * \[document_correctness\]: INCORRECT
+    /// * [document_correctness][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_correctness]: [INCORRECT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness.INCORRECT]
     #[prost(enumeration = "agent_assistant_feedback::DocumentCorrectness", tag = "2")]
     pub document_correctness: i32,
     /// Optional. Whether or not the suggested document is efficient. For example,
@@ -8640,6 +8669,8 @@ pub mod suggestion_feature {
         Faq = 2,
         /// Run smart reply model for chat.
         SmartReply = 3,
+        /// Run conversation summarization model for chat.
+        ConversationSummarization = 8,
         /// Run knowledge search with text input from agent or text generated query.
         KnowledgeSearch = 14,
         /// Run knowledge assist with automatic query generation.
@@ -8656,6 +8687,7 @@ pub mod suggestion_feature {
                 Self::ArticleSuggestion => "ARTICLE_SUGGESTION",
                 Self::Faq => "FAQ",
                 Self::SmartReply => "SMART_REPLY",
+                Self::ConversationSummarization => "CONVERSATION_SUMMARIZATION",
                 Self::KnowledgeSearch => "KNOWLEDGE_SEARCH",
                 Self::KnowledgeAssist => "KNOWLEDGE_ASSIST",
             }
@@ -8667,6 +8699,7 @@ pub mod suggestion_feature {
                 "ARTICLE_SUGGESTION" => Some(Self::ArticleSuggestion),
                 "FAQ" => Some(Self::Faq),
                 "SMART_REPLY" => Some(Self::SmartReply),
+                "CONVERSATION_SUMMARIZATION" => Some(Self::ConversationSummarization),
                 "KNOWLEDGE_SEARCH" => Some(Self::KnowledgeSearch),
                 "KNOWLEDGE_ASSIST" => Some(Self::KnowledgeAssist),
                 _ => None,
@@ -9800,9 +9833,57 @@ pub struct Conversation {
     /// [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
     #[prost(enumeration = "conversation::ConversationStage", tag = "7")]
     pub conversation_stage: i32,
+    /// Output only. The telephony connection information.
+    #[prost(message, optional, tag = "10")]
+    pub telephony_connection_info: ::core::option::Option<
+        conversation::TelephonyConnectionInfo,
+    >,
 }
 /// Nested message and enum types in `Conversation`.
 pub mod conversation {
+    /// The information about phone calls connected via phone gateway to the
+    /// conversation.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TelephonyConnectionInfo {
+        /// Output only. The number dialed to connect this call in E.164 format.
+        #[prost(string, tag = "2")]
+        pub dialed_number: ::prost::alloc::string::String,
+        /// Optional. SDP of the call. It's initially the SDP answer to the endpoint,
+        /// but maybe later updated for the purpose of making the link active, etc.
+        #[prost(string, tag = "5")]
+        pub sdp: ::prost::alloc::string::String,
+        /// Output only. The SIP headers from the initial SIP INVITE.
+        #[prost(message, repeated, tag = "12")]
+        pub sip_headers: ::prost::alloc::vec::Vec<telephony_connection_info::SipHeader>,
+        /// Output only. The mime content from the initial SIP INVITE.
+        #[prost(message, repeated, tag = "13")]
+        pub extra_mime_contents: ::prost::alloc::vec::Vec<
+            telephony_connection_info::MimeContent,
+        >,
+    }
+    /// Nested message and enum types in `TelephonyConnectionInfo`.
+    pub mod telephony_connection_info {
+        /// The SIP headers from the initial SIP INVITE.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct SipHeader {
+            /// Optional. The name of the header.
+            #[prost(string, tag = "1")]
+            pub name: ::prost::alloc::string::String,
+            /// Optional. The value of the header.
+            #[prost(string, tag = "2")]
+            pub value: ::prost::alloc::string::String,
+        }
+        /// The mime content from the initial SIP INVITE.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct MimeContent {
+            /// Optional. The mime type of the content.
+            #[prost(string, tag = "1")]
+            pub mime_type: ::prost::alloc::string::String,
+            /// Optional. The content payload.
+            #[prost(bytes = "vec", tag = "2")]
+            pub content: ::prost::alloc::vec::Vec<u8>,
+        }
+    }
     /// Enumeration of the completion status of the conversation.
     #[derive(
         Clone,
@@ -9848,7 +9929,7 @@ pub mod conversation {
     }
     /// Enumeration of the different conversation stages a conversation can be in.
     /// Reference:
-    /// <https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages>
+    /// <https://cloud.google.com/agent-assist/docs/basics#conversation_stages>
     #[derive(
         Clone,
         Copy,
@@ -10023,6 +10104,9 @@ pub struct ListMessagesResponse {
 /// a particular conversation over telephony.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConversationPhoneNumber {
+    /// Output only. Desired country code for the phone number.
+    #[prost(int32, tag = "2")]
+    pub country_code: i32,
     /// Output only. The phone number to connect to this conversation.
     #[prost(string, tag = "3")]
     pub phone_number: ::prost::alloc::string::String,
@@ -10311,9 +10395,18 @@ pub mod search_knowledge_request {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SearchConfig {
         /// Optional. Boost specifications for data stores.
+        ///
+        /// Maps from datastore name to their boost configuration. Do not specify
+        /// more than one BoostSpecs for each datastore name. If multiple BoostSpecs
+        /// are provided for the same datastore name, the behavior is undefined.
         #[prost(message, repeated, tag = "1")]
         pub boost_specs: ::prost::alloc::vec::Vec<search_config::BoostSpecs>,
         /// Optional. Filter specification for data store queries.
+        ///
+        /// TMaps from datastore name to the filter expression for that datastore. Do
+        /// not specify more than one FilterSpecs for each datastore name. If
+        /// multiple FilterSpecs are provided for the same datastore name, the
+        /// behavior is undefined.
         #[prost(message, repeated, tag = "2")]
         pub filter_specs: ::prost::alloc::vec::Vec<search_config::FilterSpecs>,
     }
@@ -10341,7 +10434,7 @@ pub mod search_knowledge_request {
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct BoostSpec {
                 /// Optional. Condition boost specifications. If a document matches
-                /// multiple conditions in the specifictions, boost scores from these
+                /// multiple conditions in the specifications, boost scores from these
                 /// specifications are all applied and combined in a non-linear way.
                 /// Maximum number of specifications is 20.
                 #[prost(message, repeated, tag = "1")]
@@ -10434,8 +10527,21 @@ pub mod search_knowledge_request {
                         /// The control points used to define the curve. The curve defined
                         /// through these control points can only be monotonically increasing
                         /// or decreasing(constant values are acceptable).
-                        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-                        pub struct ControlPoint {}
+                        #[derive(Clone, PartialEq, ::prost::Message)]
+                        pub struct ControlPoint {
+                            /// Optional. Can be one of:
+                            /// 1. The numerical field value.
+                            /// 2. The duration spec for freshness:
+                            /// The value must be formatted as an XSD `dayTimeDuration` value
+                            /// (a restricted subset of an ISO 8601 duration value). The
+                            /// pattern for this is: `[nD][T[nH][nM][nS]]`.
+                            #[prost(string, tag = "1")]
+                            pub attribute_value: ::prost::alloc::string::String,
+                            /// Optional. The value between -1 to 1 by which to boost the score
+                            /// if the attribute_value evaluates to the value specified above.
+                            #[prost(float, tag = "2")]
+                            pub boost_amount: f32,
+                        }
                         /// The attribute(or function) for which the custom ranking is to be
                         /// applied.
                         #[derive(
@@ -11842,7 +11948,7 @@ pub struct ConversationModelEvaluation {
     #[prost(message, optional, tag = "3")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. Human eval template in csv format.
-    /// It tooks real-world conversations provided through input dataset, generates
+    /// It takes real-world conversations provided through input dataset, generates
     /// example suggestions for customer to verify quality of the model.
     /// For Smart Reply, the generated csv file contains columns of
     /// Context, (Suggestions,Q1,Q2)*3, Actual reply.
@@ -11919,10 +12025,10 @@ pub mod evaluation_config {
     /// Specific configurations for different models in order to do evaluation.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ModelSpecificConfig {
-        /// Configuration for smart reply model evalution.
+        /// Configuration for smart reply model evaluation.
         #[prost(message, tag = "2")]
         SmartReplyConfig(SmartReplyConfig),
-        /// Configuration for smart compose model evalution.
+        /// Configuration for smart compose model evaluation.
         #[prost(message, tag = "4")]
         SmartComposeConfig(SmartComposeConfig),
     }

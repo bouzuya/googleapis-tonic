@@ -3721,9 +3721,6 @@ pub struct JobReference {
     /// <https://cloud.google.com/bigquery/docs/locations>
     #[prost(message, optional, tag = "3")]
     pub location: ::core::option::Option<::prost::alloc::string::String>,
-    /// This field should not be used.
-    #[prost(string, repeated, tag = "5")]
-    pub location_alternative: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Remote Model Info
 #[derive(Clone, PartialEq, ::prost::Message)]

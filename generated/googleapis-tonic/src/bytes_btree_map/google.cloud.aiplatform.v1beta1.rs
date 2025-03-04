@@ -4915,9 +4915,12 @@ pub struct Tool {
     /// Specialized retrieval tool that is powered by Google search.
     #[prost(message, optional, tag = "3")]
     pub google_search_retrieval: ::core::option::Option<GoogleSearchRetrieval>,
+    /// Optional. Tool to support searching public web data, powered by Vertex AI
+    /// Search and Sec4 compliance.
+    #[prost(message, optional, tag = "6")]
+    pub enterprise_web_search: ::core::option::Option<EnterpriseWebSearch>,
     /// Optional. CodeExecution tool type.
     /// Enables the model to execute code as part of generation.
-    /// This field is only used by the Gemini Developer API services.
     #[prost(message, optional, tag = "4")]
     pub code_execution: ::core::option::Option<tool::CodeExecution>,
 }
@@ -5255,6 +5258,10 @@ pub struct GoogleSearchRetrieval {
     #[prost(message, optional, tag = "2")]
     pub dynamic_retrieval_config: ::core::option::Option<DynamicRetrievalConfig>,
 }
+/// Tool to search public web data, powered by Vertex AI Search and Sec4
+/// compliance.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct EnterpriseWebSearch {}
 /// Describes the options to customize dynamic retrieval.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DynamicRetrievalConfig {
@@ -30943,6 +30950,10 @@ pub struct GetPublisherModelRequest {
     /// Optional. Token used to access Hugging Face gated models.
     #[prost(string, tag = "6")]
     pub hugging_face_token: ::prost::alloc::string::String,
+    /// Optional. Whether to cnclude the deployment configs from the equivalent
+    /// Model Garden model if the requested model is a Hugging Face model.
+    #[prost(bool, tag = "7")]
+    pub include_equivalent_model_garden_model_deployment_configs: bool,
 }
 /// Request message for
 /// [ModelGardenService.ListPublisherModels][google.cloud.aiplatform.v1beta1.ModelGardenService.ListPublisherModels].
@@ -31092,11 +31103,13 @@ pub mod deploy_request {
 /// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployPublisherModelRequest {
-    /// Required. The name of the PublisherModel resource.
+    /// Required. The model to deploy.
     /// Format:
-    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
-    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`
-    /// or Hugging Face model ID like `google/gemma-2-2b-it`.
+    /// 1. `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`.
+    /// 2. Hugging Face model ID like `google/gemma-2-2b-it`.
+    /// 3. Custom model Google Cloud Storage URI like `gs://bucket`.
+    /// 4. Custom model zip file like `<https://example.com/a.zip`.>
     #[prost(string, tag = "1")]
     pub model: ::prost::alloc::string::String,
     /// Required. The resource name of the Location to deploy the model in.
@@ -31410,6 +31423,7 @@ pub mod model_garden_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deploys publisher models.
+        #[deprecated]
         pub async fn deploy_publisher_model(
             &mut self,
             request: impl tonic::IntoRequest<super::DeployPublisherModelRequest>,

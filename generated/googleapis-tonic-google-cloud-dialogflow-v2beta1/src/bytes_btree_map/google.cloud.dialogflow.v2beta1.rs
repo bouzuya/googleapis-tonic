@@ -1282,7 +1282,7 @@ pub struct SpeechToTextConfig {
     /// information.
     #[prost(bool, tag = "9")]
     pub enable_word_info: bool,
-    /// Use timeout based endpointing, interpreting endpointer sensitivy as
+    /// Use timeout based endpointing, interpreting endpointer sensitivity as
     /// seconds of timeout value.
     #[prost(bool, tag = "11")]
     pub use_timeout_based_endpointing: bool,
@@ -6769,7 +6769,8 @@ pub struct Message {
     /// Output only. The time when the message was created in Contact Center AI.
     #[prost(message, optional, tag = "6")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Optional. The time when the message was sent.
+    /// Optional. The time when the message was sent. For voice messages, this is
+    /// the time when an utterance started.
     #[prost(message, optional, tag = "9")]
     pub send_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. The annotation for the message.
@@ -7175,8 +7176,8 @@ pub struct AnalyzeContentRequest {
     /// CX agent.
     #[prost(message, optional, tag = "18")]
     pub cx_parameters: ::core::option::Option<::prost_types::Struct>,
-    /// The unique identifier of the CX page to override the `current_page` in the
-    /// session.
+    /// The unique identifier of the Dialogflow CX page to override the
+    /// `current_page` in the session.
     /// Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
     /// ID>/flows/<Flow ID>/pages/<Page ID>`.
     ///
@@ -7386,8 +7387,8 @@ pub struct StreamingAnalyzeContentRequest {
     /// CX agent.
     #[prost(message, optional, tag = "13")]
     pub cx_parameters: ::core::option::Option<::prost_types::Struct>,
-    /// The unique identifier of the CX page to override the `current_page` in the
-    /// session.
+    /// The unique identifier of the Dialogflow CX page to override the
+    /// `current_page` in the session.
     /// Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
     /// ID>/flows/<Flow ID>/pages/<Page ID>`.
     ///
@@ -7423,10 +7424,10 @@ pub struct StreamingAnalyzeContentRequest {
     /// <https://cloud.google.com/agent-assist/docs/extended-streaming>
     #[prost(bool, tag = "11")]
     pub enable_extended_streaming: bool,
-    /// Enable partial virtual agent responses. If this flag is not enabled,
-    /// response stream still contains only one final response even if some
-    /// `Fulfillment`s in Dialogflow virtual agent have been configured to return
-    /// partial responses.
+    /// Optional. Enable partial responses from Dialogflow CX agent. If this flag
+    /// is not enabled, response stream still contains only one final response even
+    /// if some `Fulfillment`s in Dialogflow CX agent have been configured to
+    /// return partial responses.
     #[prost(bool, tag = "12")]
     pub enable_partial_automated_agent_reply: bool,
     /// if true, `StreamingAnalyzeContentResponse.debugging_info` will get
@@ -8147,7 +8148,8 @@ pub mod response_message {
     ///
     /// You may set this, for example:
     ///
-    /// * In the entry fulfillment of a CX Page if entering the page indicates
+    /// * In the entry fulfillment of a Dialogflow CX Page if entering the page
+    /// indicates
     ///    something went extremely wrong in the conversation.
     /// * In a webhook response when you determine that the customer issue can only
     ///    be handled by a human.
@@ -8270,7 +8272,7 @@ pub struct SuggestKnowledgeAssistRequest {
     #[prost(int32, tag = "3")]
     pub context_size: i32,
     /// Optional. The previously suggested query for the given conversation. This
-    /// helps identify whether the next suggestion we generate is resonably
+    /// helps identify whether the next suggestion we generate is reasonably
     /// different from the previous one. This is useful to avoid similar
     /// suggestions within the conversation.
     #[prost(string, tag = "4")]
@@ -9071,7 +9073,7 @@ pub struct AgentAssistantFeedback {
     /// * Suggested document says: "Items must be returned/exchanged within 60
     ///    days of the purchase date."
     /// * Ground truth: "No return or exchange is allowed."
-    /// * \[document_correctness\]: INCORRECT
+    /// * [document_correctness][google.cloud.dialogflow.v2beta1.AgentAssistantFeedback.document_correctness]: [INCORRECT][google.cloud.dialogflow.v2beta1.AgentAssistantFeedback.DocumentCorrectness.INCORRECT]
     #[prost(enumeration = "agent_assistant_feedback::DocumentCorrectness", tag = "2")]
     pub document_correctness: i32,
     /// Optional. Whether or not the suggested document is efficient. For example,
@@ -11978,12 +11980,21 @@ pub mod search_knowledge_request {
         #[prost(message, repeated, tag = "1")]
         pub boost_specs: ::prost::alloc::vec::Vec<search_config::BoostSpecs>,
         /// Optional. Filter specification for data store queries.
+        ///
+        /// Maps from datastore name to the filter expression for that datastore. Do
+        /// not specify more than one FilterSpecs for each datastore name. If
+        /// multiple FilterSpecs are provided for the same datastore name, the
+        /// behavior is undefined.
         #[prost(message, repeated, tag = "2")]
         pub filter_specs: ::prost::alloc::vec::Vec<search_config::FilterSpecs>,
     }
     /// Nested message and enum types in `SearchConfig`.
     pub mod search_config {
         /// Boost specifications for data stores.
+        ///
+        /// Maps from datastore name to their boost configuration. Do not specify
+        /// more than one BoostSpecs for each datastore name. If multiple BoostSpecs
+        /// are provided for the same datastore name, the behavior is undefined.
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct BoostSpecs {
             /// Optional. Data Stores where the boosting configuration is applied. The
@@ -12005,7 +12016,7 @@ pub mod search_knowledge_request {
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct BoostSpec {
                 /// Optional. Condition boost specifications. If a document matches
-                /// multiple conditions in the specifictions, boost scores from these
+                /// multiple conditions in the specifications, boost scores from these
                 /// specifications are all applied and combined in a non-linear way.
                 /// Maximum number of specifications is 20.
                 #[prost(message, repeated, tag = "1")]
