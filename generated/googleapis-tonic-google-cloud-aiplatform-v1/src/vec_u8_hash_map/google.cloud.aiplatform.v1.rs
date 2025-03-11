@@ -2946,6 +2946,12 @@ pub struct ModelGardenSource {
     /// Required. The model garden source model resource name.
     #[prost(string, tag = "1")]
     pub public_model_name: ::prost::alloc::string::String,
+    /// Optional. The model garden source model version ID.
+    #[prost(string, tag = "3")]
+    pub version_id: ::prost::alloc::string::String,
+    /// Optional. Whether to avoid pulling the model from the HF cache.
+    #[prost(bool, tag = "4")]
+    pub skip_hf_model_cache: bool,
 }
 /// Contains information about the source of the models generated from Generative
 /// AI Studio.
@@ -38712,6 +38718,42 @@ pub struct RagFileTransformationConfig {
     #[prost(message, optional, tag = "1")]
     pub rag_file_chunking_config: ::core::option::Option<RagFileChunkingConfig>,
 }
+/// Specifies the parsing config for RagFiles.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagFileParsingConfig {
+    /// The parser to use for RagFiles.
+    #[prost(oneof = "rag_file_parsing_config::Parser", tags = "4")]
+    pub parser: ::core::option::Option<rag_file_parsing_config::Parser>,
+}
+/// Nested message and enum types in `RagFileParsingConfig`.
+pub mod rag_file_parsing_config {
+    /// Document AI Layout Parser config.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LayoutParser {
+        /// The full resource name of a Document AI processor or processor version.
+        /// The processor must have type `LAYOUT_PARSER_PROCESSOR`. If specified, the
+        /// `additional_config.parse_as_scanned_pdf` field must be false.
+        /// Format:
+        /// * `projects/{project_id}/locations/{location}/processors/{processor_id}`
+        /// * `projects/{project_id}/locations/{location}/processors/{processor_id}/processorVersions/{processor_version_id}`
+        #[prost(string, tag = "1")]
+        pub processor_name: ::prost::alloc::string::String,
+        /// The maximum number of requests the job is allowed to make to the Document
+        /// AI processor per minute. Consult
+        /// <https://cloud.google.com/document-ai/quotas> and the Quota page for your
+        /// project to set an appropriate value here. If unspecified, a default value
+        /// of 120 QPM would be used.
+        #[prost(int32, tag = "2")]
+        pub max_parsing_requests_per_min: i32,
+    }
+    /// The parser to use for RagFiles.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Parser {
+        /// The Layout Parser to use for RagFiles.
+        #[prost(message, tag = "4")]
+        LayoutParser(LayoutParser),
+    }
+}
 /// Config for uploading RagFile.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UploadRagFileConfig {
@@ -38729,6 +38771,10 @@ pub struct ImportRagFilesConfig {
     pub rag_file_transformation_config: ::core::option::Option<
         RagFileTransformationConfig,
     >,
+    /// Optional. Specifies the parsing config for RagFiles.
+    /// RAG will use the default parser if this field is not set.
+    #[prost(message, optional, tag = "8")]
+    pub rag_file_parsing_config: ::core::option::Option<RagFileParsingConfig>,
     /// Optional. The max number of queries per minute that this job is allowed to
     /// make to the embedding model specified on the corpus. This value is specific
     /// to this job and not shared across other import jobs. Consult the Quotas

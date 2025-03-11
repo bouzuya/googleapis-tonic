@@ -10930,7 +10930,7 @@ pub mod webhook {
             /// Required. The client ID provided by the 3rd party platform.
             #[prost(string, tag = "1")]
             pub client_id: ::prost::alloc::string::String,
-            /// Required. The client secret provided by the 3rd party platform.
+            /// Optional. The client secret provided by the 3rd party platform.
             #[prost(string, tag = "2")]
             pub client_secret: ::prost::alloc::string::String,
             /// Required. The token endpoint provided by the 3rd party platform to

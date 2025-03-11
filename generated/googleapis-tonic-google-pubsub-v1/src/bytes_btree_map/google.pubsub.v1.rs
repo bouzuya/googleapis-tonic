@@ -1532,10 +1532,15 @@ pub struct JavaScriptUdf {
 /// All supported message transforms types.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MessageTransform {
-    /// Optional. If set to true, the transform is enabled. If false, the transform
-    /// is disabled and will not be applied to messages. Defaults to `true`.
+    /// Optional. This field is deprecated, use the `disabled` field to disable
+    /// transforms.
+    #[deprecated]
     #[prost(bool, tag = "3")]
     pub enabled: bool,
+    /// Optional. If true, the transform is disabled and will not be applied to
+    /// messages. Defaults to `false`.
+    #[prost(bool, tag = "4")]
+    pub disabled: bool,
     /// The type of transform to apply to messages.
     #[prost(oneof = "message_transform::Transform", tags = "2")]
     pub transform: ::core::option::Option<message_transform::Transform>,

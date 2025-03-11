@@ -2188,6 +2188,10 @@ pub struct MachineSpec {
     /// available from GKE. (Example: tpu_topology: "2x2x1").
     #[prost(string, tag = "4")]
     pub tpu_topology: ::prost::alloc::string::String,
+    /// Optional. Immutable. The number of nodes per replica for multihost GPU
+    /// deployments.
+    #[prost(int32, tag = "6")]
+    pub multihost_gpu_node_count: i32,
     /// Optional. Immutable. Configuration controlling how this resource pool
     /// consumes reservation.
     #[prost(message, optional, tag = "5")]
@@ -3730,6 +3734,12 @@ pub struct ModelGardenSource {
     /// Required. The model garden source model resource name.
     #[prost(string, tag = "1")]
     pub public_model_name: ::prost::alloc::string::String,
+    /// Optional. The model garden source model version ID.
+    #[prost(string, tag = "3")]
+    pub version_id: ::prost::alloc::string::String,
+    /// Optional. Whether to avoid pulling the model from the HF cache.
+    #[prost(bool, tag = "4")]
+    pub skip_hf_model_cache: bool,
 }
 /// Contains information about the source of the models generated from Generative
 /// AI Studio.

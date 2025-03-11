@@ -609,7 +609,7 @@ pub mod filter_result {
         MaliciousUriFilterResult(super::MaliciousUriFilterResult),
         /// CSAM filter results.
         #[prost(message, tag = "5")]
-        CsamFilterResult(super::CsamFilterResult),
+        CsamFilterFilterResult(super::CsamFilterResult),
         /// Virus scan results.
         #[prost(message, tag = "6")]
         VirusScanFilterResult(super::VirusScanFilterResult),
