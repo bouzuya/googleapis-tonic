@@ -1640,6 +1640,354 @@ pub mod autofeed_settings_service_client {
         }
     }
 }
+/// Collection of information related to the [automatic
+/// improvements](<https://developers.google.com/shopping-content/guides/automatic-improvements>)
+/// of an account.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AutomaticImprovements {
+    /// Identifier. The resource name of the automatic improvements.
+    /// Format: `accounts/{account}/automaticImprovements`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Turning on [item
+    /// updates](<https://support.google.com/merchants/answer/3246284>) allows
+    /// Google to automatically update items for you. When item updates are on,
+    /// Google uses the structured data markup on the website and advanced data
+    /// extractors to update the price and availability of the items. When the item
+    /// updates are off, items with mismatched data aren't shown.
+    /// This field is only updated (cleared) if provided in the update mask.
+    #[prost(message, optional, tag = "2")]
+    pub item_updates: ::core::option::Option<AutomaticItemUpdates>,
+    /// This improvement will attempt to automatically correct submitted images if
+    /// they don't meet the [image
+    /// requirements](<https://support.google.com/merchants/answer/6324350>), for
+    /// example, removing overlays. If successful, the image will be replaced and
+    /// approved. This improvement is only applied to images of disapproved offers.
+    /// For more information see: [Automatic image
+    /// improvements](<https://support.google.com/merchants/answer/9242973>)
+    /// This field is only updated (cleared) if provided in the update mask.
+    #[prost(message, optional, tag = "3")]
+    pub image_improvements: ::core::option::Option<AutomaticImageImprovements>,
+    /// Not available for MCAs
+    /// [accounts](<https://support.google.com/merchants/answer/188487>). By turning
+    /// on [automatic shipping
+    /// improvements](<https://support.google.com/merchants/answer/10027038>),
+    /// you are allowing Google to improve the accuracy of your delivery times
+    /// shown to shoppers using Google. More accurate delivery times, especially
+    /// when faster, typically lead to better conversion rates. Google will improve
+    /// your estimated delivery times based on various factors:
+    /// * Delivery address of an order
+    /// * Current handling time and shipping time settings
+    /// * Estimated weekdays or business days
+    /// * Parcel tracking data
+    /// This field is only updated (cleared) if provided in the update mask.
+    #[prost(message, optional, tag = "4")]
+    pub shipping_improvements: ::core::option::Option<AutomaticShippingImprovements>,
+}
+/// Turning on [item
+/// updates](<https://support.google.com/merchants/answer/3246284>) allows
+/// Google to automatically update items for you. When item updates are on,
+/// Google uses the structured data markup on the website and advanced data
+/// extractors to update the price and availability of the items. When the item
+/// updates are off, items with mismatched data aren't shown.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AutomaticItemUpdates {
+    /// Optional. Determines which attributes of the items should be automatically
+    /// updated. If this field is not present and provided in the update mask, then
+    /// the settings will be deleted. If there are no settings for subaccount, they
+    /// are inherited from aggregator.
+    #[prost(message, optional, tag = "1")]
+    pub account_item_updates_settings: ::core::option::Option<
+        automatic_item_updates::ItemUpdatesAccountLevelSettings,
+    >,
+    /// Output only. The effective value of allow_price_updates.
+    /// If account_item_updates_settings is present, then this value is the same.
+    /// Otherwise, it represents the inherited value of the parent account.
+    /// The default value is true if no settings are present.
+    /// Read-only.
+    #[prost(bool, tag = "2")]
+    pub effective_allow_price_updates: bool,
+    /// Output only. The effective value of allow_availability_updates.
+    /// If account_item_updates_settings is present, then this value is the same.
+    /// Otherwise, it represents the inherited value of the parent account.
+    /// The default value is true if no settings are present.
+    /// Read-only.
+    #[prost(bool, tag = "3")]
+    pub effective_allow_availability_updates: bool,
+    /// Output only. The effective value of
+    /// allow_strict_availability_updates.
+    /// If account_item_updates_settings is present, then this value is the same.
+    /// Otherwise, it represents the inherited value of the parent account.
+    /// The default value is true if no settings are present.
+    /// Read-only.
+    #[prost(bool, tag = "4")]
+    pub effective_allow_strict_availability_updates: bool,
+    /// Output only. The effective value of allow_condition_updates.
+    /// If account_item_updates_settings is present, then this value is the same.
+    /// Otherwise, it represents the inherited value of the parent account.
+    /// The default value is true if no settings are present.
+    /// Read-only.
+    #[prost(bool, tag = "5")]
+    pub effective_allow_condition_updates: bool,
+}
+/// Nested message and enum types in `AutomaticItemUpdates`.
+pub mod automatic_item_updates {
+    /// Settings for the Automatic Item Updates.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ItemUpdatesAccountLevelSettings {
+        /// If price updates are enabled, Google always updates the active price with
+        /// the crawled information.
+        #[prost(bool, optional, tag = "1")]
+        pub allow_price_updates: ::core::option::Option<bool>,
+        /// If availability updates are enabled, any previous availability values
+        /// get overwritten if Google finds an out-of-stock annotation on the offer's
+        /// page.
+        /// If additionally `allow_strict_availability_updates` field is set to
+        /// true, values get overwritten if Google finds an in-stock annotation on
+        /// the offer’s page.
+        #[prost(bool, optional, tag = "2")]
+        pub allow_availability_updates: ::core::option::Option<bool>,
+        /// If `allow_availability_updates` is enabled, items are automatically
+        /// updated in all your Shopping target countries. By default, availability
+        /// updates will only be applied to items that are 'out of stock' on your
+        /// website but 'in stock' on Shopping. Set this to true to also update items
+        /// that are 'in stock' on your website, but 'out of stock' on Google
+        /// Shopping. In order for this field to have an effect, you must also set
+        /// `allow_availability_updates`.
+        #[prost(bool, optional, tag = "3")]
+        pub allow_strict_availability_updates: ::core::option::Option<bool>,
+        /// If condition updates are enabled, Google always updates item condition
+        /// with the condition detected from the details of your product.
+        #[prost(bool, optional, tag = "4")]
+        pub allow_condition_updates: ::core::option::Option<bool>,
+    }
+}
+/// This improvement will attempt to automatically correct submitted images if
+/// they don't meet the [image
+/// requirements](<https://support.google.com/merchants/answer/6324350>), for
+/// example, removing overlays. If successful, the image will be replaced and
+/// approved. This improvement is only applied to images of disapproved offers.
+/// For more information see: [Automatic image
+/// improvements](<https://support.google.com/merchants/answer/9242973>)
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AutomaticImageImprovements {
+    /// Optional. Determines how the images should be automatically updated.
+    /// If this field is not present and provided in the update mask, then the
+    /// settings will be deleted. If there are no settings for subaccount, they are
+    /// inherited from aggregator.
+    #[prost(message, optional, tag = "1")]
+    pub account_image_improvements_settings: ::core::option::Option<
+        automatic_image_improvements::ImageImprovementsAccountLevelSettings,
+    >,
+    /// Output only. The effective value of allow_automatic_image_improvements.
+    /// If account_image_improvements_settings is present, then this value is the
+    /// same. Otherwise, it represents the inherited value of the parent account.
+    /// Read-only.
+    #[prost(bool, tag = "2")]
+    pub effective_allow_automatic_image_improvements: bool,
+}
+/// Nested message and enum types in `AutomaticImageImprovements`.
+pub mod automatic_image_improvements {
+    /// Settings for the Automatic Image Improvements.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ImageImprovementsAccountLevelSettings {
+        /// Enables automatic image improvements.
+        #[prost(bool, optional, tag = "1")]
+        pub allow_automatic_image_improvements: ::core::option::Option<bool>,
+    }
+}
+/// Not available for MCAs
+/// [accounts](<https://support.google.com/merchants/answer/188487>). By turning on
+/// [automatic shipping
+/// improvements](<https://support.google.com/merchants/answer/10027038>),
+/// you are allowing Google to improve the accuracy of your delivery times shown
+/// to shoppers using Google. More accurate delivery times, especially when
+/// faster, typically lead to better conversion rates. Google will improve your
+/// estimated delivery times based on various factors:
+/// * Delivery address of an order
+/// * Current handling time and shipping time settings
+/// * Estimated weekdays or business days
+/// * Parcel tracking data
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AutomaticShippingImprovements {
+    /// Enables automatic shipping improvements.
+    #[prost(bool, optional, tag = "1")]
+    pub allow_shipping_improvements: ::core::option::Option<bool>,
+}
+/// Request message for the `GetAutomaticImprovements` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAutomaticImprovementsRequest {
+    /// Required. The resource name of the automatic improvements.
+    /// Format: `accounts/{account}/automaticImprovements`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for the `UpdateAutomaticImprovements` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateAutomaticImprovementsRequest {
+    /// Required. The new version of the automatic imrovements.
+    #[prost(message, optional, tag = "1")]
+    pub automatic_improvements: ::core::option::Option<AutomaticImprovements>,
+    /// Required. List of fields being updated.
+    /// The following fields are supported (in both `snake_case` and
+    /// `lowerCamelCase`):
+    ///
+    /// - `item_updates`
+    /// - `item_updates.account_level_settings`
+    /// - `image_improvements`
+    /// - `image_improvements.account_level_settings`
+    /// - `shipping_improvements`
+    /// - `shipping_improvements.allow_shipping_improvements`
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Generated client implementations.
+pub mod automatic_improvements_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service to manage the automatic improvements of an account. The automatic
+    /// improvements of the account can be used to automatically update products,
+    /// improve images and shipping.
+    #[derive(Debug, Clone)]
+    pub struct AutomaticImprovementsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AutomaticImprovementsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AutomaticImprovementsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            AutomaticImprovementsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves the automatic improvements of an account.
+        pub async fn get_automatic_improvements(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAutomaticImprovementsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AutomaticImprovements>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.AutomaticImprovementsService/GetAutomaticImprovements",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AutomaticImprovementsService",
+                        "GetAutomaticImprovements",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the automatic improvements of an account.
+        pub async fn update_automatic_improvements(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAutomaticImprovementsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AutomaticImprovements>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.AutomaticImprovementsService/UpdateAutomaticImprovements",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AutomaticImprovementsService",
+                        "UpdateAutomaticImprovements",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
 /// Collection of information related to the [identity of a
 /// business](<https://support.google.com/merchants/answer/12564247>).
 #[derive(Clone, PartialEq, ::prost::Message)]

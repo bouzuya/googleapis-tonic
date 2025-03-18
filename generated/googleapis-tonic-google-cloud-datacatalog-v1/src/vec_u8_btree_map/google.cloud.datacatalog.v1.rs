@@ -2034,7 +2034,7 @@ pub struct DatabaseTableSpec {
     /// Dataplex table entries.
     #[prost(message, optional, tag = "2")]
     pub dataplex_table: ::core::option::Option<DataplexTableSpec>,
-    /// Spec what aplies to tables that are actually views.
+    /// Spec what applies to tables that are actually views.
     /// Not set for "real" tables.
     #[prost(message, optional, tag = "3")]
     pub database_view_spec: ::core::option::Option<
@@ -2674,13 +2674,13 @@ pub mod model_spec {
 /// Store.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FeatureOnlineStoreSpec {
-    /// Output only. Type of underelaying storage for the FeatureOnlineStore.
+    /// Output only. Type of underlying storage for the FeatureOnlineStore.
     #[prost(enumeration = "feature_online_store_spec::StorageType", tag = "1")]
     pub storage_type: i32,
 }
 /// Nested message and enum types in `FeatureOnlineStoreSpec`.
 pub mod feature_online_store_spec {
-    /// Type of underlaying storage type.
+    /// Type of underlying storage type.
     #[derive(
         Clone,
         Copy,
@@ -2698,7 +2698,7 @@ pub mod feature_online_store_spec {
         Unspecified = 0,
         /// Underlsying storgae is Bigtable.
         Bigtable = 1,
-        /// Underlaying is optimized online server (Lightning).
+        /// Underlying is optimized online server (Lightning).
         Optimized = 2,
     }
     impl StorageType {
@@ -3583,6 +3583,8 @@ pub mod data_catalog_client {
     )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    /// Deprecated: Please use Dataplex Catalog instead.
+    ///
     /// Data Catalog API service allows you to discover, understand, and manage
     /// your data.
     #[derive(Debug, Clone)]
@@ -3669,6 +3671,7 @@ pub mod data_catalog_client {
         ///
         /// For more information, see [Data Catalog search syntax]
         /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
+        #[deprecated]
         pub async fn search_catalog(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchCatalogRequest>,
@@ -3725,6 +3728,7 @@ pub mod data_catalog_client {
         /// You must enable the Data Catalog API in the project identified by
         /// the `parent` parameter. For more information, see [Data Catalog resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn create_entry_group(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEntryGroupRequest>,
@@ -3752,6 +3756,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an entry group.
+        #[deprecated]
         pub async fn get_entry_group(
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntryGroupRequest>,
@@ -3784,6 +3789,7 @@ pub mod data_catalog_client {
         /// the `entry_group.name` parameter. For more information, see [Data Catalog
         /// resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn update_entry_group(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEntryGroupRequest>,
@@ -3816,6 +3822,7 @@ pub mod data_catalog_client {
         /// identified by the `name` parameter. For more information, see [Data Catalog
         /// resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn delete_entry_group(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteEntryGroupRequest>,
@@ -3843,6 +3850,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists entry groups.
+        #[deprecated]
         pub async fn list_entry_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntryGroupsRequest>,
@@ -3883,6 +3891,7 @@ pub mod data_catalog_client {
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
         ///
         /// An entry group can have a maximum of 100,000 entries.
+        #[deprecated]
         pub async fn create_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEntryRequest>,
@@ -3915,6 +3924,7 @@ pub mod data_catalog_client {
         /// the `entry.name` parameter. For more information, see [Data Catalog
         /// resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn update_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateEntryRequest>,
@@ -3951,6 +3961,7 @@ pub mod data_catalog_client {
         /// the `name` parameter. For more information, see [Data Catalog
         /// resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn delete_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteEntryRequest>,
@@ -3978,6 +3989,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an entry.
+        #[deprecated]
         pub async fn get_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntryRequest>,
@@ -4007,6 +4019,7 @@ pub mod data_catalog_client {
         /// Gets an entry by its target resource name.
         ///
         /// The resource name comes from the source Google Cloud Platform service.
+        #[deprecated]
         pub async fn lookup_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::LookupEntryRequest>,
@@ -4038,6 +4051,7 @@ pub mod data_catalog_client {
         /// Note: Currently, this method can list only custom entries.
         /// To get a list of both custom and automatically created entries, use
         /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
+        #[deprecated]
         pub async fn list_entries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntriesRequest>,
@@ -4072,6 +4086,7 @@ pub mod data_catalog_client {
         ///
         /// To call this method, you must have the `datacatalog.entries.updateOverview`
         /// IAM permission on the corresponding project.
+        #[deprecated]
         pub async fn modify_entry_overview(
             &mut self,
             request: impl tonic::IntoRequest<super::ModifyEntryOverviewRequest>,
@@ -4103,6 +4118,7 @@ pub mod data_catalog_client {
         ///
         /// To call this method, you must have the `datacatalog.entries.updateContacts`
         /// IAM permission on the corresponding project.
+        #[deprecated]
         pub async fn modify_entry_contacts(
             &mut self,
             request: impl tonic::IntoRequest<super::ModifyEntryContactsRequest>,
@@ -4135,6 +4151,7 @@ pub mod data_catalog_client {
         /// `parent` parameter.
         /// For more information, see [Data Catalog resource project]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn create_tag_template(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTagTemplateRequest>,
@@ -4162,6 +4179,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets a tag template.
+        #[deprecated]
         pub async fn get_tag_template(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTagTemplateRequest>,
@@ -4197,6 +4215,7 @@ pub mod data_catalog_client {
         /// the `tag_template.name` parameter. For more information, see [Data Catalog
         /// resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn update_tag_template(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTagTemplateRequest>,
@@ -4228,6 +4247,7 @@ pub mod data_catalog_client {
         /// You must enable the Data Catalog API in the project identified by
         /// the `name` parameter. For more information, see [Data Catalog resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn delete_tag_template(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTagTemplateRequest>,
@@ -4259,6 +4279,7 @@ pub mod data_catalog_client {
         /// You must enable the Data Catalog API in the project identified by
         /// the `parent` parameter. For more information, see [Data Catalog resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn create_tag_template_field(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTagTemplateFieldRequest>,
@@ -4296,6 +4317,7 @@ pub mod data_catalog_client {
         /// identified by the `name` parameter. For more information, see [Data Catalog
         /// resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn update_tag_template_field(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTagTemplateFieldRequest>,
@@ -4330,6 +4352,7 @@ pub mod data_catalog_client {
         /// You must enable the Data Catalog API in the project identified by the
         /// `name` parameter. For more information, see [Data Catalog resource project]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn rename_tag_template_field(
             &mut self,
             request: impl tonic::IntoRequest<super::RenameTagTemplateFieldRequest>,
@@ -4362,6 +4385,7 @@ pub mod data_catalog_client {
         /// Renames an enum value in a tag template.
         ///
         /// Within a single enum field, enum values must be unique.
+        #[deprecated]
         pub async fn rename_tag_template_field_enum_value(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4399,6 +4423,7 @@ pub mod data_catalog_client {
         /// You must enable the Data Catalog API in the project identified by
         /// the `name` parameter. For more information, see [Data Catalog resource
         /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+        #[deprecated]
         pub async fn delete_tag_template_field(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTagTemplateFieldRequest>,
@@ -4437,6 +4462,7 @@ pub mod data_catalog_client {
         /// and the [tag template]
         /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
         /// used to create the tag must be in the same organization.
+        #[deprecated]
         pub async fn create_tag(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTagRequest>,
@@ -4464,6 +4490,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing tag.
+        #[deprecated]
         pub async fn update_tag(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTagRequest>,
@@ -4491,6 +4518,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a tag.
+        #[deprecated]
         pub async fn delete_tag(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTagRequest>,
@@ -4520,6 +4548,7 @@ pub mod data_catalog_client {
         /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
         /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
         /// lowercased.
+        #[deprecated]
         pub async fn list_tags(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTagsRequest>,
@@ -4562,6 +4591,7 @@ pub mod data_catalog_client {
         /// [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
         /// a [ReconcileTagsResponse]
         /// [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
+        #[deprecated]
         pub async fn reconcile_tags(
             &mut self,
             request: impl tonic::IntoRequest<super::ReconcileTagsRequest>,
@@ -4593,6 +4623,7 @@ pub mod data_catalog_client {
         }
         /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
         /// the current user. Starring information is private to each user.
+        #[deprecated]
         pub async fn star_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::StarEntryRequest>,
@@ -4624,6 +4655,7 @@ pub mod data_catalog_client {
         }
         /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
         /// the current user. Starring information is private to each user.
+        #[deprecated]
         pub async fn unstar_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::UnstarEntryRequest>,
@@ -4670,6 +4702,7 @@ pub mod data_catalog_client {
         /// - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
         ///   templates.
         /// - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+        #[deprecated]
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4722,6 +4755,7 @@ pub mod data_catalog_client {
         /// - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
         ///   templates.
         /// - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+        #[deprecated]
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4767,6 +4801,7 @@ pub mod data_catalog_client {
         /// external Google Cloud Platform resources ingested into Data Catalog.
         ///
         /// No Google IAM permissions are required to call this method.
+        #[deprecated]
         pub async fn test_iam_permissions(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4818,6 +4853,7 @@ pub mod data_catalog_client {
         /// and an
         /// [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
         /// message.
+        #[deprecated]
         pub async fn import_entries(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportEntriesRequest>,
@@ -4849,6 +4885,7 @@ pub mod data_catalog_client {
         }
         /// Sets the configuration related to the migration to Dataplex for an
         /// organization or project.
+        #[deprecated]
         pub async fn set_config(
             &mut self,
             request: impl tonic::IntoRequest<super::SetConfigRequest>,
@@ -4881,6 +4918,7 @@ pub mod data_catalog_client {
         /// Retrieves the configuration related to the migration from Data Catalog to
         /// Dataplex for a specific organization, including all the projects under it
         /// which have a separate configuration set.
+        #[deprecated]
         pub async fn retrieve_config(
             &mut self,
             request: impl tonic::IntoRequest<super::RetrieveConfigRequest>,
@@ -4915,6 +4953,7 @@ pub mod data_catalog_client {
         /// specific configuration set for the resource, the setting is checked
         /// hierarchicahlly through the ancestors of the resource, starting from the
         /// resource itself.
+        #[deprecated]
         pub async fn retrieve_effective_config(
             &mut self,
             request: impl tonic::IntoRequest<super::RetrieveEffectiveConfigRequest>,

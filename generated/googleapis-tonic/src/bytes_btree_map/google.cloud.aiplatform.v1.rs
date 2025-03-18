@@ -4391,15 +4391,21 @@ pub mod vertex_rag_store {
         pub rag_file_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
 }
-/// Retrieve from Vertex AI Search datastore for grounding.
+/// Retrieve from Vertex AI Search datastore or engine for grounding.
+/// datastore and engine are mutually exclusive.
 /// See <https://cloud.google.com/products/agent-builder>
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VertexAiSearch {
-    /// Required. Fully-qualified Vertex AI Search data store resource ID.
+    /// Optional. Fully-qualified Vertex AI Search data store resource ID.
     /// Format:
     /// `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
     #[prost(string, tag = "1")]
     pub datastore: ::prost::alloc::string::String,
+    /// Optional. Fully-qualified Vertex AI Search engine resource ID.
+    /// Format:
+    /// `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+    #[prost(string, tag = "2")]
+    pub engine: ::prost::alloc::string::String,
 }
 /// Tool to retrieve public web data for grounding, powered by Google.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4561,6 +4567,9 @@ pub struct RagRetrievalConfig {
     /// Optional. Config for filters.
     #[prost(message, optional, tag = "3")]
     pub filter: ::core::option::Option<rag_retrieval_config::Filter>,
+    /// Optional. Config for ranking and reranking.
+    #[prost(message, optional, tag = "4")]
+    pub ranking: ::core::option::Option<rag_retrieval_config::Ranking>,
 }
 /// Nested message and enum types in `RagRetrievalConfig`.
 pub mod rag_retrieval_config {
@@ -4589,6 +4598,42 @@ pub mod rag_retrieval_config {
             /// threshold.
             #[prost(double, tag = "4")]
             VectorSimilarityThreshold(f64),
+        }
+    }
+    /// Config for ranking and reranking.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Ranking {
+        /// Config options for ranking. Currently only Rank Service is supported.
+        #[prost(oneof = "ranking::RankingConfig", tags = "1, 3")]
+        pub ranking_config: ::core::option::Option<ranking::RankingConfig>,
+    }
+    /// Nested message and enum types in `Ranking`.
+    pub mod ranking {
+        /// Config for Rank Service.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct RankService {
+            /// Optional. The model name of the rank service.
+            /// Format: `semantic-ranker-512@latest`
+            #[prost(string, optional, tag = "1")]
+            pub model_name: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        /// Config for LlmRanker.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct LlmRanker {
+            /// Optional. The model name used for ranking.
+            /// Format: `gemini-1.5-pro`
+            #[prost(string, optional, tag = "1")]
+            pub model_name: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        /// Config options for ranking. Currently only Rank Service is supported.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum RankingConfig {
+            /// Optional. Config for Rank Service.
+            #[prost(message, tag = "1")]
+            RankService(RankService),
+            /// Optional. Config for LlmRanker.
+            #[prost(message, tag = "3")]
+            LlmRanker(LlmRanker),
         }
     }
 }

@@ -1331,7 +1331,7 @@ pub struct SoftwareConfig {
     /// If unspecified, the field defaults to `PLUGINS_ENABLED`.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.* and newer.
+    /// composer-3-airflow-*.*.*-build.* and newer.
     #[prost(enumeration = "software_config::WebServerPluginsMode", tag = "10")]
     pub web_server_plugins_mode: i32,
 }
@@ -1586,7 +1586,7 @@ pub struct NodeConfig {
     /// projects/{project}/regions/{region}/networkAttachments/{networkAttachment}.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.* and newer.
+    /// composer-3-airflow-*.*.*-build.* and newer.
     #[prost(string, tag = "12")]
     pub composer_network_attachment: ::prost::alloc::string::String,
     /// Optional. The IP range in CIDR notation to use internally by Cloud
@@ -1596,7 +1596,7 @@ pub struct NodeConfig {
     /// If not specified, the default value of '100.64.128.0/20' is used.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.* and newer.
+    /// composer-3-airflow-*.*.*-build.* and newer.
     #[prost(string, tag = "13")]
     pub composer_internal_ipv4_cidr_block: ::prost::alloc::string::String,
 }
@@ -1699,7 +1699,7 @@ pub struct PrivateEnvironmentConfig {
     /// internet.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.* and newer.
+    /// composer-3-airflow-*.*.*-build.* and newer.
     #[prost(bool, tag = "11")]
     pub enable_private_builds_only: bool,
     /// Optional. Configuration for the private GKE cluster for a Private IP
@@ -1778,7 +1778,7 @@ pub struct WorkloadsConfig {
     /// Optional. Resources used by Airflow DAG processors.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.* and newer.
+    /// composer-3-airflow-*.*.*-build.* and newer.
     #[prost(message, optional, tag = "5")]
     pub dag_processor: ::core::option::Option<workloads_config::DagProcessorResource>,
 }
@@ -1853,7 +1853,7 @@ pub mod workloads_config {
     /// Configuration for resources used by Airflow DAG processors.
     ///
     /// This field is supported for Cloud Composer environments in versions
-    /// composer-3.*.*-airflow-*.*.* and newer.
+    /// composer-3-airflow-*.*.*-build.* and newer.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct DagProcessorResource {
         /// Optional. CPU request and limit for a single Airflow DAG processor
@@ -2673,7 +2673,7 @@ pub mod environments_client {
         /// Creates a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn create_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserWorkloadsSecretRequest>,
@@ -2707,7 +2707,7 @@ pub mod environments_client {
         /// Values of the "data" field in the response are cleared.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn get_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserWorkloadsSecretRequest>,
@@ -2740,7 +2740,7 @@ pub mod environments_client {
         /// Lists user workloads Secrets.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn list_user_workloads_secrets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUserWorkloadsSecretsRequest>,
@@ -2773,7 +2773,7 @@ pub mod environments_client {
         /// Updates a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn update_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserWorkloadsSecretRequest>,
@@ -2806,7 +2806,7 @@ pub mod environments_client {
         /// Deletes a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn delete_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserWorkloadsSecretRequest>,
@@ -2836,7 +2836,7 @@ pub mod environments_client {
         /// Creates a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn create_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserWorkloadsConfigMapRequest>,
@@ -2869,7 +2869,7 @@ pub mod environments_client {
         /// Gets an existing user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn get_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserWorkloadsConfigMapRequest>,
@@ -2902,7 +2902,7 @@ pub mod environments_client {
         /// Lists user workloads ConfigMaps.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn list_user_workloads_config_maps(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUserWorkloadsConfigMapsRequest>,
@@ -2935,7 +2935,7 @@ pub mod environments_client {
         /// Updates a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn update_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserWorkloadsConfigMapRequest>,
@@ -2968,7 +2968,7 @@ pub mod environments_client {
         /// Deletes a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3-airflow-*.*.*-build.* and newer.
         pub async fn delete_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserWorkloadsConfigMapRequest>,

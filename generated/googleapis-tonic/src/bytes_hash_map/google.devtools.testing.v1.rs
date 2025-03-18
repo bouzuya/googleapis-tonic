@@ -1730,7 +1730,6 @@ impl InvalidMatrixDetails {
         }
     }
 }
-/// The state (i.e., progress) of a test execution or matrix.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TestState {

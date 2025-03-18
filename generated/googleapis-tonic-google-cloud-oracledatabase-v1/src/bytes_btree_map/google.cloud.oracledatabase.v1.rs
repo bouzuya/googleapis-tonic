@@ -2083,6 +2083,8 @@ pub mod entitlement {
         Active = 3,
         /// Account is suspended.
         AccountSuspended = 4,
+        /// Entitlement is not approved in private marketplace.
+        NotApprovedInPrivateMarketplace = 5,
     }
     impl State {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -2096,6 +2098,9 @@ pub mod entitlement {
                 Self::AccountNotActive => "ACCOUNT_NOT_ACTIVE",
                 Self::Active => "ACTIVE",
                 Self::AccountSuspended => "ACCOUNT_SUSPENDED",
+                Self::NotApprovedInPrivateMarketplace => {
+                    "NOT_APPROVED_IN_PRIVATE_MARKETPLACE"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2106,6 +2111,9 @@ pub mod entitlement {
                 "ACCOUNT_NOT_ACTIVE" => Some(Self::AccountNotActive),
                 "ACTIVE" => Some(Self::Active),
                 "ACCOUNT_SUSPENDED" => Some(Self::AccountSuspended),
+                "NOT_APPROVED_IN_PRIVATE_MARKETPLACE" => {
+                    Some(Self::NotApprovedInPrivateMarketplace)
+                }
                 _ => None,
             }
         }
@@ -2369,8 +2377,7 @@ pub struct MaintenanceWindow {
     #[prost(int32, tag = "6")]
     pub lead_time_week: i32,
     /// Optional. Cloud CloudExadataInfrastructure node patching method, either
-    /// "ROLLING"
-    ///   or "NONROLLING". Default value is ROLLING.
+    /// "ROLLING" or "NONROLLING". Default value is ROLLING.
     #[prost(enumeration = "maintenance_window::PatchingMode", tag = "7")]
     pub patching_mode: i32,
     /// Optional. Determines the amount of time the system will wait before the
