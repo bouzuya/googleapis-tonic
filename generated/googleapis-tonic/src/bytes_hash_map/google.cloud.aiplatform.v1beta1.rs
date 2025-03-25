@@ -3249,6 +3249,32 @@ pub struct EnvVar {
     #[prost(string, tag = "2")]
     pub value: ::prost::alloc::string::String,
 }
+/// Reference to a secret stored in the Cloud Secret Manager that will
+/// provide the value for this environment variable.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SecretRef {
+    /// Required. The name of the secret in Cloud Secret Manager.
+    /// Format: {secret_name}.
+    #[prost(string, tag = "1")]
+    pub secret: ::prost::alloc::string::String,
+    /// The Cloud Secret Manager secret version.
+    /// Can be 'latest' for the latest version, an integer for a specific
+    /// version, or a version alias.
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+}
+/// Represents an environment variable where the value is a secret in Cloud
+/// Secret Manager.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SecretEnvVar {
+    /// Required. Name of the secret environment variable.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. Reference to a secret stored in the Cloud Secret Manager that
+    /// will provide the value for this environment variable.
+    #[prost(message, optional, tag = "2")]
+    pub secret_ref: ::core::option::Option<SecretRef>,
+}
 /// A trained machine learning Model.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Model {
@@ -5728,6 +5754,9 @@ pub struct GenerationConfig {
     /// Optional. The speech generation config.
     #[prost(message, optional, tag = "23")]
     pub speech_config: ::core::option::Option<SpeechConfig>,
+    /// Optional. Config for model selection.
+    #[prost(message, optional, tag = "27")]
+    pub model_config: ::core::option::Option<generation_config::ModelConfig>,
 }
 /// Nested message and enum types in `GenerationConfig`.
 pub mod generation_config {
@@ -5820,6 +5849,63 @@ pub mod generation_config {
             /// Manual routing.
             #[prost(message, tag = "2")]
             ManualMode(ManualRoutingMode),
+        }
+    }
+    /// Config for model selection.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ModelConfig {
+        /// Required. Feature selection preference.
+        #[prost(enumeration = "model_config::FeatureSelectionPreference", tag = "1")]
+        pub feature_selection_preference: i32,
+    }
+    /// Nested message and enum types in `ModelConfig`.
+    pub mod model_config {
+        /// Options for feature selection preference.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum FeatureSelectionPreference {
+            /// Unspecified feature selection preference.
+            Unspecified = 0,
+            /// Prefer higher quality over lower cost.
+            PrioritizeQuality = 1,
+            /// Balanced feature selection preference.
+            Balanced = 2,
+            /// Prefer lower cost over higher quality.
+            PrioritizeCost = 3,
+        }
+        impl FeatureSelectionPreference {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED",
+                    Self::PrioritizeQuality => "PRIORITIZE_QUALITY",
+                    Self::Balanced => "BALANCED",
+                    Self::PrioritizeCost => "PRIORITIZE_COST",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "PRIORITIZE_QUALITY" => Some(Self::PrioritizeQuality),
+                    "BALANCED" => Some(Self::Balanced),
+                    "PRIORITIZE_COST" => Some(Self::PrioritizeCost),
+                    _ => None,
+                }
+            }
         }
     }
     /// The modalities of the response.
@@ -8321,6 +8407,334 @@ pub struct ListAnnotationsResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
+/// Request message for
+/// [DatasetService.AssessData][google.cloud.aiplatform.v1beta1.DatasetService.AssessData].
+/// Used only for MULTIMODAL datasets.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssessDataRequest {
+    /// Required. The name of the Dataset resource. Used only for MULTIMODAL
+    /// datasets. Format:
+    /// `projects/{project}/locations/{location}/datasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The assessment type.
+    #[prost(oneof = "assess_data_request::AssessmentConfig", tags = "2, 3, 6, 7")]
+    pub assessment_config: ::core::option::Option<assess_data_request::AssessmentConfig>,
+    /// The read config for the dataset.
+    #[prost(oneof = "assess_data_request::ReadConfig", tags = "4, 5")]
+    pub read_config: ::core::option::Option<assess_data_request::ReadConfig>,
+}
+/// Nested message and enum types in `AssessDataRequest`.
+pub mod assess_data_request {
+    /// Configuration for the tuning validation assessment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TuningValidationAssessmentConfig {
+        /// Required. The name of the model used for tuning.
+        #[prost(string, tag = "1")]
+        pub model_name: ::prost::alloc::string::String,
+        /// Required. The dataset usage (e.g. training/validation).
+        #[prost(
+            enumeration = "tuning_validation_assessment_config::DatasetUsage",
+            tag = "2"
+        )]
+        pub dataset_usage: i32,
+    }
+    /// Nested message and enum types in `TuningValidationAssessmentConfig`.
+    pub mod tuning_validation_assessment_config {
+        /// The dataset usage (e.g. training/validation).
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum DatasetUsage {
+            /// Default value. Should not be used.
+            Unspecified = 0,
+            /// Supervised fine-tuning training dataset.
+            SftTraining = 1,
+            /// Supervised fine-tuning validation dataset.
+            SftValidation = 2,
+        }
+        impl DatasetUsage {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "DATASET_USAGE_UNSPECIFIED",
+                    Self::SftTraining => "SFT_TRAINING",
+                    Self::SftValidation => "SFT_VALIDATION",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "DATASET_USAGE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "SFT_TRAINING" => Some(Self::SftTraining),
+                    "SFT_VALIDATION" => Some(Self::SftValidation),
+                    _ => None,
+                }
+            }
+        }
+    }
+    /// Configuration for the tuning resource usage assessment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TuningResourceUsageAssessmentConfig {
+        /// Required. The name of the model used for tuning.
+        #[prost(string, tag = "1")]
+        pub model_name: ::prost::alloc::string::String,
+    }
+    /// Configuration for the batch prediction validation assessment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BatchPredictionValidationAssessmentConfig {
+        /// Required. The name of the model used for batch prediction.
+        #[prost(string, tag = "1")]
+        pub model_name: ::prost::alloc::string::String,
+    }
+    /// Configuration for the batch prediction resource usage assessment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BatchPredictionResourceUsageAssessmentConfig {
+        /// Required. The name of the model used for batch prediction.
+        #[prost(string, tag = "1")]
+        pub model_name: ::prost::alloc::string::String,
+    }
+    /// The assessment type.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AssessmentConfig {
+        /// Optional. Configuration for the tuning validation assessment.
+        #[prost(message, tag = "2")]
+        TuningValidationAssessmentConfig(TuningValidationAssessmentConfig),
+        /// Optional. Configuration for the tuning resource usage assessment.
+        #[prost(message, tag = "3")]
+        TuningResourceUsageAssessmentConfig(TuningResourceUsageAssessmentConfig),
+        /// Optional. Configuration for the batch prediction validation assessment.
+        #[prost(message, tag = "6")]
+        BatchPredictionValidationAssessmentConfig(
+            BatchPredictionValidationAssessmentConfig,
+        ),
+        /// Optional. Configuration for the batch prediction resource usage
+        /// assessment.
+        #[prost(message, tag = "7")]
+        BatchPredictionResourceUsageAssessmentConfig(
+            BatchPredictionResourceUsageAssessmentConfig,
+        ),
+    }
+    /// The read config for the dataset.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ReadConfig {
+        /// Optional. Config for assembling templates with a Gemini API structure to
+        /// assess assembled data.
+        #[prost(message, tag = "4")]
+        GeminiTemplateConfig(super::GeminiTemplateConfig),
+        /// Optional. The column name in the underlying table that contains already
+        /// fully assembled requests.
+        #[prost(string, tag = "5")]
+        RequestColumnName(::prost::alloc::string::String),
+    }
+}
+/// Response message for
+/// [DatasetService.AssessData][google.cloud.aiplatform.v1beta1.DatasetService.AssessData].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssessDataResponse {
+    /// The assessment result.
+    #[prost(oneof = "assess_data_response::AssessmentResult", tags = "1, 2, 3, 4")]
+    pub assessment_result: ::core::option::Option<
+        assess_data_response::AssessmentResult,
+    >,
+}
+/// Nested message and enum types in `AssessDataResponse`.
+pub mod assess_data_response {
+    /// The result of the tuning validation assessment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TuningValidationAssessmentResult {
+        /// Optional. A list containing the first validation errors.
+        #[prost(string, repeated, tag = "1")]
+        pub errors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    /// The result of the tuning resource usage assessment.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TuningResourceUsageAssessmentResult {
+        /// Number of tokens in the tuning dataset.
+        #[prost(int64, tag = "1")]
+        pub token_count: i64,
+        /// Number of billable tokens in the tuning dataset.
+        #[prost(int64, tag = "2")]
+        pub billable_character_count: i64,
+    }
+    /// The result of the batch prediction validation assessment.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BatchPredictionValidationAssessmentResult {}
+    /// The result of the batch prediction resource usage assessment.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BatchPredictionResourceUsageAssessmentResult {
+        /// Number of tokens in the batch prediction dataset.
+        #[prost(int64, tag = "1")]
+        pub token_count: i64,
+        /// Number of audio tokens in the batch prediction dataset.
+        #[prost(int64, tag = "2")]
+        pub audio_token_count: i64,
+    }
+    /// The assessment result.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AssessmentResult {
+        /// Optional. The result of the tuning validation assessment.
+        #[prost(message, tag = "1")]
+        TuningValidationAssessmentResult(TuningValidationAssessmentResult),
+        /// Optional. The result of the tuning resource usage assessment.
+        #[prost(message, tag = "2")]
+        TuningResourceUsageAssessmentResult(TuningResourceUsageAssessmentResult),
+        /// Optional. The result of the batch prediction validation assessment.
+        #[prost(message, tag = "3")]
+        BatchPredictionValidationAssessmentResult(
+            BatchPredictionValidationAssessmentResult,
+        ),
+        /// Optional. The result of the batch prediction resource usage assessment.
+        #[prost(message, tag = "4")]
+        BatchPredictionResourceUsageAssessmentResult(
+            BatchPredictionResourceUsageAssessmentResult,
+        ),
+    }
+}
+/// Runtime operation information for
+/// [DatasetService.AssessData][google.cloud.aiplatform.v1beta1.DatasetService.AssessData].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssessDataOperationMetadata {
+    /// The common part of the operation metadata.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Template configuration to create Gemini examples from a multimodal dataset.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GeminiTemplateConfig {
+    /// Required. The template that will be used for assembling the request to use
+    /// for downstream applications.
+    #[prost(message, optional, tag = "1")]
+    pub gemini_example: ::core::option::Option<GeminiExample>,
+    /// Required. Map of template params to the columns in the dataset table.
+    #[prost(map = "string, string", tag = "2")]
+    pub field_mapping: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+}
+/// Format for Gemini examples used for Vertex Multimodal datasets.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GeminiExample {
+    /// Optional. The fully qualified name of the publisher model or tuned model
+    /// endpoint to use.
+    ///
+    /// Publisher model format:
+    /// `projects/{project}/locations/{location}/publishers/*/models/*`
+    ///
+    /// Tuned model endpoint format:
+    /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
+    #[prost(string, tag = "1")]
+    pub model: ::prost::alloc::string::String,
+    /// Required. The content of the current conversation with the model.
+    ///
+    /// For single-turn queries, this is a single instance. For multi-turn
+    /// queries, this is a repeated field that contains conversation history +
+    /// latest request.
+    #[prost(message, repeated, tag = "2")]
+    pub contents: ::prost::alloc::vec::Vec<Content>,
+    /// Optional. The user provided system instructions for the model.
+    /// Note: only text should be used in parts and content in each part will be
+    /// in a separate paragraph.
+    #[prost(message, optional, tag = "8")]
+    pub system_instruction: ::core::option::Option<Content>,
+    /// Optional. The name of the cached content used as context to serve the
+    /// prediction. Note: only used in explicit caching, where users can have
+    /// control over caching (e.g. what content to cache) and enjoy guaranteed cost
+    /// savings. Format:
+    /// `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+    #[prost(string, tag = "9")]
+    pub cached_content: ::prost::alloc::string::String,
+    /// Optional. A list of `Tools` the model may use to generate the next
+    /// response.
+    ///
+    /// A `Tool` is a piece of code that enables the system to interact with
+    /// external systems to perform an action, or set of actions, outside of
+    /// knowledge and scope of the model.
+    #[prost(message, repeated, tag = "6")]
+    pub tools: ::prost::alloc::vec::Vec<Tool>,
+    /// Optional. Tool config. This config is shared for all tools provided in the
+    /// request.
+    #[prost(message, optional, tag = "7")]
+    pub tool_config: ::core::option::Option<ToolConfig>,
+    /// Optional. The labels with user-defined metadata for the request. It is used
+    /// for billing and reporting only.
+    ///
+    /// Label keys and values can be no longer than 63 characters
+    /// (Unicode codepoints) and can only contain lowercase letters, numeric
+    /// characters, underscores, and dashes. International characters are
+    /// allowed. Label values are optional. Label keys must start with a letter.
+    #[prost(map = "string, string", tag = "10")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. Per request settings for blocking unsafe content.
+    /// Enforced on GenerateContentResponse.candidates.
+    #[prost(message, repeated, tag = "3")]
+    pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
+    /// Optional. Generation config.
+    #[prost(message, optional, tag = "4")]
+    pub generation_config: ::core::option::Option<GenerationConfig>,
+}
+/// Request message for
+/// [DatasetService.AssembleData][google.cloud.aiplatform.v1beta1.DatasetService.AssembleData].
+/// Used only for MULTIMODAL datasets.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssembleDataRequest {
+    /// Required. The name of the Dataset resource (used only for MULTIMODAL
+    /// datasets). Format:
+    /// `projects/{project}/locations/{location}/datasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The read config for the dataset.
+    #[prost(oneof = "assemble_data_request::ReadConfig", tags = "2, 5")]
+    pub read_config: ::core::option::Option<assemble_data_request::ReadConfig>,
+}
+/// Nested message and enum types in `AssembleDataRequest`.
+pub mod assemble_data_request {
+    /// The read config for the dataset.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ReadConfig {
+        /// Optional. Config for assembling templates with a Gemini API structure.
+        #[prost(message, tag = "2")]
+        GeminiTemplateConfig(super::GeminiTemplateConfig),
+        /// Optional. The column name in the underlying table that contains already
+        /// fully assembled requests. If this field is set, the original request will
+        /// be copied to the output table.
+        #[prost(string, tag = "5")]
+        RequestColumnName(::prost::alloc::string::String),
+    }
+}
+/// Response message for
+/// [DatasetService.AssembleData][google.cloud.aiplatform.v1beta1.DatasetService.AssembleData].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssembleDataResponse {
+    /// Destination BigQuery table path containing the assembled data as a single
+    /// column.
+    #[prost(string, tag = "1")]
+    pub bigquery_destination: ::prost::alloc::string::String,
+}
+/// Runtime operation information for
+/// [DatasetService.AssembleData][google.cloud.aiplatform.v1beta1.DatasetService.AssembleData].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssembleDataOperationMetadata {
+    /// The common part of the operation metadata.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
 /// Generated client implementations.
 pub mod dataset_service_client {
     #![allow(
@@ -8927,7 +9341,7 @@ pub mod dataset_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists Annotations belongs to a dataitem
+        /// Lists Annotations belongs to a dataitem.
         pub async fn list_annotations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAnnotationsRequest>,
@@ -8953,6 +9367,68 @@ pub mod dataset_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.DatasetService",
                         "ListAnnotations",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Assesses the state or validity of the dataset with respect to a given use
+        /// case.
+        pub async fn assess_data(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AssessDataRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.DatasetService/AssessData",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.DatasetService",
+                        "AssessData",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Assembles each row of a multimodal dataset and writes the result into a
+        /// BigQuery table.
+        pub async fn assemble_data(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AssembleDataRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.DatasetService/AssembleData",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.DatasetService",
+                        "AssembleData",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -11001,7 +11477,9 @@ pub struct EvaluateDatasetRequest {
     /// Required. Config for evaluation output.
     #[prost(message, optional, tag = "4")]
     pub output_config: ::core::option::Option<OutputConfig>,
-    /// Optional. Autorater config used for evaluation.
+    /// Optional. Autorater config used for evaluation. Currently only publisher
+    /// Gemini models are supported. Format:
+    /// `projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}.`
     #[prost(message, optional, tag = "5")]
     pub autorater_config: ::core::option::Option<AutoraterConfig>,
 }
@@ -11146,7 +11624,8 @@ pub mod evaluation_dataset {
     /// The source of the dataset.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Source {
-        /// Cloud storage source holds the dataset.
+        /// Cloud storage source holds the dataset. Currently only one Cloud Storage
+        /// file path is supported.
         #[prost(message, tag = "1")]
         GcsSource(super::GcsSource),
         /// BigQuery source holds the dataset.
@@ -11195,7 +11674,7 @@ pub struct EvaluateInstancesRequest {
     /// Instances and specs for evaluation
     #[prost(
         oneof = "evaluate_instances_request::MetricInputs",
-        tags = "2, 3, 4, 5, 6, 8, 9, 12, 7, 23, 14, 15, 10, 24, 16, 17, 18, 28, 29, 19, 20, 21, 22, 31, 32, 33, 34, 35, 37, 38, 39"
+        tags = "2, 3, 4, 5, 6, 8, 9, 12, 7, 23, 14, 15, 10, 24, 16, 17, 18, 28, 29, 19, 20, 21, 22, 31, 32, 33, 34, 35, 37, 38, 39, 40"
     )]
     pub metric_inputs: ::core::option::Option<evaluate_instances_request::MetricInputs>,
 }
@@ -11306,6 +11785,11 @@ pub mod evaluate_instances_request {
         /// Input for trajectory single tool use metric.
         #[prost(message, tag = "39")]
         TrajectorySingleToolUseInput(super::TrajectorySingleToolUseInput),
+        /// Rubric Based Instruction Following metric.
+        #[prost(message, tag = "40")]
+        RubricBasedInstructionFollowingInput(
+            super::RubricBasedInstructionFollowingInput,
+        ),
     }
 }
 /// Response message for EvaluationService.EvaluateInstances.
@@ -11315,7 +11799,7 @@ pub struct EvaluateInstancesResponse {
     /// EvaluationRequest.instances.
     #[prost(
         oneof = "evaluate_instances_response::EvaluationResults",
-        tags = "1, 2, 3, 4, 5, 7, 8, 11, 6, 22, 13, 14, 9, 23, 15, 16, 17, 27, 28, 18, 19, 20, 21, 29, 30, 31, 32, 33, 35, 36, 37"
+        tags = "1, 2, 3, 4, 5, 7, 8, 11, 6, 22, 13, 14, 9, 23, 15, 16, 17, 27, 28, 18, 19, 20, 21, 29, 30, 31, 32, 33, 35, 36, 37, 38"
     )]
     pub evaluation_results: ::core::option::Option<
         evaluate_instances_response::EvaluationResults,
@@ -11430,6 +11914,11 @@ pub mod evaluate_instances_response {
         /// Results for trajectory single tool use metric.
         #[prost(message, tag = "37")]
         TrajectorySingleToolUseResults(super::TrajectorySingleToolUseResults),
+        /// Result for rubric based instruction following metric.
+        #[prost(message, tag = "38")]
+        RubricBasedInstructionFollowingResult(
+            super::RubricBasedInstructionFollowingResult,
+        ),
     }
 }
 /// Input for exact match metric.
@@ -12223,7 +12712,7 @@ pub struct PointwiseMetricInput {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PointwiseMetricInstance {
     /// Instance for pointwise metric.
-    #[prost(oneof = "pointwise_metric_instance::Instance", tags = "1")]
+    #[prost(oneof = "pointwise_metric_instance::Instance", tags = "1, 2")]
     pub instance: ::core::option::Option<pointwise_metric_instance::Instance>,
 }
 /// Nested message and enum types in `PointwiseMetricInstance`.
@@ -12236,6 +12725,11 @@ pub mod pointwise_metric_instance {
         /// PointwiseMetricSpec.instance_prompt_template.
         #[prost(string, tag = "1")]
         JsonInstance(::prost::alloc::string::String),
+        /// Key-value contents for the mutlimodality input, including text, image,
+        /// video, audio, and pdf, etc. The key is placeholder in metric prompt
+        /// template, and the value is the multimodal content.
+        #[prost(message, tag = "2")]
+        ContentMapInstance(super::ContentMap),
     }
 }
 /// Spec for pointwise metric.
@@ -12247,6 +12741,34 @@ pub struct PointwiseMetricSpec {
     /// Optional. System instructions for pointwise metric.
     #[prost(string, optional, tag = "2")]
     pub system_instruction: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. CustomOutputFormatConfig allows customization of metric output.
+    /// By default, metrics return a score and explanation.
+    /// When this config is set, the default output is replaced with either:
+    ///   - The raw output string.
+    ///   - A parsed output based on a user-defined schema.
+    /// If a custom format is chosen, the `score` and `explanation` fields in the
+    /// corresponding metric result will be empty.
+    #[prost(message, optional, tag = "3")]
+    pub custom_output_format_config: ::core::option::Option<CustomOutputFormatConfig>,
+}
+/// Spec for custom output format configuration.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CustomOutputFormatConfig {
+    /// Custom output format configuration.
+    #[prost(oneof = "custom_output_format_config::CustomOutputFormatConfig", tags = "1")]
+    pub custom_output_format_config: ::core::option::Option<
+        custom_output_format_config::CustomOutputFormatConfig,
+    >,
+}
+/// Nested message and enum types in `CustomOutputFormatConfig`.
+pub mod custom_output_format_config {
+    /// Custom output format configuration.
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum CustomOutputFormatConfig {
+        /// Optional. Whether to return raw output.
+        #[prost(bool, tag = "1")]
+        ReturnRawOutput(bool),
+    }
 }
 /// Spec for pointwise metric result.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12257,6 +12779,33 @@ pub struct PointwiseMetricResult {
     /// Output only. Explanation for pointwise metric score.
     #[prost(string, tag = "2")]
     pub explanation: ::prost::alloc::string::String,
+    /// Output only. Spec for custom output.
+    #[prost(message, optional, tag = "3")]
+    pub custom_output: ::core::option::Option<CustomOutput>,
+}
+/// Spec for custom output.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomOutput {
+    /// Custom output.
+    #[prost(oneof = "custom_output::CustomOutput", tags = "1")]
+    pub custom_output: ::core::option::Option<custom_output::CustomOutput>,
+}
+/// Nested message and enum types in `CustomOutput`.
+pub mod custom_output {
+    /// Custom output.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum CustomOutput {
+        /// Output only. List of raw output strings.
+        #[prost(message, tag = "1")]
+        RawOutputs(super::RawOutput),
+    }
+}
+/// Raw output.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RawOutput {
+    /// Output only. Raw output string.
+    #[prost(string, repeated, tag = "1")]
+    pub raw_output: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Input for pairwise metric.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12273,7 +12822,7 @@ pub struct PairwiseMetricInput {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PairwiseMetricInstance {
     /// Instance for pairwise metric.
-    #[prost(oneof = "pairwise_metric_instance::Instance", tags = "1")]
+    #[prost(oneof = "pairwise_metric_instance::Instance", tags = "1, 2")]
     pub instance: ::core::option::Option<pairwise_metric_instance::Instance>,
 }
 /// Nested message and enum types in `PairwiseMetricInstance`.
@@ -12286,6 +12835,11 @@ pub mod pairwise_metric_instance {
         /// PairwiseMetricSpec.instance_prompt_template.
         #[prost(string, tag = "1")]
         JsonInstance(::prost::alloc::string::String),
+        /// Key-value contents for the mutlimodality input, including text, image,
+        /// video, audio, and pdf, etc. The key is placeholder in metric prompt
+        /// template, and the value is the multimodal content.
+        #[prost(message, tag = "2")]
+        ContentMapInstance(super::ContentMap),
     }
 }
 /// Spec for pairwise metric.
@@ -12303,6 +12857,13 @@ pub struct PairwiseMetricSpec {
     /// Optional. System instructions for pairwise metric.
     #[prost(string, optional, tag = "4")]
     pub system_instruction: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. CustomOutputFormatConfig allows customization of metric output.
+    /// When this config is set, the default output is replaced with
+    /// the raw output string.
+    /// If a custom format is chosen, the `pairwise_choice` and `explanation`
+    /// fields in the corresponding metric result will be empty.
+    #[prost(message, optional, tag = "5")]
+    pub custom_output_format_config: ::core::option::Option<CustomOutputFormatConfig>,
 }
 /// Spec for pairwise metric result.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12313,6 +12874,9 @@ pub struct PairwiseMetricResult {
     /// Output only. Explanation for pairwise metric score.
     #[prost(string, tag = "2")]
     pub explanation: ::prost::alloc::string::String,
+    /// Output only. Spec for custom output.
+    #[prost(message, optional, tag = "3")]
+    pub custom_output: ::core::option::Option<CustomOutput>,
 }
 /// Input for tool call valid metric.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12660,6 +13224,63 @@ pub struct MetricxResult {
     #[prost(float, optional, tag = "1")]
     pub score: ::core::option::Option<f32>,
 }
+/// Instance and metric spec for RubricBasedInstructionFollowing metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RubricBasedInstructionFollowingInput {
+    /// Required. Spec for RubricBasedInstructionFollowing metric.
+    #[prost(message, optional, tag = "1")]
+    pub metric_spec: ::core::option::Option<RubricBasedInstructionFollowingSpec>,
+    /// Required. Instance for RubricBasedInstructionFollowing metric.
+    #[prost(message, optional, tag = "2")]
+    pub instance: ::core::option::Option<RubricBasedInstructionFollowingInstance>,
+}
+/// Instance for RubricBasedInstructionFollowing metric - one instance
+/// corresponds to one row in an evaluation dataset.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RubricBasedInstructionFollowingInstance {
+    /// Instance for RubricBasedInstructionFollowing metric.
+    #[prost(oneof = "rubric_based_instruction_following_instance::Instance", tags = "1")]
+    pub instance: ::core::option::Option<
+        rubric_based_instruction_following_instance::Instance,
+    >,
+}
+/// Nested message and enum types in `RubricBasedInstructionFollowingInstance`.
+pub mod rubric_based_instruction_following_instance {
+    /// Instance for RubricBasedInstructionFollowing metric.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Instance {
+        /// Required. Instance specified as a json string. String key-value pairs are
+        /// expected in the json_instance to render RubricBasedInstructionFollowing
+        /// prompt templates.
+        #[prost(string, tag = "1")]
+        JsonInstance(::prost::alloc::string::String),
+    }
+}
+/// Spec for RubricBasedInstructionFollowing metric - returns rubrics
+/// and verdicts corresponding to rubrics along with overall score.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RubricBasedInstructionFollowingSpec {}
+/// Result for RubricBasedInstructionFollowing metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RubricBasedInstructionFollowingResult {
+    /// Output only. Overall score for the instruction following.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+    /// Output only. List of per rubric critique results.
+    #[prost(message, repeated, tag = "2")]
+    pub rubric_critique_results: ::prost::alloc::vec::Vec<RubricCritiqueResult>,
+}
+/// Rubric critique result.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RubricCritiqueResult {
+    /// Output only. Rubric to be evaluated.
+    #[prost(string, tag = "1")]
+    pub rubric: ::prost::alloc::string::String,
+    /// Output only. Verdict for the rubric - true if the rubric is met, false
+    /// otherwise.
+    #[prost(bool, tag = "2")]
+    pub verdict: bool,
+}
 /// Instances and metric spec for TrajectoryExactMatch metric.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrajectoryExactMatchInput {
@@ -12919,6 +13540,26 @@ pub struct ToolCall {
     /// Optional. Spec for tool input
     #[prost(string, optional, tag = "2")]
     pub tool_input: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Map of placeholder in metric prompt template to contents of model input.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContentMap {
+    /// Optional. Map of placeholder to contents.
+    #[prost(map = "string, message", tag = "1")]
+    pub values: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        content_map::Contents,
+    >,
+}
+/// Nested message and enum types in `ContentMap`.
+pub mod content_map {
+    /// Repeated Content type.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Contents {
+        /// Optional. Repeated contents.
+        #[prost(message, repeated, tag = "1")]
+        pub contents: ::prost::alloc::vec::Vec<super::Content>,
+    }
 }
 /// Pairwise prediction autorater preference.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -31201,6 +31842,9 @@ pub struct DeployOperationMetadata {
     /// Output only. The project number where the deploy model request is sent.
     #[prost(int64, tag = "4")]
     pub project_number: i64,
+    /// Output only. The model id to be used at query time.
+    #[prost(string, tag = "5")]
+    pub model_id: ::prost::alloc::string::String,
 }
 /// Runtime operation information for
 /// [ModelGardenService.DeployPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.DeployPublisherModel].
@@ -31222,6 +31866,45 @@ pub struct DeployPublisherModelOperationMetadata {
     /// Output only. The project number where the deploy model request is sent.
     #[prost(int64, tag = "4")]
     pub project_number: i64,
+}
+/// Response message for
+/// [ModelGardenService.ExportPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.ExportPublisherModel].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportPublisherModelResponse {
+    /// The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`
+    #[prost(string, tag = "1")]
+    pub publisher_model: ::prost::alloc::string::String,
+    /// The destination uri of the model weights.
+    #[prost(string, tag = "2")]
+    pub destination_uri: ::prost::alloc::string::String,
+}
+/// Runtime operation information for
+/// [ModelGardenService.ExportPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.ExportPublisherModel].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportPublisherModelOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Request message for
+/// [ModelGardenService.ExportPublisherModel][google.cloud.aiplatform.v1beta1.ModelGardenService.ExportPublisherModel].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportPublisherModelRequest {
+    /// Required. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The target where we are exporting the model weights to
+    #[prost(message, optional, tag = "2")]
+    pub destination: ::core::option::Option<GcsDestination>,
+    /// Required. The Location to export the model weights from
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
 }
 /// View enumeration of PublisherModel.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -31458,6 +32141,36 @@ pub mod model_garden_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.ModelGardenService",
                         "DeployPublisherModel",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Exports a publisher model to a user provided Google Cloud Storage bucket.
+        pub async fn export_publisher_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExportPublisherModelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ModelGardenService/ExportPublisherModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ModelGardenService",
+                        "ExportPublisherModel",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -40045,13 +40758,23 @@ pub mod prediction_service_client {
 /// ReasoningEngine configurations
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReasoningEngineSpec {
-    /// Required. User provided package spec of the ReasoningEngine.
+    /// Optional. User provided package spec of the ReasoningEngine.
+    /// Ignored when users directly specify a deployment image through
+    /// `deployment_spec.first_party_image_override`, but keeping the
+    /// field_behavior to avoid introducing breaking changes.
     #[prost(message, optional, tag = "2")]
     pub package_spec: ::core::option::Option<reasoning_engine_spec::PackageSpec>,
+    /// Optional. The specification of a Reasoning Engine deployment.
+    #[prost(message, optional, tag = "4")]
+    pub deployment_spec: ::core::option::Option<reasoning_engine_spec::DeploymentSpec>,
     /// Optional. Declarations for object class methods in OpenAPI specification
     /// format.
     #[prost(message, repeated, tag = "3")]
     pub class_methods: ::prost::alloc::vec::Vec<::prost_types::Struct>,
+    /// Optional. The OSS agent framework used to develop the agent.
+    /// Currently supported values: "langchain", "langgraph", "ag2", "custom".
+    #[prost(string, tag = "5")]
+    pub agent_framework: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ReasoningEngineSpec`.
 pub mod reasoning_engine_spec {
@@ -40072,6 +40795,22 @@ pub mod reasoning_engine_spec {
         #[prost(string, tag = "4")]
         pub python_version: ::prost::alloc::string::String,
     }
+    /// The specification of a Reasoning Engine deployment.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DeploymentSpec {
+        /// Optional. Environment variables to be set with the Reasoning Engine
+        /// deployment. The environment variables can be updated through the
+        /// UpdateReasoningEngine API.
+        #[prost(message, repeated, tag = "1")]
+        pub env: ::prost::alloc::vec::Vec<super::EnvVar>,
+        /// Optional. Environment variables where the value is a secret in Cloud
+        /// Secret Manager.
+        /// To use this feature, add 'Secret Manager Secret Accessor' role
+        /// (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine
+        /// Service Agent.
+        #[prost(message, repeated, tag = "2")]
+        pub secret_env: ::prost::alloc::vec::Vec<super::SecretEnvVar>,
+    }
 }
 /// ReasoningEngine provides a customizable runtime for models to determine
 /// which actions to take and in which order.
@@ -40086,7 +40825,7 @@ pub struct ReasoningEngine {
     /// Optional. The description of the ReasoningEngine.
     #[prost(string, tag = "7")]
     pub description: ::prost::alloc::string::String,
-    /// Required. Configurations of the ReasoningEngine
+    /// Optional. Configurations of the ReasoningEngine
     #[prost(message, optional, tag = "3")]
     pub spec: ::core::option::Option<ReasoningEngineSpec>,
     /// Output only. Timestamp when this ReasoningEngine was created.
@@ -40381,6 +41120,11 @@ pub struct DeleteReasoningEngineRequest {
     /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If set to true, child resources of this reasoning engine will
+    /// also be deleted. Otherwise, the request will fail with FAILED_PRECONDITION
+    /// error when the reasoning engine has undeleted child resources.
+    #[prost(bool, tag = "2")]
+    pub force: bool,
 }
 /// Generated client implementations.
 pub mod reasoning_engine_service_client {
@@ -44314,6 +45058,12 @@ pub struct ImportRagFilesConfig {
     pub partial_failure_sink: ::core::option::Option<
         import_rag_files_config::PartialFailureSink,
     >,
+    /// Optional. If provided, all successfully imported files and all partial
+    /// failures are written to the sink.
+    #[prost(oneof = "import_rag_files_config::ImportResultSink", tags = "14, 15")]
+    pub import_result_sink: ::core::option::Option<
+        import_rag_files_config::ImportResultSink,
+    >,
 }
 /// Nested message and enum types in `ImportRagFilesConfig`.
 pub mod import_rag_files_config {
@@ -44357,6 +45107,22 @@ pub mod import_rag_files_config {
         /// Deprecated. Prefer to use `import_result_bq_sink`.
         #[prost(message, tag = "12")]
         PartialFailureBigquerySink(super::BigQueryDestination),
+    }
+    /// Optional. If provided, all successfully imported files and all partial
+    /// failures are written to the sink.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ImportResultSink {
+        /// The Cloud Storage path to write import result to.
+        #[prost(message, tag = "14")]
+        ImportResultGcsSink(super::GcsDestination),
+        /// The BigQuery destination to write import result to. It should be a
+        /// bigquery table resource name (e.g.
+        /// "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+        /// table does not exist, it will be created with the expected schema. If the
+        /// table exists, the schema will be validated and data will be added to this
+        /// existing table.
+        #[prost(message, tag = "15")]
+        ImportResultBigquerySink(super::BigQueryDestination),
     }
 }
 /// Request message for

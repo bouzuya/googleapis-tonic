@@ -3123,6 +3123,10 @@ pub struct LabInfo {
     /// If empty, the device is hosted in a Google owned lab.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// The Unicode country/region code (CLDR) of the lab where the device is
+    /// hosted. E.g. "US" for United States, "CH" for Switzerland.
+    #[prost(string, tag = "2")]
+    pub region_code: ::prost::alloc::string::String,
 }
 /// The currently supported iOS devices.
 #[derive(Clone, PartialEq, ::prost::Message)]

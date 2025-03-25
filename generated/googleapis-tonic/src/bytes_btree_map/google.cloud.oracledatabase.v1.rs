@@ -42,11 +42,11 @@ pub struct AutonomousDatabase {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
-    /// Required. The name of the VPC network used by the Autonomous Database in
+    /// Optional. The name of the VPC network used by the Autonomous Database in
     /// the following format: projects/{project}/global/networks/{network}
     #[prost(string, tag = "9")]
     pub network: ::prost::alloc::string::String,
-    /// Required. The subnet CIDR range for the Autonmous Database.
+    /// Optional. The subnet CIDR range for the Autonmous Database.
     #[prost(string, tag = "10")]
     pub cidr: ::prost::alloc::string::String,
     /// Output only. The date and time that the Autonomous Database was created.

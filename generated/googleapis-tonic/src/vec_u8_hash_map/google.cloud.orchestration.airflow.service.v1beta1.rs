@@ -1574,7 +1574,7 @@ pub struct PrivateClusterConfig {
 /// environment.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NetworkingConfig {
-    /// Optional. Indicates the user requested specifc connection type between
+    /// Optional. Indicates the user requested specific connection type between
     /// Tenant and Customer projects. You cannot set networking connection type in
     /// public IP environment.
     #[prost(enumeration = "networking_config::ConnectionType", tag = "1")]

@@ -432,8 +432,8 @@ pub mod kubernetes_config {
             /// Optional. Whether to propagate the Kubernetes Service to the route
             /// destination clusters. The Service will always be deployed to the Target
             /// cluster even if the HTTPRoute is not. This option may be used to
-            /// facilitiate successful DNS lookup in the route destination clusters.
-            /// Can only be set to true if destinations are specified.
+            /// facilitate successful DNS lookup in the route destination clusters. Can
+            /// only be set to true if destinations are specified.
             #[prost(bool, tag = "2")]
             pub propagate_service: bool,
         }
@@ -2914,7 +2914,7 @@ pub mod rollout {
         /// The deploy operation did not complete successfully; check Cloud Build
         /// logs.
         ExecutionFailed = 2,
-        /// Deployment did not complete within the alloted time.
+        /// Deployment did not complete within the allotted time.
         DeadlineExceeded = 3,
         /// Release is in a failed state.
         ReleaseFailed = 4,
@@ -3337,7 +3337,7 @@ pub struct ListRolloutsRequest {
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
 }
-/// ListRolloutsResponse is the response object reutrned by `ListRollouts`.
+/// ListRolloutsResponse is the response object returned by `ListRollouts`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRolloutsResponse {
     /// The `Rollout` objects.
@@ -3701,7 +3701,7 @@ pub mod deploy_job_run {
         /// The deploy operation did not complete successfully; check Cloud Build
         /// logs.
         ExecutionFailed = 2,
-        /// The deploy job run did not complete within the alloted time.
+        /// The deploy job run did not complete within the allotted time.
         DeadlineExceeded = 3,
         /// There were missing resources in the runtime environment required for a
         /// canary deployment. Check the Cloud Build logs for more information.
@@ -3792,7 +3792,7 @@ pub mod verify_job_run {
         /// The verify operation did not complete successfully; check Cloud Build
         /// logs.
         ExecutionFailed = 2,
-        /// The verify job run did not complete within the alloted time.
+        /// The verify job run did not complete within the allotted time.
         DeadlineExceeded = 3,
         /// No Skaffold verify configuration was found.
         VerificationConfigNotFound = 4,
@@ -3871,7 +3871,7 @@ pub mod predeploy_job_run {
         /// The predeploy operation did not complete successfully; check Cloud Build
         /// logs.
         ExecutionFailed = 2,
-        /// The predeploy job run did not complete within the alloted time.
+        /// The predeploy job run did not complete within the allotted time.
         DeadlineExceeded = 3,
         /// Cloud Build failed to fulfill Cloud Deploy's request. See failure_message
         /// for additional details.
@@ -3946,7 +3946,7 @@ pub mod postdeploy_job_run {
         /// The postdeploy operation did not complete successfully; check Cloud Build
         /// logs.
         ExecutionFailed = 2,
-        /// The postdeploy job run did not complete within the alloted time.
+        /// The postdeploy job run did not complete within the allotted time.
         DeadlineExceeded = 3,
         /// Cloud Build failed to fulfill Cloud Deploy's request. See failure_message
         /// for additional details.

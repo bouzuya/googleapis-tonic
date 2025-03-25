@@ -564,8 +564,8 @@ pub mod event {
         /// Enable Fraud Prevention for this assessment, if Fraud Prevention is
         /// enabled in the Google Cloud console.
         Enabled = 1,
-        /// Disable Fraud Prevention for this assessment, regardless of Google Cloud
-        /// console settings.
+        /// Disable Fraud Prevention for this assessment, regardless of the Google
+        /// Cloud console settings.
         Disabled = 2,
     }
     impl FraudPrevention {
