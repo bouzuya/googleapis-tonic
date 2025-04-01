@@ -153,6 +153,7 @@
     feature = "google-cloud-certificatemanager-logging-v1",
     feature = "google-cloud-certificatemanager-v1",
     feature = "google-cloud-channel-v1",
+    feature = "google-cloud-chronicle-v1",
     feature = "google-cloud-cloudcontrolspartner-v1",
     feature = "google-cloud-cloudcontrolspartner-v1beta",
     feature = "google-cloud-clouddms-logging-v1",
@@ -365,6 +366,7 @@
     feature = "google-cloud-speech-v2",
     feature = "google-cloud-sql-v1",
     feature = "google-cloud-sql-v1beta4",
+    feature = "google-cloud-storagebatchoperations-v1",
     feature = "google-cloud-storageinsights-v1",
     feature = "google-cloud-stream-logging-v1",
     feature = "google-cloud-support-v2",
@@ -1218,6 +1220,7 @@ pub mod google {
         feature = "google-cloud-certificatemanager-logging-v1",
         feature = "google-cloud-certificatemanager-v1",
         feature = "google-cloud-channel-v1",
+        feature = "google-cloud-chronicle-v1",
         feature = "google-cloud-cloudcontrolspartner-v1",
         feature = "google-cloud-cloudcontrolspartner-v1beta",
         feature = "google-cloud-clouddms-logging-v1",
@@ -1430,6 +1433,7 @@ pub mod google {
         feature = "google-cloud-speech-v2",
         feature = "google-cloud-sql-v1",
         feature = "google-cloud-sql-v1beta4",
+        feature = "google-cloud-storagebatchoperations-v1",
         feature = "google-cloud-storageinsights-v1",
         feature = "google-cloud-stream-logging-v1",
         feature = "google-cloud-support-v2",
@@ -2017,6 +2021,20 @@ pub mod google {
                     feature = "google-cloud-gkehub-v1alpha",
                 ))]
                 include!("vec_u8_btree_map/google.cloud.gkehub.v1alpha.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-chronicle-v1",
+        ))]
+        pub mod chronicle {
+            #[cfg(any(
+                feature = "google-cloud-chronicle-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-chronicle-v1",
+                ))]
+                include!("vec_u8_btree_map/google.cloud.chronicle.v1.rs");
             }
         }
         #[cfg(any(
@@ -4802,6 +4820,20 @@ pub mod google {
                     ))]
                     include!("vec_u8_btree_map/google.cloud.security.privateca.v1.rs");
                 }
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-storagebatchoperations-v1",
+        ))]
+        pub mod storagebatchoperations {
+            #[cfg(any(
+                feature = "google-cloud-storagebatchoperations-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-storagebatchoperations-v1",
+                ))]
+                include!("vec_u8_btree_map/google.cloud.storagebatchoperations.v1.rs");
             }
         }
         #[cfg(any(

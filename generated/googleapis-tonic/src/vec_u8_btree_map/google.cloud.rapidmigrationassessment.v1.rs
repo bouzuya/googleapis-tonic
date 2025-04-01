@@ -692,7 +692,7 @@ pub mod rapid_migration_assessment_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a single Collector - changes state of collector to "Deleting".
-        /// Background jobs does final deletion thorugh producer api.
+        /// Background jobs does final deletion through producer API.
         pub async fn delete_collector(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCollectorRequest>,

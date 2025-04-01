@@ -984,6 +984,9 @@ pub struct UserInfo {
     /// is set.
     #[prost(string, tag = "2")]
     pub user_agent: ::prost::alloc::string::String,
+    /// Optional. IANA time zone, e.g. Europe/Budapest.
+    #[prost(string, tag = "3")]
+    pub time_zone: ::prost::alloc::string::String,
 }
 /// Double list.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4232,9 +4235,10 @@ pub struct SearchRequest {
     /// Default number is 10.
     #[prost(int32, tag = "47")]
     pub one_box_page_size: i32,
-    /// Specifications that define the specific \[DataStore\]s to be searched, along
-    /// with configurations for those data stores. This is only considered for
-    /// [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+    /// Specifications that define the specific
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+    /// along with configurations for those data stores. This is only considered
+    /// for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
     /// stores. For engines with a single data store, the specs directly under
     /// [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
     /// used.
@@ -4627,7 +4631,7 @@ pub mod search_request {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BoostSpec {
         /// Condition boost specifications. If a document matches multiple conditions
-        /// in the specifictions, boost scores from these specifications are all
+        /// in the specifications, boost scores from these specifications are all
         /// applied and combined in a non-linear way. Maximum number of
         /// specifications is 20.
         #[prost(message, repeated, tag = "1")]
@@ -12300,6 +12304,388 @@ pub mod search_tuning_service_client {
                     GrpcMethod::new(
                         "google.cloud.discoveryengine.v1.SearchTuningService",
                         "ListCustomModels",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Configures metadata that is used to generate serving time results (e.g.
+/// search results or recommendation predictions).
+/// The ServingConfig is passed in the search and predict request and generates
+/// results.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ServingConfig {
+    /// Immutable. Fully qualified name
+    /// `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The human readable serving config display name. Used in Discovery
+    /// UI.
+    ///
+    /// This field must be a UTF-8 encoded string with a length limit of 128
+    /// characters. Otherwise, an INVALID_ARGUMENT error is returned.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Required. Immutable. Specifies the solution type that a serving config can
+    /// be associated with.
+    #[prost(enumeration = "SolutionType", tag = "3")]
+    pub solution_type: i32,
+    /// The id of the model to use at serving time.
+    /// Currently only RecommendationModels are supported.
+    /// Can be changed but only to a compatible model (e.g.
+    /// others-you-may-like CTR to others-you-may-like CVR).
+    ///
+    /// Required when [SolutionType][google.cloud.discoveryengine.v1.SolutionType]
+    /// is
+    /// [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+    #[prost(string, tag = "4")]
+    pub model_id: ::prost::alloc::string::String,
+    /// How much diversity to use in recommendation model results e.g.
+    /// `medium-diversity` or `high-diversity`. Currently supported values:
+    ///
+    /// * `no-diversity`
+    /// * `low-diversity`
+    /// * `medium-diversity`
+    /// * `high-diversity`
+    /// * `auto-diversity`
+    ///
+    /// If not specified, we choose default based on recommendation model
+    /// type. Default value: `no-diversity`.
+    ///
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+    #[prost(string, tag = "5")]
+    pub diversity_level: ::prost::alloc::string::String,
+    /// The ranking expression controls the customized ranking on retrieval
+    /// documents. To leverage this, document embedding is required. The ranking
+    /// expression setting in ServingConfig applies to all search requests served
+    /// by the serving config. However, if `SearchRequest.ranking_expression` is
+    /// specified, it overrides the ServingConfig ranking expression.
+    ///
+    /// The ranking expression is a single function or multiple functions that are
+    /// joined by "+".
+    ///
+    ///    * ranking_expression = function, { " + ", function };
+    ///
+    /// Supported functions:
+    ///
+    ///    * double * relevance_score
+    ///    * double * dotProduct(embedding_field_path)
+    ///
+    /// Function variables:
+    ///
+    ///    * `relevance_score`: pre-defined keywords, used for measure relevance
+    ///    between query and document.
+    ///    * `embedding_field_path`: the document embedding field
+    ///    used with query embedding vector.
+    ///    * `dotProduct`: embedding function between embedding_field_path and query
+    ///    embedding vector.
+    ///
+    ///   Example ranking expression:
+    ///
+    ///     If document has an embedding field doc_embedding, the ranking expression
+    ///     could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+    #[prost(string, tag = "21")]
+    pub ranking_expression: ::prost::alloc::string::String,
+    /// Output only. ServingConfig created timestamp.
+    #[prost(message, optional, tag = "8")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. ServingConfig updated timestamp.
+    #[prost(message, optional, tag = "9")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Filter controls to use in serving path.
+    /// All triggered filter controls will be applied.
+    /// Filter controls must be in the same data store as the serving config.
+    /// Maximum of 20 filter controls.
+    #[prost(string, repeated, tag = "11")]
+    pub filter_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Boost controls to use in serving path.
+    /// All triggered boost controls will be applied.
+    /// Boost controls must be in the same data store as the serving config.
+    /// Maximum of 20 boost controls.
+    #[prost(string, repeated, tag = "12")]
+    pub boost_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// IDs of the redirect controls. Only the first triggered redirect
+    /// action is applied, even if multiple apply. Maximum number of
+    /// specifications is 100.
+    ///
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+    #[prost(string, repeated, tag = "14")]
+    pub redirect_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Condition synonyms specifications. If multiple synonyms conditions
+    /// match, all matching synonyms controls in the list will execute.
+    /// Maximum number of specifications is 100.
+    ///
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+    #[prost(string, repeated, tag = "15")]
+    pub synonyms_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Condition oneway synonyms specifications. If multiple oneway synonyms
+    /// conditions match, all matching oneway synonyms controls in the list
+    /// will execute. Maximum number of specifications is 100.
+    ///
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+    #[prost(string, repeated, tag = "16")]
+    pub oneway_synonyms_control_ids: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
+    /// Condition do not associate specifications. If multiple do not
+    /// associate conditions match, all matching do not associate controls in
+    /// the list will execute.
+    /// Order does not matter.
+    /// Maximum number of specifications is 100.
+    ///
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+    #[prost(string, repeated, tag = "17")]
+    pub dissociate_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Condition replacement specifications.
+    /// Applied according to the order in the list.
+    /// A previously replaced term can not be re-replaced.
+    /// Maximum number of specifications is 100.
+    ///
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+    #[prost(string, repeated, tag = "18")]
+    pub replacement_control_ids: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
+    /// Condition ignore specifications. If multiple ignore
+    /// conditions match, all matching ignore controls in the list will
+    /// execute.
+    /// Order does not matter.
+    /// Maximum number of specifications is 100.
+    #[prost(string, repeated, tag = "19")]
+    pub ignore_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Condition promote specifications.
+    ///
+    /// Maximum number of specifications is 100.
+    #[prost(string, repeated, tag = "26")]
+    pub promote_control_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Industry vertical specific config.
+    #[prost(oneof = "serving_config::VerticalConfig", tags = "7, 10")]
+    pub vertical_config: ::core::option::Option<serving_config::VerticalConfig>,
+}
+/// Nested message and enum types in `ServingConfig`.
+pub mod serving_config {
+    /// Specifies the configurations needed for Media Discovery. Currently we
+    /// support:
+    ///
+    /// * `demote_content_watched`: Threshold for watched content demotion.
+    /// Customers can specify if using watched content demotion or use viewed
+    /// detail page. Using the content watched demotion, customers need to specify
+    /// the watched minutes or percentage exceeds the threshold, the content will
+    /// be demoted in the recommendation result.
+    /// * `promote_fresh_content`: cutoff days for fresh content promotion.
+    /// Customers can specify if using content freshness promotion. If the content
+    /// was published within the cutoff days, the content will be promoted in the
+    /// recommendation result.
+    /// Can only be set if
+    /// [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
+    /// [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MediaConfig {
+        /// Specifies the event type used for demoting recommendation result.
+        /// Currently supported values:
+        ///
+        /// * `view-item`: Item viewed.
+        /// * `media-play`: Start/resume watching a video, playing a song, etc.
+        /// * `media-complete`: Finished or stopped midway through a video, song,
+        /// etc.
+        ///
+        /// If unset, watch history demotion will not be applied. Content freshness
+        /// demotion will still be applied.
+        #[prost(string, tag = "1")]
+        pub demotion_event_type: ::prost::alloc::string::String,
+        /// Optional. Specifies the number of days to look back for demoting watched
+        /// content. If set to zero or unset, defaults to the maximum of 365 days.
+        #[prost(int32, tag = "37")]
+        pub demote_content_watched_past_days: i32,
+        /// Specifies the content freshness used for recommendation result.
+        /// Contents will be demoted if contents were published for more than content
+        /// freshness cutoff days.
+        #[prost(int32, tag = "4")]
+        pub content_freshness_cutoff_days: i32,
+        /// Specify the threshold for demoting watched content, the threshold can be
+        /// either percentage or minutes value.
+        /// This must be set for `media-complete` event type.
+        #[prost(oneof = "media_config::DemoteContentWatched", tags = "2, 5")]
+        pub demote_content_watched: ::core::option::Option<
+            media_config::DemoteContentWatched,
+        >,
+    }
+    /// Nested message and enum types in `MediaConfig`.
+    pub mod media_config {
+        /// Specify the threshold for demoting watched content, the threshold can be
+        /// either percentage or minutes value.
+        /// This must be set for `media-complete` event type.
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum DemoteContentWatched {
+            /// Specifies the content watched percentage threshold for demotion.
+            /// Threshold value must be between \[0, 1.0\] inclusive.
+            #[prost(float, tag = "2")]
+            ContentWatchedPercentageThreshold(f32),
+            /// Specifies the content watched minutes threshold for demotion.
+            #[prost(float, tag = "5")]
+            ContentWatchedSecondsThreshold(f32),
+        }
+    }
+    /// Specifies the configurations needed for Generic Discovery.Currently we
+    /// support:
+    ///
+    /// * `content_search_spec`: configuration for generic content search.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GenericConfig {
+        /// Specifies the expected behavior of content search.
+        /// Only valid for content-search enabled data store.
+        #[prost(message, optional, tag = "1")]
+        pub content_search_spec: ::core::option::Option<
+            super::search_request::ContentSearchSpec,
+        >,
+    }
+    /// Industry vertical specific config.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum VerticalConfig {
+        /// The MediaConfig of the serving configuration.
+        #[prost(message, tag = "7")]
+        MediaConfig(MediaConfig),
+        /// The GenericConfig of the serving configuration.
+        #[prost(message, tag = "10")]
+        GenericConfig(GenericConfig),
+    }
+}
+/// Request for UpdateServingConfig method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateServingConfigRequest {
+    /// Required. The ServingConfig to update.
+    #[prost(message, optional, tag = "1")]
+    pub serving_config: ::core::option::Option<ServingConfig>,
+    /// Indicates which fields in the provided
+    /// [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] to update.
+    /// The following are NOT supported:
+    ///
+    /// * [ServingConfig.name][google.cloud.discoveryengine.v1.ServingConfig.name]
+    ///
+    /// If not set, all supported fields are updated.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Generated client implementations.
+pub mod serving_config_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service for operations related to
+    /// [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig].
+    #[derive(Debug, Clone)]
+    pub struct ServingConfigServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ServingConfigServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ServingConfigServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            ServingConfigServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Updates a ServingConfig.
+        ///
+        /// Returns a NOT_FOUND error if the ServingConfig does not exist.
+        pub async fn update_serving_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateServingConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ServingConfig>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.discoveryengine.v1.ServingConfigService/UpdateServingConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.discoveryengine.v1.ServingConfigService",
+                        "UpdateServingConfig",
                     ),
                 );
             self.inner.unary(req, path, codec).await
