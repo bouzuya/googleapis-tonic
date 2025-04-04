@@ -137,7 +137,7 @@ repository = "https://github.com/bouzuya/googleapis-tonic"
 [dependencies]
 prost = "0.13.5"
 prost-types = "0.13.5"
-tonic = { version = "0.12.3", default-features = false, features = [
+tonic = { version = "0.13.0", default-features = false, features = [
   "codegen",
   "prost",
 ] }
