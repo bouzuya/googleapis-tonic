@@ -285,27 +285,27 @@ dependencies = [
 
 [[package]]
 name = "googleapis-tonic-google-api"
-version = "0.12.0"
+version = "0.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e0fac8a714a790dacdbc09fd423079b9cfc85a754b225c6c4ece22ad4f277346"
+checksum = "05452a6056dec297e3c153a82f384efc18ceceea66d042e48cac923e2b4c1130"
 dependencies = [
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.0",
 ]
 
 [[package]]
 name = "googleapis-tonic-google-firestore-v1"
-version = "0.13.0"
+version = "0.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7b4920982bdec91362832e712dce7bdf5335238c45c8ac5991f6705ebc66fb69"
+checksum = "3962e62018e066f503b37360b7a4730195b7c8c546e03b585d8f5627afe3fc7f"
 dependencies = [
  "googleapis-tonic-google-api",
  "googleapis-tonic-google-rpc",
  "googleapis-tonic-google-type",
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.0",
 ]
 
 [[package]]
@@ -319,29 +319,29 @@ dependencies = [
  "googleapis-tonic-google-firestore-v1",
  "thiserror 2.0.11",
  "tokio",
- "tonic",
+ "tonic 0.12.3",
 ]
 
 [[package]]
 name = "googleapis-tonic-google-rpc"
-version = "0.9.0"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3afa5177d0bcf0f2722d0aa09aa75e0188a9888ef719515a118d49e92210596"
+checksum = "5524ca70cafa6625f98aad65058ad9f55de9ad7476dc8c530198006c3d5f9558"
 dependencies = [
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.0",
 ]
 
 [[package]]
 name = "googleapis-tonic-google-type"
-version = "0.8.0"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ba7a85cbf34af971cfcc2d15bc7de8935f33b7a675def0e520e567b64ce8c7f"
+checksum = "b490cfde6529d62f7408101d6101c411b2ef869440e10fbbb8011cb1848cf55e"
 dependencies = [
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.0",
 ]
 
 [[package]]
@@ -905,9 +905,9 @@ dependencies = [
 
 [[package]]
 name = "prost"
-version = "0.13.4"
+version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2c0fef6c4230e4ccf618a35c59d7ede15dea37de8427500f50aff708806e42ec"
+checksum = "2796faa41db3ec313a31f7624d9286acf277b52de526150b7e69f3debf891ee5"
 dependencies = [
  "bytes",
  "prost-derive",
@@ -915,9 +915,9 @@ dependencies = [
 
 [[package]]
 name = "prost-derive"
-version = "0.13.4"
+version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "157c5a9d7ea5c2ed2d9fb8f495b64759f7816c7eaea54ba3978f0d63000162e3"
+checksum = "8a56d757972c98b346a9b766e3f02746cde6dd1cd1d1d563472929fdd74bec4d"
 dependencies = [
  "anyhow",
  "itertools",
@@ -928,9 +928,9 @@ dependencies = [
 
 [[package]]
 name = "prost-types"
-version = "0.13.4"
+version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc2f1e56baa61e93533aebc21af4d2134b70f66275e0fcdf3cbe43d77ff7e8fc"
+checksum = "52c2c1bf36ddb1a1c396b3601a3cec27c2462e45f07c386894ec3ccf5332bd16"
 dependencies = [
  "prost",
 ]
@@ -1478,7 +1478,6 @@ version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "877c5b330756d856ffcc4553ab34a5684481ade925ecc54bcd1bf02b1d0d4d52"
 dependencies = [
- "async-trait",
  "base64 0.22.1",
  "bytes",
  "http",
@@ -1489,7 +1488,6 @@ dependencies = [
  "hyper-util",
  "percent-encoding",
  "pin-project",
- "prost",
  "rustls-pemfile",
  "tokio",
  "tokio-rustls",
@@ -1499,6 +1497,27 @@ dependencies = [
  "tower-service",
  "tracing",
  "webpki-roots",
+]
+
+[[package]]
+name = "tonic"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85839f0b32fd242bb3209262371d07feda6d780d16ee9d2bc88581b89da1549b"
+dependencies = [
+ "async-trait",
+ "base64 0.22.1",
+ "bytes",
+ "http",
+ "http-body",
+ "http-body-util",
+ "percent-encoding",
+ "pin-project",
+ "prost",
+ "tokio-stream",
+ "tower-layer",
+ "tower-service",
+ "tracing",
 ]
 
 [[package]]
