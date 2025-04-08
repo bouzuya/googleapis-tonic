@@ -328,11 +328,9 @@ pub struct ListPolicyBindingsRequest {
     ///
     /// Some examples of filter queries:
     ///
-    /// | Query            | Description                                         |
-    /// |------------------|-----------------------------------------------------|
-    /// | `target:ex*`     | The binding target's name starts with "ex".         |
-    /// | `target:example` | The binding target's name is `example`.             |
-    /// | `policy:example` | The binding policy's name is `example`.             |
+    /// * `target:ex*`: The binding target's name starts with "ex".
+    /// * `target:example`: The binding target's name is `example`.
+    /// * `policy:example`: The binding policy's name is `example`.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -904,6 +902,7 @@ pub struct ListPrincipalAccessBoundaryPoliciesRequest {
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
 }
+/// Response message for ListPrincipalAccessBoundaryPolicies method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrincipalAccessBoundaryPoliciesResponse {
     /// The principal access boundary policies from the specified parent.

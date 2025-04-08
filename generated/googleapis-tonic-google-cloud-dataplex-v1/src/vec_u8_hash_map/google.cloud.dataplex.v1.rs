@@ -6945,9 +6945,7 @@ pub mod data_discovery_result {
     /// Describes BigQuery publishing configurations.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BigQueryPublishing {
-        /// Output only. The BigQuery dataset to publish to. It takes the form
-        /// `projects/{project_id}/datasets/{dataset_id}`.
-        /// If not set, the service creates a default publishing dataset.
+        /// Output only. The BigQuery dataset the discovered tables are published to.
         #[prost(string, tag = "1")]
         pub dataset: ::prost::alloc::string::String,
     }
@@ -7494,7 +7492,7 @@ pub mod data_quality_spec {
 /// The output of a DataQualityScan.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataQualityResult {
-    /// Overall data quality result -- `true` if all rules passed.
+    /// Output only. Overall data quality result -- `true` if all rules passed.
     #[prost(bool, tag = "5")]
     pub passed: bool,
     /// Output only. The overall data quality score.
@@ -7502,7 +7500,7 @@ pub struct DataQualityResult {
     /// The score ranges between \[0, 100\] (up to two decimal points).
     #[prost(float, optional, tag = "9")]
     pub score: ::core::option::Option<f32>,
-    /// A list of results at the dimension level.
+    /// Output only. A list of results at the dimension level.
     ///
     /// A dimension will have a corresponding `DataQualityDimensionResult` if and
     /// only if there is at least one rule with the 'dimension' field set to it.
@@ -7514,13 +7512,13 @@ pub struct DataQualityResult {
     /// there is at least one rule with the 'column' field set to it.
     #[prost(message, repeated, tag = "10")]
     pub columns: ::prost::alloc::vec::Vec<DataQualityColumnResult>,
-    /// A list of all the rules in a job, and their results.
+    /// Output only. A list of all the rules in a job, and their results.
     #[prost(message, repeated, tag = "3")]
     pub rules: ::prost::alloc::vec::Vec<DataQualityRuleResult>,
-    /// The count of rows processed.
+    /// Output only. The count of rows processed.
     #[prost(int64, tag = "4")]
     pub row_count: i64,
-    /// The data scanned for this result.
+    /// Output only. The data scanned for this result.
     #[prost(message, optional, tag = "7")]
     pub scanned_data: ::core::option::Option<ScannedData>,
     /// Output only. The result of post scan actions.
@@ -7608,13 +7606,13 @@ pub mod data_quality_result {
 /// DataQualityRuleResult provides a more detailed, per-rule view of the results.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataQualityRuleResult {
-    /// The rule specified in the DataQualitySpec, as is.
+    /// Output only. The rule specified in the DataQualitySpec, as is.
     #[prost(message, optional, tag = "1")]
     pub rule: ::core::option::Option<DataQualityRule>,
-    /// Whether the rule passed or failed.
+    /// Output only. Whether the rule passed or failed.
     #[prost(bool, tag = "7")]
     pub passed: bool,
-    /// The number of rows a rule was evaluated against.
+    /// Output only. The number of rows a rule was evaluated against.
     ///
     /// This field is only valid for row-level type rules.
     ///
@@ -7628,18 +7626,22 @@ pub struct DataQualityRuleResult {
     /// This field is not set for rule SqlAssertion.
     #[prost(int64, tag = "9")]
     pub evaluated_count: i64,
+    /// Output only. The number of rows which passed a rule evaluation.
+    ///
+    /// This field is only valid for row-level type rules.
+    ///
     /// This field is not set for rule SqlAssertion.
     #[prost(int64, tag = "8")]
     pub passed_count: i64,
-    /// The number of rows with null values in the specified column.
+    /// Output only. The number of rows with null values in the specified column.
     #[prost(int64, tag = "5")]
     pub null_count: i64,
-    /// The ratio of **passed_count / evaluated_count**.
+    /// Output only. The ratio of **passed_count / evaluated_count**.
     ///
     /// This field is only valid for row-level type rules.
     #[prost(double, tag = "6")]
     pub pass_ratio: f64,
-    /// The query to find rows that did not pass this rule.
+    /// Output only. The query to find rows that did not pass this rule.
     ///
     /// This field is only valid for row-level type rules.
     #[prost(string, tag = "10")]
@@ -7658,7 +7660,7 @@ pub struct DataQualityDimensionResult {
     /// Output only. The dimension config specified in the DataQualitySpec, as is.
     #[prost(message, optional, tag = "1")]
     pub dimension: ::core::option::Option<DataQualityDimension>,
-    /// Whether the dimension passed or failed.
+    /// Output only. Whether the dimension passed or failed.
     #[prost(bool, tag = "3")]
     pub passed: bool,
     /// Output only. The dimension-level data quality score for this data scan job
@@ -7673,9 +7675,8 @@ pub struct DataQualityDimensionResult {
 /// specified.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataQualityDimension {
-    /// The dimension name a rule belongs to. Supported dimensions are
-    /// ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-    /// "FRESHNESS", "VOLUME"]
+    /// Optional. The dimension name a rule belongs to. Custom dimension name is
+    /// supported with all uppercase letters and maximum length of 30 characters.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -11570,6 +11571,65 @@ pub mod business_glossary_event {
                 "GLOSSARY_TERM_CREATE" => Some(Self::GlossaryTermCreate),
                 "GLOSSARY_TERM_UPDATE" => Some(Self::GlossaryTermUpdate),
                 "GLOSSARY_TERM_DELETE" => Some(Self::GlossaryTermDelete),
+                _ => None,
+            }
+        }
+    }
+}
+/// Payload associated with Entry related log events.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EntryLinkEvent {
+    /// The log message.
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
+    /// The type of the event.
+    #[prost(enumeration = "entry_link_event::EventType", tag = "2")]
+    pub event_type: i32,
+    /// Name of the resource.
+    #[prost(string, tag = "3")]
+    pub resource: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `EntryLinkEvent`.
+pub mod entry_link_event {
+    /// Type of entry link log event.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum EventType {
+        /// An unspecified event type.
+        Unspecified = 0,
+        /// EntryLink create event.
+        EntryLinkCreate = 1,
+        /// EntryLink delete event.
+        EntryLinkDelete = 2,
+    }
+    impl EventType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                Self::EntryLinkCreate => "ENTRY_LINK_CREATE",
+                Self::EntryLinkDelete => "ENTRY_LINK_DELETE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ENTRY_LINK_CREATE" => Some(Self::EntryLinkCreate),
+                "ENTRY_LINK_DELETE" => Some(Self::EntryLinkDelete),
                 _ => None,
             }
         }

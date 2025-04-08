@@ -6114,6 +6114,15 @@ pub mod rag_file_parsing_config {
         /// of 120 QPM would be used.
         #[prost(int32, tag = "2")]
         pub max_parsing_requests_per_min: i32,
+        /// The maximum number of requests the job is allowed to make to the Document
+        /// AI processor per minute in this project. Consult
+        /// <https://cloud.google.com/document-ai/quotas> and the Quota page for your
+        /// project to set an appropriate value here.
+        /// If this value is not specified,
+        /// max_parsing_requests_per_min will be used by indexing
+        /// pipeline as the global limit.
+        #[prost(int32, tag = "3")]
+        pub global_max_parsing_requests_per_min: i32,
     }
     /// Specifies the advanced parsing for RagFiles.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6130,6 +6139,15 @@ pub mod rag_file_parsing_config {
         /// a default value of 5000 QPM would be used.
         #[prost(int32, tag = "2")]
         pub max_parsing_requests_per_min: i32,
+        /// The maximum number of requests the job is allowed to make to the
+        /// LLM model per minute in this project. Consult
+        /// <https://cloud.google.com/vertex-ai/generative-ai/docs/quotas>
+        /// and your document size to set an appropriate value here.
+        /// If this value is not specified,
+        /// max_parsing_requests_per_min will be used by indexing pipeline job as the
+        /// global limit.
+        #[prost(int32, tag = "4")]
+        pub global_max_parsing_requests_per_min: i32,
         /// The prompt to use for parsing. If not specified, a default prompt will
         /// be used.
         #[prost(string, tag = "3")]
@@ -6185,6 +6203,14 @@ pub struct ImportRagFilesConfig {
     /// If unspecified, a default value of 1,000 QPM would be used.
     #[prost(int32, tag = "5")]
     pub max_embedding_requests_per_min: i32,
+    /// Optional. The max number of queries per minute that the indexing pipeline
+    /// job is allowed to make to the embedding model specified in the project.
+    /// Please follow the quota usage guideline of the embedding model you use to
+    /// set the value properly. If this value is not specified,
+    /// max_embedding_requests_per_min will be used by indexing pipeline job as the
+    /// global limit.
+    #[prost(int32, tag = "18")]
+    pub global_max_embedding_requests_per_min: i32,
     /// The source of the import.
     #[prost(oneof = "import_rag_files_config::ImportSource", tags = "2, 3, 6, 7, 13")]
     pub import_source: ::core::option::Option<import_rag_files_config::ImportSource>,
@@ -10556,6 +10582,23 @@ pub struct PredictRequestResponseLoggingConfig {
     /// given, a new table will be created with name `request_response_logging`
     #[prost(message, optional, tag = "3")]
     pub bigquery_destination: ::core::option::Option<BigQueryDestination>,
+    /// Output only. The schema version used in creating the BigQuery table for the
+    /// request response logging. The versions are "v1" and "v2". The current
+    /// default version is "v1".
+    #[prost(string, tag = "4")]
+    pub request_response_logging_schema_version: ::prost::alloc::string::String,
+    /// This field is used for large models. If true, in addition to the
+    /// original large model logs, logs will be converted in OTel schema format,
+    /// and saved in otel_log column. Default value is false.
+    #[prost(bool, tag = "6")]
+    pub enable_otel_logging: bool,
+}
+/// This message contains configs of a publisher model.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PublisherModelConfig {
+    /// The prediction request/response logging config.
+    #[prost(message, optional, tag = "3")]
+    pub logging_config: ::core::option::Option<PredictRequestResponseLoggingConfig>,
 }
 /// Configurations (e.g. inference timeout) that are applied on your endpoints.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -11248,6 +11291,35 @@ pub struct UndeployModelRequest {
 /// [EndpointService.UndeployModel][google.cloud.aiplatform.v1beta1.EndpointService.UndeployModel].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UndeployModelResponse {}
+/// Request message for
+/// [EndpointService.SetPublisherModelConfig][google.cloud.aiplatform.v1beta1.EndpointService.SetPublisherModelConfig].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetPublisherModelConfigRequest {
+    /// Required. The name of the publisher model, in the format of
+    /// `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The publisher model config.
+    #[prost(message, optional, tag = "2")]
+    pub publisher_model_config: ::core::option::Option<PublisherModelConfig>,
+}
+/// Runtime operation information for
+/// [EndpointService.SetPublisherModelConfig][google.cloud.aiplatform.v1beta1.EndpointService.SetPublisherModelConfig].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetPublisherModelConfigOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Request message for
+/// [EndpointService.FetchPublisherModelConfig][google.cloud.aiplatform.v1beta1.EndpointService.FetchPublisherModelConfig].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FetchPublisherModelConfigRequest {
+    /// Required. The name of the publisher model, in the format of
+    /// `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
 /// Runtime operation information for
 /// [EndpointService.UndeployModel][google.cloud.aiplatform.v1beta1.EndpointService.UndeployModel].
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -11645,6 +11717,67 @@ pub mod endpoint_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.EndpointService",
                         "MutateDeployedModel",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Sets (creates or updates) configs of publisher models. For example, sets
+        /// the request/response logging config.
+        pub async fn set_publisher_model_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SetPublisherModelConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.EndpointService/SetPublisherModelConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.EndpointService",
+                        "SetPublisherModelConfig",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Fetches the configs of publisher models.
+        pub async fn fetch_publisher_model_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchPublisherModelConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::PublisherModelConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.EndpointService/FetchPublisherModelConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.EndpointService",
+                        "FetchPublisherModelConfig",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -19822,6 +19955,111 @@ pub struct SearchNearestEntitiesResponse {
     #[prost(message, optional, tag = "1")]
     pub nearest_neighbors: ::core::option::Option<NearestNeighbors>,
 }
+/// Request message for
+/// [FeatureOnlineStoreService.FeatureViewDirectWrite][google.cloud.aiplatform.v1beta1.FeatureOnlineStoreService.FeatureViewDirectWrite].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FeatureViewDirectWriteRequest {
+    /// FeatureView resource format
+    /// `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`
+    #[prost(string, tag = "1")]
+    pub feature_view: ::prost::alloc::string::String,
+    /// Required. The data keys and associated feature values.
+    #[prost(message, repeated, tag = "2")]
+    pub data_key_and_feature_values: ::prost::alloc::vec::Vec<
+        feature_view_direct_write_request::DataKeyAndFeatureValues,
+    >,
+}
+/// Nested message and enum types in `FeatureViewDirectWriteRequest`.
+pub mod feature_view_direct_write_request {
+    /// A data key and associated feature values to write to the feature view.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DataKeyAndFeatureValues {
+        /// The data key.
+        #[prost(message, optional, tag = "1")]
+        pub data_key: ::core::option::Option<super::FeatureViewDataKey>,
+        /// List of features to write.
+        #[prost(message, repeated, tag = "2")]
+        pub features: ::prost::alloc::vec::Vec<data_key_and_feature_values::Feature>,
+    }
+    /// Nested message and enum types in `DataKeyAndFeatureValues`.
+    pub mod data_key_and_feature_values {
+        /// Feature name & value pair.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Feature {
+            /// Feature short name.
+            #[prost(string, tag = "1")]
+            pub name: ::prost::alloc::string::String,
+            /// Feature value data to write.
+            #[prost(oneof = "feature::DataOneof", tags = "2")]
+            pub data_oneof: ::core::option::Option<feature::DataOneof>,
+        }
+        /// Nested message and enum types in `Feature`.
+        pub mod feature {
+            /// Feature value and timestamp.
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct FeatureValueAndTimestamp {
+                /// The feature value.
+                #[prost(message, optional, tag = "1")]
+                pub value: ::core::option::Option<super::super::super::FeatureValue>,
+                /// The feature timestamp to store with this value.
+                /// If not set, then the Feature Store server will generate a timestamp
+                /// when it receives the write request.
+                #[prost(message, optional, tag = "2")]
+                pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+            }
+            /// Feature value data to write.
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum DataOneof {
+                /// Feature value and timestamp.
+                #[prost(message, tag = "2")]
+                ValueAndTimestamp(FeatureValueAndTimestamp),
+            }
+        }
+    }
+}
+/// Response message for
+/// [FeatureOnlineStoreService.FeatureViewDirectWrite][google.cloud.aiplatform.v1beta1.FeatureOnlineStoreService.FeatureViewDirectWrite].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FeatureViewDirectWriteResponse {
+    /// Response status for the keys listed in
+    /// [FeatureViewDirectWriteResponse.write_responses][google.cloud.aiplatform.v1beta1.FeatureViewDirectWriteResponse.write_responses].
+    ///
+    /// The error only applies to the
+    /// listed data keys - the stream will remain open for further
+    /// [FeatureOnlineStoreService.FeatureViewDirectWriteRequest][] requests.
+    ///
+    /// Partial failures (e.g. if the first 10 keys of a request fail, but the
+    /// rest succeed) from a single request may result in multiple responses -
+    /// there will be one response for the successful request keys and one response
+    /// for the failing request keys.
+    #[prost(message, optional, tag = "1")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    /// Details about write for each key. If status is not OK,
+    /// [WriteResponse.data_key][google.cloud.aiplatform.v1beta1.FeatureViewDirectWriteResponse.WriteResponse.data_key]
+    /// will have the key with error, but
+    /// [WriteResponse.online_store_write_time][google.cloud.aiplatform.v1beta1.FeatureViewDirectWriteResponse.WriteResponse.online_store_write_time]
+    /// will not be present.
+    #[prost(message, repeated, tag = "2")]
+    pub write_responses: ::prost::alloc::vec::Vec<
+        feature_view_direct_write_response::WriteResponse,
+    >,
+}
+/// Nested message and enum types in `FeatureViewDirectWriteResponse`.
+pub mod feature_view_direct_write_response {
+    /// Details about the write for each key.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct WriteResponse {
+        /// What key is this write response associated with.
+        #[prost(message, optional, tag = "1")]
+        pub data_key: ::core::option::Option<super::FeatureViewDataKey>,
+        /// When the feature values were written to the online store.
+        /// If
+        /// [FeatureViewDirectWriteResponse.status][google.cloud.aiplatform.v1beta1.FeatureViewDirectWriteResponse.status]
+        /// is not OK, this field is not populated.
+        #[prost(message, optional, tag = "2")]
+        pub online_store_write_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+}
 /// Format of the data in the Feature View.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -20035,6 +20273,42 @@ pub mod feature_online_store_service_client {
                     ),
                 );
             self.inner.unary(req, path, codec).await
+        }
+        /// Bidirectional streaming RPC to directly write to feature values in a
+        /// feature view. Requests may not have a one-to-one mapping to responses and
+        /// responses may be returned out-of-order to reduce latency.
+        pub async fn feature_view_direct_write(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::FeatureViewDirectWriteRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<
+                tonic::codec::Streaming<super::FeatureViewDirectWriteResponse>,
+            >,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.FeatureOnlineStoreService/FeatureViewDirectWrite",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.FeatureOnlineStoreService",
+                        "FeatureViewDirectWrite",
+                    ),
+                );
+            self.inner.streaming(req, path, codec).await
         }
     }
 }
