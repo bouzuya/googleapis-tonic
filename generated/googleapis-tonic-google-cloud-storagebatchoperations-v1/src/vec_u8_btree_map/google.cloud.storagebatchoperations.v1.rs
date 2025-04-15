@@ -3,10 +3,10 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Job {
     /// Identifier. The resource name of the Job. job_id is unique
-    /// within the project, that is either set by the customer or
+    /// within the project and location, that is either set by the customer or
     /// defined by the service. Format:
-    /// projects/{project}/locations/global/jobs/{job_id} .
-    /// For example: "projects/123456/locations/global/jobs/job01".
+    /// projects/{project}/locations/{location}/jobs/{job_id} .
+    /// For example: "projects/123456/locations/us-central1/jobs/job01".
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. A description provided by the user for the job. Its max length is
@@ -166,9 +166,9 @@ pub struct Manifest {
     /// upon.
     ///   `manifest_location` should either be
     /// 1) An absolute path to the object in the format of
-    /// `gs://bucket_name/path/file_name.csv`.
+    /// gs://bucket_name/path/file_name.csv.
     /// 2) An absolute path with a single wildcard character in the file name, for
-    /// example `gs://bucket_name/path/file_name*.csv`.
+    /// example gs://bucket_name/path/file_name*.csv.
     /// If manifest location is specified with a wildcard, objects in all manifest
     /// files matching the pattern will be acted upon.
     #[prost(string, tag = "2")]
@@ -477,7 +477,7 @@ pub mod logging_config {
 /// Message for request to list Jobs
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsRequest {
-    /// Required. Format: projects/{project_id}/locations/global.
+    /// Required. Format: projects/{project_id}/locations/{location_id} .
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. Filters results as defined by <https://google.aip.dev/160.>
@@ -510,7 +510,7 @@ pub struct ListJobsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobRequest {
     /// Required. `name` of the job to retrieve.
-    /// Format: projects/{project_id}/locations/global/jobs/{job_id} .
+    /// Format: projects/{project_id}/locations/{location_id}/jobs/{job_id} .
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -531,9 +531,9 @@ pub struct CreateJobRequest {
     pub job: ::core::option::Option<Job>,
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID in case you need to retry your request. Requests with same
-    /// `request_id` will be ignored for at least 60 minutes since the first
-    /// request. The request ID must be a valid UUID with the exception that zero
-    /// UUID is not supported (00000000-0000-0000-0000-000000000000).
+    /// `request_id` will ignored for at least 60 minutes since the first request.
+    /// The request ID must be a valid UUID with the exception that zero UUID is
+    /// not supported (00000000-0000-0000-0000-000000000000).
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -541,14 +541,14 @@ pub struct CreateJobRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelJobRequest {
     /// Required. The `name` of the job to cancel.
-    /// Format: projects/{project_id}/locations/global/jobs/{job_id}.
+    /// Format: projects/{project_id}/locations/{location_id}/jobs/{job_id}.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID in case you need to retry your request. Requests with same
-    /// `request_id` will be ignored for at least 60 minutes since the first
-    /// request. The request ID must be a valid UUID with the exception that zero
-    /// UUID is not supported (00000000-0000-0000-0000-000000000000).
+    /// `request_id` will ignored for at least 60 minutes since the first request.
+    /// The request ID must be a valid UUID with the exception that zero UUID is
+    /// not supported (00000000-0000-0000-0000-000000000000).
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -556,14 +556,14 @@ pub struct CancelJobRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteJobRequest {
     /// Required. The `name` of the job to delete.
-    /// Format: projects/{project_id}/locations/global/jobs/{job_id} .
+    /// Format: projects/{project_id}/locations/{location_id}/jobs/{job_id} .
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID in case you need to retry your request. Requests with same
-    /// `request_id` will be ignored for at least 60 minutes since the first
-    /// request. The request ID must be a valid UUID with the exception that zero
-    /// UUID is not supported (00000000-0000-0000-0000-000000000000).
+    /// `request_id` will ignored for at least 60 minutes since the first request.
+    /// The request ID must be a valid UUID with the exception that zero UUID is
+    /// not supported (00000000-0000-0000-0000-000000000000).
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -574,7 +574,7 @@ pub struct CancelJobResponse {}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The unique operation resource name.
-    /// Format: projects/{project}/locations/global/operations/{operation}.
+    /// Format: projects/{project}/locations/{location}/operations/{operation}.
     #[prost(string, tag = "1")]
     pub operation: ::prost::alloc::string::String,
     /// Output only. The time the operation was created.
@@ -588,8 +588,7 @@ pub struct OperationMetadata {
     /// have
     /// [google.longrunning.Operation.error][google.longrunning.Operation.error]
     /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-    /// corresponding to
-    /// `[Code.CANCELLED][google.rpc.Code.CANCELLED]`.
+    /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "7")]
     pub requested_cancellation: bool,
     /// Output only. API version used to start the operation.
@@ -685,7 +684,7 @@ pub mod storage_batch_operations_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists Jobs in a given project.
+        /// Lists Jobs in a given project and location.
         pub async fn list_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListJobsRequest>,

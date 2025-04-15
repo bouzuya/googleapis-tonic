@@ -189,6 +189,7 @@
     feature = "google-cloud-datastream-v1alpha1",
     feature = "google-cloud-deploy-v1",
     feature = "google-cloud-developerconnect-v1",
+    feature = "google-cloud-devicestreaming-v1",
     feature = "google-cloud-dialogflow-cx-v3",
     feature = "google-cloud-dialogflow-cx-v3beta1",
     feature = "google-cloud-dialogflow-v2",
@@ -348,6 +349,7 @@
     feature = "google-cloud-security-privateca-v1",
     feature = "google-cloud-security-privateca-v1beta1",
     feature = "google-cloud-security-publicca-v1",
+    feature = "google-cloud-security-publicca-v1alpha1",
     feature = "google-cloud-security-publicca-v1beta1",
     feature = "google-cloud-securitycenter-settings-v1beta1",
     feature = "google-cloud-securitycenter-v1",
@@ -1274,6 +1276,7 @@ pub mod google {
         feature = "google-cloud-datastream-v1alpha1",
         feature = "google-cloud-deploy-v1",
         feature = "google-cloud-developerconnect-v1",
+        feature = "google-cloud-devicestreaming-v1",
         feature = "google-cloud-dialogflow-cx-v3",
         feature = "google-cloud-dialogflow-cx-v3beta1",
         feature = "google-cloud-dialogflow-v2",
@@ -1433,6 +1436,7 @@ pub mod google {
         feature = "google-cloud-security-privateca-v1",
         feature = "google-cloud-security-privateca-v1beta1",
         feature = "google-cloud-security-publicca-v1",
+        feature = "google-cloud-security-publicca-v1alpha1",
         feature = "google-cloud-security-publicca-v1beta1",
         feature = "google-cloud-securitycenter-settings-v1beta1",
         feature = "google-cloud-securitycenter-v1",
@@ -4742,6 +4746,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-devicestreaming-v1",
+        ))]
+        pub mod devicestreaming {
+            #[cfg(any(
+                feature = "google-cloud-devicestreaming-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-devicestreaming-v1",
+                ))]
+                include!("vec_u8_btree_map/google.cloud.devicestreaming.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-assuredworkloads-regulatoryintercept-logging-v1",
             feature = "google-cloud-assuredworkloads-v1",
             feature = "google-cloud-assuredworkloads-v1beta1",
@@ -4803,11 +4821,13 @@ pub mod google {
             feature = "google-cloud-security-privateca-v1",
             feature = "google-cloud-security-privateca-v1beta1",
             feature = "google-cloud-security-publicca-v1",
+            feature = "google-cloud-security-publicca-v1alpha1",
             feature = "google-cloud-security-publicca-v1beta1",
         ))]
         pub mod security {
             #[cfg(any(
                 feature = "google-cloud-security-publicca-v1",
+                feature = "google-cloud-security-publicca-v1alpha1",
                 feature = "google-cloud-security-publicca-v1beta1",
             ))]
             pub mod publicca {
@@ -4819,6 +4839,15 @@ pub mod google {
                         feature = "google-cloud-security-publicca-v1",
                     ))]
                     include!("vec_u8_btree_map/google.cloud.security.publicca.v1.rs");
+                }
+                #[cfg(any(
+                    feature = "google-cloud-security-publicca-v1alpha1",
+                ))]
+                pub mod v1alpha1 {
+                    #[cfg(any(
+                        feature = "google-cloud-security-publicca-v1alpha1",
+                    ))]
+                    include!("vec_u8_btree_map/google.cloud.security.publicca.v1alpha1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-security-publicca-v1beta1",
