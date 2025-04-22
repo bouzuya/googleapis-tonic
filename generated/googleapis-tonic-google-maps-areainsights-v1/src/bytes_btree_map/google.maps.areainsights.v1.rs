@@ -23,8 +23,8 @@ pub struct ComputeInsightsResponse {
 /// Holds information about a place
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlaceInsight {
-    /// The resource name of a place. This resource name can be used to retrieve
-    /// details about the place using the [Places
+    /// The unique identifier of the place. This resource name can be used to
+    /// retrieve details about the place using the [Places
     /// API](<https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places/get>).
     #[prost(string, tag = "1")]
     pub place: ::prost::alloc::string::String,
@@ -94,16 +94,18 @@ pub mod location_filter {
     /// states, etc.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Region {
-        /// The resource name of a region.
+        /// Defines a geographic region. Only one type of region (e.g. place) can
+        /// specified at a time.
         #[prost(oneof = "region::Region", tags = "1")]
         pub region: ::core::option::Option<region::Region>,
     }
     /// Nested message and enum types in `Region`.
     pub mod region {
-        /// The resource name of a region.
+        /// Defines a geographic region. Only one type of region (e.g. place) can
+        /// specified at a time.
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Region {
-            /// The Place resource name of a region.
+            /// The unique identifier of a specific geographic region.
             #[prost(string, tag = "1")]
             Place(::prost::alloc::string::String),
         }

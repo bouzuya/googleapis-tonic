@@ -1949,7 +1949,7 @@ pub struct TieringPolicy {
     #[prost(enumeration = "tiering_policy::TierAction", optional, tag = "1")]
     pub tier_action: ::core::option::Option<i32>,
     /// Optional. Time in days to mark the volume's data block as cold and make it
-    /// eligible for tiering, can be range from 7-183. Default is 31.
+    /// eligible for tiering, can be range from 2-183. Default is 31.
     #[prost(int32, optional, tag = "2")]
     pub cooling_threshold_days: ::core::option::Option<i32>,
 }

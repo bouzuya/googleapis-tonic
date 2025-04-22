@@ -3569,6 +3569,9 @@ pub struct Model {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "52")]
     pub satisfies_pzi: bool,
+    /// Optional. Output only. The checkpoints of the model.
+    #[prost(message, repeated, tag = "57")]
+    pub checkpoints: ::prost::alloc::vec::Vec<Checkpoint>,
 }
 /// Nested message and enum types in `Model`.
 pub mod model {
@@ -4297,6 +4300,19 @@ pub mod probe {
         #[prost(message, tag = "6")]
         TcpSocket(TcpSocketAction),
     }
+}
+/// Describes the machine learning model version checkpoint.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Checkpoint {
+    /// The ID of the checkpoint.
+    #[prost(string, tag = "1")]
+    pub checkpoint_id: ::prost::alloc::string::String,
+    /// The epoch of the checkpoint.
+    #[prost(int64, tag = "2")]
+    pub epoch: i64,
+    /// The step of the checkpoint.
+    #[prost(int64, tag = "3")]
+    pub step: i64,
 }
 /// Contains model information necessary to perform batch prediction without
 /// requiring a full model import.
@@ -33875,6 +33891,50 @@ pub struct ExportPublisherModelRequest {
     #[prost(string, tag = "3")]
     pub parent: ::prost::alloc::string::String,
 }
+/// Request message for
+/// [ModelGardenService.CheckPublisherModelEula][].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CheckPublisherModelEulaAcceptanceRequest {
+    /// Required. The project requesting access for named model. The format is
+    /// `projects/{project}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}`
+    #[prost(string, tag = "2")]
+    pub publisher_model: ::prost::alloc::string::String,
+}
+/// Request message for
+/// [ModelGardenService.AcceptPublisherModelEula][google.cloud.aiplatform.v1beta1.ModelGardenService.AcceptPublisherModelEula].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AcceptPublisherModelEulaRequest {
+    /// Required. The project requesting access for named model. The format is
+    /// `projects/{project}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The name of the PublisherModel resource.
+    /// Format:
+    /// `publishers/{publisher}/models/{publisher_model}`, or
+    /// `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}`
+    #[prost(string, tag = "2")]
+    pub publisher_model: ::prost::alloc::string::String,
+}
+/// Response message for
+/// [ModelGardenService.UpdatePublisherModelEula][].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PublisherModelEulaAcceptance {
+    /// The project number requesting access for named model.
+    #[prost(int64, tag = "1")]
+    pub project_number: i64,
+    /// The publisher model resource name.
+    #[prost(string, tag = "2")]
+    pub publisher_model: ::prost::alloc::string::String,
+    /// The EULA content acceptance status.
+    #[prost(bool, tag = "3")]
+    pub publisher_model_eula_acked: bool,
+}
 /// View enumeration of PublisherModel.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -34140,6 +34200,68 @@ pub mod model_garden_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.ModelGardenService",
                         "ExportPublisherModel",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Checks the EULA acceptance status of a publisher model.
+        pub async fn check_publisher_model_eula_acceptance(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::CheckPublisherModelEulaAcceptanceRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::PublisherModelEulaAcceptance>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ModelGardenService/CheckPublisherModelEulaAcceptance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ModelGardenService",
+                        "CheckPublisherModelEulaAcceptance",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Accepts the EULA acceptance status of a publisher model.
+        pub async fn accept_publisher_model_eula(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AcceptPublisherModelEulaRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::PublisherModelEulaAcceptance>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ModelGardenService/AcceptPublisherModelEula",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ModelGardenService",
+                        "AcceptPublisherModelEula",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -44081,7 +44203,8 @@ pub struct EventActions {
         ::prost::alloc::string::String,
         i32,
     >,
-    /// Optional. If set, the event transfers to the specified agent.
+    /// Deprecated. If set, the event transfers to the specified agent.
+    #[deprecated]
     #[prost(bool, tag = "5")]
     pub transfer_to_agent: bool,
     /// Optional. The agent is escalating to a higher level agent.
@@ -44093,13 +44216,16 @@ pub struct EventActions {
     /// required auth config, which can be another struct.
     #[prost(message, optional, tag = "7")]
     pub requested_auth_configs: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. If set, the event transfers to the specified agent.
+    #[prost(string, tag = "8")]
+    pub transfer_agent: ::prost::alloc::string::String,
 }
 /// Request message for
 /// [SessionService.CreateSession][google.cloud.aiplatform.v1beta1.SessionService.CreateSession].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSessionRequest {
     /// Required. The resource name of the location to create the session in.
-    /// Format: `projects/{project}/locations/{location}` or
+    /// Format:
     /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -44197,7 +44323,6 @@ pub struct UpdateSessionRequest {
 pub struct DeleteSessionRequest {
     /// Required. The resource name of the session.
     /// Format:
-    /// `projects/{project}/locations/{location}/sessions/{session}` or
     /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -44213,6 +44338,7 @@ pub struct ListEventsRequest {
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of events to return. The service may return
     /// fewer than this value. If unspecified, at most 100 events will be returned.
+    /// These events are ordered by timestamp in ascending order.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// Optional. The
@@ -44227,7 +44353,8 @@ pub struct ListEventsRequest {
 /// [SessionService.ListEvents][google.cloud.aiplatform.v1beta1.SessionService.ListEvents].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsResponse {
-    /// A list of events matching the request.
+    /// A list of events matching the request. Ordered by timestamp in ascending
+    /// order.
     #[prost(message, repeated, tag = "1")]
     pub session_events: ::prost::alloc::vec::Vec<SessionEvent>,
     /// A token, which can be sent as
@@ -44335,8 +44462,7 @@ pub mod session_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a new [Session][google.cloud.aiplatform.v1beta1.Session] in a given
-        /// project and location.
+        /// Creates a new [Session][google.cloud.aiplatform.v1beta1.Session].
         pub async fn create_session(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateSessionRequest>,
@@ -44395,7 +44521,7 @@ pub mod session_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists [Sessions][google.cloud.aiplatform.v1beta1.Session] in a given
-        /// project and location.
+        /// reasoning engine.
         pub async fn list_sessions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListSessionsRequest>,
