@@ -436,7 +436,6 @@
     feature = "google-devtools-build-v1",
     feature = "google-devtools-cloudbuild-v1",
     feature = "google-devtools-cloudbuild-v2",
-    feature = "google-devtools-clouddebugger-v2",
     feature = "google-devtools-clouderrorreporting-v1beta1",
     feature = "google-devtools-cloudprofiler-v2",
     feature = "google-devtools-cloudtrace-v1",
@@ -510,8 +509,10 @@
     feature = "google-shopping-merchant-conversions-v1beta",
     feature = "google-shopping-merchant-datasources-v1beta",
     feature = "google-shopping-merchant-inventories-v1beta",
+    feature = "google-shopping-merchant-issueresolution-v1beta",
     feature = "google-shopping-merchant-lfp-v1beta",
     feature = "google-shopping-merchant-notifications-v1beta",
+    feature = "google-shopping-merchant-ordertracking-v1beta",
     feature = "google-shopping-merchant-products-v1beta",
     feature = "google-shopping-merchant-productstudio-v1alpha",
     feature = "google-shopping-merchant-promotions-v1beta",
@@ -6002,8 +6003,10 @@ pub mod google {
         feature = "google-shopping-merchant-conversions-v1beta",
         feature = "google-shopping-merchant-datasources-v1beta",
         feature = "google-shopping-merchant-inventories-v1beta",
+        feature = "google-shopping-merchant-issueresolution-v1beta",
         feature = "google-shopping-merchant-lfp-v1beta",
         feature = "google-shopping-merchant-notifications-v1beta",
+        feature = "google-shopping-merchant-ordertracking-v1beta",
         feature = "google-shopping-merchant-products-v1beta",
         feature = "google-shopping-merchant-productstudio-v1alpha",
         feature = "google-shopping-merchant-promotions-v1beta",
@@ -6018,8 +6021,10 @@ pub mod google {
             feature = "google-shopping-merchant-conversions-v1beta",
             feature = "google-shopping-merchant-datasources-v1beta",
             feature = "google-shopping-merchant-inventories-v1beta",
+            feature = "google-shopping-merchant-issueresolution-v1beta",
             feature = "google-shopping-merchant-lfp-v1beta",
             feature = "google-shopping-merchant-notifications-v1beta",
+            feature = "google-shopping-merchant-ordertracking-v1beta",
             feature = "google-shopping-merchant-products-v1beta",
             feature = "google-shopping-merchant-productstudio-v1alpha",
             feature = "google-shopping-merchant-promotions-v1beta",
@@ -6068,6 +6073,20 @@ pub mod google {
                         feature = "google-shopping-merchant-products-v1beta",
                     ))]
                     include!("bytes_hash_map/google.shopping.merchant.products.v1beta.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-shopping-merchant-ordertracking-v1beta",
+            ))]
+            pub mod ordertracking {
+                #[cfg(any(
+                    feature = "google-shopping-merchant-ordertracking-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-shopping-merchant-ordertracking-v1beta",
+                    ))]
+                    include!("bytes_hash_map/google.shopping.merchant.ordertracking.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -6194,6 +6213,20 @@ pub mod google {
                         feature = "google-shopping-merchant-accounts-v1beta",
                     ))]
                     include!("bytes_hash_map/google.shopping.merchant.accounts.v1beta.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-shopping-merchant-issueresolution-v1beta",
+            ))]
+            pub mod issueresolution {
+                #[cfg(any(
+                    feature = "google-shopping-merchant-issueresolution-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-shopping-merchant-issueresolution-v1beta",
+                    ))]
+                    include!("bytes_hash_map/google.shopping.merchant.issueresolution.v1beta.rs");
                 }
             }
         }
@@ -7207,7 +7240,6 @@ pub mod google {
         feature = "google-devtools-build-v1",
         feature = "google-devtools-cloudbuild-v1",
         feature = "google-devtools-cloudbuild-v2",
-        feature = "google-devtools-clouddebugger-v2",
         feature = "google-devtools-clouderrorreporting-v1beta1",
         feature = "google-devtools-cloudprofiler-v2",
         feature = "google-devtools-cloudtrace-v1",
@@ -7361,20 +7393,6 @@ pub mod google {
                     feature = "google-devtools-cloudprofiler-v2",
                 ))]
                 include!("bytes_hash_map/google.devtools.cloudprofiler.v2.rs");
-            }
-        }
-        #[cfg(any(
-            feature = "google-devtools-clouddebugger-v2",
-        ))]
-        pub mod clouddebugger {
-            #[cfg(any(
-                feature = "google-devtools-clouddebugger-v2",
-            ))]
-            pub mod v2 {
-                #[cfg(any(
-                    feature = "google-devtools-clouddebugger-v2",
-                ))]
-                include!("bytes_hash_map/google.devtools.clouddebugger.v2.rs");
             }
         }
         #[cfg(any(

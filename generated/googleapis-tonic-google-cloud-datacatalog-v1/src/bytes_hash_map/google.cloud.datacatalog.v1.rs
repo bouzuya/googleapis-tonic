@@ -3380,6 +3380,12 @@ pub struct MigrationConfig {
     /// Opt-in status for the UI switch to Dataplex.
     #[prost(enumeration = "CatalogUiExperience", tag = "2")]
     pub catalog_ui_experience: i32,
+    /// The time when the Tag Template migration was enabled.
+    /// If the Tag Template migration is not enabled, this field is not set.
+    #[prost(message, optional, tag = "3")]
+    pub template_migration_enabled_time: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
 }
 /// Metadata automatically ingested from Google Cloud resources like BigQuery
 /// tables or Pub/Sub topics always uses enum values from `EntryType` as the type

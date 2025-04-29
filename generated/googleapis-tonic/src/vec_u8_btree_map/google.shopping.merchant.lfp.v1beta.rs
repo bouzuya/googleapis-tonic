@@ -205,10 +205,12 @@ pub struct LfpMerchantState {
     /// to.
     #[prost(int64, tag = "2")]
     pub linked_gbps: i64,
-    /// Output only. The state per store from the specified merchant.
+    /// Output only. The state per store from the specified merchant. The field
+    /// will be absent if the merchant has no stores submitted through LFP.
     #[prost(message, repeated, tag = "3")]
     pub store_states: ::prost::alloc::vec::Vec<lfp_merchant_state::LfpStoreState>,
-    /// The inventory statistics for the merchant.
+    /// The inventory statistics for the merchant. The field will be absent if the
+    /// merchant has no inventory submitted through LFP.
     #[prost(message, optional, tag = "4")]
     pub inventory_stats: ::core::option::Option<lfp_merchant_state::InventoryStats>,
     /// Country-specific settings for the merchant.

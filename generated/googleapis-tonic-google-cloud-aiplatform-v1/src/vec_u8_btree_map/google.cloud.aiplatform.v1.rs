@@ -2751,6 +2751,9 @@ pub struct Model {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "52")]
     pub satisfies_pzi: bool,
+    /// Optional. Output only. The checkpoints of the model.
+    #[prost(message, repeated, tag = "57")]
+    pub checkpoints: ::prost::alloc::vec::Vec<Checkpoint>,
 }
 /// Nested message and enum types in `Model`.
 pub mod model {
@@ -3502,6 +3505,19 @@ pub mod probe {
         #[prost(message, tag = "6")]
         TcpSocket(TcpSocketAction),
     }
+}
+/// Describes the machine learning model version checkpoint.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Checkpoint {
+    /// The ID of the checkpoint.
+    #[prost(string, tag = "1")]
+    pub checkpoint_id: ::prost::alloc::string::String,
+    /// The epoch of the checkpoint.
+    #[prost(int64, tag = "2")]
+    pub epoch: i64,
+    /// The step of the checkpoint.
+    #[prost(int64, tag = "3")]
+    pub step: i64,
 }
 /// Contains model information necessary to perform batch prediction without
 /// requiring a full model import.
@@ -5348,6 +5364,11 @@ pub struct GenerationConfig {
     /// Optional. Routing configuration.
     #[prost(message, optional, tag = "17")]
     pub routing_config: ::core::option::Option<generation_config::RoutingConfig>,
+    /// Optional. Config for thinking features.
+    /// An error will be returned if this field is set for models that don't
+    /// support thinking.
+    #[prost(message, optional, tag = "25")]
+    pub thinking_config: ::core::option::Option<generation_config::ThinkingConfig>,
 }
 /// Nested message and enum types in `GenerationConfig`.
 pub mod generation_config {
@@ -5441,6 +5462,14 @@ pub mod generation_config {
             #[prost(message, tag = "2")]
             ManualMode(ManualRoutingMode),
         }
+    }
+    /// Config for thinking features.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ThinkingConfig {
+        /// Optional. Indicates the thinking budget in tokens.
+        /// This is only applied when enable_thinking is true.
+        #[prost(int32, optional, tag = "3")]
+        pub thinking_budget: ::core::option::Option<i32>,
     }
 }
 /// Safety settings.

@@ -6561,6 +6561,11 @@ pub struct GenerationConfig {
     /// Optional. The speech generation config.
     #[prost(message, optional, tag = "23")]
     pub speech_config: ::core::option::Option<SpeechConfig>,
+    /// Optional. Config for thinking features.
+    /// An error will be returned if this field is set for models that don't
+    /// support thinking.
+    #[prost(message, optional, tag = "25")]
+    pub thinking_config: ::core::option::Option<generation_config::ThinkingConfig>,
     /// Optional. Config for model selection.
     #[prost(message, optional, tag = "27")]
     pub model_config: ::core::option::Option<generation_config::ModelConfig>,
@@ -6657,6 +6662,14 @@ pub mod generation_config {
             #[prost(message, tag = "2")]
             ManualMode(ManualRoutingMode),
         }
+    }
+    /// Config for thinking features.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ThinkingConfig {
+        /// Optional. Indicates the thinking budget in tokens.
+        /// This is only applied when enable_thinking is true.
+        #[prost(int32, optional, tag = "3")]
+        pub thinking_budget: ::core::option::Option<i32>,
     }
     /// Config for model selection.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -9238,6 +9251,9 @@ pub struct AssessDataRequest {
     /// `projects/{project}/locations/{location}/datasets/{dataset}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. The Gemini request read config for the dataset.
+    #[prost(message, optional, tag = "8")]
+    pub gemini_request_read_config: ::core::option::Option<GeminiRequestReadConfig>,
     /// The assessment type.
     #[prost(oneof = "assess_data_request::AssessmentConfig", tags = "2, 3, 6, 7")]
     pub assessment_config: ::core::option::Option<assess_data_request::AssessmentConfig>,
@@ -9439,12 +9455,33 @@ pub struct GeminiTemplateConfig {
     /// for downstream applications.
     #[prost(message, optional, tag = "1")]
     pub gemini_example: ::core::option::Option<GeminiExample>,
-    /// Required. Map of template params to the columns in the dataset table.
+    /// Required. Map of template parameters to the columns in the dataset table.
     #[prost(map = "string, string", tag = "2")]
     pub field_mapping: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+}
+/// Configuration for how to read Gemini requests from a multimodal dataset.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GeminiRequestReadConfig {
+    /// The read config for the dataset.
+    #[prost(oneof = "gemini_request_read_config::ReadConfig", tags = "1, 4")]
+    pub read_config: ::core::option::Option<gemini_request_read_config::ReadConfig>,
+}
+/// Nested message and enum types in `GeminiRequestReadConfig`.
+pub mod gemini_request_read_config {
+    /// The read config for the dataset.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ReadConfig {
+        /// Gemini request template with placeholders.
+        #[prost(message, tag = "1")]
+        TemplateConfig(super::GeminiTemplateConfig),
+        /// Optional. Column name in the dataset table that contains already fully
+        /// assembled Gemini requests.
+        #[prost(string, tag = "4")]
+        AssembledRequestColumnName(::prost::alloc::string::String),
+    }
 }
 /// Format for Gemini examples used for Vertex Multimodal datasets.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -9520,6 +9557,9 @@ pub struct AssembleDataRequest {
     /// `projects/{project}/locations/{location}/datasets/{dataset}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. The read config for the dataset.
+    #[prost(message, optional, tag = "6")]
+    pub gemini_request_read_config: ::core::option::Option<GeminiRequestReadConfig>,
     /// The read config for the dataset.
     #[prost(oneof = "assemble_data_request::ReadConfig", tags = "2, 5")]
     pub read_config: ::core::option::Option<assemble_data_request::ReadConfig>,

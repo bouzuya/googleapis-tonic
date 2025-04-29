@@ -181,7 +181,7 @@ pub struct DeleteDataAccessScopeRequest {
 /// A DataAccessLabel is a label on events to define user access to data.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataAccessLabel {
-    /// Required. The unique resource name of the data access label.
+    /// The unique resource name of the data access label.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The short name displayed for the label as it appears on event
@@ -1116,7 +1116,7 @@ pub mod entity_service_client {
 /// A Instance represents an instantiation of the Instance product.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-    /// Output only. The resource name of this instance.
+    /// Identifier. The resource name of this instance.
     /// Format: `projects/{project}/locations/{location}/instances/{instance}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
