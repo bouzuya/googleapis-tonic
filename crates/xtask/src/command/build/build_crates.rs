@@ -23,6 +23,8 @@ pub fn build_crates(
     old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
     old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
     force_update: bool,
+    prost_version: &str,
+    tonic_version: &str,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
     let all_package_deps = googleapis.package_dependencies();
@@ -112,7 +114,14 @@ pub fn build_crates(
             googleapis_tonic_src_dir.join("lib.rs"),
             src_dir.join("lib.rs"),
         )?;
-        write_cargo_toml(&crate_dir, &crate_name, &crate_deps, &new_crate_versions)?;
+        write_cargo_toml(
+            &crate_dir,
+            &crate_name,
+            &crate_deps,
+            &new_crate_versions,
+            prost_version,
+            tonic_version,
+        )?;
         write_readme_md(&crate_dir, &crate_name)?;
     }
     Ok(new_crate_versions)
@@ -205,6 +214,8 @@ fn write_cargo_toml(
     crate_name: &CrateName,
     dep_crate_names: &BTreeSet<CrateName>,
     new_crate_versions: &BTreeMap<CrateName, CrateVersion>,
+    prost_version: &str,
+    tonic_version: &str,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -218,9 +229,9 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/bouzuya/googleapis-tonic"
 
 [dependencies]
-prost = "0.13.5"
-prost-types = "0.13.5"
-tonic = { version = "0.13.0", default-features = false, features = [
+prost = "{PROST_VERSION}"
+prost-types = "{PROST_VERSION}"
+tonic = { version = "{TONIC_VERSION}", default-features = false, features = [
   "codegen",
   "prost",
 ] }
@@ -247,6 +258,8 @@ default = ["hash-map", "vec-u8"]
             .with_context(|| format!("{} version not found", crate_name))?
             .to_string(),
     )
+    .replace("{PROST_VERSION}", prost_version)
+    .replace("{TONIC_VERSION}", tonic_version)
     .replace(
         "{DEPENDENCIES}",
         &dep_crate_names

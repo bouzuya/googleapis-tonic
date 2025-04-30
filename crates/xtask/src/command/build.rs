@@ -40,6 +40,9 @@ use crate::state::State;
 ///     ...
 /// ```
 pub fn execute(force_update: bool) -> anyhow::Result<()> {
+    let prost_version = "0.13.5";
+    let tonic_version = "0.13.0";
+
     let generated_dir = dirs::generated_dir()?;
     let googleapis_dir = dirs::googleapis_dir()?;
     let xtask_dir = dirs::xtask_crate_dir()?;
@@ -73,6 +76,8 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
         &crate_version,
         state.package_hashes(),
         force_update,
+        prost_version,
+        tonic_version,
     )?;
     println!("  build crates");
     let mut new_crate_versions = build_crates::build_crates(
@@ -81,6 +86,8 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
         crate_versions,
         state.package_hashes(),
         force_update,
+        prost_version,
+        tonic_version,
     )?;
     new_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, new_crate_version);
 

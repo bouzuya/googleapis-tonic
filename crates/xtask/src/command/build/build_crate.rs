@@ -22,6 +22,8 @@ pub fn build_crate(
     old_crate_version: &CrateVersion,
     old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
     force_update: bool,
+    prost_version: &str,
+    tonic_version: &str,
 ) -> anyhow::Result<CrateVersion> {
     let crate_name = CrateName::from_str("googleapis-tonic")?;
     let crate_dir = generated_dir.join(crate_name.to_string());
@@ -83,7 +85,14 @@ pub fn build_crate(
     }
     create_lib_rs(&crate_dir)?;
 
-    create_cargo_toml(&crate_dir, &crate_name, googleapis, &new_crate_version)?;
+    create_cargo_toml(
+        &crate_dir,
+        &crate_name,
+        googleapis,
+        &new_crate_version,
+        prost_version,
+        tonic_version,
+    )?;
     Ok(new_crate_version)
 }
 
@@ -122,6 +131,8 @@ fn create_cargo_toml(
     crate_name: &CrateName,
     googleapis: &Googleapis,
     version: &CrateVersion,
+    prost_version: &str,
+    tonic_version: &str,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -135,9 +146,9 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/bouzuya/googleapis-tonic"
 
 [dependencies]
-prost = "0.13.5"
-prost-types = "0.13.5"
-tonic = { version = "0.13.0", default-features = false, features = [
+prost = "{PROST_VERSION}"
+prost-types = "{PROST_VERSION}"
+tonic = { version = "{TONIC_VERSION}", default-features = false, features = [
   "codegen",
   "prost",
 ] }
@@ -156,6 +167,8 @@ unused_imports = "allow"
 "#
     .replace("{CRATE_NAME}", crate_name.as_ref())
     .replace("{VERSION}", &version.to_string())
+    .replace("{PROST_VERSION}", prost_version)
+    .replace("{TONIC_VERSION}", tonic_version)
     .replace("{FEATURES}", &{
         build_features(googleapis)
             .into_iter()
