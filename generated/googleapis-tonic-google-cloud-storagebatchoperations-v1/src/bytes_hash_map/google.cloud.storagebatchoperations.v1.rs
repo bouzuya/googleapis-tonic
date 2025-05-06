@@ -477,7 +477,7 @@ pub mod logging_config {
 /// Message for request to list Jobs
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsRequest {
-    /// Required. Format: projects/{project_id}/locations/{location_id} .
+    /// Required. Format: projects/{project_id}/locations/global.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. Filters results as defined by <https://google.aip.dev/160.>
@@ -510,7 +510,7 @@ pub struct ListJobsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobRequest {
     /// Required. `name` of the job to retrieve.
-    /// Format: projects/{project_id}/locations/{location_id}/jobs/{job_id} .
+    /// Format: projects/{project_id}/locations/global/jobs/{job_id} .
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -541,7 +541,7 @@ pub struct CreateJobRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelJobRequest {
     /// Required. The `name` of the job to cancel.
-    /// Format: projects/{project_id}/locations/{location_id}/jobs/{job_id}.
+    /// Format: projects/{project_id}/locations/global/jobs/{job_id}.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. An optional request ID to identify requests. Specify a unique
@@ -556,7 +556,7 @@ pub struct CancelJobRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteJobRequest {
     /// Required. The `name` of the job to delete.
-    /// Format: projects/{project_id}/locations/{location_id}/jobs/{job_id} .
+    /// Format: projects/{project_id}/locations/global/jobs/{job_id} .
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. An optional request ID to identify requests. Specify a unique
@@ -574,7 +574,7 @@ pub struct CancelJobResponse {}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The unique operation resource name.
-    /// Format: projects/{project}/locations/{location}/operations/{operation}.
+    /// Format: projects/{project}/locations/global/operations/{operation}.
     #[prost(string, tag = "1")]
     pub operation: ::prost::alloc::string::String,
     /// Output only. The time the operation was created.
@@ -684,7 +684,7 @@ pub mod storage_batch_operations_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists Jobs in a given project and location.
+        /// Lists Jobs in a given project.
         pub async fn list_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::ListJobsRequest>,

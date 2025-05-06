@@ -985,7 +985,7 @@ pub struct CsvSource {
 pub struct GcsSource {
     /// Required. Google Cloud Storage URI(-s) to the input file(s). May contain
     /// wildcards. For more information on wildcards, see
-    /// <https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.>
+    /// <https://cloud.google.com/storage/docs/wildcards.>
     #[prost(string, repeated, tag = "1")]
     pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -4881,6 +4881,36 @@ pub struct Schema {
     /// subschemas in the list.
     #[prost(message, repeated, tag = "11")]
     pub any_of: ::prost::alloc::vec::Vec<Schema>,
+    /// Optional. Allows indirect references between schema nodes. The value should
+    /// be a valid reference to a child of the root `defs`.
+    ///
+    /// For example, the following schema defines a reference to a schema node
+    /// named "Pet":
+    ///
+    /// type: object
+    /// properties:
+    ///    pet:
+    ///      ref: #/defs/Pet
+    /// defs:
+    ///    Pet:
+    ///      type: object
+    ///      properties:
+    ///        name:
+    ///          type: string
+    ///
+    /// The value of the "pet" property is a reference to the schema node
+    /// named "Pet".
+    /// See details in
+    /// <https://json-schema.org/understanding-json-schema/structuring>
+    #[prost(string, tag = "27")]
+    pub r#ref: ::prost::alloc::string::String,
+    /// Optional. A map of definitions for use by `ref`
+    /// Only allowed at the root of the schema.
+    #[prost(btree_map = "string, message", tag = "28")]
+    pub defs: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        Schema,
+    >,
 }
 /// Type contains the list of OpenAPI data types as defined by
 /// <https://swagger.io/docs/specification/data-models/data-types/>
@@ -7410,6 +7440,7 @@ pub enum HarmCategory {
     Harassment = 3,
     /// The harm category is sexually explicit content.
     SexuallyExplicit = 4,
+    /// Deprecated: Election filter is not longer supported.
     /// The harm category is civic integrity.
     CivicIntegrity = 5,
 }
@@ -7499,9 +7530,9 @@ pub struct CachedContent {
     /// cached content.
     #[prost(string, tag = "11")]
     pub display_name: ::prost::alloc::string::String,
-    /// Immutable. The name of the publisher model to use for cached content.
-    /// Format:
-    /// projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+    /// Immutable. The name of the `Model` to use for cached content. Currently,
+    /// only the published Gemini base models are supported, in form of
+    /// projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}
     #[prost(string, tag = "2")]
     pub model: ::prost::alloc::string::String,
     /// Optional. Input only. Immutable. Developer set system instruction.
@@ -7519,7 +7550,7 @@ pub struct CachedContent {
     /// tools
     #[prost(message, optional, tag = "6")]
     pub tool_config: ::core::option::Option<ToolConfig>,
-    /// Output only. Creatation time of the cache entry.
+    /// Output only. Creation time of the cache entry.
     #[prost(message, optional, tag = "7")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. When the cache entry was last updated in UTC time.
@@ -7528,6 +7559,11 @@ pub struct CachedContent {
     /// Output only. Metadata on the usage of the cached content.
     #[prost(message, optional, tag = "12")]
     pub usage_metadata: ::core::option::Option<cached_content::UsageMetadata>,
+    /// Input only. Immutable. Customer-managed encryption key spec for a
+    /// `CachedContent`. If set, this `CachedContent` and all its sub-resources
+    /// will be secured by this key.
+    #[prost(message, optional, tag = "13")]
+    pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     /// Expiration time of the cached content.
     #[prost(oneof = "cached_content::Expiration", tags = "9, 10")]
     pub expiration: ::core::option::Option<cached_content::Expiration>,
@@ -33758,6 +33794,13 @@ pub mod deploy_request {
         /// possible.
         #[prost(bool, tag = "2")]
         pub fast_tryout_enabled: bool,
+        /// Optional. System labels for Model Garden deployments.
+        /// These labels are managed by Google and for tracking purposes only.
+        #[prost(btree_map = "string, string", tag = "3")]
+        pub system_labels: ::prost::alloc::collections::BTreeMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
     }
     /// The artifacts to deploy.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -34553,7 +34596,7 @@ pub mod model_monitoring_input {
         pub struct ModelMonitoringGcsSource {
             /// Google Cloud Storage URI to the input file(s). May contain
             /// wildcards. For more information on wildcards, see
-            /// <https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.>
+            /// <https://cloud.google.com/storage/docs/wildcards.>
             #[prost(string, tag = "1")]
             pub gcs_uri: ::prost::alloc::string::String,
             /// Data format of the dataset.
