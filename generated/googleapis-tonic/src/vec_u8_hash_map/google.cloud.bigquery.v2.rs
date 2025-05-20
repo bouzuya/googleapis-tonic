@@ -1281,6 +1281,10 @@ pub struct ListFormatDataset {
     /// The geographic location where the dataset resides.
     #[prost(string, tag = "6")]
     pub location: ::prost::alloc::string::String,
+    /// Output only. Reference to a read-only external dataset defined in data
+    /// catalogs outside of BigQuery. Filled out when the dataset type is EXTERNAL.
+    #[prost(message, optional, tag = "11")]
+    pub external_dataset_reference: ::core::option::Option<ExternalDatasetReference>,
 }
 /// Response format for a page of results when listing datasets.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2950,6 +2954,8 @@ pub struct JobConfigurationQuery {
     ///
     /// * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the
     /// data, removes the constraints, and uses the schema from the query result.
+    /// * WRITE_TRUNCATE_DATA: If the table already exists, BigQuery overwrites the
+    /// data, but keeps the constraints and schema of the existing table.
     /// * WRITE_APPEND: If the table already exists, BigQuery appends the data to
     /// the table.
     /// * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate'
@@ -3195,6 +3201,8 @@ pub struct JobConfigurationLoad {
     ///
     /// * WRITE_TRUNCATE:  If the table already exists, BigQuery overwrites the
     /// data, removes the constraints and uses the schema from the load job.
+    /// * WRITE_TRUNCATE_DATA: If the table already exists, BigQuery overwrites the
+    /// data, but keeps the constraints and schema of the existing table.
     /// * WRITE_APPEND: If the table already exists, BigQuery appends the data to
     /// the table.
     /// * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate'
@@ -3456,8 +3464,8 @@ pub struct JobConfigurationLoad {
     /// * No options other than the above are specified.
     #[prost(message, optional, tag = "51")]
     pub copy_files_only: ::core::option::Option<bool>,
-    /// Optional. \[Experimental\] Default time zone that will apply when parsing
-    /// timestamp values that have no specific time zone.
+    /// Optional. Default time zone that will apply when parsing timestamp values
+    /// that have no specific time zone.
     #[prost(message, optional, tag = "52")]
     pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. A list of strings represented as SQL NULL value in a CSV file.
@@ -7297,6 +7305,10 @@ pub struct QueryTimelineSample {
     /// slot usage. This is the largest value observed since the last sample.
     #[prost(message, optional, tag = "5")]
     pub active_units: ::core::option::Option<i64>,
+    /// Total shuffle usage ratio in shuffle RAM per reservation of this query.
+    /// This will be provided for reservation customers only.
+    #[prost(message, optional, tag = "6")]
+    pub shuffle_ram_usage_ratio: ::core::option::Option<f64>,
     /// Units of work that can be scheduled immediately. Providing additional slots
     /// for these units of work will accelerate the query, if no other query in
     /// the reservation needs additional slots.
@@ -8047,8 +8059,7 @@ pub struct JobStatistics2 {
     /// Output only. Whether the query result was fetched from the query cache.
     #[prost(message, optional, tag = "9")]
     pub cache_hit: ::core::option::Option<bool>,
-    /// Output only. Referenced tables for the job. Queries that reference more
-    /// than 50 tables will not have a complete list.
+    /// Output only. Referenced tables for the job.
     #[prost(message, repeated, tag = "10")]
     pub referenced_tables: ::prost::alloc::vec::Vec<TableReference>,
     /// Output only. Referenced routines for the job.

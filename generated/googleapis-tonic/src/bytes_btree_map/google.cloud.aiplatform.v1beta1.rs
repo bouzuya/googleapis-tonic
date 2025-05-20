@@ -5359,6 +5359,39 @@ pub struct VertexAiSearch {
     /// `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
     #[prost(string, tag = "2")]
     pub engine: ::prost::alloc::string::String,
+    /// Optional. Number of search results to return per query.
+    /// The default value is 10.
+    /// The maximumm allowed value is 10.
+    #[prost(int32, tag = "3")]
+    pub max_results: i32,
+    /// Optional. Filter strings to be passed to the search API.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    /// Specifications that define the specific DataStores to be searched, along
+    /// with configurations for those data stores. This is only considered for
+    /// Engines with multiple data stores.
+    /// It should only be set if engine is used.
+    #[prost(message, repeated, tag = "5")]
+    pub data_store_specs: ::prost::alloc::vec::Vec<vertex_ai_search::DataStoreSpec>,
+}
+/// Nested message and enum types in `VertexAISearch`.
+pub mod vertex_ai_search {
+    /// Define data stores within engine to filter on in a search call and
+    /// configurations for those data stores. For more information, see
+    /// <https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec>
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DataStoreSpec {
+        /// Full resource name of DataStore, such as
+        /// Format:
+        /// `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
+        #[prost(string, tag = "1")]
+        pub data_store: ::prost::alloc::string::String,
+        /// Optional. Filter specification to filter documents in the data store
+        /// specified by data_store field. For more information on filtering, see
+        /// [Filtering](<https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata>)
+        #[prost(string, tag = "2")]
+        pub filter: ::prost::alloc::string::String,
+    }
 }
 /// Tool to retrieve public web data for grounding, powered by Google.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -10713,6 +10746,9 @@ pub struct DeployedModel {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// The checkpoint id of the model.
+    #[prost(string, tag = "29")]
+    pub checkpoint_id: ::prost::alloc::string::String,
     /// The prediction (for example, the machine) resources that the DeployedModel
     /// uses. The user is billed for the resources (at least their minimal amount)
     /// even if the DeployedModel receives no traffic.
@@ -34970,6 +35006,11 @@ pub struct ModelMonitor {
     /// unless the schem information is not available.
     #[prost(message, optional, tag = "9")]
     pub model_monitoring_schema: ::core::option::Option<ModelMonitoringSchema>,
+    /// Customer-managed encryption key spec for a ModelMonitor. If
+    /// set, this ModelMonitor and all sub-resources of this
+    /// ModelMonitor will be secured by this key.
+    #[prost(message, optional, tag = "5")]
+    pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     /// Output only. Timestamp when this ModelMonitor was created.
     #[prost(message, optional, tag = "6")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -42401,6 +42442,9 @@ pub mod generate_content_response {
         /// Number of tokens in the response(s).
         #[prost(int32, tag = "2")]
         pub candidates_token_count: i32,
+        /// Output only. Number of tokens present in thoughts output.
+        #[prost(int32, tag = "14")]
+        pub thoughts_token_count: i32,
         /// Total token count for prompt and response candidates.
         #[prost(int32, tag = "3")]
         pub total_token_count: i32,
