@@ -15,7 +15,7 @@ pub struct Actor {
     /// email must also be provided. If the user is a Google Support agent, this is
     /// obfuscated.
     ///
-    /// This field is deprecated. Use **username** field instead.
+    /// This field is deprecated. Use `username` instead.
     #[deprecated]
     #[prost(string, tag = "2")]
     pub email: ::prost::alloc::string::String,
@@ -40,7 +40,7 @@ pub struct Actor {
 /// "comment" level.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Attachment {
-    /// Output only. The resource name of the attachment.
+    /// Output only. Identifier. The resource name of the attachment.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time at which the attachment was created.
@@ -175,36 +175,6 @@ pub mod case_attachment_service_client {
             self
         }
         /// List all the attachments associated with a support case.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/23598314"
-        /// curl \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   "https://cloudsupport.googleapis.com/v2/$case/attachments"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = (
-        ///     supportApiService.cases()
-        ///     .attachments()
-        ///     .list(parent="projects/some-project/cases/43595344")
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn list_attachments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAttachmentsRequest>,
@@ -265,7 +235,7 @@ pub mod case_attachment_service_client {
 /// about project identifiers, see [AIP-2510](<https://google.aip.dev/cloud/2510>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Case {
-    /// The resource name for the case.
+    /// Identifier. The resource name for the case.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The short summary of the issue reported in this case.
@@ -854,35 +824,6 @@ pub mod case_service_client {
             self
         }
         /// Retrieve a case.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/16033687"
-        /// curl \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   "https://cloudsupport.googleapis.com/v2/$case"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        ///
-        /// request = supportApiService.cases().get(
-        ///     name="projects/some-project/cases/43595344",
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn get_case(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCaseRequest>,
@@ -911,34 +852,6 @@ pub mod case_service_client {
         /// For example, listing cases under an organization only returns the cases
         /// that are directly parented by that organization. To retrieve cases
         /// under an organization and its projects, use `cases.search`.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// parent="projects/some-project"
-        /// curl \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   "https://cloudsupport.googleapis.com/v2/$parent/cases"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        ///
-        /// request =
-        ///   supportApiService.cases().list(parent="projects/some-project")
-        /// print(request.execute())
-        /// ```
         pub async fn list_cases(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCasesRequest>,
@@ -969,34 +882,6 @@ pub mod case_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Search for cases using a query.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// parent="projects/some-project"
-        /// curl \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   "https://cloudsupport.googleapis.com/v2/$parent/cases:search"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = supportApiService.cases().search(
-        ///     parent="projects/some-project", query="state=OPEN"
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn search_cases(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchCasesRequest>,
@@ -1031,61 +916,6 @@ pub mod case_service_client {
         /// It must have the following fields set: `display_name`, `description`,
         /// `classification`, and `priority`. If you're just testing the API and don't
         /// want to route your case to an agent, set `testCase=true`.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// parent="projects/some-project"
-        /// curl \
-        ///   --request POST \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   --header 'Content-Type: application/json' \
-        ///   --data '{
-        ///     "display_name": "Test case created by me.",
-        ///     "description": "a random test case, feel free to close",
-        ///     "classification": {
-        ///       "id":
-        ///       "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8"
-        ///     },
-        ///     "time_zone": "-07:00",
-        ///     "subscriber_email_addresses": [
-        ///       "foo@domain.com",
-        ///       "bar@domain.com"
-        ///     ],
-        ///     "testCase": true,
-        ///     "priority": "P3"
-        ///   }' \
-        ///   "https://cloudsupport.googleapis.com/v2/$parent/cases"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = supportApiService.cases().create(
-        ///     parent="projects/some-project",
-        ///     body={
-        ///         "displayName": "A Test Case",
-        ///         "description": "This is a test case.",
-        ///         "testCase": True,
-        ///         "priority": "P2",
-        ///         "classification": {
-        ///             "id":
-        ///               "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8"
-        ///         },
-        ///     },
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn create_case(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCaseRequest>,
@@ -1113,43 +943,6 @@ pub mod case_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Update a case. Only some fields can be updated.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/43595344"
-        /// curl \
-        ///   --request PATCH \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   --header "Content-Type: application/json" \
-        ///   --data '{
-        ///     "priority": "P1"
-        ///   }' \
-        ///   "https://cloudsupport.googleapis.com/v2/$case?updateMask=priority"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = supportApiService.cases().patch(
-        ///     name="projects/some-project/cases/43112854",
-        ///     body={
-        ///         "displayName": "This is Now a New Title",
-        ///         "priority": "P2",
-        ///     },
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn update_case(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCaseRequest>,
@@ -1183,48 +976,6 @@ pub mod case_service_client {
         /// https://cloud.google.com/support and look for 'Technical support
         /// escalations' in the feature list to find out which ones let you
         /// do that.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/43595344"
-        /// curl \
-        ///   --request POST \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   --header "Content-Type: application/json" \
-        ///   --data '{
-        ///     "escalation": {
-        ///       "reason": "BUSINESS_IMPACT",
-        ///       "justification": "This is a test escalation."
-        ///     }
-        ///   }' \
-        ///   "https://cloudsupport.googleapis.com/v2/$case:escalate"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = supportApiService.cases().escalate(
-        ///     name="projects/some-project/cases/43595344",
-        ///     body={
-        ///         "escalation": {
-        ///             "reason": "BUSINESS_IMPACT",
-        ///             "justification": "This is a test escalation.",
-        ///         },
-        ///     },
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn escalate_case(
             &mut self,
             request: impl tonic::IntoRequest<super::EscalateCaseRequest>,
@@ -1252,35 +1003,6 @@ pub mod case_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Close a case.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/43595344"
-        /// curl \
-        ///   --request POST \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   "https://cloudsupport.googleapis.com/v2/$case:close"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = supportApiService.cases().close(
-        ///     name="projects/some-project/cases/43595344"
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn close_case(
             &mut self,
             request: impl tonic::IntoRequest<super::CloseCaseRequest>,
@@ -1317,32 +1039,6 @@ pub mod case_service_client {
         /// months. When a classification is deactivated, this endpoint immediately
         /// stops returning it. After six months, `case.create` requests using the
         /// classification will fail.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// curl \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   'https://cloudsupport.googleapis.com/v2/caseClassifications:search?query=display_name:"*Compute%20Engine*"'
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version="v2",
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version=v2",
-        /// )
-        /// request = supportApiService.caseClassifications().search(
-        ///     query='display_name:"*Compute Engine*"'
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn search_case_classifications(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchCaseClassificationsRequest>,
@@ -1522,36 +1218,6 @@ pub mod comment_service_client {
             self
         }
         /// List all the comments associated with a case.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/43595344"
-        /// curl \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   "https://cloudsupport.googleapis.com/v2/$case/comments"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = (
-        ///     supportApiService.cases()
-        ///     .comments()
-        ///     .list(parent="projects/some-project/cases/43595344")
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn list_comments(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCommentsRequest>,
@@ -1584,44 +1250,6 @@ pub mod comment_service_client {
         /// Add a new comment to a case.
         ///
         /// The comment must have the following fields set: `body`.
-        ///
-        /// EXAMPLES:
-        ///
-        /// cURL:
-        ///
-        /// ```shell
-        /// case="projects/some-project/cases/43591344"
-        /// curl \
-        ///   --request POST \
-        ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
-        ///   --header 'Content-Type: application/json' \
-        ///   --data '{
-        ///     "body": "This is a test comment."
-        ///   }' \
-        ///   "https://cloudsupport.googleapis.com/v2/$case/comments"
-        /// ```
-        ///
-        /// Python:
-        ///
-        /// ```python
-        /// import googleapiclient.discovery
-        ///
-        /// api_version = "v2"
-        /// supportApiService = googleapiclient.discovery.build(
-        ///     serviceName="cloudsupport",
-        ///     version=api_version,
-        ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
-        /// )
-        /// request = (
-        ///     supportApiService.cases()
-        ///     .comments()
-        ///     .create(
-        ///         parent="projects/some-project/cases/43595344",
-        ///         body={"body": "This is a test comment."},
-        ///     )
-        /// )
-        /// print(request.execute())
-        /// ```
         pub async fn create_comment(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCommentRequest>,

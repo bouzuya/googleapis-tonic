@@ -15,7 +15,7 @@ pub struct Actor {
     /// email must also be provided. If the user is a Google Support agent, this is
     /// obfuscated.
     ///
-    /// This field is deprecated. Use **username** field instead.
+    /// This field is deprecated. Use `username` instead.
     #[deprecated]
     #[prost(string, tag = "2")]
     pub email: ::prost::alloc::string::String,
@@ -40,7 +40,7 @@ pub struct Actor {
 /// "comment" level.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Attachment {
-    /// Output only. The resource name of the attachment.
+    /// Output only. Identifier. The resource name of the attachment.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The time at which the attachment was created.
@@ -235,7 +235,7 @@ pub mod case_attachment_service_client {
 /// about project identifiers, see [AIP-2510](<https://google.aip.dev/cloud/2510>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Case {
-    /// The resource name for the case.
+    /// Identifier. The resource name for the case.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The short summary of the issue reported in this case.

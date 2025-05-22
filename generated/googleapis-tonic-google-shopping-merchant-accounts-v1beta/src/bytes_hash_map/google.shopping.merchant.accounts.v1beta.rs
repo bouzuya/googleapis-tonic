@@ -4135,6 +4135,52 @@ pub struct GetOnlineReturnPolicyRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
+/// Request message for the `CreateOnlineReturnPolicy` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateOnlineReturnPolicyRequest {
+    /// Required. The merchant account for which the return policy will be created.
+    /// Format: `accounts/{account}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The return policy object to create.
+    #[prost(message, optional, tag = "2")]
+    pub online_return_policy: ::core::option::Option<OnlineReturnPolicy>,
+}
+/// Request message for the `UpdateOnlineReturnPolicy` method. The method
+/// supports field masks and when the mask is provided, only the fields specified
+/// in the mask are updated.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateOnlineReturnPolicyRequest {
+    /// Required. The online return policy to update.
+    /// The online return policy's `name` field is used to identify the
+    /// online return policy to be updated.
+    #[prost(message, optional, tag = "1")]
+    pub online_return_policy: ::core::option::Option<OnlineReturnPolicy>,
+    /// Optional. List of fields being updated.
+    ///
+    /// The following fields are supported (in both `snake_case` and
+    /// `lowerCamelCase`):
+    ///
+    /// - `accept_defective_only`
+    /// - `accept_exchange`
+    /// - `item_conditions`
+    /// - `policy`
+    /// - `process_refund_days`
+    /// - `restocking_fee`
+    /// - `return_methods`
+    /// - `return_policy_uri`
+    /// - `return_shipping_fee`
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Request message for the `DeleteOnlineReturnPolicy` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteOnlineReturnPolicyRequest {
+    /// Required. The name of the return policy to delete.
+    /// Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
 /// Request message for the `ListOnlineReturnPolicies` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOnlineReturnPoliciesRequest {
@@ -4159,34 +4205,6 @@ pub struct ListOnlineReturnPoliciesRequest {
     /// in the response to the previous request.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
-}
-/// Request message for the `CreateOnlineReturnPolicy` method.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateOnlineReturnPolicyRequest {
-    /// Required. The merchant account for which to create a return policy.
-    /// Format: `accounts/{account}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. The return policy to create.
-    #[prost(message, optional, tag = "2")]
-    pub online_return_policy: ::core::option::Option<OnlineReturnPolicy>,
-}
-/// Request message for the `UpdateOnlineReturnPolicy` method.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateOnlineReturnPolicyRequest {
-    /// Required. The return policy to update.
-    #[prost(message, optional, tag = "1")]
-    pub online_return_policy: ::core::option::Option<OnlineReturnPolicy>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-}
-/// Request message for the `DeleteOnlineReturnPolicy` method.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeleteOnlineReturnPolicyRequest {
-    /// Required. The name of the return policy to delete.
-    /// Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
 }
 /// Response message for the `ListOnlineReturnPolicies` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4267,20 +4285,20 @@ pub struct OnlineReturnPolicy {
     /// check for the policy. It must be a valid URL.
     #[prost(string, tag = "10")]
     pub return_policy_uri: ::prost::alloc::string::String,
-    /// This field specifies if merchant only accepts defective products for
-    /// returns, and this field is required.
+    /// Optional. This field specifies if merchant
+    /// only accepts defective products for returns.
     #[prost(bool, optional, tag = "11")]
     pub accept_defective_only: ::core::option::Option<bool>,
-    /// The field specifies the number of days it takes for merchants to process
-    /// refunds, field is optional.
+    /// Optional. The field specifies the number of
+    /// days it takes for merchants to process refunds.
     #[prost(int32, optional, tag = "12")]
     pub process_refund_days: ::core::option::Option<i32>,
-    /// This field specifies if merchant allows customers to exchange products,
-    /// this field is required.
+    /// Optional. This field specifies if merchant
+    /// allows customers to exchange products.
     #[prost(bool, optional, tag = "13")]
     pub accept_exchange: ::core::option::Option<bool>,
-    /// The field specifies the return label source. This field is required when
-    /// return method is BY_MAIL.
+    /// Optional. The field specifies the return
+    /// label source.
     #[prost(
         enumeration = "online_return_policy::ReturnLabelSource",
         optional,
@@ -4816,7 +4834,7 @@ pub mod online_return_policy_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes an existing return policy for a given merchant.
+        /// Deletes an existing return policy.
         pub async fn delete_online_return_policy(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteOnlineReturnPolicyRequest>,
