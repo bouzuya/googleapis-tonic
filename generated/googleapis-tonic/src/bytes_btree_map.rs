@@ -278,6 +278,7 @@
     feature = "google-cloud-metastore-v1beta",
     feature = "google-cloud-migrationcenter-v1",
     feature = "google-cloud-modelarmor-v1",
+    feature = "google-cloud-modelarmor-v1beta",
     feature = "google-cloud-netapp-v1",
     feature = "google-cloud-networkanalyzer-logging-v1",
     feature = "google-cloud-networkconnectivity-v1",
@@ -992,6 +993,7 @@ pub mod google {
         feature = "google-cloud-metastore-v1beta",
         feature = "google-cloud-migrationcenter-v1",
         feature = "google-cloud-modelarmor-v1",
+        feature = "google-cloud-modelarmor-v1beta",
         feature = "google-cloud-netapp-v1",
         feature = "google-cloud-networkanalyzer-logging-v1",
         feature = "google-cloud-networkconnectivity-v1",
@@ -5011,6 +5013,7 @@ pub mod google {
         }
         #[cfg(any(
             feature = "google-cloud-modelarmor-v1",
+            feature = "google-cloud-modelarmor-v1beta",
         ))]
         pub mod modelarmor {
             #[cfg(any(
@@ -5021,6 +5024,15 @@ pub mod google {
                     feature = "google-cloud-modelarmor-v1",
                 ))]
                 include!("bytes_btree_map/google.cloud.modelarmor.v1.rs");
+            }
+            #[cfg(any(
+                feature = "google-cloud-modelarmor-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-modelarmor-v1beta",
+                ))]
+                include!("bytes_btree_map/google.cloud.modelarmor.v1beta.rs");
             }
         }
         #[cfg(any(

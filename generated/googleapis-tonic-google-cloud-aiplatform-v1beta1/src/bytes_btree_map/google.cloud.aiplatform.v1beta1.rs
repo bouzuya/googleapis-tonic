@@ -27135,6 +27135,170 @@ pub struct UpdateIndexOperationMetadata {
     >,
 }
 /// Request message for
+/// [IndexService.ImportIndex][google.cloud.aiplatform.v1beta1.IndexService.ImportIndex].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportIndexRequest {
+    /// Required. The name of the Index resource to import data to.
+    /// Format:
+    /// `projects/{project}/locations/{location}/indexes/{index}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. If true, completely replace existing index data. Must be true for
+    /// streaming update indexes.
+    #[prost(bool, tag = "2")]
+    pub is_complete_overwrite: bool,
+    /// Required. Configuration for importing data from an external source.
+    #[prost(message, optional, tag = "3")]
+    pub config: ::core::option::Option<import_index_request::ConnectorConfig>,
+}
+/// Nested message and enum types in `ImportIndexRequest`.
+pub mod import_index_request {
+    /// Configuration for importing data from an external source.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConnectorConfig {
+        /// The source of the data to import.
+        #[prost(oneof = "connector_config::Source", tags = "1")]
+        pub source: ::core::option::Option<connector_config::Source>,
+    }
+    /// Nested message and enum types in `ConnectorConfig`.
+    pub mod connector_config {
+        /// Mapping of datapoint fields to column names for columnar data sources.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct DatapointFieldMapping {
+            /// Required. The column with unique identifiers for each data point.
+            #[prost(string, tag = "1")]
+            pub id_column: ::prost::alloc::string::String,
+            /// Required. The column with the vector embeddings for each data point.
+            #[prost(string, tag = "2")]
+            pub embedding_column: ::prost::alloc::string::String,
+            /// Optional. List of restricts for string values.
+            #[prost(message, repeated, tag = "3")]
+            pub restricts: ::prost::alloc::vec::Vec<datapoint_field_mapping::Restrict>,
+            /// Optional. List of restricts for numeric values.
+            #[prost(message, repeated, tag = "4")]
+            pub numeric_restricts: ::prost::alloc::vec::Vec<
+                datapoint_field_mapping::NumericRestrict,
+            >,
+            /// Optional. List of columns containing metadata to be included in the
+            /// index.
+            #[prost(string, repeated, tag = "5")]
+            pub metadata_columns: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
+        }
+        /// Nested message and enum types in `DatapointFieldMapping`.
+        pub mod datapoint_field_mapping {
+            /// Restrictions on string values.
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct Restrict {
+                /// Required. The namespace of the restrict in the index.
+                #[prost(string, tag = "1")]
+                pub namespace: ::prost::alloc::string::String,
+                /// Optional. The columns containing the allow values.
+                #[prost(string, repeated, tag = "2")]
+                pub allow_column: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
+                /// Optional. The columns containing the deny values.
+                #[prost(string, repeated, tag = "3")]
+                pub deny_column: ::prost::alloc::vec::Vec<
+                    ::prost::alloc::string::String,
+                >,
+            }
+            /// Restrictions on numeric values.
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct NumericRestrict {
+                /// Required. The namespace of the restrict.
+                #[prost(string, tag = "1")]
+                pub namespace: ::prost::alloc::string::String,
+                /// Optional. The column containing the numeric value.
+                #[prost(string, tag = "2")]
+                pub value_column: ::prost::alloc::string::String,
+                /// Required. Numeric type of the restrict. Must be consistent for
+                /// all datapoints within the namespace.
+                #[prost(enumeration = "numeric_restrict::ValueType", tag = "3")]
+                pub value_type: i32,
+            }
+            /// Nested message and enum types in `NumericRestrict`.
+            pub mod numeric_restrict {
+                /// The type of numeric value for the restrict.
+                #[derive(
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
+                )]
+                #[repr(i32)]
+                pub enum ValueType {
+                    /// Should not be used.
+                    Unspecified = 0,
+                    /// Represents 64 bit integer.
+                    Int = 1,
+                    /// Represents 32 bit float.
+                    Float = 2,
+                    /// Represents 64 bit float.
+                    Double = 3,
+                }
+                impl ValueType {
+                    /// String value of the enum field names used in the ProtoBuf definition.
+                    ///
+                    /// The values are not transformed in any way and thus are considered stable
+                    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                    pub fn as_str_name(&self) -> &'static str {
+                        match self {
+                            Self::Unspecified => "VALUE_TYPE_UNSPECIFIED",
+                            Self::Int => "INT",
+                            Self::Float => "FLOAT",
+                            Self::Double => "DOUBLE",
+                        }
+                    }
+                    /// Creates an enum from field names used in the ProtoBuf definition.
+                    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                        match value {
+                            "VALUE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                            "INT" => Some(Self::Int),
+                            "FLOAT" => Some(Self::Float),
+                            "DOUBLE" => Some(Self::Double),
+                            _ => None,
+                        }
+                    }
+                }
+            }
+        }
+        /// Configuration for importing data from a BigQuery table.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct BigQuerySourceConfig {
+            /// Required. The path to the BigQuery table containing the index data, in
+            /// the format of `bq://<project_id>.<dataset_id>.<table>`.
+            #[prost(string, tag = "1")]
+            pub table_path: ::prost::alloc::string::String,
+            /// Required. Mapping of datapoint fields to BigQuery column names.
+            #[prost(message, optional, tag = "2")]
+            pub datapoint_field_mapping: ::core::option::Option<DatapointFieldMapping>,
+        }
+        /// The source of the data to import.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Source {
+            /// Configuration for importing data from a BigQuery table.
+            #[prost(message, tag = "1")]
+            BigQuerySourceConfig(BigQuerySourceConfig),
+        }
+    }
+}
+/// Runtime operation information for
+/// [IndexService.ImportIndex][google.cloud.aiplatform.v1beta1.IndexService.ImportIndex].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportIndexOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
+/// Request message for
 /// [IndexService.DeleteIndex][google.cloud.aiplatform.v1beta1.IndexService.DeleteIndex].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIndexRequest {
@@ -27279,6 +27443,10 @@ pub mod nearest_neighbor_search_operation_metadata {
             InvalidSparseEmbedding = 16,
             /// Invalid dense embedding.
             InvalidEmbedding = 17,
+            /// Invalid embedding metadata.
+            InvalidEmbeddingMetadata = 18,
+            /// Embedding metadata exceeds size limit.
+            EmbeddingMetadataExceedsSizeLimit = 19,
         }
         impl RecordErrorType {
             /// String value of the enum field names used in the ProtoBuf definition.
@@ -27305,6 +27473,10 @@ pub mod nearest_neighbor_search_operation_metadata {
                     Self::InvalidTokenValue => "INVALID_TOKEN_VALUE",
                     Self::InvalidSparseEmbedding => "INVALID_SPARSE_EMBEDDING",
                     Self::InvalidEmbedding => "INVALID_EMBEDDING",
+                    Self::InvalidEmbeddingMetadata => "INVALID_EMBEDDING_METADATA",
+                    Self::EmbeddingMetadataExceedsSizeLimit => {
+                        "EMBEDDING_METADATA_EXCEEDS_SIZE_LIMIT"
+                    }
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -27328,6 +27500,10 @@ pub mod nearest_neighbor_search_operation_metadata {
                     "INVALID_TOKEN_VALUE" => Some(Self::InvalidTokenValue),
                     "INVALID_SPARSE_EMBEDDING" => Some(Self::InvalidSparseEmbedding),
                     "INVALID_EMBEDDING" => Some(Self::InvalidEmbedding),
+                    "INVALID_EMBEDDING_METADATA" => Some(Self::InvalidEmbeddingMetadata),
+                    "EMBEDDING_METADATA_EXCEEDS_SIZE_LIMIT" => {
+                        Some(Self::EmbeddingMetadataExceedsSizeLimit)
+                    }
                     _ => None,
                 }
             }
@@ -27491,6 +27667,36 @@ pub mod index_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.IndexService",
                         "GetIndex",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Imports an Index from an external source (e.g., BigQuery).
+        pub async fn import_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportIndexRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.IndexService/ImportIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.IndexService",
+                        "ImportIndex",
                     ),
                 );
             self.inner.unary(req, path, codec).await
