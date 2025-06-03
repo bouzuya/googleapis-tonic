@@ -59,6 +59,7 @@
     feature = "google-apps-drive-labels-v2",
     feature = "google-apps-drive-labels-v2beta",
     feature = "google-apps-events-subscriptions-v1",
+    feature = "google-apps-events-subscriptions-v1beta",
     feature = "google-apps-meet-v2",
     feature = "google-apps-meet-v2beta",
     feature = "google-apps-script-type",
@@ -6552,6 +6553,7 @@ pub mod google {
         feature = "google-apps-drive-labels-v2",
         feature = "google-apps-drive-labels-v2beta",
         feature = "google-apps-events-subscriptions-v1",
+        feature = "google-apps-events-subscriptions-v1beta",
         feature = "google-apps-meet-v2",
         feature = "google-apps-meet-v2beta",
         feature = "google-apps-script-type",
@@ -6644,6 +6646,36 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-apps-events-subscriptions-v1",
+            feature = "google-apps-events-subscriptions-v1beta",
+        ))]
+        pub mod events {
+            #[cfg(any(
+                feature = "google-apps-events-subscriptions-v1",
+                feature = "google-apps-events-subscriptions-v1beta",
+            ))]
+            pub mod subscriptions {
+                #[cfg(any(
+                    feature = "google-apps-events-subscriptions-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-apps-events-subscriptions-v1beta",
+                    ))]
+                    include!("vec_u8_hash_map/google.apps.events.subscriptions.v1beta.rs");
+                }
+                #[cfg(any(
+                    feature = "google-apps-events-subscriptions-v1",
+                ))]
+                pub mod v1 {
+                    #[cfg(any(
+                        feature = "google-apps-events-subscriptions-v1",
+                    ))]
+                    include!("vec_u8_hash_map/google.apps.events.subscriptions.v1.rs");
+                }
+            }
+        }
+        #[cfg(any(
             feature = "google-apps-meet-v2",
             feature = "google-apps-meet-v2beta",
         ))]
@@ -6693,25 +6725,6 @@ pub mod google {
                     feature = "google-apps-alertcenter-v1beta1",
                 ))]
                 include!("vec_u8_hash_map/google.apps.alertcenter.v1beta1.rs");
-            }
-        }
-        #[cfg(any(
-            feature = "google-apps-events-subscriptions-v1",
-        ))]
-        pub mod events {
-            #[cfg(any(
-                feature = "google-apps-events-subscriptions-v1",
-            ))]
-            pub mod subscriptions {
-                #[cfg(any(
-                    feature = "google-apps-events-subscriptions-v1",
-                ))]
-                pub mod v1 {
-                    #[cfg(any(
-                        feature = "google-apps-events-subscriptions-v1",
-                    ))]
-                    include!("vec_u8_hash_map/google.apps.events.subscriptions.v1.rs");
-                }
             }
         }
         #[cfg(any(

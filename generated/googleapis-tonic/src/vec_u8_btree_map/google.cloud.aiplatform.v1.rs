@@ -4207,6 +4207,9 @@ pub struct Tool {
     /// Enables the model to execute code as part of generation.
     #[prost(message, optional, tag = "4")]
     pub code_execution: ::core::option::Option<tool::CodeExecution>,
+    /// Optional. Tool to support URL context retrieval.
+    #[prost(message, optional, tag = "8")]
+    pub url_context: ::core::option::Option<UrlContext>,
 }
 /// Nested message and enum types in `Tool`.
 pub mod tool {
@@ -4222,6 +4225,9 @@ pub mod tool {
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct CodeExecution {}
 }
+/// Tool to support URL context.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UrlContext {}
 /// Structured representation of a function declaration as defined by the
 /// [OpenAPI 3.0 specification](<https://spec.openapis.org/oas/v3.0.3>). Included
 /// in this declaration are the function name, description, parameters and
@@ -4255,11 +4261,37 @@ pub struct FunctionDeclaration {
     ///   - param1
     #[prost(message, optional, tag = "3")]
     pub parameters: ::core::option::Option<Schema>,
+    /// Optional. Describes the parameters to the function in JSON Schema format.
+    /// The schema must describe an object where the properties are the parameters
+    /// to the function. For example:
+    ///
+    /// ```
+    /// {
+    ///    "type": "object",
+    ///    "properties": {
+    ///      "name": { "type": "string" },
+    ///      "age": { "type": "integer" }
+    ///    },
+    ///    "additionalProperties": false,
+    ///    "required": \["name", "age"\],
+    ///    "propertyOrdering": \["name", "age"\]
+    /// }
+    /// ```
+    ///
+    /// This field is mutually exclusive with `parameters`.
+    #[prost(message, optional, tag = "5")]
+    pub parameters_json_schema: ::core::option::Option<::prost_types::Value>,
     /// Optional. Describes the output from this function in JSON Schema format.
     /// Reflects the Open API 3.03 Response Object. The Schema defines the type
     /// used for the response value of the function.
     #[prost(message, optional, tag = "4")]
     pub response: ::core::option::Option<Schema>,
+    /// Optional. Describes the output from this function in JSON Schema format.
+    /// The value specified by the schema is the response value of the function.
+    ///
+    /// This field is mutually exclusive with `response`.
+    #[prost(message, optional, tag = "6")]
+    pub response_json_schema: ::core::option::Option<::prost_types::Value>,
 }
 /// A predicted \[FunctionCall\] returned from the model that contains a string
 /// representing the \[FunctionDeclaration.name\] and a structured JSON object
@@ -5389,7 +5421,7 @@ pub struct Content {
 /// of the media if `inline_data` or `file_data` field is filled with raw bytes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Part {
-    #[prost(oneof = "part::Data", tags = "1, 2, 3, 5, 6, 8, 9")]
+    #[prost(oneof = "part::Data", tags = "1, 2, 3, 5, 6, 8, 9, 10, 11")]
     pub data: ::core::option::Option<part::Data>,
     #[prost(oneof = "part::Metadata", tags = "4")]
     pub metadata: ::core::option::Option<part::Metadata>,
@@ -5424,6 +5456,13 @@ pub mod part {
         /// Optional. Result of executing the \[ExecutableCode\].
         #[prost(message, tag = "9")]
         CodeExecutionResult(super::CodeExecutionResult),
+        /// Indicates if the part is thought from the model.
+        #[prost(bool, tag = "10")]
+        Thought(bool),
+        /// An opaque signature for the thought so it can be reused in subsequent
+        /// requests.
+        #[prost(bytes, tag = "11")]
+        ThoughtSignature(::prost::alloc::vec::Vec<u8>),
     }
     #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
     pub enum Metadata {
@@ -5520,6 +5559,44 @@ pub struct GenerationConfig {
     /// `application/json`: Schema for JSON response.
     #[prost(message, optional, tag = "16")]
     pub response_schema: ::core::option::Option<Schema>,
+    /// Optional. Output schema of the generated response. This is an alternative
+    /// to `response_schema` that accepts [JSON Schema](<https://json-schema.org/>).
+    ///
+    /// If set, `response_schema` must be omitted, but `response_mime_type` is
+    /// required.
+    ///
+    /// While the full JSON Schema may be sent, not all features are supported.
+    /// Specifically, only the following properties are supported:
+    ///
+    /// - `$id`
+    /// - `$defs`
+    /// - `$ref`
+    /// - `$anchor`
+    /// - `type`
+    /// - `format`
+    /// - `title`
+    /// - `description`
+    /// - `enum` (for strings and numbers)
+    /// - `items`
+    /// - `prefixItems`
+    /// - `minItems`
+    /// - `maxItems`
+    /// - `minimum`
+    /// - `maximum`
+    /// - `anyOf`
+    /// - `oneOf` (interpreted the same as `anyOf`)
+    /// - `properties`
+    /// - `additionalProperties`
+    /// - `required`
+    ///
+    /// The non-standard `propertyOrdering` property may also be set.
+    ///
+    /// Cyclic references are unrolled to a limited degree and, as such, may only
+    /// be used within non-required properties. (Nullable properties are not
+    /// sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+    /// for than those starting as a `$`, may be set.
+    #[prost(message, optional, tag = "28")]
+    pub response_json_schema: ::core::option::Option<::prost_types::Value>,
     /// Optional. Routing configuration.
     #[prost(message, optional, tag = "17")]
     pub routing_config: ::core::option::Option<generation_config::RoutingConfig>,
@@ -5625,6 +5702,10 @@ pub mod generation_config {
     /// Config for thinking features.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ThinkingConfig {
+        /// Indicates whether to include thoughts in the response.
+        /// If true, thoughts are returned only when available.
+        #[prost(bool, optional, tag = "1")]
+        pub include_thoughts: ::core::option::Option<bool>,
         /// Optional. Indicates the thinking budget in tokens.
         /// This is only applied when enable_thinking is true.
         #[prost(int32, optional, tag = "3")]
@@ -6437,6 +6518,65 @@ pub struct Context {
     #[prost(string, tag = "16")]
     pub description: ::prost::alloc::string::String,
 }
+/// PSC config that is used to automatically create forwarding rule via
+/// ServiceConnectionMap.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscAutomationConfig {
+    /// Required. Project id used to create forwarding rule.
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Required. The full name of the Google Compute Engine
+    /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>).
+    /// [Format](<https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert>):
+    /// `projects/{project}/global/networks/{network}`.
+    /// Where {project} is a project number, as in '12345', and {network} is
+    /// network name.
+    #[prost(string, tag = "2")]
+    pub network: ::prost::alloc::string::String,
+}
+/// Represents configuration for private service connect.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PrivateServiceConnectConfig {
+    /// Required. If true, expose the IndexEndpoint via private service connect.
+    #[prost(bool, tag = "1")]
+    pub enable_private_service_connect: bool,
+    /// A list of Projects from which the forwarding rule will target the service
+    /// attachment.
+    #[prost(string, repeated, tag = "2")]
+    pub project_allowlist: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Output only. The name of the generated service attachment resource.
+    /// This is only populated if the endpoint is deployed with
+    /// PrivateServiceConnect.
+    #[prost(string, tag = "5")]
+    pub service_attachment: ::prost::alloc::string::String,
+}
+/// PscAutomatedEndpoints defines the output of the forwarding rule
+/// automatically created by each PscAutomationConfig.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscAutomatedEndpoints {
+    /// Corresponding project_id in pscAutomationConfigs
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Corresponding network in pscAutomationConfigs.
+    #[prost(string, tag = "2")]
+    pub network: ::prost::alloc::string::String,
+    /// Ip Address created by the automated forwarding rule.
+    #[prost(string, tag = "3")]
+    pub match_address: ::prost::alloc::string::String,
+}
+/// Configuration for PSC-I.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscInterfaceConfig {
+    /// Optional. The name of the Compute Engine
+    /// [network
+    /// attachment](<https://cloud.google.com/vpc/docs/about-network-attachments>) to
+    /// attach to the resource within the region and user project.
+    /// To specify this field, you must have already \[created a network attachment\]
+    /// (<https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments>).
+    /// This field is only used for resources using PSC-I.
+    #[prost(string, tag = "1")]
+    pub network_attachment: ::prost::alloc::string::String,
+}
 /// Represents a job that runs custom workloads such as a Docker container or a
 /// Python package. A CustomJob can have multiple worker pools and each worker
 /// pool can have its own machine and input spec. A CustomJob will be cleaned up
@@ -6568,6 +6708,9 @@ pub struct CustomJobSpec {
     /// Example: \['vertex-ai-ip-range'\].
     #[prost(string, repeated, tag = "13")]
     pub reserved_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Configuration for PSC-I for CustomJob.
+    #[prost(message, optional, tag = "21")]
+    pub psc_interface_config: ::core::option::Option<PscInterfaceConfig>,
     /// The Cloud Storage location to store the output of this CustomJob or
     /// HyperparameterTuningJob. For HyperparameterTuningJob,
     /// the baseOutputDirectory of
@@ -8817,52 +8960,6 @@ pub struct DeploymentResourcePool {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "9")]
     pub satisfies_pzi: bool,
-}
-/// PSC config that is used to automatically create forwarding rule via
-/// ServiceConnectionMap.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PscAutomationConfig {
-    /// Required. Project id used to create forwarding rule.
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    /// Required. The full name of the Google Compute Engine
-    /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>).
-    /// [Format](<https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert>):
-    /// `projects/{project}/global/networks/{network}`.
-    /// Where {project} is a project number, as in '12345', and {network} is
-    /// network name.
-    #[prost(string, tag = "2")]
-    pub network: ::prost::alloc::string::String,
-}
-/// Represents configuration for private service connect.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PrivateServiceConnectConfig {
-    /// Required. If true, expose the IndexEndpoint via private service connect.
-    #[prost(bool, tag = "1")]
-    pub enable_private_service_connect: bool,
-    /// A list of Projects from which the forwarding rule will target the service
-    /// attachment.
-    #[prost(string, repeated, tag = "2")]
-    pub project_allowlist: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Output only. The name of the generated service attachment resource.
-    /// This is only populated if the endpoint is deployed with
-    /// PrivateServiceConnect.
-    #[prost(string, tag = "5")]
-    pub service_attachment: ::prost::alloc::string::String,
-}
-/// PscAutomatedEndpoints defines the output of the forwarding rule
-/// automatically created by each PscAutomationConfig.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PscAutomatedEndpoints {
-    /// Corresponding project_id in pscAutomationConfigs
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    /// Corresponding network in pscAutomationConfigs.
-    #[prost(string, tag = "2")]
-    pub network: ::prost::alloc::string::String,
-    /// Ip Address created by the automated forwarding rule.
-    #[prost(string, tag = "3")]
-    pub match_address: ::prost::alloc::string::String,
 }
 /// Models are deployed into it, and afterwards Endpoint is called to obtain
 /// predictions and explanations.
@@ -33197,6 +33294,9 @@ pub struct PersistentResource {
     /// network.
     #[prost(string, tag = "11")]
     pub network: ::prost::alloc::string::String,
+    /// Optional. Configuration for PSC-I for PersistentResource.
+    #[prost(message, optional, tag = "17")]
+    pub psc_interface_config: ::core::option::Option<PscInterfaceConfig>,
     /// Optional. Customer-managed encryption key spec for a PersistentResource.
     /// If set, this PersistentResource and all sub-resources of this
     /// PersistentResource will be secured by this key.
@@ -34046,6 +34146,9 @@ pub struct PipelineJob {
     /// Example: \['vertex-ai-ip-range'\].
     #[prost(string, repeated, tag = "25")]
     pub reserved_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Configuration for PSC-I for PipelineJob.
+    #[prost(message, optional, tag = "31")]
+    pub psc_interface_config: ::core::option::Option<PscInterfaceConfig>,
     /// A template uri from where the
     /// [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
     /// if empty, will be downloaded. Currently, only uri from Vertex Template

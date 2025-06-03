@@ -1050,13 +1050,13 @@ pub mod get_dataset_request {
         /// The default value.
         /// Default to the FULL view.
         Unspecified = 0,
-        /// Updates metadata information for the dataset, such as friendlyName,
+        /// View metadata information for the dataset, such as friendlyName,
         /// description, labels, etc.
         Metadata = 1,
-        /// Updates ACL information for the dataset, which defines dataset access
+        /// View ACL information for the dataset, which defines dataset access
         /// for one or more entities.
         Acl = 2,
-        /// Updates both dataset metadata and ACL information.
+        /// View both dataset metadata and ACL information.
         Full = 3,
     }
     impl DatasetView {
@@ -3837,8 +3837,6 @@ pub struct JobConfiguration {
 /// For
 /// [`jobs.insert`](<https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert>)
 /// method calls it will always be `REQUESTED`.
-///
-/// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct JobCreationReason {
     /// Output only. Specifies the high level reason why a Job was created.
@@ -9120,7 +9118,6 @@ pub struct Job {
     #[prost(string, tag = "13")]
     pub principal_subject: ::prost::alloc::string::String,
     /// Output only. The reason why a Job was created.
-    /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
     #[prost(message, optional, tag = "14")]
     pub job_creation_reason: ::core::option::Option<JobCreationReason>,
 }
@@ -9662,7 +9659,6 @@ pub struct QueryRequest {
     ///
     /// If set, the query request will follow the behavior described
     /// JobCreationMode.
-    /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
     #[prost(enumeration = "query_request::JobCreationMode", tag = "22")]
     pub job_creation_mode: i32,
     /// Optional. The reservation that jobs.query request would use. User can
@@ -9750,11 +9746,9 @@ pub struct QueryResponse {
     ///
     /// Only relevant when a job_reference is present in the response.
     /// If job_reference is not present it will always be unset.
-    /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
     #[prost(message, optional, tag = "15")]
     pub job_creation_reason: ::core::option::Option<JobCreationReason>,
     /// Auto-generated ID for the query.
-    /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
     #[prost(string, tag = "14")]
     pub query_id: ::prost::alloc::string::String,
     /// Output only. The geographic location of the query.

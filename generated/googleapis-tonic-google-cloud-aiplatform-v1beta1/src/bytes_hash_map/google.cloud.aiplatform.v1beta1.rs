@@ -5012,6 +5012,9 @@ pub struct Tool {
     /// Enables the model to execute code as part of generation.
     #[prost(message, optional, tag = "4")]
     pub code_execution: ::core::option::Option<tool::CodeExecution>,
+    /// Optional. Tool to support URL context retrieval.
+    #[prost(message, optional, tag = "8")]
+    pub url_context: ::core::option::Option<UrlContext>,
 }
 /// Nested message and enum types in `Tool`.
 pub mod tool {
@@ -5027,6 +5030,9 @@ pub mod tool {
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct CodeExecution {}
 }
+/// Tool to support URL context.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UrlContext {}
 /// A single example of the tool usage.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ToolUseExample {
@@ -5105,11 +5111,37 @@ pub struct FunctionDeclaration {
     ///   - param1
     #[prost(message, optional, tag = "3")]
     pub parameters: ::core::option::Option<Schema>,
+    /// Optional. Describes the parameters to the function in JSON Schema format.
+    /// The schema must describe an object where the properties are the parameters
+    /// to the function. For example:
+    ///
+    /// ```
+    /// {
+    ///    "type": "object",
+    ///    "properties": {
+    ///      "name": { "type": "string" },
+    ///      "age": { "type": "integer" }
+    ///    },
+    ///    "additionalProperties": false,
+    ///    "required": \["name", "age"\],
+    ///    "propertyOrdering": \["name", "age"\]
+    /// }
+    /// ```
+    ///
+    /// This field is mutually exclusive with `parameters`.
+    #[prost(message, optional, tag = "5")]
+    pub parameters_json_schema: ::core::option::Option<::prost_types::Value>,
     /// Optional. Describes the output from this function in JSON Schema format.
     /// Reflects the Open API 3.03 Response Object. The Schema defines the type
     /// used for the response value of the function.
     #[prost(message, optional, tag = "4")]
     pub response: ::core::option::Option<Schema>,
+    /// Optional. Describes the output from this function in JSON Schema format.
+    /// The value specified by the schema is the response value of the function.
+    ///
+    /// This field is mutually exclusive with `response`.
+    #[prost(message, optional, tag = "6")]
+    pub response_json_schema: ::core::option::Option<::prost_types::Value>,
 }
 /// A predicted \[FunctionCall\] returned from the model that contains a string
 /// representing the \[FunctionDeclaration.name\] and a structured JSON object
@@ -5321,6 +5353,15 @@ pub struct VertexRagStore {
     /// Optional. The retrieval config for the Rag query.
     #[prost(message, optional, tag = "6")]
     pub rag_retrieval_config: ::core::option::Option<RagRetrievalConfig>,
+    /// Optional. Currently only supported for Gemini Multimodal Live API.
+    ///
+    /// In Gemini Multimodal Live API, if `store_context` bool is
+    /// true, Gemini will leverage it to automatically memorize the
+    /// interactions between the client and Gemini, and retrieve context when
+    /// needed to augment the response generation for users' ongoing and future
+    /// interactions.
+    #[prost(bool, tag = "7")]
+    pub store_context: bool,
 }
 /// Nested message and enum types in `VertexRagStore`.
 pub mod vertex_rag_store {
@@ -6026,6 +6067,9 @@ pub struct RagCorpus {
     /// deleted.
     #[prost(message, optional, tag = "12")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Optional. The corpus type config of the RagCorpus.
+    #[prost(message, optional, tag = "13")]
+    pub corpus_type_config: ::core::option::Option<rag_corpus::CorpusTypeConfig>,
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
     #[prost(oneof = "rag_corpus::BackendConfig", tags = "9, 10")]
@@ -6033,6 +6077,42 @@ pub struct RagCorpus {
 }
 /// Nested message and enum types in `RagCorpus`.
 pub mod rag_corpus {
+    /// The config for the corpus type of the RagCorpus.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CorpusTypeConfig {
+        /// Optional.
+        /// Whether the RagCorpus is used as document store or memory store.
+        #[prost(oneof = "corpus_type_config::CorpusTypeConfig", tags = "1, 2")]
+        pub corpus_type_config: ::core::option::Option<
+            corpus_type_config::CorpusTypeConfig,
+        >,
+    }
+    /// Nested message and enum types in `CorpusTypeConfig`.
+    pub mod corpus_type_config {
+        /// Config for the document corpus.
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct DocumentCorpus {}
+        /// Config for the memory corpus.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct MemoryCorpus {
+            /// The LLM parser to use for the memory corpus.
+            #[prost(message, optional, tag = "1")]
+            pub llm_parser: ::core::option::Option<
+                super::super::rag_file_parsing_config::LlmParser,
+            >,
+        }
+        /// Optional.
+        /// Whether the RagCorpus is used as document store or memory store.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum CorpusTypeConfig {
+            /// Optional. Config for the document corpus.
+            #[prost(message, tag = "1")]
+            DocumentCorpus(DocumentCorpus),
+            /// Optional. Config for the memory corpus.
+            #[prost(message, tag = "2")]
+            MemoryCorpus(MemoryCorpus),
+        }
+    }
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -6267,7 +6347,7 @@ pub mod rag_file_parsing_config {
         #[prost(int32, tag = "3")]
         pub global_max_parsing_requests_per_min: i32,
     }
-    /// Specifies the advanced parsing for RagFiles.
+    /// Specifies the LLM parsing for RagFiles.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct LlmParser {
         /// The name of a LLM model used for parsing.
@@ -6349,7 +6429,7 @@ pub struct ImportRagFilesConfig {
     /// Optional. The max number of queries per minute that the indexing pipeline
     /// job is allowed to make to the embedding model specified in the project.
     /// Please follow the quota usage guideline of the embedding model you use to
-    /// set the value properly. If this value is not specified,
+    /// set the value properly.If this value is not specified,
     /// max_embedding_requests_per_min will be used by indexing pipeline job as the
     /// global limit.
     #[prost(int32, tag = "18")]
@@ -6514,9 +6594,13 @@ pub struct Content {
 /// of the media if `inline_data` or `file_data` field is filled with raw bytes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Part {
-    /// Output only. Indicates if the part is thought from the model.
+    /// Indicates if the part is thought from the model.
     #[prost(bool, tag = "10")]
     pub thought: bool,
+    /// An opaque signature for the thought so it can be reused in subsequent
+    /// requests.
+    #[prost(bytes = "bytes", tag = "11")]
+    pub thought_signature: ::prost::bytes::Bytes,
     #[prost(oneof = "part::Data", tags = "1, 2, 3, 5, 6, 8, 9")]
     pub data: ::core::option::Option<part::Data>,
     #[prost(oneof = "part::Metadata", tags = "4")]
@@ -6679,6 +6763,44 @@ pub struct GenerationConfig {
     /// `application/json`: Schema for JSON response.
     #[prost(message, optional, tag = "16")]
     pub response_schema: ::core::option::Option<Schema>,
+    /// Optional. Output schema of the generated response. This is an alternative
+    /// to `response_schema` that accepts [JSON Schema](<https://json-schema.org/>).
+    ///
+    /// If set, `response_schema` must be omitted, but `response_mime_type` is
+    /// required.
+    ///
+    /// While the full JSON Schema may be sent, not all features are supported.
+    /// Specifically, only the following properties are supported:
+    ///
+    /// - `$id`
+    /// - `$defs`
+    /// - `$ref`
+    /// - `$anchor`
+    /// - `type`
+    /// - `format`
+    /// - `title`
+    /// - `description`
+    /// - `enum` (for strings and numbers)
+    /// - `items`
+    /// - `prefixItems`
+    /// - `minItems`
+    /// - `maxItems`
+    /// - `minimum`
+    /// - `maximum`
+    /// - `anyOf`
+    /// - `oneOf` (interpreted the same as `anyOf`)
+    /// - `properties`
+    /// - `additionalProperties`
+    /// - `required`
+    ///
+    /// The non-standard `propertyOrdering` property may also be set.
+    ///
+    /// Cyclic references are unrolled to a limited degree and, as such, may only
+    /// be used within non-required properties. (Nullable properties are not
+    /// sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+    /// for than those starting as a `$`, may be set.
+    #[prost(message, optional, tag = "28")]
+    pub response_json_schema: ::core::option::Option<::prost_types::Value>,
     /// Optional. Routing configuration.
     #[prost(message, optional, tag = "17")]
     pub routing_config: ::core::option::Option<generation_config::RoutingConfig>,
@@ -6805,6 +6927,10 @@ pub mod generation_config {
     /// Config for thinking features.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ThinkingConfig {
+        /// Indicates whether to include thoughts in the response.
+        /// If true, thoughts are returned only when available.
+        #[prost(bool, optional, tag = "1")]
+        pub include_thoughts: ::core::option::Option<bool>,
         /// Optional. Indicates the thinking budget in tokens.
         /// This is only applied when enable_thinking is true.
         #[prost(int32, optional, tag = "3")]

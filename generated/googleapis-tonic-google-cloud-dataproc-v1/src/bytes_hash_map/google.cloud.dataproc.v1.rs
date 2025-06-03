@@ -1105,6 +1105,10 @@ pub mod autotuning_config {
         BroadcastHashJoin = 3,
         /// Memory management for workloads.
         Memory = 4,
+        /// No autotuning.
+        None = 5,
+        /// Automatic selection of scenarios.
+        Auto = 6,
     }
     impl Scenario {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1117,6 +1121,8 @@ pub mod autotuning_config {
                 Self::Scaling => "SCALING",
                 Self::BroadcastHashJoin => "BROADCAST_HASH_JOIN",
                 Self::Memory => "MEMORY",
+                Self::None => "NONE",
+                Self::Auto => "AUTO",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1126,6 +1132,8 @@ pub mod autotuning_config {
                 "SCALING" => Some(Self::Scaling),
                 "BROADCAST_HASH_JOIN" => Some(Self::BroadcastHashJoin),
                 "MEMORY" => Some(Self::Memory),
+                "NONE" => Some(Self::None),
+                "AUTO" => Some(Self::Auto),
                 _ => None,
             }
         }
