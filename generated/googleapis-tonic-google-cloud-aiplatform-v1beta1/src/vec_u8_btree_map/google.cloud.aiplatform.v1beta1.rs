@@ -7400,6 +7400,9 @@ pub struct Candidate {
     /// Output only. Metadata specifies sources used to ground generated content.
     #[prost(message, optional, tag = "7")]
     pub grounding_metadata: ::core::option::Option<GroundingMetadata>,
+    /// Output only. Metadata related to url context retrieval tool.
+    #[prost(message, optional, tag = "11")]
+    pub url_context_metadata: ::core::option::Option<UrlContextMetadata>,
 }
 /// Nested message and enum types in `Candidate`.
 pub mod candidate {
@@ -7477,6 +7480,69 @@ pub mod candidate {
                 "PROHIBITED_CONTENT" => Some(Self::ProhibitedContent),
                 "SPII" => Some(Self::Spii),
                 "MALFORMED_FUNCTION_CALL" => Some(Self::MalformedFunctionCall),
+                _ => None,
+            }
+        }
+    }
+}
+/// Metadata related to url context retrieval tool.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UrlContextMetadata {
+    /// Output only. List of url context.
+    #[prost(message, repeated, tag = "1")]
+    pub url_metadata: ::prost::alloc::vec::Vec<UrlMetadata>,
+}
+/// Context of the a single url retrieval.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UrlMetadata {
+    /// Retrieved url by the tool.
+    #[prost(string, tag = "1")]
+    pub retrieved_url: ::prost::alloc::string::String,
+    /// Status of the url retrieval.
+    #[prost(enumeration = "url_metadata::UrlRetrievalStatus", tag = "2")]
+    pub url_retrieval_status: i32,
+}
+/// Nested message and enum types in `UrlMetadata`.
+pub mod url_metadata {
+    /// Status of the url retrieval.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum UrlRetrievalStatus {
+        /// Default value. This value is unused.
+        Unspecified = 0,
+        /// Url retrieval is successful.
+        Success = 1,
+        /// Url retrieval is failed due to error.
+        Error = 2,
+    }
+    impl UrlRetrievalStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "URL_RETRIEVAL_STATUS_UNSPECIFIED",
+                Self::Success => "URL_RETRIEVAL_STATUS_SUCCESS",
+                Self::Error => "URL_RETRIEVAL_STATUS_ERROR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "URL_RETRIEVAL_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "URL_RETRIEVAL_STATUS_SUCCESS" => Some(Self::Success),
+                "URL_RETRIEVAL_STATUS_ERROR" => Some(Self::Error),
                 _ => None,
             }
         }

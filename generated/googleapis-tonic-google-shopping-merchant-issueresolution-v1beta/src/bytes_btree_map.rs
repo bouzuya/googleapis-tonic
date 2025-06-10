@@ -10,5 +10,8 @@ pub mod google {
                 }
             }
         }
+        pub mod r#type {
+            pub use googleapis_tonic_google_shopping_type::google::shopping::r#type::*;
+        }
     }
 }

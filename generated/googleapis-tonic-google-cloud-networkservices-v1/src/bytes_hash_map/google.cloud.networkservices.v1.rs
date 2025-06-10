@@ -76,7 +76,7 @@ pub mod endpoint_matcher {
         ///
         /// If there is more than one best match, (for example, if a
         /// config P4 with selector <A:1,D:1> exists and if a client with
-        /// label <A:1,B:1,D:1> connects), an error will be thrown.
+        /// label <A:1,B:1,D:1> connects), pick up the one with older creation time.
         #[prost(
             enumeration = "metadata_label_matcher::MetadataLabelMatchCriteria",
             tag = "1"
@@ -159,6 +159,44 @@ pub mod endpoint_matcher {
         /// The matcher is based on node metadata presented by xDS clients.
         #[prost(message, tag = "1")]
         MetadataLabelMatcher(MetadataLabelMatcher),
+    }
+}
+/// EnvoyHeader configuration for Mesh and Gateway
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EnvoyHeaders {
+    /// Defaults to NONE.
+    Unspecified = 0,
+    /// Suppress envoy debug headers.
+    None = 1,
+    /// Envoy will insert default internal debug headers into upstream requests:
+    /// x-envoy-attempt-count
+    /// x-envoy-is-timeout-retry
+    /// x-envoy-expected-rq-timeout-ms
+    /// x-envoy-original-path
+    /// x-envoy-upstream-stream-duration-ms
+    DebugHeaders = 2,
+}
+impl EnvoyHeaders {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "ENVOY_HEADERS_UNSPECIFIED",
+            Self::None => "NONE",
+            Self::DebugHeaders => "DEBUG_HEADERS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ENVOY_HEADERS_UNSPECIFIED" => Some(Self::Unspecified),
+            "NONE" => Some(Self::None),
+            "DEBUG_HEADERS" => Some(Self::DebugHeaders),
+            _ => None,
+        }
     }
 }
 /// A single extension chain wrapper that contains the match conditions and
@@ -1118,7 +1156,7 @@ pub mod dep_service_client {
 /// an all endpoints that serve on port 8080.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EndpointPolicy {
-    /// Required. Name of the EndpointPolicy resource. It matches pattern
+    /// Identifier. Name of the EndpointPolicy resource. It matches pattern
     /// `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -1236,6 +1274,11 @@ pub struct ListEndpointPoliciesRequest {
     /// next page of data.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, allow partial responses for multi-regional Aggregated
+    /// List requests. Otherwise if one of the locations is down or unreachable,
+    /// the Aggregated List request will fail.
+    #[prost(bool, tag = "4")]
+    pub return_partial_success: bool,
 }
 /// Response returned by the ListEndpointPolicies method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1248,6 +1291,12 @@ pub struct ListEndpointPoliciesResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request opts into
+    /// [return_partial_success][google.cloud.networkservices.v1.ListEndpointPoliciesRequest.return_partial_success]
+    /// and reading across collections e.g. when
+    /// attempting to list all resources across all supported locations.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used with the GetEndpointPolicy method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1300,7 +1349,7 @@ pub struct DeleteEndpointPolicyRequest {
 /// dictate how requests should be routed by this Gateway.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gateway {
-    /// Required. Name of the Gateway resource. It matches pattern
+    /// Identifier. Name of the Gateway resource. It matches pattern
     /// `projects/*/locations/*/gateways/<gateway_name>`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -1327,15 +1376,25 @@ pub struct Gateway {
     /// This field is required. If unspecified, an error is returned.
     #[prost(enumeration = "gateway::Type", tag = "6")]
     pub r#type: i32,
-    /// Required. One or more ports that the Gateway must receive traffic on. The
-    /// proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports
-    /// specified below.
+    /// Optional. Zero or one IPv4 or IPv6 address on which the Gateway will
+    /// receive the traffic. When no address is provided, an IP from the subnetwork
+    /// is allocated
+    ///
+    /// This field only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+    /// Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
+    #[prost(string, repeated, tag = "7")]
+    pub addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Required. One or more port numbers (1-65535), on which the Gateway will
+    /// receive traffic. The proxy binds to the specified ports.
+    /// Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+    /// Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
+    /// support multiple ports.
     #[prost(int32, repeated, packed = "false", tag = "11")]
     pub ports: ::prost::alloc::vec::Vec<i32>,
-    /// Required. Immutable. Scope determines how configuration across multiple
-    /// Gateway instances are merged. The configuration for multiple Gateway
-    /// instances with the same scope will be merged as presented as a single
-    /// coniguration to the proxy/load balancer.
+    /// Optional. Scope determines how configuration across multiple Gateway
+    /// instances are merged. The configuration for multiple Gateway instances with
+    /// the same scope will be merged as presented as a single configuration to the
+    /// proxy/load balancer.
     ///
     /// Max length 64 characters.
     /// Scope should start with a letter and can only have letters, numbers,
@@ -1346,6 +1405,49 @@ pub struct Gateway {
     /// TLS traffic is terminated. If empty, TLS termination is disabled.
     #[prost(string, tag = "9")]
     pub server_tls_policy: ::prost::alloc::string::String,
+    /// Optional. A fully-qualified Certificates URL reference. The proxy presents
+    /// a Certificate (selected based on SNI) when establishing a TLS connection.
+    /// This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+    #[prost(string, repeated, tag = "14")]
+    pub certificate_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. A fully-qualified GatewaySecurityPolicy URL reference.
+    /// Defines how a server should apply security policy to inbound
+    /// (VM to Proxy) initiated connections.
+    ///
+    /// For example:
+    /// `projects/*/locations/*/gatewaySecurityPolicies/swg-policy`.
+    ///
+    /// This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+    #[prost(string, tag = "18")]
+    pub gateway_security_policy: ::prost::alloc::string::String,
+    /// Optional. The relative resource name identifying the VPC network that is
+    /// using this configuration. For example:
+    /// `projects/*/global/networks/network-1`.
+    ///
+    /// Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+    #[prost(string, tag = "16")]
+    pub network: ::prost::alloc::string::String,
+    /// Optional. The relative resource name identifying  the subnetwork in which
+    /// this SWG is allocated. For example:
+    /// `projects/*/regions/us-central1/subnetworks/network-1`
+    ///
+    /// Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
+    #[prost(string, tag = "17")]
+    pub subnetwork: ::prost::alloc::string::String,
+    /// Optional. The IP Version that will be used by this gateway. Valid options
+    /// are IPV4 or IPV6. Default is IPV4.
+    #[prost(enumeration = "gateway::IpVersion", tag = "21")]
+    pub ip_version: i32,
+    /// Optional. Determines if envoy will insert internal debug headers into
+    /// upstream requests. Other Envoy headers may still be injected. By default,
+    /// envoy will not insert any debug headers.
+    #[prost(enumeration = "EnvoyHeaders", optional, tag = "28")]
+    pub envoy_headers: ::core::option::Option<i32>,
+    /// Optional. The routing mode of the Gateway.
+    /// This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+    /// This field is required for gateways of type SECURE_WEB_GATEWAY.
+    #[prost(enumeration = "gateway::RoutingMode", tag = "32")]
+    pub routing_mode: i32,
 }
 /// Nested message and enum types in `Gateway`.
 pub mod gateway {
@@ -1396,6 +1498,99 @@ pub mod gateway {
             }
         }
     }
+    /// The types of IP version for the gateway.
+    /// Possible values are:
+    /// * IPV4
+    /// * IPV6
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum IpVersion {
+        /// The type when IP version is not specified. Defaults to IPV4.
+        Unspecified = 0,
+        /// The type for IP version 4.
+        Ipv4 = 1,
+        /// The type for IP version 6.
+        Ipv6 = 2,
+    }
+    impl IpVersion {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "IP_VERSION_UNSPECIFIED",
+                Self::Ipv4 => "IPV4",
+                Self::Ipv6 => "IPV6",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "IP_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+                "IPV4" => Some(Self::Ipv4),
+                "IPV6" => Some(Self::Ipv6),
+                _ => None,
+            }
+        }
+    }
+    /// The routing mode of the Gateway, to determine how the Gateway routes
+    /// traffic. Today, this field only applies to Gateways of type
+    /// SECURE_WEB_GATEWAY. Possible values are:
+    /// * EXPLICIT_ROUTING_MODE
+    /// * NEXT_HOP_ROUTING_MODE
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum RoutingMode {
+        /// The routing mode is explicit; clients are configured to send
+        /// traffic through the gateway. This is the default routing mode.
+        ExplicitRoutingMode = 0,
+        /// The routing mode is next-hop. Clients are unaware of the gateway,
+        /// and a route (advanced route or other route type)
+        /// can be configured to direct traffic from client to gateway.
+        /// The gateway then acts as a next-hop to the destination.
+        NextHopRoutingMode = 1,
+    }
+    impl RoutingMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::ExplicitRoutingMode => "EXPLICIT_ROUTING_MODE",
+                Self::NextHopRoutingMode => "NEXT_HOP_ROUTING_MODE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EXPLICIT_ROUTING_MODE" => Some(Self::ExplicitRoutingMode),
+                "NEXT_HOP_ROUTING_MODE" => Some(Self::NextHopRoutingMode),
+                _ => None,
+            }
+        }
+    }
 }
 /// Request used with the ListGateways method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1424,6 +1619,9 @@ pub struct ListGatewaysResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Locations that could not be reached.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetGateway method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1473,7 +1671,7 @@ pub struct DeleteGatewayRequest {
 /// or Gateway resource is routed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GrpcRoute {
-    /// Required. Name of the GrpcRoute resource. It matches pattern
+    /// Identifier. Name of the GrpcRoute resource. It matches pattern
     /// `projects/*/locations/global/grpcRoutes/<grpc_route_name>`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -1775,7 +1973,28 @@ pub mod grpc_route {
             pub percentage: ::core::option::Option<i32>,
         }
     }
+    /// The specification for cookie-based stateful session affinity where the
+    /// date plane supplies a “session cookie”  with the name "GSSA" which encodes
+    /// a specific destination host and each request containing that cookie will
+    /// be directed to that host as long as the destination host remains up and
+    /// healthy.
+    ///
+    /// The gRPC proxyless mesh library or sidecar proxy will manage the session
+    /// cookie but the client application code is responsible for copying the
+    /// cookie from each RPC in the session to the next.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct StatefulSessionAffinityPolicy {
+        /// Required. The cookie TTL value for the Set-Cookie header generated by the
+        /// data plane. The lifetime of the cookie may be set to a value from 0 to
+        /// 86400 seconds (24 hours) inclusive.
+        ///
+        /// Set this to 0s to use a session cookie and disable cookie expiration.
+        #[prost(message, optional, tag = "1")]
+        pub cookie_ttl: ::core::option::Option<::prost_types::Duration>,
+    }
     /// The specifications for retries.
+    /// Specifies one or more conditions for which this retry rule applies. Valid
+    /// values are:
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RetryPolicy {
         /// - connect-failure: Router will retry on failures connecting to Backend
@@ -1809,12 +2028,12 @@ pub mod grpc_route {
         /// Backend Service(s) according to the weight field of these destinations.
         #[prost(message, repeated, tag = "1")]
         pub destinations: ::prost::alloc::vec::Vec<Destination>,
-        /// Optional. The specification for fault injection introduced into traffic to test the
-        /// resiliency of clients to destination service failure. As part of fault
-        /// injection, when clients send requests to a destination, delays can be
-        /// introduced on a percentage of requests before sending those requests to
-        /// the destination service. Similarly requests from clients can be aborted
-        /// by for a percentage of requests.
+        /// Optional. The specification for fault injection introduced into traffic
+        /// to test the resiliency of clients to destination service failure. As part
+        /// of fault injection, when clients send requests to a destination, delays
+        /// can be introduced on a percentage of requests before sending those
+        /// requests to the destination service. Similarly requests from clients can
+        /// be aborted by for a percentage of requests.
         ///
         /// timeout and retry_policy will be ignored by clients that are configured
         /// with a fault_injection_policy
@@ -1829,6 +2048,18 @@ pub mod grpc_route {
         /// Optional. Specifies the retry policy associated with this route.
         #[prost(message, optional, tag = "8")]
         pub retry_policy: ::core::option::Option<RetryPolicy>,
+        /// Optional. Specifies cookie-based stateful session affinity.
+        #[prost(message, optional, tag = "11")]
+        pub stateful_session_affinity: ::core::option::Option<
+            StatefulSessionAffinityPolicy,
+        >,
+        /// Optional. Specifies the idle timeout for the selected route. The idle
+        /// timeout is defined as the period in which there are no bytes sent or
+        /// received on either the upstream or downstream connection. If not set, the
+        /// default idle timeout is 1 hour. If set to 0s, the timeout will be
+        /// disabled.
+        #[prost(message, optional, tag = "12")]
+        pub idle_timeout: ::core::option::Option<::prost_types::Duration>,
     }
     /// Describes how to route traffic.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1860,6 +2091,11 @@ pub struct ListGrpcRoutesRequest {
     /// and that the system should return the next page of data.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, allow partial responses for multi-regional Aggregated
+    /// List requests. Otherwise if one of the locations is down or unreachable,
+    /// the Aggregated List request will fail.
+    #[prost(bool, tag = "4")]
+    pub return_partial_success: bool,
 }
 /// Response returned by the ListGrpcRoutes method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1872,6 +2108,12 @@ pub struct ListGrpcRoutesResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request opts into
+    /// [return_partial_success][google.cloud.networkservices.v1.ListGrpcRoutesRequest.return_partial_success]
+    /// and reading across collections e.g. when attempting to list all resources
+    /// across all supported locations.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetGrpcRoute method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1921,7 +2163,7 @@ pub struct DeleteGrpcRouteRequest {
 /// Mesh or Gateway resource.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRoute {
-    /// Required. Name of the HttpRoute resource. It matches pattern
+    /// Identifier. Name of the HttpRoute resource. It matches pattern
     /// `projects/*/locations/global/httpRoutes/http_route_name>`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -2152,6 +2394,19 @@ pub mod http_route {
         /// in equal proportions to all of them.
         #[prost(int32, tag = "2")]
         pub weight: i32,
+        /// Optional. The specification for modifying the headers of a matching
+        /// request prior to delivery of the request to the destination. If
+        /// HeaderModifiers are set on both the Destination and the RouteAction, they
+        /// will be merged. Conflicts between the two will not be resolved on the
+        /// configuration.
+        #[prost(message, optional, tag = "3")]
+        pub request_header_modifier: ::core::option::Option<HeaderModifier>,
+        /// Optional. The specification for modifying the headers of a response prior
+        /// to sending the response back to the client. If HeaderModifiers are set on
+        /// both the Destination and the RouteAction, they will be merged. Conflicts
+        /// between the two will not be resolved on the configuration.
+        #[prost(message, optional, tag = "4")]
+        pub response_header_modifier: ::core::option::Option<HeaderModifier>,
     }
     /// The specification for redirecting traffic.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2298,6 +2553,25 @@ pub mod http_route {
             pub percentage: i32,
         }
     }
+    /// The specification for cookie-based stateful session affinity where the
+    /// date plane supplies a “session cookie”  with the name "GSSA" which encodes
+    /// a specific destination host and each request containing that cookie will
+    /// be directed to that host as long as the destination host remains up and
+    /// healthy.
+    ///
+    /// The gRPC proxyless mesh library or sidecar proxy will manage the session
+    /// cookie but the client application code is responsible for copying the
+    /// cookie from each RPC in the session to the next.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct StatefulSessionAffinityPolicy {
+        /// Required. The cookie TTL value for the Set-Cookie header generated by
+        /// the data plane. The lifetime of the cookie may be set to a value from 0
+        /// to 86400 seconds (24 hours) inclusive.
+        ///
+        /// Set this to 0s to use a session cookie and disable cookie expiration.
+        #[prost(message, optional, tag = "1")]
+        pub cookie_ttl: ::core::option::Option<::prost_types::Duration>,
+    }
     /// The specification for modifying HTTP header in HTTP request and HTTP
     /// response.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2372,12 +2646,17 @@ pub mod http_route {
     /// destination service. The proxy does not wait for responses from the
     /// shadow service. Prior to sending traffic to the shadow service, the
     /// host/authority header is suffixed with -shadow.
+    /// Mirroring is currently not supported for Cloud Run destinations.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RequestMirrorPolicy {
         /// The destination the requests will be mirrored to. The weight of the
         /// destination will be ignored.
         #[prost(message, optional, tag = "1")]
         pub destination: ::core::option::Option<Destination>,
+        /// Optional. The percentage of requests to get mirrored to the desired
+        /// destination.
+        #[prost(float, tag = "2")]
+        pub mirror_percent: f32,
     }
     /// The Specification for allowing client side cross-origin requests.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2418,6 +2697,31 @@ pub mod http_route {
         /// indicates that the CORS policy is in effect.
         #[prost(bool, tag = "8")]
         pub disabled: bool,
+    }
+    /// Static HTTP response object to be returned.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct HttpDirectResponse {
+        /// Required. Status to return as part of HTTP Response. Must be a positive
+        /// integer.
+        #[prost(int32, tag = "1")]
+        pub status: i32,
+        /// Body to return as part of HTTP Response.
+        #[prost(oneof = "http_direct_response::HttpBody", tags = "2, 3")]
+        pub http_body: ::core::option::Option<http_direct_response::HttpBody>,
+    }
+    /// Nested message and enum types in `HttpDirectResponse`.
+    pub mod http_direct_response {
+        /// Body to return as part of HTTP Response.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum HttpBody {
+            /// Optional. Response body as a string. Maximum body length is 1024
+            /// characters.
+            #[prost(string, tag = "2")]
+            StringBody(::prost::alloc::string::String),
+            /// Optional. Response body as bytes. Maximum body size is 4096B.
+            #[prost(bytes, tag = "3")]
+            BytesBody(::prost::bytes::Bytes),
+        }
     }
     /// The specifications for routing traffic and applying associated policies.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2473,6 +2777,22 @@ pub mod http_route {
         /// The specification for allowing client side cross-origin requests.
         #[prost(message, optional, tag = "11")]
         pub cors_policy: ::core::option::Option<CorsPolicy>,
+        /// Optional. Specifies cookie-based stateful session affinity.
+        #[prost(message, optional, tag = "12")]
+        pub stateful_session_affinity: ::core::option::Option<
+            StatefulSessionAffinityPolicy,
+        >,
+        /// Optional. Static HTTP Response object to be returned regardless of the
+        /// request.
+        #[prost(message, optional, tag = "13")]
+        pub direct_response: ::core::option::Option<HttpDirectResponse>,
+        /// Optional. Specifies the idle timeout for the selected route. The idle
+        /// timeout is defined as the period in which there are no bytes sent or
+        /// received on either the upstream or downstream connection. If not set, the
+        /// default idle timeout is 1 hour. If set to 0s, the timeout will be
+        /// disabled.
+        #[prost(message, optional, tag = "14")]
+        pub idle_timeout: ::core::option::Option<::prost_types::Duration>,
     }
     /// Specifies how to match traffic and how to route traffic when traffic is
     /// matched.
@@ -2509,6 +2829,11 @@ pub struct ListHttpRoutesRequest {
     /// and that the system should return the next page of data.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, allow partial responses for multi-regional Aggregated
+    /// List requests. Otherwise if one of the locations is down or unreachable,
+    /// the Aggregated List request will fail.
+    #[prost(bool, tag = "4")]
+    pub return_partial_success: bool,
 }
 /// Response returned by the ListHttpRoutes method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2521,6 +2846,12 @@ pub struct ListHttpRoutesResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request opts into
+    /// [return_partial_success][google.cloud.networkservices.v1.ListHttpRoutesRequest.return_partial_success]
+    /// and reading across collections e.g. when attempting to list all resources
+    /// across all supported locations.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetHttpRoute method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2571,7 +2902,7 @@ pub struct DeleteHttpRouteRequest {
 /// requests are routed within this logical mesh boundary.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Mesh {
-    /// Required. Name of the Mesh resource. It matches pattern
+    /// Identifier. Name of the Mesh resource. It matches pattern
     /// `projects/*/locations/global/meshes/<mesh_name>`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -2602,6 +2933,11 @@ pub struct Mesh {
     /// deployments.
     #[prost(int32, tag = "8")]
     pub interception_port: i32,
+    /// Optional. Determines if envoy will insert internal debug headers into
+    /// upstream requests. Other Envoy headers may still be injected. By default,
+    /// envoy will not insert any debug headers.
+    #[prost(enumeration = "EnvoyHeaders", optional, tag = "16")]
+    pub envoy_headers: ::core::option::Option<i32>,
 }
 /// Request used with the ListMeshes method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2618,6 +2954,11 @@ pub struct ListMeshesRequest {
     /// and that the system should return the next page of data.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, allow partial responses for multi-regional Aggregated
+    /// List requests. Otherwise if one of the locations is down or unreachable,
+    /// the Aggregated List request will fail.
+    #[prost(bool, tag = "4")]
+    pub return_partial_success: bool,
 }
 /// Response returned by the ListMeshes method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2630,6 +2971,11 @@ pub struct ListMeshesResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request opts into
+    /// `return_partial_success` and reading across collections e.g. when
+    /// attempting to list all resources across all supported locations.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetMesh method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2675,12 +3021,143 @@ pub struct DeleteMeshRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// ServiceBinding is the resource that defines a Service Directory Service to
-/// be used in a BackendService resource.
+/// GatewayRouteView defines view-only resource for Routes to a Gateway
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GatewayRouteView {
+    /// Output only. Identifier. Full path name of the GatewayRouteView resource.
+    /// Format:
+    ///    projects/{project_number}/locations/{location}/gateways/{gateway}/routeViews/{route_view}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. Project number where the route exists.
+    #[prost(int64, tag = "2")]
+    pub route_project_number: i64,
+    /// Output only. Location where the route exists.
+    #[prost(string, tag = "3")]
+    pub route_location: ::prost::alloc::string::String,
+    /// Output only. Type of the route: HttpRoute,GrpcRoute,TcpRoute, or TlsRoute
+    #[prost(string, tag = "4")]
+    pub route_type: ::prost::alloc::string::String,
+    /// Output only. The resource id for the route.
+    #[prost(string, tag = "5")]
+    pub route_id: ::prost::alloc::string::String,
+}
+/// MeshRouteView defines view-only resource for Routes to a Mesh
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MeshRouteView {
+    /// Output only. Identifier. Full path name of the MeshRouteView resource.
+    /// Format:
+    ///    projects/{project}/locations/{location}/meshes/{mesh}/routeViews/{route_view}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. Project number where the route exists.
+    #[prost(int64, tag = "2")]
+    pub route_project_number: i64,
+    /// Output only. Location where the route exists.
+    #[prost(string, tag = "3")]
+    pub route_location: ::prost::alloc::string::String,
+    /// Output only. Type of the route: HttpRoute,GrpcRoute,TcpRoute, or TlsRoute
+    #[prost(string, tag = "4")]
+    pub route_type: ::prost::alloc::string::String,
+    /// Output only. The resource id for the route.
+    #[prost(string, tag = "5")]
+    pub route_id: ::prost::alloc::string::String,
+}
+/// Request used with the GetGatewayRouteView method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetGatewayRouteViewRequest {
+    /// Required. Name of the GatewayRouteView resource.
+    /// Formats:
+    ///    projects/{project}/locations/{location}/gateways/{gateway}/routeViews/{route_view}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request used with the GetMeshRouteView method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetMeshRouteViewRequest {
+    /// Required. Name of the MeshRouteView resource.
+    /// Format:
+    ///    projects/{project}/locations/{location}/meshes/{mesh}/routeViews/{route_view}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request used with the ListGatewayRouteViews method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListGatewayRouteViewsRequest {
+    /// Required. The Gateway to which a Route is associated.
+    /// Formats:
+    ///    projects/{project}/locations/{location}/gateways/{gateway}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Maximum number of GatewayRouteViews to return per call.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// The value returned by the last `ListGatewayRouteViewsResponse`
+    /// Indicates that this is a continuation of a prior `ListGatewayRouteViews`
+    /// call, and that the system should return the next page of data.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Request used with the ListMeshRouteViews method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListMeshRouteViewsRequest {
+    /// Required. The Mesh to which a Route is associated.
+    /// Format:
+    ///    projects/{project}/locations/{location}/meshes/{mesh}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Maximum number of MeshRouteViews to return per call.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// The value returned by the last `ListMeshRouteViewsResponse`
+    /// Indicates that this is a continuation of a prior `ListMeshRouteViews` call,
+    /// and that the system should return the next page of data.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response returned by the ListGatewayRouteViews method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListGatewayRouteViewsResponse {
+    /// List of GatewayRouteView resources.
+    #[prost(message, repeated, tag = "1")]
+    pub gateway_route_views: ::prost::alloc::vec::Vec<GatewayRouteView>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request attempts to list all
+    /// resources across all supported locations, while some locations are
+    /// temporarily unavailable.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response returned by the ListMeshRouteViews method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListMeshRouteViewsResponse {
+    /// List of MeshRouteView resources.
+    #[prost(message, repeated, tag = "1")]
+    pub mesh_route_views: ::prost::alloc::vec::Vec<MeshRouteView>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request attempts to list all
+    /// resources across all supported locations, while some locations are
+    /// temporarily unavailable.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// ServiceBinding can be used to:
+/// - Bind a Service Directory Service to be used in a BackendService resource.
+///    This feature will be deprecated soon.
+/// - Bind a Private Service Connect producer service to be used in consumer
+///    Cloud Service Mesh or Application Load Balancers.
+/// - Bind a Cloud Run service to be used in consumer Cloud Service Mesh or
+///    Application Load Balancers.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceBinding {
-    /// Required. Name of the ServiceBinding resource. It matches pattern
-    /// `projects/*/locations/global/serviceBindings/service_binding_name`.
+    /// Identifier. Name of the ServiceBinding resource. It matches pattern
+    /// `projects/*/locations/*/serviceBindings/<service_binding_name>`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. A free-text description of the resource. Max length 1024
@@ -2693,10 +3170,21 @@ pub struct ServiceBinding {
     /// Output only. The timestamp when the resource was updated.
     #[prost(message, optional, tag = "4")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Required. The full service directory service name of the format
-    /// /projects/*/locations/*/namespaces/*/services/*
+    /// Optional. The full Service Directory Service name of the format
+    /// `projects/*/locations/*/namespaces/*/services/*`.
+    /// This field is for Service Directory integration which will be deprecated
+    /// soon.
+    #[deprecated]
     #[prost(string, tag = "5")]
     pub service: ::prost::alloc::string::String,
+    /// Output only. The unique identifier of the Service Directory Service against
+    /// which the ServiceBinding resource is validated. This is populated when the
+    /// Service Binding resource is used in another resource (like Backend
+    /// Service). This is of the UUID4 format. This field is for Service Directory
+    /// integration which will be deprecated soon.
+    #[deprecated]
+    #[prost(string, tag = "8")]
+    pub service_id: ::prost::alloc::string::String,
     /// Optional. Set of label tags associated with the ServiceBinding resource.
     #[prost(map = "string, string", tag = "7")]
     pub labels: ::std::collections::HashMap<
@@ -2708,7 +3196,7 @@ pub struct ServiceBinding {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceBindingsRequest {
     /// Required. The project and location from which the ServiceBindings should be
-    /// listed, specified in the format `projects/*/locations/global`.
+    /// listed, specified in the format `projects/*/locations/*`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Maximum number of ServiceBindings to return per call.
@@ -2731,12 +3219,17 @@ pub struct ListServiceBindingsResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request attempts to list all
+    /// resources across all supported locations, while some locations are
+    /// temporarily unavailable.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetServiceBinding method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceBindingRequest {
     /// Required. A name of the ServiceBinding to get. Must be in the format
-    /// `projects/*/locations/global/serviceBindings/*`.
+    /// `projects/*/locations/*/serviceBindings/*`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -2744,7 +3237,7 @@ pub struct GetServiceBindingRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceBindingRequest {
     /// Required. The parent resource of the ServiceBinding. Must be in the
-    /// format `projects/*/locations/global`.
+    /// format `projects/*/locations/*`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. Short name of the ServiceBinding resource to be created.
@@ -2754,11 +3247,230 @@ pub struct CreateServiceBindingRequest {
     #[prost(message, optional, tag = "3")]
     pub service_binding: ::core::option::Option<ServiceBinding>,
 }
+/// Request used by the UpdateServiceBinding method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateServiceBindingRequest {
+    /// Optional. Field mask is used to specify the fields to be overwritten in the
+    /// ServiceBinding resource by the update.
+    /// The fields specified in the update_mask are relative to the resource, not
+    /// the full request. A field will be overwritten if it is in the mask. If the
+    /// user does not provide a mask then all fields will be overwritten.
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    /// Required. Updated ServiceBinding resource.
+    #[prost(message, optional, tag = "2")]
+    pub service_binding: ::core::option::Option<ServiceBinding>,
+}
 /// Request used by the DeleteServiceBinding method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceBindingRequest {
     /// Required. A name of the ServiceBinding to delete. Must be in the format
-    /// `projects/*/locations/global/serviceBindings/*`.
+    /// `projects/*/locations/*/serviceBindings/*`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// ServiceLbPolicy holds global load balancing and traffic distribution
+/// configuration that can be applied to a BackendService.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ServiceLbPolicy {
+    /// Identifier. Name of the ServiceLbPolicy resource. It matches pattern
+    /// `projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy_name}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The timestamp when this resource was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when this resource was last updated.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. Set of label tags associated with the ServiceLbPolicy resource.
+    #[prost(map = "string, string", tag = "4")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. A free-text description of the resource. Max length 1024
+    /// characters.
+    #[prost(string, tag = "5")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. The type of load balancing algorithm to be used. The default
+    /// behavior is WATERFALL_BY_REGION.
+    #[prost(enumeration = "service_lb_policy::LoadBalancingAlgorithm", tag = "6")]
+    pub load_balancing_algorithm: i32,
+    /// Optional. Configuration to automatically move traffic away for unhealthy
+    /// IG/NEG for the associated Backend Service.
+    #[prost(message, optional, tag = "8")]
+    pub auto_capacity_drain: ::core::option::Option<
+        service_lb_policy::AutoCapacityDrain,
+    >,
+    /// Optional. Configuration related to health based failover.
+    #[prost(message, optional, tag = "10")]
+    pub failover_config: ::core::option::Option<service_lb_policy::FailoverConfig>,
+}
+/// Nested message and enum types in `ServiceLbPolicy`.
+pub mod service_lb_policy {
+    /// Option to specify if an unhealthy IG/NEG should be considered for global
+    /// load balancing and traffic routing.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AutoCapacityDrain {
+        /// Optional. If set to 'True', an unhealthy IG/NEG will be set as drained.
+        /// - An IG/NEG is considered unhealthy if less than 25% of the
+        /// instances/endpoints in the IG/NEG are healthy.
+        /// - This option will never result in draining more than 50% of the
+        /// configured IGs/NEGs for the Backend Service.
+        #[prost(bool, tag = "1")]
+        pub enable: bool,
+    }
+    /// Option to specify health based failover behavior.
+    /// This is not related to Network load balancer FailoverPolicy.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FailoverConfig {
+        /// Optional. The percentage threshold that a load balancer will begin to
+        /// send traffic to failover backends. If the percentage of endpoints in a
+        /// MIG/NEG is smaller than this value, traffic would be sent to failover
+        /// backends if possible. This field should be set to a value between 1
+        /// and 99. The default value is 50 for Global external HTTP(S) load balancer
+        /// (classic) and Proxyless service mesh, and 70 for others.
+        #[prost(int32, tag = "1")]
+        pub failover_health_threshold: i32,
+    }
+    /// The global load balancing algorithm to be used.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum LoadBalancingAlgorithm {
+        /// The type of the loadbalancing algorithm is unspecified.
+        Unspecified = 0,
+        /// Balance traffic across all backends across the world proportionally based
+        /// on capacity.
+        SprayToWorld = 3,
+        /// Direct traffic to the nearest region with endpoints and capacity before
+        /// spilling over to other regions and spread the traffic from each client to
+        /// all the MIGs/NEGs in a region.
+        SprayToRegion = 4,
+        /// Direct traffic to the nearest region with endpoints and capacity before
+        /// spilling over to other regions. All MIGs/NEGs within a region are evenly
+        /// loaded but each client might not spread the traffic to all the MIGs/NEGs
+        /// in the region.
+        WaterfallByRegion = 5,
+        /// Attempt to keep traffic in a single zone closest to the client, before
+        /// spilling over to other zones.
+        WaterfallByZone = 6,
+    }
+    impl LoadBalancingAlgorithm {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
+                Self::SprayToWorld => "SPRAY_TO_WORLD",
+                Self::SprayToRegion => "SPRAY_TO_REGION",
+                Self::WaterfallByRegion => "WATERFALL_BY_REGION",
+                Self::WaterfallByZone => "WATERFALL_BY_ZONE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LOAD_BALANCING_ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
+                "SPRAY_TO_WORLD" => Some(Self::SprayToWorld),
+                "SPRAY_TO_REGION" => Some(Self::SprayToRegion),
+                "WATERFALL_BY_REGION" => Some(Self::WaterfallByRegion),
+                "WATERFALL_BY_ZONE" => Some(Self::WaterfallByZone),
+                _ => None,
+            }
+        }
+    }
+}
+/// Request used with the ListServiceLbPolicies method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListServiceLbPoliciesRequest {
+    /// Required. The project and location from which the ServiceLbPolicies should
+    /// be listed, specified in the format
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Maximum number of ServiceLbPolicies to return per call.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// The value returned by the last `ListServiceLbPoliciesResponse`
+    /// Indicates that this is a continuation of a prior `ListRouters` call,
+    /// and that the system should return the next page of data.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response returned by the ListServiceLbPolicies method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListServiceLbPoliciesResponse {
+    /// List of ServiceLbPolicy resources.
+    #[prost(message, repeated, tag = "1")]
+    pub service_lb_policies: ::prost::alloc::vec::Vec<ServiceLbPolicy>,
+    /// If there might be more results than those appearing in this response, then
+    /// `next_page_token` is included. To get the next set of results, call this
+    /// method again using the value of `next_page_token` as `page_token`.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request attempts to list all
+    /// resources across all supported locations, while some locations are
+    /// temporarily unavailable.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Request used by the GetServiceLbPolicy method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetServiceLbPolicyRequest {
+    /// Required. A name of the ServiceLbPolicy to get. Must be in the format
+    /// `projects/{project}/locations/{location}/serviceLbPolicies/*`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request used by the ServiceLbPolicy method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateServiceLbPolicyRequest {
+    /// Required. The parent resource of the ServiceLbPolicy. Must be in the
+    /// format `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. Short name of the ServiceLbPolicy resource to be created.
+    /// E.g. for resource name
+    /// `projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy_name}`.
+    /// the id is value of {service_lb_policy_name}
+    #[prost(string, tag = "2")]
+    pub service_lb_policy_id: ::prost::alloc::string::String,
+    /// Required. ServiceLbPolicy resource to be created.
+    #[prost(message, optional, tag = "3")]
+    pub service_lb_policy: ::core::option::Option<ServiceLbPolicy>,
+}
+/// Request used by the UpdateServiceLbPolicy method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateServiceLbPolicyRequest {
+    /// Optional. Field mask is used to specify the fields to be overwritten in the
+    /// ServiceLbPolicy resource by the update.
+    /// The fields specified in the update_mask are relative to the resource, not
+    /// the full request. A field will be overwritten if it is in the mask. If the
+    /// user does not provide a mask then all fields will be overwritten.
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    /// Required. Updated ServiceLbPolicy resource.
+    #[prost(message, optional, tag = "2")]
+    pub service_lb_policy: ::core::option::Option<ServiceLbPolicy>,
+}
+/// Request used by the DeleteServiceLbPolicy method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteServiceLbPolicyRequest {
+    /// Required. A name of the ServiceLbPolicy to delete. Must be in the format
+    /// `projects/{project}/locations/{location}/serviceLbPolicies/*`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -2766,7 +3478,7 @@ pub struct DeleteServiceBindingRequest {
 /// Mesh/Gateway resource.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TcpRoute {
-    /// Required. Name of the TcpRoute resource. It matches pattern
+    /// Identifier. Name of the TcpRoute resource. It matches pattern
     /// `projects/*/locations/global/tcpRoutes/tcp_route_name>`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -2836,12 +3548,10 @@ pub mod tcp_route {
         /// Required. Must be specified in the CIDR range format. A CIDR range
         /// consists of an IP Address and a prefix length to construct the subnet
         /// mask. By default, the prefix length is 32 (i.e. matches a single IP
-        /// address). Only IPV4 addresses are supported.
-        /// Examples:
-        /// "10.0.0.1" - matches against this exact IP address.
-        /// "10.0.0.0/8" - matches against any IP address within the 10.0.0.0 subnet
-        /// and 255.255.255.0 mask.
-        /// "0.0.0.0/0" - matches against any IP address'.
+        /// address). Only IPV4 addresses are supported. Examples: "10.0.0.1" -
+        /// matches against this exact IP address. "10.0.0.0/8" - matches against any
+        /// IP address within the 10.0.0.0 subnet and 255.255.255.0 mask. "0.0.0.0/0"
+        /// - matches against any IP address'.
         #[prost(string, tag = "1")]
         pub address: ::prost::alloc::string::String,
         /// Required. Specifies the destination port to match against.
@@ -2861,6 +3571,13 @@ pub mod tcp_route {
         /// Only one of route destinations or original destination can be set.
         #[prost(bool, tag = "3")]
         pub original_destination: bool,
+        /// Optional. Specifies the idle timeout for the selected route. The idle
+        /// timeout is defined as the period in which there are no bytes sent or
+        /// received on either the upstream or downstream connection. If not set, the
+        /// default idle timeout is 30 seconds. If set to 0s, the timeout will be
+        /// disabled.
+        #[prost(message, optional, tag = "5")]
+        pub idle_timeout: ::core::option::Option<::prost_types::Duration>,
     }
     /// Describe the destination for traffic to be routed to.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2901,6 +3618,11 @@ pub struct ListTcpRoutesRequest {
     /// and that the system should return the next page of data.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, allow partial responses for multi-regional Aggregated
+    /// List requests. Otherwise if one of the locations is down or unreachable,
+    /// the Aggregated List request will fail.
+    #[prost(bool, tag = "4")]
+    pub return_partial_success: bool,
 }
 /// Response returned by the ListTcpRoutes method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2913,6 +3635,12 @@ pub struct ListTcpRoutesResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request opts into
+    /// [return_partial_success][google.cloud.networkservices.v1.ListTcpRoutesRequest.return_partial_success]
+    /// and reading across collections e.g. when attempting to list all resources
+    /// across all supported locations.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetTcpRoute method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2962,7 +3690,7 @@ pub struct DeleteTcpRouteRequest {
 /// L3 attributes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsRoute {
-    /// Required. Name of the TlsRoute resource. It matches pattern
+    /// Identifier. Name of the TlsRoute resource. It matches pattern
     /// `projects/*/locations/global/tlsRoutes/tls_route_name>`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -3000,6 +3728,12 @@ pub struct TlsRoute {
     /// `projects/*/locations/global/gateways/<gateway_name>`
     #[prost(string, repeated, tag = "7")]
     pub gateways: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Set of label tags associated with the TlsRoute resource.
+    #[prost(map = "string, string", tag = "11")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `TlsRoute`.
 pub mod tls_route {
@@ -3008,7 +3742,8 @@ pub mod tls_route {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RouteRule {
         /// Required. RouteMatch defines the predicate used to match requests to a
-        /// given action. Multiple match types are "OR"ed for evaluation.
+        /// given action. Multiple match types are "OR"ed for evaluation. Atleast one
+        /// RouteMatch must be supplied.
         #[prost(message, repeated, tag = "1")]
         pub matches: ::prost::alloc::vec::Vec<RouteMatch>,
         /// Required. The detailed rule defining how to route matched traffic.
@@ -3017,8 +3752,6 @@ pub mod tls_route {
     }
     /// RouteMatch defines the predicate used to match requests to a given action.
     /// Multiple match types are "AND"ed for evaluation.
-    /// If no routeMatch field is specified, this rule will unconditionally match
-    /// traffic.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RouteMatch {
         /// Optional. SNI (server name indicator) to match against.
@@ -3028,7 +3761,7 @@ pub mod tls_route {
         /// Partial wildcards are not supported, and values like *w.example.com are
         /// invalid.
         /// At least one of sni_host and alpn is required.
-        /// Up to 5 sni hosts across all matches can be set.
+        /// Up to 100 sni hosts across all matches can be set.
         #[prost(string, repeated, tag = "1")]
         pub sni_host: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         /// Optional. ALPN (Application-Layer Protocol Negotiation) to match against.
@@ -3045,6 +3778,13 @@ pub mod tls_route {
         /// At least one destination service is required.
         #[prost(message, repeated, tag = "1")]
         pub destinations: ::prost::alloc::vec::Vec<RouteDestination>,
+        /// Optional. Specifies the idle timeout for the selected route. The idle
+        /// timeout is defined as the period in which there are no bytes sent or
+        /// received on either the upstream or downstream connection. If not set, the
+        /// default idle timeout is 1 hour. If set to 0s, the timeout will be
+        /// disabled.
+        #[prost(message, optional, tag = "4")]
+        pub idle_timeout: ::core::option::Option<::prost_types::Duration>,
     }
     /// Describe the destination for traffic to be routed to.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3052,7 +3792,7 @@ pub mod tls_route {
         /// Required. The URL of a BackendService to route traffic to.
         #[prost(string, tag = "1")]
         pub service_name: ::prost::alloc::string::String,
-        /// Optional. Specifies the proportion of requests forwareded to the backend
+        /// Optional. Specifies the proportion of requests forwarded to the backend
         /// referenced by the service_name field. This is computed as:
         /// - weight/Sum(weights in destinations)
         /// Weights in all destinations does not need to sum up to 100.
@@ -3075,6 +3815,11 @@ pub struct ListTlsRoutesRequest {
     /// and that the system should return the next page of data.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, allow partial responses for multi-regional Aggregated
+    /// List requests. Otherwise if one of the locations is down or unreachable,
+    /// the Aggregated List request will fail.
+    #[prost(bool, tag = "4")]
+    pub return_partial_success: bool,
 }
 /// Response returned by the ListTlsRoutes method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3087,6 +3832,12 @@ pub struct ListTlsRoutesResponse {
     /// method again using the value of `next_page_token` as `page_token`.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request opts into
+    /// [return_partial_success][google.cloud.networkservices.v1.ListTlsRoutesRequest.return_partial_success]
+    /// and reading across collections e.g. when attempting to list all resources
+    /// across all supported locations.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request used by the GetTlsRoute method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4182,6 +4933,36 @@ pub mod network_services_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Updates the parameters of a single ServiceBinding.
+        pub async fn update_service_binding(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateServiceBindingRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/UpdateServiceBinding",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "UpdateServiceBinding",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Deletes a single ServiceBinding.
         pub async fn delete_service_binding(
             &mut self,
@@ -4355,6 +5136,273 @@ pub mod network_services_client {
                     GrpcMethod::new(
                         "google.cloud.networkservices.v1.NetworkServices",
                         "DeleteMesh",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists ServiceLbPolicies in a given project and location.
+        pub async fn list_service_lb_policies(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListServiceLbPoliciesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListServiceLbPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/ListServiceLbPolicies",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "ListServiceLbPolicies",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single ServiceLbPolicy.
+        pub async fn get_service_lb_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetServiceLbPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ServiceLbPolicy>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/GetServiceLbPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "GetServiceLbPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new ServiceLbPolicy in a given project and location.
+        pub async fn create_service_lb_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateServiceLbPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/CreateServiceLbPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "CreateServiceLbPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single ServiceLbPolicy.
+        pub async fn update_service_lb_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateServiceLbPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/UpdateServiceLbPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "UpdateServiceLbPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single ServiceLbPolicy.
+        pub async fn delete_service_lb_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteServiceLbPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/DeleteServiceLbPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "DeleteServiceLbPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a single RouteView of a Gateway.
+        pub async fn get_gateway_route_view(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGatewayRouteViewRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GatewayRouteView>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/GetGatewayRouteView",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "GetGatewayRouteView",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a single RouteView of a Mesh.
+        pub async fn get_mesh_route_view(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetMeshRouteViewRequest>,
+        ) -> std::result::Result<tonic::Response<super::MeshRouteView>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/GetMeshRouteView",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "GetMeshRouteView",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists RouteViews
+        pub async fn list_gateway_route_views(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListGatewayRouteViewsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListGatewayRouteViewsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/ListGatewayRouteViews",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "ListGatewayRouteViews",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists RouteViews
+        pub async fn list_mesh_route_views(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListMeshRouteViewsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListMeshRouteViewsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/ListMeshRouteViews",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "ListMeshRouteViews",
                     ),
                 );
             self.inner.unary(req, path, codec).await

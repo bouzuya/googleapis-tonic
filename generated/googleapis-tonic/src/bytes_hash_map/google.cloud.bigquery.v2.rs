@@ -10124,8 +10124,8 @@ pub enum ManagedTableType {
     Unspecified = 0,
     /// The managed table is a native BigQuery table.
     Native = 1,
-    /// The managed table is a BigQuery table for Apache Iceberg.
-    Iceberg = 2,
+    /// The managed table is a BigLake table for Apache Iceberg in BigQuery.
+    Biglake = 2,
 }
 impl ManagedTableType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10136,7 +10136,7 @@ impl ManagedTableType {
         match self {
             Self::Unspecified => "MANAGED_TABLE_TYPE_UNSPECIFIED",
             Self::Native => "NATIVE",
-            Self::Iceberg => "ICEBERG",
+            Self::Biglake => "BIGLAKE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10144,7 +10144,7 @@ impl ManagedTableType {
         match value {
             "MANAGED_TABLE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "NATIVE" => Some(Self::Native),
-            "ICEBERG" => Some(Self::Iceberg),
+            "BIGLAKE" => Some(Self::Biglake),
             _ => None,
         }
     }

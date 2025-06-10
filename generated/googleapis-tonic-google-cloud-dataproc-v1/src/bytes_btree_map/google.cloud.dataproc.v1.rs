@@ -1165,6 +1165,8 @@ pub enum Component {
     /// It cannot be activated on clusters created with supported Dataproc on
     /// Compute Engine image versions.
     Anaconda = 5,
+    /// Delta Lake.
+    Delta = 20,
     /// Docker
     Docker = 13,
     /// The Druid query engine. (alpha)
@@ -1177,8 +1179,12 @@ pub enum Component {
     HiveWebhcat = 3,
     /// Hudi.
     Hudi = 18,
+    /// Iceberg.
+    Iceberg = 19,
     /// The Jupyter Notebook.
     Jupyter = 1,
+    /// The Pig component.
+    Pig = 21,
     /// The Presto query engine.
     Presto = 6,
     /// The Trino query engine.
@@ -1201,13 +1207,16 @@ impl Component {
         match self {
             Self::Unspecified => "COMPONENT_UNSPECIFIED",
             Self::Anaconda => "ANACONDA",
+            Self::Delta => "DELTA",
             Self::Docker => "DOCKER",
             Self::Druid => "DRUID",
             Self::Flink => "FLINK",
             Self::Hbase => "HBASE",
             Self::HiveWebhcat => "HIVE_WEBHCAT",
             Self::Hudi => "HUDI",
+            Self::Iceberg => "ICEBERG",
             Self::Jupyter => "JUPYTER",
+            Self::Pig => "PIG",
             Self::Presto => "PRESTO",
             Self::Trino => "TRINO",
             Self::Ranger => "RANGER",
@@ -1221,13 +1230,16 @@ impl Component {
         match value {
             "COMPONENT_UNSPECIFIED" => Some(Self::Unspecified),
             "ANACONDA" => Some(Self::Anaconda),
+            "DELTA" => Some(Self::Delta),
             "DOCKER" => Some(Self::Docker),
             "DRUID" => Some(Self::Druid),
             "FLINK" => Some(Self::Flink),
             "HBASE" => Some(Self::Hbase),
             "HIVE_WEBHCAT" => Some(Self::HiveWebhcat),
             "HUDI" => Some(Self::Hudi),
+            "ICEBERG" => Some(Self::Iceberg),
             "JUPYTER" => Some(Self::Jupyter),
+            "PIG" => Some(Self::Pig),
             "PRESTO" => Some(Self::Presto),
             "TRINO" => Some(Self::Trino),
             "RANGER" => Some(Self::Ranger),
