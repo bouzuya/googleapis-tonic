@@ -7643,6 +7643,11 @@ pub mod index_unused_reason {
         /// Indicates that the estimated performance gain from using the search index
         /// is too low for the given search query.
         EstimatedPerformanceGainTooLow = 15,
+        /// Indicates that the column metadata index (which the search index depends
+        /// on) is not used. User can refer to the [column metadata index
+        /// usage](<https://cloud.google.com/bigquery/docs/metadata-indexing-managed-tables#view_column_metadata_index_usage>)
+        /// for more details on why it was not used.
+        ColumnMetadataIndexNotUsed = 21,
         /// Indicates that search indexes can not be used for search query with
         /// STANDARD edition.
         NotSupportedInStandardEdition = 17,
@@ -7684,6 +7689,7 @@ pub mod index_unused_reason {
                 Self::EstimatedPerformanceGainTooLow => {
                     "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW"
                 }
+                Self::ColumnMetadataIndexNotUsed => "COLUMN_METADATA_INDEX_NOT_USED",
                 Self::NotSupportedInStandardEdition => {
                     "NOT_SUPPORTED_IN_STANDARD_EDITION"
                 }
@@ -7717,6 +7723,9 @@ pub mod index_unused_reason {
                 "BASE_TABLE_TOO_LARGE" => Some(Self::BaseTableTooLarge),
                 "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW" => {
                     Some(Self::EstimatedPerformanceGainTooLow)
+                }
+                "COLUMN_METADATA_INDEX_NOT_USED" => {
+                    Some(Self::ColumnMetadataIndexNotUsed)
                 }
                 "NOT_SUPPORTED_IN_STANDARD_EDITION" => {
                     Some(Self::NotSupportedInStandardEdition)
@@ -10615,6 +10624,15 @@ pub struct Routine {
     /// routines](<https://cloud.google.com/bigquery/docs/user-defined-functions#custom-mask>).
     #[prost(enumeration = "routine::DataGovernanceType", tag = "17")]
     pub data_governance_type: i32,
+    /// Optional. Options for Python UDF.
+    /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
+    #[prost(message, optional, tag = "20")]
+    pub python_options: ::core::option::Option<PythonOptions>,
+    /// Optional. Options for the runtime of the external system executing the
+    /// routine. This field is only applicable for Python UDFs.
+    /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
+    #[prost(message, optional, tag = "21")]
+    pub external_runtime_options: ::core::option::Option<ExternalRuntimeOptions>,
 }
 /// Nested message and enum types in `Routine`.
 pub mod routine {
@@ -11011,6 +11029,44 @@ pub mod routine {
             }
         }
     }
+}
+/// Options for a user-defined Python function.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PythonOptions {
+    /// Required. The entry point function in the user's Python code.
+    #[prost(string, tag = "1")]
+    pub entry_point: ::prost::alloc::string::String,
+    /// Optional. A list of package names along with versions to be installed.
+    /// Follows requirements.txt syntax (e.g. numpy==2.0, permutation,
+    /// urllib3<2.2.1)
+    #[prost(string, repeated, tag = "2")]
+    pub packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Options for the runtime of the external system.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExternalRuntimeOptions {
+    /// Optional. Amount of memory provisioned for the container instance. Format:
+    /// {number}{unit} where unit is one of "M", "G", "Mi" and "Gi" (e.g. 1G,
+    /// 512Mi). If not specified, the default value is 512Mi.
+    #[prost(string, tag = "1")]
+    pub container_memory: ::prost::alloc::string::String,
+    /// Optional. Amount of CPU provisioned for the container instance. If not
+    /// specified, the default value is 0.33 vCPUs.
+    #[prost(double, tag = "2")]
+    pub container_cpu: f64,
+    /// Optional. Fully qualified name of the connection whose service account will
+    /// be used to execute the code in the container. Format:
+    /// ```"projects/{project_id}/locations/{location_id}/connections/{connection_id}"```
+    #[prost(string, tag = "3")]
+    pub runtime_connection: ::prost::alloc::string::String,
+    /// Optional. Maximum number of rows in each batch sent to the external
+    /// runtime. If absent or if 0, BigQuery dynamically decides the number of rows
+    /// in a batch.
+    #[prost(int64, tag = "4")]
+    pub max_batching_rows: i64,
+    /// Optional. Language runtime version (e.g. python-3.11).
+    #[prost(string, tag = "5")]
+    pub runtime_version: ::prost::alloc::string::String,
 }
 /// Options for a user-defined Spark routine.
 #[derive(Clone, PartialEq, ::prost::Message)]

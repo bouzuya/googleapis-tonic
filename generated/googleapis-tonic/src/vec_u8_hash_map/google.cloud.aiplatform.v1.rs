@@ -5080,6 +5080,12 @@ pub struct RagCorpus {
     /// Output only. RagCorpus state.
     #[prost(message, optional, tag = "8")]
     pub corpus_status: ::core::option::Option<CorpusStatus>,
+    /// Optional. Immutable. The CMEK key name used to encrypt at-rest data related
+    /// to this Corpus. Only applicable to RagManagedDb option for Vector DB. This
+    /// field can only be set at corpus creation time, and cannot be updated or
+    /// deleted.
+    #[prost(message, optional, tag = "12")]
+    pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
     #[prost(oneof = "rag_corpus::BackendConfig", tags = "9, 10")]
@@ -5387,6 +5393,64 @@ pub mod import_rag_files_config {
         #[prost(message, tag = "15")]
         ImportResultBigquerySink(super::BigQueryDestination),
     }
+}
+/// Configuration message for RagManagedDb used by RagEngine.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RagManagedDbConfig {
+    /// The tier of the RagManagedDb.
+    #[prost(oneof = "rag_managed_db_config::Tier", tags = "4, 2, 3")]
+    pub tier: ::core::option::Option<rag_managed_db_config::Tier>,
+}
+/// Nested message and enum types in `RagManagedDbConfig`.
+pub mod rag_managed_db_config {
+    /// Scaled tier offers production grade performance along with
+    /// autoscaling functionality. It is suitable for customers with large
+    /// amounts of data or performance sensitive workloads.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Scaled {}
+    /// Basic tier is a cost-effective and low compute tier suitable for
+    /// the following cases:
+    /// * Experimenting with RagManagedDb.
+    /// * Small data size.
+    /// * Latency insensitive workload.
+    /// * Only using RAG Engine with external vector DBs.
+    ///
+    /// NOTE: This is the default tier if not explicitly chosen.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Basic {}
+    /// Disables the RAG Engine service and deletes all your data held
+    /// within this service. This will halt the billing of the service.
+    ///
+    /// NOTE: Once deleted the data cannot be recovered. To start using
+    /// RAG Engine again, you will need to update the tier by calling the
+    /// UpdateRagEngineConfig API.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Unprovisioned {}
+    /// The tier of the RagManagedDb.
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Tier {
+        /// Sets the RagManagedDb to the Scaled tier.
+        #[prost(message, tag = "4")]
+        Scaled(Scaled),
+        /// Sets the RagManagedDb to the Basic tier.
+        #[prost(message, tag = "2")]
+        Basic(Basic),
+        /// Sets the RagManagedDb to the Unprovisioned tier.
+        #[prost(message, tag = "3")]
+        Unprovisioned(Unprovisioned),
+    }
+}
+/// Config for RagEngine.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagEngineConfig {
+    /// Identifier. The name of the RagEngineConfig.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragEngineConfig`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The config of the RagManagedDb used by RagEngine.
+    #[prost(message, optional, tag = "2")]
+    pub rag_managed_db_config: ::core::option::Option<RagManagedDbConfig>,
 }
 /// The base structured datatype containing multi-part content of a message.
 ///
@@ -6636,6 +6700,34 @@ pub struct PscInterfaceConfig {
     /// This field is only used for resources using PSC-I.
     #[prost(string, tag = "1")]
     pub network_attachment: ::prost::alloc::string::String,
+    /// Optional. DNS peering configurations. When specified, Vertex AI will
+    /// attempt to configure DNS peering zones in the tenant project VPC
+    /// to resolve the specified domains using the target network's Cloud DNS.
+    /// The user must grant the dns.peer role to the Vertex AI Service Agent
+    /// on the target project.
+    #[prost(message, repeated, tag = "2")]
+    pub dns_peering_configs: ::prost::alloc::vec::Vec<DnsPeeringConfig>,
+}
+/// DNS peering configuration. These configurations are used to create
+/// DNS peering zones in the Vertex tenant project VPC, enabling resolution
+/// of records within the specified domain hosted in the target network's
+/// Cloud DNS.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DnsPeeringConfig {
+    /// Required. The DNS name suffix of the zone being peered to, e.g.,
+    /// "my-internal-domain.corp.". Must end with a dot.
+    #[prost(string, tag = "1")]
+    pub domain: ::prost::alloc::string::String,
+    /// Required. The project ID hosting the Cloud DNS managed zone that
+    /// contains the 'domain'. The Vertex AI Service Agent requires the
+    /// dns.peer role on this project.
+    #[prost(string, tag = "2")]
+    pub target_project: ::prost::alloc::string::String,
+    /// Required. The VPC network name
+    /// in the target_project where the DNS zone specified by 'domain' is
+    /// visible.
+    #[prost(string, tag = "3")]
+    pub target_network: ::prost::alloc::string::String,
 }
 /// Represents a job that runs custom workloads such as a Docker container or a
 /// Python package. A CustomJob can have multiple worker pools and each worker
@@ -39641,6 +39733,16 @@ pub struct CreateRagCorpusOperationMetadata {
     pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
 }
 /// Request message for
+/// [VertexRagDataService.GetRagEngineConfig][google.cloud.aiplatform.v1.VertexRagDataService.GetRagEngineConfig]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetRagEngineConfigRequest {
+    /// Required. The name of the RagEngineConfig resource.
+    /// Format:
+    /// `projects/{project}/locations/{location}/ragEngineConfig`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for
 /// [VertexRagDataService.UpdateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagCorpus].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRagCorpusRequest {
@@ -39674,6 +39776,25 @@ pub struct ImportRagFilesOperationMetadata {
     ///     progress_percentage = 100 * (successes + failures + skips) / total
     #[prost(int32, tag = "4")]
     pub progress_percentage: i32,
+}
+/// Request message for
+/// [VertexRagDataService.UpdateRagEngineConfig][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagEngineConfig].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateRagEngineConfigRequest {
+    /// Required. The updated RagEngineConfig.
+    ///
+    /// NOTE: Downgrading your RagManagedDb's ComputeTier could temporarily
+    /// increase request latencies until the operation is fully complete.
+    #[prost(message, optional, tag = "1")]
+    pub rag_engine_config: ::core::option::Option<RagEngineConfig>,
+}
+/// Runtime operation information for
+/// [VertexRagDataService.UpdateRagEngineConfig][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagEngineConfig].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateRagEngineConfigOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
 }
 /// Generated client implementations.
 pub mod vertex_rag_data_service_client {
@@ -40046,6 +40167,66 @@ pub mod vertex_rag_data_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.VertexRagDataService",
                         "DeleteRagFile",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a RagEngineConfig.
+        pub async fn update_rag_engine_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateRagEngineConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/UpdateRagEngineConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "UpdateRagEngineConfig",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a RagEngineConfig.
+        pub async fn get_rag_engine_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRagEngineConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RagEngineConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.VertexRagDataService/GetRagEngineConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.VertexRagDataService",
+                        "GetRagEngineConfig",
                     ),
                 );
             self.inner.unary(req, path, codec).await

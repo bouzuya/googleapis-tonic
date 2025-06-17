@@ -6160,6 +6160,10 @@ pub struct RagFile {
     /// Output only. State of the RagFile.
     #[prost(message, optional, tag = "13")]
     pub file_status: ::core::option::Option<FileStatus>,
+    /// Output only. The metadata for metadata search. The contents will be
+    /// be in JSON format.
+    #[prost(string, tag = "15")]
+    pub user_metadata: ::prost::alloc::string::String,
     /// The origin location of the RagFile if it is imported from Google Cloud
     /// Storage or Google Drive.
     #[prost(oneof = "rag_file::RagFileSource", tags = "8, 9, 10, 11, 12, 14")]
@@ -6396,8 +6400,67 @@ pub mod rag_file_parsing_config {
         LlmParser(LlmParser),
     }
 }
+/// Metadata config for RagFile.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RagFileMetadataConfig {
+    /// Specifies the metadata schema source.
+    #[prost(oneof = "rag_file_metadata_config::MetadataSchemaSource", tags = "1, 2, 3")]
+    pub metadata_schema_source: ::core::option::Option<
+        rag_file_metadata_config::MetadataSchemaSource,
+    >,
+    /// Specifies the metadata source.
+    #[prost(oneof = "rag_file_metadata_config::MetadataSource", tags = "4, 5, 6")]
+    pub metadata_source: ::core::option::Option<
+        rag_file_metadata_config::MetadataSource,
+    >,
+}
+/// Nested message and enum types in `RagFileMetadataConfig`.
+pub mod rag_file_metadata_config {
+    /// Specifies the metadata schema source.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum MetadataSchemaSource {
+        /// Google Cloud Storage location. Supports importing individual files as
+        /// well as entire Google Cloud Storage directories. Sample formats:
+        /// - `gs://bucket_name/my_directory/object_name/metadata_schema.json`
+        /// - `gs://bucket_name/my_directory`
+        /// If providing a directory, the metadata schema will be read from
+        /// the files that ends with "metadata_schema.json" in the directory.
+        #[prost(message, tag = "1")]
+        GcsMetadataSchemaSource(super::GcsSource),
+        /// Google Drive location. Supports importing individual files as
+        /// well as Google Drive folders.
+        /// If providing a folder, the metadata schema will be read from
+        /// the files that ends with "metadata_schema.json" in the directory.
+        #[prost(message, tag = "2")]
+        GoogleDriveMetadataSchemaSource(super::GoogleDriveSource),
+        /// Inline metadata schema source. Must be a JSON string.
+        #[prost(string, tag = "3")]
+        InlineMetadataSchemaSource(::prost::alloc::string::String),
+    }
+    /// Specifies the metadata source.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum MetadataSource {
+        /// Google Cloud Storage location. Supports importing individual files as
+        /// well as entire Google Cloud Storage directories. Sample formats:
+        /// - `gs://bucket_name/my_directory/object_name/metadata.json`
+        /// - `gs://bucket_name/my_directory`
+        /// If providing a directory, the metadata will be read from
+        /// the files that ends with "metadata.json" in the directory.
+        #[prost(message, tag = "4")]
+        GcsMetadataSource(super::GcsSource),
+        /// Google Drive location. Supports importing individual files as
+        /// well as Google Drive folders.
+        /// If providing a directory, the metadata will be read from
+        /// the files that ends with "metadata.json" in the directory.
+        #[prost(message, tag = "5")]
+        GoogleDriveMetadataSource(super::GoogleDriveSource),
+        /// Inline metadata source. Must be a JSON string.
+        #[prost(string, tag = "6")]
+        InlineMetadataSource(::prost::alloc::string::String),
+    }
+}
 /// Config for uploading RagFile.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadRagFileConfig {
     /// Specifies the size and overlap of chunks after uploading RagFile.
     #[deprecated]
@@ -6408,6 +6471,15 @@ pub struct UploadRagFileConfig {
     pub rag_file_transformation_config: ::core::option::Option<
         RagFileTransformationConfig,
     >,
+    /// Specifies the metadata config for RagFiles.
+    /// Including paths for metadata schema and metadata.
+    /// Alteratively, inline metadata schema and metadata can be provided.
+    #[prost(message, optional, tag = "4")]
+    pub rag_file_metadata_config: ::core::option::Option<RagFileMetadataConfig>,
+    /// Optional. Specifies the parsing config for RagFiles.
+    /// RAG will use the default parser if this field is not set.
+    #[prost(message, optional, tag = "5")]
+    pub rag_file_parsing_config: ::core::option::Option<RagFileParsingConfig>,
 }
 /// Config for importing RagFiles.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6425,6 +6497,10 @@ pub struct ImportRagFilesConfig {
     /// RAG will use the default parser if this field is not set.
     #[prost(message, optional, tag = "8")]
     pub rag_file_parsing_config: ::core::option::Option<RagFileParsingConfig>,
+    /// Specifies the metadata config for RagFiles.
+    /// Including paths for metadata schema and metadata.
+    #[prost(message, optional, tag = "17")]
+    pub rag_file_metadata_config: ::core::option::Option<RagFileMetadataConfig>,
     /// Optional. The max number of queries per minute that this job is allowed to
     /// make to the embedding model specified on the corpus. This value is specific
     /// to this job and not shared across other import jobs. Consult the Quotas
@@ -6529,36 +6605,57 @@ pub mod import_rag_files_config {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RagManagedDbConfig {
     /// The tier of the RagManagedDb.
-    #[prost(oneof = "rag_managed_db_config::Tier", tags = "1, 2")]
+    #[prost(oneof = "rag_managed_db_config::Tier", tags = "1, 4, 2, 3")]
     pub tier: ::core::option::Option<rag_managed_db_config::Tier>,
 }
 /// Nested message and enum types in `RagManagedDbConfig`.
 pub mod rag_managed_db_config {
+    /// Deprecated: Please use `Scaled` tier instead.
     /// Enterprise tier offers production grade performance along with
     /// autoscaling functionality. It is suitable for customers with large
     /// amounts of data or performance sensitive workloads.
-    ///
-    /// NOTE: This is the default tier if not explicitly chosen.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct Enterprise {}
+    /// Scaled tier offers production grade performance along with
+    /// autoscaling functionality. It is suitable for customers with large
+    /// amounts of data or performance sensitive workloads.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Scaled {}
     /// Basic tier is a cost-effective and low compute tier suitable for
     /// the following cases:
     /// * Experimenting with RagManagedDb.
     /// * Small data size.
     /// * Latency insensitive workload.
     /// * Only using RAG Engine with external vector DBs.
+    ///
+    /// NOTE: This is the default tier if not explicitly chosen.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct Basic {}
+    /// Disables the RAG Engine service and deletes all your data held
+    /// within this service. This will halt the billing of the service.
+    ///
+    /// NOTE: Once deleted the data cannot be recovered. To start using
+    /// RAG Engine again, you will need to update the tier by calling the
+    /// UpdateRagEngineConfig API.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Unprovisioned {}
     /// The tier of the RagManagedDb.
     #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
     pub enum Tier {
+        /// Deprecated: Please use `Scaled` tier instead.
         /// Sets the RagManagedDb to the Enterprise tier. This is the default tier
         /// if not explicitly chosen.
         #[prost(message, tag = "1")]
         Enterprise(Enterprise),
+        /// Sets the RagManagedDb to the Scaled tier.
+        #[prost(message, tag = "4")]
+        Scaled(Scaled),
         /// Sets the RagManagedDb to the Basic tier.
         #[prost(message, tag = "2")]
         Basic(Basic),
+        /// Sets the RagManagedDb to the Unprovisioned tier.
+        #[prost(message, tag = "3")]
+        Unprovisioned(Unprovisioned),
     }
 }
 /// Config for RagEngine.
@@ -8035,6 +8132,34 @@ pub struct PscInterfaceConfig {
     /// This field is only used for resources using PSC-I.
     #[prost(string, tag = "1")]
     pub network_attachment: ::prost::alloc::string::String,
+    /// Optional. DNS peering configurations. When specified, Vertex AI will
+    /// attempt to configure DNS peering zones in the tenant project VPC
+    /// to resolve the specified domains using the target network's Cloud DNS.
+    /// The user must grant the dns.peer role to the Vertex AI Service Agent
+    /// on the target project.
+    #[prost(message, repeated, tag = "2")]
+    pub dns_peering_configs: ::prost::alloc::vec::Vec<DnsPeeringConfig>,
+}
+/// DNS peering configuration. These configurations are used to create
+/// DNS peering zones in the Vertex tenant project VPC, enabling resolution
+/// of records within the specified domain hosted in the target network's
+/// Cloud DNS.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DnsPeeringConfig {
+    /// Required. The DNS name suffix of the zone being peered to, e.g.,
+    /// "my-internal-domain.corp.". Must end with a dot.
+    #[prost(string, tag = "1")]
+    pub domain: ::prost::alloc::string::String,
+    /// Required. The project ID hosting the Cloud DNS managed zone that
+    /// contains the 'domain'. The Vertex AI Service Agent requires the
+    /// dns.peer role on this project.
+    #[prost(string, tag = "2")]
+    pub target_project: ::prost::alloc::string::String,
+    /// Required. The VPC network name
+    /// in the target_project where the DNS zone specified by 'domain' is
+    /// visible.
+    #[prost(string, tag = "3")]
+    pub target_network: ::prost::alloc::string::String,
 }
 /// Represents a job that runs custom workloads such as a Docker container or a
 /// Python package. A CustomJob can have multiple worker pools and each worker
