@@ -218,7 +218,8 @@ pub struct ExtensionChain {
     /// At least one extension is required.
     /// Up to 3 extensions can be defined for each extension chain
     /// for `LbTrafficExtension` resource.
-    /// `LbRouteExtension` chains are limited to 1 extension per extension chain.
+    /// `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension
+    /// per extension chain.
     #[prost(message, repeated, tag = "3")]
     pub extensions: ::prost::alloc::vec::Vec<extension_chain::Extension>,
 }
@@ -249,11 +250,12 @@ pub mod extension_chain {
         /// Optional. The `:authority` header in the gRPC request sent from Envoy
         /// to the extension service.
         /// Required for Callout extensions.
+        ///
+        /// This field is not supported for plugin extensions. Setting it results in
+        /// a validation error.
         #[prost(string, tag = "2")]
         pub authority: ::prost::alloc::string::String,
         /// Required. The reference to the service that runs the extension.
-        ///
-        /// Currently only callout extensions are supported here.
         ///
         /// To configure a callout extension, `service` must be a fully-qualified
         /// reference
@@ -263,17 +265,38 @@ pub mod extension_chain {
         /// `<https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`>
         /// or
         /// `<https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.>
+        ///
+        /// To configure a plugin extension, `service` must be a reference
+        /// to a [`WasmPlugin`
+        /// resource](<https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins>)
+        /// in the format:
+        /// `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+        /// or
+        /// `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+        ///
+        /// Plugin extensions are currently supported for the
+        /// `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+        /// resources.
         #[prost(string, tag = "3")]
         pub service: ::prost::alloc::string::String,
         /// Optional. A set of events during request or response processing for which
-        /// this extension is called. This field is required for the
-        /// `LbTrafficExtension` resource. It must not be set for the
-        /// `LbRouteExtension` resource.
+        /// this extension is called.
+        ///
+        /// For the `LbTrafficExtension` resource, this field is required.
+        ///
+        /// For the `LbRouteExtension` resource, this field is optional. If
+        /// unspecified, `REQUEST_HEADERS` event is assumed as supported.
+        ///
+        /// For the `LbEdgeExtension` resource, this field is required and must only
+        /// contain `REQUEST_HEADERS` event.
         #[prost(enumeration = "super::EventType", repeated, packed = "false", tag = "4")]
         pub supported_events: ::prost::alloc::vec::Vec<i32>,
         /// Optional. Specifies the timeout for each individual message on the
-        /// stream. The timeout must be between 10-1000 milliseconds. Required for
-        /// Callout extensions.
+        /// stream. The timeout must be between `10`-`10000` milliseconds. Required
+        /// for callout extensions.
+        ///
+        /// This field is not supported for plugin extensions. Setting it results in
+        /// a validation error.
         #[prost(message, optional, tag = "5")]
         pub timeout: ::core::option::Option<::prost_types::Duration>,
         /// Optional. Determines how the proxy behaves if the call to the extension
@@ -297,6 +320,36 @@ pub mod extension_chain {
         /// Each element is a string indicating the header name.
         #[prost(string, repeated, tag = "7")]
         pub forward_headers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Optional. The metadata provided here is included as part of the
+        /// `metadata_context` (of type `google.protobuf.Struct`) in the
+        /// `ProcessingRequest` message sent to the extension server.
+        ///
+        /// The metadata is available under the namespace
+        /// `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
+        /// For example:
+        /// `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
+        ///
+        /// The following variables are supported in the metadata:
+        ///
+        /// `{forwarding_rule_id}` - substituted with the forwarding rule's fully
+        ///    qualified resource name.
+        ///
+        /// This field must not be set for plugin extensions. Setting it results in
+        /// a validation error.
+        ///
+        /// You can set metadata at either the resource level or the extension level.
+        /// The extension level metadata is recommended because you can pass a
+        /// different set of metadata through each extension to the backend.
+        ///
+        /// This field is subject to following limitations:
+        ///
+        /// * The total size of the metadata must be less than 1KiB.
+        /// * The total number of keys in the metadata must be less than 16.
+        /// * The length of each key must be less than 64 characters.
+        /// * The length of each value must be less than 1024 characters.
+        /// * All values must be strings.
+        #[prost(message, optional, tag = "9")]
+        pub metadata: ::core::option::Option<::prost_types::Struct>,
     }
 }
 /// `LbTrafficExtension` is a resource that lets the extension service modify the
@@ -329,9 +382,10 @@ pub struct LbTrafficExtension {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
-    /// Required. A list of references to the forwarding rules to which this
-    /// service extension is attached to. At least one forwarding rule is required.
-    /// There can be only one `LBTrafficExtension` resource per forwarding rule.
+    /// Optional. A list of references to the forwarding rules to which this
+    /// service extension is attached. At least one forwarding rule is required.
+    /// Only one `LbTrafficExtension` resource can be associated with a forwarding
+    /// rule.
     #[prost(string, repeated, tag = "5")]
     pub forwarding_rules: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. A set of ordered extension chains that contain the match
@@ -344,19 +398,32 @@ pub struct LbTrafficExtension {
     pub extension_chains: ::prost::alloc::vec::Vec<ExtensionChain>,
     /// Required. All backend services and forwarding rules referenced by this
     /// extension must share the same load balancing scheme. Supported values:
-    /// `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
-    /// [Choosing a load
-    /// balancer](<https://cloud.google.com/load-balancing/docs/backend-service>).
+    /// `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to
+    /// [Backend services
+    /// overview](<https://cloud.google.com/load-balancing/docs/backend-service>).
     #[prost(enumeration = "LoadBalancingScheme", tag = "8")]
     pub load_balancing_scheme: i32,
-    /// Optional. The metadata provided here is included in the
-    /// `ProcessingRequest.metadata_context.filter_metadata` map field. The
-    /// metadata is available under the key
+    /// Optional. The metadata provided here is included as part of the
+    /// `metadata_context` (of type `google.protobuf.Struct`) in the
+    /// `ProcessingRequest` message sent to the extension server.
+    ///
+    /// The metadata applies to all extensions in all extensions chains in this
+    /// resource.
+    ///
+    /// The metadata is available under the key
     /// `com.google.lb_traffic_extension.<resource_name>`.
+    ///
     /// The following variables are supported in the metadata:
     ///
     /// `{forwarding_rule_id}` - substituted with the forwarding rule's fully
     ///    qualified resource name.
+    ///
+    /// This field must not be set if at least one of the extension chains
+    /// contains plugin extensions. Setting it results in a validation error.
+    ///
+    /// You can set metadata at either the resource level or the extension level.
+    /// The extension level metadata is recommended because you can pass a
+    /// different set of metadata through each extension to the backend.
     #[prost(message, optional, tag = "10")]
     pub metadata: ::core::option::Option<::prost_types::Struct>,
 }
@@ -364,7 +431,7 @@ pub struct LbTrafficExtension {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLbTrafficExtensionsRequest {
     /// Required. The project and location from which the `LbTrafficExtension`
-    /// resources are listed, specified in the following format:
+    /// resources are listed. These values are specified in the following format:
     /// `projects/{project}/locations/{location}`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -378,7 +445,7 @@ pub struct ListLbTrafficExtensionsRequest {
     /// Optional. Filtering results.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
-    /// Optional. Hint for how to order the results.
+    /// Optional. Hint about how to order the results.
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
 }
@@ -421,12 +488,11 @@ pub struct CreateLbTrafficExtensionRequest {
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID so that if you must retry your request, the server can ignore
     /// the request if it has already been completed. The server guarantees
-    /// that for at least 60 minutes since the first request.
+    /// that for 60 minutes since the first request.
     ///
     /// For example, consider a situation where you make an initial request and the
     /// request times out. If you make the request again with the same request
-    /// ID, the server can check if original operation with the same request ID
-    /// was received, and if so, ignores the second request. This prevents
+    /// ID, the server ignores the second request This prevents
     /// clients from accidentally creating duplicate commitments.
     ///
     /// The request ID must be a valid UUID with the exception that zero UUID is
@@ -439,7 +505,7 @@ pub struct CreateLbTrafficExtensionRequest {
 pub struct UpdateLbTrafficExtensionRequest {
     /// Optional. Used to specify the fields to be overwritten in the
     /// `LbTrafficExtension` resource by the update.
-    /// The fields specified in the update_mask are relative to the resource, not
+    /// The fields specified in the `update_mask` are relative to the resource, not
     /// the full request. A field is overwritten if it is in the mask. If the
     /// user does not specify a mask, then all fields are overwritten.
     #[prost(message, optional, tag = "1")]
@@ -450,12 +516,11 @@ pub struct UpdateLbTrafficExtensionRequest {
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID so that if you must retry your request, the server can ignore
     /// the request if it has already been completed. The server guarantees
-    /// that for at least 60 minutes since the first request.
+    /// that for 60 minutes since the first request.
     ///
     /// For example, consider a situation where you make an initial request and the
     /// request times out. If you make the request again with the same request
-    /// ID, the server can check if original operation with the same request ID
-    /// was received, and if so, ignores the second request. This prevents
+    /// ID, the server ignores the second request This prevents
     /// clients from accidentally creating duplicate commitments.
     ///
     /// The request ID must be a valid UUID with the exception that zero UUID is
@@ -474,12 +539,11 @@ pub struct DeleteLbTrafficExtensionRequest {
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID so that if you must retry your request, the server can ignore
     /// the request if it has already been completed. The server guarantees
-    /// that for at least 60 minutes after the first request.
+    /// that for 60 minutes after the first request.
     ///
     /// For example, consider a situation where you make an initial request and the
     /// request times out. If you make the request again with the same request
-    /// ID, the server can check if original operation with the same request ID
-    /// was received, and if so, ignores the second request. This prevents
+    /// ID, the server ignores the second request This prevents
     /// clients from accidentally creating duplicate commitments.
     ///
     /// The request ID must be a valid UUID with the exception that zero UUID is
@@ -516,8 +580,9 @@ pub struct LbRouteExtension {
         ::prost::alloc::string::String,
     >,
     /// Required. A list of references to the forwarding rules to which this
-    /// service extension is attached to. At least one forwarding rule is required.
-    /// There can be only one `LbRouteExtension` resource per forwarding rule.
+    /// service extension is attached. At least one forwarding rule is required.
+    /// Only one `LbRouteExtension` resource can be associated with a forwarding
+    /// rule.
     #[prost(string, repeated, tag = "5")]
     pub forwarding_rules: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. A set of ordered extension chains that contain the match
@@ -531,19 +596,31 @@ pub struct LbRouteExtension {
     /// Required. All backend services and forwarding rules referenced by this
     /// extension must share the same load balancing scheme. Supported values:
     /// `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
-    /// [Choosing a load
-    /// balancer](<https://cloud.google.com/load-balancing/docs/backend-service>).
+    /// [Backend services
+    /// overview](<https://cloud.google.com/load-balancing/docs/backend-service>).
     #[prost(enumeration = "LoadBalancingScheme", tag = "8")]
     pub load_balancing_scheme: i32,
     /// Optional. The metadata provided here is included as part of the
     /// `metadata_context` (of type `google.protobuf.Struct`) in the
-    /// `ProcessingRequest` message sent to the extension
-    /// server. The metadata is available under the namespace
+    /// `ProcessingRequest` message sent to the extension server.
+    ///
+    /// The metadata applies to all extensions in all extensions chains in this
+    /// resource.
+    ///
+    /// The metadata is available under the key
     /// `com.google.lb_route_extension.<resource_name>`.
-    /// The following variables are supported in the metadata Struct:
+    ///
+    /// The following variables are supported in the metadata:
     ///
     /// `{forwarding_rule_id}` - substituted with the forwarding rule's fully
     ///    qualified resource name.
+    ///
+    /// This field must not be set if at least one of the extension chains
+    /// contains plugin extensions. Setting it results in a validation error.
+    ///
+    /// You can set metadata at either the resource level or the extension level.
+    /// The extension level metadata is recommended because you can pass a
+    /// different set of metadata through each extension to the backend.
     #[prost(message, optional, tag = "10")]
     pub metadata: ::core::option::Option<::prost_types::Struct>,
 }
@@ -551,7 +628,7 @@ pub struct LbRouteExtension {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLbRouteExtensionsRequest {
     /// Required. The project and location from which the `LbRouteExtension`
-    /// resources are listed, specified in the following format:
+    /// resources are listed. These values are specified in the following format:
     /// `projects/{project}/locations/{location}`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -565,7 +642,7 @@ pub struct ListLbRouteExtensionsRequest {
     /// Optional. Filtering results.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
-    /// Optional. Hint for how to order the results.
+    /// Optional. Hint about how to order the results.
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
 }
@@ -608,12 +685,11 @@ pub struct CreateLbRouteExtensionRequest {
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID so that if you must retry your request, the server can ignore
     /// the request if it has already been completed. The server guarantees
-    /// that for at least 60 minutes since the first request.
+    /// that for 60 minutes since the first request.
     ///
     /// For example, consider a situation where you make an initial request and the
     /// request times out. If you make the request again with the same request
-    /// ID, the server can check if original operation with the same request ID
-    /// was received, and if so, ignores the second request. This prevents
+    /// ID, the server ignores the second request This prevents
     /// clients from accidentally creating duplicate commitments.
     ///
     /// The request ID must be a valid UUID with the exception that zero UUID is
@@ -626,7 +702,7 @@ pub struct CreateLbRouteExtensionRequest {
 pub struct UpdateLbRouteExtensionRequest {
     /// Optional. Used to specify the fields to be overwritten in the
     /// `LbRouteExtension` resource by the update.
-    /// The fields specified in the update_mask are relative to the resource, not
+    /// The fields specified in the `update_mask` are relative to the resource, not
     /// the full request. A field is overwritten if it is in the mask. If the
     /// user does not specify a mask, then all fields are overwritten.
     #[prost(message, optional, tag = "1")]
@@ -637,12 +713,11 @@ pub struct UpdateLbRouteExtensionRequest {
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID so that if you must retry your request, the server can ignore
     /// the request if it has already been completed. The server guarantees
-    /// that for at least 60 minutes since the first request.
+    /// that for 60 minutes since the first request.
     ///
     /// For example, consider a situation where you make an initial request and the
     /// request times out. If you make the request again with the same request
-    /// ID, the server can check if original operation with the same request ID
-    /// was received, and if so, ignores the second request. This prevents
+    /// ID, the server ignores the second request This prevents
     /// clients from accidentally creating duplicate commitments.
     ///
     /// The request ID must be a valid UUID with the exception that zero UUID is
@@ -661,12 +736,228 @@ pub struct DeleteLbRouteExtensionRequest {
     /// Optional. An optional request ID to identify requests. Specify a unique
     /// request ID so that if you must retry your request, the server can ignore
     /// the request if it has already been completed. The server guarantees
-    /// that for at least 60 minutes after the first request.
+    /// that for 60 minutes after the first request.
     ///
     /// For example, consider a situation where you make an initial request and the
     /// request times out. If you make the request again with the same request
-    /// ID, the server can check if original operation with the same request ID
-    /// was received, and if so, ignores the second request. This prevents
+    /// ID, the server ignores the second request This prevents
+    /// clients from accidentally creating duplicate commitments.
+    ///
+    /// The request ID must be a valid UUID with the exception that zero UUID is
+    /// not supported (00000000-0000-0000-0000-000000000000).
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
+}
+/// `AuthzExtension` is a resource that allows traffic forwarding
+/// to a callout backend service to make an authorization decision.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuthzExtension {
+    /// Required. Identifier. Name of the `AuthzExtension` resource in the
+    /// following format:
+    /// `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The timestamp when the resource was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when the resource was updated.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. A human-readable description of the resource.
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. Set of labels associated with the `AuthzExtension`
+    /// resource.
+    ///
+    /// The format must comply with [the requirements for
+    /// labels](/compute/docs/labeling-resources#requirements) for Google Cloud
+    /// resources.
+    #[prost(map = "string, string", tag = "5")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Required. All backend services and forwarding rules referenced by this
+    /// extension must share the same load balancing scheme. Supported values:
+    /// `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
+    /// [Backend services
+    /// overview](<https://cloud.google.com/load-balancing/docs/backend-service>).
+    #[prost(enumeration = "LoadBalancingScheme", tag = "6")]
+    pub load_balancing_scheme: i32,
+    /// Required. The `:authority` header in the gRPC request sent from Envoy
+    /// to the extension service.
+    #[prost(string, tag = "7")]
+    pub authority: ::prost::alloc::string::String,
+    /// Required. The reference to the service that runs the extension.
+    ///
+    /// To configure a callout extension, `service` must be a fully-qualified
+    /// reference
+    /// to a [backend
+    /// service](<https://cloud.google.com/compute/docs/reference/rest/v1/backendServices>)
+    /// in the format:
+    /// `<https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`>
+    /// or
+    /// `<https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.>
+    #[prost(string, tag = "8")]
+    pub service: ::prost::alloc::string::String,
+    /// Required. Specifies the timeout for each individual message on the stream.
+    /// The timeout must be between 10-10000 milliseconds.
+    #[prost(message, optional, tag = "9")]
+    pub timeout: ::core::option::Option<::prost_types::Duration>,
+    /// Optional. Determines how the proxy behaves if the call to the extension
+    /// fails or times out.
+    ///
+    /// When set to `TRUE`, request or response processing continues without
+    /// error. Any subsequent extensions in the extension chain are also
+    /// executed. When set to `FALSE` or the default setting of `FALSE` is used,
+    /// one of the following happens:
+    ///
+    /// * If response headers have not been delivered to the downstream client,
+    /// a generic 500 error is returned to the client. The error response can be
+    /// tailored by configuring a custom error response in the load balancer.
+    ///
+    /// * If response headers have been delivered, then the HTTP stream to the
+    /// downstream client is reset.
+    #[prost(bool, tag = "10")]
+    pub fail_open: bool,
+    /// Optional. The metadata provided here is included as part of the
+    /// `metadata_context` (of type `google.protobuf.Struct`) in the
+    /// `ProcessingRequest` message sent to the extension
+    /// server. The metadata is available under the namespace
+    /// `com.google.authz_extension.<resource_name>`.
+    /// The following variables are supported in the metadata Struct:
+    ///
+    /// `{forwarding_rule_id}` - substituted with the forwarding rule's fully
+    ///    qualified resource name.
+    #[prost(message, optional, tag = "11")]
+    pub metadata: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. List of the HTTP headers to forward to the extension
+    /// (from the client). If omitted, all headers are sent.
+    /// Each element is a string indicating the header name.
+    #[prost(string, repeated, tag = "12")]
+    pub forward_headers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. The format of communication supported by the callout extension.
+    /// If not specified, the default value `EXT_PROC_GRPC` is used.
+    #[prost(enumeration = "WireFormat", tag = "14")]
+    pub wire_format: i32,
+}
+/// Message for requesting list of `AuthzExtension` resources.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAuthzExtensionsRequest {
+    /// Required. The project and location from which the `AuthzExtension`
+    /// resources are listed. These values are specified in the following format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Requested page size. The server might return fewer items than
+    /// requested. If unspecified, the server picks an appropriate default.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token identifying a page of results that the server returns.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. Filtering results.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. Hint about how to order the results.
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+}
+/// Message for response to listing `AuthzExtension` resources.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAuthzExtensionsResponse {
+    /// The list of `AuthzExtension` resources.
+    #[prost(message, repeated, tag = "1")]
+    pub authz_extensions: ::prost::alloc::vec::Vec<AuthzExtension>,
+    /// A token identifying a page of results that the server returns.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Locations that could not be reached.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Message for getting a `AuthzExtension` resource.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAuthzExtensionRequest {
+    /// Required. A name of the `AuthzExtension` resource to get. Must be in
+    /// the format
+    /// `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Message for creating a `AuthzExtension` resource.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateAuthzExtensionRequest {
+    /// Required. The parent resource of the `AuthzExtension` resource. Must
+    /// be in the format `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. User-provided ID of the `AuthzExtension` resource to be
+    /// created.
+    #[prost(string, tag = "2")]
+    pub authz_extension_id: ::prost::alloc::string::String,
+    /// Required. `AuthzExtension` resource to be created.
+    #[prost(message, optional, tag = "3")]
+    pub authz_extension: ::core::option::Option<AuthzExtension>,
+    /// Optional. An optional request ID to identify requests. Specify a unique
+    /// request ID so that if you must retry your request, the server can ignore
+    /// the request if it has already been completed. The server guarantees
+    /// that for 60 minutes since the first request.
+    ///
+    /// For example, consider a situation where you make an initial request and the
+    /// request times out. If you make the request again with the same request
+    /// ID, the server ignores the second request This prevents
+    /// clients from accidentally creating duplicate commitments.
+    ///
+    /// The request ID must be a valid UUID with the exception that zero UUID is
+    /// not supported (00000000-0000-0000-0000-000000000000).
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
+}
+/// Message for updating a `AuthzExtension` resource.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateAuthzExtensionRequest {
+    /// Required. Used to specify the fields to be overwritten in the
+    /// `AuthzExtension` resource by the update.
+    /// The fields specified in the `update_mask` are relative to the resource, not
+    /// the full request. A field is overwritten if it is in the mask. If the
+    /// user does not specify a mask, then all fields are overwritten.
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    /// Required. `AuthzExtension` resource being updated.
+    #[prost(message, optional, tag = "2")]
+    pub authz_extension: ::core::option::Option<AuthzExtension>,
+    /// Optional. An optional request ID to identify requests. Specify a unique
+    /// request ID so that if you must retry your request, the server can ignore
+    /// the request if it has already been completed. The server guarantees
+    /// that for 60 minutes since the first request.
+    ///
+    /// For example, consider a situation where you make an initial request and the
+    /// request times out. If you make the request again with the same request
+    /// ID, the server ignores the second request This prevents
+    /// clients from accidentally creating duplicate commitments.
+    ///
+    /// The request ID must be a valid UUID with the exception that zero UUID is
+    /// not supported (00000000-0000-0000-0000-000000000000).
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+}
+/// Message for deleting a `AuthzExtension` resource.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteAuthzExtensionRequest {
+    /// Required. The name of the `AuthzExtension` resource to delete. Must
+    /// be in the format
+    /// `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. An optional request ID to identify requests. Specify a unique
+    /// request ID so that if you must retry your request, the server can ignore
+    /// the request if it has already been completed. The server guarantees
+    /// that for 60 minutes after the first request.
+    ///
+    /// For example, consider a situation where you make an initial request and the
+    /// request times out. If you make the request again with the same request
+    /// ID, the server ignores the second request This prevents
     /// clients from accidentally creating duplicate commitments.
     ///
     /// The request ID must be a valid UUID with the exception that zero UUID is
@@ -729,10 +1020,10 @@ impl EventType {
         }
     }
 }
-/// Load balancing schemes supported by the `LbTrafficExtension` resource and
-/// `LbRouteExtension` resource.
-/// For more information, refer to [Choosing a load
-/// balancer](<https://cloud.google.com/load-balancing/docs/backend-service>).
+/// Load balancing schemes supported by the `LbTrafficExtension`,
+/// `LbRouteExtension`, and `LbEdgeExtension` resources.
+/// For more information, refer to [Backend services
+/// overview](<https://cloud.google.com/load-balancing/docs/backend-service>).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LoadBalancingScheme {
@@ -762,6 +1053,39 @@ impl LoadBalancingScheme {
             "LOAD_BALANCING_SCHEME_UNSPECIFIED" => Some(Self::Unspecified),
             "INTERNAL_MANAGED" => Some(Self::InternalManaged),
             "EXTERNAL_MANAGED" => Some(Self::ExternalManaged),
+            _ => None,
+        }
+    }
+}
+/// The format of communication supported by the extension.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum WireFormat {
+    /// Not specified.
+    Unspecified = 0,
+    /// The extension service uses ext_proc gRPC API over a gRPC stream. This is
+    /// the default value if the wire format is not specified. The backend service
+    /// for the extension must use HTTP2 or H2C as the protocol. All
+    /// `supported_events` for a client request are sent as part of the same
+    /// gRPC stream.
+    ExtProcGrpc = 1,
+}
+impl WireFormat {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "WIRE_FORMAT_UNSPECIFIED",
+            Self::ExtProcGrpc => "EXT_PROC_GRPC",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "WIRE_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+            "EXT_PROC_GRPC" => Some(Self::ExtProcGrpc),
             _ => None,
         }
     }
@@ -1148,6 +1472,155 @@ pub mod dep_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Lists `AuthzExtension` resources in a given project and location.
+        pub async fn list_authz_extensions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAuthzExtensionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListAuthzExtensionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.DepService/ListAuthzExtensions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.DepService",
+                        "ListAuthzExtensions",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of the specified `AuthzExtension` resource.
+        pub async fn get_authz_extension(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAuthzExtensionRequest>,
+        ) -> std::result::Result<tonic::Response<super::AuthzExtension>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.DepService/GetAuthzExtension",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.DepService",
+                        "GetAuthzExtension",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new `AuthzExtension` resource in a given project
+        /// and location.
+        pub async fn create_authz_extension(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAuthzExtensionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.DepService/CreateAuthzExtension",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.DepService",
+                        "CreateAuthzExtension",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of the specified `AuthzExtension`
+        /// resource.
+        pub async fn update_authz_extension(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAuthzExtensionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.DepService/UpdateAuthzExtension",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.DepService",
+                        "UpdateAuthzExtension",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the specified `AuthzExtension` resource.
+        pub async fn delete_authz_extension(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAuthzExtensionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.DepService/DeleteAuthzExtension",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.DepService",
+                        "DeleteAuthzExtension",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// EndpointPolicy is a resource that helps apply desired configuration
@@ -1342,6 +1815,516 @@ pub struct DeleteEndpointPolicyRequest {
     /// `projects/*/locations/global/endpointPolicies/*`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// `WasmPlugin` is a resource representing a service executing
+/// a customer-provided Wasm module.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WasmPlugin {
+    /// Identifier. Name of the `WasmPlugin` resource in the following format:
+    /// `projects/{project}/locations/{location}/wasmPlugins/{wasm_plugin}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The timestamp when the resource was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when the resource was updated.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. A human-readable description of the resource.
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. Set of labels associated with the `WasmPlugin` resource.
+    ///
+    /// The format must comply with [the following
+    /// requirements](/compute/docs/labeling-resources#requirements).
+    #[prost(map = "string, string", tag = "5")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. The ID of the `WasmPluginVersion` resource that is the
+    /// currently serving one. The version referred to must be a child of this
+    /// `WasmPlugin` resource.
+    #[prost(string, tag = "6")]
+    pub main_version_id: ::prost::alloc::string::String,
+    /// Optional. Specifies the logging options for the activity performed by this
+    /// plugin. If logging is enabled, plugin logs are exported to
+    /// Cloud Logging.
+    /// Note that the settings relate to the logs generated by using
+    /// logging statements in your Wasm code.
+    #[prost(message, optional, tag = "9")]
+    pub log_config: ::core::option::Option<wasm_plugin::LogConfig>,
+    /// Optional. All versions of this `WasmPlugin` resource in the key-value
+    /// format. The key is the resource ID, and the value is the `VersionDetails`
+    /// object.
+    ///
+    /// Lets you create or update a `WasmPlugin` resource and its versions in a
+    /// single request. When the `main_version_id` field is not empty, it must
+    /// point to one of the `VersionDetails` objects in the map.
+    ///
+    /// If provided in a `PATCH` request, the new versions replace the
+    /// previous set. Any version omitted from the `versions` field is removed.
+    /// Because the `WasmPluginVersion` resource is immutable, if a
+    /// `WasmPluginVersion` resource with the same name already exists and differs,
+    /// the request fails.
+    ///
+    /// Note: In a `GET` request, this field is populated only if the field
+    /// `GetWasmPluginRequest.view` is set to `WASM_PLUGIN_VIEW_FULL`.
+    #[prost(map = "string, message", tag = "10")]
+    pub versions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        wasm_plugin::VersionDetails,
+    >,
+    /// Output only. List of all
+    /// [extensions](<https://cloud.google.com/service-extensions/docs/overview>)
+    /// that use this `WasmPlugin` resource.
+    #[prost(message, repeated, tag = "11")]
+    pub used_by: ::prost::alloc::vec::Vec<wasm_plugin::UsedBy>,
+}
+/// Nested message and enum types in `WasmPlugin`.
+pub mod wasm_plugin {
+    /// Details of a `WasmPluginVersion` resource to be inlined in the
+    /// `WasmPlugin` resource.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VersionDetails {
+        /// Output only. The timestamp when the resource was created.
+        #[prost(message, optional, tag = "1")]
+        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+        /// Output only. The timestamp when the resource was updated.
+        #[prost(message, optional, tag = "2")]
+        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+        /// Optional. A human-readable description of the resource.
+        #[prost(string, tag = "3")]
+        pub description: ::prost::alloc::string::String,
+        /// Optional. Set of labels associated with the `WasmPluginVersion`
+        /// resource.
+        #[prost(map = "string, string", tag = "4")]
+        pub labels: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+        /// Optional. URI of the container image containing the Wasm module, stored
+        /// in the Artifact Registry. The container image must contain only a single
+        /// file with the name `plugin.wasm`. When a new `WasmPluginVersion` resource
+        /// is created, the URI gets resolved to an image digest and saved in the
+        /// `image_digest` field.
+        #[prost(string, tag = "5")]
+        pub image_uri: ::prost::alloc::string::String,
+        /// Output only. The resolved digest for the image specified in `image`.
+        /// The digest is resolved during the creation of a
+        /// `WasmPluginVersion` resource.
+        /// This field holds the digest value regardless of whether a tag or
+        /// digest was originally specified in the `image` field.
+        #[prost(string, tag = "6")]
+        pub image_digest: ::prost::alloc::string::String,
+        /// Output only. This field holds the digest (usually checksum) value for the
+        /// plugin configuration. The value is calculated based on the contents of
+        /// the `plugin_config_data` field or the container image defined by the
+        /// `plugin_config_uri` field.
+        #[prost(string, tag = "11")]
+        pub plugin_config_digest: ::prost::alloc::string::String,
+        #[prost(oneof = "version_details::PluginConfigSource", tags = "9, 10")]
+        pub plugin_config_source: ::core::option::Option<
+            version_details::PluginConfigSource,
+        >,
+    }
+    /// Nested message and enum types in `VersionDetails`.
+    pub mod version_details {
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum PluginConfigSource {
+            /// Configuration for the plugin.
+            /// The configuration is provided to the plugin at runtime through
+            /// the `ON_CONFIGURE` callback. When a new
+            /// `WasmPluginVersion` version is created, the digest of the
+            /// contents is saved in the `plugin_config_digest` field.
+            #[prost(bytes, tag = "9")]
+            PluginConfigData(::prost::bytes::Bytes),
+            /// URI of the plugin configuration stored in the Artifact Registry.
+            /// The configuration is provided to the plugin at runtime through
+            /// the `ON_CONFIGURE` callback. The container image must
+            /// contain only a single file with the name
+            /// `plugin.config`. When a new `WasmPluginVersion`
+            /// resource is created, the digest of the container image is saved in the
+            /// `plugin_config_digest` field.
+            #[prost(string, tag = "10")]
+            PluginConfigUri(::prost::alloc::string::String),
+        }
+    }
+    /// Specifies the logging options for the activity performed by this
+    /// plugin. If logging is enabled, plugin logs are exported to
+    /// Cloud Logging.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LogConfig {
+        /// Optional. Specifies whether to enable logging for activity by this
+        /// plugin.
+        ///
+        /// Defaults to `false`.
+        #[prost(bool, tag = "1")]
+        pub enable: bool,
+        /// Non-empty default. Configures the sampling rate of activity logs, where
+        /// `1.0` means all logged activity is reported and `0.0` means no activity
+        /// is reported. A floating point value between `0.0` and `1.0` indicates
+        /// that a percentage of log messages is stored.
+        ///
+        /// The default value when logging is enabled is `1.0`. The value of the
+        /// field must be between `0` and `1` (inclusive).
+        ///
+        /// This field can be specified only if logging is enabled for this plugin.
+        #[prost(float, tag = "2")]
+        pub sample_rate: f32,
+        /// Non-empty default. Specificies the lowest level of the plugin logs that
+        /// are exported to Cloud Logging. This setting relates to the logs generated
+        /// by using logging statements in your Wasm code.
+        ///
+        /// This field is can be set only if logging is enabled for the plugin.
+        ///
+        /// If the field is not provided when logging is enabled, it is set to
+        /// `INFO` by default.
+        #[prost(enumeration = "log_config::LogLevel", tag = "3")]
+        pub min_log_level: i32,
+    }
+    /// Nested message and enum types in `LogConfig`.
+    pub mod log_config {
+        /// Possible values to specify the lowest level of logs to be exported to
+        /// Cloud Logging.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum LogLevel {
+            /// Unspecified value. Defaults to `LogLevel.INFO`.
+            Unspecified = 0,
+            /// Report logs with TRACE level and above.
+            Trace = 1,
+            /// Report logs with DEBUG level and above.
+            Debug = 2,
+            /// Report logs with INFO level and above.
+            Info = 3,
+            /// Report logs with WARN level and above.
+            Warn = 4,
+            /// Report logs with ERROR level and above.
+            Error = 5,
+            /// Report logs with CRITICAL level only.
+            Critical = 6,
+        }
+        impl LogLevel {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "LOG_LEVEL_UNSPECIFIED",
+                    Self::Trace => "TRACE",
+                    Self::Debug => "DEBUG",
+                    Self::Info => "INFO",
+                    Self::Warn => "WARN",
+                    Self::Error => "ERROR",
+                    Self::Critical => "CRITICAL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "LOG_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+                    "TRACE" => Some(Self::Trace),
+                    "DEBUG" => Some(Self::Debug),
+                    "INFO" => Some(Self::Info),
+                    "WARN" => Some(Self::Warn),
+                    "ERROR" => Some(Self::Error),
+                    "CRITICAL" => Some(Self::Critical),
+                    _ => None,
+                }
+            }
+        }
+    }
+    /// Defines a resource that uses the `WasmPlugin` resource.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct UsedBy {
+        /// Output only. Full name of the resource
+        /// <https://google.aip.dev/122#full-resource-names,> for example
+        /// `//networkservices.googleapis.com/projects/{project}/locations/{location}/lbRouteExtensions/{extension}`
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+    }
+}
+/// A single immutable version of a `WasmPlugin` resource.
+/// Defines the Wasm module used and optionally its runtime config.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WasmPluginVersion {
+    /// Identifier. Name of the `WasmPluginVersion` resource in the following
+    /// format: `projects/{project}/locations/{location}/wasmPlugins/{wasm_plugin}/
+    /// versions/{wasm_plugin_version}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The timestamp when the resource was created.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when the resource was updated.
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. A human-readable description of the resource.
+    #[prost(string, tag = "5")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. Set of labels associated with the `WasmPluginVersion`
+    /// resource.
+    #[prost(map = "string, string", tag = "6")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. URI of the container image containing the plugin, stored in the
+    /// Artifact Registry.
+    /// When a new `WasmPluginVersion` resource is created, the digest
+    /// of the container image is saved in the `image_digest` field.
+    /// When downloading an image, the digest value is used instead of an
+    /// image tag.
+    #[prost(string, tag = "8")]
+    pub image_uri: ::prost::alloc::string::String,
+    /// Output only. The resolved digest for the image specified in the `image`
+    /// field. The digest is resolved during the creation of `WasmPluginVersion`
+    /// resource. This field holds the digest value, regardless of whether a tag or
+    /// digest was originally specified in the `image` field.
+    #[prost(string, tag = "9")]
+    pub image_digest: ::prost::alloc::string::String,
+    /// Output only. This field holds the digest (usually checksum) value for the
+    /// plugin configuration. The value is calculated based on the contents of
+    /// `plugin_config_data` or the container image defined by
+    /// the `plugin_config_uri` field.
+    #[prost(string, tag = "14")]
+    pub plugin_config_digest: ::prost::alloc::string::String,
+    #[prost(oneof = "wasm_plugin_version::PluginConfigSource", tags = "12, 13")]
+    pub plugin_config_source: ::core::option::Option<
+        wasm_plugin_version::PluginConfigSource,
+    >,
+}
+/// Nested message and enum types in `WasmPluginVersion`.
+pub mod wasm_plugin_version {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PluginConfigSource {
+        /// Configuration for the plugin.
+        /// The configuration is provided to the plugin at runtime through
+        /// the `ON_CONFIGURE` callback. When a new
+        /// `WasmPluginVersion` resource is created, the digest of the
+        /// contents is saved in the `plugin_config_digest` field.
+        #[prost(bytes, tag = "12")]
+        PluginConfigData(::prost::bytes::Bytes),
+        /// URI of the plugin configuration stored in the Artifact Registry.
+        /// The configuration is provided to the plugin at runtime through
+        /// the `ON_CONFIGURE` callback. The container image must contain
+        /// only a single file with the name `plugin.config`. When a
+        /// new `WasmPluginVersion` resource is created, the digest of the
+        /// container image is saved in the `plugin_config_digest` field.
+        #[prost(string, tag = "13")]
+        PluginConfigUri(::prost::alloc::string::String),
+    }
+}
+/// Request used with the `ListWasmPlugins` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListWasmPluginsRequest {
+    /// Required. The project and location from which the `WasmPlugin` resources
+    /// are listed, specified in the following format:
+    /// `projects/{project}/locations/global`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Maximum number of `WasmPlugin` resources to return per call.
+    /// If not specified, at most 50 `WasmPlugin` resources are returned.
+    /// The maximum value is 1000; values above 1000 are coerced to 1000.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// The value returned by the last `ListWasmPluginsResponse` call.
+    /// Indicates that this is a continuation of a prior
+    /// `ListWasmPlugins` call, and that the
+    /// next page of data is to be returned.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response returned by the `ListWasmPlugins` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListWasmPluginsResponse {
+    /// List of `WasmPlugin` resources.
+    #[prost(message, repeated, tag = "1")]
+    pub wasm_plugins: ::prost::alloc::vec::Vec<WasmPlugin>,
+    /// If there might be more results than those appearing in this response, then
+    /// `next_page_token` is included. To get the next set of results,
+    /// call this method again using the value of `next_page_token` as
+    /// `page_token`.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request attempts to list all
+    /// resources across all supported locations, while some locations are
+    /// temporarily unavailable.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Request used by the `GetWasmPlugin` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetWasmPluginRequest {
+    /// Required. A name of the `WasmPlugin` resource to get. Must be in the
+    /// format `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Determines how much data must be returned in the response. See
+    /// [AIP-157](<https://google.aip.dev/157>).
+    #[prost(enumeration = "WasmPluginView", tag = "2")]
+    pub view: i32,
+}
+/// Request used by the `CreateWasmPlugin` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateWasmPluginRequest {
+    /// Required. The parent resource of the `WasmPlugin` resource. Must be in the
+    /// format `projects/{project}/locations/global`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. User-provided ID of the `WasmPlugin` resource to be created.
+    #[prost(string, tag = "2")]
+    pub wasm_plugin_id: ::prost::alloc::string::String,
+    /// Required. `WasmPlugin` resource to be created.
+    #[prost(message, optional, tag = "3")]
+    pub wasm_plugin: ::core::option::Option<WasmPlugin>,
+}
+/// Request used by the `UpdateWasmPlugin` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateWasmPluginRequest {
+    /// Optional. Used to specify the fields to be overwritten in the
+    /// `WasmPlugin` resource by the update.
+    /// The fields specified in the `update_mask` field are relative to the
+    /// resource, not the full request.
+    /// An omitted `update_mask` field is treated as an implied `update_mask`
+    /// field equivalent to all fields that are populated (that have a non-empty
+    /// value).
+    /// The `update_mask` field supports a special value `*`, which means that
+    /// each field in the given `WasmPlugin` resource (including the empty ones)
+    /// replaces the current value.
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    /// Required. Updated `WasmPlugin` resource.
+    #[prost(message, optional, tag = "2")]
+    pub wasm_plugin: ::core::option::Option<WasmPlugin>,
+}
+/// Request used by the `DeleteWasmPlugin` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteWasmPluginRequest {
+    /// Required. A name of the `WasmPlugin` resource to delete. Must be in the
+    /// format `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request used with the `ListWasmPluginVersions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListWasmPluginVersionsRequest {
+    /// Required. The `WasmPlugin` resource whose `WasmPluginVersion`s
+    /// are listed, specified in the following format:
+    /// `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Maximum number of `WasmPluginVersion` resources to return per
+    /// call. If not specified, at most 50 `WasmPluginVersion` resources are
+    /// returned. The maximum value is 1000; values above 1000 are coerced to
+    /// 1000.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// The value returned by the last `ListWasmPluginVersionsResponse` call.
+    /// Indicates that this is a continuation of a prior
+    /// `ListWasmPluginVersions` call, and that the
+    /// next page of data is to be returned.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response returned by the `ListWasmPluginVersions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListWasmPluginVersionsResponse {
+    /// List of `WasmPluginVersion` resources.
+    #[prost(message, repeated, tag = "1")]
+    pub wasm_plugin_versions: ::prost::alloc::vec::Vec<WasmPluginVersion>,
+    /// If there might be more results than those appearing in this response, then
+    /// `next_page_token` is included. To get the next set of results,
+    /// call this method again using the value of `next_page_token` as
+    /// `page_token`.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Unreachable resources. Populated when the request attempts to list all
+    /// resources across all supported locations, while some locations are
+    /// temporarily unavailable.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Request used by the `GetWasmPluginVersion` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetWasmPluginVersionRequest {
+    /// Required. A name of the `WasmPluginVersion` resource to get. Must be in
+    /// the format
+    /// `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}/versions/{wasm_plugin_version}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request used by the `CreateWasmPluginVersion` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateWasmPluginVersionRequest {
+    /// Required. The parent resource of the `WasmPluginVersion` resource. Must be
+    /// in the format
+    /// `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. User-provided ID of the `WasmPluginVersion` resource to be
+    /// created.
+    #[prost(string, tag = "2")]
+    pub wasm_plugin_version_id: ::prost::alloc::string::String,
+    /// Required. `WasmPluginVersion` resource to be created.
+    #[prost(message, optional, tag = "3")]
+    pub wasm_plugin_version: ::core::option::Option<WasmPluginVersion>,
+}
+/// Request used by the `DeleteWasmPluginVersion` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteWasmPluginVersionRequest {
+    /// Required. A name of the `WasmPluginVersion` resource to delete. Must be in
+    /// the format
+    /// `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}/versions/{wasm_plugin_version}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Determines the information that should be returned by the server.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum WasmPluginView {
+    /// Unspecified value. Do not use.
+    Unspecified = 0,
+    /// If specified in the `GET` request for a `WasmPlugin` resource, the server's
+    /// response includes just the `WasmPlugin` resource.
+    Basic = 1,
+    /// If specified in the `GET` request for a `WasmPlugin` resource, the server's
+    /// response includes the `WasmPlugin` resource with all its versions.
+    Full = 2,
+}
+impl WasmPluginView {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "WASM_PLUGIN_VIEW_UNSPECIFIED",
+            Self::Basic => "WASM_PLUGIN_VIEW_BASIC",
+            Self::Full => "WASM_PLUGIN_VIEW_FULL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "WASM_PLUGIN_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+            "WASM_PLUGIN_VIEW_BASIC" => Some(Self::Basic),
+            "WASM_PLUGIN_VIEW_FULL" => Some(Self::Full),
+            _ => None,
+        }
+    }
 }
 /// Gateway represents the configuration for a proxy, typically a load balancer.
 /// It captures the ip:port over which the services are exposed by the proxy,
@@ -4107,6 +5090,277 @@ pub mod network_services_client {
                     GrpcMethod::new(
                         "google.cloud.networkservices.v1.NetworkServices",
                         "DeleteEndpointPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists `WasmPluginVersion` resources in a given project and
+        /// location.
+        pub async fn list_wasm_plugin_versions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListWasmPluginVersionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListWasmPluginVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/ListWasmPluginVersions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "ListWasmPluginVersions",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of the specified `WasmPluginVersion` resource.
+        pub async fn get_wasm_plugin_version(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetWasmPluginVersionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::WasmPluginVersion>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/GetWasmPluginVersion",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "GetWasmPluginVersion",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new `WasmPluginVersion` resource in a given project
+        /// and location.
+        pub async fn create_wasm_plugin_version(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateWasmPluginVersionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/CreateWasmPluginVersion",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "CreateWasmPluginVersion",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the specified `WasmPluginVersion` resource.
+        pub async fn delete_wasm_plugin_version(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteWasmPluginVersionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/DeleteWasmPluginVersion",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "DeleteWasmPluginVersion",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists `WasmPlugin` resources in a given project and
+        /// location.
+        pub async fn list_wasm_plugins(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListWasmPluginsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListWasmPluginsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/ListWasmPlugins",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "ListWasmPlugins",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of the specified `WasmPlugin` resource.
+        pub async fn get_wasm_plugin(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetWasmPluginRequest>,
+        ) -> std::result::Result<tonic::Response<super::WasmPlugin>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/GetWasmPlugin",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "GetWasmPlugin",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new `WasmPlugin` resource in a given project
+        /// and location.
+        pub async fn create_wasm_plugin(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateWasmPluginRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/CreateWasmPlugin",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "CreateWasmPlugin",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of the specified `WasmPlugin` resource.
+        pub async fn update_wasm_plugin(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateWasmPluginRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/UpdateWasmPlugin",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "UpdateWasmPlugin",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the specified `WasmPlugin` resource.
+        pub async fn delete_wasm_plugin(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteWasmPluginRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1.NetworkServices/DeleteWasmPlugin",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1.NetworkServices",
+                        "DeleteWasmPlugin",
                     ),
                 );
             self.inner.unary(req, path, codec).await

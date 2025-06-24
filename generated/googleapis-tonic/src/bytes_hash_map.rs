@@ -7,6 +7,7 @@
     feature = "google-actions-type",
     feature = "google-ads-admanager-v1",
     feature = "google-ads-admob-v1",
+    feature = "google-ads-datamanager-v1",
     feature = "google-ads-googleads-v18-common",
     feature = "google-ads-googleads-v18-enums",
     feature = "google-ads-googleads-v18-errors",
@@ -171,6 +172,7 @@
     feature = "google-cloud-confidentialcomputing-v1alpha1",
     feature = "google-cloud-config-v1",
     feature = "google-cloud-configdelivery-v1alpha",
+    feature = "google-cloud-configdelivery-v1beta",
     feature = "google-cloud-connectors-v1",
     feature = "google-cloud-contactcenterinsights-v1",
     feature = "google-cloud-contentwarehouse-v1",
@@ -637,6 +639,7 @@ pub mod google {
         feature = "google-cloud-confidentialcomputing-v1alpha1",
         feature = "google-cloud-config-v1",
         feature = "google-cloud-configdelivery-v1alpha",
+        feature = "google-cloud-configdelivery-v1beta",
         feature = "google-cloud-connectors-v1",
         feature = "google-cloud-contactcenterinsights-v1",
         feature = "google-cloud-contentwarehouse-v1",
@@ -1873,6 +1876,7 @@ pub mod google {
         }
         #[cfg(any(
             feature = "google-cloud-configdelivery-v1alpha",
+            feature = "google-cloud-configdelivery-v1beta",
         ))]
         pub mod configdelivery {
             #[cfg(any(
@@ -1883,6 +1887,15 @@ pub mod google {
                     feature = "google-cloud-configdelivery-v1alpha",
                 ))]
                 include!("bytes_hash_map/google.cloud.configdelivery.v1alpha.rs");
+            }
+            #[cfg(any(
+                feature = "google-cloud-configdelivery-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-configdelivery-v1beta",
+                ))]
+                include!("bytes_hash_map/google.cloud.configdelivery.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -6591,218 +6604,9 @@ pub mod google {
         }
     }
     #[cfg(any(
-        feature = "google-storagetransfer-logging",
-        feature = "google-storagetransfer-v1",
-    ))]
-    pub mod storagetransfer {
-        #[cfg(any(
-            feature = "google-storagetransfer-logging",
-        ))]
-        pub mod logging {
-            #[cfg(any(
-                feature = "google-storagetransfer-logging",
-            ))]
-            include!("bytes_hash_map/google.storagetransfer.logging.rs");
-        }
-        #[cfg(any(
-            feature = "google-storagetransfer-v1",
-        ))]
-        pub mod v1 {
-            #[cfg(any(
-                feature = "google-storagetransfer-v1",
-            ))]
-            include!("bytes_hash_map/google.storagetransfer.v1.rs");
-        }
-    }
-    #[cfg(any(
-        feature = "google-home-enterprise-sdm-v1",
-        feature = "google-home-graph-v1",
-    ))]
-    pub mod home {
-        #[cfg(any(
-            feature = "google-home-enterprise-sdm-v1",
-        ))]
-        pub mod enterprise {
-            #[cfg(any(
-                feature = "google-home-enterprise-sdm-v1",
-            ))]
-            pub mod sdm {
-                #[cfg(any(
-                    feature = "google-home-enterprise-sdm-v1",
-                ))]
-                pub mod v1 {
-                    #[cfg(any(
-                        feature = "google-home-enterprise-sdm-v1",
-                    ))]
-                    include!("bytes_hash_map/google.home.enterprise.sdm.v1.rs");
-                }
-            }
-        }
-        #[cfg(any(
-            feature = "google-home-graph-v1",
-        ))]
-        pub mod graph {
-            #[cfg(any(
-                feature = "google-home-graph-v1",
-            ))]
-            pub mod v1 {
-                #[cfg(any(
-                    feature = "google-home-graph-v1",
-                ))]
-                include!("bytes_hash_map/google.home.graph.v1.rs");
-            }
-        }
-    }
-    #[cfg(any(
-        feature = "google-actions-sdk-v2",
-        feature = "google-actions-sdk-v2-conversation",
-        feature = "google-actions-sdk-v2-interactionmodel",
-        feature = "google-actions-sdk-v2-interactionmodel-prompt",
-        feature = "google-actions-sdk-v2-interactionmodel-type",
-        feature = "google-actions-type",
-    ))]
-    pub mod actions {
-        #[cfg(any(
-            feature = "google-actions-sdk-v2",
-            feature = "google-actions-sdk-v2-conversation",
-            feature = "google-actions-sdk-v2-interactionmodel",
-            feature = "google-actions-sdk-v2-interactionmodel-prompt",
-            feature = "google-actions-sdk-v2-interactionmodel-type",
-        ))]
-        pub mod sdk {
-            #[cfg(any(
-                feature = "google-actions-sdk-v2",
-                feature = "google-actions-sdk-v2-conversation",
-                feature = "google-actions-sdk-v2-interactionmodel",
-                feature = "google-actions-sdk-v2-interactionmodel-prompt",
-                feature = "google-actions-sdk-v2-interactionmodel-type",
-            ))]
-            pub mod v2 {
-                #[cfg(any(
-                    feature = "google-actions-sdk-v2",
-                ))]
-                include!("bytes_hash_map/google.actions.sdk.v2.rs");
-                #[cfg(any(
-                    feature = "google-actions-sdk-v2-interactionmodel",
-                    feature = "google-actions-sdk-v2-interactionmodel-prompt",
-                    feature = "google-actions-sdk-v2-interactionmodel-type",
-                ))]
-                pub mod interactionmodel {
-                    #[cfg(any(
-                        feature = "google-actions-sdk-v2-interactionmodel",
-                    ))]
-                    include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.rs");
-                    #[cfg(any(
-                        feature = "google-actions-sdk-v2-interactionmodel-type",
-                    ))]
-                    pub mod r#type {
-                        #[cfg(any(
-                            feature = "google-actions-sdk-v2-interactionmodel-type",
-                        ))]
-                        include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.r#type.rs");
-                    }
-                    #[cfg(any(
-                        feature = "google-actions-sdk-v2-interactionmodel-prompt",
-                    ))]
-                    pub mod prompt {
-                        #[cfg(any(
-                            feature = "google-actions-sdk-v2-interactionmodel-prompt",
-                        ))]
-                        include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.prompt.rs");
-                    }
-                }
-                #[cfg(any(
-                    feature = "google-actions-sdk-v2-conversation",
-                ))]
-                pub mod conversation {
-                    #[cfg(any(
-                        feature = "google-actions-sdk-v2-conversation",
-                    ))]
-                    include!("bytes_hash_map/google.actions.sdk.v2.conversation.rs");
-                }
-            }
-        }
-        #[cfg(any(
-            feature = "google-actions-type",
-        ))]
-        pub mod r#type {
-            #[cfg(any(
-                feature = "google-actions-type",
-            ))]
-            include!("bytes_hash_map/google.actions.r#type.rs");
-        }
-    }
-    #[cfg(any(
-        feature = "google-networking-trafficdirector-type",
-    ))]
-    pub mod networking {
-        #[cfg(any(
-            feature = "google-networking-trafficdirector-type",
-        ))]
-        pub mod trafficdirector {
-            #[cfg(any(
-                feature = "google-networking-trafficdirector-type",
-            ))]
-            pub mod r#type {
-                #[cfg(any(
-                    feature = "google-networking-trafficdirector-type",
-                ))]
-                include!("bytes_hash_map/google.networking.trafficdirector.r#type.rs");
-            }
-        }
-    }
-    #[cfg(any(
-        feature = "google-appengine-legacy",
-        feature = "google-appengine-logging-v1",
-        feature = "google-appengine-v1",
-        feature = "google-appengine-v1beta",
-    ))]
-    pub mod appengine {
-        #[cfg(any(
-            feature = "google-appengine-v1",
-        ))]
-        pub mod v1 {
-            #[cfg(any(
-                feature = "google-appengine-v1",
-            ))]
-            include!("bytes_hash_map/google.appengine.v1.rs");
-        }
-        #[cfg(any(
-            feature = "google-appengine-legacy",
-        ))]
-        pub mod legacy {
-            #[cfg(any(
-                feature = "google-appengine-legacy",
-            ))]
-            include!("bytes_hash_map/google.appengine.legacy.rs");
-        }
-        #[cfg(any(
-            feature = "google-appengine-logging-v1",
-        ))]
-        pub mod logging {
-            #[cfg(any(
-                feature = "google-appengine-logging-v1",
-            ))]
-            pub mod v1 {
-                #[cfg(any(
-                    feature = "google-appengine-logging-v1",
-                ))]
-                include!("bytes_hash_map/google.appengine.logging.v1.rs");
-            }
-        }
-        #[cfg(any(
-            feature = "google-appengine-v1beta",
-        ))]
-        pub mod v1beta {
-            #[cfg(any(
-                feature = "google-appengine-v1beta",
-            ))]
-            include!("bytes_hash_map/google.appengine.v1beta.rs");
-        }
-    }
-    #[cfg(any(
         feature = "google-ads-admanager-v1",
         feature = "google-ads-admob-v1",
+        feature = "google-ads-datamanager-v1",
         feature = "google-ads-googleads-v18-common",
         feature = "google-ads-googleads-v18-enums",
         feature = "google-ads-googleads-v18-errors",
@@ -6825,6 +6629,20 @@ pub mod google {
         feature = "google-ads-searchads360-v0-services",
     ))]
     pub mod ads {
+        #[cfg(any(
+            feature = "google-ads-datamanager-v1",
+        ))]
+        pub mod datamanager {
+            #[cfg(any(
+                feature = "google-ads-datamanager-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-ads-datamanager-v1",
+                ))]
+                include!("bytes_hash_map/google.ads.datamanager.v1.rs");
+            }
+        }
         #[cfg(any(
             feature = "google-ads-admob-v1",
         ))]
@@ -7096,6 +6914,216 @@ pub mod google {
                 ))]
                 include!("bytes_hash_map/google.ads.admanager.v1.rs");
             }
+        }
+    }
+    #[cfg(any(
+        feature = "google-storagetransfer-logging",
+        feature = "google-storagetransfer-v1",
+    ))]
+    pub mod storagetransfer {
+        #[cfg(any(
+            feature = "google-storagetransfer-logging",
+        ))]
+        pub mod logging {
+            #[cfg(any(
+                feature = "google-storagetransfer-logging",
+            ))]
+            include!("bytes_hash_map/google.storagetransfer.logging.rs");
+        }
+        #[cfg(any(
+            feature = "google-storagetransfer-v1",
+        ))]
+        pub mod v1 {
+            #[cfg(any(
+                feature = "google-storagetransfer-v1",
+            ))]
+            include!("bytes_hash_map/google.storagetransfer.v1.rs");
+        }
+    }
+    #[cfg(any(
+        feature = "google-home-enterprise-sdm-v1",
+        feature = "google-home-graph-v1",
+    ))]
+    pub mod home {
+        #[cfg(any(
+            feature = "google-home-enterprise-sdm-v1",
+        ))]
+        pub mod enterprise {
+            #[cfg(any(
+                feature = "google-home-enterprise-sdm-v1",
+            ))]
+            pub mod sdm {
+                #[cfg(any(
+                    feature = "google-home-enterprise-sdm-v1",
+                ))]
+                pub mod v1 {
+                    #[cfg(any(
+                        feature = "google-home-enterprise-sdm-v1",
+                    ))]
+                    include!("bytes_hash_map/google.home.enterprise.sdm.v1.rs");
+                }
+            }
+        }
+        #[cfg(any(
+            feature = "google-home-graph-v1",
+        ))]
+        pub mod graph {
+            #[cfg(any(
+                feature = "google-home-graph-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-home-graph-v1",
+                ))]
+                include!("bytes_hash_map/google.home.graph.v1.rs");
+            }
+        }
+    }
+    #[cfg(any(
+        feature = "google-actions-sdk-v2",
+        feature = "google-actions-sdk-v2-conversation",
+        feature = "google-actions-sdk-v2-interactionmodel",
+        feature = "google-actions-sdk-v2-interactionmodel-prompt",
+        feature = "google-actions-sdk-v2-interactionmodel-type",
+        feature = "google-actions-type",
+    ))]
+    pub mod actions {
+        #[cfg(any(
+            feature = "google-actions-sdk-v2",
+            feature = "google-actions-sdk-v2-conversation",
+            feature = "google-actions-sdk-v2-interactionmodel",
+            feature = "google-actions-sdk-v2-interactionmodel-prompt",
+            feature = "google-actions-sdk-v2-interactionmodel-type",
+        ))]
+        pub mod sdk {
+            #[cfg(any(
+                feature = "google-actions-sdk-v2",
+                feature = "google-actions-sdk-v2-conversation",
+                feature = "google-actions-sdk-v2-interactionmodel",
+                feature = "google-actions-sdk-v2-interactionmodel-prompt",
+                feature = "google-actions-sdk-v2-interactionmodel-type",
+            ))]
+            pub mod v2 {
+                #[cfg(any(
+                    feature = "google-actions-sdk-v2",
+                ))]
+                include!("bytes_hash_map/google.actions.sdk.v2.rs");
+                #[cfg(any(
+                    feature = "google-actions-sdk-v2-interactionmodel",
+                    feature = "google-actions-sdk-v2-interactionmodel-prompt",
+                    feature = "google-actions-sdk-v2-interactionmodel-type",
+                ))]
+                pub mod interactionmodel {
+                    #[cfg(any(
+                        feature = "google-actions-sdk-v2-interactionmodel",
+                    ))]
+                    include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.rs");
+                    #[cfg(any(
+                        feature = "google-actions-sdk-v2-interactionmodel-type",
+                    ))]
+                    pub mod r#type {
+                        #[cfg(any(
+                            feature = "google-actions-sdk-v2-interactionmodel-type",
+                        ))]
+                        include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.r#type.rs");
+                    }
+                    #[cfg(any(
+                        feature = "google-actions-sdk-v2-interactionmodel-prompt",
+                    ))]
+                    pub mod prompt {
+                        #[cfg(any(
+                            feature = "google-actions-sdk-v2-interactionmodel-prompt",
+                        ))]
+                        include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.prompt.rs");
+                    }
+                }
+                #[cfg(any(
+                    feature = "google-actions-sdk-v2-conversation",
+                ))]
+                pub mod conversation {
+                    #[cfg(any(
+                        feature = "google-actions-sdk-v2-conversation",
+                    ))]
+                    include!("bytes_hash_map/google.actions.sdk.v2.conversation.rs");
+                }
+            }
+        }
+        #[cfg(any(
+            feature = "google-actions-type",
+        ))]
+        pub mod r#type {
+            #[cfg(any(
+                feature = "google-actions-type",
+            ))]
+            include!("bytes_hash_map/google.actions.r#type.rs");
+        }
+    }
+    #[cfg(any(
+        feature = "google-networking-trafficdirector-type",
+    ))]
+    pub mod networking {
+        #[cfg(any(
+            feature = "google-networking-trafficdirector-type",
+        ))]
+        pub mod trafficdirector {
+            #[cfg(any(
+                feature = "google-networking-trafficdirector-type",
+            ))]
+            pub mod r#type {
+                #[cfg(any(
+                    feature = "google-networking-trafficdirector-type",
+                ))]
+                include!("bytes_hash_map/google.networking.trafficdirector.r#type.rs");
+            }
+        }
+    }
+    #[cfg(any(
+        feature = "google-appengine-legacy",
+        feature = "google-appengine-logging-v1",
+        feature = "google-appengine-v1",
+        feature = "google-appengine-v1beta",
+    ))]
+    pub mod appengine {
+        #[cfg(any(
+            feature = "google-appengine-v1",
+        ))]
+        pub mod v1 {
+            #[cfg(any(
+                feature = "google-appengine-v1",
+            ))]
+            include!("bytes_hash_map/google.appengine.v1.rs");
+        }
+        #[cfg(any(
+            feature = "google-appengine-legacy",
+        ))]
+        pub mod legacy {
+            #[cfg(any(
+                feature = "google-appengine-legacy",
+            ))]
+            include!("bytes_hash_map/google.appengine.legacy.rs");
+        }
+        #[cfg(any(
+            feature = "google-appengine-logging-v1",
+        ))]
+        pub mod logging {
+            #[cfg(any(
+                feature = "google-appengine-logging-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-appengine-logging-v1",
+                ))]
+                include!("bytes_hash_map/google.appengine.logging.v1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-appengine-v1beta",
+        ))]
+        pub mod v1beta {
+            #[cfg(any(
+                feature = "google-appengine-v1beta",
+            ))]
+            include!("bytes_hash_map/google.appengine.v1beta.rs");
         }
     }
     #[cfg(any(
