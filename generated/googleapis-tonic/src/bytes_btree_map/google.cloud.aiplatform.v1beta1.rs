@@ -5031,6 +5031,11 @@ pub struct Tool {
     /// Optional. Tool to support URL context retrieval.
     #[prost(message, optional, tag = "8")]
     pub url_context: ::core::option::Option<UrlContext>,
+    /// Optional. Tool to support the model interacting directly with the computer.
+    /// If enabled, it automatically populates computer-use specific Function
+    /// Declarations.
+    #[prost(message, optional, tag = "11")]
+    pub computer_use: ::core::option::Option<tool::ComputerUse>,
 }
 /// Nested message and enum types in `Tool`.
 pub mod tool {
@@ -5045,6 +5050,55 @@ pub mod tool {
     /// output to this tool.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct CodeExecution {}
+    /// Tool to support computer use.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ComputerUse {
+        /// Required. The environment being operated.
+        #[prost(enumeration = "computer_use::Environment", tag = "1")]
+        pub environment: i32,
+    }
+    /// Nested message and enum types in `ComputerUse`.
+    pub mod computer_use {
+        /// Represents the environment being operated, such as a web browser.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Environment {
+            /// Defaults to browser.
+            Unspecified = 0,
+            /// Operates in a web browser.
+            Browser = 1,
+        }
+        impl Environment {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "ENVIRONMENT_UNSPECIFIED",
+                    Self::Browser => "ENVIRONMENT_BROWSER",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "ENVIRONMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ENVIRONMENT_BROWSER" => Some(Self::Browser),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 /// Tool to support URL context.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -41740,6 +41794,16 @@ pub struct PipelineTaskDetail {
         ::prost::alloc::string::String,
         pipeline_task_detail::ArtifactList,
     >,
+    /// Output only. The unique name of a task.
+    /// This field is used by pipeline job reruns.
+    /// Console UI and Vertex AI SDK will support triggering pipeline job reruns.
+    /// The name is constructed by concatenating all the parent tasks' names with
+    /// the task name. For example, if a task named "child_task" has a parent task
+    /// named "parent_task_1" and parent task 1 has a parent task named
+    /// "parent_task_2", the task unique name will be
+    /// "parent_task_2.parent_task_1.child_task".
+    #[prost(string, tag = "14")]
+    pub task_unique_name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `PipelineTaskDetail`.
 pub mod pipeline_task_detail {

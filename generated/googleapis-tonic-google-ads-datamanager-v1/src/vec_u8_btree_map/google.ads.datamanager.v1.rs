@@ -44,33 +44,6 @@ impl ConsentStatus {
         }
     }
 }
-/// The audience member to be operated on.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AudienceMember {
-    /// Optional. The consent setting for the user.
-    #[prost(message, optional, tag = "3")]
-    pub consent: ::core::option::Option<Consent>,
-    /// The type of identifying data to be operated on.
-    #[prost(oneof = "audience_member::Data", tags = "2, 4, 5")]
-    pub data: ::core::option::Option<audience_member::Data>,
-}
-/// Nested message and enum types in `AudienceMember`.
-pub mod audience_member {
-    /// The type of identifying data to be operated on.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Data {
-        /// User-provided data that identifies the user.
-        #[prost(message, tag = "2")]
-        UserData(super::UserData),
-        /// [Publisher Advertiser Identity Reconciliation (PAIR)
-        /// IDs](//support.google.com/admanager/answer/15067908).
-        #[prost(message, tag = "4")]
-        PairData(super::PairData),
-        /// Data identifying the user's mobile devices.
-        #[prost(message, tag = "5")]
-        MobileData(super::MobileData),
-    }
-}
 /// Data that identifies the user. At least one identifier is required.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserData {
@@ -78,7 +51,8 @@ pub struct UserData {
     /// instances of the same type of data (for example, multiple email addresses).
     /// To increase the likelihood of a match, provide as many identifiers as
     /// possible. At most 10 `userIdentifiers` can be provided in a single
-    /// [AudienceMember][google.ads.datamanager.v1.AudienceMember].
+    /// [AudienceMember][google.ads.datamanager.v1.AudienceMember] or
+    /// [Event][google.ads.datamanager.v1.Event].
     #[prost(message, repeated, tag = "1")]
     pub user_identifiers: ::prost::alloc::vec::Vec<UserIdentifier>,
 }
@@ -107,6 +81,52 @@ pub mod user_identifier {
         Address(super::AddressInfo),
     }
 }
+/// Address information for the user.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AddressInfo {
+    /// Required. Given (first) name of the user, all lowercase, with no
+    /// punctuation, no leading or trailing whitespace, and hashed as SHA-256.
+    #[prost(string, tag = "1")]
+    pub given_name: ::prost::alloc::string::String,
+    /// Required. Family (last) name of the user, all lowercase, with no
+    /// punctuation, no leading or trailing whitespace, and hashed as SHA-256.
+    #[prost(string, tag = "2")]
+    pub family_name: ::prost::alloc::string::String,
+    /// Required. The 2-letter region code in ISO-3166-1 alpha-2 of the user's
+    /// address.
+    #[prost(string, tag = "3")]
+    pub region_code: ::prost::alloc::string::String,
+    /// Required. The postal code of the user's address.
+    #[prost(string, tag = "4")]
+    pub postal_code: ::prost::alloc::string::String,
+}
+/// The audience member to be operated on.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AudienceMember {
+    /// Optional. The consent setting for the user.
+    #[prost(message, optional, tag = "3")]
+    pub consent: ::core::option::Option<Consent>,
+    /// The type of identifying data to be operated on.
+    #[prost(oneof = "audience_member::Data", tags = "2, 4, 5")]
+    pub data: ::core::option::Option<audience_member::Data>,
+}
+/// Nested message and enum types in `AudienceMember`.
+pub mod audience_member {
+    /// The type of identifying data to be operated on.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Data {
+        /// User-provided data that identifies the user.
+        #[prost(message, tag = "2")]
+        UserData(super::UserData),
+        /// [Publisher Advertiser Identity Reconciliation (PAIR)
+        /// IDs](//support.google.com/admanager/answer/15067908).
+        #[prost(message, tag = "4")]
+        PairData(super::PairData),
+        /// Data identifying the user's mobile devices.
+        #[prost(message, tag = "5")]
+        MobileData(super::MobileData),
+    }
+}
 /// [PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience.
 /// At least one PAIR ID is required.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -128,29 +148,50 @@ pub struct MobileData {
     #[prost(string, repeated, tag = "1")]
     pub mobile_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Address information for the user.
+/// The cart data associated with the event.
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AddressInfo {
-    /// Required. Given (first) name of the user, all lowercase, with no
-    /// punctuation, no leading or trailing whitespace, and hashed as SHA-256.
+pub struct CartData {
+    /// Optional. The Merchant Center ID associated with the items.
     #[prost(string, tag = "1")]
-    pub given_name: ::prost::alloc::string::String,
-    /// Required. Family (last) name of the user, all lowercase, with no
-    /// punctuation, no leading or trailing whitespace, and hashed as SHA-256.
+    pub merchant_id: ::prost::alloc::string::String,
+    /// Optional. The Merchant Center feed label associated with the feed of the
+    /// items.
     #[prost(string, tag = "2")]
-    pub family_name: ::prost::alloc::string::String,
-    /// Required. The 2-letter region code in ISO-3166-1 alpha-2 of the user's
-    /// address.
+    pub merchant_feed_label: ::prost::alloc::string::String,
+    /// Optional. The language code in ISO 639-1 associated with the Merchant
+    /// Center feed of the items.where your items are uploaded.
     #[prost(string, tag = "3")]
-    pub region_code: ::prost::alloc::string::String,
-    /// Required. The postal code of the user's address.
-    #[prost(string, tag = "4")]
-    pub postal_code: ::prost::alloc::string::String,
+    pub merchant_feed_language_code: ::prost::alloc::string::String,
+    /// Optional. The sum of all discounts associated with the transaction.
+    #[prost(double, tag = "4")]
+    pub transaction_discount: f64,
+    /// Optional. The list of items associated with the event.
+    #[prost(message, repeated, tag = "5")]
+    pub items: ::prost::alloc::vec::Vec<Item>,
+}
+/// Represents an item in the cart associated with the event.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Item {
+    /// Optional. The product ID within the Merchant Center account.
+    #[prost(string, tag = "1")]
+    pub merchant_product_id: ::prost::alloc::string::String,
+    /// Optional. The number of this item associated with the event.
+    #[prost(int64, tag = "2")]
+    pub quantity: i64,
+    /// Optional. The unit price excluding tax, shipping, and any transaction level
+    /// discounts.
+    #[prost(double, tag = "3")]
+    pub unit_price: f64,
 }
 /// The Google product you're sending data to. For example, a Google
 /// Ads account.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Destination {
+    /// Optional. ID for this `Destination` resource, unique within the request.
+    /// Use to reference this `Destination` in  the
+    /// [IngestEventsRequest][google.ads.datamanager.v1.IngestEventsRequest].
+    #[prost(string, tag = "1")]
+    pub reference: ::prost::alloc::string::String,
     /// Optional. The account used to make this API call. To add or remove data
     /// from the
     /// [`operating_account`][google.ads.datamanager.v1.Destination.operating_account],
@@ -227,6 +268,16 @@ impl Product {
             _ => None,
         }
     }
+}
+/// Information about the device being used (if any) when the event happened.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeviceInfo {
+    /// Optional. The user-agent string of the device for the given context.
+    #[prost(string, tag = "1")]
+    pub user_agent: ::prost::alloc::string::String,
+    /// Optional. The IP address of the device for the given context.
+    #[prost(string, tag = "2")]
+    pub ip_address: ::prost::alloc::string::String,
 }
 /// Encryption information for the data being ingested.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -306,6 +357,134 @@ pub mod gcp_wrapped_key_info {
                 "XCHACHA20_POLY1305" => Some(Self::Xchacha20Poly1305),
                 _ => None,
             }
+        }
+    }
+}
+/// Experimental field representing unofficial fields.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExperimentalField {
+    /// Optional. The name of the field to use.
+    #[prost(string, tag = "1")]
+    pub field: ::prost::alloc::string::String,
+    /// Optional. The value the field to set.
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+}
+/// An event representing a user interaction with an advertiser's website or app.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Event {
+    /// Optional. Reference string used to determine the destination.
+    #[prost(string, repeated, tag = "1")]
+    pub destination_references: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Required. The unique identifier for this event.
+    #[prost(string, tag = "2")]
+    pub transaction_id: ::prost::alloc::string::String,
+    /// Required. The time the event occurred.
+    #[prost(message, optional, tag = "3")]
+    pub event_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. The last time the event was updated.
+    #[prost(message, optional, tag = "4")]
+    pub last_updated_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. Pieces of user provided data, representing the user the event is
+    /// associated with.
+    #[prost(message, optional, tag = "5")]
+    pub user_data: ::core::option::Option<UserData>,
+    /// Optional. Information about whether the associated user has provided
+    /// different types of consent.
+    #[prost(message, optional, tag = "6")]
+    pub consent: ::core::option::Option<Consent>,
+    /// Optional. Identifiers and other information used to match the conversion
+    /// event with other online activity (such as ad clicks).
+    #[prost(message, optional, tag = "7")]
+    pub ad_identifiers: ::core::option::Option<AdIdentifiers>,
+    /// Optional. The currency code associated with all monetary values within this
+    /// event.
+    #[prost(string, tag = "8")]
+    pub currency: ::prost::alloc::string::String,
+    /// Optional. The conversion value associated with the event, for value-based
+    /// conversions.
+    #[prost(double, tag = "9")]
+    pub conversion_value: f64,
+    /// Optional. Signal for where the event happened (web, app, in-store, etc.).
+    #[prost(enumeration = "EventSource", tag = "10")]
+    pub event_source: i32,
+    /// Optional. Information gathered about the device being used (if any) when
+    /// the event happened.
+    #[prost(message, optional, tag = "11")]
+    pub event_device_info: ::core::option::Option<DeviceInfo>,
+    /// Optional. Information about the transaction and items associated with the
+    /// event.
+    #[prost(message, optional, tag = "12")]
+    pub cart_data: ::core::option::Option<CartData>,
+    /// Optional. Additional key/value pair information to send to the conversion
+    /// containers (conversion action or FL activity).
+    #[prost(message, repeated, tag = "13")]
+    pub custom_variables: ::prost::alloc::vec::Vec<CustomVariable>,
+    /// Optional. A list of key/value pairs for experimental fields that may
+    /// eventually be promoted to be part of the API.
+    #[prost(message, repeated, tag = "14")]
+    pub experimental_fields: ::prost::alloc::vec::Vec<ExperimentalField>,
+}
+/// Identifiers and other information used to match the conversion event with
+/// other online activity (such as ad clicks).
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdIdentifiers {
+    /// Optional. Session attributes for event attribution and modeling.
+    #[prost(string, tag = "1")]
+    pub session_attributes: ::prost::alloc::string::String,
+    /// Optional. The Google click ID (gclid) associated with this event.
+    #[prost(string, tag = "2")]
+    pub gclid: ::prost::alloc::string::String,
+    /// Optional. The click identifier for clicks associated with app events and
+    /// originating from iOS devices starting with iOS14.
+    #[prost(string, tag = "3")]
+    pub gbraid: ::prost::alloc::string::String,
+    /// Optional. The click identifier for clicks associated with web events and
+    /// originating from iOS devices starting with iOS14.
+    #[prost(string, tag = "4")]
+    pub wbraid: ::prost::alloc::string::String,
+    /// Optional. Information gathered about the device being used (if any) at the
+    /// time of landing onto the advertiser’s site after interacting with the ad.
+    #[prost(message, optional, tag = "5")]
+    pub landing_page_device_info: ::core::option::Option<DeviceInfo>,
+}
+/// Custom variable for ads conversions.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomVariable {
+    /// Optional. The name of the custom variable to set. If the variable is not
+    /// found for the given destination, it will be ignored.
+    #[prost(string, tag = "1")]
+    pub variable: ::prost::alloc::string::String,
+    /// Optional. The value to store for the custom variable.
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+}
+/// The source of the event.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EventSource {
+    /// Unspecified EventSource. Should never be used.
+    Unspecified = 0,
+    /// The event was generated from a web browser.
+    Web = 1,
+}
+impl EventSource {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "EVENT_SOURCE_UNSPECIFIED",
+            Self::Web => "WEB",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EVENT_SOURCE_UNSPECIFIED" => Some(Self::Unspecified),
+            "WEB" => Some(Self::Web),
+            _ => None,
         }
     }
 }
@@ -431,6 +610,51 @@ pub struct RemoveAudienceMembersRequest {
 /// [RemoveAudienceMembersRequest][google.ads.datamanager.v1.RemoveAudienceMembersRequest].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveAudienceMembersResponse {
+    /// The auto-generated ID of the request.
+    #[prost(string, tag = "1")]
+    pub request_id: ::prost::alloc::string::String,
+}
+/// Request to upload audience members to the provided destinations. Returns an
+/// [IngestEventsResponse][google.ads.datamanager.v1.IngestEventsResponse].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IngestEventsRequest {
+    /// Required. The list of destinations to send the events to.
+    #[prost(message, repeated, tag = "1")]
+    pub destinations: ::prost::alloc::vec::Vec<Destination>,
+    /// Required. The list of events to send to the specified destinations. At most
+    /// 2000 [Event][google.ads.datamanager.v1.Event] resources
+    /// can be sent in a single request.
+    #[prost(message, repeated, tag = "2")]
+    pub events: ::prost::alloc::vec::Vec<Event>,
+    /// Optional. Request-level consent to apply to all users in the request.
+    /// User-level consent overrides request-level consent, and can be specified in
+    /// each [Event][google.ads.datamanager.v1.Event].
+    #[prost(message, optional, tag = "3")]
+    pub consent: ::core::option::Option<Consent>,
+    /// Optional. For testing purposes. If `true`, the request is validated but not
+    /// executed. Only errors are returned, not results.
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
+    /// Optional. Required for [UserData][google.ads.datamanager.v1.UserData]
+    /// uploads. The encoding type of the user identifiers. For hashed user
+    /// identifiers, this is the encoding type of the hashed string. For encrypted
+    /// hashed user identifiers, this is the encoding type of the outer encrypted
+    /// string, but not necessarily the inner hashed string, meaning the inner
+    /// hashed string could be encoded in a different way than the outer encrypted
+    /// string. For non `UserData` uploads, this field is ignored.
+    #[prost(enumeration = "Encoding", tag = "5")]
+    pub encoding: i32,
+    /// Optional. Encryption information for
+    /// [UserData][google.ads.datamanager.v1.UserData] uploads. If not set, it's
+    /// assumed that uploaded identifying information is hashed but not encrypted.
+    /// For non `UserData` uploads, this field is ignored.
+    #[prost(message, optional, tag = "6")]
+    pub encryption_info: ::core::option::Option<EncryptionInfo>,
+}
+/// Response from the
+/// [IngestEventsRequest][google.ads.datamanager.v1.IngestEventsRequest].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IngestEventsResponse {
     /// The auto-generated ID of the request.
     #[prost(string, tag = "1")]
     pub request_id: ::prost::alloc::string::String,
@@ -609,6 +833,38 @@ pub mod ingestion_service_client {
                     GrpcMethod::new(
                         "google.ads.datamanager.v1.IngestionService",
                         "RemoveAudienceMembers",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Uploads a list of
+        /// [Event][google.ads.datamanager.v1.Event] resources from
+        /// the provided [Destination][google.ads.datamanager.v1.Destination].
+        pub async fn ingest_events(
+            &mut self,
+            request: impl tonic::IntoRequest<super::IngestEventsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::IngestEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.datamanager.v1.IngestionService/IngestEvents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.datamanager.v1.IngestionService",
+                        "IngestEvents",
                     ),
                 );
             self.inner.unary(req, path, codec).await

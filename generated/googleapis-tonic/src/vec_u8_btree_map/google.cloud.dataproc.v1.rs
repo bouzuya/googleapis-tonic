@@ -2262,6 +2262,9 @@ pub struct Cluster {
 /// The cluster config.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterConfig {
+    /// Optional. The cluster tier.
+    #[prost(enumeration = "cluster_config::ClusterTier", tag = "29")]
+    pub cluster_tier: i32,
     /// Optional. A Cloud Storage bucket used to stage job
     /// dependencies, config files, and job driver console output.
     /// If you do not specify a staging bucket, Cloud
@@ -2347,6 +2350,52 @@ pub struct ClusterConfig {
     /// Optional. The node group settings.
     #[prost(message, repeated, tag = "25")]
     pub auxiliary_node_groups: ::prost::alloc::vec::Vec<AuxiliaryNodeGroup>,
+}
+/// Nested message and enum types in `ClusterConfig`.
+pub mod cluster_config {
+    /// The cluster tier.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ClusterTier {
+        /// Not set. Works the same as CLUSTER_TIER_STANDARD.
+        Unspecified = 0,
+        /// Standard Dataproc cluster.
+        Standard = 1,
+        /// Premium Dataproc cluster.
+        Premium = 2,
+    }
+    impl ClusterTier {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "CLUSTER_TIER_UNSPECIFIED",
+                Self::Standard => "CLUSTER_TIER_STANDARD",
+                Self::Premium => "CLUSTER_TIER_PREMIUM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLUSTER_TIER_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLUSTER_TIER_STANDARD" => Some(Self::Standard),
+                "CLUSTER_TIER_PREMIUM" => Some(Self::Premium),
+                _ => None,
+            }
+        }
+    }
 }
 /// The Dataproc cluster config for a cluster that does not directly control the
 /// underlying compute resources, such as a [Dataproc-on-GKE

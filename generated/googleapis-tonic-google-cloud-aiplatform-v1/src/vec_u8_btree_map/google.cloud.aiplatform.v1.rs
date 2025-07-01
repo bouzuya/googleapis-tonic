@@ -3266,6 +3266,16 @@ pub struct ModelContainerSpec {
     ///    variable](<https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables>).)
     #[prost(string, tag = "7")]
     pub health_route: ::prost::alloc::string::String,
+    /// Immutable. Invoke route prefix for the custom container. "/*" is the only
+    /// supported value right now. By setting this field, any non-root route on
+    /// this model will be accessible with invoke http call eg: "/invoke/foo/bar",
+    /// however the \[PredictionService.Invoke\] RPC is not supported yet.
+    ///
+    /// Only one of `predict_route` or `invoke_route_prefix` can be set, and we
+    /// default to using `predict_route` if this field is not set. If this field
+    /// is set, the Model can only be deployed to dedicated endpoint.
+    #[prost(string, tag = "15")]
+    pub invoke_route_prefix: ::prost::alloc::string::String,
     /// Immutable. List of ports to expose from the container. Vertex AI sends gRPC
     /// prediction requests that it receives to the first port on this list. Vertex
     /// AI also sends liveness and health checks to this port.
@@ -4210,6 +4220,11 @@ pub struct Tool {
     /// Optional. Tool to support URL context retrieval.
     #[prost(message, optional, tag = "8")]
     pub url_context: ::core::option::Option<UrlContext>,
+    /// Optional. Tool to support the model interacting directly with the computer.
+    /// If enabled, it automatically populates computer-use specific Function
+    /// Declarations.
+    #[prost(message, optional, tag = "11")]
+    pub computer_use: ::core::option::Option<tool::ComputerUse>,
 }
 /// Nested message and enum types in `Tool`.
 pub mod tool {
@@ -4224,6 +4239,55 @@ pub mod tool {
     /// output to this tool.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct CodeExecution {}
+    /// Tool to support computer use.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ComputerUse {
+        /// Required. The environment being operated.
+        #[prost(enumeration = "computer_use::Environment", tag = "1")]
+        pub environment: i32,
+    }
+    /// Nested message and enum types in `ComputerUse`.
+    pub mod computer_use {
+        /// Represents the environment being operated, such as a web browser.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Environment {
+            /// Defaults to browser.
+            Unspecified = 0,
+            /// Operates in a web browser.
+            Browser = 1,
+        }
+        impl Environment {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "ENVIRONMENT_UNSPECIFIED",
+                    Self::Browser => "ENVIRONMENT_BROWSER",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "ENVIRONMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ENVIRONMENT_BROWSER" => Some(Self::Browser),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 /// Tool to support URL context.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
