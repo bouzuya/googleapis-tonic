@@ -564,32 +564,37 @@ pub struct BidiReadObjectResponse {
     #[prost(message, optional, tag = "7")]
     pub read_handle: ::core::option::Option<BidiReadHandle>,
 }
-/// Error proto containing details for a redirected read. This error is only
-/// returned on initial open in case of a redirect.
+/// Error proto containing details for a redirected read. This error may be
+/// attached as details for an ABORTED response to BidiReadObject.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BidiReadObjectRedirectedError {
-    /// The read handle for the redirected read. The client can use this for the
-    /// subsequent open.
+    /// The read handle for the redirected read. If set, the client may use this in
+    /// the BidiReadObjectSpec when retrying the read stream.
     #[prost(message, optional, tag = "1")]
     pub read_handle: ::core::option::Option<BidiReadHandle>,
-    /// The routing token that should be used when reopening the read stream.
+    /// The routing token the client must use when retrying the read stream.
+    /// This value must be provided in the header `x-goog-request-params`, with key
+    /// `routing_token` and this string verbatim as the value.
     #[prost(string, optional, tag = "2")]
     pub routing_token: ::core::option::Option<::prost::alloc::string::String>,
 }
-/// Error proto containing details for a redirected write. This error is only
-/// returned on initial open in case of a redirect.
+/// Error proto containing details for a redirected write. This error may be
+/// attached as details for an ABORTED response to BidiWriteObject.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BidiWriteObjectRedirectedError {
-    /// The routing token that should be used when reopening the write stream.
+    /// The routing token the client must use when retrying the write stream.
+    /// This value must be provided in the header `x-goog-request-params`, with key
+    /// `routing_token` and this string verbatim as the value.
     #[prost(string, optional, tag = "1")]
     pub routing_token: ::core::option::Option<::prost::alloc::string::String>,
-    /// Opaque value describing a previous write.
+    /// Opaque value describing a previous write. If set, the client must use this
+    /// in an AppendObjectSpec first_message when retrying the write stream. If not
+    /// set, clients may retry the original request.
     #[prost(message, optional, tag = "2")]
     pub write_handle: ::core::option::Option<BidiWriteHandle>,
-    /// The generation of the object that triggered the redirect.
-    /// Note that if this error was returned as part of an appendable object
-    /// create, this object generation is now successfully created and
-    /// append_object_spec should be used when reconnecting.
+    /// The generation of the object that triggered the redirect. This will be set
+    /// iff write_handle is set. If set, the client must use this in an
+    /// AppendObjectSpec first_message when retrying the write stream.
     #[prost(int64, optional, tag = "3")]
     pub generation: ::core::option::Option<i64>,
 }
@@ -823,10 +828,16 @@ pub struct AppendObjectSpec {
     pub generation: i64,
     /// Makes the operation conditional on whether the object's current
     /// metageneration matches the given value.
+    ///
+    /// Note that metageneration preconditions are only checked if `write_handle`
+    /// is empty.
     #[prost(int64, optional, tag = "4")]
     pub if_metageneration_match: ::core::option::Option<i64>,
     /// Makes the operation conditional on whether the object's current
     /// metageneration does not match the given value.
+    ///
+    /// Note that metageneration preconditions are only checked if `write_handle`
+    /// is empty.
     #[prost(int64, optional, tag = "5")]
     pub if_metageneration_not_match: ::core::option::Option<i64>,
     /// An optional routing token that influences request routing for the stream.
@@ -835,6 +846,9 @@ pub struct AppendObjectSpec {
     pub routing_token: ::core::option::Option<::prost::alloc::string::String>,
     /// An optional write handle returned from a previous BidiWriteObjectResponse
     /// message or a BidiWriteObjectRedirectedError error.
+    ///
+    /// Note that metageneration preconditions are only checked if `write_handle`
+    /// is empty.
     #[prost(message, optional, tag = "7")]
     pub write_handle: ::core::option::Option<BidiWriteHandle>,
 }
@@ -1763,43 +1777,47 @@ pub mod bucket {
     /// Nested message and enum types in `Encryption`.
     pub mod encryption {
         /// Google Managed Encryption (GMEK) enforcement config of a bucket.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct GoogleManagedEncryptionEnforcementConfig {
-            /// Whether Google Managed Encryption (GMEK) is restricted for new
-            /// objects within the bucket.
-            /// If true, new objects can't be created using GMEK encryption.
-            /// If false or unset, creation of new objects with GMEK encryption is
-            /// allowed.
-            #[prost(bool, optional, tag = "1")]
-            pub restricted: ::core::option::Option<bool>,
+            /// Restriction mode for google-managed encryption for new objects within
+            /// the bucket. Valid values are: "NotRestricted", "FullyRestricted".
+            /// If `NotRestricted` or unset, creation of new objects with
+            /// google-managed encryption is allowed.
+            /// If `FullyRestricted`, new objects can't be created using google-managed
+            /// encryption.
+            #[prost(string, optional, tag = "3")]
+            pub restriction_mode: ::core::option::Option<::prost::alloc::string::String>,
             /// Time from which the config was effective. This is service-provided.
             #[prost(message, optional, tag = "2")]
             pub effective_time: ::core::option::Option<::prost_types::Timestamp>,
         }
         /// Customer Managed Encryption (CMEK) enforcement config of a bucket.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct CustomerManagedEncryptionEnforcementConfig {
-            /// Whether Customer Managed Encryption (CMEK) is restricted for new
-            /// objects within the bucket.
-            /// If true, new objects can't be created using CMEK encryption.
-            /// If false or unset, creation of new objects with CMEK encryption is
-            /// allowed.
-            #[prost(bool, optional, tag = "1")]
-            pub restricted: ::core::option::Option<bool>,
+            /// Restriction mode for customer-managed encryption for new objects within
+            /// the bucket. Valid values are: "NotRestricted", "FullyRestricted".
+            /// If `NotRestricted` or unset, creation of new objects with
+            /// customer-managed encryption is allowed.
+            /// If `FullyRestricted`, new objects can't be created using
+            /// customer-managed encryption.
+            #[prost(string, optional, tag = "3")]
+            pub restriction_mode: ::core::option::Option<::prost::alloc::string::String>,
             /// Time from which the config was effective. This is service-provided.
             #[prost(message, optional, tag = "2")]
             pub effective_time: ::core::option::Option<::prost_types::Timestamp>,
         }
         /// Customer Supplied Encryption (CSEK) enforcement config of a bucket.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct CustomerSuppliedEncryptionEnforcementConfig {
-            /// Whether Customer Supplied Encryption (CSEK) is restricted for new
-            /// objects within the bucket.
-            /// If true, new objects can't be created using CSEK encryption.
-            /// If false or unset, creation of new objects with CSEK encryption is
-            /// allowed.
-            #[prost(bool, optional, tag = "1")]
-            pub restricted: ::core::option::Option<bool>,
+            /// Restriction mode for customer-supplied encryption for new objects
+            /// within the bucket. Valid values are: "NotRestricted",
+            /// "FullyRestricted".
+            /// If `NotRestricted` or unset, creation of new objects with
+            /// customer-supplied encryption is allowed.
+            /// If `FullyRestricted`, new objects can't be created using
+            /// customer-supplied encryption.
+            #[prost(string, optional, tag = "3")]
+            pub restriction_mode: ::core::option::Option<::prost::alloc::string::String>,
             /// Time from which the config was effective. This is service-provided.
             #[prost(message, optional, tag = "2")]
             pub effective_time: ::core::option::Option<::prost_types::Timestamp>,

@@ -55,6 +55,21 @@ pub mod template {
         /// Optional. If true, log sanitize operations.
         #[prost(bool, tag = "7")]
         pub log_sanitize_operations: bool,
+        /// Optional. Metadata for multi language detection.
+        #[prost(message, optional, tag = "9")]
+        pub multi_language_detection: ::core::option::Option<
+            template_metadata::MultiLanguageDetection,
+        >,
+    }
+    /// Nested message and enum types in `TemplateMetadata`.
+    pub mod template_metadata {
+        /// Metadata to enable multi language detection via template.
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct MultiLanguageDetection {
+            /// Required. If true, multi language detection will be enabled.
+            #[prost(bool, tag = "1")]
+            pub enable_multi_language_detection: bool,
+        }
     }
 }
 /// Message describing FloorSetting resource
@@ -505,6 +520,11 @@ pub struct SanitizeUserPromptRequest {
     /// Required. User prompt data to sanitize.
     #[prost(message, optional, tag = "2")]
     pub user_prompt_data: ::core::option::Option<DataItem>,
+    /// Optional. Metadata related to Multi Language Detection.
+    #[prost(message, optional, tag = "6")]
+    pub multi_language_detection_metadata: ::core::option::Option<
+        MultiLanguageDetectionMetadata,
+    >,
 }
 /// Sanitize Model Response request.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -519,7 +539,7 @@ pub struct SanitizeModelResponseRequest {
     /// Optional. User Prompt associated with Model response.
     #[prost(string, tag = "4")]
     pub user_prompt: ::prost::alloc::string::String,
-    /// Optional. Metadata related for Translations.
+    /// Optional. Metadata related for multi language detection.
     #[prost(message, optional, tag = "7")]
     pub multi_language_detection_metadata: ::core::option::Option<
         MultiLanguageDetectionMetadata,
@@ -588,9 +608,19 @@ pub mod sanitization_result {
         pub ignore_partial_invocation_failures: bool,
     }
 }
-/// Message for Translation Support.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MultiLanguageDetectionMetadata {}
+/// Message for Enabling Multi Language Detection.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MultiLanguageDetectionMetadata {
+    /// Optional. Optional Source language of the user prompt.
+    ///
+    /// If multi-language detection is enabled but language is not set in that case
+    /// we would automatically detect the source language.
+    #[prost(string, tag = "1")]
+    pub source_language: ::prost::alloc::string::String,
+    /// Optional. Enable detection of multi-language prompts and responses.
+    #[prost(bool, tag = "2")]
+    pub enable_multi_language_detection: bool,
+}
 /// Filter Result obtained after Sanitization operations.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterResult {

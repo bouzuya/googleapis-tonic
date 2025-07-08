@@ -38814,8 +38814,7 @@ pub struct NotebookExecutionJob {
     /// Max running time of the execution job in seconds (default 86400s / 24 hrs).
     #[prost(message, optional, tag = "5")]
     pub execution_timeout: ::core::option::Option<::prost_types::Duration>,
-    /// Output only. The Schedule resource name if this job is triggered by one.
-    /// Format:
+    /// The Schedule resource name if this job is triggered by one. Format:
     /// `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
     #[prost(string, tag = "6")]
     pub schedule_resource_name: ::prost::alloc::string::String,
@@ -39059,6 +39058,21 @@ pub mod post_startup_script_config {
         }
     }
 }
+/// Colab image of the runtime.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ColabImage {
+    /// Optional. The release name of the NotebookRuntime Colab image, e.g.
+    /// "py310". If not specified, detault to the latest release.
+    #[prost(string, tag = "1")]
+    pub release_name: ::prost::alloc::string::String,
+    /// Output only. A human-readable description of the specified colab image
+    /// release, populated by the system. Example: "Python 3.10", "Latest - current
+    /// Python 3.11"
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+}
+/// Notebook Software Config. This is passed to the backend when user
+/// makes software configurations in UI.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NotebookSoftwareConfig {
     /// Optional. Environment variables to be passed to the container.
@@ -39067,6 +39081,19 @@ pub struct NotebookSoftwareConfig {
     pub env: ::prost::alloc::vec::Vec<EnvVar>,
     #[prost(message, optional, tag = "2")]
     pub post_startup_script_config: ::core::option::Option<PostStartupScriptConfig>,
+    /// The image to be used by the notebook runtime.
+    #[prost(oneof = "notebook_software_config::RuntimeImage", tags = "5")]
+    pub runtime_image: ::core::option::Option<notebook_software_config::RuntimeImage>,
+}
+/// Nested message and enum types in `NotebookSoftwareConfig`.
+pub mod notebook_software_config {
+    /// The image to be used by the notebook runtime.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RuntimeImage {
+        /// Optional. Google-managed NotebookRuntime colab image.
+        #[prost(message, tag = "5")]
+        ColabImage(super::ColabImage),
+    }
 }
 /// A template that specifies runtime configurations such as machine type,
 /// runtime version, network configurations, etc.
@@ -39171,8 +39198,9 @@ pub struct NotebookRuntimeTemplate {
     pub software_config: ::core::option::Option<NotebookSoftwareConfig>,
 }
 /// A runtime is a virtual machine allocated to a particular user for a
-/// particular Notebook file on temporary basis with lifetime limited to 24
-/// hours.
+/// particular Notebook file on temporary basis with lifetime. Default runtimes
+/// have a lifetime of 18 hours, while custom runtimes last for 6 months from
+/// their creation or last upgrade.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NotebookRuntime {
     /// Output only. The resource name of the NotebookRuntime.
@@ -39362,7 +39390,8 @@ pub mod notebook_runtime {
         Unspecified = 0,
         /// NotebookRuntime is in running state.
         Running = 1,
-        /// NotebookRuntime is in starting state.
+        /// NotebookRuntime is in starting state. This is when the runtime is being
+        /// started from a stopped state.
         BeingStarted = 2,
         /// NotebookRuntime is in stopping state.
         BeingStopped = 3,
