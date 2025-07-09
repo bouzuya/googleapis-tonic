@@ -34824,6 +34824,16 @@ pub struct PipelineTaskDetail {
         ::prost::alloc::string::String,
         pipeline_task_detail::ArtifactList,
     >,
+    /// Output only. The unique name of a task.
+    /// This field is used by rerun pipeline job.
+    /// Console UI and Vertex AI SDK will support triggering pipeline job reruns.
+    /// The name is constructed by concatenating all the parent tasks name with
+    /// the task name. For example, if a task named "child_task" has a parent task
+    /// named "parent_task_1" and parent task 1 has a parent task named
+    /// "parent_task_2", the task unique name will be
+    /// "parent_task_2.parent_task_1.child_task".
+    #[prost(string, tag = "14")]
+    pub task_unique_name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `PipelineTaskDetail`.
 pub mod pipeline_task_detail {

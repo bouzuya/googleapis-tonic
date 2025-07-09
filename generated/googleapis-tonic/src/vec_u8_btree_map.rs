@@ -171,6 +171,7 @@
     feature = "google-cloud-confidentialcomputing-v1",
     feature = "google-cloud-confidentialcomputing-v1alpha1",
     feature = "google-cloud-config-v1",
+    feature = "google-cloud-configdelivery-v1",
     feature = "google-cloud-configdelivery-v1alpha",
     feature = "google-cloud-configdelivery-v1beta",
     feature = "google-cloud-connectors-v1",
@@ -870,6 +871,7 @@ pub mod google {
         feature = "google-cloud-confidentialcomputing-v1",
         feature = "google-cloud-confidentialcomputing-v1alpha1",
         feature = "google-cloud-config-v1",
+        feature = "google-cloud-configdelivery-v1",
         feature = "google-cloud-configdelivery-v1alpha",
         feature = "google-cloud-configdelivery-v1beta",
         feature = "google-cloud-connectors-v1",
@@ -2283,6 +2285,7 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-configdelivery-v1",
             feature = "google-cloud-configdelivery-v1alpha",
             feature = "google-cloud-configdelivery-v1beta",
         ))]
@@ -2295,6 +2298,15 @@ pub mod google {
                     feature = "google-cloud-configdelivery-v1alpha",
                 ))]
                 include!("vec_u8_btree_map/google.cloud.configdelivery.v1alpha.rs");
+            }
+            #[cfg(any(
+                feature = "google-cloud-configdelivery-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-configdelivery-v1",
+                ))]
+                include!("vec_u8_btree_map/google.cloud.configdelivery.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-configdelivery-v1beta",
