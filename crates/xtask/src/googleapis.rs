@@ -69,8 +69,11 @@ impl Googleapis {
             let mut invalid_package_names = package_deps
                 .keys()
                 .filter(|it| {
-                    CRATE_NAME_PREFIX_LENGTH + it.to_string().len()
-                        > CRATES_IO_CRATE_NAME_MAX_LENGTH
+                    // TODO: skip google.cloud.storageinsights.v1
+                    // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16189950077/job/45703200056>
+                    it.to_string() == "google.cloud.storageinsights.v1"
+                        || CRATE_NAME_PREFIX_LENGTH + it.to_string().len()
+                            > CRATES_IO_CRATE_NAME_MAX_LENGTH
                 })
                 .cloned()
                 .collect::<VecDeque<ProtobufPackageName>>();
