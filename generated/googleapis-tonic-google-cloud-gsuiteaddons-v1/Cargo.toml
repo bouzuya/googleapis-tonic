@@ -23,6 +23,8 @@ googleapis-tonic-google-apps-script-type-drive = { version = "0.15.0", default-f
 googleapis-tonic-google-apps-script-type-gmail = { version = "0.15.0", default-features = false }
 googleapis-tonic-google-apps-script-type-sheets = { version = "0.21.0", default-features = false }
 googleapis-tonic-google-apps-script-type-slides = { version = "0.21.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

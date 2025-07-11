@@ -19,6 +19,8 @@ googleapis-tonic-google-api = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-maps-playablelocations-v3-sample = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-maps-unity = { version = "0.14.0", default-features = false }
 googleapis-tonic-google-type = { version = "0.14.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

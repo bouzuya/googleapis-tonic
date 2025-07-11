@@ -23,6 +23,8 @@ googleapis-tonic-google-spanner-admin-database-v1 = { version = "0.28.0", defaul
 googleapis-tonic-google-spanner-admin-instance-v1 = { version = "0.27.0", default-features = false }
 googleapis-tonic-google-spanner-v1 = { version = "0.28.0", default-features = false }
 googleapis-tonic-google-type = { version = "0.14.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

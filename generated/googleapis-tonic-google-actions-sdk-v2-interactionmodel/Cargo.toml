@@ -18,6 +18,8 @@ tonic = { version = "0.13.1", default-features = false, features = [
 googleapis-tonic-google-actions-sdk-v2-interactionmodel-prompt = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-actions-sdk-v2-interactionmodel-type = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-api = { version = "0.20.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

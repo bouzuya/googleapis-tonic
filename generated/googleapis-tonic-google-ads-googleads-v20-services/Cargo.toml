@@ -22,6 +22,8 @@ googleapis-tonic-google-ads-googleads-v20-resources = { version = "0.3.0", defau
 googleapis-tonic-google-api = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-longrunning = { version = "0.23.0", default-features = false }
 googleapis-tonic-google-rpc = { version = "0.16.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

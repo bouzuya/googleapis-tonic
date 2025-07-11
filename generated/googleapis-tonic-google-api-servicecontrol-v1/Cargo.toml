@@ -18,6 +18,8 @@ tonic = { version = "0.13.1", default-features = false, features = [
 googleapis-tonic-google-api = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-logging-type = { version = "0.14.0", default-features = false }
 googleapis-tonic-google-rpc = { version = "0.16.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

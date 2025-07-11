@@ -22,6 +22,8 @@ googleapis-tonic-google-actions-sdk-v2-interactionmodel-type = { version = "0.20
 googleapis-tonic-google-api = { version = "0.20.0", default-features = false }
 googleapis-tonic-google-rpc = { version = "0.16.0", default-features = false }
 googleapis-tonic-google-type = { version = "0.14.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

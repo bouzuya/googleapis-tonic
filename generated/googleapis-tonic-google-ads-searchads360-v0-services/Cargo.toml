@@ -19,6 +19,8 @@ googleapis-tonic-google-ads-searchads360-v0-common = { version = "0.22.0", defau
 googleapis-tonic-google-ads-searchads360-v0-enums = { version = "0.15.0", default-features = false }
 googleapis-tonic-google-ads-searchads360-v0-resources = { version = "0.22.0", default-features = false }
 googleapis-tonic-google-api = { version = "0.20.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"

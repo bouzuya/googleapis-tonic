@@ -20,6 +20,8 @@ googleapis-tonic-google-iam-v1 = { version = "0.22.0", default-features = false 
 googleapis-tonic-google-longrunning = { version = "0.23.0", default-features = false }
 googleapis-tonic-google-rpc = { version = "0.16.0", default-features = false }
 googleapis-tonic-google-type = { version = "0.14.0", default-features = false }
+[lib]
+doctest = false
 
 [lints.clippy]
 doc_lazy_continuation = "allow"
