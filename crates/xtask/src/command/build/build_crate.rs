@@ -153,6 +153,9 @@ tonic = { version = "{TONIC_VERSION}", default-features = false, features = [
   "prost",
 ] }
 
+[lib]
+doctest = false
+
 [lints.clippy]
 doc_lazy_continuation = "allow"
 large_enum_variant = "allow"
