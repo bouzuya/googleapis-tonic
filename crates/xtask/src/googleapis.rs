@@ -72,6 +72,9 @@ impl Googleapis {
                     // TODO: skip google.cloud.storageinsights.v1
                     // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16189950077/job/45703200056>
                     it.to_string() == "google.cloud.storageinsights.v1"
+                    // TODO: skip google.storage.control.v2
+                    // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16236131388/job/45846510787>
+                        || it.to_string() == "google.storage.control.v2"
                         || CRATE_NAME_PREFIX_LENGTH + it.to_string().len()
                             > CRATES_IO_CRATE_NAME_MAX_LENGTH
                 })
