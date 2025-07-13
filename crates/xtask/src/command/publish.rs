@@ -62,7 +62,7 @@ pub async fn execute(Args { crate_name }: Args) -> anyhow::Result<()> {
                 PublishResult::UpToDate => 0,
             };
         if sleep_time > 0 {
-            println!("Sleep {} secs", sleep_time);
+            println!("Sleep {sleep_time} secs");
             tokio::time::sleep(Duration::from_secs(sleep_time)).await;
         }
     }
@@ -107,12 +107,12 @@ async fn publish_recursive(
                 PublishResult::UpToDate => 0,
             };
             if sleep_time > 0 {
-                println!("Sleep {} secs", sleep_time);
+                println!("Sleep {sleep_time} secs");
                 tokio::time::sleep(Duration::from_secs(sleep_time)).await;
             }
         }
 
-        println!("{} publish", crate_name);
+        println!("{crate_name} publish");
         let status = Command::new("cargo")
             .args(["publish"])
             .current_dir(crate_dir_path)
@@ -169,7 +169,7 @@ async fn fetch_published_version(crate_name: &CrateName) -> anyhow::Result<Optio
     let response = client
         .request(
             reqwest::Method::GET,
-            format!("https://crates.io/api/v1/crates/{}", crate_name),
+            format!("https://crates.io/api/v1/crates/{crate_name}"),
         )
         .header(reqwest::header::USER_AGENT, "googleapis-tonic-xtask")
         .send()

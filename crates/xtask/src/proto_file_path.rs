@@ -61,7 +61,7 @@ impl ProtoFilePath {
             path_buf.push(p);
         }
         if let Some(p) = self.0.last() {
-            path_buf.push(format!("{}.proto", p));
+            path_buf.push(format!("{p}.proto"));
         }
         path_buf
     }

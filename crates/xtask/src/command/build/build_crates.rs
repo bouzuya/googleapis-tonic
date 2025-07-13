@@ -257,7 +257,7 @@ default = ["hash-map", "vec-u8"]
         "{VERSION}",
         &new_crate_versions
             .get(crate_name)
-            .with_context(|| format!("{} version not found", crate_name))?
+            .with_context(|| format!("{crate_name} version not found"))?
             .to_string(),
     )
     .replace("{PROST_VERSION}", prost_version)
@@ -272,7 +272,7 @@ default = ["hash-map", "vec-u8"]
                     dep,
                     new_crate_versions
                         .get(dep)
-                        .with_context(|| format!("{} version not found", crate_name))?
+                        .with_context(|| format!("{crate_name} version not found"))?
                 ))
             })
             .collect::<anyhow::Result<Vec<String>>>()?
@@ -287,7 +287,7 @@ default = ["hash-map", "vec-u8"]
                     feature,
                     dep_crate_names
                         .iter()
-                        .map(|dep| format!(r#""{}/{}""#, dep, feature))
+                        .map(|dep| format!(r#""{dep}/{feature}""#))
                         .collect::<Vec<String>>()
                         .join(", ")
                 )
@@ -343,7 +343,7 @@ fn write_variant_file(
     modules: &BTreeMap<String, M>,
     include_package_names: &BTreeSet<ProtobufPackageName>,
 ) -> anyhow::Result<()> {
-    let variant_file = src_dir.join(format!("{}.rs", variant));
+    let variant_file = src_dir.join(format!("{variant}.rs"));
     let variant_file_content = {
         fn dfs(
             modules: &BTreeMap<String, M>,
@@ -359,7 +359,7 @@ fn write_variant_file(
                     indent.repeat(c.len()),
                     // FIXME: other keywords
                     if k == "type" {
-                        format!("r#{}", k)
+                        format!("r#{k}")
                     } else {
                         k.to_owned()
                     }
@@ -384,7 +384,7 @@ fn write_variant_file(
                             c.join("_"),
                             c.iter()
                                 .map(|it| if it == "type" {
-                                    format!("r#{}", it)
+                                    format!("r#{it}")
                                 } else {
                                     it.to_owned()
                                 })
@@ -415,7 +415,7 @@ fn package_name_to_module_name(package_name: &ProtobufPackageName) -> String {
         .map(|s| {
             // FIXME: other keywords
             if s == "type" {
-                format!("r#{}", s)
+                format!("r#{s}")
             } else {
                 s.to_owned()
             }

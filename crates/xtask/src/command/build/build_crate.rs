@@ -80,8 +80,8 @@ pub fn build_crate(
         }
 
         let modules = Modules::from_file_names(&file_names);
-        let output = modules.to_rs_file_content(&format!("{}/", root_mod_name));
-        fs::write(src_dir.join(format!("{}.rs", root_mod_name)), output)?;
+        let output = modules.to_rs_file_content(&format!("{root_mod_name}/"));
+        fs::write(src_dir.join(format!("{root_mod_name}.rs")), output)?;
     }
     create_lib_rs(&crate_dir)?;
 

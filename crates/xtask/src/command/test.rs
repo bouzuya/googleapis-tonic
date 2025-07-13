@@ -16,9 +16,9 @@ pub fn execute() -> anyhow::Result<()> {
             .current_dir(generated_dir.join(crate_name.to_string()))
             .status()?;
         if status.success() {
-            println!("{} published", crate_name);
+            println!("{crate_name} published");
         } else {
-            anyhow::bail!("{} failed", crate_name);
+            anyhow::bail!("{crate_name} failed");
         }
     }
     Ok(())

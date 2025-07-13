@@ -198,10 +198,7 @@ impl Googleapis {
             .filter(|it| !it.is_google_protobuf())
             .map(|it| {
                 all_proto_files.get(it).with_context(|| {
-                    format!(
-                        "proto_file not found: import_path = {:?} (by {:?})",
-                        it, proto_file
-                    )
+                    format!("proto_file not found: import_path = {it:?} (by {proto_file:?})")
                 })
             })
             .try_fold(
