@@ -1035,6 +1035,11 @@ pub struct ListObjectsRequest {
     /// for the full syntax.
     #[prost(string, tag = "14")]
     pub match_glob: ::prost::alloc::string::String,
+    /// Optional. Filter the returned objects. Currently only supported for the
+    /// `contexts` field. If `delimiter` is set, the returned `prefixes` are exempt
+    /// from this filter.
+    #[prost(string, tag = "15")]
+    pub filter: ::prost::alloc::string::String,
 }
 /// Request object for `QueryWriteStatus`.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2233,6 +2238,29 @@ pub struct ObjectChecksums {
     #[prost(bytes = "vec", tag = "2")]
     pub md5_hash: ::prost::alloc::vec::Vec<u8>,
 }
+/// The payload of a single user-defined object context.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ObjectCustomContextPayload {
+    /// Required. The value of the object context.
+    #[prost(string, tag = "1")]
+    pub value: ::prost::alloc::string::String,
+    /// Output only. The time at which the object context was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The time at which the object context was last updated.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// All contexts of an object grouped by type.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ObjectContexts {
+    /// Optional. User-defined object contexts.
+    #[prost(btree_map = "string, message", tag = "1")]
+    pub custom: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ObjectCustomContextPayload,
+    >,
+}
 /// Describes the Customer-Supplied Encryption Key mechanism used to store an
 /// Object's data at rest.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2376,6 +2404,11 @@ pub struct Object {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// Optional. User-defined or system-defined object contexts. Each object
+    /// context is a key-payload pair, where the key provides the identification
+    /// and the payload holds the associated value and additional metadata.
+    #[prost(message, optional, tag = "38")]
+    pub contexts: ::core::option::Option<ObjectContexts>,
     /// Whether an object is under event-based hold.
     /// An event-based hold is a way to force the retention of an object until
     /// after some event occurs. Once the hold is released by explicitly setting
