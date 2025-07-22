@@ -136,6 +136,7 @@
     feature = "google-cloud-bigquery-dataexchange-v1beta1",
     feature = "google-cloud-bigquery-datapolicies-v1",
     feature = "google-cloud-bigquery-datapolicies-v1beta1",
+    feature = "google-cloud-bigquery-datapolicies-v2",
     feature = "google-cloud-bigquery-datapolicies-v2beta1",
     feature = "google-cloud-bigquery-datatransfer-v1",
     feature = "google-cloud-bigquery-logging-v1",
@@ -716,6 +717,7 @@ pub mod google {
         feature = "google-cloud-bigquery-dataexchange-v1beta1",
         feature = "google-cloud-bigquery-datapolicies-v1",
         feature = "google-cloud-bigquery-datapolicies-v1beta1",
+        feature = "google-cloud-bigquery-datapolicies-v2",
         feature = "google-cloud-bigquery-datapolicies-v2beta1",
         feature = "google-cloud-bigquery-datatransfer-v1",
         feature = "google-cloud-bigquery-logging-v1",
@@ -1776,6 +1778,7 @@ pub mod google {
             feature = "google-cloud-bigquery-dataexchange-v1beta1",
             feature = "google-cloud-bigquery-datapolicies-v1",
             feature = "google-cloud-bigquery-datapolicies-v1beta1",
+            feature = "google-cloud-bigquery-datapolicies-v2",
             feature = "google-cloud-bigquery-datapolicies-v2beta1",
             feature = "google-cloud-bigquery-datatransfer-v1",
             feature = "google-cloud-bigquery-logging-v1",
@@ -1946,6 +1949,7 @@ pub mod google {
             #[cfg(any(
                 feature = "google-cloud-bigquery-datapolicies-v1",
                 feature = "google-cloud-bigquery-datapolicies-v1beta1",
+                feature = "google-cloud-bigquery-datapolicies-v2",
                 feature = "google-cloud-bigquery-datapolicies-v2beta1",
             ))]
             pub mod datapolicies {
@@ -1975,6 +1979,15 @@ pub mod google {
                         feature = "google-cloud-bigquery-datapolicies-v1beta1",
                     ))]
                     include!("vec_u8_btree_map/google.cloud.bigquery.datapolicies.v1beta1.rs");
+                }
+                #[cfg(any(
+                    feature = "google-cloud-bigquery-datapolicies-v2",
+                ))]
+                pub mod v2 {
+                    #[cfg(any(
+                        feature = "google-cloud-bigquery-datapolicies-v2",
+                    ))]
+                    include!("vec_u8_btree_map/google.cloud.bigquery.datapolicies.v2.rs");
                 }
             }
             #[cfg(any(

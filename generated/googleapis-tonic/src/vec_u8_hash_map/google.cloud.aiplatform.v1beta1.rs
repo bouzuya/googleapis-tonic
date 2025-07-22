@@ -9836,9 +9836,6 @@ pub struct AssessDataRequest {
     /// The assessment type.
     #[prost(oneof = "assess_data_request::AssessmentConfig", tags = "2, 3, 6, 7")]
     pub assessment_config: ::core::option::Option<assess_data_request::AssessmentConfig>,
-    /// The read config for the dataset.
-    #[prost(oneof = "assess_data_request::ReadConfig", tags = "4, 5")]
-    pub read_config: ::core::option::Option<assess_data_request::ReadConfig>,
 }
 /// Nested message and enum types in `AssessDataRequest`.
 pub mod assess_data_request {
@@ -9942,18 +9939,6 @@ pub mod assess_data_request {
         BatchPredictionResourceUsageAssessmentConfig(
             BatchPredictionResourceUsageAssessmentConfig,
         ),
-    }
-    /// The read config for the dataset.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ReadConfig {
-        /// Optional. Config for assembling templates with a Gemini API structure to
-        /// assess assembled data.
-        #[prost(message, tag = "4")]
-        GeminiTemplateConfig(super::GeminiTemplateConfig),
-        /// Optional. The column name in the underlying table that contains already
-        /// fully assembled requests.
-        #[prost(string, tag = "5")]
-        RequestColumnName(::prost::alloc::string::String),
     }
 }
 /// Response message for
@@ -10139,24 +10124,6 @@ pub struct AssembleDataRequest {
     /// Optional. The read config for the dataset.
     #[prost(message, optional, tag = "6")]
     pub gemini_request_read_config: ::core::option::Option<GeminiRequestReadConfig>,
-    /// The read config for the dataset.
-    #[prost(oneof = "assemble_data_request::ReadConfig", tags = "2, 5")]
-    pub read_config: ::core::option::Option<assemble_data_request::ReadConfig>,
-}
-/// Nested message and enum types in `AssembleDataRequest`.
-pub mod assemble_data_request {
-    /// The read config for the dataset.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ReadConfig {
-        /// Optional. Config for assembling templates with a Gemini API structure.
-        #[prost(message, tag = "2")]
-        GeminiTemplateConfig(super::GeminiTemplateConfig),
-        /// Optional. The column name in the underlying table that contains already
-        /// fully assembled requests. If this field is set, the original request will
-        /// be copied to the output table.
-        #[prost(string, tag = "5")]
-        RequestColumnName(::prost::alloc::string::String),
-    }
 }
 /// Response message for
 /// [DatasetService.AssembleData][google.cloud.aiplatform.v1beta1.DatasetService.AssembleData].

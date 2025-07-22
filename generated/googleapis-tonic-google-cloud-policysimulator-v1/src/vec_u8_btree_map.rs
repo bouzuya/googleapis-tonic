@@ -3,6 +3,11 @@ pub mod google {
         pub use googleapis_tonic_google_api::google::api::*;
     }
     pub mod cloud {
+        pub mod orgpolicy {
+            pub mod v2 {
+                pub use googleapis_tonic_google_cloud_orgpolicy_v2::google::cloud::orgpolicy::v2::*;
+            }
+        }
         pub mod policysimulator {
             pub mod v1 {
                 include!("vec_u8_btree_map/google.cloud.policysimulator.v1.rs");

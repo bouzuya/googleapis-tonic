@@ -186,6 +186,15 @@ pub struct Database {
     /// Output only. Information about the provenance of this database.
     #[prost(message, optional, tag = "26")]
     pub source_info: ::core::option::Option<database::SourceInfo>,
+    /// Optional. Input only. Immutable. Tag keys/values directly bound to this
+    /// resource. For example:
+    ///    "123/environment": "production",
+    ///    "123/costCenter": "marketing"
+    #[prost(btree_map = "string, string", tag = "29")]
+    pub tags: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// Output only. Background: Free tier is the ability of a Firestore database
     /// to use a small amount of resources every day without being charged. Once
     /// usage exceeds the free tier limit further usage is charged.
@@ -2271,6 +2280,15 @@ pub struct RestoreDatabaseRequest {
     /// [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
     #[prost(message, optional, tag = "9")]
     pub encryption_config: ::core::option::Option<database::EncryptionConfig>,
+    /// Optional. Immutable. Tags to be bound to the restored database.
+    ///
+    /// The tags should be provided in the format of
+    /// `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
+    #[prost(btree_map = "string, string", tag = "10")]
+    pub tags: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Generated client implementations.
 pub mod firestore_admin_client {
