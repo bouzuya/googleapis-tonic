@@ -299,7 +299,7 @@ checksum = "803f89d32008dcbe8c0ce768db0cbc4a328c4ef4de294a48079fd41b31b5a613"
 dependencies = [
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.1",
 ]
 
 [[package]]
@@ -313,7 +313,7 @@ dependencies = [
  "googleapis-tonic-google-type",
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.1",
 ]
 
 [[package]]
@@ -327,7 +327,7 @@ dependencies = [
  "googleapis-tonic-google-firestore-v1",
  "thiserror 2.0.12",
  "tokio",
- "tonic",
+ "tonic 0.14.0",
 ]
 
 [[package]]
@@ -338,7 +338,7 @@ checksum = "6596763776d798def2cd2dc271217401d8b298a71395c923e2728336428c6a2f"
 dependencies = [
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.1",
 ]
 
 [[package]]
@@ -349,7 +349,7 @@ checksum = "a39982aa92fb0786878e8849436f319813ad039223b8b5b1fe06f1d75e1bf2e6"
 dependencies = [
  "prost",
  "prost-types",
- "tonic",
+ "tonic 0.13.1",
 ]
 
 [[package]]
@@ -460,7 +460,7 @@ dependencies = [
  "tokio",
  "tokio-rustls",
  "tower-service",
- "webpki-roots 1.0.2",
+ "webpki-roots",
 ]
 
 [[package]]
@@ -1080,7 +1080,7 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "webpki-roots 1.0.2",
+ "webpki-roots",
 ]
 
 [[package]]
@@ -1472,12 +1472,32 @@ dependencies = [
  "http",
  "http-body",
  "http-body-util",
+ "percent-encoding",
+ "pin-project",
+ "prost",
+ "tokio-stream",
+ "tower-layer",
+ "tower-service",
+ "tracing",
+]
+
+[[package]]
+name = "tonic"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "308e1db96abdccdf0a9150fb69112bf6ea72640e0bd834ef0c4a618ccc8c8ddc"
+dependencies = [
+ "base64 0.22.1",
+ "bytes",
+ "http",
+ "http-body",
+ "http-body-util",
  "hyper",
  "hyper-timeout",
  "hyper-util",
  "percent-encoding",
  "pin-project",
- "prost",
+ "sync_wrapper",
  "tokio",
  "tokio-rustls",
  "tokio-stream",
@@ -1485,7 +1505,7 @@ dependencies = [
  "tower-layer",
  "tower-service",
  "tracing",
- "webpki-roots 0.26.11",
+ "webpki-roots",
 ]
 
 [[package]]
@@ -1722,15 +1742,6 @@ checksum = "5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
-]
-
-[[package]]
-name = "webpki-roots"
-version = "0.26.11"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "521bc38abb08001b01866da9f51eb7c5d647a19260e00054a8c7fd5f9e57f7a9"
-dependencies = [
- "webpki-roots 1.0.2",
 ]
 
 [[package]]
