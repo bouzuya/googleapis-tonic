@@ -40,8 +40,8 @@ use crate::state::State;
 ///     ...
 /// ```
 pub fn execute(force_update: bool) -> anyhow::Result<()> {
-    let prost_version = "0.13.5";
-    let tonic_version = "0.13.1";
+    let prost_version = "0.14.1";
+    let tonic_version = "0.14.0";
 
     let generated_dir = dirs::generated_dir()?;
     let googleapis_dir = dirs::googleapis_dir()?;
