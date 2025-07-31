@@ -233,7 +233,6 @@ prost = "{PROST_VERSION}"
 prost-types = "{PROST_VERSION}"
 tonic = { version = "{TONIC_VERSION}", default-features = false, features = [
   "codegen",
-  "prost",
 ] }
 {DEPENDENCIES}
 [lib]
