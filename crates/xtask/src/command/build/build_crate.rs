@@ -50,22 +50,25 @@ pub fn build_crate(
         let out_dir = src_dir.join(&root_mod_name);
         fs::create_dir_all(&out_dir)?;
 
-        tonic_build::configure()
+        tonic_prost_build::configure()
             .btree_map(match map_type {
-                MapType::BTreeMap => vec!["."],
-                MapType::HashMap => vec![],
+                MapType::BTreeMap => ".",
+                MapType::HashMap => "",
             })
             .build_client(true)
             .build_server(false)
             .build_transport(false)
             .bytes(match bytes_type {
-                BytesType::Bytes => vec!["."],
-                BytesType::VecU8 => vec![],
+                BytesType::Bytes => ".",
+                BytesType::VecU8 => "",
             })
             .emit_rerun_if_changed(false)
             .out_dir(&out_dir)
             .protoc_arg("--experimental_allow_proto3_optional")
-            .compile_protos(&googleapis.proto_paths(), &[googleapis.dir_path()])?;
+            .compile_protos(
+                &googleapis.proto_paths(),
+                &[googleapis.dir_path().to_path_buf()],
+            )?;
 
         let mut file_names = vec![];
         for dir_entry in fs::read_dir(&out_dir)? {
@@ -148,9 +151,7 @@ repository = "https://github.com/bouzuya/googleapis-tonic"
 [dependencies]
 prost = "{PROST_VERSION}"
 prost-types = "{PROST_VERSION}"
-tonic = { version = "{TONIC_VERSION}", default-features = false, features = [
-  "codegen",
-] }
+tonic-prost = { version = "{TONIC_VERSION}", default-features = false }
 
 [lib]
 doctest = false
