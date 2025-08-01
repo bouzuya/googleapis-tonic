@@ -3,7 +3,7 @@
 ///
 /// The backup contains all documents and index configurations for the given
 /// database at a specific point in time.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Backup {
     /// Output only. The unique resource name of the Backup.
     ///
@@ -39,7 +39,7 @@ pub struct Backup {
 /// Nested message and enum types in `Backup`.
 pub mod backup {
     /// Backup specific statistics.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Stats {
         /// Output only. Summation of the size of all documents and index entries in
         /// the backup, measured in bytes.
@@ -139,8 +139,8 @@ pub struct Database {
     /// Output only. The period during which past versions of data are retained in
     /// the database.
     ///
-    /// Any [read][google.firestore.v1.GetDocumentRequest.read_time]
-    /// or [query][google.firestore.v1.ListDocumentsRequest.read_time] can specify
+    /// Any \[read\]\[google.firestore.v1.GetDocumentRequest.read_time\]
+    /// or \[query\]\[google.firestore.v1.ListDocumentsRequest.read_time\] can specify
     /// a `read_time` within this window, and will read the state of the database
     /// at that time.
     ///
@@ -188,8 +188,8 @@ pub struct Database {
     pub source_info: ::core::option::Option<database::SourceInfo>,
     /// Optional. Input only. Immutable. Tag keys/values directly bound to this
     /// resource. For example:
-    ///    "123/environment": "production",
-    ///    "123/costCenter": "marketing"
+    /// "123/environment": "production",
+    /// "123/costCenter": "marketing"
     #[prost(btree_map = "string, string", tag = "29")]
     pub tags: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -222,7 +222,7 @@ pub mod database {
     /// The CMEK (Customer Managed Encryption Key) configuration for a Firestore
     /// database. If not present, the database is secured by the default Google
     /// encryption key.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CmekConfig {
         /// Required. Only keys in the same location as this database are allowed to
         /// be used for encryption.
@@ -247,7 +247,7 @@ pub mod database {
         pub active_key_version: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
     /// Information about the provenance of this database.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SourceInfo {
         /// The associated long-running operation. This field may not be set after
         /// the operation has completed. Format:
@@ -261,7 +261,7 @@ pub mod database {
     /// Nested message and enum types in `SourceInfo`.
     pub mod source_info {
         /// Information about a backup that was used to restore a database.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct BackupSource {
             /// The resource name of the backup that was used to restore this
             /// database. Format:
@@ -270,7 +270,7 @@ pub mod database {
             pub backup: ::prost::alloc::string::String,
         }
         /// The source from which this database is derived.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum Source {
             /// If set, this database was restored from the specified backup (or a
             /// snapshot thereof).
@@ -281,8 +281,8 @@ pub mod database {
     /// Encryption configuration for a new database being created from another
     /// source.
     ///
-    /// The source could be a [Backup][google.firestore.admin.v1.Backup] .
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    /// The source could be a \[Backup\]\[google.firestore.admin.v1.Backup\] .
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct EncryptionConfig {
         /// The method for encrypting the database.
         #[prost(oneof = "encryption_config::EncryptionType", tags = "1, 2, 3")]
@@ -291,15 +291,15 @@ pub mod database {
     /// Nested message and enum types in `EncryptionConfig`.
     pub mod encryption_config {
         /// The configuration options for using Google default encryption.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct GoogleDefaultEncryptionOptions {}
         /// The configuration options for using the same encryption method as the
         /// source.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct SourceEncryptionOptions {}
         /// The configuration options for using CMEK (Customer Managed Encryption
         /// Key) encryption.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct CustomerManagedEncryptionOptions {
             /// Required. Only keys in the same location as the database are allowed to
             /// be used for encryption.
@@ -315,7 +315,7 @@ pub mod database {
             pub kms_key_name: ::prost::alloc::string::String,
         }
         /// The method for encrypting the database.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum EncryptionType {
             /// Use Google default encryption.
             #[prost(message, tag = "1")]
@@ -686,9 +686,9 @@ pub mod index {
     /// A field in an index.
     /// The field_path describes which field is indexed, the value_mode describes
     /// how the field value is indexed.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct IndexField {
-        /// Can be __name__.
+        /// Can be **name**.
         /// For single field indexes, this must match the name of the field or may
         /// be omitted.
         #[prost(string, tag = "1")]
@@ -700,7 +700,7 @@ pub mod index {
     /// Nested message and enum types in `IndexField`.
     pub mod index_field {
         /// The index configuration to support vector search operations
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct VectorConfig {
             /// Required. The vector dimension this configuration applies to.
             ///
@@ -716,10 +716,10 @@ pub mod index {
         pub mod vector_config {
             /// An index that stores vectors in a flat data structure, and supports
             /// exhaustive search.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct FlatIndex {}
             /// The type of index used.
-            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum Type {
                 /// Indicates the vector index is a flat index.
                 #[prost(message, tag = "2")]
@@ -809,10 +809,10 @@ pub mod index {
             }
         }
         /// How the field value is indexed.
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum ValueMode {
             /// Indicates that this field supports ordering by the specified order or
-            /// comparing using =, !=, <, <=, >, >=.
+            /// comparing using =, !=, \<, \<=, >, >=.
             #[prost(enumeration = "Order", tag = "2")]
             Order(i32),
             /// Indicates that this field supports operations on `array_value`s.
@@ -1122,7 +1122,7 @@ pub mod field {
     /// indicate that the document is eligible for immediate expiration. Using any
     /// other data type or leaving the field absent will disable expiration for the
     /// individual document.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TtlConfig {
         /// Output only. The state of the TTL configuration.
         #[prost(enumeration = "ttl_config::State", tag = "1")]
@@ -1186,10 +1186,10 @@ pub mod field {
         }
     }
 }
-/// Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+/// Metadata for \[google.longrunning.Operation\]\[google.longrunning.Operation\]
 /// results from
-/// [FirestoreAdmin.CreateIndex][google.firestore.admin.v1.FirestoreAdmin.CreateIndex].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.CreateIndex\]\[google.firestore.admin.v1.FirestoreAdmin.CreateIndex\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IndexOperationMetadata {
     /// The time this operation started.
     #[prost(message, optional, tag = "1")]
@@ -1212,9 +1212,9 @@ pub struct IndexOperationMetadata {
     #[prost(message, optional, tag = "6")]
     pub progress_bytes: ::core::option::Option<Progress>,
 }
-/// Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+/// Metadata for \[google.longrunning.Operation\]\[google.longrunning.Operation\]
 /// results from
-/// [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField].
+/// \[FirestoreAdmin.UpdateField\]\[google.firestore.admin.v1.FirestoreAdmin.UpdateField\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldOperationMetadata {
     /// The time this operation started.
@@ -1229,7 +1229,7 @@ pub struct FieldOperationMetadata {
     #[prost(string, tag = "3")]
     pub field: ::prost::alloc::string::String,
     /// A list of
-    /// [IndexConfigDelta][google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta],
+    /// \[IndexConfigDelta\]\[google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta\],
     /// which describe the intent of this operation.
     #[prost(message, repeated, tag = "4")]
     pub index_config_deltas: ::prost::alloc::vec::Vec<
@@ -1309,7 +1309,7 @@ pub mod field_operation_metadata {
         }
     }
     /// Information about a TTL configuration change.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TtlConfigDelta {
         /// Specifies how the TTL configuration is changing.
         #[prost(enumeration = "ttl_config_delta::ChangeType", tag = "1")]
@@ -1362,10 +1362,10 @@ pub mod field_operation_metadata {
         }
     }
 }
-/// Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+/// Metadata for \[google.longrunning.Operation\]\[google.longrunning.Operation\]
 /// results from
-/// [FirestoreAdmin.ExportDocuments][google.firestore.admin.v1.FirestoreAdmin.ExportDocuments].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ExportDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.ExportDocuments\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportDocumentsMetadata {
     /// The time this operation started.
     #[prost(message, optional, tag = "1")]
@@ -1398,10 +1398,10 @@ pub struct ExportDocumentsMetadata {
     #[prost(message, optional, tag = "9")]
     pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+/// Metadata for \[google.longrunning.Operation\]\[google.longrunning.Operation\]
 /// results from
-/// [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1.FirestoreAdmin.ImportDocuments].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ImportDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.ImportDocuments\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImportDocumentsMetadata {
     /// The time this operation started.
     #[prost(message, optional, tag = "1")]
@@ -1429,10 +1429,10 @@ pub struct ImportDocumentsMetadata {
     #[prost(string, repeated, tag = "8")]
     pub namespace_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+/// Metadata for \[google.longrunning.Operation\]\[google.longrunning.Operation\]
 /// results from
-/// [FirestoreAdmin.BulkDeleteDocuments][google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.BulkDeleteDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDeleteDocumentsMetadata {
     /// The time this operation started.
     #[prost(message, optional, tag = "1")]
@@ -1463,9 +1463,9 @@ pub struct BulkDeleteDocumentsMetadata {
     #[prost(message, optional, tag = "8")]
     pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// Returned in the [google.longrunning.Operation][google.longrunning.Operation]
+/// Returned in the \[google.longrunning.Operation\]\[google.longrunning.Operation\]
 /// response field.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportDocumentsResponse {
     /// Location of the output files. This can be used to begin an import
     /// into Cloud Firestore (this project or another project) after the operation
@@ -1473,9 +1473,9 @@ pub struct ExportDocumentsResponse {
     #[prost(string, tag = "1")]
     pub output_uri_prefix: ::prost::alloc::string::String,
 }
-/// Metadata for the [long-running operation][google.longrunning.Operation] from
-/// the [RestoreDatabase][google.firestore.admin.v1.RestoreDatabase] request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// Metadata for the \[long-running operation\]\[google.longrunning.Operation\] from
+/// the \[RestoreDatabase\]\[google.firestore.admin.v1.RestoreDatabase\] request.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RestoreDatabaseMetadata {
     /// The time the restore was started.
     #[prost(message, optional, tag = "1")]
@@ -1498,8 +1498,8 @@ pub struct RestoreDatabaseMetadata {
 }
 /// Describes the progress of the operation.
 /// Unit of work is generic and must be interpreted based on where
-/// [Progress][google.firestore.admin.v1.Progress] is used.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+/// \[Progress\]\[google.firestore.admin.v1.Progress\] is used.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Progress {
     /// The amount of work estimated.
     #[prost(int64, tag = "1")]
@@ -1567,7 +1567,7 @@ impl OperationState {
 ///
 /// This resource is owned by the database it is backing up, and is deleted along
 /// with the database. The actual backups are not though.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackupSchedule {
     /// Output only. The unique backup schedule identifier across all locations and
     /// databases for the given project.
@@ -1602,7 +1602,7 @@ pub struct BackupSchedule {
 /// Nested message and enum types in `BackupSchedule`.
 pub mod backup_schedule {
     /// A oneof field to represent when backups will be taken.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Recurrence {
         /// For a schedule that runs daily.
         #[prost(message, tag = "7")]
@@ -1615,12 +1615,12 @@ pub mod backup_schedule {
 /// Represents a recurring schedule that runs every day.
 ///
 /// The time zone is UTC.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DailyRecurrence {}
 /// Represents a recurring schedule that runs on a specified day of the week.
 ///
 /// The time zone is UTC.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WeeklyRecurrence {
     /// The day of week to run.
     ///
@@ -1629,7 +1629,7 @@ pub struct WeeklyRecurrence {
     pub day: i32,
 }
 /// A Cloud Firestore User Creds.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UserCreds {
     /// Identifier. The resource name of the UserCreds.
     /// Format:
@@ -1657,7 +1657,7 @@ pub struct UserCreds {
 /// Nested message and enum types in `UserCreds`.
 pub mod user_creds {
     /// Describes a Resource Identity principal.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ResourceIdentity {
         /// Output only. Principal identifier string.
         /// See: <https://cloud.google.com/iam/docs/principal-identifiers>
@@ -1708,7 +1708,7 @@ pub mod user_creds {
         }
     }
     /// Identity associated with this User Creds.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum UserCredsIdentity {
         /// Resource Identity descriptor.
         #[prost(message, tag = "6")]
@@ -1716,7 +1716,7 @@ pub mod user_creds {
     }
 }
 /// A request to list the Firestore Databases in all locations for a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListDatabasesRequest {
     /// Required. A parent name of the form
     /// `projects/{project_id}`
@@ -1727,7 +1727,7 @@ pub struct ListDatabasesRequest {
     pub show_deleted: bool,
 }
 /// The request for
-/// [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase].
+/// \[FirestoreAdmin.CreateDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.CreateDatabase\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDatabaseRequest {
     /// Required. A parent name of the form
@@ -1740,7 +1740,7 @@ pub struct CreateDatabaseRequest {
     /// Required. The ID to use for the database, which will become the final
     /// component of the database's resource name.
     ///
-    /// This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+    /// This value should be 4-63 characters. Valid characters are /\[a-z\]\[0-9\]-/
     /// with first character a letter and the last a letter or a number. Must not
     /// be UUID-like /\[0-9a-f\]{8}(-\[0-9a-f\]{4}){3}-\[0-9a-f\]{12}/.
     ///
@@ -1749,7 +1749,7 @@ pub struct CreateDatabaseRequest {
     pub database_id: ::prost::alloc::string::String,
 }
 /// Metadata related to the create database operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateDatabaseMetadata {}
 /// The list of databases for a project.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1770,8 +1770,8 @@ pub struct ListDatabasesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The request for
-/// [FirestoreAdmin.GetDatabase][google.firestore.admin.v1.FirestoreAdmin.GetDatabase].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.GetDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.GetDatabase\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetDatabaseRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}`
@@ -1779,7 +1779,7 @@ pub struct GetDatabaseRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.UpdateDatabase][google.firestore.admin.v1.FirestoreAdmin.UpdateDatabase].
+/// \[FirestoreAdmin.UpdateDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.UpdateDatabase\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDatabaseRequest {
     /// Required. The database to update.
@@ -1790,11 +1790,11 @@ pub struct UpdateDatabaseRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Metadata related to the update database operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateDatabaseMetadata {}
 /// The request for
-/// [FirestoreAdmin.DeleteDatabase][google.firestore.admin.v1.FirestoreAdmin.DeleteDatabase].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.DeleteDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.DeleteDatabase\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteDatabaseRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}`
@@ -1807,11 +1807,11 @@ pub struct DeleteDatabaseRequest {
     pub etag: ::prost::alloc::string::String,
 }
 /// Metadata related to the delete database operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteDatabaseMetadata {}
 /// The request for
-/// [FirestoreAdmin.CreateUserCreds][google.firestore.admin.v1.FirestoreAdmin.CreateUserCreds].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.CreateUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.CreateUserCreds\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateUserCredsRequest {
     /// Required. A parent name of the form
     /// `projects/{project_id}/databases/{database_id}`
@@ -1823,15 +1823,15 @@ pub struct CreateUserCredsRequest {
     /// Required. The ID to use for the user creds, which will become the final
     /// component of the user creds's resource name.
     ///
-    /// This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+    /// This value should be 4-63 characters. Valid characters are /\[a-z\]\[0-9\]-/
     /// with first character a letter and the last a letter or a number. Must not
     /// be UUID-like /\[0-9a-f\]{8}(-\[0-9a-f\]{4}){3}-\[0-9a-f\]{12}/.
     #[prost(string, tag = "3")]
     pub user_creds_id: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.GetUserCreds][google.firestore.admin.v1.FirestoreAdmin.GetUserCreds].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.GetUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.GetUserCreds\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetUserCredsRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
@@ -1839,8 +1839,8 @@ pub struct GetUserCredsRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.ListUserCreds][google.firestore.admin.v1.FirestoreAdmin.ListUserCreds].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ListUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.ListUserCreds\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListUserCredsRequest {
     /// Required. A parent database name of the form
     /// `projects/{project_id}/databases/{database_id}`
@@ -1848,7 +1848,7 @@ pub struct ListUserCredsRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// The response for
-/// [FirestoreAdmin.ListUserCreds][google.firestore.admin.v1.FirestoreAdmin.ListUserCreds].
+/// \[FirestoreAdmin.ListUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.ListUserCreds\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserCredsResponse {
     /// The user creds for the database.
@@ -1856,8 +1856,8 @@ pub struct ListUserCredsResponse {
     pub user_creds: ::prost::alloc::vec::Vec<UserCreds>,
 }
 /// The request for
-/// [FirestoreAdmin.EnableUserCreds][google.firestore.admin.v1.FirestoreAdmin.EnableUserCreds].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.EnableUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.EnableUserCreds\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EnableUserCredsRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
@@ -1865,8 +1865,8 @@ pub struct EnableUserCredsRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.DisableUserCreds][google.firestore.admin.v1.FirestoreAdmin.DisableUserCreds].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.DisableUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.DisableUserCreds\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DisableUserCredsRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
@@ -1874,8 +1874,8 @@ pub struct DisableUserCredsRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.ResetUserPassword][google.firestore.admin.v1.FirestoreAdmin.ResetUserPassword].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ResetUserPassword\]\[google.firestore.admin.v1.FirestoreAdmin.ResetUserPassword\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResetUserPasswordRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
@@ -1883,8 +1883,8 @@ pub struct ResetUserPasswordRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.DeleteUserCreds][google.firestore.admin.v1.FirestoreAdmin.DeleteUserCreds].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.DeleteUserCreds\]\[google.firestore.admin.v1.FirestoreAdmin.DeleteUserCreds\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteUserCredsRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
@@ -1892,12 +1892,12 @@ pub struct DeleteUserCredsRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.CreateBackupSchedule][google.firestore.admin.v1.FirestoreAdmin.CreateBackupSchedule].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.CreateBackupSchedule\]\[google.firestore.admin.v1.FirestoreAdmin.CreateBackupSchedule\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateBackupScheduleRequest {
     /// Required. The parent database.
     ///
-    ///   Format `projects/{project}/databases/{database}`
+    /// Format `projects/{project}/databases/{database}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The backup schedule to create.
@@ -1905,8 +1905,8 @@ pub struct CreateBackupScheduleRequest {
     pub backup_schedule: ::core::option::Option<BackupSchedule>,
 }
 /// The request for
-/// [FirestoreAdmin.GetBackupSchedule][google.firestore.admin.v1.FirestoreAdmin.GetBackupSchedule].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.GetBackupSchedule\]\[google.firestore.admin.v1.FirestoreAdmin.GetBackupSchedule\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetBackupScheduleRequest {
     /// Required. The name of the backup schedule.
     ///
@@ -1916,8 +1916,8 @@ pub struct GetBackupScheduleRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.UpdateBackupSchedule][google.firestore.admin.v1.FirestoreAdmin.UpdateBackupSchedule].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.UpdateBackupSchedule\]\[google.firestore.admin.v1.FirestoreAdmin.UpdateBackupSchedule\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateBackupScheduleRequest {
     /// Required. The backup schedule to update.
     #[prost(message, optional, tag = "1")]
@@ -1927,8 +1927,8 @@ pub struct UpdateBackupScheduleRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request for
-/// [FirestoreAdmin.ListBackupSchedules][google.firestore.admin.v1.FirestoreAdmin.ListBackupSchedules].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ListBackupSchedules\]\[google.firestore.admin.v1.FirestoreAdmin.ListBackupSchedules\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListBackupSchedulesRequest {
     /// Required. The parent database.
     ///
@@ -1937,15 +1937,15 @@ pub struct ListBackupSchedulesRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// The response for
-/// [FirestoreAdmin.ListBackupSchedules][google.firestore.admin.v1.FirestoreAdmin.ListBackupSchedules].
+/// \[FirestoreAdmin.ListBackupSchedules\]\[google.firestore.admin.v1.FirestoreAdmin.ListBackupSchedules\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupSchedulesResponse {
     /// List of all backup schedules.
     #[prost(message, repeated, tag = "1")]
     pub backup_schedules: ::prost::alloc::vec::Vec<BackupSchedule>,
 }
-/// The request for [FirestoreAdmin.DeleteBackupSchedules][].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// The request for \[FirestoreAdmin.DeleteBackupSchedules\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteBackupScheduleRequest {
     /// Required. The name of the backup schedule.
     ///
@@ -1955,7 +1955,7 @@ pub struct DeleteBackupScheduleRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.CreateIndex][google.firestore.admin.v1.FirestoreAdmin.CreateIndex].
+/// \[FirestoreAdmin.CreateIndex\]\[google.firestore.admin.v1.FirestoreAdmin.CreateIndex\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexRequest {
     /// Required. A parent name of the form
@@ -1967,8 +1967,8 @@ pub struct CreateIndexRequest {
     pub index: ::core::option::Option<Index>,
 }
 /// The request for
-/// [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ListIndexes\]\[google.firestore.admin.v1.FirestoreAdmin.ListIndexes\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListIndexesRequest {
     /// Required. A parent name of the form
     /// `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
@@ -1981,13 +1981,13 @@ pub struct ListIndexesRequest {
     #[prost(int32, tag = "3")]
     pub page_size: i32,
     /// A page token, returned from a previous call to
-    /// [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes],
+    /// \[FirestoreAdmin.ListIndexes\]\[google.firestore.admin.v1.FirestoreAdmin.ListIndexes\],
     /// that may be used to get the next page of results.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// The response for
-/// [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes].
+/// \[FirestoreAdmin.ListIndexes\]\[google.firestore.admin.v1.FirestoreAdmin.ListIndexes\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesResponse {
     /// The requested indexes.
@@ -1999,8 +1999,8 @@ pub struct ListIndexesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.GetIndex][google.firestore.admin.v1.FirestoreAdmin.GetIndex].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.GetIndex\]\[google.firestore.admin.v1.FirestoreAdmin.GetIndex\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetIndexRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
@@ -2008,8 +2008,8 @@ pub struct GetIndexRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.DeleteIndex][google.firestore.admin.v1.FirestoreAdmin.DeleteIndex].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.DeleteIndex\]\[google.firestore.admin.v1.FirestoreAdmin.DeleteIndex\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteIndexRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
@@ -2017,7 +2017,7 @@ pub struct DeleteIndexRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField].
+/// \[FirestoreAdmin.UpdateField\]\[google.firestore.admin.v1.FirestoreAdmin.UpdateField\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFieldRequest {
     /// Required. The field to be updated.
@@ -2029,8 +2029,8 @@ pub struct UpdateFieldRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request for
-/// [FirestoreAdmin.GetField][google.firestore.admin.v1.FirestoreAdmin.GetField].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.GetField\]\[google.firestore.admin.v1.FirestoreAdmin.GetField\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetFieldRequest {
     /// Required. A name of the form
     /// `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
@@ -2038,18 +2038,18 @@ pub struct GetFieldRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListFieldsRequest {
     /// Required. A parent name of the form
     /// `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// The filter to apply to list results. Currently,
-    /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+    /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\]
     /// only supports listing fields that have been explicitly overridden. To issue
     /// this query, call
-    /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+    /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\]
     /// with a filter that includes `indexConfig.usesAncestorConfig:false` or
     /// `ttlConfig:*`.
     #[prost(string, tag = "2")]
@@ -2058,13 +2058,13 @@ pub struct ListFieldsRequest {
     #[prost(int32, tag = "3")]
     pub page_size: i32,
     /// A page token, returned from a previous call to
-    /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields],
+    /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\],
     /// that may be used to get the next page of results.
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
 }
 /// The response for
-/// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields].
+/// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFieldsResponse {
     /// The requested fields.
@@ -2076,8 +2076,8 @@ pub struct ListFieldsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.ExportDocuments][google.firestore.admin.v1.FirestoreAdmin.ExportDocuments].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ExportDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.ExportDocuments\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportDocumentsRequest {
     /// Required. Database to export. Should be of the form:
     /// `projects/{project_id}/databases/{database_id}`.
@@ -2108,7 +2108,7 @@ pub struct ExportDocumentsRequest {
     /// The timestamp that corresponds to the version of the database to be
     /// exported. The timestamp must be in the past, rounded to the minute and not
     /// older than
-    /// [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+    /// \[earliestVersionTime\]\[google.firestore.admin.v1.Database.earliest_version_time\].
     /// If specified, then the exported documents will represent a consistent view
     /// of the database at the provided time. Otherwise, there are no guarantees
     /// about the consistency of the exported documents.
@@ -2116,8 +2116,8 @@ pub struct ExportDocumentsRequest {
     pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The request for
-/// [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1.FirestoreAdmin.ImportDocuments].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ImportDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.ImportDocuments\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImportDocumentsRequest {
     /// Required. Database to import into. Should be of the form:
     /// `projects/{project_id}/databases/{database_id}`.
@@ -2131,7 +2131,7 @@ pub struct ImportDocumentsRequest {
     /// This must match the output_uri_prefix of an ExportDocumentsResponse from
     /// an export that has completed successfully.
     /// See:
-    /// [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
+    /// \[google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix\]\[google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix\].
     #[prost(string, tag = "3")]
     pub input_uri_prefix: ::prost::alloc::string::String,
     /// An empty list represents all namespaces. This is the preferred
@@ -2144,16 +2144,16 @@ pub struct ImportDocumentsRequest {
     pub namespace_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The request for
-/// [FirestoreAdmin.BulkDeleteDocuments][google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments].
+/// \[FirestoreAdmin.BulkDeleteDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments\].
 ///
 /// When both collection_ids and namespace_ids are set, only documents satisfying
 /// both conditions will be deleted.
 ///
 /// Requests with namespace_ids and collection_ids both empty will be rejected.
 /// Please use
-/// [FirestoreAdmin.DeleteDatabase][google.firestore.admin.v1.FirestoreAdmin.DeleteDatabase]
+/// \[FirestoreAdmin.DeleteDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.DeleteDatabase\]
 /// instead.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDeleteDocumentsRequest {
     /// Required. Database to operate. Should be of the form:
     /// `projects/{project_id}/databases/{database_id}`.
@@ -2179,12 +2179,12 @@ pub struct BulkDeleteDocumentsRequest {
     pub namespace_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The response for
-/// [FirestoreAdmin.BulkDeleteDocuments][google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments].
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.BulkDeleteDocuments\]\[google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments\].
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDeleteDocumentsResponse {}
 /// The request for
-/// [FirestoreAdmin.GetBackup][google.firestore.admin.v1.FirestoreAdmin.GetBackup].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.GetBackup\]\[google.firestore.admin.v1.FirestoreAdmin.GetBackup\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetBackupRequest {
     /// Required. Name of the backup to fetch.
     ///
@@ -2193,8 +2193,8 @@ pub struct GetBackupRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [FirestoreAdmin.ListBackups][google.firestore.admin.v1.FirestoreAdmin.ListBackups].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.ListBackups\]\[google.firestore.admin.v1.FirestoreAdmin.ListBackups\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListBackupsRequest {
     /// Required. The location to list backups from.
     ///
@@ -2212,15 +2212,15 @@ pub struct ListBackupsRequest {
     /// must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
     /// Colon `:` is the contains operator. Filter rules are not case sensitive.
     ///
-    /// The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+    /// The following fields in the \[Backup\]\[google.firestore.admin.v1.Backup\] are
     /// eligible for filtering:
     ///
-    ///    * `database_uid` (supports `=` only)
+    /// * `database_uid` (supports `=` only)
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
 }
 /// The response for
-/// [FirestoreAdmin.ListBackups][google.firestore.admin.v1.FirestoreAdmin.ListBackups].
+/// \[FirestoreAdmin.ListBackups\]\[google.firestore.admin.v1.FirestoreAdmin.ListBackups\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsResponse {
     /// List of all backups for the project.
@@ -2236,8 +2236,8 @@ pub struct ListBackupsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The request for
-/// [FirestoreAdmin.DeleteBackup][google.firestore.admin.v1.FirestoreAdmin.DeleteBackup].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[FirestoreAdmin.DeleteBackup\]\[google.firestore.admin.v1.FirestoreAdmin.DeleteBackup\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteBackupRequest {
     /// Required. Name of the backup to delete.
     ///
@@ -2246,7 +2246,7 @@ pub struct DeleteBackupRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The request message for
-/// [FirestoreAdmin.RestoreDatabase][google.firestore.admin.v1.FirestoreAdmin.RestoreDatabase].
+/// \[FirestoreAdmin.RestoreDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.RestoreDatabase\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreDatabaseRequest {
     /// Required. The project to restore the database in. Format is
@@ -2257,7 +2257,7 @@ pub struct RestoreDatabaseRequest {
     /// component of the database's resource name. This database ID must not be
     /// associated with an existing database.
     ///
-    /// This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+    /// This value should be 4-63 characters. Valid characters are /\[a-z\]\[0-9\]-/
     /// with first character a letter and the last a letter or a number. Must not
     /// be UUID-like /\[0-9a-f\]{8}(-\[0-9a-f\]{4}){3}-\[0-9a-f\]{12}/.
     ///
@@ -2277,7 +2277,7 @@ pub struct RestoreDatabaseRequest {
     ///
     /// If this field is not specified, the restored database will use
     /// the same encryption configuration as the backup, namely
-    /// [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+    /// \[use_source_encryption\]\[google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption\].
     #[prost(message, optional, tag = "9")]
     pub encryption_config: ::core::option::Option<database::EncryptionConfig>,
     /// Optional. Immutable. Tags to be bound to the restored database.
@@ -2399,10 +2399,10 @@ pub mod firestore_admin_client {
             self
         }
         /// Creates a composite index. This returns a
-        /// [google.longrunning.Operation][google.longrunning.Operation] which may be
+        /// \[google.longrunning.Operation\]\[google.longrunning.Operation\] which may be
         /// used to track the status of the creation. The metadata for the operation
         /// will be the type
-        /// [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
+        /// \[IndexOperationMetadata\]\[google.firestore.admin.v1.IndexOperationMetadata\].
         pub async fn create_index(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateIndexRequest>,
@@ -2418,7 +2418,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/CreateIndex",
             );
@@ -2448,7 +2448,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ListIndexes",
             );
@@ -2475,7 +2475,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/GetIndex",
             );
@@ -2502,7 +2502,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/DeleteIndex",
             );
@@ -2529,7 +2529,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/GetField",
             );
@@ -2545,16 +2545,15 @@ pub mod firestore_admin_client {
         }
         /// Updates a field configuration. Currently, field updates apply only to
         /// single field index configuration. However, calls to
-        /// [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField]
+        /// \[FirestoreAdmin.UpdateField\]\[google.firestore.admin.v1.FirestoreAdmin.UpdateField\]
         /// should provide a field mask to avoid changing any configuration that the
-        /// caller isn't aware of. The field mask should be specified as: `{ paths:
-        /// "index_config" }`.
+        /// caller isn't aware of. The field mask should be specified as: `{ paths:  "index_config" }`.
         ///
         /// This call returns a
-        /// [google.longrunning.Operation][google.longrunning.Operation] which may be
+        /// \[google.longrunning.Operation\]\[google.longrunning.Operation\] which may be
         /// used to track the status of the field update. The metadata for the
         /// operation will be the type
-        /// [FieldOperationMetadata][google.firestore.admin.v1.FieldOperationMetadata].
+        /// \[FieldOperationMetadata\]\[google.firestore.admin.v1.FieldOperationMetadata\].
         ///
         /// To configure the default field settings for the database, use
         /// the special `Field` with resource name:
@@ -2574,7 +2573,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/UpdateField",
             );
@@ -2591,10 +2590,10 @@ pub mod firestore_admin_client {
         /// Lists the field configuration and metadata for this database.
         ///
         /// Currently,
-        /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+        /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\]
         /// only supports listing fields that have been explicitly overridden. To issue
         /// this query, call
-        /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+        /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\]
         /// with the filter set to `indexConfig.usesAncestorConfig:false` or
         /// `ttlConfig:*`.
         pub async fn list_fields(
@@ -2612,7 +2611,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ListFields",
             );
@@ -2652,7 +2651,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ExportDocuments",
             );
@@ -2686,7 +2685,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ImportDocuments",
             );
@@ -2723,7 +2722,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/BulkDeleteDocuments",
             );
@@ -2753,7 +2752,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/CreateDatabase",
             );
@@ -2780,7 +2779,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/GetDatabase",
             );
@@ -2810,7 +2809,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ListDatabases",
             );
@@ -2840,7 +2839,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/UpdateDatabase",
             );
@@ -2870,7 +2869,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/DeleteDatabase",
             );
@@ -2897,7 +2896,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/CreateUserCreds",
             );
@@ -2925,7 +2924,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/GetUserCreds",
             );
@@ -2956,7 +2955,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ListUserCreds",
             );
@@ -2983,7 +2982,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/EnableUserCreds",
             );
@@ -3010,7 +3009,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/DisableUserCreds",
             );
@@ -3037,7 +3036,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ResetUserPassword",
             );
@@ -3064,7 +3063,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/DeleteUserCreds",
             );
@@ -3091,7 +3090,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/GetBackup",
             );
@@ -3121,7 +3120,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ListBackups",
             );
@@ -3148,7 +3147,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/DeleteBackup",
             );
@@ -3166,17 +3165,17 @@ pub mod firestore_admin_client {
         ///
         /// The new database must be in the same cloud region or multi-region location
         /// as the existing backup. This behaves similar to
-        /// [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
+        /// \[FirestoreAdmin.CreateDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.CreateDatabase\]
         /// except instead of creating a new empty database, a new database is created
         /// with the database type, index configuration, and documents from an existing
         /// backup.
         ///
-        /// The [long-running operation][google.longrunning.Operation] can be used to
+        /// The \[long-running operation\]\[google.longrunning.Operation\] can be used to
         /// track the progress of the restore, with the Operation's
-        /// [metadata][google.longrunning.Operation.metadata] field type being the
-        /// [RestoreDatabaseMetadata][google.firestore.admin.v1.RestoreDatabaseMetadata].
-        /// The [response][google.longrunning.Operation.response] type is the
-        /// [Database][google.firestore.admin.v1.Database] if the restore was
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type being the
+        /// \[RestoreDatabaseMetadata\]\[google.firestore.admin.v1.RestoreDatabaseMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] type is the
+        /// \[Database\]\[google.firestore.admin.v1.Database\] if the restore was
         /// successful. The new database is not readable or writeable until the LRO has
         /// completed.
         pub async fn restore_database(
@@ -3194,7 +3193,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/RestoreDatabase",
             );
@@ -3223,7 +3222,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/CreateBackupSchedule",
             );
@@ -3250,7 +3249,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/GetBackupSchedule",
             );
@@ -3280,7 +3279,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/ListBackupSchedules",
             );
@@ -3307,7 +3306,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/UpdateBackupSchedule",
             );
@@ -3334,7 +3333,7 @@ pub mod firestore_admin_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.firestore.admin.v1.FirestoreAdmin/DeleteBackupSchedule",
             );
@@ -3351,6 +3350,6 @@ pub mod firestore_admin_client {
     }
 }
 /// The metadata message for
-/// [google.cloud.location.Location.metadata][google.cloud.location.Location.metadata].
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+/// \[google.cloud.location.Location.metadata\]\[google.cloud.location.Location.metadata\].
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocationMetadata {}

@@ -36,7 +36,7 @@ pub struct Parameter {
     pub kms_key: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Message for requesting list of Parameters
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListParametersRequest {
     /// Required. Parent value for ListParametersRequest in the format
     /// `projects/*/locations/*`.
@@ -70,7 +70,7 @@ pub struct ListParametersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a Parameter
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetParameterRequest {
     /// Required. Name of the resource in the format
     /// `projects/*/locations/*/parameters/*`.
@@ -137,7 +137,7 @@ pub struct UpdateParameterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a Parameter
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteParameterRequest {
     /// Required. Name of the resource in the format
     /// `projects/*/locations/*/parameters/*`.
@@ -160,7 +160,7 @@ pub struct DeleteParameterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message describing ParameterVersion resource
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ParameterVersion {
     /// Identifier. \[Output only\] The resource name of the ParameterVersion in the
     /// format `projects/*/locations/*/parameters/*/versions/*`.
@@ -192,14 +192,14 @@ pub struct ParameterVersion {
     pub kms_key_version: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Message for storing a ParameterVersion resource's payload data
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ParameterVersionPayload {
     /// Required. bytes data for storing payload.
     #[prost(bytes = "bytes", tag = "1")]
     pub data: ::prost::bytes::Bytes,
 }
 /// Message for requesting list of ParameterVersions
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListParameterVersionsRequest {
     /// Required. Parent value for ListParameterVersionsRequest in the format
     /// `projects/*/locations/*/parameters/*`.
@@ -233,7 +233,7 @@ pub struct ListParameterVersionsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a ParameterVersion
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetParameterVersionRequest {
     /// Required. Name of the resource in the format
     /// `projects/*/locations/*/parameters/*/versions/*`.
@@ -246,14 +246,14 @@ pub struct GetParameterVersionRequest {
     pub view: i32,
 }
 /// Message for getting a ParameterVersionRender
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RenderParameterVersionRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Message describing RenderParameterVersionResponse resource
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RenderParameterVersionResponse {
     /// Output only. Resource identifier of a ParameterVersion in the format
     /// `projects/*/locations/*/parameters/*/versions/*`.
@@ -270,7 +270,7 @@ pub struct RenderParameterVersionResponse {
     pub rendered_payload: ::prost::bytes::Bytes,
 }
 /// Message for creating a ParameterVersion
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateParameterVersionRequest {
     /// Required. Value for parent in the format
     /// `projects/*/locations/*/parameters/*`.
@@ -299,7 +299,7 @@ pub struct CreateParameterVersionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for updating a ParameterVersion
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateParameterVersionRequest {
     /// Optional. Field mask is used to specify the fields to be overwritten in the
     /// ParameterVersion resource by the update.
@@ -329,7 +329,7 @@ pub struct UpdateParameterVersionRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a ParameterVersion
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteParameterVersionRequest {
     /// Required. Name of the resource in the format
     /// `projects/*/locations/*/parameters/*/versions/*`.
@@ -524,7 +524,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/ListParameters",
             );
@@ -551,7 +551,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/GetParameter",
             );
@@ -578,7 +578,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/CreateParameter",
             );
@@ -605,7 +605,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/UpdateParameter",
             );
@@ -632,7 +632,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/DeleteParameter",
             );
@@ -662,7 +662,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/ListParameterVersions",
             );
@@ -692,7 +692,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/GetParameterVersion",
             );
@@ -722,7 +722,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/RenderParameterVersion",
             );
@@ -752,7 +752,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/CreateParameterVersion",
             );
@@ -782,7 +782,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/UpdateParameterVersion",
             );
@@ -809,7 +809,7 @@ pub mod parameter_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.parametermanager.v1.ParameterManager/DeleteParameterVersion",
             );

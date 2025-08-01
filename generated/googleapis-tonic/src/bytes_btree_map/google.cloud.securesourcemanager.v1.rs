@@ -49,7 +49,7 @@ pub struct Instance {
 /// Nested message and enum types in `Instance`.
 pub mod instance {
     /// HostConfig has different instance endpoints.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct HostConfig {
         /// Output only. HTML hostname.
         #[prost(string, tag = "1")]
@@ -66,7 +66,7 @@ pub mod instance {
         pub git_ssh: ::prost::alloc::string::String,
     }
     /// PrivateConfig includes settings for private instance.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PrivateConfig {
         /// Required. Immutable. Indicate if it's private instance.
         #[prost(bool, tag = "1")]
@@ -192,7 +192,7 @@ pub mod instance {
     }
 }
 /// Metadata of a Secure Source Manager repository.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Repository {
     /// Optional. A unique identifier for a repository. The name should be of the
     /// format:
@@ -208,7 +208,7 @@ pub struct Repository {
     /// `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
     /// When creating repository via
     /// securesourcemanager.googleapis.com (Control Plane API), this field is used
-    /// as input. When creating repository via *.sourcemanager.dev (Data Plane
+    /// as input. When creating repository via \*.sourcemanager.dev (Data Plane
     /// API), this field is output only.
     #[prost(string, tag = "3")]
     pub instance: ::prost::alloc::string::String,
@@ -236,7 +236,7 @@ pub struct Repository {
 /// Nested message and enum types in `Repository`.
 pub mod repository {
     /// URIs for the repository.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct UrIs {
         /// Output only. HTML is the URI for user to view the repository in a
         /// browser.
@@ -250,7 +250,7 @@ pub mod repository {
         pub api: ::prost::alloc::string::String,
     }
     /// Repository initialization configuration.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct InitialConfig {
         /// Default branch name of the repository.
         #[prost(string, tag = "1")]
@@ -423,7 +423,7 @@ pub struct BranchRule {
     pub etag: ::prost::alloc::string::String,
     /// Optional. The pattern of the branch that can match to this BranchRule.
     /// Specified as regex.
-    /// .* for all branches. Examples: main, (main|release.*).
+    /// .\* for all branches. Examples: main, (main|release.\*).
     /// Current MVP phase only support `.*` for wildcard.
     #[prost(string, tag = "7")]
     pub include_pattern: ::prost::alloc::string::String,
@@ -460,7 +460,7 @@ pub struct BranchRule {
 /// Nested message and enum types in `BranchRule`.
 pub mod branch_rule {
     /// Check is a type for status check.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Check {
         /// Required. The context of the check.
         #[prost(string, tag = "1")]
@@ -468,7 +468,7 @@ pub mod branch_rule {
     }
 }
 /// ListInstancesRequest is the request to list instances.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListInstancesRequest {
     /// Required. Parent value for ListInstancesRequest.
     #[prost(string, tag = "1")]
@@ -500,7 +500,7 @@ pub struct ListInstancesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// GetInstanceRequest is the request for getting an instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetInstanceRequest {
     /// Required. Name of the resource.
     #[prost(string, tag = "1")]
@@ -535,7 +535,7 @@ pub struct CreateInstanceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// DeleteInstanceRequest is the request for deleting an instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteInstanceRequest {
     /// Required. Name of the resource.
     #[prost(string, tag = "1")]
@@ -557,7 +557,7 @@ pub struct DeleteInstanceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Represents the metadata of the long-running operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -576,8 +576,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have [Operation.error][] value with a
-    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+    /// have \[Operation.error\]\[\] value with a
+    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -586,7 +586,7 @@ pub struct OperationMetadata {
     pub api_version: ::prost::alloc::string::String,
 }
 /// ListRepositoriesRequest is request to list repositories.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListRepositoriesRequest {
     /// Required. Parent value for ListRepositoriesRequest.
     #[prost(string, tag = "1")]
@@ -606,7 +606,7 @@ pub struct ListRepositoriesRequest {
     /// `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
     /// When listing repositories via
     /// securesourcemanager.googleapis.com (Control Plane API), this field is
-    /// required. When listing repositories via *.sourcemanager.dev (Data Plane
+    /// required. When listing repositories via \*.sourcemanager.dev (Data Plane
     /// API), this field is ignored.
     #[prost(string, tag = "5")]
     pub instance: ::prost::alloc::string::String,
@@ -621,7 +621,7 @@ pub struct ListRepositoriesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// GetRepositoryRequest is the request for getting a repository.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetRepositoryRequest {
     /// Required. Name of the repository to retrieve.
     /// The format is
@@ -630,7 +630,7 @@ pub struct GetRepositoryRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// CreateRepositoryRequest is the request for creating a repository.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateRepositoryRequest {
     /// Required. The project in which to create the repository. Values are of the
     /// form `projects/{project_number}/locations/{location_id}`
@@ -641,12 +641,12 @@ pub struct CreateRepositoryRequest {
     pub repository: ::core::option::Option<Repository>,
     /// Required. The ID to use for the repository, which will become the final
     /// component of the repository's resource name. This value should be 4-63
-    /// characters, and valid characters are /[a-z][0-9]-/.
+    /// characters, and valid characters are /\[a-z\]\[0-9\]-/.
     #[prost(string, tag = "3")]
     pub repository_id: ::prost::alloc::string::String,
 }
 /// DeleteRepositoryRequest is the request to delete a repository.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteRepositoryRequest {
     /// Required. Name of the repository to delete.
     /// The format is
@@ -659,7 +659,7 @@ pub struct DeleteRepositoryRequest {
     pub allow_missing: bool,
 }
 /// GetBranchRuleRequest is the request for getting a branch rule.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetBranchRuleRequest {
     /// Required. Name of the repository to retrieve.
     /// The format is
@@ -678,7 +678,7 @@ pub struct CreateBranchRuleRequest {
     pub branch_rule_id: ::prost::alloc::string::String,
 }
 /// ListBranchRulesRequest is the request to list branch rules.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListBranchRulesRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -688,7 +688,7 @@ pub struct ListBranchRulesRequest {
     pub page_token: ::prost::alloc::string::String,
 }
 /// DeleteBranchRuleRequest is the request to delete a branch rule.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteBranchRuleRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -710,7 +710,7 @@ pub struct UpdateBranchRuleRequest {
     /// branchRule resource by the update.
     /// The fields specified in the update_mask are relative to the resource, not
     /// the full request. A field will be overwritten if it is in the mask.
-    /// The special value "*" means full replacement.
+    /// The special value "\*" means full replacement.
     #[prost(message, optional, tag = "3")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -745,11 +745,15 @@ pub mod secure_source_manager_client {
     /// instance, so you must connect to your instance's API hostname to access
     /// them. The API hostname looks like the following:
     ///
-    ///    https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
+    /// ```text
+    /// https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
+    /// ```
     ///
     /// For example,
     ///
-    ///    https://my-instance-702770452863-api.us-central1.sourcemanager.dev
+    /// ```text
+    /// https://my-instance-702770452863-api.us-central1.sourcemanager.dev
+    /// ```
     ///
     /// Data Plane endpoints are denoted with **Host: Data Plane**.
     ///
@@ -840,7 +844,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/ListInstances",
             );
@@ -867,7 +871,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/GetInstance",
             );
@@ -897,7 +901,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateInstance",
             );
@@ -927,7 +931,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteInstance",
             );
@@ -959,7 +963,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/ListRepositories",
             );
@@ -988,7 +992,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/GetRepository",
             );
@@ -1020,7 +1024,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateRepository",
             );
@@ -1052,7 +1056,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteRepository",
             );
@@ -1084,7 +1088,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/GetIamPolicyRepo",
             );
@@ -1116,7 +1120,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/SetIamPolicyRepo",
             );
@@ -1151,7 +1155,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/TestIamPermissionsRepo",
             );
@@ -1181,7 +1185,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateBranchRule",
             );
@@ -1211,7 +1215,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/ListBranchRules",
             );
@@ -1238,7 +1242,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/GetBranchRule",
             );
@@ -1268,7 +1272,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/UpdateBranchRule",
             );
@@ -1298,7 +1302,7 @@ pub mod secure_source_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteBranchRule",
             );

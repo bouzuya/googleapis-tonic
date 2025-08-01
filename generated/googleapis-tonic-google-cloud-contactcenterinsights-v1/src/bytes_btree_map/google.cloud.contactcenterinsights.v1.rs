@@ -88,7 +88,7 @@ pub struct Conversation {
 /// Nested message and enum types in `Conversation`.
 pub mod conversation {
     /// Call-specific metadata.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CallMetadata {
         /// The audio channel that contains the customer.
         #[prost(int32, tag = "1")]
@@ -116,7 +116,7 @@ pub mod conversation {
     /// Nested message and enum types in `QualityMetadata`.
     pub mod quality_metadata {
         /// Information about an agent involved in the conversation.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct AgentInfo {
             /// A user-specified string representing the agent.
             #[prost(string, tag = "1")]
@@ -211,7 +211,7 @@ pub mod conversation {
                 pub confidence: f32,
             }
             /// Metadata from Dialogflow relating to the current transcript segment.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct DialogflowSegmentMetadata {
                 /// Whether the transcript segment was covered under the configured smart
                 /// reply allowlist in Agent Assist.
@@ -264,7 +264,7 @@ pub mod conversation {
         }
     }
     /// Metadata that applies to the conversation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Metadata {
         /// Call-specific metadata.
         #[prost(message, tag = "7")]
@@ -274,7 +274,7 @@ pub mod conversation {
     /// duration from the time that the conversation creation request was received.
     /// Conversations with an expiration set will be removed up to 24 hours after
     /// the specified time.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Expiration {
         /// The time at which this conversation should expire. After this time, the
         /// conversation data and any associated analyses will be deleted.
@@ -311,7 +311,7 @@ pub struct Analysis {
     pub annotator_selector: ::core::option::Option<AnnotatorSelector>,
 }
 /// The conversation source, which is a combination of transcript and audio.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversationDataSource {
     /// The source of the conversation.
     #[prost(oneof = "conversation_data_source::Source", tags = "1, 3")]
@@ -320,7 +320,7 @@ pub struct ConversationDataSource {
 /// Nested message and enum types in `ConversationDataSource`.
 pub mod conversation_data_source {
     /// The source of the conversation.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Source {
         /// A Cloud Storage location specification for the audio and transcript.
         #[prost(message, tag = "1")]
@@ -331,7 +331,7 @@ pub mod conversation_data_source {
     }
 }
 /// A Cloud Storage source of conversation data.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GcsSource {
     /// Cloud Storage URI that points to a file that contains the conversation
     /// audio.
@@ -343,7 +343,7 @@ pub struct GcsSource {
     pub transcript_uri: ::prost::alloc::string::String,
 }
 /// A Dialogflow source of conversation data.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DialogflowSource {
     /// Output only. The name of the Dialogflow conversation that this conversation
     /// resource is derived from. Format:
@@ -541,7 +541,7 @@ pub mod call_annotation {
     }
 }
 /// A point in a conversation that marks the start or the end of an annotation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AnnotationBoundary {
     /// The index in the sequence of transcribed pieces of the conversation where
     /// the boundary is located. This index starts at zero.
@@ -554,7 +554,7 @@ pub struct AnnotationBoundary {
 /// Nested message and enum types in `AnnotationBoundary`.
 pub mod annotation_boundary {
     /// A detailed boundary, which describes a more specific point.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum DetailedBoundary {
         /// The word index of this boundary with respect to the first word in the
         /// transcript piece. This index starts at zero.
@@ -636,11 +636,11 @@ pub mod entity {
         /// convention), plus whichever additional elements appear in the text:
         ///
         /// * `number` - The actual number, broken down into sections according to
-        /// local convention.
+        ///   local convention.
         /// * `national_prefix` - Country code, if detected.
         /// * `area_code` - Region or area code, if detected.
         /// * `extension` - Phone extension (to be dialed after connection), if
-        /// detected.
+        ///   detected.
         PhoneNumber = 9,
         /// Address.
         ///
@@ -654,9 +654,9 @@ pub mod entity {
         /// * `country` - Country, if detected.
         /// * `broad_region` - Administrative area, such as the state, if detected.
         /// * `narrow_region` - Smaller administrative area, such as county, if
-        /// detected.
+        ///   detected.
         /// * `sublocality` - Used in Asian addresses to demark a district within a
-        /// city, if detected.
+        ///   city, if detected.
         Address = 10,
         /// Date.
         ///
@@ -720,7 +720,7 @@ pub mod entity {
 }
 /// The data for an intent.
 /// Represents a detected intent in the conversation, for example MAKES_PROMISE.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Intent {
     /// The unique identifier of the intent.
     #[prost(string, tag = "1")]
@@ -731,7 +731,7 @@ pub struct Intent {
 }
 /// The data for a matched phrase matcher.
 /// Represents information identifying a phrase matcher for a given match.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PhraseMatchData {
     /// The unique identifier (the resource name) of the phrase matcher.
     #[prost(string, tag = "1")]
@@ -742,20 +742,20 @@ pub struct PhraseMatchData {
 }
 /// The data for a Dialogflow intent.
 /// Represents a detected intent in the conversation, e.g. MAKES_PROMISE.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DialogflowIntent {
     /// The human-readable name of the intent.
     #[prost(string, tag = "1")]
     pub display_name: ::prost::alloc::string::String,
 }
 /// The data for an interruption annotation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InterruptionData {}
 /// The data for a silence annotation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SilenceData {}
 /// The data for a hold annotation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HoldData {}
 /// The data for an entity mention annotation.
 /// This represents a mention of an `Entity` in the conversation.
@@ -822,7 +822,7 @@ pub mod entity_mention_data {
 /// Represents an intent match for a text segment in the conversation. A text
 /// segment can be part of a sentence, a complete sentence, or an utterance
 /// with multiple sentences.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IntentMatchData {
     /// The id of the matched intent.
     /// Can be used to retrieve the corresponding intent information.
@@ -887,7 +887,7 @@ pub struct IssueModel {
 /// Nested message and enum types in `IssueModel`.
 pub mod issue_model {
     /// Configs for the input data used to create the issue model.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct InputDataConfig {
         /// Medium of conversations used in training data. This field is being
         /// deprecated. To specify the medium to be used in training a new issue
@@ -1004,7 +1004,7 @@ pub mod issue_model {
     }
 }
 /// The issue resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Issue {
     /// Immutable. The resource name of the issue.
     /// Format:
@@ -1048,7 +1048,7 @@ pub struct IssueModelLabelStats {
 /// Nested message and enum types in `IssueModelLabelStats`.
 pub mod issue_model_label_stats {
     /// Aggregated statistics about an issue.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct IssueStats {
         /// Issue resource.
         /// Format:
@@ -1218,7 +1218,7 @@ pub mod phrase_match_rule_group {
     }
 }
 /// The data for a phrase match rule.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PhraseMatchRule {
     /// Required. The phrase to be matched.
     #[prost(string, tag = "1")]
@@ -1233,7 +1233,7 @@ pub struct PhraseMatchRule {
     pub config: ::core::option::Option<PhraseMatchRuleConfig>,
 }
 /// Configuration information of a phrase match rule.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PhraseMatchRuleConfig {
     /// The configuration of the phrase match rule.
     #[prost(oneof = "phrase_match_rule_config::Config", tags = "1")]
@@ -1242,7 +1242,7 @@ pub struct PhraseMatchRuleConfig {
 /// Nested message and enum types in `PhraseMatchRuleConfig`.
 pub mod phrase_match_rule_config {
     /// The configuration of the phrase match rule.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Config {
         /// The configuration for the exact match rule.
         #[prost(message, tag = "1")]
@@ -1250,7 +1250,7 @@ pub mod phrase_match_rule_config {
     }
 }
 /// Exact match configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExactMatchConfig {
     /// Whether to consider case sensitivity when performing an exact match.
     #[prost(bool, tag = "1")]
@@ -1297,9 +1297,9 @@ pub struct Settings {
     /// * "create-conversation": Notify each time a conversation is created.
     /// * "export-insights-data": Notify each time an export is complete.
     /// * "ingest-conversations": Notify each time an IngestConversations LRO is
-    /// complete.
+    ///   complete.
     /// * "update-conversation": Notify each time a conversation is updated via
-    /// UpdateConversation.
+    ///   UpdateConversation.
     /// * "upload-conversation": Notify when an UploadConversation LRO is complete.
     ///
     /// Values are Pub/Sub topics. The format of each Pub/Sub topic is:
@@ -1389,7 +1389,7 @@ pub struct AnalysisRule {
 }
 /// A customer-managed encryption key specification that can be applied to all
 /// created resources (e.g. `Conversation`).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EncryptionSpec {
     /// Immutable. The resource name of the encryption key specification resource.
     /// Format:
@@ -1411,7 +1411,7 @@ pub struct EncryptionSpec {
 /// ingested from the `CreateConversation` endpoint or the Dialogflow / Agent
 /// Assist runtime integrations. When using Dialogflow / Agent Assist runtime
 /// integrations, redaction should be performed in Dialogflow / Agent Assist.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RedactionConfig {
     /// The fully-qualified DLP deidentify template resource name.
     /// Format:
@@ -1429,7 +1429,7 @@ pub struct RedactionConfig {
 /// `UploadConversation` and `IngestConversations` endpoints, including
 /// conversation coming from CCAI Platform. They are not applied to conversations
 /// ingested from the `CreateConversation` endpoint.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SpeechConfig {
     /// The fully-qualified Speech Recognizer resource name.
     /// Format:
@@ -1467,7 +1467,7 @@ pub struct RuntimeAnnotation {
 /// Nested message and enum types in `RuntimeAnnotation`.
 pub mod runtime_annotation {
     /// Explicit input used for generating the answer
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct UserInput {
         /// Query text. Article Search uses this to store the input query used
         /// to generate the search results.
@@ -1555,7 +1555,7 @@ pub mod runtime_annotation {
 }
 /// The feedback that the customer has about a certain answer in the
 /// conversation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AnswerFeedback {
     /// The correctness level of an answer.
     #[prost(enumeration = "answer_feedback::CorrectnessLevel", tag = "1")]
@@ -1778,7 +1778,7 @@ pub struct ConversationSummarizationSuggestionData {
     pub conversation_model: ::prost::alloc::string::String,
 }
 /// The call participant speaking for a given utterance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversationParticipant {
     /// Deprecated. Use `dialogflow_participant_name` instead.
     /// The name of the Dialogflow participant. Format:
@@ -1848,7 +1848,7 @@ pub mod conversation_participant {
             }
         }
     }
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Participant {
         /// The name of the participant provided by Dialogflow. Format:
         /// projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
@@ -1860,7 +1860,7 @@ pub mod conversation_participant {
     }
 }
 /// The View resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct View {
     /// Immutable. The resource name of the view.
     /// Format:
@@ -1881,7 +1881,7 @@ pub struct View {
     pub value: ::prost::alloc::string::String,
 }
 /// Selector of all available annotators and phrase matchers to run.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AnnotatorSelector {
     /// Whether to run the interruption annotator.
     #[prost(bool, tag = "1")]
@@ -1937,7 +1937,7 @@ pub struct AnnotatorSelector {
 /// Nested message and enum types in `AnnotatorSelector`.
 pub mod annotator_selector {
     /// Configuration for summarization.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SummarizationConfig {
         /// Summarization must use either a preexisting conversation profile or one
         /// of the supported default models.
@@ -1991,7 +1991,7 @@ pub mod annotator_selector {
         }
         /// Summarization must use either a preexisting conversation profile or one
         /// of the supported default models.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum ModelSource {
             /// Resource name of the Dialogflow conversation profile.
             /// Format:
@@ -2004,7 +2004,7 @@ pub mod annotator_selector {
         }
     }
     /// Configuration for the QA feature.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QaConfig {
         /// Which scorecards should be scored.
         #[prost(oneof = "qa_config::ScorecardSource", tags = "1")]
@@ -2013,7 +2013,7 @@ pub mod annotator_selector {
     /// Nested message and enum types in `QaConfig`.
     pub mod qa_config {
         /// Container for a list of scorecards.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct ScorecardList {
             /// List of QaScorecardRevisions.
             #[prost(string, repeated, tag = "1")]
@@ -2022,7 +2022,7 @@ pub mod annotator_selector {
             >,
         }
         /// Which scorecards should be scored.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum ScorecardSource {
             /// A manual list of scorecards to score.
             #[prost(message, tag = "1")]
@@ -2124,7 +2124,7 @@ pub mod qa_question {
     }
     /// Metadata about the tuning operation for the question. Will only be set if a
     /// scorecard containing this question has been tuned.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TuningMetadata {
         /// Total number of valid labels provided for the question at the time of
         /// tuining.
@@ -2142,7 +2142,7 @@ pub mod qa_question {
 }
 /// A QaScorecard represents a collection of questions to be scored during
 /// analysis.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct QaScorecard {
     /// Identifier. The scorecard name.
     /// Format:
@@ -2168,7 +2168,7 @@ pub struct QaScorecard {
 /// results — the questions may have changed, or the score weighting will make
 /// existing scores impossible to understand. So changes must create a new
 /// revision, rather than modifying the existing resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct QaScorecardRevision {
     /// Identifier. The name of the scorecard revision.
     /// Format:
@@ -2279,8 +2279,8 @@ pub struct QaAnswer {
 /// Nested message and enum types in `QaAnswer`.
 pub mod qa_answer {
     /// Message for holding the value of a
-    /// [QaAnswer][google.cloud.contactcenterinsights.v1.QaAnswer].
-    /// [QaQuestion.AnswerChoice][google.cloud.contactcenterinsights.v1.QaQuestion.AnswerChoice]
+    /// \[QaAnswer\]\[google.cloud.contactcenterinsights.v1.QaAnswer\].
+    /// \[QaQuestion.AnswerChoice\]\[google.cloud.contactcenterinsights.v1.QaQuestion.AnswerChoice\]
     /// defines the possible answer values for a question.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AnswerValue {
@@ -2567,7 +2567,7 @@ impl DatasetValidationWarning {
     }
 }
 /// The request for calculating conversation statistics.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CalculateStatsRequest {
     /// Required. The location of the conversations.
     #[prost(string, tag = "1")]
@@ -2645,7 +2645,7 @@ pub mod calculate_stats_response {
     /// Nested message and enum types in `TimeSeries`.
     pub mod time_series {
         /// A single interval in a time series.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct Interval {
             /// The start time of this interval.
             #[prost(message, optional, tag = "1")]
@@ -2657,7 +2657,7 @@ pub mod calculate_stats_response {
     }
 }
 /// Metadata for a create analysis operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateAnalysisOperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -2737,7 +2737,7 @@ pub struct UploadConversationMetadata {
     pub applied_redaction_config: ::core::option::Option<RedactionConfig>,
 }
 /// Request to list conversations.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListConversationsRequest {
     /// Required. The parent resource of the conversation.
     #[prost(string, tag = "1")]
@@ -2791,7 +2791,7 @@ pub struct ListConversationsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request to get a conversation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetConversationRequest {
     /// Required. The name of the conversation to get.
     #[prost(string, tag = "1")]
@@ -2819,12 +2819,12 @@ pub struct UpdateConversationRequest {
     /// * `start_time`
     /// * `expire_time` or `ttl`
     /// * `data_source.gcs_source.audio_uri` or
-    /// `data_source.dialogflow_source.audio_uri`
+    ///   `data_source.dialogflow_source.audio_uri`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request to delete a conversation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteConversationRequest {
     /// Required. The name of the conversation to delete.
     #[prost(string, tag = "1")]
@@ -2836,7 +2836,7 @@ pub struct DeleteConversationRequest {
     pub force: bool,
 }
 /// The request to ingest conversations.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IngestConversationsRequest {
     /// Required. The parent resource for new conversations.
     #[prost(string, tag = "1")]
@@ -2873,7 +2873,7 @@ pub struct IngestConversationsRequest {
 /// Nested message and enum types in `IngestConversationsRequest`.
 pub mod ingest_conversations_request {
     /// Configuration for Cloud Storage bucket sources.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GcsSource {
         /// Required. The Cloud Storage bucket containing source objects.
         #[prost(string, tag = "1")]
@@ -2884,11 +2884,11 @@ pub mod ingest_conversations_request {
         /// Optional. The Cloud Storage path to the conversation metadata. Note that:
         /// \[1\] Metadata files are expected to be in JSON format.
         /// \[2\] Metadata and source files (transcripts or audio) must be in
-        ///      separate buckets.
+        /// separate buckets.
         /// \[3\] A source file and its corresponding metadata file must share the same
         /// name to
-        ///      be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
-        ///      `gs://bucket/metadata/conversation1.json`.
+        /// be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
+        /// `gs://bucket/metadata/conversation1.json`.
         #[prost(string, optional, tag = "3")]
         pub metadata_bucket_uri: ::core::option::Option<::prost::alloc::string::String>,
         /// Optional. Custom keys to extract as conversation labels from metadata
@@ -2945,14 +2945,14 @@ pub mod ingest_conversations_request {
         }
     }
     /// Configuration for processing transcript objects.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TranscriptObjectConfig {
         /// Required. The medium transcript objects represent.
         #[prost(enumeration = "super::conversation::Medium", tag = "1")]
         pub medium: i32,
     }
     /// Configuration that applies to all conversations.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ConversationConfig {
         /// Optional. An opaque, user-specified string representing a human agent who
         /// handled all conversations in the import. Note that this will be
@@ -2973,7 +2973,7 @@ pub mod ingest_conversations_request {
     }
     /// Configuration for an external data store containing objects that will
     /// be converted to conversations.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Source {
         /// A cloud storage bucket source. Note that any previously ingested objects
         /// from the source will be skipped to avoid duplication.
@@ -2981,7 +2981,7 @@ pub mod ingest_conversations_request {
         GcsSource(GcsSource),
     }
     /// Configuration for converting individual `source` objects to conversations.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ObjectConfig {
         /// Configuration for when `source` contains conversation transcripts.
         #[prost(message, tag = "3")]
@@ -3013,7 +3013,7 @@ pub struct IngestConversationsMetadata {
 /// Nested message and enum types in `IngestConversationsMetadata`.
 pub mod ingest_conversations_metadata {
     /// Statistics for IngestConversations operation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct IngestConversationsStats {
         /// Output only. The number of objects processed during the ingest operation.
         #[prost(int32, tag = "1")]
@@ -3033,7 +3033,7 @@ pub mod ingest_conversations_metadata {
     }
 }
 /// The response to an IngestConversations operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IngestConversationsResponse {}
 /// The request to create an analysis.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3046,7 +3046,7 @@ pub struct CreateAnalysisRequest {
     pub analysis: ::core::option::Option<Analysis>,
 }
 /// The request to list analyses.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAnalysesRequest {
     /// Required. The parent resource of the analyses.
     #[prost(string, tag = "1")]
@@ -3079,14 +3079,14 @@ pub struct ListAnalysesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request to get an analysis.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetAnalysisRequest {
     /// Required. The name of the analysis to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to delete an analysis.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteAnalysisRequest {
     /// Required. The name of the analysis to delete.
     #[prost(string, tag = "1")]
@@ -3138,7 +3138,7 @@ pub struct BulkAnalyzeConversationsMetadata {
     pub partial_errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 /// The response for a bulk analyze conversations operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkAnalyzeConversationsResponse {
     /// Count of successful analyses.
     #[prost(int32, tag = "1")]
@@ -3148,7 +3148,7 @@ pub struct BulkAnalyzeConversationsResponse {
     pub failed_analysis_count: i32,
 }
 /// The request to delete conversations in bulk.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDeleteConversationsRequest {
     /// Required. The parent resource to delete conversations from.
     /// Format:
@@ -3185,10 +3185,10 @@ pub struct BulkDeleteConversationsMetadata {
     pub partial_errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 /// The response for a bulk delete conversations operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDeleteConversationsResponse {}
 /// The request to export insights.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportInsightsDataRequest {
     /// Required. The parent resource to export data from.
     #[prost(string, tag = "1")]
@@ -3212,7 +3212,7 @@ pub struct ExportInsightsDataRequest {
 /// Nested message and enum types in `ExportInsightsDataRequest`.
 pub mod export_insights_data_request {
     /// A BigQuery Table Reference.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct BigQueryDestination {
         /// A project ID or number. If specified, then export will attempt to
         /// write data to this project instead of the resource project. Otherwise,
@@ -3275,7 +3275,7 @@ pub mod export_insights_data_request {
         }
     }
     /// Exporter destination.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Destination {
         /// Specified if sink is a BigQuery table.
         #[prost(message, tag = "2")]
@@ -3300,7 +3300,7 @@ pub struct ExportInsightsDataMetadata {
     pub partial_errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 /// Response for an export insights operation.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportInsightsDataResponse {}
 /// The request to create an issue model.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3336,7 +3336,7 @@ pub struct UpdateIssueModelRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request to list issue models.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListIssueModelsRequest {
     /// Required. The parent resource of the issue model.
     #[prost(string, tag = "1")]
@@ -3350,21 +3350,21 @@ pub struct ListIssueModelsResponse {
     pub issue_models: ::prost::alloc::vec::Vec<IssueModel>,
 }
 /// The request to get an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetIssueModelRequest {
     /// Required. The name of the issue model to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to delete an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteIssueModelRequest {
     /// Required. The name of the issue model to delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Metadata for deleting an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteIssueModelMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -3377,17 +3377,17 @@ pub struct DeleteIssueModelMetadata {
     pub request: ::core::option::Option<DeleteIssueModelRequest>,
 }
 /// The request to deploy an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeployIssueModelRequest {
     /// Required. The issue model to deploy.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The response to deploy an issue model.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeployIssueModelResponse {}
 /// Metadata for deploying an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeployIssueModelMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -3400,17 +3400,17 @@ pub struct DeployIssueModelMetadata {
     pub request: ::core::option::Option<DeployIssueModelRequest>,
 }
 /// The request to undeploy an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UndeployIssueModelRequest {
     /// Required. The issue model to undeploy.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The response to undeploy an issue model.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UndeployIssueModelResponse {}
 /// Metadata for undeploying an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UndeployIssueModelMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -3423,7 +3423,7 @@ pub struct UndeployIssueModelMetadata {
     pub request: ::core::option::Option<UndeployIssueModelRequest>,
 }
 /// Request to export an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportIssueModelRequest {
     /// Required. The issue model to export.
     #[prost(string, tag = "1")]
@@ -3434,13 +3434,13 @@ pub struct ExportIssueModelRequest {
 /// Nested message and enum types in `ExportIssueModelRequest`.
 pub mod export_issue_model_request {
     /// Google Cloud Storage Object URI to save the issue model to.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GcsDestination {
         /// Required. Format: `gs://<bucket-name>/<object-name>`
         #[prost(string, tag = "1")]
         pub object_uri: ::prost::alloc::string::String,
     }
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Destination {
         /// Google Cloud Storage URI to export the issue model to.
         #[prost(message, tag = "2")]
@@ -3448,10 +3448,10 @@ pub mod export_issue_model_request {
     }
 }
 /// Response from export issue model
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportIssueModelResponse {}
 /// Metadata used for export issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportIssueModelMetadata {
     /// The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -3464,7 +3464,7 @@ pub struct ExportIssueModelMetadata {
     pub request: ::core::option::Option<ExportIssueModelRequest>,
 }
 /// Request to import an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImportIssueModelRequest {
     /// Required. The parent resource of the issue model.
     #[prost(string, tag = "1")]
@@ -3480,13 +3480,13 @@ pub struct ImportIssueModelRequest {
 /// Nested message and enum types in `ImportIssueModelRequest`.
 pub mod import_issue_model_request {
     /// Google Cloud Storage Object URI to get the issue model file from.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GcsSource {
         /// Required. Format: `gs://<bucket-name>/<object-name>`
         #[prost(string, tag = "1")]
         pub object_uri: ::prost::alloc::string::String,
     }
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Source {
         /// Google Cloud Storage source message.
         #[prost(message, tag = "2")]
@@ -3494,10 +3494,10 @@ pub mod import_issue_model_request {
     }
 }
 /// Response from import issue model
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImportIssueModelResponse {}
 /// Metadata used for import issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImportIssueModelMetadata {
     /// The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -3510,14 +3510,14 @@ pub struct ImportIssueModelMetadata {
     pub request: ::core::option::Option<ImportIssueModelRequest>,
 }
 /// The request to get an issue.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetIssueRequest {
     /// Required. The name of the issue to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request to list issues.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListIssuesRequest {
     /// Required. The parent resource of the issue.
     #[prost(string, tag = "1")]
@@ -3531,7 +3531,7 @@ pub struct ListIssuesResponse {
     pub issues: ::prost::alloc::vec::Vec<Issue>,
 }
 /// The request to update an issue.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateIssueRequest {
     /// Required. The new values for the issue.
     #[prost(message, optional, tag = "1")]
@@ -3541,14 +3541,14 @@ pub struct UpdateIssueRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request to delete an issue.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteIssueRequest {
     /// Required. The name of the issue to delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request to get statistics of an issue model.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CalculateIssueModelStatsRequest {
     /// Required. The resource name of the issue model to query against.
     #[prost(string, tag = "1")]
@@ -3566,9 +3566,7 @@ pub struct CalculateIssueModelStatsResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePhraseMatcherRequest {
     /// Required. The parent resource of the phrase matcher. Required. The location
-    /// to create a phrase matcher for. Format: `projects/<Project
-    /// ID>/locations/<Location ID>` or `projects/<Project
-    /// Number>/locations/<Location ID>`
+    /// to create a phrase matcher for. Format: `projects/<Project  ID>/locations/<Location ID>` or `projects/<Project  Number>/locations/<Location ID>`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The phrase matcher resource to create.
@@ -3576,7 +3574,7 @@ pub struct CreatePhraseMatcherRequest {
     pub phrase_matcher: ::core::option::Option<PhraseMatcher>,
 }
 /// Request to list phrase matchers.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListPhraseMatchersRequest {
     /// Required. The parent resource of the phrase matcher.
     #[prost(string, tag = "1")]
@@ -3609,14 +3607,14 @@ pub struct ListPhraseMatchersResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request to get a a phrase matcher.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetPhraseMatcherRequest {
     /// Required. The name of the phrase matcher to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to delete a phrase matcher.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeletePhraseMatcherRequest {
     /// Required. The name of the phrase matcher to delete.
     #[prost(string, tag = "1")]
@@ -3633,7 +3631,7 @@ pub struct UpdatePhraseMatcherRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request to get project-level settings.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSettingsRequest {
     /// Required. The name of the settings resource to get.
     #[prost(string, tag = "1")]
@@ -3654,9 +3652,7 @@ pub struct UpdateSettingsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAnalysisRuleRequest {
     /// Required. The parent resource of the analysis rule. Required. The location
-    /// to create a analysis rule for. Format: `projects/<Project
-    /// ID>/locations/<Location ID>` or `projects/<Project
-    /// Number>/locations/<Location ID>`
+    /// to create a analysis rule for. Format: `projects/<Project  ID>/locations/<Location ID>` or `projects/<Project  Number>/locations/<Location ID>`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The analysis rule resource to create.
@@ -3664,7 +3660,7 @@ pub struct CreateAnalysisRuleRequest {
     pub analysis_rule: ::core::option::Option<AnalysisRule>,
 }
 /// The request for getting a analysis rule.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetAnalysisRuleRequest {
     /// Required. The name of the AnalysisRule to get.
     #[prost(string, tag = "1")]
@@ -3683,14 +3679,14 @@ pub struct UpdateAnalysisRuleRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request to delete a analysis rule.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteAnalysisRuleRequest {
     /// Required. The name of the analysis rule to delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to list analysis rules.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAnalysisRulesRequest {
     /// Required. The parent resource of the analysis rules.
     #[prost(string, tag = "1")]
@@ -3719,14 +3715,14 @@ pub struct ListAnalysisRulesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request to get location-level encryption specification.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetEncryptionSpecRequest {
     /// Required. The name of the encryption spec resource to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to initialize a location-level encryption specification.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InitializeEncryptionSpecRequest {
     /// Required. The encryption spec used for CMEK encryption. It is required that
     /// the kms key is in the same region as the endpoint. The same key will be
@@ -3736,7 +3732,7 @@ pub struct InitializeEncryptionSpecRequest {
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
 }
 /// The response to initialize a location-level encryption specification.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InitializeEncryptionSpecResponse {}
 /// Metadata for initializing a location-level encryption specification.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3756,7 +3752,7 @@ pub struct InitializeEncryptionSpecMetadata {
     pub partial_errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 /// The request to create a view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateViewRequest {
     /// Required. The parent resource of the view. Required. The location to create
     /// a view for.
@@ -3769,14 +3765,14 @@ pub struct CreateViewRequest {
     pub view: ::core::option::Option<View>,
 }
 /// The request to get a view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetViewRequest {
     /// Required. The name of the view to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to list views.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListViewsRequest {
     /// Required. The parent resource of the views.
     #[prost(string, tag = "1")]
@@ -3805,7 +3801,7 @@ pub struct ListViewsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request to update a view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateViewRequest {
     /// Required. The new view.
     #[prost(message, optional, tag = "1")]
@@ -3815,7 +3811,7 @@ pub struct UpdateViewRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request to delete a view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteViewRequest {
     /// Required. The name of the view to delete.
     #[prost(string, tag = "1")]
@@ -3823,7 +3819,7 @@ pub struct DeleteViewRequest {
 }
 /// A dimension determines the grouping key for the query. In SQL terms, these
 /// would be part of both the "SELECT" and "GROUP BY" clauses.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Dimension {
     /// The key of the dimension.
     #[prost(enumeration = "dimension::DimensionKey", tag = "1")]
@@ -3835,7 +3831,7 @@ pub struct Dimension {
 /// Nested message and enum types in `Dimension`.
 pub mod dimension {
     /// Metadata about the issue dimension.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct IssueDimensionMetadata {
         /// The issue ID.
         #[prost(string, tag = "1")]
@@ -3848,7 +3844,7 @@ pub mod dimension {
         pub issue_model_id: ::prost::alloc::string::String,
     }
     /// Metadata about the agent dimension.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AgentDimensionMetadata {
         /// Optional. A user-specified string representing the agent.
         #[prost(string, tag = "1")]
@@ -3861,7 +3857,7 @@ pub mod dimension {
         pub agent_team: ::prost::alloc::string::String,
     }
     /// Metadata about the QA question dimension.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QaQuestionDimensionMetadata {
         /// Optional. The QA scorecard ID.
         #[prost(string, tag = "1")]
@@ -3876,7 +3872,7 @@ pub mod dimension {
     /// Metadata about the QA question-answer dimension.
     /// This is useful for showing the answer distribution for questions for a
     /// given scorecard.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QaQuestionAnswerDimensionMetadata {
         /// Optional. The QA scorecard ID.
         #[prost(string, tag = "1")]
@@ -3958,7 +3954,7 @@ pub mod dimension {
         }
     }
     /// Output-only metadata about the dimension.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum DimensionMetadata {
         /// Output only. Metadata about the issue dimension.
         #[prost(message, tag = "2")]
@@ -3983,9 +3979,8 @@ pub struct QueryMetricsRequest {
     pub location: ::prost::alloc::string::String,
     /// Required. Filter to select a subset of conversations to compute the
     /// metrics. Must specify a window of the conversation create time to compute
-    /// the metrics. The returned metrics will be from the range [DATE(starting
+    /// the metrics. The returned metrics will be from the range \[DATE(starting
     /// create time), DATE(ending create time)).
-    ///
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// The time granularity of each data point in the time series.
@@ -4033,19 +4028,19 @@ pub mod query_metrics_request {
         /// This is the default value if no time granularity is specified.
         None = 1,
         /// Data points in the time series will aggregate at a daily granularity.
-        /// 1 day means [midnight to midnight).
+        /// 1 day means \[midnight to midnight).
         Daily = 2,
         /// Data points in the time series will aggregate at a daily granularity.
-        /// 1 HOUR means [01:00 to 02:00).
+        /// 1 HOUR means \[01:00 to 02:00).
         Hourly = 3,
         /// Data points in the time series will aggregate at a daily granularity.
-        /// PER_MINUTE means [01:00 to 01:01).
+        /// PER_MINUTE means \[01:00 to 01:01).
         PerMinute = 4,
         /// Data points in the time series will aggregate at a 1 minute  granularity.
-        /// PER_5_MINUTES means [01:00 to 01:05).
+        /// PER_5_MINUTES means \[01:00 to 01:05).
         Per5Minutes = 5,
         /// Data points in the time series will aggregate at a monthly granularity.
-        /// 1 MONTH means [01st of the month to 1st of the next month).
+        /// 1 MONTH means \[01st of the month to 1st of the next month).
         Monthly = 6,
     }
     impl TimeGranularity {
@@ -4119,7 +4114,7 @@ pub mod query_metrics_response {
         #[prost(message, repeated, tag = "1")]
         pub dimensions: ::prost::alloc::vec::Vec<super::Dimension>,
         /// The total metric value. The interval of this data point is
-        /// [starting create time, ending create time) from the request.
+        /// \[starting create time, ending create time) from the request.
         #[prost(message, optional, tag = "2")]
         pub total: ::core::option::Option<slice::DataPoint>,
         /// A time series of metric values. This is only populated if the request
@@ -4135,9 +4130,9 @@ pub mod query_metrics_response {
             /// The interval that this data point represents.
             ///
             /// * If this is the total data point, the interval is
-            /// [starting create time, ending create time) from the request.
+            ///   \[starting create time, ending create time) from the request.
             /// * If this a data point from the time series, the interval is
-            /// [time, time + time granularity from the request).
+            ///   \[time, time + time granularity from the request).
             #[prost(message, optional, tag = "1")]
             pub interval: ::core::option::Option<
                 super::super::super::super::super::r#type::Interval,
@@ -4219,7 +4214,7 @@ pub mod query_metrics_response {
     }
 }
 /// The metadata from querying metrics.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct QueryMetricsMetadata {}
 /// The request for creating a QaQuestion.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4240,14 +4235,14 @@ pub struct CreateQaQuestionRequest {
     pub qa_question_id: ::prost::alloc::string::String,
 }
 /// The request for a QaQuestion.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetQaQuestionRequest {
     /// Required. The name of the QaQuestion to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request to list QaQuestions.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListQaQuestionsRequest {
     /// Required. The parent resource of the questions.
     #[prost(string, tag = "1")]
@@ -4295,14 +4290,14 @@ pub struct UpdateQaQuestionRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request for deleting a QaQuestion.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteQaQuestionRequest {
     /// Required. The name of the QaQuestion to delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request for creating a QaScorecard.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateQaScorecardRequest {
     /// Required. The parent resource of the QaScorecard.
     #[prost(string, tag = "1")]
@@ -4320,14 +4315,14 @@ pub struct CreateQaScorecardRequest {
     pub qa_scorecard_id: ::prost::alloc::string::String,
 }
 /// The request for a QaScorecard. By default, returns the latest revision.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetQaScorecardRequest {
     /// Required. The name of the QaScorecard to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request for updating a QaScorecard.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateQaScorecardRequest {
     /// Required. The QaScorecard to update.
     #[prost(message, optional, tag = "1")]
@@ -4342,7 +4337,7 @@ pub struct UpdateQaScorecardRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request for deleting a QaScorecard.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteQaScorecardRequest {
     /// Required. The name of the QaScorecard to delete.
     #[prost(string, tag = "1")]
@@ -4353,7 +4348,7 @@ pub struct DeleteQaScorecardRequest {
     pub force: bool,
 }
 /// The request for creating a QaScorecardRevision.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateQaScorecardRevisionRequest {
     /// Required. The parent resource of the QaScorecardRevision.
     #[prost(string, tag = "1")]
@@ -4371,14 +4366,14 @@ pub struct CreateQaScorecardRevisionRequest {
     pub qa_scorecard_revision_id: ::prost::alloc::string::String,
 }
 /// The request for a QaScorecardRevision.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetQaScorecardRevisionRequest {
     /// Required. The name of the QaScorecardRevision to get.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request for TuneQaScorecardRevision endpoint.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TuneQaScorecardRevisionRequest {
     /// Required. The parent resource for new fine tuning job instance.
     #[prost(string, tag = "1")]
@@ -4398,7 +4393,7 @@ pub struct TuneQaScorecardRevisionRequest {
     pub validate_only: bool,
 }
 /// Response for TuneQaScorecardRevision endpoint.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TuneQaScorecardRevisionResponse {}
 /// Metadata for TuneQaScorecardRevision endpoint.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4432,7 +4427,7 @@ pub struct TuneQaScorecardRevisionMetadata {
 /// Nested message and enum types in `TuneQaScorecardRevisionMetadata`.
 pub mod tune_qa_scorecard_revision_metadata {
     /// Contains validation results for a question in the tuning request.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QaQuestionDatasetValidationResult {
         /// Output only. The resource path of the question whose dataset was
         /// evaluated for tuning.
@@ -4471,21 +4466,21 @@ pub mod tune_qa_scorecard_revision_metadata {
     }
 }
 /// The request to deploy a QaScorecardRevision
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeployQaScorecardRevisionRequest {
     /// Required. The name of the QaScorecardRevision to deploy.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to undeploy a QaScorecardRevision
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UndeployQaScorecardRevisionRequest {
     /// Required. The name of the QaScorecardRevision to undeploy.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request to delete a QaScorecardRevision.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteQaScorecardRevisionRequest {
     /// Required. The name of the QaScorecardRevision to delete.
     #[prost(string, tag = "1")]
@@ -4497,7 +4492,7 @@ pub struct DeleteQaScorecardRevisionRequest {
     pub force: bool,
 }
 /// Request to list QaScorecards.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListQaScorecardsRequest {
     /// Required. The parent resource of the scorecards.
     #[prost(string, tag = "1")]
@@ -4526,7 +4521,7 @@ pub struct ListQaScorecardsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request to list QaScorecardRevisions
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListQaScorecardRevisionsRequest {
     /// Required. The parent resource of the scorecard revisions. To list all
     /// revisions of all scorecards, substitute the QaScorecard ID with a '-'
@@ -4576,7 +4571,7 @@ pub struct CreateFeedbackLabelRequest {
     pub feedback_label: ::core::option::Option<FeedbackLabel>,
 }
 /// The request for listing feedback labels.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListFeedbackLabelsRequest {
     /// Required. The parent resource of the feedback labels.
     #[prost(string, tag = "1")]
@@ -4621,7 +4616,7 @@ pub struct ListFeedbackLabelsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for getting a feedback label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetFeedbackLabelRequest {
     /// Required. The name of the feedback label to get.
     #[prost(string, tag = "1")]
@@ -4638,14 +4633,14 @@ pub struct UpdateFeedbackLabelRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The request for deleting a feedback label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteFeedbackLabelRequest {
     /// Required. The name of the feedback label to delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request for listing all feedback labels.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAllFeedbackLabelsRequest {
     /// Required. The parent resource of all feedback labels per project.
     #[prost(string, tag = "1")]
@@ -4689,7 +4684,7 @@ pub struct ListAllFeedbackLabelsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request for bulk uploading feedback labels.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkUploadFeedbackLabelsRequest {
     /// Required. The parent resource for new feedback labels.
     #[prost(string, tag = "1")]
@@ -4707,7 +4702,7 @@ pub struct BulkUploadFeedbackLabelsRequest {
 /// Nested message and enum types in `BulkUploadFeedbackLabelsRequest`.
 pub mod bulk_upload_feedback_labels_request {
     /// Google Cloud Storage Object details to get the feedback label file from.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GcsSource {
         /// Required. File format which will be ingested.
         #[prost(enumeration = "gcs_source::Format", tag = "1")]
@@ -4765,7 +4760,7 @@ pub mod bulk_upload_feedback_labels_request {
     }
     /// Configuration for an external data store containing objects that will
     /// be converted to FeedbackLabels.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Source {
         /// A cloud storage bucket source.
         #[prost(message, tag = "2")]
@@ -4773,7 +4768,7 @@ pub mod bulk_upload_feedback_labels_request {
     }
 }
 /// Response for the Bulk Upload Feedback Labels API.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkUploadFeedbackLabelsResponse {}
 /// Metadata for the Bulk Upload Feedback Labels API.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4800,7 +4795,7 @@ pub struct BulkUploadFeedbackLabelsMetadata {
 /// Nested message and enum types in `BulkUploadFeedbackLabelsMetadata`.
 pub mod bulk_upload_feedback_labels_metadata {
     /// Statistics for BulkUploadFeedbackLabels operation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct UploadStats {
         /// The number of objects processed during the upload operation.
         #[prost(int32, tag = "1")]
@@ -4814,7 +4809,7 @@ pub mod bulk_upload_feedback_labels_metadata {
     }
 }
 /// Request for the BulkDownloadFeedbackLabel endpoint.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDownloadFeedbackLabelsRequest {
     /// Required. The parent resource for new feedback labels.
     #[prost(string, tag = "1")]
@@ -4868,7 +4863,7 @@ pub struct BulkDownloadFeedbackLabelsRequest {
 /// Nested message and enum types in `BulkDownloadFeedbackLabelsRequest`.
 pub mod bulk_download_feedback_labels_request {
     /// Google Cloud Storage Object details to write the feedback labels to.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GcsDestination {
         /// Required. File format in which the labels will be exported.
         #[prost(enumeration = "gcs_destination::Format", tag = "1")]
@@ -4878,7 +4873,7 @@ pub mod bulk_download_feedback_labels_request {
         /// bucket if the output needs to be split across multiple files, otherwise
         /// it will be used as is. The file extension will be appended to the file
         /// name based on the format selected.
-        ///   E.g. `gs://bucket_name/object_uri_prefix`
+        /// E.g. `gs://bucket_name/object_uri_prefix`
         #[prost(string, tag = "2")]
         pub object_uri: ::prost::alloc::string::String,
         /// Optional. Add whitespace to the JSON file. Makes easier to read, but
@@ -4990,7 +4985,7 @@ pub mod bulk_download_feedback_labels_request {
     }
     /// Configuration for an external data store to which the feedback labels
     /// will be written to.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Destination {
         /// A cloud storage bucket destination.
         #[prost(message, tag = "3")]
@@ -4998,7 +4993,7 @@ pub mod bulk_download_feedback_labels_request {
     }
 }
 /// Response for the BulkDownloadFeedbackLabel endpoint.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BulkDownloadFeedbackLabelsResponse {}
 /// Metadata for the BulkDownloadFeedbackLabel endpoint.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -5025,7 +5020,7 @@ pub struct BulkDownloadFeedbackLabelsMetadata {
 /// Nested message and enum types in `BulkDownloadFeedbackLabelsMetadata`.
 pub mod bulk_download_feedback_labels_metadata {
     /// Statistics for BulkDownloadFeedbackLabels operation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DownloadStats {
         /// The number of objects processed during the download operation.
         #[prost(int32, tag = "1")]
@@ -5175,7 +5170,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateConversation",
             );
@@ -5207,7 +5202,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UploadConversation",
             );
@@ -5234,7 +5229,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateConversation",
             );
@@ -5261,7 +5256,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetConversation",
             );
@@ -5291,7 +5286,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListConversations",
             );
@@ -5318,7 +5313,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteConversation",
             );
@@ -5349,7 +5344,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateAnalysis",
             );
@@ -5376,7 +5371,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetAnalysis",
             );
@@ -5406,7 +5401,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListAnalyses",
             );
@@ -5433,7 +5428,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysis",
             );
@@ -5463,7 +5458,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations",
             );
@@ -5493,7 +5488,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkDeleteConversations",
             );
@@ -5524,7 +5519,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/IngestConversations",
             );
@@ -5554,7 +5549,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ExportInsightsData",
             );
@@ -5584,7 +5579,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateIssueModel",
             );
@@ -5611,7 +5606,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssueModel",
             );
@@ -5638,7 +5633,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetIssueModel",
             );
@@ -5668,7 +5663,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListIssueModels",
             );
@@ -5698,7 +5693,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssueModel",
             );
@@ -5729,7 +5724,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeployIssueModel",
             );
@@ -5760,7 +5755,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UndeployIssueModel",
             );
@@ -5790,7 +5785,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ExportIssueModel",
             );
@@ -5820,7 +5815,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ImportIssueModel",
             );
@@ -5847,7 +5842,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetIssue",
             );
@@ -5877,7 +5872,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListIssues",
             );
@@ -5904,7 +5899,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssue",
             );
@@ -5931,7 +5926,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssue",
             );
@@ -5961,7 +5956,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateIssueModelStats",
             );
@@ -5988,7 +5983,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreatePhraseMatcher",
             );
@@ -6015,7 +6010,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetPhraseMatcher",
             );
@@ -6045,7 +6040,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListPhraseMatchers",
             );
@@ -6072,7 +6067,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeletePhraseMatcher",
             );
@@ -6099,7 +6094,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher",
             );
@@ -6129,7 +6124,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateStats",
             );
@@ -6156,7 +6151,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetSettings",
             );
@@ -6183,7 +6178,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateSettings",
             );
@@ -6210,7 +6205,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateAnalysisRule",
             );
@@ -6237,7 +6232,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetAnalysisRule",
             );
@@ -6267,7 +6262,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListAnalysisRules",
             );
@@ -6294,7 +6289,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateAnalysisRule",
             );
@@ -6321,7 +6316,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysisRule",
             );
@@ -6348,7 +6343,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetEncryptionSpec",
             );
@@ -6382,7 +6377,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/InitializeEncryptionSpec",
             );
@@ -6409,7 +6404,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateView",
             );
@@ -6436,7 +6431,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetView",
             );
@@ -6466,7 +6461,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListViews",
             );
@@ -6493,7 +6488,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateView",
             );
@@ -6520,7 +6515,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteView",
             );
@@ -6550,7 +6545,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/QueryMetrics",
             );
@@ -6577,7 +6572,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateQaQuestion",
             );
@@ -6604,7 +6599,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetQaQuestion",
             );
@@ -6631,7 +6626,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateQaQuestion",
             );
@@ -6658,7 +6653,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteQaQuestion",
             );
@@ -6688,7 +6683,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListQaQuestions",
             );
@@ -6715,7 +6710,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateQaScorecard",
             );
@@ -6742,7 +6737,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetQaScorecard",
             );
@@ -6769,7 +6764,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateQaScorecard",
             );
@@ -6796,7 +6791,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteQaScorecard",
             );
@@ -6826,7 +6821,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListQaScorecards",
             );
@@ -6856,7 +6851,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateQaScorecardRevision",
             );
@@ -6886,7 +6881,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetQaScorecardRevision",
             );
@@ -6916,7 +6911,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/TuneQaScorecardRevision",
             );
@@ -6946,7 +6941,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeployQaScorecardRevision",
             );
@@ -6976,7 +6971,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UndeployQaScorecardRevision",
             );
@@ -7003,7 +6998,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteQaScorecardRevision",
             );
@@ -7033,7 +7028,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListQaScorecardRevisions",
             );
@@ -7060,7 +7055,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateFeedbackLabel",
             );
@@ -7090,7 +7085,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListFeedbackLabels",
             );
@@ -7117,7 +7112,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetFeedbackLabel",
             );
@@ -7144,7 +7139,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateFeedbackLabel",
             );
@@ -7171,7 +7166,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteFeedbackLabel",
             );
@@ -7201,7 +7196,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListAllFeedbackLabels",
             );
@@ -7231,7 +7226,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkUploadFeedbackLabels",
             );
@@ -7261,7 +7256,7 @@ pub mod contact_center_insights_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkDownloadFeedbackLabels",
             );

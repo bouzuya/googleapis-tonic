@@ -14,11 +14,11 @@ pub mod typed_value {
         /// A Boolean value: `true` or `false`.
         #[prost(bool, tag = "1")]
         BoolValue(bool),
-        /// A 64-bit integer. Its range is approximately &plusmn;9.2x10<sup>18</sup>.
+        /// A 64-bit integer. Its range is approximately ±9.2x10<sup>18</sup>.
         #[prost(int64, tag = "2")]
         Int64Value(i64),
         /// A 64-bit double-precision floating-point number. Its magnitude
-        /// is approximately &plusmn;10<sup>&plusmn;300</sup> and it has 16
+        /// is approximately ±10<sup>±300</sup> and it has 16
         /// significant digits of precision.
         #[prost(double, tag = "3")]
         DoubleValue(f64),
@@ -32,43 +32,43 @@ pub mod typed_value {
 }
 /// Describes a time interval:
 ///
-///    * Reads: A half-open time interval. It includes the end time but
-///      excludes the start time: `(startTime, endTime]`. The start time
-///      must be specified, must be earlier than the end time, and should be
-///      no older than the data retention period for the metric.
-///    * Writes: A closed time interval. It extends from the start time to the end
-///    time,
-///      and includes both: `\[startTime, endTime\]`. Valid time intervals
-///      depend on the
-///      [`MetricKind`](<https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors#MetricKind>)
-///      of the metric value. The end time must not be earlier than the start
-///      time, and the end time must not be more than 25 hours in the past or more
-///      than five minutes in the future.
-///      * For `GAUGE` metrics, the `startTime` value is technically optional; if
-///        no value is specified, the start time defaults to the value of the
-///        end time, and the interval represents a single point in time. If both
-///        start and end times are specified, they must be identical. Such an
-///        interval is valid only for `GAUGE` metrics, which are point-in-time
-///        measurements. The end time of a new interval must be at least a
-///        millisecond after the end time of the previous interval.
-///      * For `DELTA` metrics, the start time and end time must specify a
-///        non-zero interval, with subsequent points specifying contiguous and
-///        non-overlapping intervals. For `DELTA` metrics, the start time of
-///        the next interval must be at least a millisecond after the end time
-///        of the previous interval.
-///      * For `CUMULATIVE` metrics, the start time and end time must specify a
-///        non-zero interval, with subsequent points specifying the same
-///        start time and increasing end times, until an event resets the
-///        cumulative value to zero and sets a new start time for the following
-///        points. The new start time must be at least a millisecond after the
-///        end time of the previous interval.
-///      * The start time of a new interval must be at least a millisecond after
-///      the
-///        end time of the previous interval because intervals are closed. If the
-///        start time of a new interval is the same as the end time of the
-///        previous interval, then data written at the new start time could
-///        overwrite data written at the previous end time.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+/// * Reads: A half-open time interval. It includes the end time but
+///   excludes the start time: `(startTime, endTime]`. The start time
+///   must be specified, must be earlier than the end time, and should be
+///   no older than the data retention period for the metric.
+/// * Writes: A closed time interval. It extends from the start time to the end
+///   time,
+///   and includes both: `\[startTime, endTime\]`. Valid time intervals
+///   depend on the
+///   [`MetricKind`](<https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors#MetricKind>)
+///   of the metric value. The end time must not be earlier than the start
+///   time, and the end time must not be more than 25 hours in the past or more
+///   than five minutes in the future.
+///   * For `GAUGE` metrics, the `startTime` value is technically optional; if
+///     no value is specified, the start time defaults to the value of the
+///     end time, and the interval represents a single point in time. If both
+///     start and end times are specified, they must be identical. Such an
+///     interval is valid only for `GAUGE` metrics, which are point-in-time
+///     measurements. The end time of a new interval must be at least a
+///     millisecond after the end time of the previous interval.
+///   * For `DELTA` metrics, the start time and end time must specify a
+///     non-zero interval, with subsequent points specifying contiguous and
+///     non-overlapping intervals. For `DELTA` metrics, the start time of
+///     the next interval must be at least a millisecond after the end time
+///     of the previous interval.
+///   * For `CUMULATIVE` metrics, the start time and end time must specify a
+///     non-zero interval, with subsequent points specifying the same
+///     start time and increasing end times, until an event resets the
+///     cumulative value to zero and sets a new start time for the following
+///     points. The new start time must be at least a millisecond after the
+///     end time of the previous interval.
+///   * The start time of a new interval must be at least a millisecond after
+///     the
+///     end time of the previous interval because intervals are closed. If the
+///     start time of a new interval is the same as the end time of the
+///     previous interval, then data written at the new start time could
+///     overwrite data written at the previous end time.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TimeInterval {
     /// Required. The end of the time interval.
     #[prost(message, optional, tag = "2")]
@@ -81,12 +81,12 @@ pub struct TimeInterval {
 }
 /// Describes how to combine multiple time series to provide a different view of
 /// the data.  Aggregation of time series is done in two steps. First, each time
-/// series in the set is _aligned_ to the same time interval boundaries, then the
-/// set of time series is optionally _reduced_ in number.
+/// series in the set is *aligned* to the same time interval boundaries, then the
+/// set of time series is optionally *reduced* in number.
 ///
 /// Alignment consists of applying the `per_series_aligner` operation
 /// to each time series after its data has been divided into regular
-/// `alignment_period` time intervals. This process takes _all_ of the data
+/// `alignment_period` time intervals. This process takes *all* of the data
 /// points in an alignment period, applies a mathematical transformation such as
 /// averaging, minimum, maximum, delta, etc., and converts them into a single
 /// data point per period.
@@ -105,11 +105,11 @@ pub struct TimeInterval {
 /// individual time series data is still available for later drilldown. For more
 /// details, see [Filtering and
 /// aggregation](<https://cloud.google.com/monitoring/api/v3/aggregation>).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Aggregation {
     /// The `alignment_period` specifies a time interval, in seconds, that is used
     /// to divide the data in all the
-    /// [time series][google.monitoring.v3.TimeSeries] into consistent blocks of
+    /// \[time series\]\[google.monitoring.v3.TimeSeries\] into consistent blocks of
     /// time. This will be done before the per-series aligner can be applied to
     /// the data.
     ///
@@ -205,11 +205,11 @@ pub mod aggregation {
         /// `value_type` of the input.
         AlignNone = 0,
         /// Align and convert to
-        /// [DELTA][google.api.MetricDescriptor.MetricKind.DELTA].
+        /// \[DELTA\]\[google.api.MetricDescriptor.MetricKind.DELTA\].
         /// The output is `delta = y1 - y0`.
         ///
         /// This alignment is valid for
-        /// [CUMULATIVE][google.api.MetricDescriptor.MetricKind.CUMULATIVE] and
+        /// \[CUMULATIVE\]\[google.api.MetricDescriptor.MetricKind.CUMULATIVE\] and
         /// `DELTA` metrics. If the selected alignment period results in periods
         /// with no data, then the aligned value for such a period is created by
         /// interpolation. The `value_type`  of the aligned result is the same as
@@ -403,10 +403,10 @@ pub mod aggregation {
         ReduceNone = 0,
         /// Reduce by computing the mean value across time series for each
         /// alignment period. This reducer is valid for
-        /// [DELTA][google.api.MetricDescriptor.MetricKind.DELTA] and
-        /// [GAUGE][google.api.MetricDescriptor.MetricKind.GAUGE] metrics with
+        /// \[DELTA\]\[google.api.MetricDescriptor.MetricKind.DELTA\] and
+        /// \[GAUGE\]\[google.api.MetricDescriptor.MetricKind.GAUGE\] metrics with
         /// numeric or distribution values. The `value_type` of the output is
-        /// [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+        /// \[DOUBLE\]\[google.api.MetricDescriptor.ValueType.DOUBLE\].
         ReduceMean = 1,
         /// Reduce by computing the minimum value across time series for each
         /// alignment period. This reducer is valid for `DELTA` and `GAUGE` metrics
@@ -615,7 +615,7 @@ impl ServiceTier {
     }
 }
 /// Describes a change made to a configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MutationRecord {
     /// When the change occurred.
     #[prost(message, optional, tag = "1")]
@@ -628,17 +628,18 @@ pub struct MutationRecord {
 /// considered to be "unhealthy" and the ways to notify people or services about
 /// this state. For an overview of alerting policies, see
 /// [Introduction to Alerting](<https://cloud.google.com/monitoring/alerts/>).
-///
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AlertPolicy {
     /// Identifier. Required if the policy exists. The resource name for this
     /// policy. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[ALERT_POLICY_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[ALERT_POLICY_ID\]
+    /// ```
     ///
     /// `\[ALERT_POLICY_ID\]` is assigned by Cloud Monitoring when the policy
     /// is created. When calling the
-    /// [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
+    /// \[alertPolicies.create\]\[google.monitoring.v3.AlertPolicyService.CreateAlertPolicy\]
     /// method, do not include the `name` field in the alerting policy passed as
     /// part of the request.
     #[prost(string, tag = "1")]
@@ -713,12 +714,14 @@ pub struct AlertPolicy {
     /// when incidents are opened or closed or when new violations occur on
     /// an already opened incident. Each element of this array corresponds to
     /// the `name` field in each of the
-    /// [`NotificationChannel`][google.monitoring.v3.NotificationChannel]
+    /// \[`NotificationChannel`\]\[google.monitoring.v3.NotificationChannel\]
     /// objects that are returned from the \[`ListNotificationChannels`\]
     /// \[google.monitoring.v3.NotificationChannelService.ListNotificationChannels\]
     /// method. The format of the entries in this field is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```
     #[prost(string, repeated, tag = "14")]
     pub notification_channels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// A read-only record of the creation of the alerting policy. If provided
@@ -779,7 +782,7 @@ pub mod alert_policy {
     /// Nested message and enum types in `Documentation`.
     pub mod documentation {
         /// Links to content such as playbooks, repositories, and other resources.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct Link {
             /// A short display name for the link. The display name must not be empty
             /// or exceed 63 characters. Example: "playbook".
@@ -802,19 +805,21 @@ pub mod alert_policy {
         /// Required if the condition exists. The unique resource name for this
         /// condition. Its format is:
         ///
-        ///      projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[POLICY_ID\]/conditions/\[CONDITION_ID\]
+        /// ```text
+        /// projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[POLICY_ID\]/conditions/\[CONDITION_ID\]
+        /// ```
         ///
         /// `\[CONDITION_ID\]` is assigned by Cloud Monitoring when the
         /// condition is created as part of a new or updated alerting policy.
         ///
         /// When calling the
-        /// [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
+        /// \[alertPolicies.create\]\[google.monitoring.v3.AlertPolicyService.CreateAlertPolicy\]
         /// method, do not include the `name` field in the conditions of the
         /// requested alerting policy. Cloud Monitoring creates the
         /// condition identifiers and includes them in the new policy.
         ///
         /// When calling the
-        /// [alertPolicies.update][google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]
+        /// \[alertPolicies.update\]\[google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy\]
         /// method to update a policy, including a condition `name` causes the
         /// existing condition to be updated. Conditions without names are added to
         /// the updated policy. Existing conditions are deleted if they are not
@@ -965,7 +970,7 @@ pub mod alert_policy {
         pub mod metric_threshold {
             /// Options used when forecasting the time series and testing
             /// the predicted value against the threshold.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct ForecastOptions {
                 /// Required. The length of time into the future to forecast whether a
                 /// time series will violate the threshold. If the predicted value is
@@ -1147,7 +1152,7 @@ pub mod alert_policy {
             /// Label values can be [templatized by using
             /// variables](<https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars>).
             /// The only available variable names are the names of the labels in the
-            /// PromQL result, including "__name__" and "value". "labels" may be empty.
+            /// PromQL result, including "**name**" and "value". "labels" may be empty.
             #[prost(map = "string, string", tag = "4")]
             pub labels: ::std::collections::HashMap<
                 ::prost::alloc::string::String,
@@ -1197,7 +1202,7 @@ pub mod alert_policy {
         /// A condition that allows alerting policies to be defined using GoogleSQL.
         /// SQL conditions examine a sliding window of logs using GoogleSQL.
         /// Alert policies with SQL conditions may incur additional billing.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct SqlCondition {
             /// Required. The Log Analytics SQL query to run, as a string.  The query
             /// must conform to the required shape. Specifically, the query must not
@@ -1208,12 +1213,14 @@ pub mod alert_policy {
             /// For example, the following query extracts all log entries containing an
             /// HTTP request:
             ///
-            ///      SELECT
-            ///        timestamp, log_name, severity, http_request, resource, labels
-            ///      FROM
-            ///        my-project.global._Default._AllLogs
-            ///      WHERE
-            ///        http_request IS NOT NULL
+            /// ```text
+            /// SELECT
+            ///    timestamp, log_name, severity, http_request, resource, labels
+            /// FROM
+            ///    my-project.global._Default._AllLogs
+            /// WHERE
+            ///    http_request IS NOT NULL
+            /// ```
             #[prost(string, tag = "1")]
             pub query: ::prost::alloc::string::String,
             /// The schedule indicates how often the query should be run.
@@ -1226,7 +1233,7 @@ pub mod alert_policy {
         /// Nested message and enum types in `SqlCondition`.
         pub mod sql_condition {
             /// Used to schedule the query to run every so many minutes.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct Minutes {
                 /// Required. Number of minutes between runs. The interval must be
                 /// greater than or equal to 5 minutes and less than or equal to 1440
@@ -1235,7 +1242,7 @@ pub mod alert_policy {
                 pub periodicity: i32,
             }
             /// Used to schedule the query to run every so many hours.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct Hourly {
                 /// Required. The number of hours between runs. Must be greater than or
                 /// equal to 1 hour and less than or equal to 48 hours.
@@ -1249,7 +1256,7 @@ pub mod alert_policy {
                 pub minute_offset: ::core::option::Option<i32>,
             }
             /// Used to schedule the query to run every so many days.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct Daily {
                 /// Required. The number of days between runs. Must be greater than or
                 /// equal to 1 day and less than or equal to 31 days.
@@ -1265,7 +1272,7 @@ pub mod alert_policy {
             }
             /// A test that checks if the number of rows in the result set
             /// violates some threshold.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct RowCountTest {
                 /// Required. The comparison to apply between the number of rows returned
                 /// by the query and the threshold.
@@ -1277,7 +1284,7 @@ pub mod alert_policy {
             }
             /// A test that uses an alerting result in a boolean column produced by
             /// the SQL query.
-            #[derive(Clone, PartialEq, ::prost::Message)]
+            #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct BooleanTest {
                 /// Required. The name of the column containing the boolean value. If the
                 /// value in a row is NULL, that row is ignored.
@@ -1285,7 +1292,7 @@ pub mod alert_policy {
                 pub column: ::prost::alloc::string::String,
             }
             /// The schedule indicates how often the query should be run.
-            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum Schedule {
                 /// Schedule the query to execute every so many minutes.
                 #[prost(message, tag = "2")]
@@ -1298,7 +1305,7 @@ pub mod alert_policy {
                 Daily(Daily),
             }
             /// The test to be run against the SQL result set.
-            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum Evaluate {
                 /// Test the row count against a threshold.
                 #[prost(message, tag = "5")]
@@ -1418,7 +1425,7 @@ pub mod alert_policy {
     pub mod alert_strategy {
         /// Control over the rate of notifications sent to this alerting policy's
         /// notification channels.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct NotificationRateLimit {
             /// Not more than one notification per `period`.
             #[prost(message, optional, tag = "1")]
@@ -1426,7 +1433,7 @@ pub mod alert_policy {
         }
         /// Control over how the notification channels in `notification_channels`
         /// are notified when this alert fires, on a per-channel basis.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct NotificationChannelStrategy {
             /// The full REST resource name for the notification channels that these
             /// settings apply to. Each of these correspond to the name field in one
@@ -1434,7 +1441,9 @@ pub mod alert_policy {
             /// notification_channels field of this AlertPolicy.
             /// The format is:
             ///
-            ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+            /// ```text
+            /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+            /// ```
             #[prost(string, repeated, tag = "1")]
             pub notification_channel_names: ::prost::alloc::vec::Vec<
                 ::prost::alloc::string::String,
@@ -1600,7 +1609,9 @@ pub struct CreateAlertPolicyRequest {
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) in which
     /// to create the alerting policy. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     ///
     /// Note that this field names the parent container in which the alerting
     /// policy will be written, not the name of the created policy. |name| must be
@@ -1618,27 +1629,31 @@ pub struct CreateAlertPolicyRequest {
     pub alert_policy: ::core::option::Option<AlertPolicy>,
 }
 /// The protocol for the `GetAlertPolicy` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetAlertPolicyRequest {
     /// Required. The alerting policy to retrieve. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[ALERT_POLICY_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[ALERT_POLICY_ID\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
 }
 /// The protocol for the `ListAlertPolicies` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAlertPoliciesRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) whose
     /// alert policies are to be listed. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     ///
     /// Note that this field names the parent container in which the alerting
     /// policies to be listed are stored. To retrieve a single alerting policy
     /// by name, use the
-    /// [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
+    /// \[GetAlertPolicy\]\[google.monitoring.v3.AlertPolicyService.GetAlertPolicy\]
     /// operation, instead.
     #[prost(string, tag = "4")]
     pub name: ::prost::alloc::string::String,
@@ -1700,13 +1715,13 @@ pub struct UpdateAlertPolicyRequest {
     /// existing policy. It is the same as deleting the existing policy and
     /// adding the supplied policy, except for the following:
     ///
-    /// +   The new policy will have the same `\[ALERT_POLICY_ID\]` as the former
-    ///      policy. This gives you continuity with the former policy in your
-    ///      notifications and incidents.
-    /// +   Conditions in the new policy will keep their former `\[CONDITION_ID\]` if
-    ///      the supplied condition includes the `name` field with that
-    ///      `\[CONDITION_ID\]`. If the supplied condition omits the `name` field,
-    ///      then a new `\[CONDITION_ID\]` is created.
+    /// * The new policy will have the same `\[ALERT_POLICY_ID\]` as the former
+    ///   policy. This gives you continuity with the former policy in your
+    ///   notifications and incidents.
+    /// * Conditions in the new policy will keep their former `\[CONDITION_ID\]` if
+    ///   the supplied condition includes the `name` field with that
+    ///   `\[CONDITION_ID\]`. If the supplied condition omits the `name` field,
+    ///   then a new `\[CONDITION_ID\]` is created.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// Required. The updated alerting policy or the updated values for the
@@ -1717,13 +1732,15 @@ pub struct UpdateAlertPolicyRequest {
     pub alert_policy: ::core::option::Option<AlertPolicy>,
 }
 /// The protocol for the `DeleteAlertPolicy` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteAlertPolicyRequest {
     /// Required. The alerting policy to delete. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[ALERT_POLICY_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[ALERT_POLICY_ID\]
+    /// ```
     ///
-    /// For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
+    /// For more information, see \[AlertPolicy\]\[google.monitoring.v3.AlertPolicy\].
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
 }
@@ -1832,7 +1849,7 @@ pub mod alert_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/ListAlertPolicies",
             );
@@ -1859,7 +1876,7 @@ pub mod alert_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/GetAlertPolicy",
             );
@@ -1890,7 +1907,7 @@ pub mod alert_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/CreateAlertPolicy",
             );
@@ -1921,7 +1938,7 @@ pub mod alert_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/DeleteAlertPolicy",
             );
@@ -1955,7 +1972,7 @@ pub mod alert_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.AlertPolicyService/UpdateAlertPolicy",
             );
@@ -2022,11 +2039,13 @@ pub struct DroppedLabels {
 /// The monitored resources contained in a group can change at any moment,
 /// depending on what resources exist and what filters are associated with the
 /// group and its ancestors.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Group {
     /// Output only. The name of this group. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```
     ///
     /// When creating a group, this field is ignored and a new name is created
     /// consisting of the project specified in the call to `CreateGroup`
@@ -2038,7 +2057,9 @@ pub struct Group {
     pub display_name: ::prost::alloc::string::String,
     /// The name of the group's parent, if it has one. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```
     ///
     /// For groups with no parent, `parent_name` is the empty string, `""`.
     #[prost(string, tag = "3")]
@@ -2053,13 +2074,15 @@ pub struct Group {
     pub is_cluster: bool,
 }
 /// The `ListGroup` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListGroupsRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) whose
     /// groups are to be listed. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
     /// A positive number that is the maximum number of results to return.
@@ -2081,11 +2104,13 @@ pub mod list_groups_request {
     /// An optional filter consisting of a single group name.  The filters limit
     /// the groups returned based on their parent-child relationship with the
     /// specified group. If no filter is specified, all groups are returned.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Filter {
         /// A group name. The format is:
         ///
-        ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+        /// ```text
+        /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+        /// ```
         ///
         /// Returns groups whose `parent_name` field contains the group
         /// name.  If no groups have this parent, the results are empty.
@@ -2093,7 +2118,9 @@ pub mod list_groups_request {
         ChildrenOfGroup(::prost::alloc::string::String),
         /// A group name. The format is:
         ///
-        ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+        /// ```text
+        /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+        /// ```
         ///
         /// Returns groups that are ancestors of the specified group.
         /// The groups are returned in order, starting with the immediate parent and
@@ -2103,7 +2130,9 @@ pub mod list_groups_request {
         AncestorsOfGroup(::prost::alloc::string::String),
         /// A group name. The format is:
         ///
-        ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+        /// ```text
+        /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+        /// ```
         ///
         /// Returns the descendants of the specified group.  This is a superset of
         /// the results returned by the `children_of_group` filter, and includes
@@ -2125,22 +2154,26 @@ pub struct ListGroupsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The `GetGroup` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetGroupRequest {
     /// Required. The group to retrieve. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
 }
 /// The `CreateGroup` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateGroupRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) in which
     /// to create the group. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "4")]
     pub name: ::prost::alloc::string::String,
     /// Required. A group definition. It is an error to define the `name` field
@@ -2152,7 +2185,7 @@ pub struct CreateGroupRequest {
     pub validate_only: bool,
 }
 /// The `UpdateGroup` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateGroupRequest {
     /// Required. The new definition of the group.  All fields of the existing
     /// group, excepting `name`, are replaced with the corresponding fields of this
@@ -2165,11 +2198,13 @@ pub struct UpdateGroupRequest {
 }
 /// The `DeleteGroup` request. The default behavior is to be able to delete a
 /// single group without any descendants.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteGroupRequest {
     /// Required. The group to delete. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
     /// If this field is true, then the request means to delete a group with all
@@ -2179,11 +2214,13 @@ pub struct DeleteGroupRequest {
     pub recursive: bool,
 }
 /// The `ListGroupMembers` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListGroupMembersRequest {
     /// Required. The group whose members are listed. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/groups/\[GROUP_ID\]
+    /// ```
     #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
     /// A positive number that is the maximum number of results to return.
@@ -2201,7 +2238,9 @@ pub struct ListGroupMembersRequest {
     /// example, to return only resources representing Compute Engine VM instances,
     /// use this filter:
     ///
-    ///      `resource.type = "gce_instance"`
+    /// ```text
+    /// `resource.type = "gce_instance"`
+    /// ```
     #[prost(string, tag = "5")]
     pub filter: ::prost::alloc::string::String,
     /// An optional time interval for which results should be returned. Only
@@ -2334,7 +2373,7 @@ pub mod group_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/ListGroups",
             );
@@ -2358,7 +2397,7 @@ pub mod group_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/GetGroup",
             );
@@ -2382,7 +2421,7 @@ pub mod group_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/CreateGroup",
             );
@@ -2407,7 +2446,7 @@ pub mod group_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/UpdateGroup",
             );
@@ -2431,7 +2470,7 @@ pub mod group_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/DeleteGroup",
             );
@@ -2458,7 +2497,7 @@ pub mod group_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.GroupService/ListGroupMembers",
             );
@@ -2550,7 +2589,7 @@ pub struct TimeSeries {
     pub unit: ::prost::alloc::string::String,
     /// Input only. A detailed description of the time series that will be
     /// associated with the
-    /// [google.api.MetricDescriptor][google.api.MetricDescriptor] for the metric.
+    /// \[google.api.MetricDescriptor\]\[google.api.MetricDescriptor\] for the metric.
     /// Once set, this field cannot be changed through CreateTimeSeries.
     #[prost(string, tag = "9")]
     pub description: ::prost::alloc::string::String,
@@ -2570,7 +2609,7 @@ pub struct TimeSeriesDescriptor {
 /// Nested message and enum types in `TimeSeriesDescriptor`.
 pub mod time_series_descriptor {
     /// A descriptor for the value columns in a data point.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueDescriptor {
         /// The value key.
         #[prost(string, tag = "1")]
@@ -2625,7 +2664,7 @@ pub mod time_series_data {
     }
 }
 /// A label value.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LabelValue {
     /// The label value can be a bool, int64, or string.
     #[prost(oneof = "label_value::Value", tags = "1, 2, 3")]
@@ -2634,7 +2673,7 @@ pub struct LabelValue {
 /// Nested message and enum types in `LabelValue`.
 pub mod label_value {
     /// The label value can be a bool, int64, or string.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Value {
         /// A bool label value.
         #[prost(bool, tag = "1")]
@@ -2663,19 +2702,19 @@ pub struct QueryError {
 ///
 /// For example, suppose the request field `text` contains:
 ///
-///    text: "The quick brown fox jumps over the lazy dog."
+/// text: "The quick brown fox jumps over the lazy dog."
 ///
 /// Then the locator:
 ///
-///    source: "text"
-///    start_position {
-///      line: 1
-///      column: 17
-///    }
-///    end_position {
-///      line: 1
-///      column: 19
-///    }
+/// source: "text"
+/// start_position {
+/// line: 1
+/// column: 17
+/// }
+/// end_position {
+/// line: 1
+/// column: 19
+/// }
 ///
 /// refers to the part of the text: "fox".
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2713,7 +2752,7 @@ pub struct TextLocator {
 /// Nested message and enum types in `TextLocator`.
 pub mod text_locator {
     /// The position of a byte within the text.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Position {
         /// The line, starting with 1, where the byte is positioned.
         #[prost(int32, tag = "1")]
@@ -2725,13 +2764,15 @@ pub mod text_locator {
     }
 }
 /// The `ListMonitoredResourceDescriptors` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListMonitoredResourceDescriptorsRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
     /// An optional [filter](<https://cloud.google.com/monitoring/api/v3/filters>)
@@ -2739,7 +2780,9 @@ pub struct ListMonitoredResourceDescriptorsRequest {
     /// descriptor's type and labels. For example, the following filter returns
     /// only Google Compute Engine descriptors that have an `id` label:
     ///
-    ///      resource.type = starts_with("gce_") AND resource.label:id
+    /// ```text
+    /// resource.type = starts_with("gce_") AND resource.label:id
+    /// ```
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// A positive number that is the maximum number of results to return.
@@ -2767,11 +2810,13 @@ pub struct ListMonitoredResourceDescriptorsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The `GetMonitoredResourceDescriptor` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetMonitoredResourceDescriptorRequest {
     /// Required. The monitored resource descriptor to get.  The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/monitoredResourceDescriptors/\[RESOURCE_TYPE\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/monitoredResourceDescriptors/\[RESOURCE_TYPE\]
+    /// ```
     ///
     /// The `\[RESOURCE_TYPE\]` is a predefined type, such as
     /// `cloudsql_database`.
@@ -2779,13 +2824,15 @@ pub struct GetMonitoredResourceDescriptorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The `ListMetricDescriptors` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListMetricDescriptorsRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
     /// Optional. If this field is empty, all custom and
@@ -2795,11 +2842,13 @@ pub struct ListMetricDescriptorsRequest {
     /// returned. For example, the following filter matches all
     /// [custom metrics](<https://cloud.google.com/monitoring/custom-metrics>):
     ///
-    ///      metric.type = starts_with("custom.googleapis.com/")
+    /// ```text
+    /// metric.type = starts_with("custom.googleapis.com/")
+    /// ```
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. A positive number that is the maximum number of results to
-    /// return. The default and maximum value is 10,000. If a page_size <= 0 or >
+    /// return. The default and maximum value is 10,000. If a page_size \<= 0 or >
     /// 10,000 is submitted, will instead return a maximum of 10,000 results.
     #[prost(int32, tag = "3")]
     pub page_size: i32,
@@ -2811,14 +2860,15 @@ pub struct ListMetricDescriptorsRequest {
     pub page_token: ::prost::alloc::string::String,
     /// Optional. If true, only metrics and monitored resource types that have
     /// recent data (within roughly 25 hours) will be included in the response.
-    ///   - If a metric descriptor enumerates monitored resource types, only the
-    ///     monitored resource types for which the metric type has recent data will
-    ///     be included in the returned metric descriptor, and if none of them have
-    ///     recent data, the metric descriptor will not be returned.
-    ///   - If a metric descriptor does not enumerate the compatible monitored
-    ///     resource types, it will be returned only if the metric type has recent
-    ///     data for some monitored resource type. The returned descriptor will not
-    ///     enumerate any monitored resource types.
+    ///
+    /// * If a metric descriptor enumerates monitored resource types, only the
+    ///   monitored resource types for which the metric type has recent data will
+    ///   be included in the returned metric descriptor, and if none of them have
+    ///   recent data, the metric descriptor will not be returned.
+    /// * If a metric descriptor does not enumerate the compatible monitored
+    ///   resource types, it will be returned only if the metric type has recent
+    ///   data for some monitored resource type. The returned descriptor will not
+    ///   enumerate any monitored resource types.
     #[prost(bool, tag = "6")]
     pub active_only: bool,
 }
@@ -2838,12 +2888,14 @@ pub struct ListMetricDescriptorsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The `GetMetricDescriptor` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetMetricDescriptorRequest {
     /// Required. The metric descriptor on which to execute the request. The format
     /// is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/metricDescriptors/\[METRIC_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/metricDescriptors/\[METRIC_ID\]
+    /// ```
     ///
     /// An example value of `\[METRIC_ID\]` is
     /// `"compute.googleapis.com/instance/disk/read_bytes_count"`.
@@ -2857,7 +2909,7 @@ pub struct CreateMetricDescriptorRequest {
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     /// 4
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
     /// Required. The new [custom
@@ -2866,12 +2918,14 @@ pub struct CreateMetricDescriptorRequest {
     pub metric_descriptor: ::core::option::Option<super::super::api::MetricDescriptor>,
 }
 /// The `DeleteMetricDescriptor` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteMetricDescriptorRequest {
     /// Required. The metric descriptor on which to execute the request. The format
     /// is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/metricDescriptors/\[METRIC_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/metricDescriptors/\[METRIC_ID\]
+    /// ```
     ///
     /// An example of `\[METRIC_ID\]` is:
     /// `"custom.googleapis.com/my_test_metric"`.
@@ -2879,15 +2933,17 @@ pub struct DeleteMetricDescriptorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// The `ListTimeSeries` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListTimeSeriesRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>),
     /// organization or folder on which to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
-    ///      organizations/\[ORGANIZATION_ID\]
-    ///      folders/\[FOLDER_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// organizations/\[ORGANIZATION_ID\]
+    /// folders/\[FOLDER_ID\]
+    /// ```
     #[prost(string, tag = "10")]
     pub name: ::prost::alloc::string::String,
     /// Required. A [monitoring
@@ -2896,8 +2952,10 @@ pub struct ListTimeSeriesRequest {
     /// metric type, and can additionally specify metric labels and other
     /// information. For example:
     ///
-    ///      metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-    ///          metric.labels.instance_name = "my-instance-name"
+    /// ```text
+    /// metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
+    ///      metric.labels.instance_name = "my-instance-name"
+    /// ```
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Required. The time interval for which results should be returned. Only time
@@ -3011,7 +3069,9 @@ pub struct CreateTimeSeriesRequest {
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
     /// Required. The new data to be added to a list of time series.
@@ -3065,13 +3125,15 @@ pub mod create_time_series_summary {
 /// The `QueryTimeSeries` request. For information about the status of
 /// Monitoring Query Language (MQL), see the [MQL deprecation
 /// notice](<https://cloud.google.com/stackdriver/docs/deprecations/mql>).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct QueryTimeSeriesRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The query in the [Monitoring Query
@@ -3221,7 +3283,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors",
             );
@@ -3253,7 +3315,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor",
             );
@@ -3283,7 +3345,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/ListMetricDescriptors",
             );
@@ -3313,7 +3375,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/GetMetricDescriptor",
             );
@@ -3348,7 +3410,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/CreateMetricDescriptor",
             );
@@ -3377,7 +3439,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/DeleteMetricDescriptor",
             );
@@ -3407,7 +3469,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/ListTimeSeries",
             );
@@ -3440,7 +3502,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/CreateTimeSeries",
             );
@@ -3461,7 +3523,7 @@ pub mod metric_service_client {
         /// included in the error response. This endpoint rejects writes to
         /// user-defined metrics.
         /// This method is only for use by Google Cloud services. Use
-        /// [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
+        /// \[projects.timeSeries.create\]\[google.monitoring.v3.MetricService.CreateTimeSeries\]
         /// instead.
         pub async fn create_service_time_series(
             &mut self,
@@ -3475,7 +3537,7 @@ pub mod metric_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.MetricService/CreateServiceTimeSeries",
             );
@@ -3498,7 +3560,9 @@ pub mod metric_service_client {
 pub struct NotificationChannelDescriptor {
     /// The full REST resource name for this descriptor. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannelDescriptors/\[TYPE\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannelDescriptors/\[TYPE\]
+    /// ```
     ///
     /// In the above, `\[TYPE\]` is the value of the `type` field.
     #[prost(string, tag = "6")]
@@ -3542,13 +3606,15 @@ pub struct NotificationChannelDescriptor {
 pub struct NotificationChannel {
     /// The type of the notification channel. This field matches the
     /// value of the
-    /// [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type]
+    /// \[NotificationChannelDescriptor.type\]\[google.monitoring.v3.NotificationChannelDescriptor.type\]
     /// field.
     #[prost(string, tag = "1")]
     pub r#type: ::prost::alloc::string::String,
     /// Identifier. The full REST resource name for this channel. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```
     ///
     /// The `\[CHANNEL_ID\]` is automatically assigned by the server on creation.
     #[prost(string, tag = "6")]
@@ -3566,7 +3632,7 @@ pub struct NotificationChannel {
     pub description: ::prost::alloc::string::String,
     /// Configuration fields that define the channel and its behavior. The
     /// permissible and required labels are specified in the
-    /// [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels]
+    /// \[NotificationChannelDescriptor.labels\]\[google.monitoring.v3.NotificationChannelDescriptor.labels\]
     /// of the `NotificationChannelDescriptor` corresponding to the `type` field.
     #[prost(map = "string, string", tag = "5")]
     pub labels: ::std::collections::HashMap<
@@ -3588,9 +3654,9 @@ pub struct NotificationChannel {
         ::prost::alloc::string::String,
     >,
     /// Indicates whether this channel has been verified or not. On a
-    /// [`ListNotificationChannels`][google.monitoring.v3.NotificationChannelService.ListNotificationChannels]
+    /// \[`ListNotificationChannels`\]\[google.monitoring.v3.NotificationChannelService.ListNotificationChannels\]
     /// or
-    /// [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+    /// \[`GetNotificationChannel`\]\[google.monitoring.v3.NotificationChannelService.GetNotificationChannel\]
     /// operation, this field is expected to be populated.
     ///
     /// If the value is `UNVERIFIED`, then it indicates that the channel is
@@ -3603,9 +3669,9 @@ pub struct NotificationChannel {
     /// created prior to verification being required for channels of this type.
     ///
     /// This field cannot be modified using a standard
-    /// [`UpdateNotificationChannel`][google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]
+    /// \[`UpdateNotificationChannel`\]\[google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel\]
     /// operation. To change the value of this field, you must call
-    /// [`VerifyNotificationChannel`][google.monitoring.v3.NotificationChannelService.VerifyNotificationChannel].
+    /// \[`VerifyNotificationChannel`\]\[google.monitoring.v3.NotificationChannelService.VerifyNotificationChannel\].
     #[prost(enumeration = "notification_channel::VerificationStatus", tag = "9")]
     pub verification_status: i32,
     /// Whether notifications are forwarded to the described channel. This makes
@@ -3627,9 +3693,9 @@ pub struct NotificationChannel {
 pub mod notification_channel {
     /// Indicates whether the channel has been verified or not. It is illegal
     /// to specify this field in a
-    /// [`CreateNotificationChannel`][google.monitoring.v3.NotificationChannelService.CreateNotificationChannel]
+    /// \[`CreateNotificationChannel`\]\[google.monitoring.v3.NotificationChannelService.CreateNotificationChannel\]
     /// or an
-    /// [`UpdateNotificationChannel`][google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]
+    /// \[`UpdateNotificationChannel`\]\[google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel\]
     /// operation.
     #[derive(
         Clone,
@@ -3682,18 +3748,20 @@ pub mod notification_channel {
     }
 }
 /// The `ListNotificationChannelDescriptors` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListNotificationChannelDescriptorsRequest {
     /// Required. The REST resource name of the parent from which to retrieve
     /// the notification channel descriptors. The expected syntax is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     ///
     /// Note that this
     /// [names](<https://cloud.google.com/monitoring/api/v3#project_name>) the parent
     /// container in which to look for the descriptors; to retrieve a single
     /// descriptor by name, use the
-    /// [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
+    /// \[GetNotificationChannelDescriptor\]\[google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor\]
     /// operation, instead.
     #[prost(string, tag = "4")]
     pub name: ::prost::alloc::string::String,
@@ -3723,11 +3791,13 @@ pub struct ListNotificationChannelDescriptorsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The `GetNotificationChannelDescriptor` response.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetNotificationChannelDescriptorRequest {
     /// Required. The channel type for which to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannelDescriptors/\[CHANNEL_TYPE\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannelDescriptors/\[CHANNEL_TYPE\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
 }
@@ -3738,7 +3808,9 @@ pub struct CreateNotificationChannelRequest {
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     ///
     /// This names the container into which the channel will be
     /// written, this does not name the newly created channel. The resulting
@@ -3751,19 +3823,21 @@ pub struct CreateNotificationChannelRequest {
     pub notification_channel: ::core::option::Option<NotificationChannel>,
 }
 /// The `ListNotificationChannels` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListNotificationChannelsRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) on which
     /// to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     ///
     /// This names the container
     /// in which to look for the notification channels; it does not name a
     /// specific channel. To query a specific channel by REST resource name, use
     /// the
-    /// [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+    /// \[`GetNotificationChannel`\]\[google.monitoring.v3.NotificationChannelService.GetNotificationChannel\]
     /// operation.
     #[prost(string, tag = "5")]
     pub name: ::prost::alloc::string::String,
@@ -3811,11 +3885,13 @@ pub struct ListNotificationChannelsResponse {
     pub total_size: i32,
 }
 /// The `GetNotificationChannel` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetNotificationChannelRequest {
     /// Required. The channel for which to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
 }
@@ -3833,11 +3909,13 @@ pub struct UpdateNotificationChannelRequest {
     pub notification_channel: ::core::option::Option<NotificationChannel>,
 }
 /// The `DeleteNotificationChannel` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteNotificationChannelRequest {
     /// Required. The channel for which to execute the request. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/notificationChannels/\[CHANNEL_ID\]
+    /// ```
     #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
     /// If true, the notification channel will be deleted regardless of its
@@ -3848,14 +3926,14 @@ pub struct DeleteNotificationChannelRequest {
     pub force: bool,
 }
 /// The `SendNotificationChannelVerificationCode` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SendNotificationChannelVerificationCodeRequest {
     /// Required. The notification channel to which to send a verification code.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The `GetNotificationChannelVerificationCode` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetNotificationChannelVerificationCodeRequest {
     /// Required. The notification channel for which a verification code is to be
     /// generated and retrieved. This must name a channel that is already verified;
@@ -3875,7 +3953,7 @@ pub struct GetNotificationChannelVerificationCodeRequest {
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The `GetNotificationChannelVerificationCode` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetNotificationChannelVerificationCodeResponse {
     /// The verification code, which may be used to verify other channels
     /// that have an equivalent identity (i.e. other channels of the same
@@ -3890,7 +3968,7 @@ pub struct GetNotificationChannelVerificationCodeResponse {
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The `VerifyNotificationChannel` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VerifyNotificationChannelRequest {
     /// Required. The notification channel to verify.
     #[prost(string, tag = "1")]
@@ -4008,7 +4086,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/ListNotificationChannelDescriptors",
             );
@@ -4041,7 +4119,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/GetNotificationChannelDescriptor",
             );
@@ -4073,7 +4151,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/ListNotificationChannels",
             );
@@ -4107,7 +4185,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/GetNotificationChannel",
             );
@@ -4143,7 +4221,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel",
             );
@@ -4179,7 +4257,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/UpdateNotificationChannel",
             );
@@ -4211,7 +4289,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/DeleteNotificationChannel",
             );
@@ -4241,7 +4319,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/SendNotificationChannelVerificationCode",
             );
@@ -4293,7 +4371,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/GetNotificationChannelVerificationCode",
             );
@@ -4325,7 +4403,7 @@ pub mod notification_channel_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.NotificationChannelService/VerifyNotificationChannel",
             );
@@ -4444,7 +4522,7 @@ pub mod query_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.QueryService/QueryTimeSeries",
             );
@@ -4469,7 +4547,9 @@ pub mod query_service_client {
 pub struct Service {
     /// Identifier. Resource name for this Service. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Name used for UI elements listing this Service.
@@ -4504,10 +4584,10 @@ pub mod service {
     /// Use a custom service to designate a service that you want to monitor
     /// when none of the other service types (like App Engine, Cloud Run, or
     /// a GKE type) matches your intended service.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Custom {}
     /// App Engine service. Learn more at <https://cloud.google.com/appengine.>
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AppEngine {
         /// The ID of the App Engine module underlying this service. Corresponds to
         /// the `module_id` resource label in the [`gae_app` monitored
@@ -4516,7 +4596,7 @@ pub mod service {
         pub module_id: ::prost::alloc::string::String,
     }
     /// Cloud Endpoints service. Learn more at <https://cloud.google.com/endpoints.>
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CloudEndpoints {
         /// The name of the Cloud Endpoints service underlying this service.
         /// Corresponds to the `service` resource label in the [`api` monitored
@@ -4527,7 +4607,7 @@ pub mod service {
     /// Istio service scoped to a single Kubernetes cluster. Learn more at
     /// <https://istio.io.> Clusters running OSS Istio will have their services
     /// ingested as this type.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ClusterIstio {
         /// The location of the Kubernetes cluster in which this Istio service is
         /// defined. Corresponds to the `location` resource label in `k8s_cluster`
@@ -4548,9 +4628,9 @@ pub mod service {
         #[prost(string, tag = "4")]
         pub service_name: ::prost::alloc::string::String,
     }
-    /// Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8
+    /// Istio service scoped to an Istio mesh. Anthos clusters running ASM \< 1.6.8
     /// will have their services ingested as this type.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MeshIstio {
         /// Identifier for the mesh in which this Istio service is defined.
         /// Corresponds to the `mesh_uid` metric label in Istio metrics.
@@ -4567,7 +4647,7 @@ pub mod service {
     }
     /// Canonical service scoped to an Istio mesh. Anthos clusters running ASM >=
     /// 1.6.8 will have their services ingested as this type.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct IstioCanonicalService {
         /// Identifier for the Istio mesh in which this canonical service is defined.
         /// Corresponds to the `mesh_uid` metric label in
@@ -4588,7 +4668,7 @@ pub mod service {
         pub canonical_service: ::prost::alloc::string::String,
     }
     /// Cloud Run service. Learn more at <https://cloud.google.com/run.>
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CloudRun {
         /// The name of the Cloud Run service. Corresponds to the `service_name`
         /// resource label in the [`cloud_run_revision` monitored
@@ -4604,7 +4684,7 @@ pub mod service {
     /// GKE Namespace. The field names correspond to the resource metadata labels
     /// on monitored resources that fall under a namespace (for example,
     /// `k8s_container` or `k8s_pod`).
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GkeNamespace {
         /// Output only. The project this resource lives in. For legacy services
         /// migrated from the `Custom` type, this may be a distinct project from the
@@ -4624,7 +4704,7 @@ pub mod service {
     /// A GKE Workload (Deployment, StatefulSet, etc). The field names correspond
     /// to the metadata labels on monitored resources that fall under a workload
     /// (for example, `k8s_container` or `k8s_pod`).
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GkeWorkload {
         /// Output only. The project this resource lives in. For legacy services
         /// migrated from the `Custom` type, this may be a distinct project from the
@@ -4653,7 +4733,7 @@ pub mod service {
     /// The field names correspond to the resource labels on [`k8s_service`
     /// monitored
     /// resources](<https://cloud.google.com/monitoring/api/resources#tag_k8s_service>).
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GkeService {
         /// Output only. The project this resource lives in. For legacy services
         /// migrated from the `Custom` type, this may be a distinct project from the
@@ -4695,7 +4775,7 @@ pub mod service {
         >,
     }
     /// Configuration for how to query telemetry on a Service.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Telemetry {
         /// The full name of the resource that defines this service. Formatted as
         /// described in <https://cloud.google.com/apis/design/resource_names.>
@@ -4703,7 +4783,7 @@ pub mod service {
         pub resource_name: ::prost::alloc::string::String,
     }
     /// REQUIRED. Service-identifying atoms specifying the underlying service.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Identifier {
         /// Custom service type.
         #[prost(message, tag = "6")]
@@ -4749,7 +4829,9 @@ pub mod service {
 pub struct ServiceLevelObjective {
     /// Identifier. Resource name for this `ServiceLevelObjective`. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]/serviceLevelObjectives/\[SLO_NAME\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]/serviceLevelObjectives/\[SLO_NAME\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Name used for UI elements listing this SLO.
@@ -4832,7 +4914,7 @@ pub mod service_level_objective {
         }
     }
     /// The time period over which the objective will be evaluated.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Period {
         /// A rolling time period, semantically "in the past `<rolling_period>`".
         /// Must be an integer multiple of 1 day no larger than 30 days.
@@ -4849,8 +4931,7 @@ pub mod service_level_objective {
 /// some services, the SLI is well-defined. In such cases, the SLI can be
 /// described easily by referencing the well-known SLI and providing the needed
 /// parameters. Alternatively, a "custom" SLI can be defined with a query to the
-/// underlying metric store. An SLI is defined to be `good_service /
-/// total_service` over any queried time interval. The value of performance
+/// underlying metric store. An SLI is defined to be `good_service /  total_service` over any queried time interval. The value of performance
 /// always falls into the range `0 <= performance <= 1`. A custom SLI describes
 /// how to compute this ratio, whether this is by dividing values from a pair of
 /// time series, cutting a `Distribution` into good and bad counts, or counting
@@ -4890,7 +4971,7 @@ pub mod service_level_indicator {
 /// `service_resource.labels` and `metric_labels` are used to construct a
 /// monitoring filter to filter that metric down to just the data relevant to
 /// this service.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BasicSli {
     /// OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from
     /// other methods will not be used to calculate performance for this SLI. If
@@ -4920,10 +5001,10 @@ pub struct BasicSli {
 /// Nested message and enum types in `BasicSli`.
 pub mod basic_sli {
     /// Future parameters for the availability SLI.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AvailabilityCriteria {}
     /// Parameters for a latency threshold SLI.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct LatencyCriteria {
         /// Good service is defined to be the count of requests made to this service
         /// that return in no more than `threshold`.
@@ -4931,7 +5012,7 @@ pub mod basic_sli {
         pub threshold: ::core::option::Option<::prost_types::Duration>,
     }
     /// This SLI can be evaluated on the basis of availability or latency.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum SliCriteria {
         /// Good service is defined to be the count of requests made to this service
         /// that return successfully.
@@ -4980,16 +5061,13 @@ pub mod request_based_sli {
 }
 /// A `TimeSeriesRatio` specifies two `TimeSeries` to use for computing the
 /// `good_service / total_service` ratio. The specified `TimeSeries` must have
-/// `ValueType = DOUBLE` or `ValueType = INT64` and must have `MetricKind =
-/// DELTA` or `MetricKind = CUMULATIVE`. The `TimeSeriesRatio` must specify
-/// exactly two of good, bad, and total, and the relationship `good_service +
-/// bad_service = total_service` will be assumed.
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// `ValueType = DOUBLE` or `ValueType = INT64` and must have `MetricKind =  DELTA` or `MetricKind = CUMULATIVE`. The `TimeSeriesRatio` must specify
+/// exactly two of good, bad, and total, and the relationship `good_service +  bad_service = total_service` will be assumed.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TimeSeriesRatio {
     /// A [monitoring filter](<https://cloud.google.com/monitoring/api/v3/filters>)
     /// specifying a `TimeSeries` quantifying good service provided. Must have
-    /// `ValueType = DOUBLE` or `ValueType = INT64` and must have `MetricKind =
-    /// DELTA` or `MetricKind = CUMULATIVE`.
+    /// `ValueType = DOUBLE` or `ValueType = INT64` and must have `MetricKind =  DELTA` or `MetricKind = CUMULATIVE`.
     #[prost(string, tag = "4")]
     pub good_service_filter: ::prost::alloc::string::String,
     /// A [monitoring filter](<https://cloud.google.com/monitoring/api/v3/filters>)
@@ -5001,21 +5079,18 @@ pub struct TimeSeriesRatio {
     pub bad_service_filter: ::prost::alloc::string::String,
     /// A [monitoring filter](<https://cloud.google.com/monitoring/api/v3/filters>)
     /// specifying a `TimeSeries` quantifying total demanded service. Must have
-    /// `ValueType = DOUBLE` or `ValueType = INT64` and must have `MetricKind =
-    /// DELTA` or `MetricKind = CUMULATIVE`.
+    /// `ValueType = DOUBLE` or `ValueType = INT64` and must have `MetricKind =  DELTA` or `MetricKind = CUMULATIVE`.
     #[prost(string, tag = "6")]
     pub total_service_filter: ::prost::alloc::string::String,
 }
 /// A `DistributionCut` defines a `TimeSeries` and thresholds used for measuring
-/// good service and total service. The `TimeSeries` must have `ValueType =
-/// DISTRIBUTION` and `MetricKind = DELTA` or `MetricKind = CUMULATIVE`. The
+/// good service and total service. The `TimeSeries` must have `ValueType =  DISTRIBUTION` and `MetricKind = DELTA` or `MetricKind = CUMULATIVE`. The
 /// computed `good_service` will be the estimated count of values in the
 /// `Distribution` that fall within the specified `min` and `max`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DistributionCut {
     /// A [monitoring filter](<https://cloud.google.com/monitoring/api/v3/filters>)
-    /// specifying a `TimeSeries` aggregating values. Must have `ValueType =
-    /// DISTRIBUTION` and `MetricKind = DELTA` or `MetricKind = CUMULATIVE`.
+    /// specifying a `TimeSeries` aggregating values. Must have `ValueType =  DISTRIBUTION` and `MetricKind = DELTA` or `MetricKind = CUMULATIVE`.
     #[prost(string, tag = "4")]
     pub distribution_filter: ::prost::alloc::string::String,
     /// Range of values considered "good." For a one-sided range, set one bound to
@@ -5107,7 +5182,9 @@ pub struct CreateServiceRequest {
     /// [name](<https://cloud.google.com/monitoring/api/v3#project_name>) of the
     /// parent Metrics Scope. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The Service id to use for this Service. If omitted, an id will be
@@ -5119,23 +5196,27 @@ pub struct CreateServiceRequest {
     pub service: ::core::option::Option<Service>,
 }
 /// The `GetService` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetServiceRequest {
     /// Required. Resource name of the `Service`. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The `ListServices` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListServicesRequest {
     /// Required. Resource name of the parent containing the listed services,
     /// either a [project](<https://cloud.google.com/monitoring/api/v3#project_name>)
     /// or a Monitoring Metrics Scope. The formats are:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
-    ///      workspaces/\[HOST_PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// workspaces/\[HOST_PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// A filter specifying what `Service`s to return. The filter supports
@@ -5152,8 +5233,7 @@ pub struct ListServicesRequest {
     /// name by using the snake case of the service-identifier type and the
     /// attribute of that service-identifier type, and join the two with a period.
     /// For example, to filter by the `meshUid` field of the `MeshIstio`
-    /// service-identifier type, you must filter on `mesh_istio.mesh_uid =
-    /// "123"` to match all services with mesh UID "123". Service-identifier types
+    /// service-identifier type, you must filter on `mesh_istio.mesh_uid =  "123"` to match all services with mesh UID "123". Service-identifier types
     /// and their attributes are described at
     /// <https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#Service>
     #[prost(string, tag = "2")]
@@ -5192,11 +5272,13 @@ pub struct UpdateServiceRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The `DeleteService` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteServiceRequest {
     /// Required. Resource name of the `Service` to delete. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -5205,7 +5287,9 @@ pub struct DeleteServiceRequest {
 pub struct CreateServiceLevelObjectiveRequest {
     /// Required. Resource name of the parent `Service`. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The ServiceLevelObjective id to use for this
@@ -5220,12 +5304,14 @@ pub struct CreateServiceLevelObjectiveRequest {
     pub service_level_objective: ::core::option::Option<ServiceLevelObjective>,
 }
 /// The `GetServiceLevelObjective` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetServiceLevelObjectiveRequest {
     /// Required. Resource name of the `ServiceLevelObjective` to get. The format
     /// is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]/serviceLevelObjectives/\[SLO_NAME\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]/serviceLevelObjectives/\[SLO_NAME\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// View of the `ServiceLevelObjective` to return. If `DEFAULT`, return the
@@ -5236,13 +5322,15 @@ pub struct GetServiceLevelObjectiveRequest {
     pub view: i32,
 }
 /// The `ListServiceLevelObjectives` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListServiceLevelObjectivesRequest {
     /// Required. Resource name of the parent containing the listed SLOs, either a
     /// project or a Monitoring Metrics Scope. The formats are:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
-    ///      workspaces/\[HOST_PROJECT_ID_OR_NUMBER\]/services/-
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]
+    /// workspaces/\[HOST_PROJECT_ID_OR_NUMBER\]/services/-
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// A filter specifying what `ServiceLevelObjective`s to return.
@@ -5288,12 +5376,14 @@ pub struct UpdateServiceLevelObjectiveRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// The `DeleteServiceLevelObjective` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteServiceLevelObjectiveRequest {
     /// Required. Resource name of the `ServiceLevelObjective` to delete. The
     /// format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]/serviceLevelObjectives/\[SLO_NAME\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/services/\[SERVICE_ID\]/serviceLevelObjectives/\[SLO_NAME\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -5396,7 +5486,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/CreateService",
             );
@@ -5423,7 +5513,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/GetService",
             );
@@ -5453,7 +5543,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/ListServices",
             );
@@ -5480,7 +5570,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/UpdateService",
             );
@@ -5507,7 +5597,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/DeleteService",
             );
@@ -5537,7 +5627,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/CreateServiceLevelObjective",
             );
@@ -5567,7 +5657,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/GetServiceLevelObjective",
             );
@@ -5597,7 +5687,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/ListServiceLevelObjectives",
             );
@@ -5627,7 +5717,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/UpdateServiceLevelObjective",
             );
@@ -5654,7 +5744,7 @@ pub mod service_monitoring_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.ServiceMonitoringService/DeleteServiceLevelObjective",
             );
@@ -5674,11 +5764,13 @@ pub mod service_monitoring_service_client {
 /// are already open. The `Snooze` will work on alerts that match the
 /// criteria defined in the `Snooze`. The `Snooze` will be active from
 /// `interval.start_time` through `interval.end_time`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Snooze {
     /// Required. Identifier. The name of the `Snooze`. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/snoozes/\[SNOOZE_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/snoozes/\[SNOOZE_ID\]
+    /// ```
     ///
     /// The ID of the `Snooze` will be generated by the system.
     #[prost(string, tag = "1")]
@@ -5704,12 +5796,14 @@ pub mod snooze {
     /// Criteria specific to the `AlertPolicy`s that this `Snooze` applies to. The
     /// `Snooze` will suppress alerts that come from one of the `AlertPolicy`s
     /// whose names are supplied.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Criteria {
         /// The specific `AlertPolicy` names for the alert that should be snoozed.
         /// The format is:
         ///
-        ///      projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[POLICY_ID\]
+        /// ```text
+        /// projects/\[PROJECT_ID_OR_NUMBER\]/alertPolicies/\[POLICY_ID\]
+        /// ```
         ///
         /// There is a limit of 16 policies per snooze. This limit is checked during
         /// snooze creation.
@@ -5729,21 +5823,25 @@ pub mod snooze {
         /// applies the snooze to incidents that have an instance ID of
         /// `1234567890` and a zone of `us-central1-a`:
         ///
-        ///      resource.labels.instance_id="1234567890" AND
-        ///      resource.labels.zone="us-central1-a"
+        /// ```text
+        /// resource.labels.instance_id="1234567890" AND
+        /// resource.labels.zone="us-central1-a"
+        /// ```
         #[prost(string, tag = "2")]
         pub filter: ::prost::alloc::string::String,
     }
 }
 /// The message definition for creating a `Snooze`. Users must provide the body
 /// of the `Snooze` to be created but must omit the `Snooze` field, `name`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateSnoozeRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) in which
     /// a `Snooze` should be created. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The `Snooze` to create. Omit the `name` field, as it will be
@@ -5753,25 +5851,29 @@ pub struct CreateSnoozeRequest {
 }
 /// The message definition for listing `Snooze`s associated with the given
 /// `parent`, satisfying the optional `filter`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListSnoozesRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) whose
     /// `Snooze`s should be listed. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. Optional filter to restrict results to the given criteria. The
     /// following fields are supported.
     ///
-    ///    * `interval.start_time`
-    ///    * `interval.end_time`
+    /// * `interval.start_time`
+    /// * `interval.end_time`
     ///
     /// For example:
     ///
-    ///      interval.start_time > "2022-03-11T00:00:00-08:00" AND
-    ///          interval.end_time < "2022-03-12T00:00:00-08:00"
+    /// ```text
+    /// interval.start_time > "2022-03-11T00:00:00-08:00" AND
+    ///      interval.end_time < "2022-03-12T00:00:00-08:00"
+    /// ```
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return for a single query. The
@@ -5800,11 +5902,13 @@ pub struct ListSnoozesResponse {
 }
 /// The message definition for retrieving a `Snooze`. Users must specify the
 /// field, `name`, which identifies the `Snooze`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSnoozeRequest {
     /// Required. The ID of the `Snooze` to retrieve. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/snoozes/\[SNOOZE_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/snoozes/\[SNOOZE_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -5815,13 +5919,13 @@ pub struct GetSnoozeRequest {
 /// What fields can be updated depends on the start time and end time of the
 /// `Snooze`.
 ///
-///    * end time is in the past: These `Snooze`s are considered
-///      read-only and cannot be updated.
-///    * start time is in the past and end time is in the future: `display_name`
-///      and `interval.end_time` can be updated.
-///    * start time is in the future: `display_name`, `interval.start_time` and
-///      `interval.end_time` can be updated.
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// * end time is in the past: These `Snooze`s are considered
+///   read-only and cannot be updated.
+/// * start time is in the past and end time is in the future: `display_name`
+///   and `interval.end_time` can be updated.
+/// * start time is in the future: `display_name`, `interval.start_time` and
+///   `interval.end_time` can be updated.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateSnoozeRequest {
     /// Required. The `Snooze` to update. Must have the name field present.
     #[prost(message, optional, tag = "1")]
@@ -5830,19 +5934,19 @@ pub struct UpdateSnoozeRequest {
     ///
     /// For each field listed in `update_mask`:
     ///
-    ///    * If the `Snooze` object supplied in the `UpdateSnoozeRequest` has a
-    ///      value for that field, the value of the field in the existing `Snooze`
-    ///      will be set to the value of the field in the supplied `Snooze`.
-    ///    * If the field does not have a value in the supplied `Snooze`, the field
-    ///      in the existing `Snooze` is set to its default value.
+    /// * If the `Snooze` object supplied in the `UpdateSnoozeRequest` has a
+    ///   value for that field, the value of the field in the existing `Snooze`
+    ///   will be set to the value of the field in the supplied `Snooze`.
+    /// * If the field does not have a value in the supplied `Snooze`, the field
+    ///   in the existing `Snooze` is set to its default value.
     ///
     /// Fields not listed retain their existing value.
     ///
     /// The following are the field names that are accepted in `update_mask`:
     ///
-    ///    * `display_name`
-    ///    * `interval.start_time`
-    ///    * `interval.end_time`
+    /// * `display_name`
+    /// * `interval.start_time`
+    /// * `interval.end_time`
     ///
     /// That said, the start time and end time of the `Snooze` determines which
     /// fields can legally be updated. Before attempting an update, users should
@@ -5949,7 +6053,7 @@ pub mod snooze_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/CreateSnooze",
             );
@@ -5977,7 +6081,7 @@ pub mod snooze_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/ListSnoozes",
             );
@@ -6001,7 +6105,7 @@ pub mod snooze_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/GetSnooze",
             );
@@ -6026,7 +6130,7 @@ pub mod snooze_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.SnoozeService/UpdateSnooze",
             );
@@ -6040,17 +6144,21 @@ pub mod snooze_service_client {
     }
 }
 /// The context of a span. This is attached to an
-/// [Exemplar][google.api.Distribution.Exemplar]
-/// in [Distribution][google.api.Distribution] values during aggregation.
+/// \[Exemplar\]\[google.api.Distribution.Exemplar\]
+/// in \[Distribution\]\[google.api.Distribution\] values during aggregation.
 ///
 /// It contains the name of a span with format:
 ///
-///      projects/\[PROJECT_ID_OR_NUMBER\]/traces/\[TRACE_ID\]/spans/\[SPAN_ID\]
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// ```text
+/// projects/\[PROJECT_ID_OR_NUMBER\]/traces/\[TRACE_ID\]/spans/\[SPAN_ID\]
+/// ```
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SpanContext {
     /// The resource name of the span. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/traces/\[TRACE_ID\]/spans/\[SPAN_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/traces/\[TRACE_ID\]/spans/\[SPAN_ID\]
+    /// ```
     ///
     /// `\[TRACE_ID\]` is a unique identifier for a trace within a project;
     /// it is a 32-character hexadecimal encoding of a 16-byte array.
@@ -6062,11 +6170,13 @@ pub struct SpanContext {
 }
 /// An internal checker allows Uptime checks to run on private/internal GCP
 /// resources.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InternalChecker {
     /// A unique resource name for this InternalChecker. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/internalCheckers/\[INTERNAL_CHECKER_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/internalCheckers/\[INTERNAL_CHECKER_ID\]
+    /// ```
     ///
     /// `\[PROJECT_ID_OR_NUMBER\]` is the Cloud Monitoring Metrics Scope project for
     /// the Uptime check config associated with the internal checker.
@@ -6190,7 +6300,9 @@ pub struct UptimeCheckConfig {
     /// Identifier. A unique resource name for this Uptime check configuration. The
     /// format is:
     ///
-    ///       projects/\[PROJECT_ID_OR_NUMBER\]/uptimeCheckConfigs/\[UPTIME_CHECK_ID\]
+    /// ```text
+    ///   projects/\[PROJECT_ID_OR_NUMBER\]/uptimeCheckConfigs/\[UPTIME_CHECK_ID\]
+    /// ```
     ///
     /// `\[PROJECT_ID_OR_NUMBER\]` is the Workspace host project associated with the
     /// Uptime check.
@@ -6271,7 +6383,7 @@ pub struct UptimeCheckConfig {
 pub mod uptime_check_config {
     /// The resource submessage for group checks. It can be used instead of a
     /// monitored resource, when multiple resources are being monitored.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ResourceGroup {
         /// The group of resources being monitored. Should be only the `\[GROUP_ID\]`,
         /// and not the full-path
@@ -6285,7 +6397,7 @@ pub mod uptime_check_config {
     /// Information involved in sending ICMP pings alongside public HTTP/TCP
     /// checks. For HTTP, the pings are performed for each part of the redirect
     /// chain.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PingConfig {
         /// Number of ICMP pings. A maximum of 3 ICMP pings is currently supported.
         #[prost(int32, tag = "1")]
@@ -6342,20 +6454,22 @@ pub mod uptime_check_config {
         >,
         /// The content type header to use for the check. The following
         /// configurations result in errors:
+        ///
         /// 1. Content type is specified in both the `headers` field and the
-        /// `content_type` field.
-        /// 2. Request method is `GET` and `content_type` is not `TYPE_UNSPECIFIED`
-        /// 3. Request method is `POST` and `content_type` is `TYPE_UNSPECIFIED`.
-        /// 4. Request method is `POST` and a "Content-Type" header is provided via
-        /// `headers` field. The `content_type` field should be used instead.
+        ///    `content_type` field.
+        /// 1. Request method is `GET` and `content_type` is not `TYPE_UNSPECIFIED`
+        /// 1. Request method is `POST` and `content_type` is `TYPE_UNSPECIFIED`.
+        /// 1. Request method is `POST` and a "Content-Type" header is provided via
+        ///    `headers` field. The `content_type` field should be used instead.
         #[prost(enumeration = "http_check::ContentType", tag = "9")]
         pub content_type: i32,
         /// A user provided content type header to use for the check. The invalid
         /// configurations outlined in the `content_type` field apply to
         /// `custom_content_type`, as well as the following:
+        ///
         /// 1. `content_type` is `URL_ENCODED` and `custom_content_type` is set.
-        /// 2. `content_type` is `USER_PROVIDED` and `custom_content_type` is not
-        /// set.
+        /// 1. `content_type` is `USER_PROVIDED` and `custom_content_type` is not
+        ///    set.
         #[prost(string, tag = "13")]
         pub custom_content_type: ::prost::alloc::string::String,
         /// Boolean specifying whether to include SSL certificate validation as a
@@ -6397,7 +6511,7 @@ pub mod uptime_check_config {
         /// URL that requires a username and password. Currently, only
         /// [Basic HTTP authentication](<https://tools.ietf.org/html/rfc7617>) is
         /// supported in Uptime checks.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct BasicAuthentication {
             /// The username to use when authenticating with the HTTP server.
             #[prost(string, tag = "1")]
@@ -6408,7 +6522,7 @@ pub mod uptime_check_config {
         }
         /// A status to accept. Either a status code class like "2xx", or an integer
         /// status code like "200".
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct ResponseStatusCode {
             /// Either a specific value or a class of status codes.
             #[prost(oneof = "response_status_code::StatusCode", tags = "1, 2")]
@@ -6476,7 +6590,7 @@ pub mod uptime_check_config {
                 }
             }
             /// Either a specific value or a class of status codes.
-            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum StatusCode {
                 /// A status code to accept.
                 #[prost(int32, tag = "1")]
@@ -6492,7 +6606,7 @@ pub mod uptime_check_config {
         /// [OAuth token](<https://developers.google.com/identity/protocols/oauth2>).
         /// The token will be generated for the Monitoring service agent service
         /// account.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct ServiceAgentAuthentication {
             /// Type of authentication.
             #[prost(
@@ -6639,7 +6753,7 @@ pub mod uptime_check_config {
         /// This field is optional and should be set only by users interested in
         /// an authenticated uptime check.
         /// Do not set both `auth_method` and `auth_info`.
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum AuthMethod {
             /// If specified, Uptime will generate and attach an OIDC JWT token for the
             /// Monitoring service agent service account as an `Authorization` header
@@ -6649,7 +6763,7 @@ pub mod uptime_check_config {
         }
     }
     /// Information required for a TCP Uptime check request.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TcpCheck {
         /// The TCP port on the server against which to run the check. Will be
         /// combined with host (specified within the `monitored_resource`) to
@@ -6662,10 +6776,10 @@ pub mod uptime_check_config {
     }
     /// Optional. Used to perform content matching. This allows matching based on
     /// substrings and regular expressions, together with their negations. Only the
-    /// first 4&nbsp;MB of an HTTP or HTTPS check's response (and the first
-    /// 1&nbsp;MB of a TCP check's response) are examined for purposes of content
+    /// first 4 MB of an HTTP or HTTPS check's response (and the first
+    /// 1 MB of a TCP check's response) are examined for purposes of content
     /// matching.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ContentMatcher {
         /// String, regex or JSON content to match. Maximum 1024 bytes. An empty
         /// `content` string indicates no content matching is to be performed.
@@ -6688,7 +6802,7 @@ pub mod uptime_check_config {
         /// Information needed to perform a JSONPath content match.
         /// Used for `ContentMatcherOption::MATCHES_JSON_PATH` and
         /// `ContentMatcherOption::NOT_MATCHES_JSON_PATH`.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct JsonPathMatcher {
             /// JSONPath within the response output pointing to the expected
             /// `ContentMatcher::content` to match against.
@@ -6773,14 +6887,14 @@ pub mod uptime_check_config {
             /// `CONTENT_MATCHER_OPTION_UNSPECIFIED`.
             ContainsString = 1,
             /// Selects negation of substring matching. The match succeeds if the
-            /// output does _NOT_ contain the `content` string.
+            /// output does *NOT* contain the `content` string.
             NotContainsString = 2,
             /// Selects regular-expression matching. The match succeeds if the output
             /// matches the regular expression specified in the `content` string.
             /// Regex matching is only supported for HTTP/HTTPS checks.
             MatchesRegex = 3,
             /// Selects negation of regular-expression matching. The match succeeds if
-            /// the output does _NOT_ match the regular expression specified in the
+            /// the output does *NOT* match the regular expression specified in the
             /// `content` string. Regex matching is only supported for HTTP/HTTPS
             /// checks.
             NotMatchesRegex = 4,
@@ -6789,7 +6903,7 @@ pub mod uptime_check_config {
             /// checks.
             MatchesJsonPath = 5,
             /// Selects JSONPath matching. See `JsonPathMatcher` for details on when
-            /// the match succeeds. Succeeds when output does _NOT_ match as specified.
+            /// the match succeeds. Succeeds when output does *NOT* match as specified.
             /// JSONPath is only supported for HTTP/HTTPS checks.
             NotMatchesJsonPath = 6,
         }
@@ -6826,7 +6940,7 @@ pub mod uptime_check_config {
         /// Certain `ContentMatcherOption` types require additional information.
         /// `MATCHES_JSON_PATH` or `NOT_MATCHES_JSON_PATH` require a
         /// `JsonPathMatcher`; not used for other options.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum AdditionalMatcherInfo {
             /// Matcher information for `MATCHES_JSON_PATH` and `NOT_MATCHES_JSON_PATH`
             #[prost(message, tag = "3")]
@@ -6888,14 +7002,14 @@ pub mod uptime_check_config {
         /// resource](<https://cloud.google.com/monitoring/api/resources>) associated
         /// with the configuration.
         /// The following monitored resource types are valid for this field:
-        ///    `uptime_url`,
-        ///    `gce_instance`,
-        ///    `gae_app`,
-        ///    `aws_ec2_instance`,
-        ///    `aws_elb_load_balancer`
-        ///    `k8s_service`
-        ///    `servicedirectory_service`
-        ///    `cloud_run_revision`
+        /// `uptime_url`,
+        /// `gce_instance`,
+        /// `gae_app`,
+        /// `aws_ec2_instance`,
+        /// `aws_elb_load_balancer`
+        /// `k8s_service`
+        /// `servicedirectory_service`
+        /// `cloud_run_revision`
         #[prost(message, tag = "3")]
         MonitoredResource(super::super::super::api::MonitoredResource),
         /// The group resource associated with the configuration.
@@ -6918,7 +7032,7 @@ pub mod uptime_check_config {
 }
 /// Contains the region, location, and list of IP
 /// addresses where checkers in the location run from.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UptimeCheckIp {
     /// A broad region category in which the IP address is located.
     #[prost(enumeration = "UptimeCheckRegion", tag = "1")]
@@ -7034,13 +7148,15 @@ impl GroupResourceType {
     }
 }
 /// The protocol for the `ListUptimeCheckConfigs` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListUptimeCheckConfigsRequest {
     /// Required. The
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) whose
     /// Uptime check configurations are listed. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// If provided, this field specifies the criteria that must be met by
@@ -7052,7 +7168,7 @@ pub struct ListUptimeCheckConfigsRequest {
     pub filter: ::prost::alloc::string::String,
     /// The maximum number of results to return in a single response. The server
     /// may further constrain the maximum number of results returned in a single
-    /// page. If the page_size is <=0, the server will decide the number of results
+    /// page. If the page_size is \<=0, the server will decide the number of results
     /// to be returned.
     #[prost(int32, tag = "3")]
     pub page_size: i32,
@@ -7081,11 +7197,13 @@ pub struct ListUptimeCheckConfigsResponse {
     pub total_size: i32,
 }
 /// The protocol for the `GetUptimeCheckConfig` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetUptimeCheckConfigRequest {
     /// Required. The Uptime check configuration to retrieve. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/uptimeCheckConfigs/\[UPTIME_CHECK_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/uptimeCheckConfigs/\[UPTIME_CHECK_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -7096,7 +7214,9 @@ pub struct CreateUptimeCheckConfigRequest {
     /// [project](<https://cloud.google.com/monitoring/api/v3#project_name>) in which
     /// to create the Uptime check. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]
+    /// ```
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The new Uptime check configuration.
@@ -7127,20 +7247,22 @@ pub struct UpdateUptimeCheckConfigRequest {
     pub uptime_check_config: ::core::option::Option<UptimeCheckConfig>,
 }
 /// The protocol for the `DeleteUptimeCheckConfig` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteUptimeCheckConfigRequest {
     /// Required. The Uptime check configuration to delete. The format is:
     ///
-    ///      projects/\[PROJECT_ID_OR_NUMBER\]/uptimeCheckConfigs/\[UPTIME_CHECK_ID\]
+    /// ```text
+    /// projects/\[PROJECT_ID_OR_NUMBER\]/uptimeCheckConfigs/\[UPTIME_CHECK_ID\]
+    /// ```
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The protocol for the `ListUptimeCheckIps` request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListUptimeCheckIpsRequest {
     /// The maximum number of results to return in a single response. The server
     /// may further constrain the maximum number of results returned in a single
-    /// page. If the page_size is <=0, the server will decide the number of results
+    /// page. If the page_size is \<=0, the server will decide the number of results
     /// to be returned.
     /// NOTE: this field is not yet implemented
     #[prost(int32, tag = "2")]
@@ -7183,7 +7305,7 @@ pub mod uptime_check_service_client {
     /// Uptime check configurations in the Cloud Monitoring product. An Uptime
     /// check is a piece of configuration that determines which resources and
     /// services to monitor for availability. These configurations can also be
-    /// configured interactively by navigating to the [Cloud console]
+    /// configured interactively by navigating to the \[Cloud console\]
     /// (https://console.cloud.google.com), selecting the appropriate project,
     /// clicking on "Monitoring" on the left-hand side to navigate to Cloud
     /// Monitoring, and then clicking on "Uptime".
@@ -7273,7 +7395,7 @@ pub mod uptime_check_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/ListUptimeCheckConfigs",
             );
@@ -7303,7 +7425,7 @@ pub mod uptime_check_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/GetUptimeCheckConfig",
             );
@@ -7333,7 +7455,7 @@ pub mod uptime_check_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/CreateUptimeCheckConfig",
             );
@@ -7366,7 +7488,7 @@ pub mod uptime_check_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/UpdateUptimeCheckConfig",
             );
@@ -7395,7 +7517,7 @@ pub mod uptime_check_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig",
             );
@@ -7425,7 +7547,7 @@ pub mod uptime_check_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.monitoring.v3.UptimeCheckService/ListUptimeCheckIps",
             );

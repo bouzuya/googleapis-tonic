@@ -32,15 +32,15 @@ pub struct AdaptMessageResponse {
     >,
 }
 /// A session in the Cloud Spanner Adapter API.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Session {
     /// Identifier. The name of the session. This is always system-assigned.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// The request for
-/// [CreateSessionRequest][Adapter.CreateSessionRequest].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[CreateSessionRequest\]\[Adapter.CreateSessionRequest\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateSessionRequest {
     /// Required. The database in which the new session is created.
     #[prost(string, tag = "1")]
@@ -149,7 +149,7 @@ pub mod adapter_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.spanner.adapter.v1.Adapter/CreateSession",
             );
@@ -178,7 +178,7 @@ pub mod adapter_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.spanner.adapter.v1.Adapter/AdaptMessage",
             );

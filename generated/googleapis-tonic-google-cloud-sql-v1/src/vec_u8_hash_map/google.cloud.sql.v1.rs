@@ -86,7 +86,7 @@ pub mod sql_available_database_versions_service_client {
     }
 }
 /// An entry for an Access Control list.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AclEntry {
     /// The allowlisted value for the access control list.
     #[prost(string, tag = "1")]
@@ -104,7 +104,7 @@ pub struct AclEntry {
     pub kind: ::prost::alloc::string::String,
 }
 /// An Admin API warning message.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ApiWarning {
     /// Code to uniquely identify the warning type.
     #[prost(enumeration = "api_warning::SqlApiWarningCode", tag = "1")]
@@ -175,7 +175,7 @@ pub mod api_warning {
 }
 /// We currently only support backup retention by specifying the number
 /// of backups we will retain.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackupRetentionSettings {
     /// The unit that 'retained_backups' represents.
     #[prost(enumeration = "backup_retention_settings::RetentionUnit", tag = "1")]
@@ -229,7 +229,7 @@ pub mod backup_retention_settings {
     }
 }
 /// Database instance backup configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackupConfiguration {
     /// Start time for the daily backup configuration in UTC timezone in the 24
     /// hour format - `HH:MM`.
@@ -332,14 +332,14 @@ pub mod backup_configuration {
     }
 }
 /// Perform disk shrink context.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PerformDiskShrinkContext {
     /// The target disk shrink size in GigaBytes.
     #[prost(int64, tag = "1")]
     pub target_size_gb: i64,
 }
 /// Backup context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackupContext {
     /// The identifier of the backup.
     #[prost(int64, tag = "1")]
@@ -349,7 +349,7 @@ pub struct BackupContext {
     pub kind: ::prost::alloc::string::String,
 }
 /// Represents a SQL database on the Cloud SQL instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Database {
     /// This is always `sql#database`.
     #[prost(string, tag = "1")]
@@ -383,14 +383,14 @@ pub struct Database {
 }
 /// Nested message and enum types in `Database`.
 pub mod database {
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum DatabaseDetails {
         #[prost(message, tag = "9")]
         SqlserverDatabaseDetails(super::SqlServerDatabaseDetails),
     }
 }
 /// Represents a Sql Server database on the Cloud SQL instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlServerDatabaseDetails {
     /// The version of SQL Server with which the database is to be made compatible
     #[prost(int32, tag = "1")]
@@ -400,7 +400,7 @@ pub struct SqlServerDatabaseDetails {
     pub recovery_model: ::prost::alloc::string::String,
 }
 /// Database flags for Cloud SQL instances.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DatabaseFlags {
     /// The name of the flag. These flags are passed at instance startup, so
     /// include both server options and system variables. Flags are
@@ -424,7 +424,7 @@ pub struct MySqlSyncConfig {
 }
 /// Initial sync flags for certain Cloud SQL APIs.
 /// Currently used for the MySQL external server initial dump.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SyncFlags {
     /// The name of the flag.
     #[prost(string, tag = "1")]
@@ -435,7 +435,7 @@ pub struct SyncFlags {
     pub value: ::prost::alloc::string::String,
 }
 /// Reference to another Cloud SQL instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstanceReference {
     /// The name of the Cloud SQL instance being referenced.
     /// This does not include the project ID.
@@ -451,7 +451,7 @@ pub struct InstanceReference {
 }
 /// Read-replica configuration for connecting to the on-premises primary
 /// instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DemoteMasterConfiguration {
     /// This is always `sql#demoteMasterConfiguration`.
     #[prost(string, tag = "1")]
@@ -468,7 +468,7 @@ pub struct DemoteMasterConfiguration {
     >,
 }
 /// Read-replica configuration specific to MySQL databases.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DemoteMasterMySqlReplicaConfiguration {
     /// This is always `sql#demoteMasterMysqlReplicaConfiguration`.
     #[prost(string, tag = "1")]
@@ -492,7 +492,7 @@ pub struct DemoteMasterMySqlReplicaConfiguration {
     pub ca_certificate: ::prost::alloc::string::String,
 }
 /// Database instance export context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExportContext {
     /// The path to the file in Google Cloud Storage where the export will be
     /// stored. The URI is in the form `gs://bucketName/fileName`. If the file
@@ -510,8 +510,7 @@ pub struct ExportContext {
     /// over this property. <br /> `PostgreSQL instances:` You must specify
     /// one database to be exported. If `fileType` is `CSV`,
     /// this database must match the one specified in the
-    /// `csvExportOptions.selectQuery` property. <br /> `SQL Server
-    /// instances:` You must specify one database to be exported, and the
+    /// `csvExportOptions.selectQuery` property. <br /> `SQL Server  instances:` You must specify one database to be exported, and the
     /// `fileType` must be `BAK`.
     #[prost(string, repeated, tag = "2")]
     pub databases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -537,7 +536,7 @@ pub struct ExportContext {
 }
 /// Nested message and enum types in `ExportContext`.
 pub mod export_context {
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlCsvExportOptions {
         /// The select query used to extract the data.
         #[prost(string, tag = "1")]
@@ -558,7 +557,7 @@ pub mod export_context {
         #[prost(string, tag = "6")]
         pub lines_terminated_by: ::prost::alloc::string::String,
     }
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlExportOptions {
         /// Tables to export, or that were exported, from the specified database. If
         /// you specify tables, specify one and only one database. For PostgreSQL
@@ -587,7 +586,7 @@ pub mod export_context {
     /// Nested message and enum types in `SqlExportOptions`.
     pub mod sql_export_options {
         /// Options for exporting from MySQL.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct MysqlExportOptions {
             /// Option to include SQL statement required to set up replication. If set
             /// to `1`, the dump file includes a CHANGE MASTER TO statement with the
@@ -599,7 +598,7 @@ pub mod export_context {
             pub master_data: ::core::option::Option<i32>,
         }
         /// Options for exporting from a Cloud SQL for PostgreSQL instance.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct PostgresExportOptions {
             /// Optional. Use this option to include DROP <object> SQL statements.
             /// These statements are used to delete database objects before running the
@@ -613,7 +612,7 @@ pub mod export_context {
         }
     }
     /// Options for exporting BAK files (SQL Server-only)
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlBakExportOptions {
         /// Whether or not the export should be striped.
         #[prost(message, optional, tag = "1")]
@@ -637,7 +636,7 @@ pub mod export_context {
     }
 }
 /// Database instance import context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImportContext {
     /// Path to the import file in Cloud Storage, in the form
     /// `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported
@@ -654,8 +653,7 @@ pub struct ImportContext {
     /// This is always `sql#importContext`.
     #[prost(string, tag = "3")]
     pub kind: ::prost::alloc::string::String,
-    /// The file type for the specified uri.\`SQL`: The file
-    /// contains SQL statements. \`CSV`: The file contains CSV data.
+    /// The file type for the specified uri.\`SQL`: The file  contains SQL statements. \`CSV\`: The file contains CSV data.
     #[prost(enumeration = "SqlFileType", tag = "4")]
     pub file_type: i32,
     /// Options for importing data as CSV.
@@ -673,7 +671,7 @@ pub struct ImportContext {
 }
 /// Nested message and enum types in `ImportContext`.
 pub mod import_context {
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlImportOptions {
         /// Optional. The number of threads to use for parallel import.
         #[prost(message, optional, tag = "1")]
@@ -689,7 +687,7 @@ pub mod import_context {
     }
     /// Nested message and enum types in `SqlImportOptions`.
     pub mod sql_import_options {
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct PostgresImportOptions {
             /// Optional. The --clean flag for the pg_restore utility. This flag
             /// applies only if you enabled Cloud SQL to import files in parallel.
@@ -701,7 +699,7 @@ pub mod import_context {
             pub if_exists: ::core::option::Option<bool>,
         }
     }
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlCsvImportOptions {
         /// The table to which CSV data is imported.
         #[prost(string, tag = "1")]
@@ -726,7 +724,7 @@ pub mod import_context {
         #[prost(string, tag = "8")]
         pub lines_terminated_by: ::prost::alloc::string::String,
     }
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlBakImportOptions {
         #[prost(message, optional, tag = "1")]
         pub encryption_options: ::core::option::Option<
@@ -764,7 +762,7 @@ pub mod import_context {
     }
     /// Nested message and enum types in `SqlBakImportOptions`.
     pub mod sql_bak_import_options {
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct EncryptionOptions {
             /// Path to the Certificate (.cer) in Cloud Storage, in the form
             /// `gs://bucketName/fileName`. The instance must have
@@ -977,7 +975,7 @@ pub mod ip_configuration {
     }
 }
 /// PSC settings for a Cloud SQL instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PscConfig {
     /// Whether PSC connectivity is enabled for this instance.
     #[prost(bool, optional, tag = "1")]
@@ -997,7 +995,7 @@ pub struct PscConfig {
 /// Note that if the preferred location is not available, the instance will be
 /// located as close as possible within the region. Only one location may be
 /// specified.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocationPreference {
     /// The App Engine application to follow, it must be in the same region as the
     /// Cloud SQL instance. WARNING: Changing this might restart the instance.
@@ -1019,7 +1017,7 @@ pub struct LocationPreference {
 }
 /// Maintenance window. This specifies when a Cloud SQL instance is
 /// restarted for system maintenance purposes.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MaintenanceWindow {
     /// Hour of day - 0 to 23. Specify in the UTC time zone.
     #[prost(message, optional, tag = "1")]
@@ -1040,7 +1038,7 @@ pub struct MaintenanceWindow {
 }
 /// Deny maintenance Periods. This specifies a date range during when all CSA
 /// rollout will be denied.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DenyMaintenancePeriod {
     /// "deny maintenance period" start date. If the year of the start date is
     /// empty, the year of the end date also must be empty. In this case, it means
@@ -1061,7 +1059,7 @@ pub struct DenyMaintenancePeriod {
 }
 /// Insights configuration. This specifies when Cloud SQL Insights feature is
 /// enabled and optional configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InsightsConfig {
     /// Whether Query Insights feature is enabled.
     #[prost(bool, tag = "1")]
@@ -1085,7 +1083,7 @@ pub struct InsightsConfig {
     pub query_plans_per_minute: ::core::option::Option<i32>,
 }
 /// Read-replica configuration specific to MySQL databases.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MySqlReplicaConfiguration {
     /// Path to a SQL dump file in Google Cloud Storage from which the replica
     /// instance is to be created. The URI is in the form gs://bucketName/fileName.
@@ -1129,7 +1127,7 @@ pub struct MySqlReplicaConfiguration {
     pub kind: ::prost::alloc::string::String,
 }
 /// Disk encryption configuration for an instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiskEncryptionConfiguration {
     /// Resource name of KMS key for disk encryption
     #[prost(string, tag = "1")]
@@ -1139,7 +1137,7 @@ pub struct DiskEncryptionConfiguration {
     pub kind: ::prost::alloc::string::String,
 }
 /// Disk encryption status for an instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiskEncryptionStatus {
     /// KMS key version used to encrypt the Cloud SQL instance resource
     #[prost(string, tag = "1")]
@@ -1149,7 +1147,7 @@ pub struct DiskEncryptionStatus {
     pub kind: ::prost::alloc::string::String,
 }
 /// Database instance IP mapping
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IpMapping {
     /// The type of this IP address. A `PRIMARY` address is a public address that
     /// can accept incoming connections. A `PRIVATE` address is a private address
@@ -1167,7 +1165,7 @@ pub struct IpMapping {
     #[prost(message, optional, tag = "3")]
     pub time_to_retire: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// An Operation resource.&nbsp;For successful operations that return an
+/// An Operation resource. For successful operations that return an
 /// Operation resource, only the fields relevant to the operation are populated
 /// in the resource.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1206,18 +1204,19 @@ pub struct Operation {
     #[prost(message, optional, tag = "19")]
     pub api_warning: ::core::option::Option<ApiWarning>,
     /// The type of the operation. Valid values are:
-    /// *  `CREATE`
-    /// *  `DELETE`
-    /// *  `UPDATE`
-    /// *  `RESTART`
-    /// *  `IMPORT`
-    /// *  `EXPORT`
-    /// *  `BACKUP_VOLUME`
-    /// *  `RESTORE_VOLUME`
-    /// *  `CREATE_USER`
-    /// *  `DELETE_USER`
-    /// *  `CREATE_DATABASE`
-    /// *  `DELETE_DATABASE`
+    ///
+    /// * `CREATE`
+    /// * `DELETE`
+    /// * `UPDATE`
+    /// * `RESTART`
+    /// * `IMPORT`
+    /// * `EXPORT`
+    /// * `BACKUP_VOLUME`
+    /// * `RESTORE_VOLUME`
+    /// * `CREATE_USER`
+    /// * `DELETE_USER`
+    /// * `CREATE_DATABASE`
+    /// * `DELETE_DATABASE`
     #[prost(enumeration = "operation::SqlOperationType", tag = "9")]
     pub operation_type: i32,
     /// The context for import operation, if applicable.
@@ -1527,7 +1526,7 @@ pub mod operation {
     }
 }
 /// Database instance operation error.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationError {
     /// This is always `sql#operationError`.
     #[prost(string, tag = "1")]
@@ -1550,7 +1549,7 @@ pub struct OperationErrors {
     pub errors: ::prost::alloc::vec::Vec<OperationError>,
 }
 /// Database instance local user password validation policy
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PasswordValidationPolicy {
     /// Minimum number of characters allowed.
     #[prost(message, optional, tag = "1")]
@@ -1621,7 +1620,7 @@ pub mod password_validation_policy {
     }
 }
 /// Data cache configurations.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DataCacheConfig {
     /// Whether data cache is enabled for the instance.
     #[prost(bool, tag = "1")]
@@ -1658,10 +1657,11 @@ pub struct Settings {
         ::prost::alloc::string::String,
     >,
     /// Availability type. Potential values:
-    /// *  `ZONAL`: The instance serves data from only one zone. Outages in that
-    /// zone affect data accessibility.
-    /// *  `REGIONAL`: The instance can serve data from more than one zone in a
-    /// region (it is highly available)./
+    ///
+    /// * `ZONAL`: The instance serves data from only one zone. Outages in that
+    ///   zone affect data accessibility.
+    /// * `REGIONAL`: The instance can serve data from more than one zone in a
+    ///   region (it is highly available)./
     ///
     /// For more information, see [Overview of the High Availability
     /// Configuration](<https://cloud.google.com/sql/docs/mysql/high-availability>).
@@ -1683,10 +1683,11 @@ pub struct Settings {
     pub storage_auto_resize_limit: ::core::option::Option<i64>,
     /// The activation policy specifies when the instance is activated; it is
     /// applicable only when the instance state is RUNNABLE. Valid values:
-    /// *  `ALWAYS`: The instance is on, and remains so even in the absence of
-    /// connection requests.
-    /// *  `NEVER`: The instance is off; it is not activated, even if a
-    /// connection request arrives.
+    ///
+    /// * `ALWAYS`: The instance is on, and remains so even in the absence of
+    ///   connection requests.
+    /// * `NEVER`: The instance is off; it is not activated, even if a
+    ///   connection request arrives.
     #[prost(enumeration = "settings::SqlActivationPolicy", tag = "10")]
     pub activation_policy: i32,
     /// The settings for IP Management. This allows to enable or disable the
@@ -1929,14 +1930,14 @@ pub mod settings {
     }
 }
 /// Specifies options for controlling advanced machine features.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdvancedMachineFeatures {
     /// The number of threads per physical core.
     #[prost(int32, tag = "1")]
     pub threads_per_core: i32,
 }
 /// SslCerts Resource
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SslCert {
     /// This is always `sql#sslCert`.
     #[prost(string, tag = "1")]
@@ -1952,7 +1953,7 @@ pub struct SslCert {
     /// `2012-11-15T16:19:00.094Z`
     #[prost(message, optional, tag = "4")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// User supplied name.  Constrained to \[a-zA-Z.-_ \]+.
+    /// User supplied name.  Constrained to \[a-zA-Z.-\_ \]+.
     #[prost(string, tag = "5")]
     pub common_name: ::prost::alloc::string::String,
     /// The time when the certificate expires in [RFC
@@ -1971,7 +1972,7 @@ pub struct SslCert {
     pub self_link: ::prost::alloc::string::String,
 }
 /// SslCertDetail.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SslCertDetail {
     /// The public information about the cert.
     #[prost(message, optional, tag = "1")]
@@ -1982,7 +1983,7 @@ pub struct SslCertDetail {
     pub cert_private_key: ::prost::alloc::string::String,
 }
 /// Active Directory configuration, relevant only for Cloud SQL for SQL Server.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlActiveDirectoryConfig {
     /// This is always sql#activeDirectoryConfig.
     #[prost(string, tag = "1")]
@@ -1992,7 +1993,7 @@ pub struct SqlActiveDirectoryConfig {
     pub domain: ::prost::alloc::string::String,
 }
 /// SQL Server specific audit configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlServerAuditConfig {
     /// This is always sql#sqlServerAuditConfig
     #[prost(string, tag = "1")]
@@ -2008,7 +2009,7 @@ pub struct SqlServerAuditConfig {
     pub upload_interval: ::core::option::Option<::prost_types::Duration>,
 }
 /// Acquire SSRS lease context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AcquireSsrsLeaseContext {
     /// The username to be used as the setup login to connect to the database
     /// server for SSRS setup.
@@ -2560,7 +2561,7 @@ impl SqlUpdateTrack {
     }
 }
 /// Backup runs delete request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlBackupRunsDeleteRequest {
     /// The ID of the backup run to delete. To find a backup run ID, use the
     /// [list](<https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/backupRuns/list>)
@@ -2575,7 +2576,7 @@ pub struct SqlBackupRunsDeleteRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Backup runs get request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlBackupRunsGetRequest {
     /// The ID of this backup run.
     #[prost(int64, tag = "1")]
@@ -2588,7 +2589,7 @@ pub struct SqlBackupRunsGetRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Backup runs insert request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlBackupRunsInsertRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -2600,7 +2601,7 @@ pub struct SqlBackupRunsInsertRequest {
     pub body: ::core::option::Option<BackupRun>,
 }
 /// Backup runs list request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlBackupRunsListRequest {
     /// Cloud SQL instance ID, or "-" for all instances. This does not include
     /// the project ID.
@@ -2618,7 +2619,7 @@ pub struct SqlBackupRunsListRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// A BackupRun resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackupRun {
     /// This is always `sql#backupRun`.
     #[prost(string, tag = "1")]
@@ -2928,7 +2929,7 @@ pub mod sql_backup_runs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlBackupRunsService/Delete",
             );
@@ -2952,7 +2953,7 @@ pub mod sql_backup_runs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlBackupRunsService/Get",
             );
@@ -2976,7 +2977,7 @@ pub mod sql_backup_runs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlBackupRunsService/Insert",
             );
@@ -3005,7 +3006,7 @@ pub mod sql_backup_runs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlBackupRunsService/List",
             );
@@ -3019,7 +3020,7 @@ pub mod sql_backup_runs_service_client {
     }
 }
 /// Connect settings retrieval request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetConnectSettingsRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -3050,11 +3051,11 @@ pub struct ConnectSettings {
     pub region: ::prost::alloc::string::String,
     /// The database engine type and version. The `databaseVersion`
     /// field cannot be changed after instance creation.
-    ///    MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
+    /// MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
     /// or `MYSQL_5_6`.
-    ///    PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+    /// PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
     /// `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`.
-    ///    SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
+    /// SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
     /// `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`,
     /// `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
     /// `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
@@ -3125,7 +3126,7 @@ pub mod connect_settings {
     }
 }
 /// Ephemeral certificate creation request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GenerateEphemeralCertRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -3148,7 +3149,7 @@ pub struct GenerateEphemeralCertRequest {
     pub valid_duration: ::core::option::Option<::prost_types::Duration>,
 }
 /// Ephemeral certificate creation request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GenerateEphemeralCertResponse {
     /// Generated cert
     #[prost(message, optional, tag = "1")]
@@ -3251,7 +3252,7 @@ pub mod sql_connect_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlConnectService/GetConnectSettings",
             );
@@ -3284,7 +3285,7 @@ pub mod sql_connect_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlConnectService/GenerateEphemeralCert",
             );
@@ -3301,7 +3302,7 @@ pub mod sql_connect_service_client {
     }
 }
 /// Database delete request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlDatabasesDeleteRequest {
     /// Name of the database to be deleted in the instance.
     #[prost(string, tag = "1")]
@@ -3314,7 +3315,7 @@ pub struct SqlDatabasesDeleteRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Database get request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlDatabasesGetRequest {
     /// Name of the database in the instance.
     #[prost(string, tag = "1")]
@@ -3327,7 +3328,7 @@ pub struct SqlDatabasesGetRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Database insert request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlDatabasesInsertRequest {
     /// Database instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -3339,7 +3340,7 @@ pub struct SqlDatabasesInsertRequest {
     pub body: ::core::option::Option<Database>,
 }
 /// Database list request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlDatabasesListRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -3349,7 +3350,7 @@ pub struct SqlDatabasesListRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Database update request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlDatabasesUpdateRequest {
     /// Name of the database to be updated in the instance.
     #[prost(string, tag = "1")]
@@ -3467,7 +3468,7 @@ pub mod sql_databases_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlDatabasesService/Delete",
             );
@@ -3492,7 +3493,7 @@ pub mod sql_databases_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlDatabasesService/Get",
             );
@@ -3519,7 +3520,7 @@ pub mod sql_databases_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlDatabasesService/Insert",
             );
@@ -3546,7 +3547,7 @@ pub mod sql_databases_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlDatabasesService/List",
             );
@@ -3571,7 +3572,7 @@ pub mod sql_databases_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlDatabasesService/Patch",
             );
@@ -3596,7 +3597,7 @@ pub mod sql_databases_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlDatabasesService/Update",
             );
@@ -3694,7 +3695,7 @@ pub mod sql_events_service_client {
     }
 }
 /// Flags list request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlFlagsListRequest {
     /// Database type and version you want to retrieve flags for. By default, this
     /// method returns flags for all database types and versions.
@@ -3712,7 +3713,7 @@ pub struct FlagsListResponse {
     pub items: ::prost::alloc::vec::Vec<Flag>,
 }
 /// A flag resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Flag {
     /// This is the name of the flag. Flag names always use underscores, not
     /// hyphens, for example: `max_allowed_packet`
@@ -3909,7 +3910,7 @@ pub mod sql_flags_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlFlagsService/List",
             );
@@ -4089,7 +4090,7 @@ pub mod sql_instance_names_service_client {
     }
 }
 /// Instance add server CA request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesAddServerCaRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4099,7 +4100,7 @@ pub struct SqlInstancesAddServerCaRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance clone request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesCloneRequest {
     /// The ID of the Cloud SQL instance to be cloned (source). This does not
     /// include the project ID.
@@ -4112,7 +4113,7 @@ pub struct SqlInstancesCloneRequest {
     pub body: ::core::option::Option<InstancesCloneRequest>,
 }
 /// Instance delete request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesDeleteRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4122,7 +4123,7 @@ pub struct SqlInstancesDeleteRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance demote master request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesDemoteMasterRequest {
     /// Cloud SQL instance name.
     #[prost(string, tag = "1")]
@@ -4134,7 +4135,7 @@ pub struct SqlInstancesDemoteMasterRequest {
     pub body: ::core::option::Option<InstancesDemoteMasterRequest>,
 }
 /// Instance demote request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesDemoteRequest {
     /// Required. Cloud SQL instance name.
     #[prost(string, tag = "1")]
@@ -4147,7 +4148,7 @@ pub struct SqlInstancesDemoteRequest {
     pub body: ::core::option::Option<InstancesDemoteRequest>,
 }
 /// Instance export request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesExportRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4159,7 +4160,7 @@ pub struct SqlInstancesExportRequest {
     pub body: ::core::option::Option<InstancesExportRequest>,
 }
 /// Instance failover request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesFailoverRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4171,7 +4172,7 @@ pub struct SqlInstancesFailoverRequest {
     pub body: ::core::option::Option<InstancesFailoverRequest>,
 }
 /// Instance get request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesGetRequest {
     /// Database instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4181,7 +4182,7 @@ pub struct SqlInstancesGetRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance import request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesImportRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4203,7 +4204,7 @@ pub struct SqlInstancesInsertRequest {
     pub body: ::core::option::Option<DatabaseInstance>,
 }
 /// Instance list request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesListRequest {
     /// A filter expression that filters resources listed in the response.
     /// The expression is in the form of field:value. For example,
@@ -4231,7 +4232,7 @@ pub struct SqlInstancesListRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance list server CAs request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesListServerCasRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4253,7 +4254,7 @@ pub struct SqlInstancesPatchRequest {
     pub body: ::core::option::Option<DatabaseInstance>,
 }
 /// Instance promote replica request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesPromoteReplicaRequest {
     /// Cloud SQL read replica instance name.
     #[prost(string, tag = "1")]
@@ -4272,7 +4273,7 @@ pub struct SqlInstancesPromoteReplicaRequest {
     pub failover: bool,
 }
 /// Instance switchover request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesSwitchoverRequest {
     /// Cloud SQL read replica instance name.
     #[prost(string, tag = "1")]
@@ -4287,7 +4288,7 @@ pub struct SqlInstancesSwitchoverRequest {
     pub db_timeout: ::core::option::Option<::prost_types::Duration>,
 }
 /// Instance reset SSL config request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesResetSslConfigRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4297,7 +4298,7 @@ pub struct SqlInstancesResetSslConfigRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance restart request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesRestartRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4307,7 +4308,7 @@ pub struct SqlInstancesRestartRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance restore backup request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesRestoreBackupRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4319,7 +4320,7 @@ pub struct SqlInstancesRestoreBackupRequest {
     pub body: ::core::option::Option<InstancesRestoreBackupRequest>,
 }
 /// Instance rotate server CA request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesRotateServerCaRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4331,7 +4332,7 @@ pub struct SqlInstancesRotateServerCaRequest {
     pub body: ::core::option::Option<InstancesRotateServerCaRequest>,
 }
 /// Instance start replica request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesStartReplicaRequest {
     /// Cloud SQL read replica instance name.
     #[prost(string, tag = "1")]
@@ -4341,7 +4342,7 @@ pub struct SqlInstancesStartReplicaRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance stop replica request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesStopReplicaRequest {
     /// Cloud SQL read replica instance name.
     #[prost(string, tag = "1")]
@@ -4351,7 +4352,7 @@ pub struct SqlInstancesStopReplicaRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance truncate log request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesTruncateLogRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4363,7 +4364,7 @@ pub struct SqlInstancesTruncateLogRequest {
     pub body: ::core::option::Option<InstancesTruncateLogRequest>,
 }
 /// Instance perform disk shrink request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesPerformDiskShrinkRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4388,7 +4389,7 @@ pub struct SqlInstancesUpdateRequest {
     pub body: ::core::option::Option<DatabaseInstance>,
 }
 /// Instance reschedule maintenance request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesRescheduleMaintenanceRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4400,7 +4401,7 @@ pub struct SqlInstancesRescheduleMaintenanceRequest {
     pub body: ::core::option::Option<SqlInstancesRescheduleMaintenanceRequestBody>,
 }
 /// Instance reencrypt request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesReencryptRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4413,14 +4414,14 @@ pub struct SqlInstancesReencryptRequest {
     pub body: ::core::option::Option<InstancesReencryptRequest>,
 }
 /// Database Instance reencrypt request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesReencryptRequest {
     /// Configuration specific to backup re-encryption
     #[prost(message, optional, tag = "1")]
     pub backup_reencryption_config: ::core::option::Option<BackupReencryptionConfig>,
 }
 /// Backup Reencryption Config
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackupReencryptionConfig {
     /// Backup re-encryption limit
     #[prost(int32, optional, tag = "1")]
@@ -4476,7 +4477,7 @@ pub mod backup_reencryption_config {
     }
 }
 /// Instance get disk shrink config request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesGetDiskShrinkConfigRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4668,7 +4669,7 @@ pub mod sql_instances_start_external_sync_request {
     }
 }
 /// Instance reset replica size request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesResetReplicaSizeRequest {
     /// Cloud SQL read replica instance name.
     #[prost(string, tag = "1")]
@@ -4678,7 +4679,7 @@ pub struct SqlInstancesResetReplicaSizeRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance create ephemeral certificate request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesCreateEphemeralCertRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4690,14 +4691,14 @@ pub struct SqlInstancesCreateEphemeralCertRequest {
     pub body: ::core::option::Option<SslCertsCreateEphemeralRequest>,
 }
 /// Database instance clone request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesCloneRequest {
     /// Contains details about the clone operation.
     #[prost(message, optional, tag = "1")]
     pub clone_context: ::core::option::Option<CloneContext>,
 }
 /// Database demote primary instance request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesDemoteMasterRequest {
     /// Contains details about the demoteMaster operation.
     #[prost(message, optional, tag = "1")]
@@ -4705,28 +4706,28 @@ pub struct InstancesDemoteMasterRequest {
 }
 /// This request is used to demote an existing standalone instance to be a
 /// Cloud SQL read replica for an external database server.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesDemoteRequest {
     /// Required. Contains details about the demote operation.
     #[prost(message, optional, tag = "1")]
     pub demote_context: ::core::option::Option<DemoteContext>,
 }
 /// Database instance export request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesExportRequest {
     /// Contains details about the export operation.
     #[prost(message, optional, tag = "1")]
     pub export_context: ::core::option::Option<ExportContext>,
 }
 /// Instance failover request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesFailoverRequest {
     /// Failover Context.
     #[prost(message, optional, tag = "1")]
     pub failover_context: ::core::option::Option<FailoverContext>,
 }
 /// SslCerts create ephemeral certificate request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SslCertsCreateEphemeralRequest {
     /// PEM encoded public key to include in the signed certificate.
     #[prost(string, tag = "1")]
@@ -4736,7 +4737,7 @@ pub struct SslCertsCreateEphemeralRequest {
     pub access_token: ::prost::alloc::string::String,
 }
 /// Database instance import request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesImportRequest {
     /// Contains details about the import operation.
     #[prost(message, optional, tag = "1")]
@@ -4772,28 +4773,28 @@ pub struct InstancesListServerCasResponse {
     pub kind: ::prost::alloc::string::String,
 }
 /// Database instance restore backup request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesRestoreBackupRequest {
     /// Parameters required to perform the restore backup operation.
     #[prost(message, optional, tag = "1")]
     pub restore_backup_context: ::core::option::Option<RestoreBackupContext>,
 }
 /// Rotate server CA request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesRotateServerCaRequest {
     /// Contains details about the rotate server CA operation.
     #[prost(message, optional, tag = "1")]
     pub rotate_server_ca_context: ::core::option::Option<RotateServerCaContext>,
 }
 /// Instance truncate log request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesTruncateLogRequest {
     /// Contains details about the truncate log operation.
     #[prost(message, optional, tag = "1")]
     pub truncate_log_context: ::core::option::Option<TruncateLogContext>,
 }
 /// Request to acquire a lease for SSRS.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstancesAcquireSsrsLeaseRequest {
     /// Contains details about the acquire SSRS lease operation.
     #[prost(message, optional, tag = "1")]
@@ -4813,7 +4814,7 @@ pub struct SqlInstancesVerifyExternalSyncSettingsResponse {
     pub warnings: ::prost::alloc::vec::Vec<SqlExternalSyncSettingError>,
 }
 /// Instance get disk shrink config response.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesGetDiskShrinkConfigResponse {
     /// This is always `sql#getDiskShrinkConfig`.
     #[prost(string, tag = "1")]
@@ -4826,7 +4827,7 @@ pub struct SqlInstancesGetDiskShrinkConfigResponse {
     pub message: ::prost::alloc::string::String,
 }
 /// Instance get latest recovery time request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesGetLatestRecoveryTimeRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -4836,7 +4837,7 @@ pub struct SqlInstancesGetLatestRecoveryTimeRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance get latest recovery time response.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesGetLatestRecoveryTimeResponse {
     /// This is always `sql#getLatestRecoveryTime`.
     #[prost(string, tag = "1")]
@@ -4846,7 +4847,7 @@ pub struct SqlInstancesGetLatestRecoveryTimeResponse {
     pub latest_recovery_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Database instance clone context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CloneContext {
     /// This is always `sql#cloneContext`.
     #[prost(string, tag = "1")]
@@ -4886,7 +4887,7 @@ pub struct CloneContext {
     pub preferred_zone: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Binary log coordinates.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BinLogCoordinates {
     /// Name of the binary log file for a Cloud SQL instance.
     #[prost(string, tag = "1")]
@@ -5040,10 +5041,11 @@ pub struct DatabaseInstance {
     pub database_installed_version: ::prost::alloc::string::String,
     /// This field represents the report generated by the proactive database
     /// wellness job for OutOfDisk issues.
-    /// *  Writers:
-    ///    *  the proactive database wellness job for OOD.
-    /// *  Readers:
-    ///    *  the proactive database wellness job
+    ///
+    /// * Writers:
+    /// * the proactive database wellness job for OOD.
+    /// * Readers:
+    /// * the proactive database wellness job
     #[prost(message, optional, tag = "38")]
     pub out_of_disk_report: ::core::option::Option<
         database_instance::SqlOutOfDiskReport,
@@ -5106,7 +5108,7 @@ pub struct DatabaseInstance {
 }
 /// Nested message and enum types in `DatabaseInstance`.
 pub mod database_instance {
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlFailoverReplica {
         /// The name of the failover replica. If specified at instance creation, a
         /// failover replica is created for the instance. The name
@@ -5120,7 +5122,7 @@ pub mod database_instance {
         pub available: ::core::option::Option<bool>,
     }
     /// Any scheduled maintenance for this instance.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlScheduledMaintenance {
         /// The start time of any upcoming scheduled maintenance for this instance.
         #[prost(message, optional, tag = "1")]
@@ -5136,14 +5138,15 @@ pub mod database_instance {
         pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
     }
     /// This message wraps up the information written by out-of-disk detection job.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SqlOutOfDiskReport {
         /// This field represents the state generated by the proactive database
         /// wellness job for OutOfDisk issues.
-        /// *  Writers:
-        ///    *  the proactive database wellness job for OOD.
-        /// *  Readers:
-        ///    *  the proactive database wellness job
+        ///
+        /// * Writers:
+        /// * the proactive database wellness job for OOD.
+        /// * Readers:
+        /// * the proactive database wellness job
         #[prost(
             enumeration = "sql_out_of_disk_report::SqlOutOfDiskState",
             optional,
@@ -5152,9 +5155,10 @@ pub mod database_instance {
         pub sql_out_of_disk_state: ::core::option::Option<i32>,
         /// The minimum recommended increase size in GigaBytes
         /// This field is consumed by the frontend
-        /// *  Writers:
-        ///    *  the proactive database wellness job for OOD.
-        /// *  Readers:
+        ///
+        /// * Writers:
+        /// * the proactive database wellness job for OOD.
+        /// * Readers:
         #[prost(int32, optional, tag = "2")]
         pub sql_min_recommended_increase_size_gb: ::core::option::Option<i32>,
     }
@@ -5313,7 +5317,7 @@ pub mod database_instance {
     }
 }
 /// Gemini instance configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GeminiInstanceConfig {
     /// Output only. Whether Gemini is enabled.
     #[prost(bool, optional, tag = "1")]
@@ -5338,7 +5342,7 @@ pub struct GeminiInstanceConfig {
 /// A DR replica is a cross-region replica that you designate for failover in
 /// the event that the primary instance experiences regional failure.
 /// Only applicable to MySQL.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReplicationCluster {
     /// Output only. If set, it indicates this instance has a private service
     /// access (PSA) dns endpoint that is pointing to the primary instance of the
@@ -5363,7 +5367,7 @@ pub struct ReplicationCluster {
     pub dr_replica: bool,
 }
 /// An available database version. It can be a major or a minor version.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AvailableDatabaseVersion {
     /// The version's major version name.
     #[prost(string, optional, tag = "3")]
@@ -5377,7 +5381,7 @@ pub struct AvailableDatabaseVersion {
     pub display_name: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Reschedule options for maintenance windows.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesRescheduleMaintenanceRequestBody {
     /// Required. The type of the reschedule the user wants.
     #[prost(message, optional, tag = "3")]
@@ -5387,7 +5391,7 @@ pub struct SqlInstancesRescheduleMaintenanceRequestBody {
 }
 /// Nested message and enum types in `SqlInstancesRescheduleMaintenanceRequestBody`.
 pub mod sql_instances_reschedule_maintenance_request_body {
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Reschedule {
         /// Required. The type of the reschedule.
         #[prost(enumeration = "RescheduleType", tag = "1")]
@@ -5447,7 +5451,7 @@ pub mod sql_instances_reschedule_maintenance_request_body {
     }
 }
 /// Database instance demote primary instance context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DemoteMasterContext {
     /// This is always `sql#demoteMasterContext`.
     #[prost(string, tag = "1")]
@@ -5475,7 +5479,7 @@ pub struct DemoteMasterContext {
 }
 /// This context is used to demote an existing standalone instance to be
 /// a Cloud SQL read replica for an external database server.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DemoteContext {
     /// This is always `sql#demoteContext`.
     #[prost(string, tag = "1")]
@@ -5486,7 +5490,7 @@ pub struct DemoteContext {
     pub source_representative_instance_name: ::prost::alloc::string::String,
 }
 /// Database instance failover context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FailoverContext {
     /// The current settings version of this instance. Request will be rejected if
     /// this version doesn't match the current settings version.
@@ -5498,7 +5502,7 @@ pub struct FailoverContext {
 }
 /// Database instance restore from backup context.
 /// Backup context contains source instance id and project id.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RestoreBackupContext {
     /// This is always `sql#restoreBackupContext`.
     #[prost(string, tag = "1")]
@@ -5514,7 +5518,7 @@ pub struct RestoreBackupContext {
     pub project: ::prost::alloc::string::String,
 }
 /// Instance rotate server CA context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RotateServerCaContext {
     /// This is always `sql#rotateServerCaContext`.
     #[prost(string, tag = "1")]
@@ -5525,7 +5529,7 @@ pub struct RotateServerCaContext {
     pub next_version: ::prost::alloc::string::String,
 }
 /// Database Instance truncate log context.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TruncateLogContext {
     /// This is always `sql#truncateLogContext`.
     #[prost(string, tag = "1")]
@@ -5536,7 +5540,7 @@ pub struct TruncateLogContext {
     pub log_type: ::prost::alloc::string::String,
 }
 /// External primary instance migration setting error/warning.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlExternalSyncSettingError {
     /// Can be `sql#externalSyncSettingError` or
     /// `sql#externalSyncSettingWarning`.
@@ -5842,7 +5846,7 @@ pub mod sql_external_sync_setting_error {
     }
 }
 /// On-premises instance configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OnPremisesConfiguration {
     /// The host and port of the on-premises instance in host:port format
     #[prost(string, tag = "1")]
@@ -5874,7 +5878,7 @@ pub struct OnPremisesConfiguration {
     pub source_instance: ::core::option::Option<InstanceReference>,
 }
 /// Read-replica configuration for connecting to the primary instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReplicaConfiguration {
     /// This is always `sql#replicaConfiguration`.
     #[prost(string, tag = "1")]
@@ -5901,7 +5905,7 @@ pub struct ReplicaConfiguration {
     pub cascadable_replica: ::core::option::Option<bool>,
 }
 /// Request to acquire a lease for SSRS.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesAcquireSsrsLeaseRequest {
     /// Required. Cloud SQL instance ID. This doesn't include the project ID. It's
     /// composed of lowercase letters, numbers, and hyphens, and it must start with
@@ -5918,14 +5922,14 @@ pub struct SqlInstancesAcquireSsrsLeaseRequest {
     pub body: ::core::option::Option<InstancesAcquireSsrsLeaseRequest>,
 }
 /// Response for the acquire SSRS lease request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesAcquireSsrsLeaseResponse {
     /// The unique identifier for this operation.
     #[prost(string, tag = "1")]
     pub operation_id: ::prost::alloc::string::String,
 }
 /// Request to release a lease for SSRS.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesReleaseSsrsLeaseRequest {
     /// Required. The Cloud SQL instance ID. This doesn't include the project ID.
     /// The instance ID contains lowercase letters, numbers, and hyphens, and it
@@ -5938,7 +5942,7 @@ pub struct SqlInstancesReleaseSsrsLeaseRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Response for the release SSRS lease request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlInstancesReleaseSsrsLeaseResponse {
     /// The unique identifier for this operation.
     #[prost(string, tag = "1")]
@@ -6163,7 +6167,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/AddServerCa",
             );
@@ -6191,7 +6195,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Clone",
             );
@@ -6215,7 +6219,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Delete",
             );
@@ -6240,7 +6244,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/DemoteMaster",
             );
@@ -6268,7 +6272,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Demote",
             );
@@ -6293,7 +6297,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Export",
             );
@@ -6324,7 +6328,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Failover",
             );
@@ -6351,7 +6355,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Reencrypt",
             );
@@ -6381,7 +6385,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Get",
             );
@@ -6406,7 +6410,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Import",
             );
@@ -6430,7 +6434,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Insert",
             );
@@ -6457,7 +6461,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/List",
             );
@@ -6488,7 +6492,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/ListServerCas",
             );
@@ -6516,7 +6520,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Patch",
             );
@@ -6542,7 +6546,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/PromoteReplica",
             );
@@ -6570,7 +6574,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Switchover",
             );
@@ -6598,7 +6602,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/ResetSslConfig",
             );
@@ -6625,7 +6629,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Restart",
             );
@@ -6650,7 +6654,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/RestoreBackup",
             );
@@ -6680,7 +6684,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/RotateServerCa",
             );
@@ -6707,7 +6711,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/StartReplica",
             );
@@ -6734,7 +6738,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/StopReplica",
             );
@@ -6762,7 +6766,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/TruncateLog",
             );
@@ -6790,7 +6794,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/Update",
             );
@@ -6819,7 +6823,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/CreateEphemeral",
             );
@@ -6848,7 +6852,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/RescheduleMaintenance",
             );
@@ -6880,7 +6884,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/VerifyExternalSyncSettings",
             );
@@ -6907,7 +6911,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/StartExternalSync",
             );
@@ -6934,7 +6938,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/PerformDiskShrink",
             );
@@ -6966,7 +6970,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/GetDiskShrinkConfig",
             );
@@ -6993,7 +6997,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/ResetReplicaSize",
             );
@@ -7025,7 +7029,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/GetLatestRecoveryTime",
             );
@@ -7055,7 +7059,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/AcquireSsrsLease",
             );
@@ -7085,7 +7089,7 @@ pub mod sql_instances_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlInstancesService/ReleaseSsrsLease",
             );
@@ -7102,7 +7106,7 @@ pub mod sql_instances_service_client {
     }
 }
 /// Operations get request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlOperationsGetRequest {
     /// Instance operation ID.
     #[prost(string, tag = "1")]
@@ -7112,7 +7116,7 @@ pub struct SqlOperationsGetRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Operations list request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlOperationsListRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7143,7 +7147,7 @@ pub struct OperationsListResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Operations cancel request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlOperationsCancelRequest {
     /// Instance operation ID.
     #[prost(string, tag = "1")]
@@ -7246,7 +7250,7 @@ pub mod sql_operations_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlOperationsService/Get",
             );
@@ -7274,7 +7278,7 @@ pub mod sql_operations_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlOperationsService/List",
             );
@@ -7298,7 +7302,7 @@ pub mod sql_operations_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlOperationsService/Cancel",
             );
@@ -7395,7 +7399,7 @@ pub mod sql_regions_service_client {
         }
     }
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlSslCertsDeleteRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7407,7 +7411,7 @@ pub struct SqlSslCertsDeleteRequest {
     #[prost(string, tag = "3")]
     pub sha1_fingerprint: ::prost::alloc::string::String,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlSslCertsGetRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7419,7 +7423,7 @@ pub struct SqlSslCertsGetRequest {
     #[prost(string, tag = "3")]
     pub sha1_fingerprint: ::prost::alloc::string::String,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlSslCertsInsertRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7430,7 +7434,7 @@ pub struct SqlSslCertsInsertRequest {
     #[prost(message, optional, tag = "100")]
     pub body: ::core::option::Option<SslCertsInsertRequest>,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlSslCertsListRequest {
     /// Cloud SQL instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7440,7 +7444,7 @@ pub struct SqlSslCertsListRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// SslCerts insert request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SslCertsInsertRequest {
     /// User supplied name.  Must be a distinct name from the other certificates
     /// for this instance.
@@ -7570,7 +7574,7 @@ pub mod sql_ssl_certs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlSslCertsService/Delete",
             );
@@ -7596,7 +7600,7 @@ pub mod sql_ssl_certs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlSslCertsService/Get",
             );
@@ -7625,7 +7629,7 @@ pub mod sql_ssl_certs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlSslCertsService/Insert",
             );
@@ -7652,7 +7656,7 @@ pub mod sql_ssl_certs_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlSslCertsService/List",
             );
@@ -7666,7 +7670,7 @@ pub mod sql_ssl_certs_service_client {
     }
 }
 /// Tiers list request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlTiersListRequest {
     /// Project ID of the project for which to list tiers.
     #[prost(string, tag = "1")]
@@ -7683,7 +7687,7 @@ pub struct TiersListResponse {
     pub items: ::prost::alloc::vec::Vec<Tier>,
 }
 /// A Google Cloud SQL service tier resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Tier {
     /// An identifier for the machine type, for example, `db-custom-1-3840`. For
     /// related information, see [Pricing](/sql/pricing).
@@ -7801,7 +7805,7 @@ pub mod sql_tiers_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlTiersService/List",
             );
@@ -7812,7 +7816,7 @@ pub mod sql_tiers_service_client {
         }
     }
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlUsersDeleteRequest {
     /// Host of the user in the instance.
     #[prost(string, tag = "1")]
@@ -7828,7 +7832,7 @@ pub struct SqlUsersDeleteRequest {
     pub project: ::prost::alloc::string::String,
 }
 /// Request message for Users Get RPC
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlUsersGetRequest {
     /// Database instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7843,7 +7847,7 @@ pub struct SqlUsersGetRequest {
     #[prost(string, tag = "4")]
     pub host: ::prost::alloc::string::String,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlUsersInsertRequest {
     /// Database instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7854,7 +7858,7 @@ pub struct SqlUsersInsertRequest {
     #[prost(message, optional, tag = "100")]
     pub body: ::core::option::Option<User>,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlUsersListRequest {
     /// Database instance ID. This does not include the project ID.
     #[prost(string, tag = "1")]
@@ -7863,7 +7867,7 @@ pub struct SqlUsersListRequest {
     #[prost(string, tag = "2")]
     pub project: ::prost::alloc::string::String,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlUsersUpdateRequest {
     /// Optional. Host of the user in the instance.
     #[prost(string, tag = "1")]
@@ -7881,7 +7885,7 @@ pub struct SqlUsersUpdateRequest {
     pub body: ::core::option::Option<User>,
 }
 /// User level password validation policy.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UserPasswordValidationPolicy {
     /// Number of failed login attempts allowed before user get locked.
     #[prost(int32, tag = "1")]
@@ -7901,7 +7905,7 @@ pub struct UserPasswordValidationPolicy {
     pub enable_password_verification: bool,
 }
 /// Read-only password status.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PasswordStatus {
     /// If true, user does not have login privileges.
     #[prost(bool, tag = "1")]
@@ -7911,7 +7915,7 @@ pub struct PasswordStatus {
     pub password_expiration_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// A Cloud SQL user resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct User {
     /// This is always `sql#user`.
     #[prost(string, tag = "1")]
@@ -8065,14 +8069,14 @@ pub mod user {
         }
     }
     /// User details for specific database type
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum UserDetails {
         #[prost(message, tag = "9")]
         SqlserverUserDetails(super::SqlServerUserDetails),
     }
 }
 /// Represents a Sql Server user on the Cloud SQL instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SqlServerUserDetails {
     /// If the user has been disabled
     #[prost(bool, tag = "1")]
@@ -8189,7 +8193,7 @@ pub mod sql_users_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlUsersService/Delete",
             );
@@ -8213,7 +8217,7 @@ pub mod sql_users_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlUsersService/Get",
             );
@@ -8235,7 +8239,7 @@ pub mod sql_users_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlUsersService/Insert",
             );
@@ -8262,7 +8266,7 @@ pub mod sql_users_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlUsersService/List",
             );
@@ -8284,7 +8288,7 @@ pub mod sql_users_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.sql.v1.SqlUsersService/Update",
             );

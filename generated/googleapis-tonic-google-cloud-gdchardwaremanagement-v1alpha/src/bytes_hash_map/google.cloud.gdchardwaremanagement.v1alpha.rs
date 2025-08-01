@@ -31,12 +31,12 @@ pub struct Order {
     #[prost(message, optional, tag = "6")]
     pub organization_contact: ::core::option::Option<OrganizationContact>,
     /// Optional. Customer specified workloads of interest targeted by this order.
-    /// This must contain <= 20 elements and the length of each element must be <=
+    /// This must contain \<= 20 elements and the length of each element must be \<=
     /// 50 characters.
     #[prost(string, repeated, tag = "7")]
     pub target_workloads: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. Information about the customer's motivation for this order. The
-    /// length of this field must be <= 1000 characters.
+    /// length of this field must be \<= 1000 characters.
     #[prost(string, tag = "8")]
     pub customer_motivation: ::prost::alloc::string::String,
     /// Required. Customer specified deadline by when this order should be
@@ -309,10 +309,11 @@ pub struct Site {
     pub access_times: ::prost::alloc::vec::Vec<TimePeriod>,
     /// Optional. Any additional notes for this Site. Please include information
     /// about:
-    ///   - security or access restrictions
-    ///   - any regulations affecting the technicians visiting the site
-    ///   - any special process or approval required to move the equipment
-    ///   - whether a representative will be available during site visits
+    ///
+    /// * security or access restrictions
+    /// * any regulations affecting the technicians visiting the site
+    /// * any special process or approval required to move the equipment
+    /// * whether a representative will be available during site visits
     #[prost(string, tag = "27")]
     pub notes: ::prost::alloc::string::String,
     /// Optional. Customer defined identifier for this Site. This can be used to
@@ -516,7 +517,7 @@ pub struct Hardware {
 /// Nested message and enum types in `Hardware`.
 pub mod hardware {
     /// Message to describe the MAC address of a machine.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MacAddress {
         /// Output only. Address string.
         #[prost(string, tag = "1")]
@@ -580,7 +581,7 @@ pub mod hardware {
         }
     }
     /// Information about individual disks on a machine.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DiskInfo {
         /// Output only. Disk manufacturer.
         #[prost(string, tag = "1")]
@@ -700,7 +701,7 @@ pub struct Comment {
     /// from the credentials used during creation of the comment.
     #[prost(string, tag = "4")]
     pub author: ::prost::alloc::string::String,
-    /// Required. Text of this comment. The length of text must be <= 1000
+    /// Required. Text of this comment. The length of text must be \<= 1000
     /// characters.
     #[prost(string, tag = "5")]
     pub text: ::prost::alloc::string::String,
@@ -784,7 +785,7 @@ pub struct Sku {
 /// Nested message and enum types in `Sku`.
 pub mod sku {
     /// Inclusive range.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Range {
         /// The minimum value of the range.
         #[prost(int32, tag = "1")]
@@ -1054,7 +1055,7 @@ pub struct Contact {
     pub reachable_times: ::prost::alloc::vec::Vec<TimePeriod>,
 }
 /// Configuration for GDC hardware.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HardwareConfig {
     /// Required. Reference to the SKU for this hardware. This can point to a
     /// specific SKU revision in the form of `resource_name@revision_id` as defined
@@ -1070,7 +1071,7 @@ pub struct HardwareConfig {
     pub subscription_duration_months: i32,
 }
 /// Configuration for a SKU.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SkuConfig {
     /// Information about CPU configuration.
     #[prost(string, tag = "1")]
@@ -1086,7 +1087,7 @@ pub struct SkuConfig {
     pub storage: ::prost::alloc::string::String,
 }
 /// A specific instance of the SKU.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SkuInstance {
     /// The [Unicode CLDR](<https://cldr.unicode.org>) region code where this
     /// instance is available.
@@ -1110,7 +1111,7 @@ pub struct SkuInstance {
     pub subscription_duration_months: i32,
 }
 /// Physical properties of a hardware.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HardwarePhysicalInfo {
     /// Required. The power receptacle type.
     #[prost(enumeration = "hardware_physical_info::PowerReceptacleType", tag = "1")]
@@ -1366,7 +1367,7 @@ pub mod hardware_installation_info {
     }
 }
 /// Networking configuration for a zone.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ZoneNetworkConfig {
     /// Required. An IPv4 address block for machine management.
     /// Should be a private RFC1918 or public CIDR block large enough to allocate
@@ -1410,7 +1411,7 @@ pub struct ZoneNetworkConfig {
     pub kubernetes_primary_vlan_id: i32,
 }
 /// Represents a subnet.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Subnet {
     /// Required. Address range for this subnet in CIDR notation.
     #[prost(string, tag = "1")]
@@ -1420,7 +1421,7 @@ pub struct Subnet {
     pub default_gateway_ip_address: ::prost::alloc::string::String,
 }
 /// Represents a time period in a week.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TimePeriod {
     /// Required. The start of the time period.
     #[prost(message, optional, tag = "1")]
@@ -1451,7 +1452,7 @@ pub struct Dimensions {
     pub depth_inches: f32,
 }
 /// Represents contiguous space in a rack.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RackSpace {
     /// Required. First rack unit of the rack space (inclusive).
     #[prost(int32, tag = "1")]
@@ -1477,7 +1478,7 @@ pub struct HardwareLocation {
     pub rack_space: ::prost::alloc::vec::Vec<RackSpace>,
 }
 /// A message to store a subscription configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SubscriptionConfig {
     /// Output only. The unique identifier of the subscription.
     #[prost(string, tag = "1")]
@@ -1622,7 +1623,7 @@ impl Entity {
     }
 }
 /// A request to list orders.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListOrdersRequest {
     /// Required. The project and location to list orders in.
     /// Format: `projects/{project}/locations/{location}`
@@ -1661,7 +1662,7 @@ pub struct ListOrdersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get an order.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetOrderRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -1710,7 +1711,7 @@ pub struct UpdateOrderRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete an order.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteOrderRequest {
     /// Required. The name of the order.
     /// Format: `projects/{project}/locations/{location}/orders/{order}`
@@ -1728,7 +1729,7 @@ pub struct DeleteOrderRequest {
     pub force: bool,
 }
 /// A request to submit an order.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SubmitOrderRequest {
     /// Required. The name of the order.
     /// Format: `projects/{project}/locations/{location}/orders/{order}`
@@ -1802,7 +1803,7 @@ pub mod submit_order_request {
     }
 }
 /// A request to list sites.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListSitesRequest {
     /// Required. The project and location to list sites in.
     /// Format: `projects/{project}/locations/{location}`
@@ -1841,7 +1842,7 @@ pub struct ListSitesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get a site.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSiteRequest {
     /// Required. The name of the site.
     /// Format: `projects/{project}/locations/{location}/sites/{site}`
@@ -1891,7 +1892,7 @@ pub struct UpdateSiteRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete a site.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteSiteRequest {
     /// Required. The name of the site.
     /// Format: `projects/{project}/locations/{location}/sites/{site}`
@@ -1903,7 +1904,7 @@ pub struct DeleteSiteRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to list hardware groups.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListHardwareGroupsRequest {
     /// Required. The order to list hardware groups in.
     /// Format: `projects/{project}/locations/{location}/orders/{order}`
@@ -1937,7 +1938,7 @@ pub struct ListHardwareGroupsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get a hardware group.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetHardwareGroupRequest {
     /// Required. The name of the hardware group.
     /// Format:
@@ -1989,7 +1990,7 @@ pub struct UpdateHardwareGroupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete a hardware group.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteHardwareGroupRequest {
     /// Required. The name of the hardware group.
     /// Format:
@@ -2002,7 +2003,7 @@ pub struct DeleteHardwareGroupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to list hardware.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListHardwareRequest {
     /// Required. The project and location to list hardware in.
     /// Format: `projects/{project}/locations/{location}`
@@ -2041,7 +2042,7 @@ pub struct ListHardwareResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get hardware.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetHardwareRequest {
     /// Required. The name of the hardware.
     /// Format: `projects/{project}/locations/{location}/hardware/{hardware}`
@@ -2087,7 +2088,7 @@ pub struct UpdateHardwareRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete hardware.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteHardwareRequest {
     /// Required. The name of the hardware.
     /// Format: `projects/{project}/locations/{location}/hardware/{hardware}`
@@ -2099,7 +2100,7 @@ pub struct DeleteHardwareRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to list comments.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListCommentsRequest {
     /// Required. The order to list comments on.
     /// Format: `projects/{project}/locations/{location}/orders/{order}`
@@ -2133,7 +2134,7 @@ pub struct ListCommentsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get a comment.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetCommentRequest {
     /// Required. The name of the comment.
     /// Format:
@@ -2167,7 +2168,7 @@ pub struct CreateCommentRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to record an action on a comment.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RecordActionOnCommentRequest {
     /// Required. The name of the comment.
     /// Format:
@@ -2225,7 +2226,7 @@ pub mod record_action_on_comment_request {
     }
 }
 /// A request to list change log entries.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListChangeLogEntriesRequest {
     /// Required. The order to list change log entries for.
     /// Format: `projects/{project}/locations/{location}/orders/{order}`
@@ -2259,7 +2260,7 @@ pub struct ListChangeLogEntriesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get a change log entry.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetChangeLogEntryRequest {
     /// Required. The name of the change log entry.
     /// Format:
@@ -2268,7 +2269,7 @@ pub struct GetChangeLogEntryRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// A request to list SKUs.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListSkusRequest {
     /// Required. The project and location to list SKUs in.
     /// Format: `projects/{project}/locations/{location}`
@@ -2307,7 +2308,7 @@ pub struct ListSkusResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get an SKU.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSkuRequest {
     /// Required. The name of the SKU.
     /// Format: `projects/{project}/locations/{location}/skus/{sku}`
@@ -2315,7 +2316,7 @@ pub struct GetSkuRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// A request to list zones.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListZonesRequest {
     /// Required. The project and location to list zones in.
     /// Format: `projects/{project}/locations/{location}`
@@ -2354,7 +2355,7 @@ pub struct ListZonesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to get a zone.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetZoneRequest {
     /// Required. The name of the zone.
     /// Format: `projects/{project}/locations/{location}/zones/{zone}`
@@ -2404,7 +2405,7 @@ pub struct UpdateZoneRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete a zone.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteZoneRequest {
     /// Required. The name of the zone.
     /// Format: `projects/{project}/locations/{location}/zones/{zone}`
@@ -2416,7 +2417,7 @@ pub struct DeleteZoneRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to signal the state of a zone.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SignalZoneStateRequest {
     /// Required. The name of the zone.
     /// Format: `projects/{project}/locations/{location}/zones/{zone}`
@@ -2541,7 +2542,7 @@ pub mod signal_zone_state_request {
     }
 }
 /// Represents the metadata of a long-running operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -2560,8 +2561,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have [Operation.error][] value with a
-    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+    /// have \[Operation.error\]\[\] value with a
+    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -2666,7 +2667,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListOrders",
             );
@@ -2693,7 +2694,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetOrder",
             );
@@ -2723,7 +2724,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/CreateOrder",
             );
@@ -2753,7 +2754,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/UpdateOrder",
             );
@@ -2783,7 +2784,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/DeleteOrder",
             );
@@ -2813,7 +2814,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/SubmitOrder",
             );
@@ -2843,7 +2844,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListSites",
             );
@@ -2870,7 +2871,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetSite",
             );
@@ -2900,7 +2901,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/CreateSite",
             );
@@ -2930,7 +2931,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/UpdateSite",
             );
@@ -2960,7 +2961,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/DeleteSite",
             );
@@ -2990,7 +2991,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListHardwareGroups",
             );
@@ -3017,7 +3018,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetHardwareGroup",
             );
@@ -3047,7 +3048,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/CreateHardwareGroup",
             );
@@ -3077,7 +3078,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/UpdateHardwareGroup",
             );
@@ -3107,7 +3108,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/DeleteHardwareGroup",
             );
@@ -3137,7 +3138,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListHardware",
             );
@@ -3164,7 +3165,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetHardware",
             );
@@ -3194,7 +3195,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/CreateHardware",
             );
@@ -3224,7 +3225,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/UpdateHardware",
             );
@@ -3254,7 +3255,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/DeleteHardware",
             );
@@ -3284,7 +3285,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListComments",
             );
@@ -3311,7 +3312,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetComment",
             );
@@ -3341,7 +3342,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/CreateComment",
             );
@@ -3371,7 +3372,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/RecordActionOnComment",
             );
@@ -3401,7 +3402,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListChangeLogEntries",
             );
@@ -3428,7 +3429,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetChangeLogEntry",
             );
@@ -3458,7 +3459,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListSkus",
             );
@@ -3485,7 +3486,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetSku",
             );
@@ -3515,7 +3516,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/ListZones",
             );
@@ -3542,7 +3543,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/GetZone",
             );
@@ -3572,7 +3573,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/CreateZone",
             );
@@ -3602,7 +3603,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/UpdateZone",
             );
@@ -3632,7 +3633,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/DeleteZone",
             );
@@ -3662,7 +3663,7 @@ pub mod gdc_hardware_management_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/SignalZoneState",
             );

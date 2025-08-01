@@ -54,7 +54,7 @@ pub mod accessible_bidding_strategy {
     }
     /// An automated bidding strategy to help get the most conversions for your
     /// campaigns while spending your budget.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MaximizeConversions {
         /// Output only. The target cost per acquisition (CPA) option. This is the
         /// average amount that you would like to spend per acquisition.
@@ -63,7 +63,7 @@ pub mod accessible_bidding_strategy {
     }
     /// An automated bid strategy that sets bids to help get as many conversions as
     /// possible at the target cost-per-acquisition (CPA) you set.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TargetCpa {
         /// Output only. Average CPA target.
         /// This target should be greater than or equal to minimum billable unit
@@ -74,7 +74,7 @@ pub mod accessible_bidding_strategy {
     /// An automated bidding strategy that sets bids so that a certain percentage
     /// of search ads are shown at the top of the first page (or other targeted
     /// location).
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TargetImpressionShare {
         /// Output only. The targeted location on the search results page.
         #[prost(
@@ -103,7 +103,7 @@ pub mod accessible_bidding_strategy {
     }
     /// An automated bid strategy that sets your bids to help get as many clicks
     /// as possible within your budget.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TargetSpend {
         /// Output only. The spend target under which to maximize clicks.
         /// A TargetSpend bidder will attempt to spend the smaller of this value
@@ -155,10 +155,10 @@ pub mod accessible_bidding_strategy {
 /// as well as the most recently approved changes to the budget and proposed
 /// changes that are pending approval. The proposed changes that are pending
 /// approval, if any, are found in 'pending_proposal'.  Effective details about
-/// the budget are found in fields prefixed 'approved_', 'adjusted_' and those
+/// the budget are found in fields prefixed 'approved\_', 'adjusted\_' and those
 /// without a prefix.  Since some effective details may differ from what the user
 /// had originally requested (for example, spending limit), these differences are
-/// juxtaposed through 'proposed_', 'approved_', and possibly 'adjusted_' fields.
+/// juxtaposed through 'proposed\_', 'approved\_', and possibly 'adjusted\_' fields.
 ///
 /// This resource is mutated using AccountBudgetProposal and cannot be mutated
 /// directly. A budget may have at most one pending proposal at any given time.
@@ -167,7 +167,7 @@ pub mod accessible_bidding_strategy {
 /// Once approved, a budget may be subject to adjustments, such as credit
 /// adjustments.  Adjustments create differences between the 'approved' and
 /// 'adjusted' fields, which would otherwise be identical.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AccountBudget {
     /// Output only. The resource name of the account-level budget.
     /// AccountBudget resource names have the form:
@@ -264,7 +264,7 @@ pub struct AccountBudget {
 pub mod account_budget {
     /// A pending proposal associated with the enclosing account-level budget,
     /// if applicable.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PendingAccountBudgetProposal {
         /// Output only. The resource name of the proposal.
         /// AccountBudgetProposal resource names have the form:
@@ -315,7 +315,7 @@ pub mod account_budget {
     /// Nested message and enum types in `PendingAccountBudgetProposal`.
     pub mod pending_account_budget_proposal {
         /// The end time of the account-level budget.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum EndTime {
             /// Output only. The end time in yyyy-MM-dd HH:mm:ss format.
             #[prost(string, tag = "15")]
@@ -328,7 +328,7 @@ pub mod account_budget {
             EndTimeType(i32),
         }
         /// The spending limit.
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum SpendingLimit {
             /// Output only. The spending limit in micros.  One million is equivalent
             /// to one unit.
@@ -344,7 +344,7 @@ pub mod account_budget {
         }
     }
     /// The proposed end time of the account-level budget.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ProposedEndTime {
         /// Output only. The proposed end time in yyyy-MM-dd HH:mm:ss format.
         #[prost(string, tag = "28")]
@@ -361,7 +361,7 @@ pub mod account_budget {
     ///
     /// For example, if a budget's end time is updated and the proposal is approved
     /// after the proposed end time, the approved end time is the time of approval.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ApprovedEndTime {
         /// Output only. The approved end time in yyyy-MM-dd HH:mm:ss format.
         #[prost(string, tag = "29")]
@@ -375,7 +375,7 @@ pub mod account_budget {
         ApprovedEndTimeType(i32),
     }
     /// The proposed spending limit.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ProposedSpendingLimit {
         /// Output only. The proposed spending limit in micros.  One million is
         /// equivalent to one unit.
@@ -394,7 +394,7 @@ pub mod account_budget {
     /// For example, if the amount already spent by the account exceeds the
     /// proposed spending limit at the time the proposal is approved, the approved
     /// spending limit is set to the amount already spent.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ApprovedSpendingLimit {
         /// Output only. The approved spending limit in micros.  One million is
         /// equivalent to one unit.  This will only be populated if the proposed
@@ -415,7 +415,7 @@ pub mod account_budget {
     /// stored in total_adjustments_micros.
     ///
     /// This value has the final say on how much the account is allowed to spend.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum AdjustedSpendingLimit {
         /// Output only. The adjusted spending limit in micros.  One million is
         /// equivalent to one unit.
@@ -451,7 +451,7 @@ pub mod account_budget {
 ///
 /// Note that the proposal type (proposal_type) changes which fields are
 /// required and which must remain empty.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AccountBudgetProposal {
     /// Immutable. The resource name of the proposal.
     /// AccountBudgetProposal resource names have the form:
@@ -539,7 +539,7 @@ pub struct AccountBudgetProposal {
 pub mod account_budget_proposal {
     /// The proposed start date time of the account-level budget, which cannot be
     /// in the past.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ProposedStartTime {
         /// Immutable. The proposed start date time in yyyy-mm-dd hh:mm:ss format.
         #[prost(string, tag = "29")]
@@ -554,7 +554,7 @@ pub mod account_budget_proposal {
     }
     /// The proposed end date time of the account-level budget, which cannot be in
     /// the past.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ProposedEndTime {
         /// Immutable. The proposed end date time in yyyy-mm-dd hh:mm:ss format.
         #[prost(string, tag = "31")]
@@ -568,7 +568,7 @@ pub mod account_budget_proposal {
         ProposedEndTimeType(i32),
     }
     /// The approved end date time of the account-level budget.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ApprovedEndTime {
         /// Output only. The approved end date time in yyyy-mm-dd hh:mm:ss format.
         #[prost(string, tag = "32")]
@@ -582,7 +582,7 @@ pub mod account_budget_proposal {
         ApprovedEndTimeType(i32),
     }
     /// The proposed spending limit.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ProposedSpendingLimit {
         /// Immutable. The proposed spending limit in micros.  One million is
         /// equivalent to one unit.
@@ -597,7 +597,7 @@ pub mod account_budget_proposal {
         ProposedSpendingLimitType(i32),
     }
     /// The approved spending limit.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ApprovedSpendingLimit {
         /// Output only. The approved spending limit in micros.  One million is
         /// equivalent to one unit.
@@ -614,7 +614,7 @@ pub mod account_budget_proposal {
 }
 /// Represents the data sharing connection between a Google Ads account and
 /// another account
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AccountLink {
     /// Immutable. Resource name of the account link.
     /// AccountLink resource names have the form:
@@ -644,7 +644,7 @@ pub struct AccountLink {
 /// Nested message and enum types in `AccountLink`.
 pub mod account_link {
     /// An account linked to this Google Ads account.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum LinkedAccount {
         /// Immutable. A third party app analytics link.
         #[prost(message, tag = "5")]
@@ -652,7 +652,7 @@ pub mod account_link {
     }
 }
 /// The identifiers of a Third Party App Analytics Link.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ThirdPartyAppAnalyticsLinkIdentifier {
     /// Immutable. The ID of the app analytics provider.
     /// This field should not be empty when creating a new third
@@ -944,7 +944,7 @@ pub struct AdGroup {
     #[prost(double, optional, tag = "44")]
     pub target_roas: ::core::option::Option<f64>,
     /// The percent cpc bid amount, expressed as a fraction of the advertised price
-    /// for some good or service. The valid range for the fraction is [0,1) and the
+    /// for some good or service. The valid range for the fraction is \[0,1) and the
     /// value stored here is 1,000,000 * \[fraction\].
     #[prost(int64, optional, tag = "45")]
     pub percent_cpc_bid_micros: ::core::option::Option<i64>,
@@ -1058,7 +1058,7 @@ pub struct AdGroup {
 /// Nested message and enum types in `AdGroup`.
 pub mod ad_group {
     /// Settings for the audience targeting.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AudienceSetting {
         /// Immutable. If true, this ad group uses an Audience resource for audience
         /// targeting. If false, this ad group may use audience segment criteria
@@ -1067,7 +1067,7 @@ pub mod ad_group {
         pub use_audience_grouped: bool,
     }
     /// Settings for Demand Gen ad groups.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DemandGenAdGroupSettings {
         /// Channel controls for Demand Gen ad groups.
         #[prost(message, optional, tag = "1")]
@@ -1078,7 +1078,7 @@ pub mod ad_group {
     /// Nested message and enum types in `DemandGenAdGroupSettings`.
     pub mod demand_gen_ad_group_settings {
         /// Channel controls for Demand Gen ad groups.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct DemandGenChannelControls {
             /// Output only. Channel configuration reflecting which field in the oneof
             /// is populated.
@@ -1100,7 +1100,7 @@ pub mod ad_group {
         pub mod demand_gen_channel_controls {
             /// Explicitly selected channels for channel controls in Demand Gen ad
             /// groups.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct DemandGenSelectedChannels {
                 /// Whether to enable ads on the YouTube In-Stream channel.
                 #[prost(bool, tag = "1")]
@@ -1122,7 +1122,7 @@ pub mod ad_group {
                 pub display: bool,
             }
             /// Oneof between the different channel control configuration options.
-            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum ChannelConfiguration {
                 /// High level channel strategy.
                 #[prost(
@@ -1218,7 +1218,7 @@ pub struct AdGroupAdPolicySummary {
     pub approval_status: i32,
 }
 /// Asset automation setting for an AdGroupAd.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupAdAssetAutomationSetting {
     /// The asset automation type that this setting configures.
     #[prost(
@@ -1330,7 +1330,7 @@ pub struct AdGroupAdAssetPolicySummary {
     pub approval_status: i32,
 }
 /// A relationship between an ad group ad and a label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupAdLabel {
     /// Immutable. The resource name of the ad group ad label.
     /// Ad group ad label resource names have the form:
@@ -1403,7 +1403,7 @@ pub struct AdGroupAsset {
 }
 /// AdGroupAssetSet is the linkage between an ad group and an asset set.
 /// Creating an AdGroupAssetSet links an asset set with an ad group.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupAssetSet {
     /// Immutable. The resource name of the ad group asset set.
     /// Ad group asset set resource names have the form:
@@ -1428,7 +1428,7 @@ pub struct AdGroupAssetSet {
 /// Includes performance data from interests and remarketing lists for Display
 /// Network and YouTube Network ads, and remarketing lists for search ads (RLSA),
 /// aggregated at the audience level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupAudienceView {
     /// Output only. The resource name of the ad group audience view.
     /// Ad group audience view resource names have the form:
@@ -1483,7 +1483,7 @@ pub mod ad_group_bid_modifier {
     /// The criterion of this ad group bid modifier.
     ///
     /// Required in create operations starting in V5.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Criterion {
         /// Immutable. Criterion for hotel date selection (default dates versus user
         /// selected).
@@ -1599,7 +1599,7 @@ pub struct AdGroupCriterion {
     #[prost(int64, optional, tag = "64")]
     pub cpv_bid_micros: ::core::option::Option<i64>,
     /// The CPC bid amount, expressed as a fraction of the advertised price
-    /// for some good or service. The valid range for the fraction is [0,1) and the
+    /// for some good or service. The valid range for the fraction is \[0,1) and the
     /// value stored here is 1,000,000 * \[fraction\].
     #[prost(int64, optional, tag = "65")]
     pub percent_cpc_bid_micros: ::core::option::Option<i64>,
@@ -1689,7 +1689,7 @@ pub struct AdGroupCriterion {
 /// Nested message and enum types in `AdGroupCriterion`.
 pub mod ad_group_criterion {
     /// A container for ad group criterion quality information.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QualityInfo {
         /// Output only. The quality score.
         ///
@@ -1718,7 +1718,7 @@ pub mod ad_group_criterion {
         pub search_predicted_ctr: i32,
     }
     /// Estimates for criterion bids at various positions.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PositionEstimates {
         /// Output only. The estimate of the CPC bid required for ad to be shown on
         /// first page of search results.
@@ -1819,7 +1819,7 @@ pub mod ad_group_criterion {
 }
 /// A customizer value for the associated CustomizerAttribute at the
 /// AdGroupCriterion level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupCriterionCustomizer {
     /// Immutable. The resource name of the ad group criterion customizer.
     /// Ad group criterion customizer resource names have the form:
@@ -1847,7 +1847,7 @@ pub struct AdGroupCriterionCustomizer {
     pub value: ::core::option::Option<super::common::CustomizerValue>,
 }
 /// A relationship between an ad group criterion and a label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupCriterionLabel {
     /// Immutable. The resource name of the ad group criterion label.
     /// Ad group criterion label resource names have the form:
@@ -1867,10 +1867,10 @@ pub struct AdGroupCriterionLabel {
 /// operations starting in V5.
 ///
 /// 1. DISPLAY - KEYWORD - CPC_BID - UNIFORM
-/// 2. SEARCH - KEYWORD - CPC_BID - UNIFORM
-/// 3. SHOPPING - LISTING_GROUP - CPC_BID - UNIFORM
-/// 4. HOTEL - LISTING_GROUP - CPC_BID - UNIFORM
-/// 5. HOTEL - LISTING_GROUP - PERCENT_CPC_BID - UNIFORM
+/// 1. SEARCH - KEYWORD - CPC_BID - UNIFORM
+/// 1. SHOPPING - LISTING_GROUP - CPC_BID - UNIFORM
+/// 1. HOTEL - LISTING_GROUP - CPC_BID - UNIFORM
+/// 1. HOTEL - LISTING_GROUP - PERCENT_CPC_BID - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupCriterionSimulation {
     /// Output only. The resource name of the ad group criterion simulation.
@@ -1924,7 +1924,7 @@ pub mod ad_group_criterion_simulation {
 }
 /// A customizer value for the associated CustomizerAttribute at the AdGroup
 /// level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupCustomizer {
     /// Immutable. The resource name of the ad group customizer.
     /// Ad group customizer resource names have the form:
@@ -1951,7 +1951,7 @@ pub struct AdGroupCustomizer {
     pub value: ::core::option::Option<super::common::CustomizerValue>,
 }
 /// A relationship between an ad group and a label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdGroupLabel {
     /// Immutable. The resource name of the ad group label.
     /// Ad group label resource names have the form:
@@ -1970,12 +1970,12 @@ pub struct AdGroupLabel {
 /// detailed below respectively.
 ///
 /// 1. SEARCH - CPC_BID - DEFAULT
-/// 2. SEARCH - CPC_BID - UNIFORM
-/// 3. SEARCH - TARGET_CPA - UNIFORM
-/// 4. SEARCH - TARGET_ROAS - UNIFORM
-/// 5. DISPLAY - CPC_BID - DEFAULT
-/// 6. DISPLAY - CPC_BID - UNIFORM
-/// 7. DISPLAY - TARGET_CPA - UNIFORM
+/// 1. SEARCH - CPC_BID - UNIFORM
+/// 1. SEARCH - TARGET_CPA - UNIFORM
+/// 1. SEARCH - TARGET_ROAS - UNIFORM
+/// 1. DISPLAY - CPC_BID - DEFAULT
+/// 1. DISPLAY - CPC_BID - UNIFORM
+/// 1. DISPLAY - TARGET_CPA - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupSimulation {
     /// Output only. The resource name of the ad group simulation.
@@ -2036,7 +2036,7 @@ pub mod ad_group_simulation {
 /// parameter_index = 1 and one with parameter_index = 2.)
 /// In the ad the parameters are referenced by a placeholder of the form
 /// "{param#:value}". For example, "{param1:$17}"
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdParameter {
     /// Immutable. The resource name of the ad parameter.
     /// Ad parameter resource names have the form:
@@ -2051,24 +2051,25 @@ pub struct AdParameter {
     #[prost(int64, optional, tag = "6")]
     pub parameter_index: ::core::option::Option<i64>,
     /// Numeric value to insert into the ad text. The following restrictions
-    ///   apply:
-    ///   - Can use comma or period as a separator, with an optional period or
-    ///     comma (respectively) for fractional values. For example, 1,000,000.00
-    ///     and 2.000.000,10 are valid.
-    ///   - Can be prepended or appended with a currency symbol. For example,
-    ///     $99.99 is valid.
-    ///   - Can be prepended or appended with a currency code. For example, 99.99USD
-    ///     and EUR200 are valid.
-    ///   - Can use '%'. For example, 1.0% and 1,0% are valid.
-    ///   - Can use plus or minus. For example, -10.99 and 25+ are valid.
-    ///   - Can use '/' between two numbers. For example 4/1 and 0.95/0.45 are
-    ///     valid.
+    /// apply:
+    ///
+    /// * Can use comma or period as a separator, with an optional period or
+    ///   comma (respectively) for fractional values. For example, 1,000,000.00
+    ///   and 2.000.000,10 are valid.
+    /// * Can be prepended or appended with a currency symbol. For example,
+    ///   $99.99 is valid.
+    /// * Can be prepended or appended with a currency code. For example, 99.99USD
+    ///   and EUR200 are valid.
+    /// * Can use '%'. For example, 1.0% and 1,0% are valid.
+    /// * Can use plus or minus. For example, -10.99 and 25+ are valid.
+    /// * Can use '/' between two numbers. For example 4/1 and 0.95/0.45 are
+    ///   valid.
     #[prost(string, optional, tag = "7")]
     pub insertion_text: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// An ad schedule view summarizes the performance of campaigns by
 /// AdSchedule criteria.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdScheduleView {
     /// Output only. The resource name of the ad schedule view.
     /// AdSchedule view resource names have the form:
@@ -2078,7 +2079,7 @@ pub struct AdScheduleView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// An age range view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AgeRangeView {
     /// Output only. The resource name of the age range view.
     /// Age range view resource names have the form:
@@ -2088,7 +2089,7 @@ pub struct AgeRangeView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// An Android privacy shared key view for Google ad group key.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AndroidPrivacySharedKeyGoogleAdGroup {
     /// Output only. The resource name of the Android privacy shared key.
     /// Android privacy shared key resource names have the form:
@@ -2126,7 +2127,7 @@ pub struct AndroidPrivacySharedKeyGoogleAdGroup {
     pub shared_ad_group_key: ::prost::alloc::string::String,
 }
 /// An Android privacy shared key view for Google campaign key.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AndroidPrivacySharedKeyGoogleCampaign {
     /// Output only. The resource name of the Android privacy shared key.
     /// Android privacy shared key resource names have the form:
@@ -2155,7 +2156,7 @@ pub struct AndroidPrivacySharedKeyGoogleCampaign {
     pub shared_campaign_key: ::prost::alloc::string::String,
 }
 /// An Android privacy shared key view for Google network type key.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AndroidPrivacySharedKeyGoogleNetworkType {
     /// Output only. The resource name of the Android privacy shared key.
     /// Android privacy shared key resource names have the form:
@@ -2383,7 +2384,7 @@ pub struct AssetPolicySummary {
 /// An asset field type view.
 /// This view reports non-overcounted metrics for each asset field type when the
 /// asset is used as extension.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AssetFieldTypeView {
     /// Output only. The resource name of the asset field type view.
     /// Asset field type view resource names have the form:
@@ -2476,7 +2477,7 @@ pub struct AssetCoverage {
     pub ad_strength_action_items: ::prost::alloc::vec::Vec<AdStrengthActionItem>,
 }
 /// An action item to improve the ad strength of an asset group.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdStrengthActionItem {
     /// Output only. The action item type.
     #[prost(
@@ -2491,7 +2492,7 @@ pub struct AdStrengthActionItem {
 /// Nested message and enum types in `AdStrengthActionItem`.
 pub mod ad_strength_action_item {
     /// The details of the asset to add.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AddAssetDetails {
         /// Output only. The asset field type of the asset(s) to add.
         #[prost(
@@ -2514,7 +2515,7 @@ pub mod ad_strength_action_item {
         pub video_aspect_ratio_requirement: ::core::option::Option<i32>,
     }
     /// The details of this action item.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ActionDetails {
         /// Output only. The action item details for action item type ADD_ASSET.
         #[prost(message, tag = "2")]
@@ -2655,7 +2656,7 @@ pub mod listing_group_filter_dimension {
     /// up to 5 levels. The user must specify a dimension type that indicates the
     /// level of the category. All cases of the same subdivision must have the same
     /// dimension type (category level).
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductCategory {
         /// ID of the product category.
         ///
@@ -2671,14 +2672,14 @@ pub mod listing_group_filter_dimension {
         pub level: i32,
     }
     /// Brand of the product.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductBrand {
         /// String value of the product brand.
         #[prost(string, optional, tag = "1")]
         pub value: ::core::option::Option<::prost::alloc::string::String>,
     }
     /// Locality of a product offer.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductChannel {
         /// Value of the locality.
         #[prost(
@@ -2688,7 +2689,7 @@ pub mod listing_group_filter_dimension {
         pub channel: i32,
     }
     /// Condition of a product offer.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductCondition {
         /// Value of the condition.
         #[prost(
@@ -2698,7 +2699,7 @@ pub mod listing_group_filter_dimension {
         pub condition: i32,
     }
     /// Custom attribute of a product offer.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductCustomAttribute {
         /// String value of the product custom attribute.
         #[prost(string, optional, tag = "1")]
@@ -2711,14 +2712,14 @@ pub mod listing_group_filter_dimension {
         pub index: i32,
     }
     /// Item id of a product offer.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductItemId {
         /// Value of the id.
         #[prost(string, optional, tag = "1")]
         pub value: ::core::option::Option<::prost::alloc::string::String>,
     }
     /// Type of a product offer.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductType {
         /// Value of the type.
         #[prost(string, optional, tag = "1")]
@@ -2751,7 +2752,7 @@ pub mod listing_group_filter_dimension {
         pub conditions: ::prost::alloc::vec::Vec<WebpageCondition>,
     }
     /// Matching condition for URL filtering.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct WebpageCondition {
         /// Condition for filtering the URLs.
         #[prost(oneof = "webpage_condition::Condition", tags = "1, 2")]
@@ -2760,7 +2761,7 @@ pub mod listing_group_filter_dimension {
     /// Nested message and enum types in `WebpageCondition`.
     pub mod webpage_condition {
         /// Condition for filtering the URLs.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum Condition {
             /// Filters the URLs in a page feed that have this custom label. A custom
             /// label can be added to a campaign by creating an AssetSet of type
@@ -2803,7 +2804,7 @@ pub mod listing_group_filter_dimension {
     }
 }
 /// An asset group product group view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AssetGroupProductGroupView {
     /// Output only. The resource name of the asset group product group view.
     /// Asset group product group view resource names have the form:
@@ -2822,7 +2823,7 @@ pub struct AssetGroupProductGroupView {
 /// signal tells the performance max campaign who's most likely to convert.
 /// Performance Max uses the signal to look for new people with similar or
 /// stronger intent to find conversions across Search, Display, Video, and more.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AssetGroupSignal {
     /// Immutable. The resource name of the asset group signal.
     /// Asset group signal resource name have the form:
@@ -2852,7 +2853,7 @@ pub struct AssetGroupSignal {
 /// Nested message and enum types in `AssetGroupSignal`.
 pub mod asset_group_signal {
     /// The signal of the asset group.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Signal {
         /// Immutable. The audience signal to be used by the performance max
         /// campaign.
@@ -2878,7 +2879,7 @@ pub mod asset_group_signal {
 pub struct AssetGroupTopCombinationView {
     /// Output only. The resource name of the asset group top combination view.
     /// AssetGroup Top Combination view resource names have the form:
-    /// `"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}"
+    /// \`"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}"
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The top combinations of assets that served together.
@@ -2943,7 +2944,7 @@ pub struct AssetSet {
 /// Nested message and enum types in `AssetSet`.
 pub mod asset_set {
     /// Merchant ID and Feed Label from Google Merchant Center.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MerchantCenterFeed {
         /// Required. Merchant ID from Google Merchant Center
         #[prost(int64, tag = "1")]
@@ -2954,7 +2955,7 @@ pub mod asset_set {
     }
     /// For Performance Max for travel goals campaigns with a Hotel
     /// Center account link. Read-only.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct HotelPropertyData {
         /// Output only. The hotel center ID of the partner.
         #[prost(int64, optional, tag = "1")]
@@ -2983,7 +2984,7 @@ pub mod asset_set {
 }
 /// AssetSetAsset is the link between an asset and an asset set.
 /// Adding an AssetSetAsset links an asset with an asset set.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AssetSetAsset {
     /// Immutable. The resource name of the asset set asset.
     /// Asset set asset resource names have the form:
@@ -3008,7 +3009,7 @@ pub struct AssetSetAsset {
 /// This view reports non-overcounted metrics for each asset set type. Child
 /// asset set types are not included in this report. Their stats are aggregated
 /// under the parent asset set type.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AssetSetTypeView {
     /// Output only. The resource name of the asset set type view.
     /// Asset set type view resource names have the form:
@@ -3146,7 +3147,7 @@ pub mod batch_job {
 ///
 /// See "About data exclusions" at
 /// <https://support.google.com/google-ads/answer/10370710.>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BiddingDataExclusion {
     /// Immutable. The resource name of the data exclusion.
     /// Data exclusion resource names have the form:
@@ -3179,8 +3180,8 @@ pub struct BiddingDataExclusion {
     /// Required. The exclusive end time of the data exclusion in yyyy-MM-dd
     /// HH:mm:ss format.
     ///
-    /// The length of [start_date_time, end_date_time) interval must be
-    /// within (0, 14 days].
+    /// The length of \[start_date_time, end_date_time) interval must be
+    /// within (0, 14 days\].
     #[prost(string, tag = "6")]
     pub end_date_time: ::prost::alloc::string::String,
     /// The name of the data exclusion. The name can be at most 255
@@ -3254,8 +3255,8 @@ pub struct BiddingSeasonalityAdjustment {
     /// Required. The exclusive end time of the seasonality adjustment in
     /// yyyy-MM-dd HH:mm:ss format.
     ///
-    /// The length of [start_date_time, end_date_time) interval must be
-    /// within (0, 14 days].
+    /// The length of \[start_date_time, end_date_time) interval must be
+    /// within (0, 14 days\].
     #[prost(string, tag = "6")]
     pub end_date_time: ::prost::alloc::string::String,
     /// The name of the seasonality adjustment. The name can be at most 255
@@ -3420,7 +3421,7 @@ pub mod bidding_strategy {
 /// and simulation modification method are detailed below respectively.
 ///
 /// 1. TARGET_CPA - UNIFORM
-/// 2. TARGET_ROAS - UNIFORM
+/// 1. TARGET_ROAS - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BiddingStrategySimulation {
     /// Output only. The resource name of the bidding strategy simulation.
@@ -3471,7 +3472,7 @@ pub mod bidding_strategy_simulation {
 }
 /// A billing setup, which associates a payments account and an advertiser. A
 /// billing setup is specific to one advertiser.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BillingSetup {
     /// Immutable. The resource name of the billing setup.
     /// BillingSetup resource names have the form:
@@ -3523,7 +3524,7 @@ pub struct BillingSetup {
 /// Nested message and enum types in `BillingSetup`.
 pub mod billing_setup {
     /// Container of payments account information for this billing.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PaymentsAccountInfo {
         /// Output only. A 16 digit id used to identify the payments account
         /// associated with the billing setup.
@@ -3571,7 +3572,7 @@ pub mod billing_setup {
     /// When fetching an existing billing setup, this is the requested start time.
     /// However, if the setup was approved (see status) after the requested start
     /// time, then this is the approval time.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum StartTime {
         /// Immutable. The start date time in yyyy-MM-dd or yyyy-MM-dd HH:mm:ss
         /// format. Only a future time is allowed.
@@ -3586,7 +3587,7 @@ pub mod billing_setup {
     }
     /// When the billing setup ends / ended. This is either FOREVER or the start
     /// time of the next scheduled billing setup.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum EndTime {
         /// Output only. The end date time in yyyy-MM-dd or yyyy-MM-dd HH:mm:ss
         /// format.
@@ -3602,7 +3603,7 @@ pub mod billing_setup {
 }
 /// A call view that includes data for call tracking of call-only ads or call
 /// extensions.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CallView {
     /// Output only. The resource name of the call view.
     /// Call view resource names have the form:
@@ -4003,7 +4004,7 @@ pub struct Campaign {
 /// Nested message and enum types in `Campaign`.
 pub mod campaign {
     /// Information about a campaign being upgraded to Performance Max.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PerformanceMaxUpgrade {
         /// Output only. The resource name of the Performance Max campaign the
         /// campaign is upgraded to.
@@ -4022,7 +4023,7 @@ pub mod campaign {
         pub status: i32,
     }
     /// The network settings for the campaign.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct NetworkSettings {
         /// Whether ads will be served with google.com search results.
         #[prost(bool, optional, tag = "5")]
@@ -4047,14 +4048,14 @@ pub mod campaign {
         pub target_google_tv_network: ::core::option::Option<bool>,
     }
     /// Campaign-level settings for hotel ads.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct HotelSettingInfo {
         /// Immutable. The linked Hotel Center account.
         #[prost(int64, optional, tag = "2")]
         pub hotel_center_id: ::core::option::Option<i64>,
     }
     /// The setting for controlling Dynamic Search Ads (DSA).
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DynamicSearchAdsSetting {
         /// Required. The Internet domain name that this setting represents, for
         /// example, "google.com" or "www.google.com".
@@ -4071,7 +4072,7 @@ pub mod campaign {
     /// The setting for Shopping campaigns. Defines the universe of products that
     /// can be advertised by the campaign, and how this campaign interacts with
     /// other Shopping campaigns.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingSetting {
         /// ID of the Merchant Center account.
         /// This field is required for create operations. This field is immutable for
@@ -4114,14 +4115,14 @@ pub mod campaign {
         pub disable_product_feed: ::core::option::Option<bool>,
     }
     /// Campaign-level settings for tracking information.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TrackingSetting {
         /// Output only. The url used for dynamic tracking.
         #[prost(string, optional, tag = "2")]
         pub tracking_url: ::core::option::Option<::prost::alloc::string::String>,
     }
     /// Represents a collection of settings related to ads geotargeting.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GeoTargetTypeSetting {
         /// The setting used for positive geotargeting in this particular campaign.
         #[prost(
@@ -4137,7 +4138,7 @@ pub mod campaign {
         pub negative_geo_target_type: i32,
     }
     /// Campaign setting for local campaigns.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct LocalCampaignSetting {
         /// The location source type for this local campaign.
         #[prost(
@@ -4147,7 +4148,7 @@ pub mod campaign {
         pub location_source_type: i32,
     }
     /// Campaign-level settings for App Campaigns.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AppCampaignSetting {
         /// Represents the goal which the bidding strategy of this app campaign
         /// should optimize towards.
@@ -4167,7 +4168,7 @@ pub mod campaign {
         pub app_store: i32,
     }
     /// Describes how unbranded pharma ads will be displayed.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct VanityPharma {
         /// The display mode for vanity pharma URLs.
         #[prost(
@@ -4188,7 +4189,7 @@ pub mod campaign {
     /// This feature only applies to app campaigns that use MULTI_CHANNEL as
     /// AdvertisingChannelType and APP_CAMPAIGN or APP_CAMPAIGN_FOR_ENGAGEMENT as
     /// AdvertisingChannelSubType.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SelectiveOptimization {
         /// The selected set of resource names for conversion actions for optimizing
         /// this campaign.
@@ -4197,7 +4198,7 @@ pub mod campaign {
     }
     /// Optimization goal setting for this campaign, which includes a set of
     /// optimization goal types.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct OptimizationGoalSetting {
         /// The list of optimization goal types.
         #[prost(
@@ -4208,7 +4209,7 @@ pub mod campaign {
         pub optimization_goal_types: ::prost::alloc::vec::Vec<i32>,
     }
     /// Settings for the audience targeting.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AudienceSetting {
         /// Immutable. If true, this campaign uses an Audience resource for audience
         /// targeting. If false, this campaign may use audience segment criteria
@@ -4224,7 +4225,7 @@ pub mod campaign {
         pub category_bids: ::prost::alloc::vec::Vec<CategoryBid>,
     }
     /// Category bids in LocalServicesReportingCampaignSettings.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CategoryBid {
         /// Category for which the bid will be associated with. For example,
         /// xcat:service_area_business_plumber.
@@ -4241,14 +4242,14 @@ pub mod campaign {
         pub target_cpa_bid_micros: ::core::option::Option<i64>,
     }
     /// Settings for Travel campaign.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TravelCampaignSettings {
         /// Immutable. The Travel account ID associated with the Travel campaign.
         #[prost(int64, optional, tag = "1")]
         pub travel_account_id: ::core::option::Option<i64>,
     }
     /// Settings for Demand Gen campaign.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DemandGenCampaignSettings {
         /// Immutable. Specifies whether this campaign uses upgraded targeting
         /// options. When this field is set to `true`, you can use location and
@@ -4259,7 +4260,7 @@ pub mod campaign {
         pub upgraded_targeting: ::core::option::Option<bool>,
     }
     /// Settings for Video campaign.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct VideoCampaignSettings {
         /// Inventory control for responsive ad containers in reach campaigns.
         #[prost(message, optional, tag = "1")]
@@ -4272,7 +4273,7 @@ pub mod campaign {
         /// For campaigns using responsive ad containers inventory controls determine
         /// on which inventories the ads can be shown. This only applies for
         /// campaigns with the bidding strategies TARGET_CPM and FIXED_CPM.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct VideoAdInventoryControl {
             /// Determine if VideoResponsiveAds can be used for in-stream video ads.
             #[prost(bool, optional, tag = "1")]
@@ -4286,7 +4287,7 @@ pub mod campaign {
         }
     }
     /// Settings for Performance Max campaigns.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PmaxCampaignSettings {
         /// Overrides of brand targeting for various ad types.
         #[prost(message, optional, tag = "1")]
@@ -4297,7 +4298,7 @@ pub mod campaign {
     /// Nested message and enum types in `PmaxCampaignSettings`.
     pub mod pmax_campaign_settings {
         /// Overrides of brand targeting for various ad types.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct BrandTargetingOverrides {
             /// If true, brand exclusions are ignored for Shopping ads.
             #[prost(bool, optional, tag = "1")]
@@ -4306,7 +4307,7 @@ pub mod campaign {
     }
     /// Asset automation setting contains pair of AssetAutomationType and the
     /// asset automation opt-in/out status
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AssetAutomationSetting {
         /// The asset automation type advertiser would like to opt-in/out.
         #[prost(
@@ -4326,7 +4327,7 @@ pub mod campaign {
     /// Settings that control the visual appearance of your brand in a campaign's
     /// automatically generated assets and formats. Only applicable to Performance
     /// Max campaigns.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct BrandGuidelines {
         /// The main brand color, entered as a hex code (e.g., #00ff00). You must
         /// provide the main_color if you provide an accent_color.
@@ -4416,7 +4417,7 @@ pub mod campaign {
 }
 /// A campaign-level aggregate asset view that shows where the asset is linked,
 /// performamce of the asset and stats.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignAggregateAssetView {
     /// Output only. The resource name of the campaign aggregate asset view.
     /// Campaign aggregate asset view resource names have the form:
@@ -4505,7 +4506,7 @@ pub struct CampaignAsset {
 }
 /// CampaignAssetSet is the linkage between a campaign and an asset set.
 /// Adding a CampaignAssetSet links an asset set with a campaign.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignAssetSet {
     /// Immutable. The resource name of the campaign asset set.
     /// Asset set asset resource names have the form:
@@ -4531,7 +4532,7 @@ pub struct CampaignAssetSet {
 /// Network and YouTube Network ads, and remarketing lists for search ads (RLSA),
 /// aggregated by campaign and audience criterion. This view only includes
 /// audiences attached at the campaign level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignAudienceView {
     /// Output only. The resource name of the campaign audience view.
     /// Campaign audience view resource names have the form:
@@ -4571,7 +4572,7 @@ pub mod campaign_bid_modifier {
     /// The criterion of this campaign bid modifier.
     ///
     /// Required in create operations starting in V5.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Criterion {
         /// Immutable. Criterion for interaction type. Only supported for search
         /// campaigns.
@@ -4580,7 +4581,7 @@ pub mod campaign_bid_modifier {
     }
 }
 /// A campaign budget.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignBudget {
     /// Immutable. The resource name of the campaign budget.
     /// Campaign budget resource names have the form:
@@ -4710,7 +4711,7 @@ pub struct CampaignBudget {
 }
 /// The biddability setting for the specified campaign only for all
 /// conversion actions with a matching category and origin.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignConversionGoal {
     /// Immutable. The resource name of the campaign conversion goal.
     /// Campaign conversion goal resource names have the form:
@@ -4893,7 +4894,7 @@ pub mod campaign_criterion {
 }
 /// A customizer value for the associated CustomizerAttribute at the Campaign
 /// level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignCustomizer {
     /// Immutable. The resource name of the campaign customizer.
     /// Campaign customizer resource names have the form:
@@ -4920,7 +4921,7 @@ pub struct CampaignCustomizer {
     pub value: ::core::option::Option<super::common::CustomizerValue>,
 }
 /// A campaign draft.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignDraft {
     /// Immutable. The resource name of the campaign draft.
     /// Campaign draft resource names have the form:
@@ -4970,7 +4971,7 @@ pub struct CampaignDraft {
     pub long_running_operation: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A campaign group.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignGroup {
     /// Immutable. The resource name of the campaign group.
     /// Campaign group resource names have the form:
@@ -5000,7 +5001,7 @@ pub struct CampaignGroup {
     pub status: i32,
 }
 /// Represents a relationship between a campaign and a label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignLabel {
     /// Immutable. Name of the resource.
     /// Campaign label resource names have the form:
@@ -5050,7 +5051,7 @@ pub struct CustomerAcquisitionGoalSettings {
 }
 /// A Campaign search term view.
 /// Historical data is available starting March 2023.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignSearchTermInsight {
     /// Output only. The resource name of the campaign level search term insight.
     /// Campaign level search term insight resource names have the form:
@@ -5071,7 +5072,7 @@ pub struct CampaignSearchTermInsight {
 }
 /// CampaignSharedSets are used for managing the shared sets associated with a
 /// campaign.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CampaignSharedSet {
     /// Immutable. The resource name of the campaign shared set.
     /// Campaign shared set resource names have the form:
@@ -5178,7 +5179,7 @@ pub mod campaign_simulation {
     }
 }
 /// A carrier criterion that can be used in campaign targeting.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CarrierConstant {
     /// Output only. The resource name of the carrier criterion.
     /// Carrier criterion resource names have the form:
@@ -5367,7 +5368,7 @@ pub mod change_event {
 }
 /// Describes the status of returned resource. ChangeStatus could have up to 3
 /// minutes delay to reflect a new change.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ChangeStatus {
     /// Output only. The resource name of the change status.
     /// Change status resource names have the form:
@@ -5441,7 +5442,7 @@ pub struct ChangeStatus {
 }
 /// A channel-level aggregate asset view that shows where the asset is linked,
 /// performamce of the asset and stats.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ChannelAggregateAssetView {
     /// Output only. The resource name of the channel aggregate asset view.
     /// Channel aggregate asset view resource names have the form:
@@ -5480,7 +5481,7 @@ pub struct ChannelAggregateAssetView {
 /// Queries including ClickView must have a filter limiting the results to one
 /// day and can be requested for dates back to 90 days before the time of the
 /// request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClickView {
     /// Output only. The resource name of the click view.
     /// Click view resource names have the form:
@@ -5521,7 +5522,7 @@ pub struct ClickView {
 }
 /// Describe a resource for combined audiences which includes different
 /// audiences.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CombinedAudience {
     /// Immutable. The resource name of the combined audience.
     /// Combined audience names have the form:
@@ -5548,7 +5549,7 @@ pub struct CombinedAudience {
     pub description: ::prost::alloc::string::String,
 }
 /// A content criterion view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ContentCriterionView {
     /// Output only. The resource name of the content criterion view.
     /// Content criterion view resource names have the form:
@@ -5679,7 +5680,7 @@ pub struct ConversionAction {
 /// Nested message and enum types in `ConversionAction`.
 pub mod conversion_action {
     /// Settings related to this conversion action's attribution model.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AttributionModelSettings {
         /// The attribution model type of this conversion action.
         #[prost(
@@ -5718,7 +5719,7 @@ pub mod conversion_action {
         pub always_use_default_value: ::core::option::Option<bool>,
     }
     /// Settings related to a third party app analytics conversion action.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ThirdPartyAppAnalyticsSettings {
         /// Output only. The event name of a third-party app analytics conversion.
         #[prost(string, optional, tag = "2")]
@@ -5728,7 +5729,7 @@ pub mod conversion_action {
         pub provider_name: ::prost::alloc::string::String,
     }
     /// Settings related to a Firebase conversion action.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct FirebaseSettings {
         /// Output only. The event name of a Firebase conversion.
         #[prost(string, optional, tag = "3")]
@@ -5744,7 +5745,7 @@ pub mod conversion_action {
         pub property_name: ::prost::alloc::string::String,
     }
     /// Settings related to a Google Analytics 4 conversion action.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GoogleAnalytics4Settings {
         /// Output only. The name of the GA 4 event.
         #[prost(string, tag = "1")]
@@ -5760,7 +5761,7 @@ pub mod conversion_action {
 /// A conversion custom variable
 /// See "About custom variables for conversions" at
 /// <https://support.google.com/google-ads/answer/9964350>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversionCustomVariable {
     /// Immutable. The resource name of the conversion custom variable.
     /// Conversion custom variable resource names have the form:
@@ -5797,7 +5798,7 @@ pub struct ConversionCustomVariable {
     pub owner_customer: ::prost::alloc::string::String,
 }
 /// Conversion goal settings for a Campaign.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversionGoalCampaignConfig {
     /// Immutable. The resource name of the conversion goal campaign config.
     /// Conversion goal campaign config resource names have the form:
@@ -5860,7 +5861,7 @@ pub struct ConversionValueRule {
     /// customer. When the value rule is inherited from a manager customer,
     /// owner_customer will be the resource name of the manager whereas the
     /// customer in the resource_name will be of the requesting serving customer.
-    /// ** Read-only **
+    /// \** Read-only **
     #[prost(string, tag = "7")]
     pub owner_customer: ::prost::alloc::string::String,
     /// The status of the conversion value rule.
@@ -5886,7 +5887,7 @@ pub mod conversion_value_rule {
         pub value: f64,
     }
     /// Condition on Geo dimension.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleGeoLocationCondition {
         /// Geo locations that advertisers want to exclude.
         #[prost(string, repeated, tag = "1")]
@@ -5912,7 +5913,7 @@ pub mod conversion_value_rule {
         pub geo_match_type: i32,
     }
     /// Condition on Device dimension.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleDeviceCondition {
         /// Value for device type condition.
         #[prost(
@@ -5923,7 +5924,7 @@ pub mod conversion_value_rule {
         pub device_types: ::prost::alloc::vec::Vec<i32>,
     }
     /// Condition on Audience dimension.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleAudienceCondition {
         /// User Lists.
         #[prost(string, repeated, tag = "1")]
@@ -5933,7 +5934,7 @@ pub mod conversion_value_rule {
         pub user_interests: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
     /// Condition on Itinerary dimension.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleItineraryCondition {
         /// Range for the number of days between the date of the booking and the
         /// start of the itinerary.
@@ -5950,7 +5951,7 @@ pub mod conversion_value_rule {
     }
     /// Range for the number of days between the date of the booking and the
     /// start of the itinerary.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleItineraryAdvanceBookingWindow {
         /// Minimum number of days between the date of the booking the start date.
         #[prost(int32, optional, tag = "3")]
@@ -5960,7 +5961,7 @@ pub mod conversion_value_rule {
         pub max_days: ::core::option::Option<i32>,
     }
     /// Range for the itinerary length in number of nights.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleItineraryTravelLength {
         /// Minimum number of nights between the start date and the end date.
         #[prost(int32, tag = "1")]
@@ -5970,7 +5971,7 @@ pub mod conversion_value_rule {
         pub max_nights: i32,
     }
     /// The days of the week on which an itinerary's travel can start.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ValueRuleItineraryTravelStartDay {
         /// The travel can start on Monday.
         #[prost(bool, tag = "1")]
@@ -5996,7 +5997,7 @@ pub mod conversion_value_rule {
     }
 }
 /// A conversion value rule set
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversionValueRuleSet {
     /// Immutable. The resource name of the conversion value rule set.
     /// Conversion value rule set resource names have the form:
@@ -6026,7 +6027,7 @@ pub struct ConversionValueRuleSet {
     /// customer. When the value rule set is inherited from a manager customer,
     /// owner_customer will be the resource name of the manager whereas the
     /// customer in the resource_name will be of the requesting serving customer.
-    /// ** Read-only **
+    /// \** Read-only **
     #[prost(string, tag = "5")]
     pub owner_customer: ::prost::alloc::string::String,
     /// Immutable. Defines the scope where the conversion value rule set is
@@ -6041,7 +6042,7 @@ pub struct ConversionValueRuleSet {
     #[prost(string, tag = "7")]
     pub campaign: ::prost::alloc::string::String,
     /// Output only. The status of the conversion value rule set.
-    /// ** Read-only **
+    /// \** Read-only **
     #[prost(
         enumeration = "super::enums::conversion_value_rule_set_status_enum::ConversionValueRuleSetStatus",
         tag = "8"
@@ -6058,7 +6059,7 @@ pub struct ConversionValueRuleSet {
     pub conversion_action_categories: ::prost::alloc::vec::Vec<i32>,
 }
 /// A currency constant.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CurrencyConstant {
     /// Output only. The resource name of the currency constant.
     /// Currency constant resource names have the form:
@@ -6124,7 +6125,7 @@ pub struct CustomAudience {
 }
 /// A member of custom audience. A member can be a KEYWORD, URL,
 /// PLACE_CATEGORY or APP. It can only be created or removed but not changed.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomAudienceMember {
     /// The type of custom audience member, KEYWORD, URL, PLACE_CATEGORY or APP.
     #[prost(
@@ -6141,7 +6142,7 @@ pub struct CustomAudienceMember {
 pub mod custom_audience_member {
     /// The CustomAudienceMember value. One field is populated depending on the
     /// member type.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Value {
         /// A keyword or keyword phrase — at most 10 words and 80 characters.
         /// Languages with double-width characters such as Chinese, Japanese,
@@ -6163,7 +6164,7 @@ pub mod custom_audience_member {
     }
 }
 /// Custom conversion goal that can make arbitrary conversion actions biddable.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomConversionGoal {
     /// Immutable. The resource name of the custom conversion goal.
     /// Custom conversion goal resource names have the form:
@@ -6229,7 +6230,7 @@ pub struct CustomInterest {
 }
 /// A member of custom interest audience. A member can be a keyword or url.
 /// It is immutable, that is, it can only be created or removed but not changed.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomInterestMember {
     /// The type of custom interest member, KEYWORD or URL.
     #[prost(
@@ -6376,7 +6377,7 @@ pub struct Customer {
     pub video_brand_safety_suitability: i32,
 }
 /// Call reporting setting for a customer. Only mutable in an `update` operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CallReportingSetting {
     /// Enable reporting of phone call events by redirecting them through Google
     /// System.
@@ -6393,7 +6394,7 @@ pub struct CallReportingSetting {
 }
 /// A collection of customer-wide settings related to Google Ads Conversion
 /// Tracking.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversionTrackingSetting {
     /// Output only. The conversion tracking id used for this account. This id
     /// doesn't indicate whether the customer uses conversion tracking
@@ -6433,14 +6434,14 @@ pub struct ConversionTrackingSetting {
     pub google_ads_conversion_customer: ::prost::alloc::string::String,
 }
 /// Remarketing setting for a customer.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RemarketingSetting {
     /// Output only. The Google tag.
     #[prost(string, optional, tag = "2")]
     pub google_global_site_tag: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Customer Agreement Setting for a customer.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerAgreementSetting {
     /// Output only. Whether the customer has accepted lead form term of service.
     #[prost(bool, tag = "1")]
@@ -6457,7 +6458,7 @@ pub struct LocalServicesSettings {
     pub granular_insurance_statuses: ::prost::alloc::vec::Vec<GranularInsuranceStatus>,
 }
 /// License status at geo + vertical level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GranularLicenseStatus {
     /// Output only. Geotarget criterion ID associated with the status. Can be on
     /// country or state/province geo level, depending on requirements and
@@ -6480,7 +6481,7 @@ pub struct GranularLicenseStatus {
     pub verification_status: ::core::option::Option<i32>,
 }
 /// Insurance status at geo + vertical level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GranularInsuranceStatus {
     /// Output only. Geotarget criterion ID associated with the status. Can be on
     /// country or state/province geo level, depending on requirements and
@@ -6504,7 +6505,7 @@ pub struct GranularInsuranceStatus {
 }
 /// CustomerAssetSet is the linkage between a customer and an asset set.
 /// Adding a CustomerAssetSet links an asset set with a customer.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerAssetSet {
     /// Immutable. The resource name of the customer asset set.
     /// Asset set asset resource names have the form:
@@ -6528,7 +6529,7 @@ pub struct CustomerAssetSet {
 /// A link between the given customer and a client customer. CustomerClients only
 /// exist for manager customers. All direct and indirect client customers are
 /// included, as well as the manager itself.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerClient {
     /// Output only. The resource name of the customer client.
     /// CustomerClient resource names have the form:
@@ -6583,7 +6584,7 @@ pub struct CustomerClient {
     pub status: i32,
 }
 /// Represents customer client link relationship.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerClientLink {
     /// Immutable. Name of the resource.
     /// CustomerClientLink resource names have the form:
@@ -6610,7 +6611,7 @@ pub struct CustomerClientLink {
 }
 /// Biddability control for conversion actions with a matching category and
 /// origin.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerConversionGoal {
     /// Immutable. The resource name of the customer conversion goal.
     /// Customer conversion goal resource names have the form:
@@ -6639,7 +6640,7 @@ pub struct CustomerConversionGoal {
 }
 /// A customizer value for the associated CustomizerAttribute at the Customer
 /// level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerCustomizer {
     /// Immutable. The resource name of the customer customizer.
     /// Customer customizer resource names have the form:
@@ -6665,7 +6666,7 @@ pub struct CustomerCustomizer {
 /// Represents a relationship between a customer and a label. This customer may
 /// not have access to all the labels attached to it. Additional CustomerLabels
 /// may be returned by increasing permissions with login-customer-id.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerLabel {
     /// Immutable. Name of the resource.
     /// Customer label resource names have the form:
@@ -6703,7 +6704,7 @@ pub struct CustomerLifecycleGoal {
     pub owner_customer: ::prost::alloc::string::String,
 }
 /// Represents customer-manager link relationship.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerManagerLink {
     /// Immutable. Name of the resource.
     /// CustomerManagerLink resource names have the form:
@@ -6724,7 +6725,7 @@ pub struct CustomerManagerLink {
     pub status: i32,
 }
 /// A negative criterion for exclusions at the customer level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerNegativeCriterion {
     /// Immutable. The resource name of the customer negative criterion.
     /// Customer negative criterion resource names have the form:
@@ -6752,7 +6753,7 @@ pub mod customer_negative_criterion {
     /// The customer negative criterion.
     ///
     /// Exactly one must be set.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Criterion {
         /// Immutable. ContentLabel.
         #[prost(message, tag = "4")]
@@ -6782,7 +6783,7 @@ pub mod customer_negative_criterion {
 }
 /// A Customer search term view.
 /// Historical data is available starting March 2023.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerSearchTermInsight {
     /// Output only. The resource name of the customer level search term insight.
     /// Customer level search term insight resource names have the form:
@@ -6836,7 +6837,9 @@ pub mod customer_sk_ad_network_conversion_value_schema {
         >,
         /// Output only. Per-postback conversion value mappings for postbacks in
         /// multiple conversion windows. Only applicable for SkAdNetwork versions
-        /// >= 4.0.
+        ///
+        /// >
+        /// > = 4.0.
         #[prost(message, repeated, tag = "4")]
         pub postback_mappings: ::prost::alloc::vec::Vec<
             sk_ad_network_conversion_value_schema::PostbackMapping,
@@ -6878,7 +6881,7 @@ pub mod customer_sk_ad_network_conversion_value_schema {
         /// Nested message and enum types in `PostbackMapping`.
         pub mod postback_mapping {
             /// Event or conversion value used for locking conversion window.
-            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum LockWindowTrigger {
                 /// Output only. Coarse grained conversion value that triggers conversion
                 /// window lock.
@@ -6966,7 +6969,7 @@ pub mod customer_sk_ad_network_conversion_value_schema {
                 pub max_event_revenue: f64,
             }
             /// Defines a range for event counter values.
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct EventOccurrenceRange {
                 /// Output only. For event counter ranges, the minimum of the defined
                 /// range. A value of 0 will be treated as unset.
@@ -6988,7 +6991,7 @@ pub mod customer_sk_ad_network_conversion_value_schema {
                 EventRevenueValue(f64),
             }
             /// Either a range or specific value for event counter.
-            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum EventRate {
                 /// Output only. The event counter range.
                 #[prost(message, tag = "5")]
@@ -7001,7 +7004,7 @@ pub mod customer_sk_ad_network_conversion_value_schema {
     }
 }
 /// Represents the permission of a single user onto a single customer.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerUserAccess {
     /// Immutable. Name of the resource.
     /// Resource names have the form:
@@ -7035,7 +7038,7 @@ pub struct CustomerUserAccess {
     >,
 }
 /// Represent an invitation to a new user on this customer account.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerUserAccessInvitation {
     /// Immutable. Name of the resource.
     /// Resource names have the form:
@@ -7072,7 +7075,7 @@ pub struct CustomerUserAccessInvitation {
 /// AdGroupCriterionCustomizer to associate a customizer attribute and
 /// set its value at the customer, campaign, ad group, or ad group criterion
 /// level, respectively.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomizerAttribute {
     /// Immutable. The resource name of the customizer attribute.
     /// Customizer Attribute resource names have the form:
@@ -7103,12 +7106,12 @@ pub struct CustomizerAttribute {
 }
 /// Represents the data sharing connection between  a Google
 /// Ads customer and another product's data.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DataLink {
     /// Immutable. Resource name of the product data link.
     /// DataLink resource names have the form:
     ///
-    /// `customers/{customer_id}/datalinks/{product_link_id}~{data_link_id}}
+    /// \`customers/{customer_id}/datalinks/{product_link_id}~{data_link_id}}
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The ID of the link.
@@ -7135,7 +7138,7 @@ pub struct DataLink {
 /// Nested message and enum types in `DataLink`.
 pub mod data_link {
     /// Data linked to this account.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum DataLinkEntity {
         /// Immutable. A data link to YouTube video.
         #[prost(message, tag = "6")]
@@ -7143,7 +7146,7 @@ pub mod data_link {
     }
 }
 /// The identifier for YouTube video
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct YoutubeVideoIdentifier {
     /// Immutable. The ID of the hosting channel of the video. This is a string
     /// value with “UC” prefix. For example, "UCK8sQmJBp8GCxrOtXWBpyEA".
@@ -7157,7 +7160,7 @@ pub struct YoutubeVideoIdentifier {
     pub video_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A view with metrics aggregated by ad group and URL or YouTube video.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DetailPlacementView {
     /// Output only. The resource name of the detail placement view.
     /// Detail placement view resource names have the form:
@@ -7219,7 +7222,7 @@ pub struct DetailedDemographic {
     >,
 }
 /// A display keyword view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DisplayKeywordView {
     /// Output only. The resource name of the display keyword view.
     /// Display Keyword view resource names have the form:
@@ -7233,7 +7236,7 @@ pub struct DisplayKeywordView {
 /// impressions that fall within its distance and a single impression will
 /// contribute to the metrics for all DistanceBuckets that include the user's
 /// distance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DistanceView {
     /// Output only. The resource name of the distance view.
     /// Distance view resource names have the form:
@@ -7299,7 +7302,7 @@ pub struct DomainCategory {
     pub recommended_cpc_bid_micros: ::core::option::Option<i64>,
 }
 /// A dynamic search ads search term view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DynamicSearchAdsSearchTermView {
     /// Output only. The resource name of the dynamic search ads search term view.
     /// Dynamic search ads search term view resource names have the form:
@@ -7345,7 +7348,7 @@ pub struct DynamicSearchAdsSearchTermView {
 }
 /// A landing page view with metrics aggregated at the expanded final URL
 /// level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExpandedLandingPageView {
     /// Output only. The resource name of the expanded landing page view.
     /// Expanded landing page view resource names have the form:
@@ -7435,7 +7438,7 @@ pub struct Experiment {
 }
 /// A Google ads experiment for users to experiment changes on multiple
 /// campaigns, compare the performance, and apply the effective changes.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExperimentArm {
     /// Immutable. The resource name of the experiment arm.
     /// Experiment arm resource names have the form:
@@ -7469,7 +7472,7 @@ pub struct ExperimentArm {
 /// The gender_view resource reflects the effective serving state, rather than
 /// what criteria were added. An ad group without gender criteria by default
 /// shows to all genders, so all genders appear in gender_view with stats.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GenderView {
     /// Output only. The resource name of the gender view.
     /// Gender view resource names have the form:
@@ -7479,7 +7482,7 @@ pub struct GenderView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A geo target constant.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GeoTargetConstant {
     /// Output only. The resource name of the geo target constant.
     /// Geo target constant resource names have the form:
@@ -7523,7 +7526,7 @@ pub struct GeoTargetConstant {
 /// one row per country. It reports metrics at either actual physical location of
 /// the user or an area of interest. If other segment fields are used, you may
 /// get more than one row per country.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GeographicView {
     /// Output only. The resource name of the geographic view.
     /// Geographic view resource names have the form:
@@ -7542,7 +7545,7 @@ pub struct GeographicView {
     pub country_criterion_id: ::core::option::Option<i64>,
 }
 /// A field or resource (artifact) used by GoogleAdsService.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GoogleAdsField {
     /// Output only. The resource name of the artifact.
     /// Artifact resource names have the form:
@@ -7613,7 +7616,7 @@ pub struct GoogleAdsField {
     pub is_repeated: ::core::option::Option<bool>,
 }
 /// A group placement view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GroupPlacementView {
     /// Output only. The resource name of the group placement view.
     /// Group placement view resource names have the form:
@@ -7639,7 +7642,7 @@ pub struct GroupPlacementView {
     pub placement_type: i32,
 }
 /// A hotel group view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HotelGroupView {
     /// Output only. The resource name of the hotel group view.
     /// Hotel Group view resource names have the form:
@@ -7649,7 +7652,7 @@ pub struct HotelGroupView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A hotel performance view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HotelPerformanceView {
     /// Output only. The resource name of the hotel performance view.
     /// Hotel performance view resource names have the form:
@@ -7661,7 +7664,7 @@ pub struct HotelPerformanceView {
 /// A hotel reconciliation. It contains conversion information from Hotel
 /// bookings to reconcile with advertiser records. These rows may be updated
 /// or canceled before billing through Bulk Uploads.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HotelReconciliation {
     /// Immutable. The resource name of the hotel reconciliation.
     /// Hotel reconciliation resource names have the form:
@@ -7726,7 +7729,7 @@ pub struct HotelReconciliation {
     pub status: i32,
 }
 /// An income range view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IncomeRangeView {
     /// Output only. The resource name of the income range view.
     /// Income range view resource names have the form:
@@ -7869,7 +7872,7 @@ pub struct Invoice {
 /// Nested message and enum types in `Invoice`.
 pub mod invoice {
     /// Represents a summarized view at account level.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AccountSummary {
         /// Output only. The account associated with the account summary.
         #[prost(string, optional, tag = "1")]
@@ -8009,7 +8012,7 @@ pub mod invoice {
     }
     /// Details about the invalid activity for the invoice that contain
     /// additional details about invoice against which corrections are made.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct InvalidActivitySummary {
         /// Output only. Original month of service related to this invalid activity
         /// credit.
@@ -8049,7 +8052,7 @@ pub mod invoice {
 /// A Keyword Planner plan.
 /// Max number of saved keyword plans: 10000.
 /// It's possible to remove plans if limit is reached.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordPlan {
     /// Immutable. The resource name of the Keyword Planner plan.
     /// KeywordPlan resource names have the form:
@@ -8071,7 +8074,7 @@ pub struct KeywordPlan {
     pub forecast_period: ::core::option::Option<KeywordPlanForecastPeriod>,
 }
 /// The forecasting period associated with the keyword plan.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordPlanForecastPeriod {
     /// Required. The date used for forecasting the Plan.
     #[prost(oneof = "keyword_plan_forecast_period::Interval", tags = "1, 2")]
@@ -8080,7 +8083,7 @@ pub struct KeywordPlanForecastPeriod {
 /// Nested message and enum types in `KeywordPlanForecastPeriod`.
 pub mod keyword_plan_forecast_period {
     /// Required. The date used for forecasting the Plan.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Interval {
         /// A future date range relative to the current date used for forecasting.
         #[prost(
@@ -8099,7 +8102,7 @@ pub mod keyword_plan_forecast_period {
 }
 /// A Keyword Planner ad group.
 /// Max number of keyword plan ad groups per plan: 200.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordPlanAdGroup {
     /// Immutable. The resource name of the Keyword Planner ad group.
     /// KeywordPlanAdGroup resource names have the form:
@@ -8127,7 +8130,7 @@ pub struct KeywordPlanAdGroup {
 }
 /// A Keyword Plan ad group keyword.
 /// Max number of keyword plan keywords per plan: 10000.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordPlanAdGroupKeyword {
     /// Immutable. The resource name of the Keyword Plan ad group keyword.
     /// KeywordPlanAdGroupKeyword resource names have the form:
@@ -8208,7 +8211,7 @@ pub struct KeywordPlanCampaign {
     pub geo_targets: ::prost::alloc::vec::Vec<KeywordPlanGeoTarget>,
 }
 /// A geo target.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordPlanGeoTarget {
     /// Required. The resource name of the geo target.
     #[prost(string, optional, tag = "2")]
@@ -8216,7 +8219,7 @@ pub struct KeywordPlanGeoTarget {
 }
 /// A Keyword Plan Campaign keyword.
 /// Only negative keywords are supported for Campaign Keyword.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordPlanCampaignKeyword {
     /// Immutable. The resource name of the Keyword Plan Campaign keyword.
     /// KeywordPlanCampaignKeyword resource names have the form:
@@ -8245,7 +8248,7 @@ pub struct KeywordPlanCampaignKeyword {
     pub negative: ::core::option::Option<bool>,
 }
 /// A Smart Campaign keyword theme constant.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordThemeConstant {
     /// Output only. The resource name of the keyword theme constant.
     /// Keyword theme constant resource names have the form:
@@ -8268,7 +8271,7 @@ pub struct KeywordThemeConstant {
     pub display_name: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A keyword view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KeywordView {
     /// Output only. The resource name of the keyword view.
     /// Keyword view resource names have the form:
@@ -8278,7 +8281,7 @@ pub struct KeywordView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A label.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Label {
     /// Immutable. Name of the resource.
     /// Label resource names have the form:
@@ -8304,7 +8307,7 @@ pub struct Label {
 }
 /// A landing page view with metrics aggregated at the unexpanded final URL
 /// level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LandingPageView {
     /// Output only. The resource name of the landing page view.
     /// Landing page view resource names have the form:
@@ -8317,7 +8320,7 @@ pub struct LandingPageView {
     pub unexpanded_final_url: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A language.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LanguageConstant {
     /// Output only. The resource name of the language constant.
     /// Language constant resource names have the form:
@@ -8382,7 +8385,7 @@ pub struct LeadFormSubmissionData {
     pub submission_date_time: ::prost::alloc::string::String,
 }
 /// Fields in the submitted lead form.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LeadFormSubmissionField {
     /// Output only. Field type for lead form fields.
     #[prost(
@@ -8395,7 +8398,7 @@ pub struct LeadFormSubmissionField {
     pub field_value: ::prost::alloc::string::String,
 }
 /// Fields in the submitted custom question
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomLeadFormSubmissionField {
     /// Output only. Question text for custom question, maximum number of
     /// characters is 300.
@@ -8511,7 +8514,7 @@ pub struct LocalServicesEmployee {
     pub last_name: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A list of degrees this employee has obtained, and wants to feature.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UniversityDegree {
     /// Output only. Name of the university at which the degree was obtained.
     #[prost(string, optional, tag = "1")]
@@ -8526,7 +8529,7 @@ pub struct UniversityDegree {
 /// Details about the employee's medical residency.
 /// Residency is a stage of graduate medical education in which a qualified
 /// medical professional practices under the supervision of a senior clinician.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Residency {
     /// Output only. Name of the institution at which the residency was completed.
     #[prost(string, optional, tag = "1")]
@@ -8538,7 +8541,7 @@ pub struct Residency {
 /// Details about the employee's medical Fellowship.
 /// Fellowship is a period of medical training that the professional undertakes
 /// after finishing their residency.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Fellowship {
     /// Output only. Name of the instutition at which the fellowship was completed.
     #[prost(string, optional, tag = "1")]
@@ -8551,7 +8554,7 @@ pub struct Fellowship {
 /// Contains details of Lead which is generated when user calls, messages or
 /// books service from advertiser.
 /// More info: <https://ads.google.com/local-services-ads>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocalServicesLead {
     /// Output only. The resource name of the local services lead data.
     /// Local Services Lead resource name have the form
@@ -8612,7 +8615,7 @@ pub struct LocalServicesLead {
     pub lead_feedback_submitted: bool,
 }
 /// Fields containing consumer contact details.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ContactDetails {
     /// Output only. Consumer phone number in E164 format.
     #[prost(string, tag = "1")]
@@ -8627,7 +8630,7 @@ pub struct ContactDetails {
 }
 /// Represents a note added to a lead by the advertiser. Advertisers can edit
 /// notes, which will reset edit time and change description.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Note {
     /// Output only. The date time when lead note was edited. The format is
     /// "YYYY-MM-DD HH:MM:SS" in the Google Ads account's timezone. Examples:
@@ -8639,7 +8642,7 @@ pub struct Note {
     pub description: ::prost::alloc::string::String,
 }
 /// Represents the credit details of a lead.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreditDetails {
     /// Output only. Credit state of the lead.
     #[prost(
@@ -8657,7 +8660,7 @@ pub struct CreditDetails {
 /// Contains details of Lead Conversation which is generated when user calls,
 /// messages or books service from advertiser. These are appended to a Lead.
 /// More info: <https://ads.google.com/local-services-ads>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocalServicesLeadConversation {
     /// Output only. The resource name of the local services lead conversation
     /// data. Local Services Lead Conversation resource name have the form
@@ -8700,7 +8703,7 @@ pub struct LocalServicesLeadConversation {
     pub message_details: ::core::option::Option<MessageDetails>,
 }
 /// Represents details of a phone call conversation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PhoneCallDetails {
     /// Output only. The duration (in milliseconds) of the phone call (end to end).
     #[prost(int64, tag = "1")]
@@ -8710,7 +8713,7 @@ pub struct PhoneCallDetails {
     pub call_recording_url: ::prost::alloc::string::String,
 }
 /// Represents details of text message in case of email, message or SMS.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MessageDetails {
     /// Output only. Textual content of the message.
     #[prost(string, tag = "1")]
@@ -8721,7 +8724,7 @@ pub struct MessageDetails {
     pub attachment_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A local services verification resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocalServicesVerificationArtifact {
     /// Immutable. The resource name of the Local Services Verification.
     /// Local Services Verification resource names have the form:
@@ -8761,7 +8764,7 @@ pub struct LocalServicesVerificationArtifact {
 /// Nested message and enum types in `LocalServicesVerificationArtifact`.
 pub mod local_services_verification_artifact {
     /// The types of verification info.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ArtifactData {
         /// Output only. A background check verification artifact.
         #[prost(message, tag = "6")]
@@ -8780,7 +8783,7 @@ pub mod local_services_verification_artifact {
     }
 }
 /// A proto holding information specific to local services background check.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BackgroundCheckVerificationArtifact {
     /// Output only. URL to access background case.
     #[prost(string, optional, tag = "1")]
@@ -8795,7 +8798,7 @@ pub struct BackgroundCheckVerificationArtifact {
     >,
 }
 /// A proto holding information specific to a local services insurance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InsuranceVerificationArtifact {
     /// Output only. Insurance amount. This is measured in "micros" of the currency
     /// mentioned in the insurance document.
@@ -8821,7 +8824,7 @@ pub struct InsuranceVerificationArtifact {
     pub expiration_date_time: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A proto holding information specific to a local services license.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LicenseVerificationArtifact {
     /// Output only. License type / name.
     #[prost(string, optional, tag = "1")]
@@ -8856,7 +8859,7 @@ pub struct LicenseVerificationArtifact {
 }
 /// A proto holding information specific to a local services business
 /// registration check.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BusinessRegistrationCheckVerificationArtifact {
     /// Output only. The type of business registration check (number, document).
     #[prost(
@@ -8890,7 +8893,7 @@ pub struct BusinessRegistrationCheckVerificationArtifact {
 pub mod business_registration_check_verification_artifact {
     /// Registration information for the business registration. It will be one
     /// of the following forms based on the requirement from different countries.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum BusinessRegistration {
         /// Output only. Message storing government issued number for the business.
         #[prost(message, tag = "1")]
@@ -8902,7 +8905,7 @@ pub mod business_registration_check_verification_artifact {
 }
 /// A proto holding information specific to a local services business
 /// registration number.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BusinessRegistrationNumber {
     /// Output only. Government-issued number for the business.
     #[prost(string, optional, tag = "1")]
@@ -8910,7 +8913,7 @@ pub struct BusinessRegistrationNumber {
 }
 /// A proto holding information specific to a local services business
 /// registration document.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BusinessRegistrationDocument {
     /// Output only. The readonly field containing the information for an uploaded
     /// business registration document.
@@ -8923,7 +8926,7 @@ pub struct BusinessRegistrationDocument {
 /// criterion.
 /// If no Location criterion is set, no results are returned; instead, use
 /// geographic_view or user_location_view for visitor location data.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocationView {
     /// Output only. The resource name of the location view.
     /// Location view resource names have the form:
@@ -8933,7 +8936,7 @@ pub struct LocationView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A managed placement view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ManagedPlacementView {
     /// Output only. The resource name of the Managed Placement view.
     /// Managed placement view resource names have the form:
@@ -8943,7 +8946,7 @@ pub struct ManagedPlacementView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A media file.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MediaFile {
     /// Immutable. The resource name of the media file.
     /// Media file resource names have the form:
@@ -8978,7 +8981,7 @@ pub struct MediaFile {
 /// Nested message and enum types in `MediaFile`.
 pub mod media_file {
     /// The specific type of the media file.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Mediatype {
         /// Immutable. Encapsulates an Image.
         #[prost(message, tag = "3")]
@@ -8996,7 +8999,7 @@ pub mod media_file {
     }
 }
 /// Encapsulates an Image.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MediaImage {
     /// Immutable. Raw image data.
     #[prost(bytes = "vec", optional, tag = "4")]
@@ -9009,7 +9012,7 @@ pub struct MediaImage {
     pub preview_size_image_url: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Represents a ZIP archive media the content of which contains HTML5 assets.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MediaBundle {
     /// Immutable. Raw zipped data.
     #[prost(bytes = "vec", optional, tag = "3")]
@@ -9021,14 +9024,14 @@ pub struct MediaBundle {
     pub url: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Encapsulates an Audio.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MediaAudio {
     /// Output only. The duration of the Audio in milliseconds.
     #[prost(int64, optional, tag = "2")]
     pub ad_duration_millis: ::core::option::Option<i64>,
 }
 /// Encapsulates a Video.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MediaVideo {
     /// Output only. The duration of the Video in milliseconds.
     #[prost(int64, optional, tag = "5")]
@@ -9049,7 +9052,7 @@ pub struct MediaVideo {
     pub isci_code: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A mobile application category constant.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MobileAppCategoryConstant {
     /// Output only. The resource name of the mobile app category constant.
     /// Mobile app category constant resource names have the form:
@@ -9065,7 +9068,7 @@ pub struct MobileAppCategoryConstant {
     pub name: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A mobile device constant.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MobileDeviceConstant {
     /// Output only. The resource name of the mobile device constant.
     /// Mobile device constant resource names have the form:
@@ -9146,7 +9149,7 @@ pub struct OfflineConversionUploadClientSummary {
     pub alerts: ::prost::alloc::vec::Vec<OfflineConversionAlert>,
 }
 /// Historical upload summary, grouped by upload date or job.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OfflineConversionSummary {
     /// Output only. Total count of successful event.
     #[prost(int64, tag = "3")]
@@ -9164,7 +9167,7 @@ pub struct OfflineConversionSummary {
 /// Nested message and enum types in `OfflineConversionSummary`.
 pub mod offline_conversion_summary {
     /// Dimension key for summary.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum DimensionKey {
         /// Output only. Dimension key for last N jobs.
         #[prost(int64, tag = "1")]
@@ -9186,7 +9189,7 @@ pub struct OfflineConversionAlert {
     pub error_percentage: f64,
 }
 /// Possible errors for offline conversion client summary.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OfflineConversionError {
     /// Error with description.
     #[prost(
@@ -9198,7 +9201,7 @@ pub struct OfflineConversionError {
 /// Nested message and enum types in `OfflineConversionError`.
 pub mod offline_conversion_error {
     /// Error with description.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ErrorCode {
         /// Output only. Collection size error.
         #[prost(
@@ -9375,7 +9378,7 @@ pub mod offline_user_data_job {
     }
 }
 /// Metadata of offline user data job.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OfflineUserDataJobMetadata {
     /// Output only. Match rate of the Customer Match user list upload. Describes
     /// the estimated match rate when the status of the job is "RUNNING" and final
@@ -9390,7 +9393,7 @@ pub struct OfflineUserDataJobMetadata {
 /// A mobile operating system version or a range of versions, depending on
 /// `operator_type`. List of available mobile platforms at
 /// <https://developers.google.com/google-ads/api/reference/data/codes-formats#mobile-platforms>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperatingSystemVersionConstant {
     /// Output only. The resource name of the operating system version constant.
     /// Operating system version constant resource names have the form:
@@ -9420,13 +9423,12 @@ pub struct OperatingSystemVersionConstant {
 }
 /// A paid organic search term view providing a view of search stats across
 /// ads and organic listings aggregated by search term at the ad group level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PaidOrganicSearchTermView {
     /// Output only. The resource name of the search term view.
     /// Search term view resource names have the form:
     ///
-    /// `customers/{customer_id}/paidOrganicSearchTermViews/{campaign_id}~
-    /// {ad_group_id}~{URL-base64 search term}`
+    /// `customers/{customer_id}/paidOrganicSearchTermViews/{campaign_id}~  {ad_group_id}~{URL-base64 search term}`
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The search term.
@@ -9434,7 +9436,7 @@ pub struct PaidOrganicSearchTermView {
     pub search_term: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A parental status view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ParentalStatusView {
     /// Output only. The resource name of the parental status view.
     /// Parental Status view resource names have the form:
@@ -9444,7 +9446,7 @@ pub struct ParentalStatusView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A payments account, which can be used to set up billing for an Ads customer.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PaymentsAccount {
     /// Output only. The resource name of the payments account.
     /// PaymentsAccount resource names have the form:
@@ -9481,7 +9483,7 @@ pub struct PaymentsAccount {
 /// A per store view.
 /// This view provides per store impression reach and local action conversion
 /// stats for advertisers.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PerStoreView {
     /// Output only. The resource name of the per store view.
     /// Per Store view resource names have the form:
@@ -9494,7 +9496,7 @@ pub struct PerStoreView {
     pub place_id: ::prost::alloc::string::String,
 }
 /// A view with impression metrics for Performance Max campaign placements.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PerformanceMaxPlacementView {
     /// Output only. The resource name of the Performance Max placement view.
     /// Performance Max placement view resource names have the form:
@@ -9561,7 +9563,7 @@ pub struct ProductCategoryConstant {
 /// Nested message and enum types in `ProductCategoryConstant`.
 pub mod product_category_constant {
     /// Localization for the product category.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductCategoryLocalization {
         /// Output only. Upper-case two-letter ISO 3166-1 country code of the
         /// localized category.
@@ -9577,7 +9579,7 @@ pub mod product_category_constant {
     }
 }
 /// A product group view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ProductGroupView {
     /// Output only. The resource name of the product group view.
     /// Product group view resource names have the form:
@@ -9588,7 +9590,7 @@ pub struct ProductGroupView {
 }
 /// Represents the data sharing connection between  a Google
 /// Ads customer and another product.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ProductLink {
     /// Immutable. Resource name of the product link.
     /// ProductLink resource names have the form:
@@ -9613,7 +9615,7 @@ pub struct ProductLink {
 /// Nested message and enum types in `ProductLink`.
 pub mod product_link {
     /// A product linked to this account.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum LinkedProduct {
         /// Immutable. Data partner link.
         #[prost(message, tag = "4")]
@@ -9630,7 +9632,7 @@ pub mod product_link {
     }
 }
 /// The identifier for Data Partner account.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DataPartnerIdentifier {
     /// Immutable. The customer ID of the Data partner account.
     /// This field is required and should not be empty when creating a new
@@ -9640,7 +9642,7 @@ pub struct DataPartnerIdentifier {
     pub data_partner_id: ::core::option::Option<i64>,
 }
 /// The identifier for Google Ads account.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GoogleAdsIdentifier {
     /// Immutable. The resource name of the Google Ads account.
     /// This field is required and should not be empty when creating a new
@@ -9650,7 +9652,7 @@ pub struct GoogleAdsIdentifier {
     pub customer: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// The identifier for Google Merchant Center account
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MerchantCenterIdentifier {
     /// Immutable. The customer ID of the Google Merchant Center account.
     /// This field is required and should not be empty when creating a new
@@ -9660,7 +9662,7 @@ pub struct MerchantCenterIdentifier {
     pub merchant_center_id: ::core::option::Option<i64>,
 }
 /// The identifier for the Advertising Partner Google Ads account.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdvertisingPartnerIdentifier {
     /// Output only. The resource name of the advertising partner Google Ads
     /// account. This field is required and should not be empty when creating a new
@@ -9671,7 +9673,7 @@ pub struct AdvertisingPartnerIdentifier {
 }
 /// Represents an invitation for data sharing connection between a Google Ads
 /// account and another account.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ProductLinkInvitation {
     /// Immutable. The resource name of a product link invitation.
     /// Product link invitation resource names have the form:
@@ -9705,7 +9707,7 @@ pub struct ProductLinkInvitation {
 /// Nested message and enum types in `ProductLinkInvitation`.
 pub mod product_link_invitation {
     /// An account invited to link to this Google Ads account.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum InvitedAccount {
         /// Output only. Hotel link invitation.
         #[prost(message, tag = "4")]
@@ -9719,7 +9721,7 @@ pub mod product_link_invitation {
     }
 }
 /// The identifier for Hotel account.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HotelCenterLinkInvitationIdentifier {
     /// Output only. The hotel center id of the hotel account.
     /// This field is read only
@@ -9727,7 +9729,7 @@ pub struct HotelCenterLinkInvitationIdentifier {
     pub hotel_center_id: i64,
 }
 /// The identifier for Merchant Center Account.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MerchantCenterLinkInvitationIdentifier {
     /// Output only. The Merchant Center id of the Merchant account.
     /// This field is read only
@@ -9735,7 +9737,7 @@ pub struct MerchantCenterLinkInvitationIdentifier {
     pub merchant_center_id: i64,
 }
 /// The identifier for the Advertising Partner Google Ads account.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdvertisingPartnerLinkInvitationIdentifier {
     /// Immutable. The resource name of the advertising partner Google Ads account.
     /// This field is read only.
@@ -9743,7 +9745,7 @@ pub struct AdvertisingPartnerLinkInvitationIdentifier {
     pub customer: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Qualifying Questions for Lead Form.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct QualifyingQuestion {
     /// Output only. The resource name of the qualifying question.
     ///
@@ -9837,7 +9839,7 @@ pub struct Recommendation {
 /// Nested message and enum types in `Recommendation`.
 pub mod recommendation {
     /// The Merchant Center account details.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MerchantInfo {
         /// Output only. The Merchant Center account ID.
         #[prost(int64, tag = "1")]
@@ -9932,7 +9934,7 @@ pub mod recommendation {
     /// Nested message and enum types in `KeywordRecommendation`.
     pub mod keyword_recommendation {
         /// Information about a search term as related to a keyword recommendation.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct SearchTerm {
             /// Output only. The text of the search term.
             #[prost(string, tag = "1")]
@@ -9997,20 +9999,20 @@ pub mod recommendation {
         }
     }
     /// The Maximize Conversions Opt-In recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MaximizeConversionsOptInRecommendation {
         /// Output only. The recommended new budget amount.
         #[prost(int64, optional, tag = "2")]
         pub recommended_budget_amount_micros: ::core::option::Option<i64>,
     }
     /// The Enhanced Cost-Per-Click Opt-In recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct EnhancedCpcOptInRecommendation {}
     /// The Search Partners Opt-In recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SearchPartnersOptInRecommendation {}
     /// The Maximize Clicks opt-in recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MaximizeClicksOptInRecommendation {
         /// Output only. The recommended new budget amount.
         /// Only set if the current budget is too high.
@@ -10018,7 +10020,7 @@ pub mod recommendation {
         pub recommended_budget_amount_micros: ::core::option::Option<i64>,
     }
     /// The Optimize Ad Rotation recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct OptimizeAdRotationRecommendation {}
     /// The callout asset recommendation.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10043,10 +10045,10 @@ pub mod recommendation {
         pub recommended_customer_sitelink_assets: ::prost::alloc::vec::Vec<super::Asset>,
     }
     /// The call asset recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CallAssetRecommendation {}
     /// The keyword match type recommendation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct KeywordMatchTypeRecommendation {
         /// Output only. The existing keyword where the match type should be more
         /// broad.
@@ -10135,7 +10137,7 @@ pub mod recommendation {
     }
     /// The upgrade a Smart Shopping campaign to a Performance Max campaign
     /// recommendation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct UpgradeSmartShoppingCampaignToPerformanceMaxRecommendation {
         /// Output only. ID of Merchant Center account.
         #[prost(int64, tag = "1")]
@@ -10158,10 +10160,10 @@ pub mod recommendation {
         pub average_target_cpa_micros: ::core::option::Option<i64>,
     }
     /// The Display Expansion opt-in recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DisplayExpansionOptInRecommendation {}
     /// The Upgrade Local campaign to Performance Max campaign recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct UpgradeLocalCampaignToPerformanceMaxRecommendation {}
     /// The forecasting set target ROAS recommendation.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10176,7 +10178,7 @@ pub mod recommendation {
     }
     /// The shopping recommendation to add an attribute to offers that are demoted
     /// because it is missing.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingOfferAttributeRecommendation {
         /// Output only. The details of the Merchant Center account.
         #[prost(message, optional, tag = "1")]
@@ -10194,7 +10196,7 @@ pub mod recommendation {
     }
     /// The shopping recommendation to fix disapproved products in a Shopping
     /// Campaign Inventory.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingFixDisapprovedProductsRecommendation {
         /// Output only. The details of the Merchant Center account.
         #[prost(message, optional, tag = "1")]
@@ -10212,7 +10214,7 @@ pub mod recommendation {
     }
     /// The shopping recommendation to create a catch-all campaign that targets all
     /// offers.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingTargetAllOffersRecommendation {
         /// Output only. The details of the Merchant Center account.
         #[prost(message, optional, tag = "1")]
@@ -10226,7 +10228,7 @@ pub mod recommendation {
     }
     /// The shopping recommendation to add products to a Shopping Campaign
     /// Inventory.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingAddProductsToCampaignRecommendation {
         /// Output only. The details of the Merchant Center account.
         #[prost(message, optional, tag = "1")]
@@ -10243,7 +10245,7 @@ pub mod recommendation {
     }
     /// The shopping recommendation to fix Merchant Center account suspension
     /// issues.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingMerchantCenterAccountSuspensionRecommendation {
         /// Output only. The details of the Merchant Center account.
         #[prost(message, optional, tag = "1")]
@@ -10255,7 +10257,7 @@ pub mod recommendation {
     }
     /// The shopping recommendation to migrate Regular Shopping Campaign targeted
     /// offers to Performance Max campaigns.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ShoppingMigrateRegularShoppingCampaignOffersToPerformanceMaxRecommendation {
         /// Output only. The details of the Merchant Center account.
         #[prost(message, optional, tag = "1")]
@@ -10309,10 +10311,10 @@ pub mod recommendation {
     /// Recommendation to enable dynamic image extensions on the account,
     /// allowing Google to find the best images from ad landing pages and
     /// complement text ads.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DynamicImageExtensionOptInRecommendation {}
     /// A campaign budget shared amongst various budget recommendation types.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CampaignBudget {
         /// Output only. Current budget amount.
         #[prost(int64, tag = "1")]
@@ -10328,11 +10330,11 @@ pub mod recommendation {
         pub new_start_date: ::prost::alloc::string::String,
     }
     /// The Performance Max Opt In recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PerformanceMaxOptInRecommendation {}
     /// Recommendation to improve the asset group strength of a Performance Max
     /// campaign to an "Excellent" rating.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ImprovePerformanceMaxAdStrengthRecommendation {
         /// Output only. The asset group resource name.
         #[prost(string, tag = "1")]
@@ -10345,7 +10347,7 @@ pub mod recommendation {
         pub ad_strength: i32,
     }
     /// The Dynamic Search Ads to Performance Max migration recommendation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MigrateDynamicSearchAdsCampaignToPerformanceMaxRecommendation {
         /// Output only. A link to the Google Ads UI where the customer can manually
         /// apply the recommendation.
@@ -10353,7 +10355,7 @@ pub mod recommendation {
         pub apply_link: ::prost::alloc::string::String,
     }
     /// The set target CPA recommendations.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ForecastingSetTargetCpaRecommendation {
         /// Output only. The recommended target CPA.
         #[prost(int64, tag = "1")]
@@ -10363,14 +10365,14 @@ pub mod recommendation {
         pub campaign_budget: ::core::option::Option<CampaignBudget>,
     }
     /// Recommendation to opt into Maximize Conversion Value bidding strategy.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct MaximizeConversionValueOptInRecommendation {}
     /// Recommendation to deploy Google Tag on more pages.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ImproveGoogleTagCoverageRecommendation {}
     /// Recommendation to turn on Final URL expansion for your Performance Max
     /// campaigns.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PerformanceMaxFinalUrlOptInRecommendation {}
     /// The recommendation to update a customer list that hasn't been updated in
     /// the last 90 days. The customer receiving the recommendation is not
@@ -10401,7 +10403,7 @@ pub mod recommendation {
         pub owner_account: ::core::option::Option<AccountInfo>,
     }
     /// Wrapper for information about a Google Ads account.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AccountInfo {
         /// Output only. The customer ID of the account.
         #[prost(int64, tag = "1")]
@@ -10418,10 +10420,10 @@ pub mod recommendation {
         pub keywords: ::prost::alloc::vec::Vec<super::super::common::KeywordInfo>,
     }
     /// The lead form asset recommendation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct LeadFormAssetRecommendation {}
     /// The improve Demand Gen ad strength recommendation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ImproveDemandGenAdStrengthRecommendation {
         /// Output only. The resource name of the ad that can be improved.
         #[prost(string, tag = "1")]
@@ -10643,7 +10645,7 @@ pub mod recommendation {
     }
 }
 /// Recommendation Subscription resource
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RecommendationSubscription {
     /// Immutable. The resource name of the recommendation subscription.
     ///
@@ -10700,7 +10702,7 @@ pub struct RemarketingAction {
 }
 /// A search term view with metrics aggregated by search term at the ad group
 /// level.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SearchTermView {
     /// Output only. The resource name of the search term view.
     /// Search term view resource names have the form:
@@ -10723,7 +10725,7 @@ pub struct SearchTermView {
     pub status: i32,
 }
 /// A criterion belonging to a shared set.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SharedCriterion {
     /// Immutable. The resource name of the shared criterion.
     /// Shared set resource names have the form:
@@ -10753,7 +10755,7 @@ pub mod shared_criterion {
     /// The criterion.
     ///
     /// Exactly one must be set.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Criterion {
         /// Immutable. Keyword.
         #[prost(message, tag = "3")]
@@ -10780,7 +10782,7 @@ pub mod shared_criterion {
 }
 /// SharedSets are used for sharing criterion exclusions across multiple
 /// campaigns.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SharedSet {
     /// Immutable. The resource name of the shared set.
     /// Shared set resource names have the form:
@@ -10826,7 +10828,7 @@ pub struct SharedSet {
 /// category, custom attributes, product condition and product type will reflect
 /// the state of each dimension as of the date and time when the corresponding
 /// event was recorded.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShoppingPerformanceView {
     /// Output only. The resource name of the Shopping performance view.
     /// Shopping performance view resource names have the form:
@@ -10846,26 +10848,27 @@ pub struct ShoppingPerformanceView {
 ///
 /// Queries to this resource specify a scope:
 /// Account:
-///    - Filters on campaigns or ad groups are not specified.
-///    - All products from the linked Google Merchant Center accounts are
-///      returned.
-///    - Metrics and some fields (see the per-field documentation) are aggregated
-///      across all Shopping and Performance Max campaigns that include a product.
-/// Campaign:
-///    - An equality filter on `campaign` is specified. Supported campaign types
-///      are Shopping, Performance Max, Demand Gen, Video.
-///    - Only products that are included by the specified campaign are returned.
-///    - Metrics and some fields (see the per-field documentation) are restricted
-///      to the specified campaign.
-/// Ad group:
-///    - An equality filter on `ad group` and `campaign` is specified. Supported
-///      campaign types are Shopping, Demand Gen, Video.
-///    - Only products that are included by the specified campaign are returned.
-///    - Metrics and some fields (see the per-field documentation) are restricted
-///      to the specified ad group.
-/// Note that segmentation by date segments is not permitted and will return
-/// UNSUPPORTED_DATE_SEGMENTATION error. On the other hand, filtering on date
-/// segments is allowed.
+///
+/// * Filters on campaigns or ad groups are not specified.
+/// * All products from the linked Google Merchant Center accounts are
+///   returned.
+/// * Metrics and some fields (see the per-field documentation) are aggregated
+///   across all Shopping and Performance Max campaigns that include a product.
+///   Campaign:
+/// * An equality filter on `campaign` is specified. Supported campaign types
+///   are Shopping, Performance Max, Demand Gen, Video.
+/// * Only products that are included by the specified campaign are returned.
+/// * Metrics and some fields (see the per-field documentation) are restricted
+///   to the specified campaign.
+///   Ad group:
+/// * An equality filter on `ad group` and `campaign` is specified. Supported
+///   campaign types are Shopping, Demand Gen, Video.
+/// * Only products that are included by the specified campaign are returned.
+/// * Metrics and some fields (see the per-field documentation) are restricted
+///   to the specified ad group.
+///   Note that segmentation by date segments is not permitted and will return
+///   UNSUPPORTED_DATE_SEGMENTATION error. On the other hand, filtering on date
+///   segments is allowed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShoppingProduct {
     /// Output only. The resource name of the shopping product.
@@ -11025,7 +11028,7 @@ pub struct ShoppingProduct {
 /// Nested message and enum types in `ShoppingProduct`.
 pub mod shopping_product {
     /// An issue affecting whether a product can show in ads.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProductIssue {
         /// Output only. The error code that identifies the issue.
         #[prost(string, tag = "1")]
@@ -11056,7 +11059,7 @@ pub mod shopping_product {
     }
 }
 /// A Smart campaign search term view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SmartCampaignSearchTermView {
     /// Output only. The resource name of the Smart campaign search term view.
     /// Smart campaign search term view resource names have the form:
@@ -11072,7 +11075,7 @@ pub struct SmartCampaignSearchTermView {
     pub campaign: ::prost::alloc::string::String,
 }
 /// Settings for configuring Smart campaigns.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SmartCampaignSetting {
     /// Immutable. The resource name of the Smart campaign setting.
     /// Smart campaign setting resource names have the form:
@@ -11103,7 +11106,7 @@ pub struct SmartCampaignSetting {
 /// Nested message and enum types in `SmartCampaignSetting`.
 pub mod smart_campaign_setting {
     /// Phone number and country code in smart campaign settings.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PhoneNumber {
         /// Phone number of the smart campaign.
         #[prost(string, optional, tag = "1")]
@@ -11114,7 +11117,7 @@ pub mod smart_campaign_setting {
     }
     /// Settings for configuring a business profile optimized for ads as this
     /// campaign's landing page.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AdOptimizedBusinessProfileSetting {
         /// Enabling a lead form on your business profile enables prospective
         /// customers to contact your business by filling out a simple form,
@@ -11123,7 +11126,7 @@ pub mod smart_campaign_setting {
         pub include_lead_form: ::core::option::Option<bool>,
     }
     /// The landing page of this campaign.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum LandingPage {
         /// The user-provided landing page URL for this Campaign.
         #[prost(string, tag = "8")]
@@ -11136,7 +11139,7 @@ pub mod smart_campaign_setting {
         AdOptimizedBusinessProfileSetting(AdOptimizedBusinessProfileSetting),
     }
     /// The business setting of this campaign.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum BusinessSetting {
         /// The name of the business.
         #[prost(string, tag = "5")]
@@ -11155,7 +11158,7 @@ pub mod smart_campaign_setting {
 }
 /// A data sharing connection, allowing the import of third party app analytics
 /// into a Google Ads Customer.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ThirdPartyAppAnalyticsLink {
     /// Immutable. The resource name of the third party app analytics link.
     /// Third party app analytics link resource names have the form:
@@ -11172,7 +11175,7 @@ pub struct ThirdPartyAppAnalyticsLink {
 /// Use topics to target or exclude placements in the Google Display Network
 /// based on the category into which the placement falls (for example,
 /// "Pets & Animals/Pets/Dogs").
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TopicConstant {
     /// Output only. The resource name of the topic constant.
     /// topic constant resource names have the form:
@@ -11195,7 +11198,7 @@ pub struct TopicConstant {
     pub path: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A topic view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TopicView {
     /// Output only. The resource name of the topic view.
     /// Topic view resource names have the form:
@@ -11205,7 +11208,7 @@ pub struct TopicView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A travel activity group view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TravelActivityGroupView {
     /// Output only. The resource name of the travel activity group view.
     /// Travel Activity Group view resource names have the form:
@@ -11215,7 +11218,7 @@ pub struct TravelActivityGroupView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A travel activity performance view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TravelActivityPerformanceView {
     /// Output only. The resource name of the travel activity performance view.
     /// Travel Activity performance view resource names have the form:
@@ -11418,7 +11421,7 @@ pub mod user_list {
     }
 }
 /// A user list customer type
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UserListCustomerType {
     /// Immutable. The resource name of the user list customer type
     /// User list customer type resource names have the form:
@@ -11442,7 +11445,7 @@ pub struct UserListCustomerType {
 /// one row per country. It reports metrics at the actual physical location of
 /// the user by targeted or not targeted location. If other segment fields are
 /// used, you may get more than one row per country.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UserLocationView {
     /// Output only. The resource name of the user location view.
     /// UserLocation view resource names have the form:
@@ -11458,7 +11461,7 @@ pub struct UserLocationView {
     pub targeting_location: ::core::option::Option<bool>,
 }
 /// A video.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Video {
     /// Output only. The resource name of the video.
     /// Video resource names have the form:
@@ -11480,7 +11483,7 @@ pub struct Video {
     pub title: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A webpage view.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WebpageView {
     /// Output only. The resource name of the webpage view.
     /// Webpage view resource names have the form:

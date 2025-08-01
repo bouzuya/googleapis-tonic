@@ -147,18 +147,19 @@ pub struct ApiConfig {
     ///
     /// If multiple files are specified, the files are merged with the following
     /// rules:
+    ///
     /// * All singular scalar fields are merged using "last one wins" semantics in
-    /// the order of the files uploaded.
+    ///   the order of the files uploaded.
     /// * Repeated fields are concatenated.
     /// * Singular embedded messages are merged using these rules for nested
-    /// fields.
+    ///   fields.
     #[prost(message, repeated, tag = "11")]
     pub managed_service_configs: ::prost::alloc::vec::Vec<api_config::File>,
 }
 /// Nested message and enum types in `ApiConfig`.
 pub mod api_config {
     /// A lightweight description of a file.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct File {
         /// The file path (full or relative path). This is typically the path of the
         /// file when it is uploaded.
@@ -169,7 +170,7 @@ pub mod api_config {
         pub contents: ::prost::bytes::Bytes,
     }
     /// An OpenAPI Specification Document describing an API.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct OpenApiDocument {
         /// The OpenAPI Specification document file.
         #[prost(message, optional, tag = "1")]
@@ -352,7 +353,7 @@ pub mod gateway {
     }
 }
 /// Request message for ApiGatewayService.ListGateways
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListGatewaysRequest {
     /// Required. Parent resource of the Gateway, of the form:
     /// `projects/*/locations/*`
@@ -385,7 +386,7 @@ pub struct ListGatewaysResponse {
     pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for ApiGatewayService.GetGateway
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetGatewayRequest {
     /// Required. Resource name of the form:
     /// `projects/*/locations/*/gateways/*`
@@ -422,7 +423,7 @@ pub struct UpdateGatewayRequest {
     pub gateway: ::core::option::Option<Gateway>,
 }
 /// Request message for ApiGatewayService.DeleteGateway
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteGatewayRequest {
     /// Required. Resource name of the form:
     /// `projects/*/locations/*/gateways/*`
@@ -430,7 +431,7 @@ pub struct DeleteGatewayRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for ApiGatewayService.ListApis
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListApisRequest {
     /// Required. Parent resource of the API, of the form:
     /// `projects/*/locations/global`
@@ -463,7 +464,7 @@ pub struct ListApisResponse {
     pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for ApiGatewayService.GetApi
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetApiRequest {
     /// Required. Resource name of the form:
     /// `projects/*/locations/global/apis/*`
@@ -500,7 +501,7 @@ pub struct UpdateApiRequest {
     pub api: ::core::option::Option<Api>,
 }
 /// Request message for ApiGatewayService.DeleteApi
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteApiRequest {
     /// Required. Resource name of the form:
     /// `projects/*/locations/global/apis/*`
@@ -508,7 +509,7 @@ pub struct DeleteApiRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for ApiGatewayService.ListApiConfigs
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListApiConfigsRequest {
     /// Required. Parent resource of the API Config, of the form:
     /// `projects/*/locations/global/apis/*`
@@ -541,7 +542,7 @@ pub struct ListApiConfigsResponse {
     pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for ApiGatewayService.GetApiConfig
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetApiConfigRequest {
     /// Required. Resource name of the form:
     /// `projects/*/locations/global/apis/*/configs/*`
@@ -627,7 +628,7 @@ pub struct UpdateApiConfigRequest {
     pub api_config: ::core::option::Option<ApiConfig>,
 }
 /// Request message for ApiGatewayService.DeleteApiConfig
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteApiConfigRequest {
     /// Required. Resource name of the form:
     /// `projects/*/locations/global/apis/*/configs/*`
@@ -654,7 +655,7 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    /// have \[Operation.error\]\[\] value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -668,7 +669,7 @@ pub struct OperationMetadata {
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
     /// Diagnostic information from configuration processing.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Diagnostic {
         /// Location of the diagnostic.
         #[prost(string, tag = "1")]
@@ -775,7 +776,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/ListGateways",
             );
@@ -802,7 +803,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/GetGateway",
             );
@@ -832,7 +833,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/CreateGateway",
             );
@@ -862,7 +863,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/UpdateGateway",
             );
@@ -892,7 +893,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/DeleteGateway",
             );
@@ -922,7 +923,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/ListApis",
             );
@@ -949,7 +950,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/GetApi",
             );
@@ -979,7 +980,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/CreateApi",
             );
@@ -1009,7 +1010,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/UpdateApi",
             );
@@ -1039,7 +1040,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/DeleteApi",
             );
@@ -1069,7 +1070,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/ListApiConfigs",
             );
@@ -1096,7 +1097,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/GetApiConfig",
             );
@@ -1126,7 +1127,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/CreateApiConfig",
             );
@@ -1156,7 +1157,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/UpdateApiConfig",
             );
@@ -1186,7 +1187,7 @@ pub mod api_gateway_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.apigateway.v1.ApiGatewayService/DeleteApiConfig",
             );

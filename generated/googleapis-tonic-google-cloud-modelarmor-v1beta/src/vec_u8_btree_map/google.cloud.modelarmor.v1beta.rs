@@ -27,7 +27,7 @@ pub struct Template {
 /// Nested message and enum types in `Template`.
 pub mod template {
     /// Message describing TemplateMetadata
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct TemplateMetadata {
         /// Optional. If true, partial detector failures should be ignored.
         #[prost(bool, tag = "1")]
@@ -64,7 +64,7 @@ pub mod template {
     /// Nested message and enum types in `TemplateMetadata`.
     pub mod template_metadata {
         /// Metadata to enable multi language detection via template.
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct MultiLanguageDetection {
             /// Required. If true, multi language detection will be enabled.
             #[prost(bool, tag = "1")]
@@ -92,7 +92,7 @@ pub struct FloorSetting {
     pub enable_floor_setting_enforcement: ::core::option::Option<bool>,
 }
 /// Message for requesting list of Templates
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListTemplatesRequest {
     /// Required. Parent value for ListTemplatesRequest
     #[prost(string, tag = "1")]
@@ -125,7 +125,7 @@ pub struct ListTemplatesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a Template
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetTemplateRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -191,7 +191,7 @@ pub struct UpdateTemplateRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a Template
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteTemplateRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -213,7 +213,7 @@ pub struct DeleteTemplateRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for getting a Floor Setting
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetFloorSettingRequest {
     /// Required. The name of the floor setting to get, example
     /// projects/123/floorsetting.
@@ -255,7 +255,7 @@ pub struct FilterConfig {
     >,
 }
 /// Prompt injection and Jailbreak Filter settings.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PiAndJailbreakFilterSettings {
     /// Optional. Tells whether Prompt injection and Jailbreak filter is enabled or
     /// disabled.
@@ -322,7 +322,7 @@ pub mod pi_and_jailbreak_filter_settings {
     }
 }
 /// Malicious URI filter settings.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MaliciousUriFilterSettings {
     /// Optional. Tells whether the Malicious URI filter is enabled or disabled.
     #[prost(
@@ -387,7 +387,7 @@ pub struct RaiFilterSettings {
 /// Nested message and enum types in `RaiFilterSettings`.
 pub mod rai_filter_settings {
     /// Responsible AI filter.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct RaiFilter {
         /// Required. Type of responsible AI filter.
         #[prost(enumeration = "super::RaiFilterType", tag = "1")]
@@ -402,7 +402,7 @@ pub mod rai_filter_settings {
     }
 }
 /// Sensitive Data Protection settings.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SdpFilterSettings {
     /// Either of Sensitive Data Protection basic or advanced configuration.
     #[prost(oneof = "sdp_filter_settings::SdpConfiguration", tags = "1, 2")]
@@ -411,7 +411,7 @@ pub struct SdpFilterSettings {
 /// Nested message and enum types in `SdpFilterSettings`.
 pub mod sdp_filter_settings {
     /// Either of Sensitive Data Protection basic or advanced configuration.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum SdpConfiguration {
         /// Optional. Basic Sensitive Data Protection configuration inspects the
         /// content for sensitive data using a fixed set of six info-types. Sensitive
@@ -428,7 +428,7 @@ pub mod sdp_filter_settings {
     }
 }
 /// Sensitive Data Protection basic configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SdpBasicConfig {
     /// Optional. Tells whether the Sensitive Data Protection basic config is
     /// enabled or disabled.
@@ -483,7 +483,7 @@ pub mod sdp_basic_config {
     }
 }
 /// Sensitive Data Protection Advanced configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SdpAdvancedConfig {
     /// Optional. Sensitive Data Protection inspect template resource name
     ///
@@ -492,7 +492,7 @@ pub struct SdpAdvancedConfig {
     /// Sanitization. All Sensitive Data Protection findings identified during
     /// inspection will be returned as SdpFinding in SdpInsepctionResult.
     ///
-    ///   e.g.
+    /// e.g.
     /// `projects/{project}/locations/{location}/inspectTemplates/{inspect_template}`
     #[prost(string, tag = "1")]
     pub inspect_template: ::prost::alloc::string::String,
@@ -511,7 +511,7 @@ pub struct SdpAdvancedConfig {
     pub deidentify_template: ::prost::alloc::string::String,
 }
 /// Sanitize User Prompt request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SanitizeUserPromptRequest {
     /// Required. Represents resource name of template
     /// e.g. name=projects/sample-project/locations/us-central1/templates/templ01
@@ -527,7 +527,7 @@ pub struct SanitizeUserPromptRequest {
     >,
 }
 /// Sanitize Model Response request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SanitizeModelResponseRequest {
     /// Required. Represents resource name of template
     /// e.g. name=projects/sample-project/locations/us-central1/templates/templ01
@@ -565,11 +565,11 @@ pub struct SanitizationResult {
     /// Output only. Overall filter match state for Sanitization.
     /// The state can have below two values.
     ///
-    /// 1) NO_MATCH_FOUND: No filters in configuration satisfy matching criteria.
-    /// In other words, input passed all filters.
+    /// 1. NO_MATCH_FOUND: No filters in configuration satisfy matching criteria.
+    ///    In other words, input passed all filters.
     ///
-    /// 2) MATCH_FOUND: At least one filter in configuration satisfies matching.
-    /// In other words, input did not pass one or more filters.
+    /// 1. MATCH_FOUND: At least one filter in configuration satisfies matching.
+    ///    In other words, input did not pass one or more filters.
     #[prost(enumeration = "FilterMatchState", tag = "1")]
     pub filter_match_state: i32,
     /// Output only. Results for all filters where the key is the filter name -
@@ -594,7 +594,7 @@ pub struct SanitizationResult {
 /// Nested message and enum types in `SanitizationResult`.
 pub mod sanitization_result {
     /// Message describing Sanitization metadata.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SanitizationMetadata {
         /// Error code if any.
         #[prost(int64, tag = "1")]
@@ -609,7 +609,7 @@ pub mod sanitization_result {
     }
 }
 /// Message for Enabling Multi Language Detection.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MultiLanguageDetectionMetadata {
     /// Optional. Optional Source language of the user prompt.
     ///
@@ -686,7 +686,7 @@ pub struct RaiFilterResult {
 /// Nested message and enum types in `RaiFilterResult`.
 pub mod rai_filter_result {
     /// Detailed Filter result for each of the responsible AI Filter Types.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct RaiFilterTypeResult {
         /// Type of responsible AI filter.
         #[prost(enumeration = "super::RaiFilterType", tag = "1")]
@@ -750,7 +750,7 @@ pub struct SdpInspectResult {
     pub findings_truncated: bool,
 }
 /// Represents Data item
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DataItem {
     /// Either of text or bytes data.
     #[prost(oneof = "data_item::DataItem", tags = "1, 2")]
@@ -759,7 +759,7 @@ pub struct DataItem {
 /// Nested message and enum types in `DataItem`.
 pub mod data_item {
     /// Either of text or bytes data.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum DataItem {
         /// Plaintext string data for sanitization.
         #[prost(string, tag = "1")]
@@ -770,7 +770,7 @@ pub mod data_item {
     }
 }
 /// Represents Byte Data item.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ByteDataItem {
     /// Required. The type of byte data
     #[prost(enumeration = "byte_data_item::ByteItemType", tag = "1")]
@@ -873,7 +873,7 @@ pub struct SdpDeidentifyResult {
     pub info_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Finding corresponding to Sensitive Data Protection filter.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SdpFinding {
     /// Name of Sensitive Data Protection info type for this finding.
     #[prost(string, tag = "1")]
@@ -888,7 +888,7 @@ pub struct SdpFinding {
 /// Nested message and enum types in `SdpFinding`.
 pub mod sdp_finding {
     /// Location of this Sensitive Data Protection Finding within input content.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SdpFindingLocation {
         /// Zero-based byte offsets delimiting the finding.
         /// These are relative to the finding's containing element.
@@ -1041,7 +1041,7 @@ pub mod virus_scan_filter_result {
     }
 }
 /// Details of an identified virus
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VirusDetail {
     /// Name of vendor that produced this virus identification.
     #[prost(string, tag = "1")]
@@ -1129,7 +1129,7 @@ pub struct CsamFilterResult {
     pub match_state: i32,
 }
 /// Message item to report information, warning or error messages.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MessageItem {
     /// Type of message.
     #[prost(enumeration = "message_item::MessageType", tag = "1")]
@@ -1188,8 +1188,8 @@ pub mod message_item {
         }
     }
 }
-/// Half-open range interval [start, end)
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+/// Half-open range interval \[start, end)
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RangeInfo {
     /// For proto3, value cannot be set to 0 unless the field is optional.
     /// Ref: <https://protobuf.dev/programming-guides/proto3/#default>
@@ -1528,7 +1528,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/ListTemplates",
             );
@@ -1555,7 +1555,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/GetTemplate",
             );
@@ -1582,7 +1582,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/CreateTemplate",
             );
@@ -1609,7 +1609,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/UpdateTemplate",
             );
@@ -1636,7 +1636,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/DeleteTemplate",
             );
@@ -1663,7 +1663,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/GetFloorSetting",
             );
@@ -1690,7 +1690,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/UpdateFloorSetting",
             );
@@ -1720,7 +1720,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/SanitizeUserPrompt",
             );
@@ -1750,7 +1750,7 @@ pub mod model_armor_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.modelarmor.v1beta.ModelArmor/SanitizeModelResponse",
             );

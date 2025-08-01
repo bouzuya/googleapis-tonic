@@ -22,7 +22,7 @@ pub struct Device {
 }
 /// Represents device relationships, for instance, structure/room to which the
 /// device is assigned to.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ParentRelation {
     /// Output only. The name of the relation -- e.g., structure/room where the
     /// device is assigned to. For example: "enterprises/XYZ/structures/ABC" or
@@ -59,7 +59,7 @@ pub struct Room {
     pub traits: ::core::option::Option<::prost_types::Struct>,
 }
 /// Request message for SmartDeviceManagementService.GetDevice
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetDeviceRequest {
     /// The name of the device requested. For example:
     /// "enterprises/XYZ/devices/123"
@@ -67,7 +67,7 @@ pub struct GetDeviceRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for SmartDeviceManagementService.ListDevices
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListDevicesRequest {
     /// The parent enterprise to list devices under. E.g. "enterprises/XYZ".
     #[prost(string, tag = "1")]
@@ -120,7 +120,7 @@ pub struct ExecuteDeviceCommandResponse {
     pub results: ::core::option::Option<::prost_types::Struct>,
 }
 /// Request message for SmartDeviceManagementService.GetStructure
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetStructureRequest {
     /// The name of the structure requested. For example:
     /// "enterprises/XYZ/structures/ABC".
@@ -128,7 +128,7 @@ pub struct GetStructureRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for SmartDeviceManagementService.ListStructures
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListStructuresRequest {
     /// The parent enterprise to list structures under. E.g. "enterprises/XYZ".
     #[prost(string, tag = "1")]
@@ -156,7 +156,7 @@ pub struct ListStructuresResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for SmartDeviceManagementService.GetRoom
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetRoomRequest {
     /// The name of the room requested. For example:
     /// "enterprises/XYZ/structures/ABC/rooms/123".
@@ -164,7 +164,7 @@ pub struct GetRoomRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for SmartDeviceManagementService.ListRooms
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListRoomsRequest {
     /// The parent resource name of the rooms requested. For example:
     /// "enterprises/XYZ/structures/ABC".
@@ -286,7 +286,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/GetDevice",
             );
@@ -316,7 +316,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ListDevices",
             );
@@ -346,7 +346,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ExecuteDeviceCommand",
             );
@@ -373,7 +373,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/GetStructure",
             );
@@ -403,7 +403,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ListStructures",
             );
@@ -430,7 +430,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/GetRoom",
             );
@@ -460,7 +460,7 @@ pub mod smart_device_management_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.home.enterprise.sdm.v1.SmartDeviceManagementService/ListRooms",
             );

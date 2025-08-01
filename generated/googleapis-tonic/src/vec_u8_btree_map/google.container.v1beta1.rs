@@ -44,7 +44,7 @@ pub struct LinuxNodeConfig {
 /// Nested message and enum types in `LinuxNodeConfig`.
 pub mod linux_node_config {
     /// Hugepages amount in both 2m and 1g size
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct HugepagesConfig {
         /// Optional. Amount of 2M hugepages
         #[prost(int32, optional, tag = "1")]
@@ -103,7 +103,7 @@ pub mod linux_node_config {
 /// Parameters that can be configured on Windows nodes.
 /// Windows Node Config that define the parameters that will be used to
 /// configure the Windows node pool settings.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WindowsNodeConfig {
     /// OSVersion specifies the Windows node config to be used on the node.
     #[prost(enumeration = "windows_node_config::OsVersion", tag = "1")]
@@ -156,17 +156,18 @@ pub mod windows_node_config {
     }
 }
 /// Node kubelet configs.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodeKubeletConfig {
     /// Control the CPU management policy on the node.
     /// See
     /// <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/>
     ///
     /// The following values are allowed.
+    ///
     /// * "none": the default, which represents the existing scheduling behavior.
     /// * "static": allows pods with certain resource characteristics to be granted
-    /// increased CPU affinity and exclusivity on the node.
-    /// The default value is 'none' if unspecified.
+    ///   increased CPU affinity and exclusivity on the node.
+    ///   The default value is 'none' if unspecified.
     #[prost(string, tag = "1")]
     pub cpu_manager_policy: ::prost::alloc::string::String,
     /// Optional. Controls Topology Manager configuration on the node.
@@ -297,24 +298,24 @@ pub struct NodeKubeletConfig {
 /// TopologyManager defines the configuration options for Topology Manager
 /// feature. See
 /// <https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TopologyManager {
     /// Configures the strategy for resource alignment.
     /// Allowed values are:
     ///
     /// * none: the default policy, and does not perform any topology alignment.
     /// * restricted: the topology manager stores the preferred NUMA node affinity
-    /// for the container, and will reject the pod if the affinity if not
-    /// preferred.
+    ///   for the container, and will reject the pod if the affinity if not
+    ///   preferred.
     /// * best-effort: the topology manager stores the preferred NUMA node affinity
-    /// for the container. If the affinity is not preferred, the topology manager
-    /// will admit the pod to the node anyway.
+    ///   for the container. If the affinity is not preferred, the topology manager
+    ///   will admit the pod to the node anyway.
     /// * single-numa-node: the topology manager determines if the single NUMA node
-    /// affinity is possible. If it is, Topology Manager will store this and the
-    /// Hint Providers can then use this information when making the resource
-    /// allocation decision. If, however, this is not possible then the
-    /// Topology Manager will reject the pod from the node. This will result in a
-    /// pod in a Terminated state with a pod admission failure.
+    ///   affinity is possible. If it is, Topology Manager will store this and the
+    ///   Hint Providers can then use this information when making the resource
+    ///   allocation decision. If, however, this is not possible then the
+    ///   Topology Manager will reject the pod from the node. This will result in a
+    ///   pod in a Terminated state with a pod admission failure.
     ///
     /// The default policy value is 'none' if unspecified.
     /// Details about each strategy can be found
@@ -335,16 +336,17 @@ pub struct TopologyManager {
 /// The option enables the Kubernetes NUMA-aware Memory Manager feature.
 /// Detailed description about the feature can be found
 /// [here](<https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/>).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MemoryManager {
     /// Controls the memory management policy on the Node.
     /// See
     /// <https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#policies>
     ///
     /// The following values are allowed.
+    ///
     /// * "none"
     /// * "static"
-    /// The default value is 'none' if unspecified.
+    ///   The default value is 'none' if unspecified.
     #[prost(string, tag = "1")]
     pub policy: ::prost::alloc::string::String,
 }
@@ -352,7 +354,7 @@ pub struct MemoryManager {
 ///
 /// GKE Autopilot clusters do not
 /// recognize parameters in `NodeConfig`. Use
-/// [AutoprovisioningNodePoolDefaults][google.container.v1beta1.AutoprovisioningNodePoolDefaults]
+/// \[AutoprovisioningNodePoolDefaults\]\[google.container.v1beta1.AutoprovisioningNodePoolDefaults\]
 /// instead.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeConfig {
@@ -375,11 +377,11 @@ pub struct NodeConfig {
     /// not included:
     ///
     /// * `<https://www.googleapis.com/auth/compute`> is required for mounting
-    /// persistent storage on your nodes.
+    ///   persistent storage on your nodes.
     /// * `<https://www.googleapis.com/auth/devstorage.read_only`> is required for
-    /// communicating with **gcr.io**
-    /// (the [Google Container
-    /// Registry](<https://cloud.google.com/container-registry/>)).
+    ///   communicating with **gcr.io**
+    ///   (the [Google Container
+    ///   Registry](<https://cloud.google.com/container-registry/>)).
     ///
     /// If unspecified, no scopes are added, unless Cloud Logging or Cloud
     /// Monitoring are enabled, in which case their required scopes will be added.
@@ -397,25 +399,25 @@ pub struct NodeConfig {
     /// Additionally, to avoid ambiguity, keys must not conflict with any other
     /// metadata keys for the project or be one of the reserved keys:
     ///
-    ///   - "cluster-location"
-    ///   - "cluster-name"
-    ///   - "cluster-uid"
-    ///   - "configure-sh"
-    ///   - "containerd-configure-sh"
-    ///   - "enable-oslogin"
-    ///   - "gci-ensure-gke-docker"
-    ///   - "gci-metrics-enabled"
-    ///   - "gci-update-strategy"
-    ///   - "instance-template"
-    ///   - "kube-env"
-    ///   - "startup-script"
-    ///   - "user-data"
-    ///   - "disable-address-manager"
-    ///   - "windows-startup-script-ps1"
-    ///   - "common-psm1"
-    ///   - "k8s-node-setup-psm1"
-    ///   - "install-ssh-psm1"
-    ///   - "user-profile-psm1"
+    /// * "cluster-location"
+    /// * "cluster-name"
+    /// * "cluster-uid"
+    /// * "configure-sh"
+    /// * "containerd-configure-sh"
+    /// * "enable-oslogin"
+    /// * "gci-ensure-gke-docker"
+    /// * "gci-metrics-enabled"
+    /// * "gci-update-strategy"
+    /// * "instance-template"
+    /// * "kube-env"
+    /// * "startup-script"
+    /// * "user-data"
+    /// * "disable-address-manager"
+    /// * "windows-startup-script-ps1"
+    /// * "common-psm1"
+    /// * "k8s-node-setup-psm1"
+    /// * "install-ssh-psm1"
+    /// * "user-profile-psm1"
     ///
     /// Values are free-form strings, and only have meaning as interpreted by
     /// the image running in the instance. The only restriction placed on them is
@@ -509,7 +511,6 @@ pub struct NodeConfig {
     /// <https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/>
     #[prost(message, repeated, tag = "15")]
     pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
-    ///
     /// The Customer Managed Encryption Key used to encrypt the boot disk attached
     /// to each node in the node pool. This should be of the form
     /// projects/\[KEY_PROJECT_ID\]/locations/\[LOCATION\]/keyRings/\[RING_NAME\]/cryptoKeys/\[KEY_NAME\].
@@ -720,7 +721,7 @@ pub mod node_config {
     }
 }
 /// Specifies options for controlling advanced machine features.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdvancedMachineFeatures {
     /// The number of threads per physical core. To disable simultaneous
     /// multithreading (SMT) set this to 1. If unset, the maximum number of threads
@@ -835,7 +836,7 @@ pub struct NodeNetworkConfig {
     pub pod_ipv4_cidr_block: ::prost::alloc::string::String,
     /// Whether nodes have internal IP addresses only.
     /// If enable_private_nodes is not specified, then the value is derived from
-    /// [Cluster.NetworkConfig.default_enable_private_nodes][]
+    /// \[Cluster.NetworkConfig.default_enable_private_nodes\]\[\]
     #[prost(bool, optional, tag = "9")]
     pub enable_private_nodes: ::core::option::Option<bool>,
     /// Network bandwidth tier configuration.
@@ -880,7 +881,7 @@ pub struct NodeNetworkConfig {
 /// Nested message and enum types in `NodeNetworkConfig`.
 pub mod node_network_config {
     /// Configuration of all network bandwidth tiers
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct NetworkPerformanceConfig {
         /// Specifies the total network bandwidth tier for the NodePool.
         #[prost(enumeration = "network_performance_config::Tier", optional, tag = "1")]
@@ -935,7 +936,7 @@ pub mod node_network_config {
 }
 /// AdditionalNodeNetworkConfig is the configuration for additional node networks
 /// within the NodeNetworkConfig message
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdditionalNodeNetworkConfig {
     /// Name of the VPC where the additional interface belongs
     #[prost(string, tag = "1")]
@@ -946,7 +947,7 @@ pub struct AdditionalNodeNetworkConfig {
 }
 /// AdditionalPodNetworkConfig is the configuration for additional pod networks
 /// within the NodeNetworkConfig message
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdditionalPodNetworkConfig {
     /// Name of the subnetwork where the additional pod network belongs.
     #[prost(string, tag = "1")]
@@ -960,7 +961,7 @@ pub struct AdditionalPodNetworkConfig {
     pub max_pods_per_node: ::core::option::Option<MaxPodsConstraint>,
 }
 /// A set of Shielded Instance options.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShieldedInstanceConfig {
     /// Defines whether the instance has Secure Boot enabled.
     ///
@@ -979,7 +980,7 @@ pub struct ShieldedInstanceConfig {
     pub enable_integrity_monitoring: bool,
 }
 /// SandboxConfig contains configurations of the sandbox to use for the node.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SandboxConfig {
     /// Type of the sandbox to use for the node (e.g. 'gvisor')
     #[deprecated]
@@ -1033,7 +1034,7 @@ pub mod sandbox_config {
 }
 /// EphemeralStorageConfig contains configuration for the ephemeral storage
 /// filesystem.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EphemeralStorageConfig {
     /// Number of local SSDs to use to back ephemeral storage. Uses NVMe
     /// interfaces. The limit for this value is dependent upon the maximum number
@@ -1043,21 +1044,22 @@ pub struct EphemeralStorageConfig {
     ///
     /// A zero (or unset) value has different meanings depending on machine type
     /// being used:
+    ///
     /// 1. For pre-Gen3 machines, which support flexible numbers of local ssds,
-    /// zero (or unset) means to disable using local SSDs as ephemeral storage.
-    /// 2. For Gen3 machines which dictate a specific number of local ssds, zero
-    /// (or unset) means to use the default number of local ssds that goes with
-    /// that machine type. For example, for a c3-standard-8-lssd machine, 2 local
-    /// ssds would be provisioned. For c3-standard-8 (which doesn't support local
-    /// ssds), 0 will be provisioned. See
-    /// <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
-    /// for more info.
+    ///    zero (or unset) means to disable using local SSDs as ephemeral storage.
+    /// 1. For Gen3 machines which dictate a specific number of local ssds, zero
+    ///    (or unset) means to use the default number of local ssds that goes with
+    ///    that machine type. For example, for a c3-standard-8-lssd machine, 2 local
+    ///    ssds would be provisioned. For c3-standard-8 (which doesn't support local
+    ///    ssds), 0 will be provisioned. See
+    ///    <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
+    ///    for more info.
     #[prost(int32, tag = "1")]
     pub local_ssd_count: i32,
 }
 /// LocalNvmeSsdBlockConfig contains configuration for using raw-block local
 /// NVMe SSDs
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocalNvmeSsdBlockConfig {
     /// Number of local NVMe SSDs to use.  The limit for this value is dependent
     /// upon the maximum number of disk available on a machine per zone. See:
@@ -1066,40 +1068,42 @@ pub struct LocalNvmeSsdBlockConfig {
     ///
     /// A zero (or unset) value has different meanings depending on machine type
     /// being used:
+    ///
     /// 1. For pre-Gen3 machines, which support flexible numbers of local ssds,
-    /// zero (or unset) means to disable using local SSDs as ephemeral storage.
-    /// 2. For Gen3 machines which dictate a specific number of local ssds, zero
-    /// (or unset) means to use the default number of local ssds that goes with
-    /// that machine type. For example, for a c3-standard-8-lssd machine, 2 local
-    /// ssds would be provisioned. For c3-standard-8 (which doesn't support local
-    /// ssds), 0 will be provisioned. See
-    /// <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
-    /// for more info.
+    ///    zero (or unset) means to disable using local SSDs as ephemeral storage.
+    /// 1. For Gen3 machines which dictate a specific number of local ssds, zero
+    ///    (or unset) means to use the default number of local ssds that goes with
+    ///    that machine type. For example, for a c3-standard-8-lssd machine, 2 local
+    ///    ssds would be provisioned. For c3-standard-8 (which doesn't support local
+    ///    ssds), 0 will be provisioned. See
+    ///    <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
+    ///    for more info.
     #[prost(int32, tag = "1")]
     pub local_ssd_count: i32,
 }
 /// EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral
 /// storage using Local SSDs.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EphemeralStorageLocalSsdConfig {
     /// Number of local SSDs to use to back ephemeral storage. Uses NVMe
     /// interfaces.
     ///
     /// A zero (or unset) value has different meanings depending on machine type
     /// being used:
+    ///
     /// 1. For pre-Gen3 machines, which support flexible numbers of local ssds,
-    /// zero (or unset) means to disable using local SSDs as ephemeral storage. The
-    /// limit for this value is dependent upon the maximum number of disk
-    /// available on a machine per zone. See:
-    /// <https://cloud.google.com/compute/docs/disks/local-ssd>
-    /// for more information.
-    /// 2. For Gen3 machines which dictate a specific number of local ssds, zero
-    /// (or unset) means to use the default number of local ssds that goes with
-    /// that machine type. For example, for a c3-standard-8-lssd machine, 2 local
-    /// ssds would be provisioned. For c3-standard-8 (which doesn't support local
-    /// ssds), 0 will be provisioned. See
-    /// <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
-    /// for more info.
+    ///    zero (or unset) means to disable using local SSDs as ephemeral storage. The
+    ///    limit for this value is dependent upon the maximum number of disk
+    ///    available on a machine per zone. See:
+    ///    <https://cloud.google.com/compute/docs/disks/local-ssd>
+    ///    for more information.
+    /// 1. For Gen3 machines which dictate a specific number of local ssds, zero
+    ///    (or unset) means to use the default number of local ssds that goes with
+    ///    that machine type. For example, for a c3-standard-8-lssd machine, 2 local
+    ///    ssds would be provisioned. For c3-standard-8 (which doesn't support local
+    ///    ssds), 0 will be provisioned. See
+    ///    <https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds>
+    ///    for more info.
     #[prost(int32, tag = "1")]
     pub local_ssd_count: i32,
     /// Number of local SSDs to use for GKE Data Cache.
@@ -1107,7 +1111,7 @@ pub struct EphemeralStorageLocalSsdConfig {
     pub data_cache_count: i32,
 }
 /// GcfsConfig contains configurations of Google Container File System.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GcfsConfig {
     /// Whether to use GCFS.
     #[prost(bool, tag = "1")]
@@ -1116,7 +1120,7 @@ pub struct GcfsConfig {
 /// [ReservationAffinity](<https://cloud.google.com/compute/docs/instances/reserving-zonal-resources>)
 /// is the configuration of desired reservation which instances could take
 /// capacity from.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReservationAffinity {
     /// Corresponds to the type of reservation consumption.
     #[prost(enumeration = "reservation_affinity::Type", tag = "1")]
@@ -1195,7 +1199,7 @@ pub mod sole_tenant_config {
     /// Specifies the NodeAffinity key, values, and affinity operator according to
     /// [shared sole tenant node group
     /// affinities](<https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity>).
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct NodeAffinity {
         /// Key for NodeAffinity.
         #[prost(string, tag = "1")]
@@ -1284,18 +1288,20 @@ pub mod containerd_config {
     pub mod private_registry_access_config {
         /// CertificateAuthorityDomainConfig configures one or more fully qualified
         /// domain names (FQDN) to a specific certificate.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct CertificateAuthorityDomainConfig {
             /// List of fully qualified domain names (FQDN).
             /// Specifying port is supported.
             /// Wildcards are NOT supported.
             /// Examples:
-            /// - my.customdomain.com
-            /// - 10.0.1.2:5000
+            ///
+            /// * my.customdomain.com
+            /// * 10.0.1.2:5000
             #[prost(string, repeated, tag = "1")]
             pub fqdns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             /// Certificate access config. The following are supported:
-            /// - GCPSecretManagerCertificateConfig
+            ///
+            /// * GCPSecretManagerCertificateConfig
             #[prost(
                 oneof = "certificate_authority_domain_config::CertificateConfig",
                 tags = "2"
@@ -1308,7 +1314,7 @@ pub mod containerd_config {
         pub mod certificate_authority_domain_config {
             /// GCPSecretManagerCertificateConfig configures a secret from
             /// [Google Secret Manager](<https://cloud.google.com/secret-manager>).
-            #[derive(Clone, PartialEq, ::prost::Message)]
+            #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct GcpSecretManagerCertificateConfig {
                 /// Secret URI, in the form
                 /// "projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION".
@@ -1317,8 +1323,9 @@ pub mod containerd_config {
                 pub secret_uri: ::prost::alloc::string::String,
             }
             /// Certificate access config. The following are supported:
-            /// - GCPSecretManagerCertificateConfig
-            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            ///
+            /// * GCPSecretManagerCertificateConfig
+            #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum CertificateConfig {
                 /// Google Secret Manager (GCP) certificate configuration.
                 #[prost(message, tag = "2")]
@@ -1329,7 +1336,7 @@ pub mod containerd_config {
 }
 /// HostMaintenancePolicy contains the maintenance policy for the hosts on which
 /// the GKE VMs run on.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HostMaintenancePolicy {
     /// Specifies the frequency of planned maintenance events.
     #[prost(
@@ -1350,7 +1357,7 @@ pub struct HostMaintenancePolicy {
 /// Nested message and enum types in `HostMaintenancePolicy`.
 pub mod host_maintenance_policy {
     /// Strategy that will trigger maintenance on behalf of the customer.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct OpportunisticMaintenanceStrategy {
         /// The amount of time that a node can remain idle (no customer owned
         /// workloads running), before triggering maintenance.
@@ -1426,7 +1433,7 @@ pub mod host_maintenance_policy {
     /// the maintenance_interval to be PERIODIC. If no strategy is set, and the
     /// interval is periodic, customer will be expected to trigger maintenance
     /// manually or let maintenance trigger at its initial scheduled time.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum MaintenanceStrategy {
         /// Strategy that will trigger maintenance on behalf of the customer.
         #[prost(message, tag = "2")]
@@ -1439,7 +1446,7 @@ pub mod host_maintenance_policy {
 /// See
 /// [here](<https://kubernetes.io/docs/concepts/configuration/taint-and-toleration>)
 /// for more information, including usage and the valid values.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodeTaint {
     /// Key for taint.
     #[prost(string, tag = "1")]
@@ -1534,7 +1541,7 @@ pub struct ResourceLabels {
 /// Collection of Compute Engine network tags that can be applied to a node's
 /// underlying VM instance. (See `tags` field in
 /// [`NodeConfig`](/kubernetes-engine/docs/reference/rest/v1/NodeConfig)).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NetworkTags {
     /// List of network tags.
     #[prost(string, repeated, tag = "1")]
@@ -1543,7 +1550,7 @@ pub struct NetworkTags {
 /// The authentication information for accessing the master endpoint.
 /// Authentication can be done using HTTP basic auth or using client
 /// certificates.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MasterAuth {
     /// The username to use for HTTP basic authentication to the master endpoint.
     /// For clusters v1.6.0 and later, basic authentication can be disabled by
@@ -1588,7 +1595,7 @@ pub struct MasterAuth {
     pub client_key: ::prost::alloc::string::String,
 }
 /// Configuration for client certificates on the cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClientCertificateConfig {
     /// Issue a client certificate.
     #[prost(bool, tag = "1")]
@@ -1596,7 +1603,7 @@ pub struct ClientCertificateConfig {
 }
 /// Configuration for the addons that can be automatically spun up in the
 /// cluster, enabling additional functionality.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AddonsConfig {
     /// Configuration for the HTTP (L7) load balancing controller addon, which
     /// makes it easy to set up HTTP load balancers for services in a cluster.
@@ -1677,7 +1684,7 @@ pub struct AddonsConfig {
 }
 /// Configuration options for the HTTP (L7) load balancing controller addon,
 /// which makes it easy to set up HTTP load balancers for services in a cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HttpLoadBalancing {
     /// Whether the HTTP Load Balancing controller is enabled in the cluster.
     /// When enabled, it runs a small pod in the cluster that manages the load
@@ -1688,7 +1695,7 @@ pub struct HttpLoadBalancing {
 /// Configuration options for the horizontal pod autoscaling feature, which
 /// increases or decreases the number of replica pods a replication controller
 /// has based on the resource usage of the existing pods.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HorizontalPodAutoscaling {
     /// Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.
     /// When enabled, it ensures that metrics are collected into Stackdriver
@@ -1697,7 +1704,7 @@ pub struct HorizontalPodAutoscaling {
     pub disabled: bool,
 }
 /// Configuration for the Kubernetes Dashboard.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KubernetesDashboard {
     /// Whether the Kubernetes Dashboard is enabled for this cluster.
     #[prost(bool, tag = "1")]
@@ -1706,21 +1713,21 @@ pub struct KubernetesDashboard {
 /// Configuration for NetworkPolicy. This only tracks whether the addon
 /// is enabled or not on the Master, it does not track whether network policy
 /// is enabled for the nodes.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NetworkPolicyConfig {
     /// Whether NetworkPolicy is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub disabled: bool,
 }
 /// Configuration for NodeLocal DNSCache
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DnsCacheConfig {
     /// Whether NodeLocal DNSCache is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration options for the KALM addon.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KalmConfig {
     /// Whether KALM is enabled for this cluster.
     #[deprecated]
@@ -1728,49 +1735,49 @@ pub struct KalmConfig {
     pub enabled: bool,
 }
 /// Configuration for the Backup for GKE Agent.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GkeBackupAgentConfig {
     /// Whether the Backup for GKE agent is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration for the Stateful HA add-on.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StatefulHaConfig {
     /// Whether the Stateful HA add-on is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration options for the Config Connector add-on.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConfigConnectorConfig {
     /// Whether Cloud Connector is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration for the Compute Engine PD CSI driver.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GcePersistentDiskCsiDriverConfig {
     /// Whether the Compute Engine PD CSI driver is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration for the GCP Filestore CSI driver.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GcpFilestoreCsiDriverConfig {
     /// Whether the GCP Filestore CSI driver is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration for the Cloud Storage Fuse CSI driver.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GcsFuseCsiDriverConfig {
     /// Whether the Cloud Storage Fuse CSI driver is enabled for this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration for the Cloud Storage Parallelstore CSI driver.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ParallelstoreCsiDriverConfig {
     /// Whether the Cloud Storage Parallelstore CSI driver is enabled for this
     /// cluster.
@@ -1778,7 +1785,7 @@ pub struct ParallelstoreCsiDriverConfig {
     pub enabled: bool,
 }
 /// Configuration for the High Scale Checkpointing.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HighScaleCheckpointingConfig {
     /// Whether the High Scale Checkpointing is enabled for this
     /// cluster.
@@ -1786,7 +1793,7 @@ pub struct HighScaleCheckpointingConfig {
     pub enabled: bool,
 }
 /// Configuration options for the Ray Operator add-on.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RayOperatorConfig {
     /// Whether the Ray addon is enabled for this cluster.
     #[prost(bool, tag = "1")]
@@ -1801,28 +1808,28 @@ pub struct RayOperatorConfig {
     >,
 }
 /// Configuration for controlling master global access settings.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PrivateClusterMasterGlobalAccessConfig {
     /// Whenever master is accessible globally or not.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration options for private clusters.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PrivateClusterConfig {
     /// Whether nodes have internal IP addresses only. If enabled, all nodes are
     /// given only RFC 1918 private addresses and communicate with the master via
     /// private networking.
     ///
     /// Deprecated: Use
-    /// [NetworkConfig.default_enable_private_nodes][google.container.v1beta1.NetworkConfig.default_enable_private_nodes]
+    /// \[NetworkConfig.default_enable_private_nodes\]\[google.container.v1beta1.NetworkConfig.default_enable_private_nodes\]
     /// instead.
     #[deprecated]
     #[prost(bool, tag = "1")]
     pub enable_private_nodes: bool,
     /// Whether the master's internal IP address is used as the cluster endpoint.
     /// Use
-    /// [ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_public_endpoint][google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_public_endpoint]
+    /// \[ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_public_endpoint\]\[google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_public_endpoint\]
     /// instead. Note that the value of enable_public_endpoint is reversed: if
     /// enable_private_endpoint is false, then enable_public_endpoint will be true.
     #[deprecated]
@@ -1837,7 +1844,7 @@ pub struct PrivateClusterConfig {
     /// Output only. The internal IP address of this cluster's master endpoint.
     ///
     /// Deprecated: Use
-    /// [ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint][google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint]
+    /// \[ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint\]\[google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint\]
     /// instead.
     #[deprecated]
     #[prost(string, tag = "4")]
@@ -1845,7 +1852,7 @@ pub struct PrivateClusterConfig {
     /// Output only. The external IP address of this cluster's master endpoint.
     ///
     /// Deprecated: Use
-    /// [ControlPlaneEndpointsConfig.IPEndpointsConfig.public_endpoint][google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.public_endpoint]
+    /// \[ControlPlaneEndpointsConfig.IPEndpointsConfig.public_endpoint\]\[google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.public_endpoint\]
     /// instead.
     #[deprecated]
     #[prost(string, tag = "5")]
@@ -1856,7 +1863,7 @@ pub struct PrivateClusterConfig {
     /// Controls master global access settings.
     ///
     /// Deprecated: Use
-    /// [ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_global_access][]
+    /// \[ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_global_access\]\[\]
     /// instead.
     #[deprecated]
     #[prost(message, optional, tag = "8")]
@@ -1864,17 +1871,17 @@ pub struct PrivateClusterConfig {
         PrivateClusterMasterGlobalAccessConfig,
     >,
     /// Subnet to provision the master's private endpoint during cluster creation.
-    /// Specified in projects/*/regions/*/subnetworks/* format.
+    /// Specified in projects/*/regions/*/subnetworks/\* format.
     ///
     /// Deprecated: Use
-    /// [ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork][google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork]
+    /// \[ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork\]\[google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork\]
     /// instead.
     #[deprecated]
     #[prost(string, tag = "10")]
     pub private_endpoint_subnetwork: ::prost::alloc::string::String,
 }
 /// Configuration options for Istio addon.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IstioConfig {
     /// Whether Istio is enabled for this cluster.
     #[deprecated]
@@ -1928,7 +1935,7 @@ pub mod istio_config {
     }
 }
 /// Configuration options for the Cloud Run feature.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CloudRunConfig {
     /// Whether Cloud Run addon is enabled for this cluster.
     #[prost(bool, tag = "1")]
@@ -2008,7 +2015,7 @@ pub struct MasterAuthorizedNetworksConfig {
 /// Nested message and enum types in `MasterAuthorizedNetworksConfig`.
 pub mod master_authorized_networks_config {
     /// CidrBlock contains an optional name and one CIDR block.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CidrBlock {
         /// display_name is an optional field for users to identify CIDR blocks.
         #[prost(string, tag = "1")]
@@ -2020,7 +2027,7 @@ pub mod master_authorized_networks_config {
 }
 /// Configuration for the legacy Attribute Based Access Control authorization
 /// mode.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LegacyAbac {
     /// Whether the ABAC authorizer is enabled for this cluster. When enabled,
     /// identities in the system, including service accounts, nodes, and
@@ -2031,7 +2038,7 @@ pub struct LegacyAbac {
 }
 /// Configuration options for the NetworkPolicy feature.
 /// <https://kubernetes.io/docs/concepts/services-networking/networkpolicies/>
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NetworkPolicy {
     /// The selected network policy provider.
     #[prost(enumeration = "network_policy::Provider", tag = "1")]
@@ -2084,7 +2091,7 @@ pub mod network_policy {
 }
 /// \[PRIVATE FIELD\]
 /// Config for pod CIDR size overprovisioning.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PodCidrOverprovisionConfig {
     /// Whether Pod CIDR overprovisioning is disabled.
     /// Note: Pod CIDR overprovisioning is enabled by default.
@@ -2198,10 +2205,11 @@ pub struct IpAllocationPolicy {
     ///
     /// If this field is set to true, then cluster and services CIDRs must be
     /// fully-specified (e.g. `10.96.0.0/14`, but not `/14`), which means:
-    /// 1) When `use_ip_aliases` is true, `cluster_ipv4_cidr_block` and
-    ///     `services_ipv4_cidr_block` must be fully-specified.
-    /// 2) When `use_ip_aliases` is false, `cluster.cluster_ipv4_cidr` muse be
-    ///     fully-specified.
+    ///
+    /// 1. When `use_ip_aliases` is true, `cluster_ipv4_cidr_block` and
+    ///    `services_ipv4_cidr_block` must be fully-specified.
+    /// 1. When `use_ip_aliases` is false, `cluster.cluster_ipv4_cidr` muse be
+    ///    fully-specified.
     #[prost(bool, tag = "12")]
     pub allow_route_overlap: bool,
     /// The IP address range of the Cloud TPUs in this cluster. If unspecified, a
@@ -2378,7 +2386,7 @@ pub struct BinaryAuthorization {
 /// Nested message and enum types in `BinaryAuthorization`.
 pub mod binary_authorization {
     /// Binauthz policy that applies to this cluster.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PolicyBinding {
         /// The relative resource name of the binauthz platform policy to evaluate.
         /// GKE platform policies have the following format:
@@ -2450,7 +2458,7 @@ pub mod binary_authorization {
     }
 }
 /// Configuration for the PodSecurityPolicy feature.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PodSecurityPolicyConfig {
     /// Enable the PodSecurityPolicy controller for this cluster. If enabled, pods
     /// must be valid under a PodSecurityPolicy to be created.
@@ -2458,7 +2466,7 @@ pub struct PodSecurityPolicyConfig {
     pub enabled: bool,
 }
 /// Configuration for returning group information from authenticators.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AuthenticatorGroupsConfig {
     /// Whether this cluster should return group membership lookups
     /// during authentication using a group of security groups.
@@ -2470,7 +2478,7 @@ pub struct AuthenticatorGroupsConfig {
     pub security_group: ::prost::alloc::string::String,
 }
 /// Telemetry integration for the cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClusterTelemetry {
     /// Type of the integration.
     #[prost(enumeration = "cluster_telemetry::Type", tag = "1")]
@@ -2579,9 +2587,9 @@ pub struct Cluster {
     /// Currently available options:
     ///
     /// * `logging.googleapis.com/kubernetes` - The Cloud Logging
-    /// service with a Kubernetes-native resource model
+    ///   service with a Kubernetes-native resource model
     /// * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-    ///    available as of GKE 1.15).
+    ///   available as of GKE 1.15).
     /// * `none` - no logs will be exported from the cluster.
     ///
     /// If left as an empty string,`logging.googleapis.com/kubernetes` will be
@@ -2592,9 +2600,9 @@ pub struct Cluster {
     /// Currently available options:
     ///
     /// * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
-    /// service with a Kubernetes-native resource model
+    ///   service with a Kubernetes-native resource model
     /// * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-    ///    longer available as of GKE 1.15).
+    ///   longer available as of GKE 1.15).
     /// * `none` - No metrics will be exported from the cluster.
     ///
     /// If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
@@ -2681,7 +2689,7 @@ pub struct Cluster {
     /// The configuration options for master authorized networks feature.
     ///
     /// Deprecated: Use
-    /// [ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config][google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config]
+    /// \[ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config\]\[google.container.v1beta1.ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config\]
     /// instead.
     #[deprecated]
     #[prost(message, optional, tag = "22")]
@@ -2810,11 +2818,11 @@ pub struct Cluster {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// - "latest": picks the highest valid Kubernetes version
-    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// - "","-": picks the default Kubernetes version
+    /// * "latest": picks the highest valid Kubernetes version
+    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// * "","-": picks the default Kubernetes version
     #[prost(string, tag = "103")]
     pub initial_cluster_version: ::prost::alloc::string::String,
     /// Output only. The current software version of the master endpoint.
@@ -3040,7 +3048,7 @@ pub mod cluster {
 }
 /// RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings
 /// that can be created.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RbacBindingConfig {
     /// Setting this to true will allow any ClusterRoleBinding and RoleBinding
     /// with subjets system:anonymous or system:unauthenticated.
@@ -3053,7 +3061,7 @@ pub struct RbacBindingConfig {
 }
 /// UserManagedKeysConfig holds the resource address to Keys which are used
 /// for signing certs and token that are used for communication within cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UserManagedKeysConfig {
     /// The Certificate Authority Service caPool to use for the cluster CA in this
     /// cluster.
@@ -3100,7 +3108,7 @@ pub struct UserManagedKeysConfig {
 }
 /// AnonymousAuthenticationConfig defines the settings needed to limit endpoints
 /// that allow anonymous authentication.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AnonymousAuthenticationConfig {}
 /// CompliancePostureConfig defines the settings needed to enable/disable
 /// features for the Compliance Posture.
@@ -3118,7 +3126,7 @@ pub struct CompliancePostureConfig {
 /// Nested message and enum types in `CompliancePostureConfig`.
 pub mod compliance_posture_config {
     /// Defines the details of a compliance standard.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ComplianceStandard {
         /// Name of the compliance standard.
         #[prost(string, optional, tag = "1")]
@@ -3169,7 +3177,7 @@ pub mod compliance_posture_config {
     }
 }
 /// Kubernetes open source beta apis enabled on the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct K8sBetaApiConfig {
     /// api name, e.g. storage.k8s.io/v1beta1/csistoragecapacities.
     #[prost(string, repeated, tag = "1")]
@@ -3177,7 +3185,7 @@ pub struct K8sBetaApiConfig {
 }
 /// WorkloadConfig defines the flags to enable or disable the
 /// workload configurations for the cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadConfig {
     /// Sets which mode of auditing should be used for the cluster's workloads.
     #[prost(enumeration = "workload_config::Mode", optional, tag = "1")]
@@ -3242,7 +3250,7 @@ pub mod workload_config {
 }
 /// ProtectConfig defines the flags needed to enable/disable features for the
 /// Protect API.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ProtectConfig {
     /// WorkloadConfig defines which actions are enabled for a cluster's workload
     /// configurations.
@@ -3304,7 +3312,7 @@ pub mod protect_config {
 }
 /// SecurityPostureConfig defines the flags needed to enable/disable features for
 /// the Security Posture API.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SecurityPostureConfig {
     /// Sets which mode to use for Security Posture features.
     #[prost(enumeration = "security_posture_config::Mode", optional, tag = "1")]
@@ -3478,20 +3486,20 @@ pub struct ClusterUpdate {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// - "latest": picks the highest valid Kubernetes version
-    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// - "-": picks the Kubernetes master version
+    /// * "latest": picks the highest valid Kubernetes version
+    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// * "-": picks the Kubernetes master version
     #[prost(string, tag = "4")]
     pub desired_node_version: ::prost::alloc::string::String,
     /// The monitoring service the cluster should use to write metrics.
     /// Currently available options:
     ///
     /// * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
-    /// service with a Kubernetes-native resource model
+    ///   service with a Kubernetes-native resource model
     /// * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-    ///    longer available as of GKE 1.15).
+    ///   longer available as of GKE 1.15).
     /// * `none` - No metrics will be exported from the cluster.
     ///
     /// If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
@@ -3552,9 +3560,9 @@ pub struct ClusterUpdate {
     /// Currently available options:
     ///
     /// * `logging.googleapis.com/kubernetes` - The Cloud Logging
-    /// service with a Kubernetes-native resource model
+    ///   service with a Kubernetes-native resource model
     /// * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-    ///    available as of GKE 1.15).
+    ///   available as of GKE 1.15).
     /// * `none` - no logs will be exported from the cluster.
     ///
     /// If left as an empty string,`logging.googleapis.com/kubernetes` will be
@@ -3572,9 +3580,9 @@ pub struct ClusterUpdate {
     /// The desired private cluster configuration. master_global_access_config is
     /// the only field that can be changed via this field.
     /// See also
-    /// [ClusterUpdate.desired_enable_private_endpoint][google.container.v1beta1.ClusterUpdate.desired_enable_private_endpoint]
+    /// \[ClusterUpdate.desired_enable_private_endpoint\]\[google.container.v1beta1.ClusterUpdate.desired_enable_private_endpoint\]
     /// for modifying other fields within
-    /// [PrivateClusterConfig][google.container.v1beta1.PrivateClusterConfig].
+    /// \[PrivateClusterConfig\]\[google.container.v1beta1.PrivateClusterConfig\].
     ///
     /// Deprecated: Use
     /// desired_control_plane_endpoints_config.ip_endpoints_config.global_access
@@ -3597,7 +3605,7 @@ pub struct ClusterUpdate {
     #[prost(message, optional, tag = "31")]
     pub desired_release_channel: ::core::option::Option<ReleaseChannel>,
     /// The desired private cluster configuration. Has no effect. Use
-    /// [desired_private_cluster_config][google.container.v1beta1.ClusterUpdate.desired_private_cluster_config]
+    /// \[desired_private_cluster_config\]\[google.container.v1beta1.ClusterUpdate.desired_private_cluster_config\]
     /// instead.
     #[deprecated]
     #[prost(message, optional, tag = "37")]
@@ -3626,11 +3634,11 @@ pub struct ClusterUpdate {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// - "latest": picks the highest valid Kubernetes version
-    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// - "-": picks the default Kubernetes version
+    /// * "latest": picks the highest valid Kubernetes version
+    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// * "-": picks the default Kubernetes version
     #[prost(string, tag = "100")]
     pub desired_master_version: ::prost::alloc::string::String,
     /// The desired GCFS config for the cluster.
@@ -3697,11 +3705,11 @@ pub struct ClusterUpdate {
     pub desired_enable_private_endpoint: ::core::option::Option<bool>,
     /// Override the default setting of whether future created
     /// nodes have private IP addresses only, namely
-    /// [NetworkConfig.default_enable_private_nodes][google.container.v1beta1.NetworkConfig.default_enable_private_nodes]
+    /// \[NetworkConfig.default_enable_private_nodes\]\[google.container.v1beta1.NetworkConfig.default_enable_private_nodes\]
     #[prost(bool, optional, tag = "72")]
     pub desired_default_enable_private_nodes: ::core::option::Option<bool>,
-    /// [Control plane
-    /// endpoints][google.container.v1beta1.Cluster.control_plane_endpoints_config]
+    /// \[Control plane
+    /// endpoints\]\[google.container.v1beta1.Cluster.control_plane_endpoints_config\]
     /// configuration.
     #[prost(message, optional, tag = "73")]
     pub desired_control_plane_endpoints_config: ::core::option::Option<
@@ -3861,7 +3869,7 @@ pub struct RangeInfo {
     pub utilization: f64,
 }
 /// DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DesiredEnterpriseConfig {
     /// desired_tier specifies the desired tier of the cluster.
     #[prost(enumeration = "enterprise_config::ClusterTier", tag = "1")]
@@ -3905,11 +3913,14 @@ pub struct Operation {
     ///
     /// Examples:
     ///
-    /// -
+    /// *
+    ///
     /// ##
+    ///
     /// `<https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`>
     ///
     /// ##
+    ///
     /// `<https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`>
     ///
     /// `<https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`>
@@ -4019,18 +4030,18 @@ pub mod operation {
         /// The cluster is being created. The cluster should be assumed to be
         /// unusable until the operation finishes.
         ///
-        /// In the event of the operation failing, the cluster will enter the [ERROR
-        /// state][Cluster.Status.ERROR] and eventually be deleted.
+        /// In the event of the operation failing, the cluster will enter the \[ERROR
+        /// state\]\[Cluster.Status.ERROR\] and eventually be deleted.
         CreateCluster = 1,
         /// The cluster is being deleted. The cluster should be assumed to be
         /// unusable as soon as this operation starts.
         ///
-        /// In the event of the operation failing, the cluster will enter the [ERROR
-        /// state][Cluster.Status.ERROR] and the deletion will be automatically
+        /// In the event of the operation failing, the cluster will enter the \[ERROR
+        /// state\]\[Cluster.Status.ERROR\] and the deletion will be automatically
         /// retried until completed.
         DeleteCluster = 2,
-        /// The [cluster
-        /// version][google.container.v1beta1.ClusterUpdate.desired_master_version]
+        /// The \[cluster
+        /// version\]\[google.container.v1beta1.ClusterUpdate.desired_master_version\]
         /// is being updated. Note that this includes "upgrades" to the same version,
         /// which are simply a recreation. This also includes
         /// [auto-upgrades](<https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-upgrades#upgrading_automatically>).
@@ -4042,8 +4053,8 @@ pub mod operation {
         /// [auto-upgrades](<https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-upgrades>).
         ///
         /// This operation sets the
-        /// [progress][google.container.v1beta1.Operation.progress] field and may be
-        /// [canceled][google.container.v1beta1.ClusterManager.CancelOperation].
+        /// \[progress\]\[google.container.v1beta1.Operation.progress\] field and may be
+        /// \[canceled\]\[google.container.v1beta1.ClusterManager.CancelOperation\].
         ///
         /// The upgrade strategy depends on [node pool
         /// configuration](<https://cloud.google.com/kubernetes-engine/docs/concepts/node-pool-upgrade-strategies>).
@@ -4080,7 +4091,7 @@ pub mod operation {
         /// unusable as soon as this operation starts.
         DeleteNodePool = 8,
         /// The node pool's
-        /// [manamagent][google.container.v1beta1.NodePool.management] field is being
+        /// \[manamagent\]\[google.container.v1beta1.NodePool.management\] field is being
         /// updated. These operations only update metadata and may be concurrent with
         /// most other operations.
         SetNodePoolManagement = 9,
@@ -4091,22 +4102,22 @@ pub mod operation {
         /// multiple repairs occurring on the same node pool.
         AutoRepairNodes = 10,
         /// Unused. Automatic node upgrade uses
-        /// [UPGRADE_NODES][google.container.v1beta1.Operation.Type.UPGRADE_NODES].
+        /// \[UPGRADE_NODES\]\[google.container.v1beta1.Operation.Type.UPGRADE_NODES\].
         AutoUpgradeNodes = 11,
         /// Unused. Updating labels uses
-        /// [UPDATE_CLUSTER][google.container.v1beta1.Operation.Type.UPDATE_CLUSTER].
+        /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
         SetLabels = 12,
         /// Unused. Updating master auth uses
-        /// [UPDATE_CLUSTER][google.container.v1beta1.Operation.Type.UPDATE_CLUSTER].
+        /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
         SetMasterAuth = 13,
         /// The node pool is being resized. With the exception of resizing to or from
         /// size zero, the node pool is generally usable during this operation.
         SetNodePoolSize = 14,
         /// Unused. Updating network policy uses
-        /// [UPDATE_CLUSTER][google.container.v1beta1.Operation.Type.UPDATE_CLUSTER].
+        /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
         SetNetworkPolicy = 15,
         /// Unused. Updating maintenance policy uses
-        /// [UPDATE_CLUSTER][google.container.v1beta1.Operation.Type.UPDATE_CLUSTER].
+        /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
         SetMaintenancePolicy = 16,
         /// The control plane is being resized. This operation type is initiated by
         /// GKE. These operations are often performed preemptively to ensure that the
@@ -4186,11 +4197,11 @@ pub struct OperationProgress {
     #[prost(enumeration = "operation::Status", tag = "2")]
     pub status: i32,
     /// Progress metric bundle, for example:
-    ///    metrics: [{name: "nodes done",     int_value: 15},
-    ///              {name: "nodes total",    int_value: 32}]
+    /// metrics: \[{name: "nodes done",     int_value: 15},
+    /// {name: "nodes total",    int_value: 32}\]
     /// or
-    ///    metrics: [{name: "progress",       double_value: 0.56},
-    ///              {name: "progress scale", double_value: 1.0}]
+    /// metrics: \[{name: "progress",       double_value: 0.56},
+    /// {name: "progress scale", double_value: 1.0}\]
     #[prost(message, repeated, tag = "3")]
     pub metrics: ::prost::alloc::vec::Vec<operation_progress::Metric>,
     /// Substages of an operation or a stage.
@@ -4252,7 +4263,7 @@ pub struct CreateClusterRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// GetClusterRequest gets the settings of a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetClusterRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4338,11 +4349,11 @@ pub struct UpdateNodePoolRequest {
     /// Users may specify either explicit versions offered by Kubernetes Engine or
     /// version aliases, which have the following behavior:
     ///
-    /// - "latest": picks the highest valid Kubernetes version
-    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// - "-": picks the Kubernetes master version
+    /// * "latest": picks the highest valid Kubernetes version
+    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// * "-": picks the Kubernetes master version
     #[prost(string, tag = "5")]
     pub node_version: ::prost::alloc::string::String,
     /// Required. The desired image type for the node pool. Please see
@@ -4466,7 +4477,7 @@ pub struct UpdateNodePoolRequest {
     pub flex_start: ::core::option::Option<bool>,
 }
 /// SetNodePoolAutoscalingRequest sets the autoscaler settings of a node pool.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetNodePoolAutoscalingRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4501,7 +4512,7 @@ pub struct SetNodePoolAutoscalingRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// SetLoggingServiceRequest sets the logging service of a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetLoggingServiceRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4525,9 +4536,9 @@ pub struct SetLoggingServiceRequest {
     /// Currently available options:
     ///
     /// * `logging.googleapis.com/kubernetes` - The Cloud Logging
-    /// service with a Kubernetes-native resource model
+    ///   service with a Kubernetes-native resource model
     /// * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-    ///    available as of GKE 1.15).
+    ///   available as of GKE 1.15).
     /// * `none` - no logs will be exported from the cluster.
     ///
     /// If left as an empty string,`logging.googleapis.com/kubernetes` will be
@@ -4540,7 +4551,7 @@ pub struct SetLoggingServiceRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// SetMonitoringServiceRequest sets the monitoring service of a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetMonitoringServiceRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4564,9 +4575,9 @@ pub struct SetMonitoringServiceRequest {
     /// Currently available options:
     ///
     /// * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
-    /// service with a Kubernetes-native resource model
+    ///   service with a Kubernetes-native resource model
     /// * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-    ///    longer available as of GKE 1.15).
+    ///   longer available as of GKE 1.15).
     /// * `none` - No metrics will be exported from the cluster.
     ///
     /// If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
@@ -4579,7 +4590,7 @@ pub struct SetMonitoringServiceRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// SetAddonsRequest sets the addons associated with the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetAddonsConfigRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4609,7 +4620,7 @@ pub struct SetAddonsConfigRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// SetLocationsRequest sets the locations of the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetLocationsRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4644,7 +4655,7 @@ pub struct SetLocationsRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// UpdateMasterRequest updates the master of the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateMasterRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4669,11 +4680,11 @@ pub struct UpdateMasterRequest {
     /// Users may specify either explicit versions offered by
     /// Kubernetes Engine or version aliases, which have the following behavior:
     ///
-    /// - "latest": picks the highest valid Kubernetes version
-    /// - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-    /// - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-    /// - "1.X.Y-gke.N": picks an explicit Kubernetes version
-    /// - "-": picks the default Kubernetes version
+    /// * "latest": picks the highest valid Kubernetes version
+    /// * "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+    /// * "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+    /// * "1.X.Y-gke.N": picks an explicit Kubernetes version
+    /// * "-": picks the default Kubernetes version
     #[prost(string, tag = "4")]
     pub master_version: ::prost::alloc::string::String,
     /// The name (project, location, cluster) of the cluster to update.
@@ -4682,7 +4693,7 @@ pub struct UpdateMasterRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// SetMasterAuthRequest updates the admin password of a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetMasterAuthRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4767,7 +4778,7 @@ pub mod set_master_auth_request {
     }
 }
 /// DeleteClusterRequest deletes a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteClusterRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4793,7 +4804,7 @@ pub struct DeleteClusterRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// ListClustersRequest lists clusters.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListClustersRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4827,7 +4838,7 @@ pub struct ListClustersResponse {
     pub missing_zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// GetOperationRequest gets a single operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetOperationRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4853,7 +4864,7 @@ pub struct GetOperationRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// ListOperationsRequest lists operations.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListOperationsRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4875,7 +4886,7 @@ pub struct ListOperationsRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// CancelOperationRequest cancels a single operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelOperationRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4912,7 +4923,7 @@ pub struct ListOperationsResponse {
     pub missing_zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Gets the current Kubernetes Engine service configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetServerConfigRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -4989,7 +5000,7 @@ pub mod server_config {
     /// Nested message and enum types in `ReleaseChannelConfig`.
     pub mod release_channel_config {
         /// Deprecated.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct AvailableVersion {
             /// Kubernetes version.
             #[prost(string, tag = "1")]
@@ -5001,7 +5012,7 @@ pub mod server_config {
     }
 }
 /// Best effort provisioning.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BestEffortProvisioning {
     /// When this is enabled, cluster/node pool creations will ignore non-fatal
     /// errors like stockout to best provision as many nodes as possible right now
@@ -5024,7 +5035,7 @@ pub struct WindowsVersions {
 /// Nested message and enum types in `WindowsVersions`.
 pub mod windows_versions {
     /// Windows server version.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct WindowsVersion {
         /// Windows server image type
         #[prost(string, tag = "1")]
@@ -5068,7 +5079,7 @@ pub struct CreateNodePoolRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// DeleteNodePoolRequest deletes a node pool for a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteNodePoolRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -5100,7 +5111,7 @@ pub struct DeleteNodePoolRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// ListNodePoolsRequest lists the node pool(s) for a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListNodePoolsRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -5126,7 +5137,7 @@ pub struct ListNodePoolsRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// GetNodePoolRequest retrieves a node pool for a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetNodePoolRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -5188,7 +5199,7 @@ pub mod blue_green_settings {
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum UpdateBatchSize {
             /// Percentage of the blue pool nodes to drain in a batch.
-            /// The range of this field should be (0.0, 1.0].
+            /// The range of this field should be (0.0, 1.0\].
             #[prost(float, tag = "1")]
             BatchPercentage(f32),
             /// Number of blue nodes to drain in a batch.
@@ -5198,7 +5209,7 @@ pub mod blue_green_settings {
     }
     /// Autoscaled rollout policy uses cluster autoscaler during
     /// blue-green upgrades to scale both the green and blue pools.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AutoscaledRolloutPolicy {}
     /// The rollout policy controls the general rollout progress of blue-green.
     #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
@@ -5341,23 +5352,25 @@ pub mod node_pool {
     ///
     /// If the strategy is SURGE, use max_surge and max_unavailable to control
     /// the level of parallelism and the level of disruption caused by upgrade.
+    ///
     /// 1. maxSurge controls the number of additional nodes that can be added to
-    /// the node pool temporarily for the time of the upgrade to increase the
-    /// number of available nodes.
-    /// 2. maxUnavailable controls the number of nodes that can be simultaneously
-    /// unavailable.
-    /// 3. (maxUnavailable + maxSurge) determines the level of parallelism (how
-    /// many nodes are being upgraded at the same time).
+    ///    the node pool temporarily for the time of the upgrade to increase the
+    ///    number of available nodes.
+    /// 1. maxUnavailable controls the number of nodes that can be simultaneously
+    ///    unavailable.
+    /// 1. (maxUnavailable + maxSurge) determines the level of parallelism (how
+    ///    many nodes are being upgraded at the same time).
     ///
     /// If the strategy is BLUE_GREEN, use blue_green_settings to configure the
     /// blue-green upgrade related settings.
+    ///
     /// 1. standard_rollout_policy is the default policy. The policy is used to
-    /// control the way blue pool gets drained. The draining is executed in the
-    /// batch mode. The batch size could be specified as either percentage of the
-    /// node pool size or the number of nodes. batch_soak_duration is the soak
-    /// time after each batch gets drained.
-    /// 2. node_pool_soak_duration is the soak time after all blue nodes are
-    /// drained. After this period, the blue pool nodes will be deleted.
+    ///    control the way blue pool gets drained. The draining is executed in the
+    ///    batch mode. The batch size could be specified as either percentage of the
+    ///    node pool size or the number of nodes. batch_soak_duration is the soak
+    ///    time after each batch gets drained.
+    /// 1. node_pool_soak_duration is the soak time after all blue nodes are
+    ///    drained. After this period, the blue pool nodes will be deleted.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct UpgradeSettings {
         /// The maximum number of nodes that can be created beyond the current size
@@ -5378,7 +5391,7 @@ pub mod node_pool {
     }
     /// UpdateInfo contains resource (instance groups, etc), status and other
     /// intermediate information relevant to a node pool upgrade.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct UpdateInfo {
         /// Information of a blue-green upgrade.
         #[prost(message, optional, tag = "1")]
@@ -5387,7 +5400,7 @@ pub mod node_pool {
     /// Nested message and enum types in `UpdateInfo`.
     pub mod update_info {
         /// Information relevant to blue-green upgrade.
-        #[derive(Clone, PartialEq, ::prost::Message)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct BlueGreenInfo {
             /// Current blue-green upgrade phase.
             #[prost(enumeration = "blue_green_info::Phase", tag = "1")]
@@ -5488,7 +5501,7 @@ pub mod node_pool {
         }
     }
     /// PlacementPolicy defines the placement policy used by the node pool.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PlacementPolicy {
         /// The type of placement.
         #[prost(enumeration = "placement_policy::Type", tag = "1")]
@@ -5548,7 +5561,7 @@ pub mod node_pool {
         }
     }
     /// QueuedProvisioning defines the queued provisioning used by the node pool.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QueuedProvisioning {
         /// Denotes that this nodepool is QRM specific, meaning nodes can be only
         /// obtained through queuing via the Cluster Autoscaler ProvisioningRequest
@@ -5625,7 +5638,7 @@ pub mod node_pool {
 }
 /// NodeManagement defines the set of node management services turned on for the
 /// node pool.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodeManagement {
     /// Whether the nodes will be automatically upgraded.
     #[prost(bool, tag = "1")]
@@ -5639,7 +5652,7 @@ pub struct NodeManagement {
 }
 /// AutoUpgradeOptions defines the set of options for the user to control how
 /// the Auto Upgrades will proceed.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutoUpgradeOptions {
     /// Output only. This field is set when upgrades are about to commence
     /// with the approximate start time for the upgrades, in
@@ -5684,7 +5697,7 @@ pub struct MaintenanceWindow {
 pub mod maintenance_window {
     /// Unimplemented, reserved for future use.
     /// HourlyMaintenanceWindow hourly_maintenance_window = 1;
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Policy {
         /// DailyMaintenanceWindow specifies a daily maintenance operation window.
         #[prost(message, tag = "2")]
@@ -5697,7 +5710,7 @@ pub mod maintenance_window {
     }
 }
 /// Represents an arbitrary window of time.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TimeWindow {
     /// The time that the window first starts.
     #[prost(message, optional, tag = "1")]
@@ -5711,7 +5724,7 @@ pub struct TimeWindow {
 }
 /// Nested message and enum types in `TimeWindow`.
 pub mod time_window {
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Options {
         /// MaintenanceExclusionOptions provides maintenance exclusion related
         /// options.
@@ -5720,7 +5733,7 @@ pub mod time_window {
     }
 }
 /// Represents the Maintenance exclusion option.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MaintenanceExclusionOptions {
     /// Scope specifies the upgrade scope which upgrades are blocked by the
     /// exclusion.
@@ -5779,7 +5792,7 @@ pub mod maintenance_exclusion_options {
     }
 }
 /// Represents an arbitrary window of time that recurs.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RecurringTimeWindow {
     /// The window of the first recurrence.
     #[prost(message, optional, tag = "1")]
@@ -5799,7 +5812,8 @@ pub struct RecurringTimeWindow {
     ///
     /// This specifies how frequently the window starts. Eg, if you wanted to have
     /// a 9-5 UTC-4 window every weekday, you'd use something like:
-    /// ```
+    ///
+    /// ```text,
     /// start time = 2019-01-01T09:00:00-0400
     /// end time = 2019-01-01T17:00:00-0400
     /// recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
@@ -5807,7 +5821,8 @@ pub struct RecurringTimeWindow {
     ///
     /// Windows can span multiple days. Eg, to make the window encompass every
     /// weekend from midnight Saturday till the last minute of Sunday UTC:
-    /// ```
+    ///
+    /// ```text,
     /// start time = 2019-01-05T00:00:00Z
     /// end time = 2019-01-07T23:59:00Z
     /// recurrence = FREQ=WEEKLY;BYDAY=SA
@@ -5820,7 +5835,7 @@ pub struct RecurringTimeWindow {
     pub recurrence: ::prost::alloc::string::String,
 }
 /// Time window specified for daily maintenance operations.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DailyMaintenanceWindow {
     /// Time within the maintenance window to start the maintenance operations.
     /// It must be in format "HH:MM", where HH : \[00-23\] and MM : \[00-59\] GMT.
@@ -5833,7 +5848,7 @@ pub struct DailyMaintenanceWindow {
 }
 /// SetNodePoolManagementRequest sets the node management properties of a node
 /// pool.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetNodePoolManagementRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -5868,7 +5883,7 @@ pub struct SetNodePoolManagementRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// SetNodePoolSizeRequest sets the size of a node pool.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetNodePoolSizeRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -5904,7 +5919,7 @@ pub struct SetNodePoolSizeRequest {
 }
 /// CompleteNodePoolUpgradeRequest sets the name of target node pool to complete
 /// upgrade.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CompleteNodePoolUpgradeRequest {
     /// The name (project, location, cluster, node pool id) of the node pool to
     /// complete upgrade.
@@ -5913,9 +5928,9 @@ pub struct CompleteNodePoolUpgradeRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
-///   NodePool upgrade. This will be an no-op if the last upgrade successfully
-///   completed.
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// NodePool upgrade. This will be an no-op if the last upgrade successfully
+/// completed.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RollbackNodePoolUpgradeRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -6044,11 +6059,11 @@ pub struct AutoprovisioningNodePoolDefaults {
     /// not included:
     ///
     /// * `<https://www.googleapis.com/auth/compute`> is required for mounting
-    /// persistent storage on your nodes.
+    ///   persistent storage on your nodes.
     /// * `<https://www.googleapis.com/auth/devstorage.read_only`> is required for
-    /// communicating with **gcr.io**
-    /// (the [Google Container
-    /// Registry](<https://cloud.google.com/container-registry/>)).
+    ///   communicating with **gcr.io**
+    ///   (the [Google Container
+    ///   Registry](<https://cloud.google.com/container-registry/>)).
     ///
     /// If unspecified, no scopes are added, unless Cloud Logging or Cloud
     /// Monitoring are enabled, in which case their required scopes will be added.
@@ -6094,7 +6109,6 @@ pub struct AutoprovisioningNodePoolDefaults {
     /// Shielded Instance options.
     #[prost(message, optional, tag = "8")]
     pub shielded_instance_config: ::core::option::Option<ShieldedInstanceConfig>,
-    ///
     /// The Customer Managed Encryption Key used to encrypt the boot disk attached
     /// to each node in the node pool. This should be of the form
     /// projects/\[KEY_PROJECT_ID\]/locations/\[LOCATION\]/keyRings/\[RING_NAME\]/cryptoKeys/\[KEY_NAME\].
@@ -6114,7 +6128,7 @@ pub struct AutoprovisioningNodePoolDefaults {
 }
 /// Contains information about amount of some resource in the cluster.
 /// For memory, value should be in GB.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResourceLimit {
     /// Resource name "cpu", "memory" or gpu-specific string.
     #[prost(string, tag = "1")]
@@ -6128,7 +6142,7 @@ pub struct ResourceLimit {
 }
 /// NodePoolAutoscaling contains information required by cluster autoscaler to
 /// adjust the size of the node pool to the current cluster usage.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodePoolAutoscaling {
     /// Is autoscaling enabled for this node pool.
     #[prost(bool, tag = "1")]
@@ -6149,13 +6163,13 @@ pub struct NodePoolAutoscaling {
     pub location_policy: i32,
     /// Minimum number of nodes in the node pool. Must be greater than or equal
     /// to 0 and less than or equal to total_max_node_count.
-    /// The total_*_node_count fields are mutually exclusive with the *_node_count
+    /// The total\_\*\_node_count fields are mutually exclusive with the \*\_node_count
     /// fields.
     #[prost(int32, tag = "6")]
     pub total_min_node_count: i32,
     /// Maximum number of nodes in the node pool. Must be greater than or equal to
     /// total_min_node_count. There has to be enough quota to scale up the cluster.
-    /// The total_*_node_count fields are mutually exclusive with the *_node_count
+    /// The total\_\*\_node_count fields are mutually exclusive with the \*\_node_count
     /// fields.
     #[prost(int32, tag = "7")]
     pub total_max_node_count: i32,
@@ -6252,7 +6266,7 @@ pub struct SetLabelsRequest {
 }
 /// SetLegacyAbacRequest enables or disables the ABAC authorization mechanism for
 /// a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetLegacyAbacRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -6282,7 +6296,7 @@ pub struct SetLegacyAbacRequest {
 }
 /// StartIPRotationRequest creates a new IP for the cluster and then performs
 /// a node upgrade on each node pool to point to the new IP.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StartIpRotationRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -6311,7 +6325,7 @@ pub struct StartIpRotationRequest {
     pub rotate_credentials: bool,
 }
 /// CompleteIPRotationRequest moves the cluster master back into single-IP mode.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CompleteIpRotationRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -6337,7 +6351,7 @@ pub struct CompleteIpRotationRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// AcceleratorConfig represents a Hardware Accelerator request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AcceleratorConfig {
     /// The number of the accelerator cards exposed to an instance.
     #[prost(int64, tag = "1")]
@@ -6366,7 +6380,7 @@ pub struct AcceleratorConfig {
 }
 /// GPUSharingConfig represents the GPU sharing configuration for Hardware
 /// Accelerators.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GpuSharingConfig {
     /// The max number of containers that can share a physical GPU.
     #[prost(int64, tag = "1")]
@@ -6423,7 +6437,7 @@ pub mod gpu_sharing_config {
 }
 /// GPUDriverInstallationConfig specifies the version of GPU driver to be auto
 /// installed.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GpuDriverInstallationConfig {
     /// Mode for how the GPU driver is installed.
     #[prost(
@@ -6485,7 +6499,7 @@ pub mod gpu_driver_installation_config {
 }
 /// ManagedPrometheusConfig defines the configuration for
 /// Google Cloud Managed Service for Prometheus.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ManagedPrometheusConfig {
     /// Enable Managed Collection.
     #[prost(bool, tag = "1")]
@@ -6496,7 +6510,7 @@ pub struct ManagedPrometheusConfig {
 }
 /// AutoMonitoringConfig defines the configuration for GKE Workload
 /// Auto-Monitoring.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutoMonitoringConfig {
     /// Scope for GKE Workload Auto-Monitoring.
     #[prost(enumeration = "auto_monitoring_config::Scope", tag = "1")]
@@ -6550,7 +6564,7 @@ pub mod auto_monitoring_config {
 }
 /// WorkloadMetadataConfig defines the metadata configuration to expose to
 /// workloads on the node pool.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadMetadataConfig {
     /// NodeMetadata is the configuration for how to expose metadata to the
     /// workloads running on the node.
@@ -6673,7 +6687,7 @@ pub mod workload_metadata_config {
     }
 }
 /// SetNetworkPolicyRequest enables/disables network policy for a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetNetworkPolicyRequest {
     /// Deprecated. The Google Developers Console [project ID or project
     /// number](<https://cloud.google.com/resource-manager/docs/creating-managing-projects>).
@@ -6727,7 +6741,7 @@ pub struct SetMaintenancePolicyRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// ListLocationsRequest is used to request the locations that offer GKE.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListLocationsRequest {
     /// Required. Contains the name of the resource requested.
     /// Specified in the format `projects/*`.
@@ -6750,7 +6764,7 @@ pub struct ListLocationsResponse {
 }
 /// Location returns the location name, and if the location is recommended
 /// for GKE cluster scheduling.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Location {
     /// Contains the type of location this Location is for.
     /// Regional or Zonal.
@@ -6812,7 +6826,7 @@ pub mod location {
 }
 /// StatusCondition describes why a cluster or a node pool has a certain status
 /// (e.g., ERROR or DEGRADED).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StatusCondition {
     /// Machine-friendly representation of the condition
     /// Deprecated. Use canonical_code instead.
@@ -6900,7 +6914,7 @@ pub mod status_condition {
     }
 }
 /// NetworkConfig reports the relative names of network & subnetwork.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NetworkConfig {
     /// Output only. The relative name of the Google Compute Engine
     /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>)
@@ -6965,10 +6979,10 @@ pub struct NetworkConfig {
     #[prost(bool, optional, tag = "21")]
     pub enable_cilium_clusterwide_network_policy: ::core::option::Option<bool>,
     /// Controls whether by default nodes have private IP addresses only.
-    /// It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+    /// It is invalid to specify both \[PrivateClusterConfig.enablePrivateNodes\]\[\]
     /// and this field at the same time.
     /// To update the default setting, use
-    /// [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1beta1.ClusterUpdate.desired_default_enable_private_nodes]
+    /// \[ClusterUpdate.desired_default_enable_private_nodes\]\[google.container.v1beta1.ClusterUpdate.desired_default_enable_private_nodes\]
     #[prost(bool, optional, tag = "22")]
     pub default_enable_private_nodes: ::core::option::Option<bool>,
     /// Disable L4 load balancer VPC firewalls to enable firewall policies.
@@ -6978,7 +6992,7 @@ pub struct NetworkConfig {
 /// Nested message and enum types in `NetworkConfig`.
 pub mod network_config {
     /// Configuration of all network bandwidth tiers
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ClusterNetworkPerformanceConfig {
         /// Specifies the total network bandwidth tier for the NodePool.
         #[prost(
@@ -7032,7 +7046,7 @@ pub mod network_config {
     }
 }
 /// GatewayAPIConfig contains the desired config of Gateway API on this cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GatewayApiConfig {
     /// The Gateway API release channel to use for Gateway API.
     #[prost(enumeration = "gateway_api_config::Channel", tag = "1")]
@@ -7091,7 +7105,7 @@ pub mod gateway_api_config {
     }
 }
 /// Config to block services with externalIPs field.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ServiceExternalIPsConfig {
     /// Whether Services with ExternalIPs field are allowed or not.
     #[prost(bool, tag = "1")]
@@ -7099,7 +7113,7 @@ pub struct ServiceExternalIPsConfig {
 }
 /// ListUsableSubnetworksRequest requests the list of usable subnetworks.
 /// available to a user for creating clusters.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListUsableSubnetworksRequest {
     /// Required. The parent project where subnetworks are usable.
     /// Specified in the format `projects/*`.
@@ -7137,7 +7151,7 @@ pub struct ListUsableSubnetworksResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Secondary IP range of a usable subnetwork.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UsableSubnetworkSecondaryRange {
     /// The name associated with this subnetwork secondary range, used when adding
     /// an alias IP range to a VM instance.
@@ -7236,7 +7250,7 @@ pub struct UsableSubnetwork {
 /// VerticalPodAutoscaling contains global, per-cluster information
 /// required by Vertical Pod Autoscaler to automatically adjust
 /// the resources of pods controlled by it.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VerticalPodAutoscaling {
     /// Enables vertical pod autoscaling.
     #[prost(bool, tag = "1")]
@@ -7244,7 +7258,7 @@ pub struct VerticalPodAutoscaling {
 }
 /// DefaultSnatStatus contains the desired state of whether default sNAT should
 /// be disabled on the cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DefaultSnatStatus {
     /// Disables cluster default sNAT rules.
     #[prost(bool, tag = "1")]
@@ -7252,7 +7266,7 @@ pub struct DefaultSnatStatus {
 }
 /// IntraNodeVisibilityConfig contains the desired config of the intra-node
 /// visibility on this cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IntraNodeVisibilityConfig {
     /// Enables intra node visibility for this cluster.
     #[prost(bool, tag = "1")]
@@ -7260,14 +7274,14 @@ pub struct IntraNodeVisibilityConfig {
 }
 /// ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer
 /// subsetting on this cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IlbSubsettingConfig {
     /// Enables l4 ILB subsetting for this cluster
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// DNSConfig contains the desired set of options for configuring clusterDNS.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DnsConfig {
     /// cluster_dns indicates which in-cluster DNS provider should be used.
     #[prost(enumeration = "dns_config::Provider", tag = "1")]
@@ -7376,7 +7390,7 @@ pub mod dns_config {
     }
 }
 /// Constraints applied to pods.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MaxPodsConstraint {
     /// Constraint enforced on the max num of pods per node.
     #[prost(int64, tag = "1")]
@@ -7384,7 +7398,7 @@ pub struct MaxPodsConstraint {
 }
 /// Configuration for the use of Kubernetes Service Accounts in GCP IAM
 /// policies.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadIdentityConfig {
     /// IAM Identity Namespace to attach all Kubernetes Service Accounts to.
     #[deprecated]
@@ -7398,19 +7412,19 @@ pub struct WorkloadIdentityConfig {
     pub identity_provider: ::prost::alloc::string::String,
 }
 /// Configuration for direct-path (via ALTS) with workload identity.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadAltsConfig {
     /// enable_alts controls whether the alts handshaker should be enabled or not
     /// for direct-path.
     ///
     /// Requires Workload Identity
-    /// ([workload_pool][google.container.v1beta1.WorkloadIdentityConfig.workload_pool]
+    /// (\[workload_pool\]\[google.container.v1beta1.WorkloadIdentityConfig.workload_pool\]
     /// must be non-empty).
     #[prost(message, optional, tag = "1")]
     pub enable_alts: ::core::option::Option<bool>,
 }
 /// Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadCertificates {
     /// enable_certificates controls issuance of workload mTLS certificates.
     ///
@@ -7419,13 +7433,13 @@ pub struct WorkloadCertificates {
     /// WorkloadCertificateConfig Custom Resource.
     ///
     /// Requires Workload Identity
-    /// ([workload_pool][google.container.v1beta1.WorkloadIdentityConfig.workload_pool]
+    /// (\[workload_pool\]\[google.container.v1beta1.WorkloadIdentityConfig.workload_pool\]
     /// must be non-empty).
     #[prost(message, optional, tag = "1")]
     pub enable_certificates: ::core::option::Option<bool>,
 }
 /// Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MeshCertificates {
     /// enable_certificates controls issuance of workload mTLS certificates.
     ///
@@ -7434,7 +7448,7 @@ pub struct MeshCertificates {
     /// WorkloadCertificateConfig Custom Resource.
     ///
     /// Requires Workload Identity
-    /// ([workload_pool][google.container.v1alpha1.WorkloadIdentityConfig.workload_pool]
+    /// (\[workload_pool\]\[google.container.v1alpha1.WorkloadIdentityConfig.workload_pool\]
     /// must be non-empty).
     #[prost(message, optional, tag = "1")]
     pub enable_certificates: ::core::option::Option<bool>,
@@ -7469,7 +7483,7 @@ pub struct DatabaseEncryption {
 pub mod database_encryption {
     /// OperationError records errors seen from CloudKMS keys
     /// encountered during updates to DatabaseEncryption configuration.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct OperationError {
         /// CloudKMS key resource that had the error.
         #[prost(string, tag = "1")]
@@ -7589,7 +7603,7 @@ pub mod database_encryption {
     }
 }
 /// Configuration for exporting cluster resource usages.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResourceUsageExportConfig {
     /// Configuration to use BigQuery as usage export destination.
     #[prost(message, optional, tag = "1")]
@@ -7609,14 +7623,14 @@ pub struct ResourceUsageExportConfig {
 /// Nested message and enum types in `ResourceUsageExportConfig`.
 pub mod resource_usage_export_config {
     /// Parameters for using BigQuery as the destination of resource usage export.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct BigQueryDestination {
         /// The ID of a BigQuery Dataset.
         #[prost(string, tag = "1")]
         pub dataset_id: ::prost::alloc::string::String,
     }
     /// Parameters for controlling consumption metering.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ConsumptionMeteringConfig {
         /// Whether to enable consumption metering for this cluster. If enabled, a
         /// second BigQuery table will be created to hold resource consumption
@@ -7626,21 +7640,21 @@ pub mod resource_usage_export_config {
     }
 }
 /// Configuration of Shielded Nodes feature.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShieldedNodes {
     /// Whether Shielded Nodes features are enabled on all nodes in this cluster.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration of gVNIC feature.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VirtualNic {
     /// Whether gVNIC features are enabled in the node pool.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// Configuration of Fast Socket feature.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FastSocket {
     /// Whether Fast Socket features are enabled in the node pool.
     #[prost(bool, tag = "1")]
@@ -7648,7 +7662,7 @@ pub struct FastSocket {
 }
 /// GetOpenIDConfigRequest gets the OIDC discovery document for the
 /// cluster. See the OpenID Connect Discovery 1.0 specification for details.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetOpenIdConfigRequest {
     /// The cluster (project, location, cluster name) to get the discovery document
     /// for. Specified in the format `projects/*/locations/*/clusters/*`.
@@ -7657,7 +7671,7 @@ pub struct GetOpenIdConfigRequest {
 }
 /// GetOpenIDConfigResponse is an OIDC discovery document for the cluster.
 /// See the OpenID Connect Discovery 1.0 specification for details.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetOpenIdConfigResponse {
     /// OIDC Issuer.
     #[prost(string, tag = "1")]
@@ -7691,7 +7705,7 @@ pub struct GetOpenIdConfigResponse {
 /// cluster to sign token requests. This will be the jwks_uri for the discover
 /// document returned by getOpenIDConfig. See the OpenID Connect
 /// Discovery 1.0 specification for details.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetJsonWebKeysRequest {
     /// The cluster (project, location, cluster name) to get keys for. Specified in
     /// the format `projects/*/locations/*/clusters/*`.
@@ -7699,7 +7713,7 @@ pub struct GetJsonWebKeysRequest {
     pub parent: ::prost::alloc::string::String,
 }
 /// Jwk is a JSON Web Key as specified in RFC 7517
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Jwk {
     /// Key Type.
     #[prost(string, tag = "1")]
@@ -7739,7 +7753,7 @@ pub struct GetJsonWebKeysResponse {
 }
 /// CheckAutopilotCompatibilityRequest requests getting the blockers for the
 /// given operation in the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CheckAutopilotCompatibilityRequest {
     /// The name (project, location, cluster) of the cluster to retrieve.
     /// Specified in the format `projects/*/locations/*/clusters/*`.
@@ -7748,7 +7762,7 @@ pub struct CheckAutopilotCompatibilityRequest {
 }
 /// AutopilotCompatibilityIssue contains information about a specific
 /// compatibility issue with Autopilot mode.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutopilotCompatibilityIssue {
     /// The last time when this issue was observed.
     #[prost(message, optional, tag = "1")]
@@ -7839,7 +7853,7 @@ pub struct CheckAutopilotCompatibilityResponse {
 /// When a cluster is subscribed to a release channel, Google maintains
 /// both the master version and the node version. Node auto-upgrade
 /// defaults to true and cannot be disabled.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReleaseChannel {
     /// channel specifies which release channel the cluster is subscribed to.
     #[prost(enumeration = "release_channel::Channel", tag = "1")]
@@ -7909,7 +7923,7 @@ pub mod release_channel {
     }
 }
 /// Configuration for fine-grained cost management feature.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CostManagementConfig {
     /// Whether the feature is enabled or not.
     #[prost(bool, tag = "1")]
@@ -7918,7 +7932,7 @@ pub struct CostManagementConfig {
 /// Configuration for Cloud TPU.
 /// This message is deprecated due to the deprecation of 2VM TPU. The end of life
 /// date for 2VM TPU is 2025-04-25.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TpuConfig {
     /// Whether Cloud TPU integration is enabled or not.
     #[prost(bool, tag = "1")]
@@ -7931,10 +7945,10 @@ pub struct TpuConfig {
     pub ipv4_cidr_block: ::prost::alloc::string::String,
 }
 /// Master is the configuration for components on master.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Master {}
 /// AutopilotConversionStatus represents conversion status.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutopilotConversionStatus {
     /// Output only. The current state of the conversion.
     #[prost(enumeration = "autopilot_conversion_status::State", tag = "2")]
@@ -7984,7 +7998,7 @@ pub mod autopilot_conversion_status {
     }
 }
 /// Autopilot is the configuration for Autopilot settings on the cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Autopilot {
     /// Enable Autopilot
     #[prost(bool, tag = "1")]
@@ -7997,7 +8011,7 @@ pub struct Autopilot {
     pub conversion_status: ::core::option::Option<AutopilotConversionStatus>,
 }
 /// WorkloadPolicyConfig is the configuration related to GCW workload policy
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadPolicyConfig {
     /// If true, workloads can use NET_ADMIN capability.
     #[prost(bool, optional, tag = "1")]
@@ -8008,7 +8022,7 @@ pub struct WorkloadPolicyConfig {
     pub autopilot_compatibility_auditing_enabled: ::core::option::Option<bool>,
 }
 /// NotificationConfig is the configuration of notifications.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NotificationConfig {
     /// Notification config for Pub/Sub.
     #[prost(message, optional, tag = "1")]
@@ -8017,7 +8031,7 @@ pub struct NotificationConfig {
 /// Nested message and enum types in `NotificationConfig`.
 pub mod notification_config {
     /// Pub/Sub specific notification config.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PubSub {
         /// Enable notifications for Pub/Sub.
         #[prost(bool, tag = "1")]
@@ -8036,7 +8050,7 @@ pub mod notification_config {
     /// present, those and only those event types will be transmitted to the
     /// cluster. Other types will be skipped. If no filter is specified, or no
     /// event types are present, all event types will be sent
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Filter {
         /// Event types to allowlist.
         #[prost(enumeration = "EventType", repeated, tag = "1")]
@@ -8097,7 +8111,7 @@ pub mod notification_config {
 }
 /// ConfidentialNodes is configuration for the confidential nodes feature, which
 /// makes nodes run on confidential VMs.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConfidentialNodes {
     /// Whether Confidential Nodes feature is enabled.
     #[prost(bool, tag = "1")]
@@ -8158,7 +8172,7 @@ pub mod confidential_nodes {
 }
 /// UpgradeEvent is a notification sent to customers by the cluster server when
 /// a resource is upgrading.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpgradeEvent {
     /// The resource type that is upgrading.
     #[prost(enumeration = "UpgradeResourceType", tag = "1")]
@@ -8182,7 +8196,7 @@ pub struct UpgradeEvent {
 }
 /// UpgradeInfoEvent is a notification sent to customers about the upgrade
 /// information of a resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpgradeInfoEvent {
     /// The resource type associated with the upgrade.
     #[prost(enumeration = "UpgradeResourceType", tag = "1")]
@@ -8350,7 +8364,7 @@ pub struct UpgradeAvailableEvent {
 }
 /// SecurityBulletinEvent is a notification sent to customers when a security
 /// bulletin has been posted that they are vulnerable to.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SecurityBulletinEvent {
     /// The resource type (node/control plane) that has the vulnerability. Multiple
     /// notifications (1 notification per resource type) will be sent for a
@@ -8398,21 +8412,21 @@ pub struct SecurityBulletinEvent {
 }
 /// IdentityServiceConfig is configuration for Identity Service which allows
 /// customers to use external identity providers with the K8S API
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IdentityServiceConfig {
     /// Whether to enable the Identity Service component
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// LoggingConfig is cluster logging configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LoggingConfig {
     /// Logging components configuration
     #[prost(message, optional, tag = "1")]
     pub component_config: ::core::option::Option<LoggingComponentConfig>,
 }
 /// LoggingComponentConfig is cluster logging component configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LoggingComponentConfig {
     /// Select components to collect logs. An empty set would disable all logging.
     #[prost(enumeration = "logging_component_config::Component", repeated, tag = "1")]
@@ -8489,14 +8503,14 @@ pub mod logging_component_config {
     }
 }
 /// RayClusterLoggingConfig specifies logging configuration for Ray clusters.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RayClusterLoggingConfig {
     /// Enable log collection for Ray clusters.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// MonitoringConfig is cluster monitoring configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MonitoringConfig {
     /// Monitoring components configuration
     #[prost(message, optional, tag = "1")]
@@ -8513,7 +8527,7 @@ pub struct MonitoringConfig {
 }
 /// AdvancedDatapathObservabilityConfig specifies configuration of observability
 /// features of advanced datapath.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdvancedDatapathObservabilityConfig {
     /// Expose flow metrics on nodes
     #[prost(bool, tag = "1")]
@@ -8580,21 +8594,21 @@ pub mod advanced_datapath_observability_config {
 }
 /// RayClusterMonitoringConfig specifies monitoring configuration for Ray
 /// clusters.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RayClusterMonitoringConfig {
     /// Enable metrics collection for Ray clusters.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
 }
 /// NodePoolLoggingConfig specifies logging configuration for nodepools.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodePoolLoggingConfig {
     /// Logging variant configuration.
     #[prost(message, optional, tag = "1")]
     pub variant_config: ::core::option::Option<LoggingVariantConfig>,
 }
 /// LoggingVariantConfig specifies the behaviour of the logging component.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LoggingVariantConfig {
     /// Logging variant deployed on nodes.
     #[prost(enumeration = "logging_variant_config::Variant", tag = "1")]
@@ -8647,7 +8661,7 @@ pub mod logging_variant_config {
     }
 }
 /// MonitoringComponentConfig is cluster monitoring component configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MonitoringComponentConfig {
     /// Select components to collect metrics. An empty set would disable all
     /// monitoring.
@@ -8754,7 +8768,7 @@ pub mod monitoring_component_config {
 }
 /// PodAutoscaling is used for configuration of parameters
 /// for workload autoscaling.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PodAutoscaling {
     /// Selected Horizontal Pod Autoscaling profile.
     #[prost(enumeration = "pod_autoscaling::HpaProfile", optional, tag = "2")]
@@ -8809,7 +8823,7 @@ pub mod pod_autoscaling {
     }
 }
 /// Fleet is the fleet configuration for the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Fleet {
     /// The Fleet host project(project ID or project number) where this cluster
     /// will be registered to. This field cannot be changed after the cluster has
@@ -8843,13 +8857,13 @@ pub struct ControlPlaneEndpointsConfig {
 /// Nested message and enum types in `ControlPlaneEndpointsConfig`.
 pub mod control_plane_endpoints_config {
     /// Describes the configuration of a DNS endpoint.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DnsEndpointConfig {
         /// Output only. The cluster's DNS endpoint configuration.
         /// A DNS format address. This is accessible from the public internet.
         /// Ex: uid.us-central1.gke.goog.
         /// Always present, but the behavior may change according to the value of
-        /// [DNSEndpointConfig.allow_external_traffic][google.container.v1beta1.ControlPlaneEndpointsConfig.DNSEndpointConfig.allow_external_traffic].
+        /// \[DNSEndpointConfig.allow_external_traffic\]\[google.container.v1beta1.ControlPlaneEndpointsConfig.DNSEndpointConfig.allow_external_traffic\].
         #[prost(string, tag = "2")]
         pub endpoint: ::prost::alloc::string::String,
         /// Controls whether user traffic is allowed over this endpoint. Note that
@@ -8865,21 +8879,21 @@ pub mod control_plane_endpoints_config {
         pub enabled: ::core::option::Option<bool>,
         /// Controls whether the control plane allows access through a public IP.
         /// It is invalid to specify both
-        /// [PrivateClusterConfig.enablePrivateEndpoint][] and this field at the same
+        /// \[PrivateClusterConfig.enablePrivateEndpoint\]\[\] and this field at the same
         /// time.
         #[prost(bool, optional, tag = "2")]
         pub enable_public_endpoint: ::core::option::Option<bool>,
         /// Controls whether the control plane's private endpoint is accessible from
         /// sources in other regions.
         /// It is invalid to specify both
-        /// [PrivateClusterMasterGlobalAccessConfig.enabled][google.container.v1beta1.PrivateClusterMasterGlobalAccessConfig.enabled]
+        /// \[PrivateClusterMasterGlobalAccessConfig.enabled\]\[google.container.v1beta1.PrivateClusterMasterGlobalAccessConfig.enabled\]
         /// and this field at the same time.
         #[prost(bool, optional, tag = "3")]
         pub global_access: ::core::option::Option<bool>,
         /// Configuration of authorized networks. If enabled, restricts access to the
         /// control plane based on source IP.
         /// It is invalid to specify both
-        /// [Cluster.masterAuthorizedNetworksConfig][] and this field at the same
+        /// \[Cluster.masterAuthorizedNetworksConfig\]\[\] and this field at the same
         /// time.
         #[prost(message, optional, tag = "4")]
         pub authorized_networks_config: ::core::option::Option<
@@ -8894,9 +8908,9 @@ pub mod control_plane_endpoints_config {
         #[prost(string, tag = "6")]
         pub private_endpoint: ::prost::alloc::string::String,
         /// Subnet to provision the master's private endpoint during cluster
-        /// creation. Specified in projects/*/regions/*/subnetworks/* format. It is
+        /// creation. Specified in projects/*/regions/*/subnetworks/\* format. It is
         /// invalid to specify both
-        /// [PrivateClusterConfig.privateEndpointSubnetwork][] and this field at the
+        /// \[PrivateClusterConfig.privateEndpointSubnetwork\]\[\] and this field at the
         /// same time.
         #[prost(string, tag = "7")]
         pub private_endpoint_subnetwork: ::prost::alloc::string::String,
@@ -8910,10 +8924,11 @@ pub mod control_plane_endpoints_config {
 /// Existing tags will be replaced with new values.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceManagerTags {
-    /// Tags must be in one of the following formats (\[KEY\]=[VALUE])
+    /// Tags must be in one of the following formats (\[KEY\]=\[VALUE\])
+    ///
     /// 1. `tagKeys/{tag_key_id}=tagValues/{tag_value_id}`
-    /// 2. `{org_id}/{tag_key_name}={tag_value_name}`
-    /// 3. `{project_id}/{tag_key_name}={tag_value_name}`
+    /// 1. `{org_id}/{tag_key_name}={tag_value_name}`
+    /// 1. `{project_id}/{tag_key_name}={tag_value_name}`
     #[prost(btree_map = "string, string", tag = "1")]
     pub tags: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -8921,7 +8936,7 @@ pub struct ResourceManagerTags {
     >,
 }
 /// EnterpriseConfig is the cluster enterprise configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EnterpriseConfig {
     /// Output only. cluster_tier indicates the effective tier of the cluster.
     #[prost(enumeration = "enterprise_config::ClusterTier", tag = "1")]
@@ -8977,7 +8992,7 @@ pub mod enterprise_config {
     }
 }
 /// SecretManagerConfig is config for secret manager enablement.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SecretManagerConfig {
     /// Enable/Disable Secret Manager Config.
     #[prost(bool, optional, tag = "1")]
@@ -8989,7 +9004,7 @@ pub struct SecretManagerConfig {
 /// Nested message and enum types in `SecretManagerConfig`.
 pub mod secret_manager_config {
     /// RotationConfig is config for secret manager auto rotation.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct RotationConfig {
         /// Whether the rotation is enabled.
         #[prost(bool, optional, tag = "1")]
@@ -9002,7 +9017,7 @@ pub mod secret_manager_config {
 }
 /// SecondaryBootDisk represents a persistent disk attached to a node
 /// with special configurations based on its mode.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SecondaryBootDisk {
     /// Disk mode (container image cache, etc.)
     #[prost(enumeration = "secondary_boot_disk::Mode", tag = "1")]
@@ -9057,10 +9072,10 @@ pub mod secondary_boot_disk {
 }
 /// SecondaryBootDiskUpdateStrategy is a placeholder which will be extended
 /// in the future to define different options for updating secondary boot disks.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SecondaryBootDiskUpdateStrategy {}
 /// FetchClusterUpgradeInfoRequest fetches the upgrade information of a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FetchClusterUpgradeInfoRequest {
     /// Required. The name (project, location, cluster) of the cluster to get.
     /// Specified in the format `projects/*/locations/*/clusters/*` or
@@ -9238,7 +9253,7 @@ pub mod cluster_upgrade_info {
 }
 /// UpgradeDetails contains detailed information of each individual upgrade
 /// operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpgradeDetails {
     /// Output only. The state of the upgrade.
     #[prost(enumeration = "upgrade_details::State", tag = "1")]
@@ -9358,7 +9373,7 @@ pub mod upgrade_details {
 }
 /// FetchNodePoolUpgradeInfoRequest fetches the upgrade information of a
 /// nodepool.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FetchNodePoolUpgradeInfoRequest {
     /// Required. The name (project, location, cluster, nodepool) of the nodepool
     /// to get. Specified in the format
@@ -9850,7 +9865,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/ListClusters",
             );
@@ -9877,7 +9892,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/GetCluster",
             );
@@ -9917,7 +9932,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/CreateCluster",
             );
@@ -9944,7 +9959,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/UpdateCluster",
             );
@@ -9971,7 +9986,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/UpdateNodePool",
             );
@@ -9998,7 +10013,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetNodePoolAutoscaling",
             );
@@ -10025,7 +10040,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetLoggingService",
             );
@@ -10052,7 +10067,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetMonitoringService",
             );
@@ -10079,7 +10094,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetAddonsConfig",
             );
@@ -10110,7 +10125,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetLocations",
             );
@@ -10137,7 +10152,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/UpdateMaster",
             );
@@ -10166,7 +10181,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetMasterAuth",
             );
@@ -10201,7 +10216,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/DeleteCluster",
             );
@@ -10231,7 +10246,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/ListOperations",
             );
@@ -10258,7 +10273,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/GetOperation",
             );
@@ -10285,7 +10300,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/CancelOperation",
             );
@@ -10312,7 +10327,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/GetServerConfig",
             );
@@ -10343,7 +10358,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/GetJSONWebKeys",
             );
@@ -10373,7 +10388,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/ListNodePools",
             );
@@ -10400,7 +10415,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/GetNodePool",
             );
@@ -10427,7 +10442,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/CreateNodePool",
             );
@@ -10454,7 +10469,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/DeleteNodePool",
             );
@@ -10482,7 +10497,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/CompleteNodePoolUpgrade",
             );
@@ -10510,7 +10525,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/RollbackNodePoolUpgrade",
             );
@@ -10537,7 +10552,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetNodePoolManagement",
             );
@@ -10564,7 +10579,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetLabels",
             );
@@ -10591,7 +10606,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetLegacyAbac",
             );
@@ -10618,7 +10633,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/StartIPRotation",
             );
@@ -10645,7 +10660,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/CompleteIPRotation",
             );
@@ -10661,7 +10676,7 @@ pub mod cluster_manager_client {
         }
         /// SetNodePoolSizeRequest sets the size of a node pool. The new size will be
         /// used for all replicas, including future replicas created by modifying
-        /// [NodePool.locations][google.container.v1beta1.NodePool.locations].
+        /// \[NodePool.locations\]\[google.container.v1beta1.NodePool.locations\].
         pub async fn set_node_pool_size(
             &mut self,
             request: impl tonic::IntoRequest<super::SetNodePoolSizeRequest>,
@@ -10674,7 +10689,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetNodePoolSize",
             );
@@ -10701,7 +10716,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetNetworkPolicy",
             );
@@ -10728,7 +10743,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/SetMaintenancePolicy",
             );
@@ -10758,7 +10773,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/ListUsableSubnetworks",
             );
@@ -10789,7 +10804,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/CheckAutopilotCompatibility",
             );
@@ -10819,7 +10834,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/ListLocations",
             );
@@ -10849,7 +10864,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/FetchClusterUpgradeInfo",
             );
@@ -10879,7 +10894,7 @@ pub mod cluster_manager_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.container.v1beta1.ClusterManager/FetchNodePoolUpgradeInfo",
             );

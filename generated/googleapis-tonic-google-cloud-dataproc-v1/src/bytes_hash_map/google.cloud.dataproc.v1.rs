@@ -5,21 +5,20 @@ pub struct AutoscalingPolicy {
     /// Required. The policy id.
     ///
     /// The id must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of between 3 and 50 characters.
-    ///
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
     /// Output only. The "resource name" of the autoscaling policy, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies`, the resource name of the
-    ///    policy has the following format:
-    ///    `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+    ///   policy has the following format:
+    ///   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
     ///
     /// * For `projects.locations.autoscalingPolicies`, the resource name of the
-    ///    policy has the following format:
-    ///    `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+    ///   policy has the following format:
+    ///   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
     #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
     /// Required. Describes how the autoscaler will operate for primary workers.
@@ -132,7 +131,7 @@ pub struct BasicYarnAutoscalingConfig {
 }
 /// Configuration for the size bounds of an instance group, including its
 /// proportional size to other groups.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstanceGroupAutoscalingPolicyConfig {
     /// Optional. Minimum number of instances for this group.
     ///
@@ -144,8 +143,8 @@ pub struct InstanceGroupAutoscalingPolicyConfig {
     /// workers. Note that by default, clusters will not use secondary workers.
     /// Required for secondary workers if the minimum secondary instances is set.
     ///
-    /// Primary workers - Bounds: [min_instances, ).
-    /// Secondary workers - Bounds: [min_instances, ). Default: 0.
+    /// Primary workers - Bounds: \[min_instances, ).
+    /// Secondary workers - Bounds: \[min_instances, ). Default: 0.
     #[prost(int32, tag = "2")]
     pub max_instances: i32,
     /// Optional. Weight for the instance group, which is used to determine the
@@ -176,12 +175,12 @@ pub struct CreateAutoscalingPolicyRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.create`, the resource name
-    ///    of the region has the following format:
-    ///    `projects/{project_id}/regions/{region}`
+    ///   of the region has the following format:
+    ///   `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.autoscalingPolicies.create`, the resource name
-    ///    of the location has the following format:
-    ///    `projects/{project_id}/locations/{location}`
+    ///   of the location has the following format:
+    ///   `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The autoscaling policy to create.
@@ -189,18 +188,18 @@ pub struct CreateAutoscalingPolicyRequest {
     pub policy: ::core::option::Option<AutoscalingPolicy>,
 }
 /// A request to fetch an autoscaling policy.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetAutoscalingPolicyRequest {
     /// Required. The "resource name" of the autoscaling policy, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.get`, the resource name
-    ///    of the policy has the following format:
-    ///    `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+    ///   of the policy has the following format:
+    ///   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
     ///
     /// * For `projects.locations.autoscalingPolicies.get`, the resource name
-    ///    of the policy has the following format:
-    ///    `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+    ///   of the policy has the following format:
+    ///   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
@@ -214,34 +213,34 @@ pub struct UpdateAutoscalingPolicyRequest {
 /// A request to delete an autoscaling policy.
 ///
 /// Autoscaling policies in use by one or more clusters will not be deleted.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteAutoscalingPolicyRequest {
     /// Required. The "resource name" of the autoscaling policy, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.delete`, the resource name
-    ///    of the policy has the following format:
-    ///    `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+    ///   of the policy has the following format:
+    ///   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
     ///
     /// * For `projects.locations.autoscalingPolicies.delete`, the resource name
-    ///    of the policy has the following format:
-    ///    `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+    ///   of the policy has the following format:
+    ///   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// A request to list autoscaling policies in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAutoscalingPoliciesRequest {
     /// Required. The "resource name" of the region or location, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.autoscalingPolicies.list`, the resource name
-    ///    of the region has the following format:
-    ///    `projects/{project_id}/regions/{region}`
+    ///   of the region has the following format:
+    ///   `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.autoscalingPolicies.list`, the resource name
-    ///    of the location has the following format:
-    ///    `projects/{project_id}/locations/{location}`
+    ///   of the location has the following format:
+    ///   `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return in each response.
@@ -364,7 +363,7 @@ pub mod autoscaling_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.AutoscalingPolicyService/CreateAutoscalingPolicy",
             );
@@ -397,7 +396,7 @@ pub mod autoscaling_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.AutoscalingPolicyService/UpdateAutoscalingPolicy",
             );
@@ -427,7 +426,7 @@ pub mod autoscaling_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.AutoscalingPolicyService/GetAutoscalingPolicy",
             );
@@ -457,7 +456,7 @@ pub mod autoscaling_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.AutoscalingPolicyService/ListAutoscalingPolicies",
             );
@@ -485,7 +484,7 @@ pub mod autoscaling_policy_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.AutoscalingPolicyService/DeleteAutoscalingPolicy",
             );
@@ -530,7 +529,7 @@ pub struct RuntimeConfig {
     pub cohort: ::prost::alloc::string::String,
 }
 /// Environment configuration for a workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EnvironmentConfig {
     /// Optional. Execution configuration for a workload.
     #[prost(message, optional, tag = "1")]
@@ -540,7 +539,7 @@ pub struct EnvironmentConfig {
     pub peripherals_config: ::core::option::Option<PeripheralsConfig>,
 }
 /// Execution configuration for a workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExecutionConfig {
     /// Optional. Service account that used to execute workload.
     #[prost(string, tag = "2")]
@@ -602,7 +601,7 @@ pub struct ExecutionConfig {
 /// Nested message and enum types in `ExecutionConfig`.
 pub mod execution_config {
     /// Network configuration for workload execution.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Network {
         /// Optional. Network URI to connect workload to.
         #[prost(string, tag = "4")]
@@ -613,7 +612,7 @@ pub mod execution_config {
     }
 }
 /// Spark History Server configuration for the workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SparkHistoryServerConfig {
     /// Optional. Resource name of an existing Dataproc Cluster to act as a Spark
     /// History Server for the workload.
@@ -625,7 +624,7 @@ pub struct SparkHistoryServerConfig {
     pub dataproc_cluster: ::prost::alloc::string::String,
 }
 /// Auxiliary services configuration for a workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PeripheralsConfig {
     /// Optional. Resource name of an existing Dataproc Metastore service.
     ///
@@ -673,7 +672,7 @@ pub struct RuntimeInfo {
     pub current_usage: ::core::option::Option<UsageSnapshot>,
 }
 /// Usage metrics represent approximate total resources consumed by a workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UsageMetrics {
     /// Optional. DCU (Dataproc Compute Units) usage in (`milliDCU` x `seconds`)
     /// (see \[Dataproc Serverless pricing\]
@@ -696,15 +695,15 @@ pub struct UsageMetrics {
 }
 /// The usage snapshot represents the resources consumed by a workload at a
 /// specified time.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UsageSnapshot {
     /// Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see
     /// \[Dataproc Serverless pricing\]
     /// (<https://cloud.google.com/dataproc-serverless/pricing>)).
     #[prost(int64, tag = "1")]
     pub milli_dcu: i64,
-    /// Optional. Shuffle Storage in gigabytes (GB). (see [Dataproc Serverless
-    /// pricing] (<https://cloud.google.com/dataproc-serverless/pricing>))
+    /// Optional. Shuffle Storage in gigabytes (GB). (see \[Dataproc Serverless
+    /// pricing\] (<https://cloud.google.com/dataproc-serverless/pricing>))
     #[prost(int64, tag = "2")]
     pub shuffle_storage_gb: i64,
     /// Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
@@ -717,8 +716,8 @@ pub struct UsageSnapshot {
     /// (<https://cloud.google.com/dataproc-serverless/pricing>))
     #[prost(int64, tag = "5")]
     pub shuffle_storage_gb_premium: i64,
-    /// Optional. Milli (one-thousandth) accelerator. (see [Dataproc
-    /// Serverless pricing] (<https://cloud.google.com/dataproc-serverless/pricing>))
+    /// Optional. Milli (one-thousandth) accelerator. (see \[Dataproc
+    /// Serverless pricing\] (<https://cloud.google.com/dataproc-serverless/pricing>))
     #[prost(int64, tag = "6")]
     pub milli_accelerator: i64,
     /// Optional. Accelerator type being used, if any
@@ -739,7 +738,7 @@ pub struct GkeClusterConfig {
     pub gke_cluster_target: ::prost::alloc::string::String,
     /// Optional. GKE node pools where workloads will be scheduled. At least one
     /// node pool must be assigned the `DEFAULT`
-    /// [GkeNodePoolTarget.Role][google.cloud.dataproc.v1.GkeNodePoolTarget.Role].
+    /// \[GkeNodePoolTarget.Role\]\[google.cloud.dataproc.v1.GkeNodePoolTarget.Role\].
     /// If a `GkeNodePoolTarget` is not specified, Dataproc constructs a `DEFAULT`
     /// `GkeNodePoolTarget`. Each role can be given to only one
     /// `GkeNodePoolTarget`. All node pools must have the same location settings.
@@ -834,7 +833,7 @@ pub struct GkeNodePoolTarget {
 pub mod gke_node_pool_target {
     /// `Role` specifies the tasks that will run on the node pool. Roles can be
     /// specific to workloads. Exactly one
-    /// [GkeNodePoolTarget][google.cloud.dataproc.v1.GkeNodePoolTarget] within the
+    /// \[GkeNodePoolTarget\]\[google.cloud.dataproc.v1.GkeNodePoolTarget\] within the
     /// virtual cluster must have the `DEFAULT` role, which is used to run all
     /// workloads that are not associated with a node pool.
     #[derive(
@@ -934,10 +933,10 @@ pub mod gke_node_pool_config {
         /// Local SSDs](<https://cloud.google.com/compute/docs/disks/local-ssd>)).
         #[prost(int32, tag = "7")]
         pub local_ssd_count: i32,
-        /// Optional. Whether the nodes are created as legacy [preemptible VM
-        /// instances] (<https://cloud.google.com/compute/docs/instances/preemptible>).
+        /// Optional. Whether the nodes are created as legacy \[preemptible VM
+        /// instances\] (<https://cloud.google.com/compute/docs/instances/preemptible>).
         /// Also see
-        /// [Spot][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot]
+        /// \[Spot\]\[google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot\]
         /// VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot
         /// preemptible nodes cannot be used in a node pool with the `CONTROLLER`
         /// \[role\]
@@ -955,7 +954,7 @@ pub mod gke_node_pool_config {
         /// platform](<https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform>)
         /// to be used by this instance. The instance may be scheduled on the
         /// specified or a newer CPU platform. Specify the friendly names of CPU
-        /// platforms, such as "Intel Haswell"` or Intel Sandy Bridge".
+        /// platforms, such as "Intel Haswell"\` or Intel Sandy Bridge".
         #[prost(string, tag = "13")]
         pub min_cpu_platform: ::prost::alloc::string::String,
         /// Optional. The \[Customer Managed Encryption Key (CMEK)\]
@@ -968,8 +967,8 @@ pub mod gke_node_pool_config {
         /// Optional. Whether the nodes are created as \[Spot VM instances\]
         /// (<https://cloud.google.com/compute/docs/instances/spot>).
         /// Spot VMs are the latest update to legacy
-        /// [preemptible
-        /// VMs][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible].
+        /// \[preemptible
+        /// VMs\]\[google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible\].
         /// Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible
         /// nodes cannot be used in a node pool with the `CONTROLLER`
         /// [role](/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
@@ -980,7 +979,7 @@ pub mod gke_node_pool_config {
     }
     /// A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request
     /// for a node pool.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GkeNodePoolAcceleratorConfig {
         /// The number of accelerator cards exposed to an instance.
         #[prost(int64, tag = "1")]
@@ -996,9 +995,9 @@ pub mod gke_node_pool_config {
     }
     /// GkeNodePoolAutoscaling contains information the cluster autoscaler needs to
     /// adjust the size of the node pool to the current cluster usage.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GkeNodePoolAutoscalingConfig {
-        /// The minimum number of nodes in the node pool. Must be >= 0 and <=
+        /// The minimum number of nodes in the node pool. Must be >= 0 and \<=
         /// max_node_count.
         #[prost(int32, tag = "2")]
         pub min_node_count: i32,
@@ -1013,7 +1012,7 @@ pub mod gke_node_pool_config {
 /// identity for the workload execution.
 /// The config specifies the type of identity (service account or user) that
 /// will be used by workloads to access resources on the project(s).
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AuthenticationConfig {
     /// Optional. Authentication type for the user workload running in containers.
     #[prost(enumeration = "authentication_config::AuthenticationType", tag = "1")]
@@ -1069,7 +1068,7 @@ pub mod authentication_config {
     }
 }
 /// Autotuning configuration of the workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutotuningConfig {
     /// Optional. Scenarios for which tunings are applied.
     #[prost(
@@ -1140,14 +1139,14 @@ pub mod autotuning_config {
     }
 }
 /// Configuration for dependency repositories
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RepositoryConfig {
     /// Optional. Configuration for PyPi repository.
     #[prost(message, optional, tag = "1")]
     pub pypi_repository_config: ::core::option::Option<PyPiRepositoryConfig>,
 }
 /// Configuration for PyPi repository
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PyPiRepositoryConfig {
     /// Optional. PyPi repository address
     #[prost(string, tag = "1")]
@@ -1310,12 +1309,12 @@ pub struct CreateBatchRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to get the resource representation for a batch workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetBatchRequest {
     /// Required. The fully qualified name of the batch to retrieve
     /// in the format
@@ -1324,7 +1323,7 @@ pub struct GetBatchRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// A request to list batch workloads in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListBatchesRequest {
     /// Required. The parent, which owns this collection of batches.
     #[prost(string, tag = "1")]
@@ -1378,7 +1377,7 @@ pub struct ListBatchesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to delete a batch workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteBatchRequest {
     /// Required. The fully qualified name of the batch to retrieve
     /// in the format
@@ -1446,7 +1445,7 @@ pub struct Batch {
 /// Nested message and enum types in `Batch`.
 pub mod batch {
     /// Historical state information.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct StateHistory {
         /// Output only. The state of the batch at this point in history.
         #[prost(enumeration = "State", tag = "1")]
@@ -1538,7 +1537,7 @@ pub mod batch {
 /// [Apache
 /// PySpark](<https://spark.apache.org/docs/latest/api/python/getting_started/quickstart.html>)
 /// batch workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PySparkBatch {
     /// Required. The HCFS URI of the main Python file to use as the Spark driver.
     /// Must be a .py file.
@@ -1569,7 +1568,7 @@ pub struct PySparkBatch {
 }
 /// A configuration for running an [Apache Spark](<https://spark.apache.org/>)
 /// batch workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SparkBatch {
     /// Optional. The arguments to pass to the driver. Do not include arguments
     /// that can be set as batch properties, such as `--conf`, since a collision
@@ -1604,7 +1603,7 @@ pub mod spark_batch {
     /// main class name. To pass both a main jar and a main class in that jar, add
     /// the jar to `jar_file_uris`, and then specify the main class
     /// name in `main_class`.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Driver {
         /// Optional. The HCFS URI of the jar file that contains the main class.
         #[prost(string, tag = "1")]
@@ -1618,7 +1617,7 @@ pub mod spark_batch {
 /// A configuration for running an
 /// [Apache SparkR](<https://spark.apache.org/docs/latest/sparkr.html>)
 /// batch workload.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SparkRBatch {
     /// Required. The HCFS URI of the main R file to use as the driver.
     /// Must be a `.R` or `.r` file.
@@ -1756,7 +1755,7 @@ pub mod batch_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.BatchController/CreateBatch",
             );
@@ -1783,7 +1782,7 @@ pub mod batch_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.BatchController/GetBatch",
             );
@@ -1813,7 +1812,7 @@ pub mod batch_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.BatchController/ListBatches",
             );
@@ -1841,7 +1840,7 @@ pub mod batch_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.BatchController/DeleteBatch",
             );
@@ -2012,7 +2011,7 @@ pub mod session_operation_metadata {
     }
 }
 /// The status of the operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClusterOperationStatus {
     /// Output only. A message containing the operation state.
     #[prost(enumeration = "cluster_operation_status::State", tag = "1")]
@@ -2225,8 +2224,8 @@ pub struct Cluster {
     /// cluster](<https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview>).
     /// Dataproc may set default values, and values may change when
     /// clusters are updated. Exactly one of
-    /// [config][google.cloud.dataproc.v1.Cluster.config] or
-    /// [virtual_cluster_config][google.cloud.dataproc.v1.Cluster.virtual_cluster_config]
+    /// \[config\]\[google.cloud.dataproc.v1.Cluster.config\] or
+    /// \[virtual_cluster_config\]\[google.cloud.dataproc.v1.Cluster.virtual_cluster_config\]
     /// must be specified.
     #[prost(message, optional, tag = "10")]
     pub virtual_cluster_config: ::core::option::Option<VirtualClusterConfig>,
@@ -2316,13 +2315,15 @@ pub struct ClusterConfig {
     /// a master or worker node, as shown below using `curl` (you can also use
     /// `wget`):
     ///
-    ///      ROLE=$(curl -H Metadata-Flavor:Google
-    ///      <http://metadata/computeMetadata/v1/instance/attributes/dataproc-role>)
-    ///      if \[[ "${ROLE}" == 'Master' ]\]; then
-    ///        ... master specific actions ...
-    ///      else
-    ///        ... worker specific actions ...
-    ///      fi
+    /// ```text
+    /// ROLE=$(curl -H Metadata-Flavor:Google
+    /// <http://metadata/computeMetadata/v1/instance/attributes/dataproc-role>)
+    /// if \[[ "${ROLE}" == 'Master' ]\]; then
+    ///    ... master specific actions ...
+    /// else
+    ///    ... worker specific actions ...
+    /// fi
+    /// ```
     #[prost(message, repeated, tag = "11")]
     pub initialization_actions: ::prost::alloc::vec::Vec<NodeInitializationAction>,
     /// Optional. Encryption settings for the cluster.
@@ -2434,7 +2435,7 @@ pub mod virtual_cluster_config {
     }
 }
 /// Auxiliary services configuration for a Cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AuxiliaryServicesConfig {
     /// Optional. The Hive Metastore configuration for this workload.
     #[prost(message, optional, tag = "1")]
@@ -2459,7 +2460,7 @@ pub struct EndpointConfig {
     pub enable_http_port_access: bool,
 }
 /// Autoscaling Policy config associated with the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutoscalingConfig {
     /// Optional. The autoscaling policy used by the cluster.
     ///
@@ -2474,11 +2475,11 @@ pub struct AutoscalingConfig {
     pub policy_uri: ::prost::alloc::string::String,
 }
 /// Encryption settings for the cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EncryptionConfig {
     /// Optional. The Cloud KMS key resource name to use for persistent disk
-    /// encryption for all instances in the cluster. See [Use CMEK with cluster
-    /// data]
+    /// encryption for all instances in the cluster. See \[Use CMEK with cluster
+    /// data\]
     /// (<https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data>)
     /// for more information.
     #[prost(string, tag = "1")]
@@ -2492,23 +2493,23 @@ pub struct EncryptionConfig {
     /// the following job types submitted to the cluster are encrypted using CMEK:
     ///
     /// * [FlinkJob
-    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
     /// * [HadoopJob
-    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
     /// * [SparkJob
-    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
     /// * [SparkRJob
-    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
     /// * [PySparkJob
-    /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
     /// * [SparkSqlJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob>)
-    ///    scriptVariables and queryList.queries
+    ///   scriptVariables and queryList.queries
     /// * [HiveJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob>)
-    ///    scriptVariables and queryList.queries
+    ///   scriptVariables and queryList.queries
     /// * [PigJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob>)
-    ///    scriptVariables and queryList.queries
+    ///   scriptVariables and queryList.queries
     /// * [PrestoJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob>)
-    ///    scriptVariables and queryList.queries
+    ///   scriptVariables and queryList.queries
     #[prost(string, tag = "2")]
     pub kms_key: ::prost::alloc::string::String,
 }
@@ -2558,10 +2559,10 @@ pub struct GceClusterConfig {
     ///
     /// * All cluster VMs have internal IP addresses.
     /// * \[Google Private Access\]
-    /// (<https://cloud.google.com/vpc/docs/private-google-access>)
-    /// must be enabled to access Dataproc and other Google Cloud APIs.
+    ///   (<https://cloud.google.com/vpc/docs/private-google-access>)
+    ///   must be enabled to access Dataproc and other Google Cloud APIs.
     /// * Off-cluster dependencies must be configured to be accessible
-    /// without external IP addresses.
+    ///   without external IP addresses.
     ///
     /// When set to `false`:
     ///
@@ -2651,7 +2652,7 @@ pub mod gce_cluster_config {
     pub enum PrivateIpv6GoogleAccess {
         /// If unspecified, Compute Engine default behavior will apply, which
         /// is the same as
-        /// [INHERIT_FROM_SUBNETWORK][google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess.INHERIT_FROM_SUBNETWORK].
+        /// \[INHERIT_FROM_SUBNETWORK\]\[google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess.INHERIT_FROM_SUBNETWORK\].
         Unspecified = 0,
         /// Private access to and from Google Services configuration
         /// inherited from the subnetwork configuration. This is the
@@ -2691,8 +2692,8 @@ pub mod gce_cluster_config {
 }
 /// Node Group Affinity for clusters using sole-tenant node groups.
 /// **The Dataproc `NodeGroupAffinity` resource is not related to the
-/// Dataproc [NodeGroup][google.cloud.dataproc.v1.NodeGroup] resource.**
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// Dataproc \[NodeGroup\]\[google.cloud.dataproc.v1.NodeGroup\] resource.**
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodeGroupAffinity {
     /// Required. The URI of a
     /// sole-tenant [node group
@@ -2709,7 +2710,7 @@ pub struct NodeGroupAffinity {
 }
 /// Shielded Instance Config for clusters using [Compute Engine Shielded
 /// VMs](<https://cloud.google.com/security/shielded-cloud/shielded-vm>).
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShieldedInstanceConfig {
     /// Optional. Defines whether instances have Secure Boot enabled.
     #[prost(bool, optional, tag = "1")]
@@ -2723,7 +2724,7 @@ pub struct ShieldedInstanceConfig {
 }
 /// Confidential Instance Config for clusters using [Confidential
 /// VMs](<https://cloud.google.com/compute/confidential-vm/docs>)
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConfidentialInstanceConfig {
     /// Optional. Defines whether the instance should have confidential compute
     /// enabled.
@@ -2822,12 +2823,12 @@ pub struct InstanceGroupConfig {
     /// Example: Cluster creation request with `num_instances` = `5` and
     /// `min_num_instances` = `3`:
     ///
-    /// *  If 4 VMs are created and 1 instance fails,
-    ///     the failed VM is deleted. The cluster is
-    ///     resized to 4 instances and placed in a `RUNNING` state.
-    /// *  If 2 instances are created and 3 instances fail,
-    ///     the cluster in placed in an `ERROR` state. The failed VMs
-    ///     are not deleted.
+    /// * If 4 VMs are created and 1 instance fails,
+    ///   the failed VM is deleted. The cluster is
+    ///   resized to 4 instances and placed in a `RUNNING` state.
+    /// * If 2 instances are created and 3 instances fail,
+    ///   the cluster in placed in an `ERROR` state. The failed VMs
+    ///   are not deleted.
     #[prost(int32, tag = "12")]
     pub min_num_instances: i32,
     /// Optional. Instance flexibility Policy allowing a mixture of VM shapes and
@@ -2919,7 +2920,7 @@ pub struct StartupConfig {
     pub required_registration_fraction: ::core::option::Option<f64>,
 }
 /// A reference to a Compute Engine instance.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstanceReference {
     /// The user-friendly name of the Compute Engine instance.
     #[prost(string, tag = "1")]
@@ -2935,7 +2936,7 @@ pub struct InstanceReference {
     pub public_ecies_key: ::prost::alloc::string::String,
 }
 /// Specifies the resources used to actively manage an instance group.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ManagedGroupConfig {
     /// Output only. The name of the Instance Template used for the Managed
     /// Instance Group.
@@ -2975,7 +2976,7 @@ pub struct InstanceFlexibilityPolicy {
 pub mod instance_flexibility_policy {
     /// Defines how Dataproc should create VMs with a mixture of provisioning
     /// models.
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ProvisioningModelMix {
         /// Optional. The base capacity that will always use Standard VMs to avoid
         /// risk of more preemption than the minimum capacity you need. Dataproc will
@@ -2997,7 +2998,7 @@ pub mod instance_flexibility_policy {
         pub standard_capacity_percent_above_base: ::core::option::Option<i32>,
     }
     /// Defines machines types and a rank to which the machines types belong.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct InstanceSelection {
         /// Optional. Full machine-type names, e.g. "n1-standard-16".
         #[prost(string, repeated, tag = "1")]
@@ -3012,7 +3013,7 @@ pub mod instance_flexibility_policy {
     }
     /// Defines a mapping from machine types to the number of VMs that are created
     /// with each machine type.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct InstanceSelectionResult {
         /// Output only. Full machine-type names, e.g. "n1-standard-16".
         #[prost(string, optional, tag = "1")]
@@ -3025,7 +3026,7 @@ pub mod instance_flexibility_policy {
 /// Specifies the type and number of accelerator cards attached to the instances
 /// of an instance. See [GPUs on Compute
 /// Engine](<https://cloud.google.com/compute/docs/gpus/>).
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AcceleratorConfig {
     /// Full URL, partial URI, or short name of the accelerator type resource to
     /// expose to this instance. See
@@ -3050,7 +3051,7 @@ pub struct AcceleratorConfig {
     pub accelerator_count: i32,
 }
 /// Specifies the config of disk options for a group of VM instances.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiskConfig {
     /// Optional. Type of the boot disk (default is "pd-standard").
     /// Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
@@ -3101,14 +3102,14 @@ pub struct AuxiliaryNodeGroup {
     /// Optional. A node group ID. Generated if not specified.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of from 3 to 33 characters.
     #[prost(string, tag = "2")]
     pub node_group_id: ::prost::alloc::string::String,
 }
 /// Dataproc Node Group.
 /// **The Dataproc `NodeGroup` resource is not related to the
-/// Dataproc [NodeGroupAffinity][google.cloud.dataproc.v1.NodeGroupAffinity]
+/// Dataproc \[NodeGroupAffinity\]\[google.cloud.dataproc.v1.NodeGroupAffinity\]
 /// resource.**
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeGroup {
@@ -3124,10 +3125,10 @@ pub struct NodeGroup {
     /// Optional. Node group labels.
     ///
     /// * Label **keys** must consist of from 1 to 63 characters and conform to
-    ///    [RFC 1035](<https://www.ietf.org/rfc/rfc1035.txt>).
+    ///   [RFC 1035](<https://www.ietf.org/rfc/rfc1035.txt>).
     /// * Label **values** can be empty. If specified, they must consist of from
-    ///    1 to 63 characters and conform to \[RFC 1035\]
-    ///    (<https://www.ietf.org/rfc/rfc1035.txt>).
+    ///   1 to 63 characters and conform to \[RFC 1035\]
+    ///   (<https://www.ietf.org/rfc/rfc1035.txt>).
     /// * The node group must have no more than 32 labels.
     #[prost(map = "string, string", tag = "4")]
     pub labels: ::std::collections::HashMap<
@@ -3179,7 +3180,7 @@ pub mod node_group {
 }
 /// Specifies an executable to run on a fully configured node and a
 /// timeout period for executable completion.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodeInitializationAction {
     /// Required. Cloud Storage URI of executable file.
     #[prost(string, tag = "1")]
@@ -3195,7 +3196,7 @@ pub struct NodeInitializationAction {
     pub execution_timeout: ::core::option::Option<::prost_types::Duration>,
 }
 /// The status of a cluster and its instances.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClusterStatus {
     /// Output only. The cluster's state.
     #[prost(enumeration = "cluster_status::State", tag = "1")]
@@ -3357,7 +3358,7 @@ pub struct SecurityConfig {
     pub identity_config: ::core::option::Option<IdentityConfig>,
 }
 /// Specifies Kerberos related configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct KerberosConfig {
     /// Optional. Flag to indicate whether to Kerberize the cluster (default:
     /// false). Set this field to true to enable Kerberos on a cluster.
@@ -3478,7 +3479,7 @@ pub struct SoftwareConfig {
     pub optional_components: ::prost::alloc::vec::Vec<i32>,
 }
 /// Specifies the cluster auto-delete schedule configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LifecycleConfig {
     /// Optional. The duration to keep the cluster alive while idling (when no jobs
     /// are running). Passing this threshold will cause the cluster to be
@@ -3502,7 +3503,7 @@ pub struct LifecycleConfig {
 pub mod lifecycle_config {
     /// Either the exact time the cluster should be deleted at or
     /// the cluster maximum age.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Ttl {
         /// Optional. The time when cluster will be auto-deleted (see JSON
         /// representation of
@@ -3518,7 +3519,7 @@ pub mod lifecycle_config {
     }
 }
 /// Specifies a Metastore configuration.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MetastoreConfig {
     /// Required. Resource name of an existing Dataproc Metastore service.
     ///
@@ -3551,7 +3552,7 @@ pub struct DataprocMetricConfig {
 /// Nested message and enum types in `DataprocMetricConfig`.
 pub mod dataproc_metric_config {
     /// A Dataproc custom metric.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Metric {
         /// Required. A standard set of metrics is collected unless `metricOverrides`
         /// are specified for the metric source (see \[Custom metrics\]
@@ -3572,7 +3573,7 @@ pub mod dataproc_metric_config {
         ///
         /// Examples:
         ///
-        /// ```
+        /// ```text,
         /// yarn:ResourceManager:QueueMetrics:AppsCompleted
         /// spark:driver:DAGScheduler:job.allJobs
         /// sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed
@@ -3582,17 +3583,17 @@ pub mod dataproc_metric_config {
         /// Notes:
         ///
         /// * Only the specified overridden metrics are collected for the
-        ///    metric source. For example, if one or more `spark:executive` metrics
-        ///    are listed as metric overrides, other `SPARK` metrics are not
-        ///    collected. The collection of the metrics for other enabled custom
-        ///    metric sources is unaffected. For example, if both `SPARK` andd `YARN`
-        ///    metric sources are enabled, and overrides are provided for Spark
-        ///    metrics only, all YARN metrics are collected.
+        ///   metric source. For example, if one or more `spark:executive` metrics
+        ///   are listed as metric overrides, other `SPARK` metrics are not
+        ///   collected. The collection of the metrics for other enabled custom
+        ///   metric sources is unaffected. For example, if both `SPARK` andd `YARN`
+        ///   metric sources are enabled, and overrides are provided for Spark
+        ///   metrics only, all YARN metrics are collected.
         #[prost(string, repeated, tag = "2")]
         pub metric_overrides: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
-    /// A source for the collection of Dataproc custom metrics (see [Custom
-    /// metrics]
+    /// A source for the collection of Dataproc custom metrics (see \[Custom
+    /// metrics\]
     /// (<https://cloud.google.com//dataproc/docs/guides/dataproc-metrics#custom_metrics>)).
     #[derive(
         Clone,
@@ -3681,14 +3682,14 @@ pub struct CreateClusterRequest {
     /// two
     /// [CreateClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. Failure action when primary worker creation fails.
@@ -3728,25 +3729,31 @@ pub struct UpdateClusterRequest {
     /// specified as `config.worker_config.num_instances`,
     /// and the `PATCH` request body would specify the new value, as follows:
     ///
-    ///      {
-    ///        "config":{
-    ///          "workerConfig":{
-    ///            "numInstances":"5"
-    ///          }
-    ///        }
+    /// ```text
+    /// {
+    ///    "config":{
+    ///      "workerConfig":{
+    ///        "numInstances":"5"
     ///      }
+    ///    }
+    /// }
+    /// ```
+    ///
     /// Similarly, to change the number of preemptible workers in a cluster to 5,
     /// the `update_mask` parameter would be
     /// `config.secondary_worker_config.num_instances`, and the `PATCH` request
     /// body would be set as follows:
     ///
-    ///      {
-    ///        "config":{
-    ///          "secondaryWorkerConfig":{
-    ///            "numInstances":"5"
-    ///          }
-    ///        }
+    /// ```text
+    /// {
+    ///    "config":{
+    ///      "secondaryWorkerConfig":{
+    ///        "numInstances":"5"
     ///      }
+    ///    }
+    /// }
+    /// ```
+    ///
     /// <strong>Note:</strong> Currently, only the following fields can be updated:
     ///
     ///   <table>
@@ -3779,19 +3786,19 @@ pub struct UpdateClusterRequest {
     /// receives two
     /// [UpdateClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "7")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to stop a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StopClusterRequest {
     /// Required. The ID of the Google Cloud Platform project the
     /// cluster belongs to.
@@ -3811,19 +3818,19 @@ pub struct StopClusterRequest {
     /// receives two
     /// [StopClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to start a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StartClusterRequest {
     /// Required. The ID of the Google Cloud Platform project the
     /// cluster belongs to.
@@ -3843,19 +3850,19 @@ pub struct StartClusterRequest {
     /// receives two
     /// [StartClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteClusterRequest {
     /// Required. The ID of the Google Cloud Platform project that the cluster
     /// belongs to.
@@ -3875,19 +3882,19 @@ pub struct DeleteClusterRequest {
     /// receives two
     /// [DeleteClusterRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request to get the resource representation for a cluster in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetClusterRequest {
     /// Required. The ID of the Google Cloud Platform project that the cluster
     /// belongs to.
@@ -3901,7 +3908,7 @@ pub struct GetClusterRequest {
     pub cluster_name: ::prost::alloc::string::String,
 }
 /// A request to list the clusters in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListClustersRequest {
     /// Required. The ID of the Google Cloud Platform project that the cluster
     /// belongs to.
@@ -3913,7 +3920,7 @@ pub struct ListClustersRequest {
     /// Optional. A filter constraining the clusters to list. Filters are
     /// case-sensitive and have the following syntax:
     ///
-    /// field = value \[AND [field = value]\] ...
+    /// field = value \[AND \[field = value\]\] ...
     ///
     /// where **field** is one of `status.state`, `clusterName`, or `labels.\[KEY\]`,
     /// and `\[KEY\]` is a label key. **value** can be `*` to match all values.
@@ -3951,7 +3958,7 @@ pub struct ListClustersResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// A request to collect cluster diagnostic information.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiagnoseClusterRequest {
     /// Required. The ID of the Google Cloud Platform project that the cluster
     /// belongs to.
@@ -4036,7 +4043,7 @@ pub mod diagnose_cluster_request {
     }
 }
 /// The location of diagnostic output.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiagnoseClusterResults {
     /// Output only. The Cloud Storage URI of the diagnostic output.
     /// The output report is a plain text file with a summary of collected
@@ -4045,7 +4052,7 @@ pub struct DiagnoseClusterResults {
     pub output_uri: ::prost::alloc::string::String,
 }
 /// Reservation Affinity for consuming Zonal reservation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReservationAffinity {
     /// Optional. Type of reservation to consume
     #[prost(enumeration = "reservation_affinity::Type", tag = "1")]
@@ -4190,7 +4197,7 @@ pub mod cluster_controller_client {
             self
         }
         /// Creates a cluster in a project. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         pub async fn create_cluster(
             &mut self,
@@ -4207,7 +4214,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/CreateCluster",
             );
@@ -4222,10 +4229,10 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates a cluster in a project. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         /// The cluster must be in a
-        /// [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+        /// \[`RUNNING`\]\[google.cloud.dataproc.v1.ClusterStatus.State\] state or an error
         /// is returned.
         pub async fn update_cluster(
             &mut self,
@@ -4242,7 +4249,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/UpdateCluster",
             );
@@ -4272,7 +4279,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/StopCluster",
             );
@@ -4302,7 +4309,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/StartCluster",
             );
@@ -4317,7 +4324,7 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a cluster in a project. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         pub async fn delete_cluster(
             &mut self,
@@ -4334,7 +4341,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/DeleteCluster",
             );
@@ -4361,7 +4368,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/GetCluster",
             );
@@ -4391,7 +4398,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/ListClusters",
             );
@@ -4406,10 +4413,10 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets cluster diagnostic information. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         /// After the operation completes,
-        /// [Operation.response][google.longrunning.Operation.response]
+        /// \[Operation.response\]\[google.longrunning.Operation.response\]
         /// contains
         /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
         pub async fn diagnose_cluster(
@@ -4427,7 +4434,7 @@ pub mod cluster_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.ClusterController/DiagnoseCluster",
             );
@@ -4449,9 +4456,10 @@ pub struct LoggingConfig {
     /// The per-package log levels for the driver. This can include
     /// "root" package name to configure rootLogger.
     /// Examples:
-    /// - 'com.google = FATAL'
-    /// - 'root = INFO'
-    /// - 'org.apache = DEBUG'
+    ///
+    /// * 'com.google = FATAL'
+    /// * 'root = INFO'
+    /// * 'org.apache = DEBUG'
     #[prost(map = "string, enumeration(logging_config::Level)", tag = "2")]
     pub driver_log_levels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -4582,13 +4590,13 @@ pub mod hadoop_job {
     /// either the jar file that contains the main class or the main class name.
     /// To specify both, add the jar file to `jar_file_uris`, and then specify
     /// the main class name in this property.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Driver {
         /// The HCFS URI of the jar file containing the main class.
         /// Examples:
-        ///      'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'
-        ///      'hdfs:/tmp/test-samples/custom-wordcount.jar'
-        ///      'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'
+        /// 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'
+        /// 'hdfs:/tmp/test-samples/custom-wordcount.jar'
+        /// 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'
         #[prost(string, tag = "1")]
         MainJarFileUri(::prost::alloc::string::String),
         /// The name of the driver's main class. The jar file containing the class
@@ -4634,9 +4642,9 @@ pub struct SparkJob {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in that jar, add the jar to
-    /// [jarFileUris][google.cloud.dataproc.v1.SparkJob.jar_file_uris], and then
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.SparkJob.jar_file_uris\], and then
     /// specify the main class name in
-    /// [mainClass][google.cloud.dataproc.v1.SparkJob.main_class].
+    /// \[mainClass\]\[google.cloud.dataproc.v1.SparkJob.main_class\].
     #[prost(oneof = "spark_job::Driver", tags = "1, 2")]
     pub driver: ::core::option::Option<spark_job::Driver>,
 }
@@ -4645,10 +4653,10 @@ pub mod spark_job {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in that jar, add the jar to
-    /// [jarFileUris][google.cloud.dataproc.v1.SparkJob.jar_file_uris], and then
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.SparkJob.jar_file_uris\], and then
     /// specify the main class name in
-    /// [mainClass][google.cloud.dataproc.v1.SparkJob.main_class].
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    /// \[mainClass\]\[google.cloud.dataproc.v1.SparkJob.main_class\].
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Driver {
         /// The HCFS URI of the jar file that contains the main class.
         #[prost(string, tag = "1")]
@@ -4706,22 +4714,24 @@ pub struct PySparkJob {
     pub logging_config: ::core::option::Option<LoggingConfig>,
 }
 /// A list of queries to run on a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct QueryList {
     /// Required. The queries to execute. You do not need to end a query expression
     /// with a semicolon. Multiple queries can be specified in one
     /// string by separating each with a semicolon. Here is an example of a
     /// Dataproc API snippet that uses a QueryList to specify a HiveJob:
     ///
-    ///      "hiveJob": {
-    ///        "queryList": {
-    ///          "queries": [
-    ///            "query1",
-    ///            "query2",
-    ///            "query3;query4",
-    ///          ]
-    ///        }
-    ///      }
+    /// ```text
+    /// "hiveJob": {
+    ///    "queryList": {
+    ///      "queries": [
+    ///        "query1",
+    ///        "query2",
+    ///        "query3;query4",
+    ///      ]
+    ///    }
+    /// }
+    /// ```
     #[prost(string, repeated, tag = "1")]
     pub queries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
@@ -4764,7 +4774,7 @@ pub struct HiveJob {
 pub mod hive_job {
     /// Required. The sequence of Hive queries to execute, specified as either
     /// an HCFS file URI or a list of queries.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Queries {
         /// The HCFS URI of the script that contains Hive queries.
         #[prost(string, tag = "1")]
@@ -4808,7 +4818,7 @@ pub struct SparkSqlJob {
 pub mod spark_sql_job {
     /// Required. The sequence of Spark SQL queries to execute, specified as
     /// either an HCFS file URI or as a list of queries.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Queries {
         /// The HCFS URI of the script that contains SQL queries.
         #[prost(string, tag = "1")]
@@ -4859,7 +4869,7 @@ pub struct PigJob {
 pub mod pig_job {
     /// Required. The sequence of Pig queries to execute, specified as an HCFS
     /// file URI or a list of queries.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Queries {
         /// The HCFS URI of the script that contains the Pig queries.
         #[prost(string, tag = "1")]
@@ -4944,7 +4954,7 @@ pub struct PrestoJob {
 pub mod presto_job {
     /// Required. The sequence of Presto queries to execute, specified as
     /// either an HCFS file URI or as a list of queries.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Queries {
         /// The HCFS URI of the script that contains SQL queries.
         #[prost(string, tag = "1")]
@@ -4993,7 +5003,7 @@ pub struct TrinoJob {
 pub mod trino_job {
     /// Required. The sequence of Trino queries to execute, specified as
     /// either an HCFS file URI or as a list of queries.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Queries {
         /// The HCFS URI of the script that contains SQL queries.
         #[prost(string, tag = "1")]
@@ -5034,9 +5044,9 @@ pub struct FlinkJob {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in the jar, add the jar to
-    /// [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris], and then
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\], and then
     /// specify the main class name in
-    /// [mainClass][google.cloud.dataproc.v1.FlinkJob.main_class].
+    /// \[mainClass\]\[google.cloud.dataproc.v1.FlinkJob.main_class\].
     #[prost(oneof = "flink_job::Driver", tags = "1, 2")]
     pub driver: ::core::option::Option<flink_job::Driver>,
 }
@@ -5045,17 +5055,17 @@ pub mod flink_job {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in the jar, add the jar to
-    /// [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris], and then
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\], and then
     /// specify the main class name in
-    /// [mainClass][google.cloud.dataproc.v1.FlinkJob.main_class].
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    /// \[mainClass\]\[google.cloud.dataproc.v1.FlinkJob.main_class\].
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Driver {
         /// The HCFS URI of the jar file that contains the main class.
         #[prost(string, tag = "1")]
         MainJarFileUri(::prost::alloc::string::String),
         /// The name of the driver's main class. The jar file that contains the class
         /// must be in the default CLASSPATH or specified in
-        /// [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris].
+        /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\].
         #[prost(string, tag = "2")]
         MainClass(::prost::alloc::string::String),
     }
@@ -5079,7 +5089,7 @@ pub struct JobPlacement {
     >,
 }
 /// Dataproc job status.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct JobStatus {
     /// Output only. A state message specifying the overall job state.
     #[prost(enumeration = "job_status::State", tag = "1")]
@@ -5233,7 +5243,7 @@ pub mod job_status {
     }
 }
 /// Encapsulates the full scoping used to reference a job.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct JobReference {
     /// Optional. The ID of the Google Cloud Platform project that the job belongs
     /// to. If specified, must match the request project ID.
@@ -5242,7 +5252,7 @@ pub struct JobReference {
     /// Optional. The job ID, which must be unique within the project.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), or hyphens (-). The maximum length is 100 characters.
+    /// underscores (\_), or hyphens (-). The maximum length is 100 characters.
     ///
     /// If not specified by the caller, the job ID will be provided by the server.
     #[prost(string, tag = "2")]
@@ -5449,7 +5459,7 @@ pub mod job {
     }
 }
 /// Driver scheduling configuration.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DriverSchedulingConfig {
     /// Required. The amount of memory in MB the driver is requesting.
     #[prost(int32, tag = "1")]
@@ -5459,7 +5469,7 @@ pub struct DriverSchedulingConfig {
     pub vcores: i32,
 }
 /// Job scheduling options.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct JobScheduling {
     /// Optional. Maximum number of times per hour a driver can be restarted as
     /// a result of driver exiting with non-zero code before job is
@@ -5505,19 +5515,19 @@ pub struct SubmitJobRequest {
     /// receives two
     /// [SubmitJobRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.SubmitJobRequest>)s
     /// with the same id, then the second request will be ignored and the
-    /// first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+    /// first \[Job\]\[google.cloud.dataproc.v1.Job\] created and stored in the backend
     /// is returned.
     ///
     /// It is recommended to always set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The id must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// Job Operation metadata.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct JobMetadata {
     /// Output only. The job id.
     #[prost(string, tag = "1")]
@@ -5533,7 +5543,7 @@ pub struct JobMetadata {
     pub start_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// A request to get the resource representation for a job in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetJobRequest {
     /// Required. The ID of the Google Cloud Platform project that the job
     /// belongs to.
@@ -5547,7 +5557,7 @@ pub struct GetJobRequest {
     pub job_id: ::prost::alloc::string::String,
 }
 /// A request to list jobs in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListJobsRequest {
     /// Required. The ID of the Google Cloud Platform project that the job
     /// belongs to.
@@ -5576,7 +5586,7 @@ pub struct ListJobsRequest {
     /// Optional. A filter constraining the jobs to list. Filters are
     /// case-sensitive and have the following syntax:
     ///
-    /// \[field = value\] AND \[field [= value]\] ...
+    /// \[field = value\] AND \[field \[= value\]\] ...
     ///
     /// where **field** is `status.state` or `labels.\[KEY\]`, and `\[KEY\]` is a label
     /// key. **value** can be `*` to match all values.
@@ -5674,14 +5684,14 @@ pub struct ListJobsResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
     /// Output only. List of jobs with
-    /// [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+    /// \[kms_key\]\[google.cloud.dataproc.v1.EncryptionConfig.kms_key\]-encrypted
     /// parameters that could not be decrypted. A response to a `jobs.get` request
     /// may indicate the reason for the decryption failure for a specific job.
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to cancel a job.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelJobRequest {
     /// Required. The ID of the Google Cloud Platform project that the job
     /// belongs to.
@@ -5695,7 +5705,7 @@ pub struct CancelJobRequest {
     pub job_id: ::prost::alloc::string::String,
 }
 /// A request to delete a job.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteJobRequest {
     /// Required. The ID of the Google Cloud Platform project that the job
     /// belongs to.
@@ -5802,7 +5812,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/SubmitJob",
             );
@@ -5832,7 +5842,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/SubmitJobAsOperation",
             );
@@ -5859,7 +5869,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/GetJob",
             );
@@ -5886,7 +5896,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/ListJobs",
             );
@@ -5910,7 +5920,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/UpdateJob",
             );
@@ -5941,7 +5951,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/CancelJob",
             );
@@ -5969,7 +5979,7 @@ pub mod job_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.JobController/DeleteJob",
             );
@@ -5998,7 +6008,7 @@ pub struct CreateNodeGroupRequest {
     /// Optional. An optional node group ID. Generated if not specified.
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of from 3 to 33 characters.
     #[prost(string, tag = "4")]
     pub node_group_id: ::prost::alloc::string::String,
@@ -6006,19 +6016,19 @@ pub struct CreateNodeGroupRequest {
     /// two
     /// [CreateNodeGroupRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests>)
     /// with the same ID, the second request is ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to resize a node group.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResizeNodeGroupRequest {
     /// Required. The name of the node group to resize.
     /// Format:
@@ -6034,18 +6044,18 @@ pub struct ResizeNodeGroupRequest {
     /// two
     /// [ResizeNodeGroupRequest](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.ResizeNodeGroupRequests>)
     /// with the same ID, the second request is ignored and the
-    /// first [google.longrunning.Operation][google.longrunning.Operation] created
+    /// first \[google.longrunning.Operation\]\[google.longrunning.Operation\] created
     /// and stored in the backend is returned.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The ID must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
-    /// Optional. Timeout for graceful YARN decommissioning. [Graceful
-    /// decommissioning]
+    /// Optional. Timeout for graceful YARN decommissioning. \[Graceful
+    /// decommissioning\]
     /// (<https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning>)
     /// allows the removal of nodes from the Compute Engine node group
     /// without interrupting jobs in progress. This timeout specifies how long to
@@ -6060,7 +6070,7 @@ pub struct ResizeNodeGroupRequest {
     pub graceful_decommission_timeout: ::core::option::Option<::prost_types::Duration>,
 }
 /// A request to get a node group .
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetNodeGroupRequest {
     /// Required. The name of the node group to retrieve.
     /// Format:
@@ -6151,7 +6161,7 @@ pub mod node_group_controller_client {
             self
         }
         /// Creates a node group in a cluster. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] is
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] is
         /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
         pub async fn create_node_group(
             &mut self,
@@ -6168,7 +6178,7 @@ pub mod node_group_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.NodeGroupController/CreateNodeGroup",
             );
@@ -6183,7 +6193,7 @@ pub mod node_group_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Resizes a node group in a cluster. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] is
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] is
         /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
         pub async fn resize_node_group(
             &mut self,
@@ -6200,7 +6210,7 @@ pub mod node_group_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.NodeGroupController/ResizeNodeGroup",
             );
@@ -6228,7 +6238,7 @@ pub mod node_group_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.NodeGroupController/GetNodeGroup",
             );
@@ -6257,33 +6267,33 @@ pub struct CreateSessionRequest {
     /// of the session's resource name.
     ///
     /// This value must be 4-63 characters. Valid characters
-    /// are /[a-z][0-9]-/.
+    /// are /\[a-z\]\[0-9\]-/.
     #[prost(string, tag = "3")]
     pub session_id: ::prost::alloc::string::String,
     /// Optional. A unique ID used to identify the request. If the service
     /// receives two
     /// [CreateSessionRequests](<https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateSessionRequest>)s
     /// with the same ID, the second request is ignored, and the
-    /// first [Session][google.cloud.dataproc.v1.Session] is created and stored in
+    /// first \[Session\]\[google.cloud.dataproc.v1.Session\] is created and stored in
     /// the backend.
     ///
     /// Recommendation: Set this value to a
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to get the resource representation for a session.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSessionRequest {
     /// Required. The name of the session to retrieve.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// A request to list sessions in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListSessionsRequest {
     /// Required. The parent, which owns this collection of sessions.
     #[prost(string, tag = "1")]
@@ -6326,7 +6336,7 @@ pub struct ListSessionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// A request to terminate an interactive session.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TerminateSessionRequest {
     /// Required. The name of the session resource to terminate.
     #[prost(string, tag = "1")]
@@ -6340,12 +6350,12 @@ pub struct TerminateSessionRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
 /// A request to delete a session.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteSessionRequest {
     /// Required. The name of the session resource to delete.
     #[prost(string, tag = "1")]
@@ -6359,7 +6369,7 @@ pub struct DeleteSessionRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The value must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -6421,6 +6431,7 @@ pub struct Session {
     /// Only resource names, including project ID and location, are valid.
     ///
     /// Example:
+    ///
     /// * `<https://www.googleapis.com/compute/v1/projects/\[project_id\]/locations/\[dataproc_region\]/sessionTemplates/\[template_id\]`>
     /// * `projects/\[project_id\]/locations/\[dataproc_region\]/sessionTemplates/\[template_id\]`
     ///
@@ -6435,7 +6446,7 @@ pub struct Session {
 /// Nested message and enum types in `Session`.
 pub mod session {
     /// Historical state information.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SessionStateHistory {
         /// Output only. The state of the session at this point in the session
         /// history.
@@ -6505,7 +6516,7 @@ pub mod session {
         }
     }
     /// The session configuration.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum SessionConfig {
         /// Optional. Jupyter session config.
         #[prost(message, tag = "4")]
@@ -6516,7 +6527,7 @@ pub mod session {
     }
 }
 /// Jupyter configuration for an interactive session.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct JupyterConfig {
     /// Optional. Kernel
     #[prost(enumeration = "jupyter_config::Kernel", tag = "1")]
@@ -6572,7 +6583,7 @@ pub mod jupyter_config {
     }
 }
 /// Spark Connect configuration for an interactive session.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SparkConnectConfig {}
 /// Generated client implementations.
 pub mod session_controller_client {
@@ -6671,7 +6682,7 @@ pub mod session_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionController/CreateSession",
             );
@@ -6698,7 +6709,7 @@ pub mod session_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionController/GetSession",
             );
@@ -6728,7 +6739,7 @@ pub mod session_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionController/ListSessions",
             );
@@ -6758,7 +6769,7 @@ pub mod session_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionController/TerminateSession",
             );
@@ -6789,7 +6800,7 @@ pub mod session_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionController/DeleteSession",
             );
@@ -6823,14 +6834,14 @@ pub struct UpdateSessionTemplateRequest {
     pub session_template: ::core::option::Option<SessionTemplate>,
 }
 /// A request to get the resource representation for a session template.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSessionTemplateRequest {
     /// Required. The name of the session template to retrieve.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// A request to list session templates in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListSessionTemplatesRequest {
     /// Required. The parent that owns this collection of session templates.
     #[prost(string, tag = "1")]
@@ -6846,7 +6857,7 @@ pub struct ListSessionTemplatesRequest {
     /// Optional. A filter for the session templates to return in the response.
     /// Filters are case sensitive and have the following syntax:
     ///
-    /// \[field = value\] AND \[field [= value]\] ...
+    /// \[field = value\] AND \[field \[= value\]\] ...
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -6862,7 +6873,7 @@ pub struct ListSessionTemplatesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// A request to delete a session template.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteSessionTemplateRequest {
     /// Required. The name of the session template resource to delete.
     #[prost(string, tag = "1")]
@@ -6915,7 +6926,7 @@ pub struct SessionTemplate {
 /// Nested message and enum types in `SessionTemplate`.
 pub mod session_template {
     /// The session configuration.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum SessionConfig {
         /// Optional. Jupyter session config.
         #[prost(message, tag = "3")]
@@ -7024,7 +7035,7 @@ pub mod session_template_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionTemplateController/CreateSessionTemplate",
             );
@@ -7054,7 +7065,7 @@ pub mod session_template_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionTemplateController/UpdateSessionTemplate",
             );
@@ -7084,7 +7095,7 @@ pub mod session_template_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionTemplateController/GetSessionTemplate",
             );
@@ -7114,7 +7125,7 @@ pub mod session_template_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionTemplateController/ListSessionTemplates",
             );
@@ -7141,7 +7152,7 @@ pub mod session_template_controller_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.SessionTemplateController/DeleteSessionTemplate",
             );
@@ -7166,12 +7177,12 @@ pub struct WorkflowTemplate {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates`, the resource name of the
-    ///    template has the following format:
-    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///   template has the following format:
+    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates`, the resource name of the
-    ///    template has the following format:
-    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///   template has the following format:
+    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. Used to perform a consistent read-modify-write.
@@ -7239,7 +7250,7 @@ pub struct WorkflowTemplate {
 /// Nested message and enum types in `WorkflowTemplate`.
 pub mod workflow_template {
     /// Encryption settings for encrypting workflow template job arguments.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct EncryptionConfig {
         /// Optional. The Cloud KMS key name to use for encrypting
         /// workflow template job arguments.
@@ -7252,23 +7263,23 @@ pub mod workflow_template {
         /// encrypted](<https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_workflow_template_data>):
         ///
         /// * [FlinkJob
-        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
         /// * [HadoopJob
-        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
         /// * [SparkJob
-        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
         /// * [SparkRJob
-        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
         /// * [PySparkJob
-        /// args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
         /// * [SparkSqlJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob>)
-        ///    scriptVariables and queryList.queries
+        ///   scriptVariables and queryList.queries
         /// * [HiveJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob>)
-        ///    scriptVariables and queryList.queries
+        ///   scriptVariables and queryList.queries
         /// * [PigJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob>)
-        ///    scriptVariables and queryList.queries
+        ///   scriptVariables and queryList.queries
         /// * [PrestoJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob>)
-        ///    scriptVariables and queryList.queries
+        ///   scriptVariables and queryList.queries
         #[prost(string, tag = "1")]
         pub kms_key: ::prost::alloc::string::String,
     }
@@ -7318,10 +7329,10 @@ pub struct ManagedCluster {
     ///
     /// Label keys must be between 1 and 63 characters long, and must conform to
     /// the following PCRE regular expression:
-    /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+    /// \[\\p{Ll}\p{Lo}\]\[\\p{Ll}\p{Lo}\p{N}\_-\]{0,62}
     ///
     /// Label values must be between 1 and 63 characters long, and must conform to
-    /// the following PCRE regular expression: \[\p{Ll}\p{Lo}\p{N}_-\]{0,63}
+    /// the following PCRE regular expression: \[\\p{Ll}\p{Lo}\p{N}\_-\]{0,63}
     ///
     /// No more than 32 labels can be associated with a given cluster.
     #[prost(map = "string, string", tag = "4")]
@@ -7356,11 +7367,11 @@ pub struct OrderedJob {
     ///
     /// The step id is used as prefix for job id, as job
     /// `goog-dataproc-workflow-step-id` label, and in
-    /// [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids]
+    /// \[prerequisiteStepIds\]\[google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids\]
     /// field from other steps.
     ///
     /// The id must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). Cannot begin or end with underscore
+    /// underscores (\_), and hyphens (-). Cannot begin or end with underscore
     /// or hyphen. Must consist of between 3 and 50 characters.
     #[prost(string, tag = "1")]
     pub step_id: ::prost::alloc::string::String,
@@ -7368,10 +7379,10 @@ pub struct OrderedJob {
     ///
     /// Label keys must be between 1 and 63 characters long, and must conform to
     /// the following regular expression:
-    /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+    /// \[\\p{Ll}\p{Lo}\]\[\\p{Ll}\p{Lo}\p{N}\_-\]{0,62}
     ///
     /// Label values must be between 1 and 63 characters long, and must conform to
-    /// the following regular expression: \[\p{Ll}\p{Lo}\p{N}_-\]{0,63}
+    /// the following regular expression: \[\\p{Ll}\p{Lo}\p{N}\_-\]{0,63}
     ///
     /// No more than 32 labels can be associated with a given job.
     #[prost(map = "string, string", tag = "8")]
@@ -7429,21 +7440,22 @@ pub mod ordered_job {
 }
 /// A configurable parameter that replaces one or more fields in the template.
 /// Parameterizable fields:
-/// - Labels
-/// - File uris
-/// - Job properties
-/// - Job arguments
-/// - Script variables
-/// - Main class (in HadoopJob and SparkJob)
-/// - Zone (in ClusterSelector)
-#[derive(Clone, PartialEq, ::prost::Message)]
+///
+/// * Labels
+/// * File uris
+/// * Job properties
+/// * Job arguments
+/// * Script variables
+/// * Main class (in HadoopJob and SparkJob)
+/// * Zone (in ClusterSelector)
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TemplateParameter {
     /// Required. Parameter name.
     /// The parameter name is used as the key, and paired with the
     /// parameter value, which are passed to the template when the template
     /// is instantiated.
     /// The name must contain only capital letters (A-Z), numbers (0-9), and
-    /// underscores (_), and must not start with a number. The maximum length is
+    /// underscores (\_), and must not start with a number. The maximum length is
     /// 40 characters.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -7452,45 +7464,46 @@ pub struct TemplateParameter {
     /// paths.
     ///
     /// A field path is similar in syntax to a
-    /// [google.protobuf.FieldMask][google.protobuf.FieldMask]. For example, a
+    /// \[google.protobuf.FieldMask\]\[google.protobuf.FieldMask\]. For example, a
     /// field path that references the zone field of a workflow template's cluster
     /// selector would be specified as `placement.clusterSelector.zone`.
     ///
     /// Also, field paths can reference fields using the following syntax:
     ///
     /// * Values in maps can be referenced by key:
-    ///      * labels\['key'\]
-    ///      * placement.clusterSelector.clusterLabels\['key'\]
-    ///      * placement.managedCluster.labels\['key'\]
-    ///      * placement.clusterSelector.clusterLabels\['key'\]
-    ///      * jobs\['step-id'\].labels\['key'\]
     ///
+    ///   * labels\['key'\]
+    ///   * placement.clusterSelector.clusterLabels\['key'\]
+    ///   * placement.managedCluster.labels\['key'\]
+    ///   * placement.clusterSelector.clusterLabels\['key'\]
+    ///   * jobs\['step-id'\].labels\['key'\]
     /// * Jobs in the jobs list can be referenced by step-id:
-    ///      * jobs\['step-id'\].hadoopJob.mainJarFileUri
-    ///      * jobs\['step-id'\].hiveJob.queryFileUri
-    ///      * jobs\['step-id'\].pySparkJob.mainPythonFileUri
-    ///      * jobs\['step-id'\].hadoopJob.jarFileUris\[0\]
-    ///      * jobs\['step-id'\].hadoopJob.archiveUris\[0\]
-    ///      * jobs\['step-id'\].hadoopJob.fileUris\[0\]
-    ///      * jobs\['step-id'\].pySparkJob.pythonFileUris\[0\]
     ///
+    ///   * jobs\['step-id'\].hadoopJob.mainJarFileUri
+    ///   * jobs\['step-id'\].hiveJob.queryFileUri
+    ///   * jobs\['step-id'\].pySparkJob.mainPythonFileUri
+    ///   * jobs\['step-id'\].hadoopJob.jarFileUris\[0\]
+    ///   * jobs\['step-id'\].hadoopJob.archiveUris\[0\]
+    ///   * jobs\['step-id'\].hadoopJob.fileUris\[0\]
+    ///   * jobs\['step-id'\].pySparkJob.pythonFileUris\[0\]
     /// * Items in repeated fields can be referenced by a zero-based index:
-    ///      * jobs\['step-id'\].sparkJob.args\[0\]
     ///
+    ///   * jobs\['step-id'\].sparkJob.args\[0\]
     /// * Other examples:
-    ///      * jobs\['step-id'\].hadoopJob.properties\['key'\]
-    ///      * jobs\['step-id'\].hadoopJob.args\[0\]
-    ///      * jobs\['step-id'\].hiveJob.scriptVariables\['key'\]
-    ///      * jobs\['step-id'\].hadoopJob.mainJarFileUri
-    ///      * placement.clusterSelector.zone
+    ///
+    ///   * jobs\['step-id'\].hadoopJob.properties\['key'\]
+    ///   * jobs\['step-id'\].hadoopJob.args\[0\]
+    ///   * jobs\['step-id'\].hiveJob.scriptVariables\['key'\]
+    ///   * jobs\['step-id'\].hadoopJob.mainJarFileUri
+    ///   * placement.clusterSelector.zone
     ///
     /// It may not be possible to parameterize maps and repeated fields in their
     /// entirety since only individual map values and individual items in repeated
     /// fields can be referenced. For example, the following field paths are
     /// invalid:
     ///
-    /// - placement.clusterSelector.clusterLabels
-    /// - jobs\['step-id'\].sparkJob.args
+    /// * placement.clusterSelector.clusterLabels
+    /// * jobs\['step-id'\].sparkJob.args
     #[prost(string, repeated, tag = "2")]
     pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Brief description of the parameter.
@@ -7502,7 +7515,7 @@ pub struct TemplateParameter {
     pub validation: ::core::option::Option<ParameterValidation>,
 }
 /// Configuration for parameter validation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ParameterValidation {
     /// Required. The type of validation to be performed.
     #[prost(oneof = "parameter_validation::ValidationType", tags = "1, 2")]
@@ -7511,7 +7524,7 @@ pub struct ParameterValidation {
 /// Nested message and enum types in `ParameterValidation`.
 pub mod parameter_validation {
     /// Required. The type of validation to be performed.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ValidationType {
         /// Validation based on regular expressions.
         #[prost(message, tag = "1")]
@@ -7522,7 +7535,7 @@ pub mod parameter_validation {
     }
 }
 /// Validation based on regular expressions.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RegexValidation {
     /// Required. RE2 regular expressions used to validate the parameter's value.
     /// The value must match the regex in its entirety (substring
@@ -7531,7 +7544,7 @@ pub struct RegexValidation {
     pub regexes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Validation based on a list of allowed values.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ValueValidation {
     /// Required. List of allowed values for the parameter.
     #[prost(string, repeated, tag = "1")]
@@ -7544,12 +7557,12 @@ pub struct WorkflowMetadata {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates`, the resource name of the
-    ///    template has the following format:
-    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///   template has the following format:
+    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates`, the resource name of the
-    ///    template has the following format:
-    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///   template has the following format:
+    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub template: ::prost::alloc::string::String,
     /// Output only. The version of template at the time of
@@ -7592,12 +7605,12 @@ pub struct WorkflowMetadata {
     #[prost(message, optional, tag = "12")]
     pub dag_timeout: ::core::option::Option<::prost_types::Duration>,
     /// Output only. DAG start time, only set for workflows with
-    /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
+    /// \[dag_timeout\]\[google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout\] when
     /// DAG begins.
     #[prost(message, optional, tag = "13")]
     pub dag_start_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. DAG end time, only set for workflows with
-    /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
+    /// \[dag_timeout\]\[google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout\] when
     /// DAG ends.
     #[prost(message, optional, tag = "14")]
     pub dag_end_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -7653,7 +7666,7 @@ pub mod workflow_metadata {
     }
 }
 /// The cluster operation triggered by a workflow.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClusterOperation {
     /// Output only. The id of the cluster operation.
     #[prost(string, tag = "1")]
@@ -7673,7 +7686,7 @@ pub struct WorkflowGraph {
     pub nodes: ::prost::alloc::vec::Vec<WorkflowNode>,
 }
 /// The workflow node.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkflowNode {
     /// Output only. The name of the node.
     #[prost(string, tag = "1")]
@@ -7757,12 +7770,12 @@ pub struct CreateWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.create`, the resource name of the
-    ///    region has the following format:
-    ///    `projects/{project_id}/regions/{region}`
+    ///   region has the following format:
+    ///   `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.workflowTemplates.create`, the resource name of
-    ///    the location has the following format:
-    ///    `projects/{project_id}/locations/{location}`
+    ///   the location has the following format:
+    ///   `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The Dataproc workflow template to create.
@@ -7770,18 +7783,18 @@ pub struct CreateWorkflowTemplateRequest {
     pub template: ::core::option::Option<WorkflowTemplate>,
 }
 /// A request to fetch a workflow template.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetWorkflowTemplateRequest {
     /// Required. The resource name of the workflow template, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.get`, the resource name of the
-    ///    template has the following format:
-    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///   template has the following format:
+    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates.get`, the resource name of the
-    ///    template has the following format:
-    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///   template has the following format:
+    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The version of workflow template to retrieve. Only previously
@@ -7798,12 +7811,12 @@ pub struct InstantiateWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.instantiate`, the resource name
-    /// of the template has the following format:
-    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///   of the template has the following format:
+    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates.instantiate`, the resource name
-    ///    of the template has the following format:
-    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///   of the template has the following format:
+    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The version of workflow template to instantiate. If specified,
@@ -7822,7 +7835,7 @@ pub struct InstantiateWorkflowTemplateRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The tag must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "5")]
     pub request_id: ::prost::alloc::string::String,
     /// Optional. Map from parameter names to values that should be used for those
@@ -7840,12 +7853,12 @@ pub struct InstantiateInlineWorkflowTemplateRequest {
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates,instantiateinline`, the resource
-    ///    name of the region has the following format:
-    ///    `projects/{project_id}/regions/{region}`
+    ///   name of the region has the following format:
+    ///   `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.workflowTemplates.instantiateinline`, the
-    ///    resource name of the location has the following format:
-    ///    `projects/{project_id}/locations/{location}`
+    ///   resource name of the location has the following format:
+    ///   `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The workflow template to instantiate.
@@ -7859,7 +7872,7 @@ pub struct InstantiateInlineWorkflowTemplateRequest {
     /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>).
     ///
     /// The tag must contain only letters (a-z, A-Z), numbers (0-9),
-    /// underscores (_), and hyphens (-). The maximum length is 40 characters.
+    /// underscores (\_), and hyphens (-). The maximum length is 40 characters.
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
 }
@@ -7873,18 +7886,18 @@ pub struct UpdateWorkflowTemplateRequest {
     pub template: ::core::option::Option<WorkflowTemplate>,
 }
 /// A request to list workflow templates in a project.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListWorkflowTemplatesRequest {
     /// Required. The resource name of the region or location, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates,list`, the resource
-    ///    name of the region has the following format:
-    ///    `projects/{project_id}/regions/{region}`
+    ///   name of the region has the following format:
+    ///   `projects/{project_id}/regions/{region}`
     ///
     /// * For `projects.locations.workflowTemplates.list`, the
-    ///    resource name of the location has the following format:
-    ///    `projects/{project_id}/locations/{location}`
+    ///   resource name of the location has the following format:
+    ///   `projects/{project_id}/locations/{location}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Optional. The maximum number of results to return in each response.
@@ -7915,18 +7928,18 @@ pub struct ListWorkflowTemplatesResponse {
 /// A request to delete a workflow template.
 ///
 /// Currently started workflows will remain running.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteWorkflowTemplateRequest {
     /// Required. The resource name of the workflow template, as described
     /// in <https://cloud.google.com/apis/design/resource_names.>
     ///
     /// * For `projects.regions.workflowTemplates.delete`, the resource name
-    /// of the template has the following format:
-    ///    `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+    ///   of the template has the following format:
+    ///   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
     ///
     /// * For `projects.locations.workflowTemplates.instantiate`, the resource name
-    ///    of the template has the following format:
-    ///    `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+    ///   of the template has the following format:
+    ///   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The version of workflow template to delete. If specified,
@@ -8035,7 +8048,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/CreateWorkflowTemplate",
             );
@@ -8068,7 +8081,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/GetWorkflowTemplate",
             );
@@ -8086,22 +8099,22 @@ pub mod workflow_template_service_client {
         ///
         /// The returned Operation can be used to track execution of
         /// workflow by polling
-        /// [operations.get][google.longrunning.Operations.GetOperation].
+        /// \[operations.get\]\[google.longrunning.Operations.GetOperation\].
         /// The Operation will complete when entire workflow is finished.
         ///
         /// The running workflow can be aborted via
-        /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+        /// \[operations.cancel\]\[google.longrunning.Operations.CancelOperation\].
         /// This will cause any inflight jobs to be cancelled and workflow-owned
         /// clusters to be deleted.
         ///
-        /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// The \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
         /// Also see [Using
         /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
         ///
         /// On successful completion,
-        /// [Operation.response][google.longrunning.Operation.response] will be
-        /// [Empty][google.protobuf.Empty].
+        /// \[Operation.response\]\[google.longrunning.Operation.response\] will be
+        /// \[Empty\]\[google.protobuf.Empty\].
         pub async fn instantiate_workflow_template(
             &mut self,
             request: impl tonic::IntoRequest<super::InstantiateWorkflowTemplateRequest>,
@@ -8117,7 +8130,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/InstantiateWorkflowTemplate",
             );
@@ -8134,28 +8147,28 @@ pub mod workflow_template_service_client {
         /// Instantiates a template and begins execution.
         ///
         /// This method is equivalent to executing the sequence
-        /// [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
-        /// [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
-        /// [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
+        /// \[CreateWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate\],
+        /// \[InstantiateWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate\],
+        /// \[DeleteWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate\].
         ///
         /// The returned Operation can be used to track execution of
         /// workflow by polling
-        /// [operations.get][google.longrunning.Operations.GetOperation].
+        /// \[operations.get\]\[google.longrunning.Operations.GetOperation\].
         /// The Operation will complete when entire workflow is finished.
         ///
         /// The running workflow can be aborted via
-        /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+        /// \[operations.cancel\]\[google.longrunning.Operations.CancelOperation\].
         /// This will cause any inflight jobs to be cancelled and workflow-owned
         /// clusters to be deleted.
         ///
-        /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// The \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
         /// Also see [Using
         /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
         ///
         /// On successful completion,
-        /// [Operation.response][google.longrunning.Operation.response] will be
-        /// [Empty][google.protobuf.Empty].
+        /// \[Operation.response\]\[google.longrunning.Operation.response\] will be
+        /// \[Empty\]\[google.protobuf.Empty\].
         pub async fn instantiate_inline_workflow_template(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -8173,7 +8186,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/InstantiateInlineWorkflowTemplate",
             );
@@ -8204,7 +8217,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/UpdateWorkflowTemplate",
             );
@@ -8234,7 +8247,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/ListWorkflowTemplates",
             );
@@ -8261,7 +8274,7 @@ pub mod workflow_template_service_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.dataproc.v1.WorkflowTemplateService/DeleteWorkflowTemplate",
             );

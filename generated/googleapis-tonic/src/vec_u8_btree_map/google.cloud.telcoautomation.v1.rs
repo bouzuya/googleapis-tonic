@@ -349,7 +349,7 @@ pub mod blueprint {
 /// Public blueprint is a TNA provided blueprint that in present in TNA's public
 /// catalog. A user can copy the public blueprint to their private catalog for
 /// further modifications.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PublicBlueprint {
     /// Name of the public blueprint.
     #[prost(string, tag = "1")]
@@ -567,7 +567,7 @@ pub mod hydrated_deployment {
     }
 }
 /// Message for requesting list of OrchestrationClusters.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListOrchestrationClustersRequest {
     /// Required. Parent value for ListOrchestrationClustersRequest
     #[prost(string, tag = "1")]
@@ -600,7 +600,7 @@ pub struct ListOrchestrationClustersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a OrchestrationCluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetOrchestrationClusterRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -637,7 +637,7 @@ pub struct CreateOrchestrationClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a OrchestrationCluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteOrchestrationClusterRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -659,7 +659,7 @@ pub struct DeleteOrchestrationClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for requesting list of EdgeSlms
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListEdgeSlmsRequest {
     /// Required. Parent value for ListEdgeSlmsRequest
     #[prost(string, tag = "1")]
@@ -692,7 +692,7 @@ pub struct ListEdgeSlmsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a EdgeSlm.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetEdgeSlmRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -729,7 +729,7 @@ pub struct CreateEdgeSlmRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a EdgeSlm.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteEdgeSlmRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -777,7 +777,7 @@ pub struct UpdateBlueprintRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request object for `GetBlueprint`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetBlueprintRequest {
     /// Required. The name of the blueprint.
     /// Case 1: If the name provided in the request is
@@ -792,7 +792,7 @@ pub struct GetBlueprintRequest {
     pub view: i32,
 }
 /// Request object for `DeleteBlueprint`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteBlueprintRequest {
     /// Required. The name of blueprint to delete.
     /// Blueprint name should be in the format {blueprint_id}, if
@@ -802,7 +802,7 @@ pub struct DeleteBlueprintRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ListBlueprints`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListBlueprintsRequest {
     /// Required. The name of parent orchestration cluster resource.
     /// Format should be -
@@ -834,7 +834,7 @@ pub struct ListBlueprintsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request object for `ApproveBlueprint`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ApproveBlueprintRequest {
     /// Required. The name of the blueprint to approve. The blueprint must be in
     /// Proposed state. A new revision is committed on approval.
@@ -842,21 +842,21 @@ pub struct ApproveBlueprintRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ProposeBlueprint`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ProposeBlueprintRequest {
     /// Required. The name of the blueprint being proposed.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `RejectBlueprint`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RejectBlueprintRequest {
     /// Required. The name of the blueprint being rejected.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ListBlueprintRevisions`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListBlueprintRevisionsRequest {
     /// Required. The name of the blueprint to list revisions for.
     #[prost(string, tag = "1")]
@@ -881,7 +881,7 @@ pub struct ListBlueprintRevisionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request object for `SearchBlueprintRevisions`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SearchBlueprintRevisionsRequest {
     /// Required. The name of parent orchestration cluster resource.
     /// Format should be -
@@ -889,12 +889,13 @@ pub struct SearchBlueprintRevisionsRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. Supported queries:
+    ///
     /// 1. ""                       : Lists all revisions across all blueprints.
-    /// 2. "latest=true"            : Lists latest revisions across all blueprints.
-    /// 3. "name={name}"            : Lists all revisions of blueprint with name
-    /// {name}.
-    /// 4. "name={name} latest=true": Lists latest revision of blueprint with name
-    /// {name}
+    /// 1. "latest=true"            : Lists latest revisions across all blueprints.
+    /// 1. "name={name}"            : Lists all revisions of blueprint with name
+    ///    {name}.
+    /// 1. "name={name} latest=true": Lists latest revision of blueprint with name
+    ///    {name}
     #[prost(string, tag = "2")]
     pub query: ::prost::alloc::string::String,
     /// Optional. The maximum number of blueprints revisions to return per page.
@@ -918,17 +919,17 @@ pub struct SearchBlueprintRevisionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request object for `DiscardBlueprintChanges`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiscardBlueprintChangesRequest {
     /// Required. The name of the blueprint of which changes are being discarded.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Response object for `DiscardBlueprintChanges`.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiscardBlueprintChangesResponse {}
 /// Request object for `ListPublicBlueprints`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListPublicBlueprintsRequest {
     /// Required. Parent value of public blueprint.
     /// Format should be -
@@ -955,7 +956,7 @@ pub struct ListPublicBlueprintsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request object for `GetPublicBlueprint`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetPublicBlueprintRequest {
     /// Required. The name of the public blueprint.
     #[prost(string, tag = "1")]
@@ -988,7 +989,7 @@ pub struct UpdateDeploymentRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request object for `GetDeployment`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetDeploymentRequest {
     /// Required. The name of the deployment.
     /// Case 1: If the name provided in the request is
@@ -1004,14 +1005,14 @@ pub struct GetDeploymentRequest {
     pub view: i32,
 }
 /// Request object for `RemoveDeployment`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RemoveDeploymentRequest {
     /// Required. The name of deployment to initiate delete.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ListDeployments`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListDeploymentsRequest {
     /// Required. The name of parent orchestration cluster resource.
     /// Format should be -
@@ -1043,7 +1044,7 @@ pub struct ListDeploymentsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for listing all revisions of a deployment.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListDeploymentRevisionsRequest {
     /// Required. The name of the deployment to list revisions for.
     #[prost(string, tag = "1")]
@@ -1068,7 +1069,7 @@ pub struct ListDeploymentRevisionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request object for `SearchDeploymentRevisions`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SearchDeploymentRevisionsRequest {
     /// Required. The name of parent orchestration cluster resource.
     /// Format should be -
@@ -1076,13 +1077,14 @@ pub struct SearchDeploymentRevisionsRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. Supported queries:
+    ///
     /// 1. ""                       : Lists all revisions across all deployments.
-    /// 2. "latest=true"            : Lists latest revisions across all
-    /// deployments.
-    /// 3. "name={name}"            : Lists all revisions of deployment with name
-    /// {name}.
-    /// 4. "name={name} latest=true": Lists latest revision of deployment with name
-    /// {name}
+    /// 1. "latest=true"            : Lists latest revisions across all
+    ///    deployments.
+    /// 1. "name={name}"            : Lists all revisions of deployment with name
+    ///    {name}.
+    /// 1. "name={name} latest=true": Lists latest revision of deployment with name
+    ///    {name}
     #[prost(string, tag = "2")]
     pub query: ::prost::alloc::string::String,
     /// Optional. The maximum number of deployment revisions to return per page.
@@ -1106,26 +1108,26 @@ pub struct SearchDeploymentRevisionsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request object for `DiscardDeploymentChanges`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiscardDeploymentChangesRequest {
     /// Required. The name of the deployment of which changes are being discarded.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Response object for `DiscardDeploymentChanges`.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiscardDeploymentChangesResponse {}
 /// Request object for `ApplyDeployment`. The resources in given deployment
 /// gets applied to Orchestration Cluster. A new revision is created when a
 /// deployment is applied.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ApplyDeploymentRequest {
     /// Required. The name of the deployment to apply to orchestration cluster.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ComputeDeploymentStatus`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ComputeDeploymentStatusRequest {
     /// Required. The name of the deployment without revisionID.
     #[prost(string, tag = "1")]
@@ -1145,7 +1147,7 @@ pub struct ComputeDeploymentStatusResponse {
     pub resource_statuses: ::prost::alloc::vec::Vec<ResourceStatus>,
 }
 /// Request object for `RollbackDeployment`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RollbackDeploymentRequest {
     /// Required. Name of the deployment.
     #[prost(string, tag = "1")]
@@ -1155,7 +1157,7 @@ pub struct RollbackDeploymentRequest {
     pub revision_id: ::prost::alloc::string::String,
 }
 /// Represents the metadata of the long-running operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -1174,8 +1176,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have [Operation.error][] value with a
-    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+    /// have \[Operation.error\]\[\] value with a
+    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -1184,14 +1186,14 @@ pub struct OperationMetadata {
     pub api_version: ::prost::alloc::string::String,
 }
 /// Request object for `GetHydratedDeployment`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetHydratedDeploymentRequest {
     /// Required. Name of the hydrated deployment.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ListHydratedDeployments`.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListHydratedDeploymentsRequest {
     /// Required. The deployment managing the hydrated deployments.
     #[prost(string, tag = "1")]
@@ -1230,7 +1232,7 @@ pub struct UpdateHydratedDeploymentRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request for applying a hydrated deployment.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ApplyHydratedDeploymentRequest {
     /// Required. The name of the hydrated deployment to apply.
     #[prost(string, tag = "1")]
@@ -1367,7 +1369,7 @@ pub struct MasterAuthorizedNetworksConfig {
 /// Nested message and enum types in `MasterAuthorizedNetworksConfig`.
 pub mod master_authorized_networks_config {
     /// CidrBlock contains an optional name and one CIDR block.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CidrBlock {
         /// Optional. display_name is an optional field for users to identify CIDR
         /// blocks.
@@ -1382,7 +1384,7 @@ pub mod master_authorized_networks_config {
     }
 }
 /// File represents a yaml file present in a blueprint's package.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct File {
     /// Required. Path of the file in package.
     /// e.g. `gdce/v1/cluster.yaml`
@@ -1442,7 +1444,7 @@ pub struct NfDeployStatus {
     pub sites: ::prost::alloc::vec::Vec<NfDeploySiteStatus>,
 }
 /// Per-Site Status.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NfDeploySiteStatus {
     /// Output only. Site id.
     #[prost(string, tag = "1")]
@@ -1458,7 +1460,7 @@ pub struct NfDeploySiteStatus {
     pub workload: ::core::option::Option<WorkloadStatus>,
 }
 /// Hydration status.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HydrationStatus {
     /// Output only. SiteVersion Hydration is targeting.
     #[prost(message, optional, tag = "1")]
@@ -1468,7 +1470,7 @@ pub struct HydrationStatus {
     pub status: ::prost::alloc::string::String,
 }
 /// SiteVersion Hydration is targeting.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SiteVersion {
     /// Output only. NF vendor.
     #[prost(string, tag = "1")]
@@ -1481,7 +1483,7 @@ pub struct SiteVersion {
     pub nf_version: ::prost::alloc::string::String,
 }
 /// Workload status.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct WorkloadStatus {
     /// Output only. SiteVersion running in the workload cluster.
     #[prost(message, optional, tag = "1")]
@@ -1799,7 +1801,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListOrchestrationClusters",
             );
@@ -1829,7 +1831,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/GetOrchestrationCluster",
             );
@@ -1859,7 +1861,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/CreateOrchestrationCluster",
             );
@@ -1889,7 +1891,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteOrchestrationCluster",
             );
@@ -1919,7 +1921,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListEdgeSlms",
             );
@@ -1946,7 +1948,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/GetEdgeSlm",
             );
@@ -1976,7 +1978,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/CreateEdgeSlm",
             );
@@ -2006,7 +2008,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteEdgeSlm",
             );
@@ -2033,7 +2035,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/CreateBlueprint",
             );
@@ -2060,7 +2062,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/UpdateBlueprint",
             );
@@ -2087,7 +2089,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/GetBlueprint",
             );
@@ -2114,7 +2116,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteBlueprint",
             );
@@ -2144,7 +2146,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListBlueprints",
             );
@@ -2171,7 +2173,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ApproveBlueprint",
             );
@@ -2198,7 +2200,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ProposeBlueprint",
             );
@@ -2225,7 +2227,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/RejectBlueprint",
             );
@@ -2255,7 +2257,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListBlueprintRevisions",
             );
@@ -2285,7 +2287,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/SearchBlueprintRevisions",
             );
@@ -2315,7 +2317,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/SearchDeploymentRevisions",
             );
@@ -2347,7 +2349,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/DiscardBlueprintChanges",
             );
@@ -2378,7 +2380,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListPublicBlueprints",
             );
@@ -2408,7 +2410,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/GetPublicBlueprint",
             );
@@ -2435,7 +2437,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/CreateDeployment",
             );
@@ -2462,7 +2464,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/UpdateDeployment",
             );
@@ -2489,7 +2491,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/GetDeployment",
             );
@@ -2517,7 +2519,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/RemoveDeployment",
             );
@@ -2547,7 +2549,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListDeployments",
             );
@@ -2577,7 +2579,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListDeploymentRevisions",
             );
@@ -2609,7 +2611,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/DiscardDeploymentChanges",
             );
@@ -2636,7 +2638,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ApplyDeployment",
             );
@@ -2666,7 +2668,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ComputeDeploymentStatus",
             );
@@ -2694,7 +2696,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/RollbackDeployment",
             );
@@ -2724,7 +2726,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/GetHydratedDeployment",
             );
@@ -2754,7 +2756,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ListHydratedDeployments",
             );
@@ -2784,7 +2786,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/UpdateHydratedDeployment",
             );
@@ -2814,7 +2816,7 @@ pub mod telco_automation_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.telcoautomation.v1.TelcoAutomation/ApplyHydratedDeployment",
             );

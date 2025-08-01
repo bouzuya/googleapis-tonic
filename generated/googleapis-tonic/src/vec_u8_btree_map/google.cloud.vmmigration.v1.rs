@@ -90,7 +90,7 @@ pub mod replication_cycle {
     }
 }
 /// CycleStep holds information about a step progress.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CycleStep {
     /// The time the cycle step has started.
     #[prost(message, optional, tag = "1")]
@@ -103,7 +103,7 @@ pub struct CycleStep {
 }
 /// Nested message and enum types in `CycleStep`.
 pub mod cycle_step {
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Step {
         /// Initializing replication step.
         #[prost(message, tag = "3")]
@@ -117,10 +117,10 @@ pub mod cycle_step {
     }
 }
 /// InitializingReplicationStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InitializingReplicationStep {}
 /// ReplicatingStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReplicatingStep {
     /// Total bytes to be handled in the step.
     #[prost(int64, tag = "1")]
@@ -138,10 +138,10 @@ pub struct ReplicatingStep {
     pub last_thirty_minutes_average_bytes_per_second: i64,
 }
 /// PostProcessingStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PostProcessingStep {}
 /// ReplicationSync contain information about the last replica sync to the cloud.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReplicationSync {
     /// The most updated snapshot created time in the source that finished
     /// replication.
@@ -192,7 +192,7 @@ pub struct MigratingVm {
     pub current_sync_info: ::core::option::Option<ReplicationCycle>,
     /// Output only. The group this migrating vm is included in, if any. The group
     /// is represented by the full path of the appropriate
-    /// [Group][google.cloud.vmmigration.v1.Group] resource.
+    /// \[Group\]\[google.cloud.vmmigration.v1.Group\] resource.
     #[prost(string, tag = "15")]
     pub group: ::prost::alloc::string::String,
     /// The labels of the migrating VM.
@@ -201,7 +201,7 @@ pub struct MigratingVm {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
-    /// Output only. The recent [clone jobs][google.cloud.vmmigration.v1.CloneJob]
+    /// Output only. The recent \[clone jobs\]\[google.cloud.vmmigration.v1.CloneJob\]
     /// performed on the migrating VM. This field holds the vm's last completed
     /// clone job and the vm's running clone job, if one exists.
     /// Note: To have this field populated you need to explicitly request it via
@@ -323,7 +323,7 @@ pub mod migrating_vm {
         ComputeEngineTargetDefaults(super::ComputeEngineTargetDefaults),
     }
     /// Details about the source VM.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum SourceVmDetails {
         /// Output only. Details of the VM from an AWS source.
         #[prost(message, tag = "29")]
@@ -331,7 +331,7 @@ pub mod migrating_vm {
     }
 }
 /// CloneJob describes the process of creating a clone of a
-/// [MigratingVM][google.cloud.vmmigration.v1.MigratingVm] to the
+/// \[MigratingVM\]\[google.cloud.vmmigration.v1.MigratingVm\] to the
 /// requested target based on the latest successful uploaded snapshots.
 /// While the migration cycles of a MigratingVm take place, it is possible to
 /// verify the uploaded VM can be started in the cloud, by creating a clone. The
@@ -444,7 +444,7 @@ pub mod clone_job {
     }
 }
 /// CloneStep holds information about the clone step progress.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CloneStep {
     /// The time the step has started.
     #[prost(message, optional, tag = "1")]
@@ -457,7 +457,7 @@ pub struct CloneStep {
 }
 /// Nested message and enum types in `CloneStep`.
 pub mod clone_step {
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Step {
         /// Adapting OS step.
         #[prost(message, tag = "3")]
@@ -471,13 +471,13 @@ pub mod clone_step {
     }
 }
 /// AdaptingOSStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdaptingOsStep {}
 /// PreparingVMDisksStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PreparingVmDisksStep {}
 /// InstantiatingMigratedVMStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InstantiatingMigratedVmStep {}
 /// CutoverJob message describes a cutover of a migrating VM. The CutoverJob is
 /// the operation of shutting down the VM, creating a snapshot and
@@ -626,7 +626,7 @@ pub mod cutover_step {
     }
 }
 /// ShuttingDownSourceVMStep contains specific step details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShuttingDownSourceVmStep {}
 /// Request message for 'CreateCloneJob' request.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -657,17 +657,17 @@ pub struct CreateCloneJobRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'CancelCloneJob' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelCloneJobRequest {
     /// Required. The clone job id
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Response message for 'CancelCloneJob' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelCloneJobResponse {}
 /// Request message for 'ListCloneJobsRequest' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListCloneJobsRequest {
     /// Required. The parent, which owns this collection of source VMs.
     #[prost(string, tag = "1")]
@@ -707,7 +707,7 @@ pub struct ListCloneJobsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetCloneJob' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetCloneJobRequest {
     /// Required. The name of the CloneJob.
     #[prost(string, tag = "1")]
@@ -752,7 +752,7 @@ pub mod source {
 }
 /// VmwareSourceDetails message describes a specific source details for the
 /// vmware source type.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VmwareSourceDetails {
     /// The credentials username.
     #[prost(string, tag = "1")]
@@ -810,7 +810,7 @@ pub struct AwsSourceDetails {
 /// Nested message and enum types in `AwsSourceDetails`.
 pub mod aws_source_details {
     /// Message describing AWS Credentials using access key id and secret.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AccessKeyCredentials {
         /// AWS access key ID.
         #[prost(string, tag = "1")]
@@ -820,7 +820,7 @@ pub mod aws_source_details {
         pub secret_access_key: ::prost::alloc::string::String,
     }
     /// Tag is an AWS tag representation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Tag {
         /// Key of tag.
         #[prost(string, tag = "1")]
@@ -879,7 +879,7 @@ pub mod aws_source_details {
             }
         }
     }
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum CredentialsType {
         /// AWS Credentials using access key id and secret.
         #[prost(message, tag = "11")]
@@ -1074,7 +1074,7 @@ pub mod upgrade_status {
     }
 }
 /// Holds informatiom about the available versions for upgrade.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AvailableUpdates {
     /// The newest deployable version of the appliance.
     /// The current appliance can't be updated into this version, and the owner
@@ -1088,7 +1088,7 @@ pub struct AvailableUpdates {
     pub in_place_update: ::core::option::Option<ApplianceVersion>,
 }
 /// Describes an appliance version.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ApplianceVersion {
     /// The appliance version.
     #[prost(string, tag = "1")]
@@ -1104,7 +1104,7 @@ pub struct ApplianceVersion {
     pub release_notes_uri: ::prost::alloc::string::String,
 }
 /// Request message for 'ListSources' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListSourcesRequest {
     /// Required. The parent, which owns this collection of sources.
     #[prost(string, tag = "1")]
@@ -1144,7 +1144,7 @@ pub struct ListSourcesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetSource' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetSourceRequest {
     /// Required. The Source name.
     #[prost(string, tag = "1")]
@@ -1208,7 +1208,7 @@ pub struct UpdateSourceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'DeleteSource' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteSourceRequest {
     /// Required. The Source name.
     #[prost(string, tag = "1")]
@@ -1230,8 +1230,8 @@ pub struct DeleteSourceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for
-/// [fetchInventory][google.cloud.vmmigration.v1.VmMigration.FetchInventory].
-#[derive(Clone, PartialEq, ::prost::Message)]
+/// \[fetchInventory\]\[google.cloud.vmmigration.v1.VmMigration.FetchInventory\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FetchInventoryRequest {
     /// Required. The name of the Source.
     #[prost(string, tag = "1")]
@@ -1242,7 +1242,7 @@ pub struct FetchInventoryRequest {
     pub force_refresh: bool,
 }
 /// VmwareVmDetails describes a VM in vCenter.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VmwareVmDetails {
     /// The VM's id in the source (note that this is not the MigratingVm's id).
     /// This is the moref id of the VM.
@@ -1631,7 +1631,7 @@ pub mod aws_vm_details {
     }
 }
 /// AwsSecurityGroup describes a security group of an AWS VM.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AwsSecurityGroup {
     /// The AWS security group id.
     #[prost(string, tag = "1")]
@@ -1655,7 +1655,7 @@ pub struct AwsVmsDetails {
     pub details: ::prost::alloc::vec::Vec<AwsVmDetails>,
 }
 /// Response message for
-/// [fetchInventory][google.cloud.vmmigration.v1.VmMigration.FetchInventory].
+/// \[fetchInventory\]\[google.cloud.vmmigration.v1.VmMigration.FetchInventory\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchInventoryResponse {
     /// Output only. The timestamp when the source was last queried (if the result
@@ -1818,7 +1818,7 @@ pub mod utilization_report {
     }
 }
 /// Utilization information of a single VM.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VmUtilizationInfo {
     /// The VM's ID in the source.
     #[prost(string, tag = "3")]
@@ -1831,7 +1831,7 @@ pub struct VmUtilizationInfo {
 }
 /// Nested message and enum types in `VmUtilizationInfo`.
 pub mod vm_utilization_info {
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum VmDetails {
         /// The description of the VM in a Source of type Vmware.
         #[prost(message, tag = "1")]
@@ -1839,7 +1839,7 @@ pub mod vm_utilization_info {
     }
 }
 /// Utilization metrics values for a single VM.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct VmUtilizationMetrics {
     /// Max CPU usage, percent.
     #[prost(int32, tag = "9")]
@@ -1869,7 +1869,7 @@ pub struct VmUtilizationMetrics {
     pub network_throughput_average_kbps: i64,
 }
 /// Request message for 'ListUtilizationReports' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListUtilizationReportsRequest {
     /// Required. The Utilization Reports parent.
     #[prost(string, tag = "1")]
@@ -1913,7 +1913,7 @@ pub struct ListUtilizationReportsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetUtilizationReport' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetUtilizationReportRequest {
     /// Required. The Utilization Report name.
     #[prost(string, tag = "1")]
@@ -1936,7 +1936,7 @@ pub struct CreateUtilizationReportRequest {
     /// component of the reports's resource name.
     ///
     /// This value maximum length is 63 characters, and valid characters
-    /// are /[a-z][0-9]-/. It must start with an english letter and must not
+    /// are /\[a-z\]\[0-9\]-/. It must start with an english letter and must not
     /// end with a hyphen.
     #[prost(string, tag = "3")]
     pub utilization_report_id: ::prost::alloc::string::String,
@@ -1957,7 +1957,7 @@ pub struct CreateUtilizationReportRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'DeleteUtilizationReport' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteUtilizationReportRequest {
     /// Required. The Utilization Report name.
     #[prost(string, tag = "1")]
@@ -1993,7 +1993,7 @@ pub struct ListDatacenterConnectorsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetDatacenterConnector' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetDatacenterConnectorRequest {
     /// Required. The name of the DatacenterConnector.
     #[prost(string, tag = "1")]
@@ -2031,7 +2031,7 @@ pub struct CreateDatacenterConnectorRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'DeleteDatacenterConnector' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteDatacenterConnectorRequest {
     /// Required. The DatacenterConnector name.
     #[prost(string, tag = "1")]
@@ -2053,7 +2053,7 @@ pub struct DeleteDatacenterConnectorRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'UpgradeAppliance' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpgradeApplianceRequest {
     /// Required. The DatacenterConnector name.
     #[prost(string, tag = "1")]
@@ -2075,10 +2075,10 @@ pub struct UpgradeApplianceRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Response message for 'UpgradeAppliance' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpgradeApplianceResponse {}
 /// Request message for 'ListDatacenterConnectors' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListDatacenterConnectorsRequest {
     /// Required. The parent, which owns this collection of connectors.
     #[prost(string, tag = "1")]
@@ -2238,7 +2238,7 @@ pub struct ComputeEngineTargetDetails {
     pub hostname: ::prost::alloc::string::String,
 }
 /// NetworkInterface represents a NIC of a VM.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NetworkInterface {
     /// The network to connect the NIC to.
     #[prost(string, tag = "1")]
@@ -2256,7 +2256,7 @@ pub struct NetworkInterface {
     pub external_ip: ::prost::alloc::string::String,
 }
 /// AppliedLicense holds the license data returned by adaptation module report.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AppliedLicense {
     /// The license type that was used in OS adaptation.
     #[prost(enumeration = "applied_license::Type", tag = "1")]
@@ -2318,7 +2318,7 @@ pub mod applied_license {
 /// Node Affinity: the configuration of desired nodes onto which this Instance
 /// could be scheduled. Based on
 /// <https://cloud.google.com/compute/docs/reference/rest/v1/instances/setScheduling>
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SchedulingNodeAffinity {
     /// The label key of Node resource to reference.
     #[prost(string, tag = "1")]
@@ -2496,7 +2496,7 @@ pub mod compute_scheduling {
     }
 }
 /// A policy for scheduling replications.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SchedulePolicy {
     /// The idle duration between replication stages.
     #[prost(message, optional, tag = "1")]
@@ -2536,7 +2536,7 @@ pub struct CreateMigratingVmRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'LisMigratingVmsRequest' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListMigratingVmsRequest {
     /// Required. The parent, which owns this collection of MigratingVms.
     #[prost(string, tag = "1")]
@@ -2579,7 +2579,7 @@ pub struct ListMigratingVmsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetMigratingVm' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetMigratingVmRequest {
     /// Required. The name of the MigratingVm.
     #[prost(string, tag = "1")]
@@ -2618,55 +2618,55 @@ pub struct UpdateMigratingVmRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'DeleteMigratingVm' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteMigratingVmRequest {
     /// Required. The name of the MigratingVm.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for 'StartMigrationRequest' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StartMigrationRequest {
     /// Required. The name of the MigratingVm.
     #[prost(string, tag = "1")]
     pub migrating_vm: ::prost::alloc::string::String,
 }
 /// Response message for 'StartMigration' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StartMigrationResponse {}
 /// Request message for 'PauseMigration' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PauseMigrationRequest {
     /// Required. The name of the MigratingVm.
     #[prost(string, tag = "1")]
     pub migrating_vm: ::prost::alloc::string::String,
 }
 /// Response message for 'PauseMigration' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PauseMigrationResponse {}
 /// Request message for 'ResumeMigration' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResumeMigrationRequest {
     /// Required. The name of the MigratingVm.
     #[prost(string, tag = "1")]
     pub migrating_vm: ::prost::alloc::string::String,
 }
 /// Response message for 'ResumeMigration' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResumeMigrationResponse {}
 /// Request message for 'FinalizeMigration' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FinalizeMigrationRequest {
     /// Required. The name of the MigratingVm.
     #[prost(string, tag = "1")]
     pub migrating_vm: ::prost::alloc::string::String,
 }
 /// Response message for 'FinalizeMigration' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FinalizeMigrationResponse {}
 /// TargetProject message represents a target Compute Engine project for a
 /// migration or a clone.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TargetProject {
     /// Output only. The name of the target project.
     #[prost(string, tag = "1")]
@@ -2686,14 +2686,14 @@ pub struct TargetProject {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Request message for 'GetTargetProject' call.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetTargetProjectRequest {
     /// Required. The TargetProject name.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for 'ListTargetProjects' call.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListTargetProjectsRequest {
     /// Required. The parent, which owns this collection of targets.
     #[prost(string, tag = "1")]
@@ -2733,7 +2733,7 @@ pub struct ListTargetProjectsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'CreateTargetProject' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateTargetProjectRequest {
     /// Required. The TargetProject's parent.
     #[prost(string, tag = "1")]
@@ -2761,7 +2761,7 @@ pub struct CreateTargetProjectRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Update message for 'UpdateTargetProject' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateTargetProjectRequest {
     /// Field mask is used to specify the fields to be overwritten in the
     /// TargetProject resource by the update.
@@ -2790,7 +2790,7 @@ pub struct UpdateTargetProjectRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'DeleteTargetProject' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteTargetProjectRequest {
     /// Required. The TargetProject name.
     #[prost(string, tag = "1")]
@@ -2813,7 +2813,7 @@ pub struct DeleteTargetProjectRequest {
 }
 /// Describes message for 'Group' resource. The Group is a collections of several
 /// MigratingVms.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Group {
     /// Output only. The Group name.
     #[prost(string, tag = "1")]
@@ -2832,7 +2832,7 @@ pub struct Group {
     pub display_name: ::prost::alloc::string::String,
 }
 /// Request message for 'ListGroups' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListGroupsRequest {
     /// Required. The parent, which owns this collection of groups.
     #[prost(string, tag = "1")]
@@ -2872,14 +2872,14 @@ pub struct ListGroupsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetGroup' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetGroupRequest {
     /// Required. The group name.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Request message for 'CreateGroup' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateGroupRequest {
     /// Required. The Group's parent.
     #[prost(string, tag = "1")]
@@ -2907,7 +2907,7 @@ pub struct CreateGroupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Update message for 'UpdateGroups' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateGroupRequest {
     /// Field mask is used to specify the fields to be overwritten in the
     /// Group resource by the update.
@@ -2936,7 +2936,7 @@ pub struct UpdateGroupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'DeleteGroup' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteGroupRequest {
     /// Required. The Group name.
     #[prost(string, tag = "1")]
@@ -2958,7 +2958,7 @@ pub struct DeleteGroupRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'AddGroupMigration' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AddGroupMigrationRequest {
     /// Required. The full path name of the Group to add to.
     #[prost(string, tag = "1")]
@@ -2968,10 +2968,10 @@ pub struct AddGroupMigrationRequest {
     pub migrating_vm: ::prost::alloc::string::String,
 }
 /// Response message for 'AddGroupMigration' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AddGroupMigrationResponse {}
 /// Request message for 'RemoveMigration' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RemoveGroupMigrationRequest {
     /// Required. The name of the Group.
     #[prost(string, tag = "1")]
@@ -2981,7 +2981,7 @@ pub struct RemoveGroupMigrationRequest {
     pub migrating_vm: ::prost::alloc::string::String,
 }
 /// Response message for 'RemoveMigration' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RemoveGroupMigrationResponse {}
 /// Request message for 'CreateCutoverJob' request.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3012,17 +3012,17 @@ pub struct CreateCutoverJobRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request message for 'CancelCutoverJob' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelCutoverJobRequest {
     /// Required. The cutover job id
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Response message for 'CancelCutoverJob' request.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelCutoverJobResponse {}
 /// Request message for 'ListCutoverJobsRequest' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListCutoverJobsRequest {
     /// Required. The parent, which owns this collection of migrating VMs.
     #[prost(string, tag = "1")]
@@ -3062,14 +3062,14 @@ pub struct ListCutoverJobsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetCutoverJob' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetCutoverJobRequest {
     /// Required. The name of the CutoverJob.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
 /// Represents the metadata of the long-running operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -3088,8 +3088,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have [Operation.error][] value with a
-    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+    /// have \[Operation.error\]\[\] value with a
+    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -3198,7 +3198,7 @@ pub mod migration_error {
     }
 }
 /// Represent the source AWS VM details.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AwsSourceVmDetails {
     /// The firmware type of the source VM.
     #[prost(enumeration = "aws_source_vm_details::Firmware", tag = "1")]
@@ -3254,7 +3254,7 @@ pub mod aws_source_vm_details {
     }
 }
 /// Request message for 'LisReplicationCyclesRequest' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListReplicationCyclesRequest {
     /// Required. The parent, which owns this collection of ReplicationCycles.
     #[prost(string, tag = "1")]
@@ -3294,7 +3294,7 @@ pub struct ListReplicationCyclesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request message for 'GetReplicationCycle' request.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetReplicationCycleRequest {
     /// Required. The name of the ReplicationCycle.
     #[prost(string, tag = "1")]
@@ -3572,7 +3572,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListSources",
             );
@@ -3599,7 +3599,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetSource",
             );
@@ -3629,7 +3629,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateSource",
             );
@@ -3659,7 +3659,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/UpdateSource",
             );
@@ -3689,7 +3689,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/DeleteSource",
             );
@@ -3723,7 +3723,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/FetchInventory",
             );
@@ -3753,7 +3753,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListUtilizationReports",
             );
@@ -3783,7 +3783,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetUtilizationReport",
             );
@@ -3813,7 +3813,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateUtilizationReport",
             );
@@ -3843,7 +3843,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/DeleteUtilizationReport",
             );
@@ -3873,7 +3873,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListDatacenterConnectors",
             );
@@ -3903,7 +3903,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetDatacenterConnector",
             );
@@ -3933,7 +3933,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateDatacenterConnector",
             );
@@ -3963,7 +3963,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/DeleteDatacenterConnector",
             );
@@ -3994,7 +3994,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/UpgradeAppliance",
             );
@@ -4024,7 +4024,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateMigratingVm",
             );
@@ -4054,7 +4054,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListMigratingVms",
             );
@@ -4081,7 +4081,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetMigratingVm",
             );
@@ -4111,7 +4111,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/UpdateMigratingVm",
             );
@@ -4141,7 +4141,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/DeleteMigratingVm",
             );
@@ -4172,7 +4172,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/StartMigration",
             );
@@ -4205,7 +4205,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ResumeMigration",
             );
@@ -4237,7 +4237,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/PauseMigration",
             );
@@ -4268,7 +4268,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/FinalizeMigration",
             );
@@ -4298,7 +4298,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateCloneJob",
             );
@@ -4328,7 +4328,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CancelCloneJob",
             );
@@ -4358,7 +4358,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListCloneJobs",
             );
@@ -4385,7 +4385,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetCloneJob",
             );
@@ -4417,7 +4417,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateCutoverJob",
             );
@@ -4447,7 +4447,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CancelCutoverJob",
             );
@@ -4477,7 +4477,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListCutoverJobs",
             );
@@ -4504,7 +4504,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetCutoverJob",
             );
@@ -4534,7 +4534,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListGroups",
             );
@@ -4561,7 +4561,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetGroup",
             );
@@ -4591,7 +4591,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateGroup",
             );
@@ -4621,7 +4621,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/UpdateGroup",
             );
@@ -4651,7 +4651,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/DeleteGroup",
             );
@@ -4681,7 +4681,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/AddGroupMigration",
             );
@@ -4711,7 +4711,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/RemoveGroupMigration",
             );
@@ -4744,7 +4744,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListTargetProjects",
             );
@@ -4774,7 +4774,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetTargetProject",
             );
@@ -4807,7 +4807,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/CreateTargetProject",
             );
@@ -4840,7 +4840,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/UpdateTargetProject",
             );
@@ -4873,7 +4873,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/DeleteTargetProject",
             );
@@ -4903,7 +4903,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/ListReplicationCycles",
             );
@@ -4933,7 +4933,7 @@ pub mod vm_migration_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.vmmigration.v1.VmMigration/GetReplicationCycle",
             );

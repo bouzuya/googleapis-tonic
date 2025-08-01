@@ -3,8 +3,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceBundle {
     /// Identifier. Name of the `ResourceBundle`. Format is
-    /// `projects/{project}/locations/{location}/resourceBundle
-    /// /[a-z][a-z0-9\-]{0,62}`.
+    /// `projects/{project}/locations/{location}/resourceBundle  /[a-z][a-z0-9\-]{0,62}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Time `ResourceBundle` was created.
@@ -24,7 +23,7 @@ pub struct ResourceBundle {
     pub description: ::prost::alloc::string::String,
 }
 /// Message for requesting list of ResourceBundles.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListResourceBundlesRequest {
     /// Required. Parent value for ListResourceBundlesRequest.
     #[prost(string, tag = "1")]
@@ -57,7 +56,7 @@ pub struct ListResourceBundlesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a ResourceBundle.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetResourceBundleRequest {
     /// Required. Name of the resource.
     #[prost(string, tag = "1")]
@@ -123,7 +122,7 @@ pub struct UpdateResourceBundleRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a ResourceBundle
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteResourceBundleRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -171,13 +170,13 @@ pub struct FleetPackage {
     /// user and by Config Delivery. Labels must meet the following constraints:
     ///
     /// * Keys and values can contain only lowercase letters, numeric characters,
-    /// underscores, and dashes.
+    ///   underscores, and dashes.
     /// * All characters must use UTF-8 encoding, and international characters are
-    /// allowed.
+    ///   allowed.
     /// * Keys must start with a lowercase letter or international character.
     /// * Each resource is limited to a maximum of 64 labels.
     ///
-    /// Both keys and values are additionally constrained to be <= 128 bytes.
+    /// Both keys and values are additionally constrained to be \<= 128 bytes.
     #[prost(btree_map = "string, string", tag = "4")]
     pub labels: ::prost::alloc::collections::BTreeMap<
         ::prost::alloc::string::String,
@@ -216,7 +215,7 @@ pub struct FleetPackage {
 /// Nested message and enum types in `FleetPackage`.
 pub mod fleet_package {
     /// Information specifying the source of kubernetes configuration to deploy.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ResourceBundleSelector {
         /// source can be a directly pushed `ResourceBundle` or
         /// `CloudBuildRepository` containing the kubernetes configuration.
@@ -227,7 +226,7 @@ pub mod fleet_package {
     pub mod resource_bundle_selector {
         /// source can be a directly pushed `ResourceBundle` or
         /// `CloudBuildRepository` containing the kubernetes configuration.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum Source {
             /// Information specifying `ResourceBundle`.
             #[prost(message, tag = "1")]
@@ -239,7 +238,7 @@ pub mod fleet_package {
     }
     /// ResourceBundleTag contains the information to refer to a release for a
     /// `ResourceBundle`.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ResourceBundleTag {
         /// Required. Name of the `ResourceBundle`.
         /// Format is projects/{p}/locations/{l}/resourceBundles/{r}.
@@ -252,7 +251,7 @@ pub mod fleet_package {
     }
     /// CloudBuildRepository contains information about fetching Kubernetes
     /// configuration from a `CloudBuildRepository`.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CloudBuildRepository {
         /// Required. Name of the cloud build repository.
         /// Format is projects/{p}/locations/{l}/connections/{c}/repositories/{r}.
@@ -280,7 +279,7 @@ pub mod fleet_package {
     pub mod cloud_build_repository {
         /// variants_pattern is the configuration for how to read the repository
         /// to find variants.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum Variants {
             /// Optional. variants_pattern is a glob pattern that will be used to find
             /// variants in the repository. Examples: `variants/*.yaml`, `us-*`
@@ -307,7 +306,7 @@ pub mod fleet_package {
     }
     /// VariantSelector contains information for selecting a variant in
     /// `ResourceBundle` to deploy to a target cluster.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct VariantSelector {
         /// strategy for selecting a variant.
         #[prost(oneof = "variant_selector::Strategy", tags = "1")]
@@ -316,7 +315,7 @@ pub mod fleet_package {
     /// Nested message and enum types in `VariantSelector`.
     pub mod variant_selector {
         /// strategy for selecting a variant.
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum Strategy {
             /// Required. variant_name_template is a template that can refer to
             /// variables containing cluster membership metadata such as location,
@@ -456,14 +455,14 @@ pub mod fleet_package_info {
 }
 /// Information representing an error encountered during rolling out
 /// configurations.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct FleetPackageError {
     /// Optional. A description of the error.
     #[prost(string, tag = "1")]
     pub error_message: ::prost::alloc::string::String,
 }
 /// ClusterInfo represents status of a resource bundle rollout for a cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClusterInfo {
     /// Output only. gkehub membership of target cluster
     #[prost(string, tag = "1")]
@@ -567,7 +566,7 @@ pub mod cluster_info {
 }
 /// ResourceBundleDeploymentInfo represents the status of a resource bundle
 /// deployment.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResourceBundleDeploymentInfo {
     /// Output only. Refers to a `ResourceBundle` release.
     #[prost(string, tag = "1")]
@@ -687,11 +686,11 @@ pub mod fleet {
     }
 }
 /// AllAtOnceStrategy causes all clusters to be updated concurrently.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AllAtOnceStrategy {}
 /// RollingStrategy causes a specified number of clusters to be updated
 /// concurrently until all clusters are updated.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RollingStrategy {
     /// Optional. Maximum number of clusters to update the resource bundle on
     /// concurrently.
@@ -700,7 +699,7 @@ pub struct RollingStrategy {
 }
 /// RolloutStrategy defines different ways to rollout a resource bundle across
 /// a set of clusters.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RolloutStrategy {
     /// strategy defines how updates to a resource bundle should be rolled out
     /// across clusters.
@@ -711,7 +710,7 @@ pub struct RolloutStrategy {
 pub mod rollout_strategy {
     /// strategy defines how updates to a resource bundle should be rolled out
     /// across clusters.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Strategy {
         /// AllAtOnceStrategy causes all clusters to be updated concurrently.
         #[prost(message, tag = "1")]
@@ -765,7 +764,7 @@ pub struct RollingStrategyInfo {
     pub clusters: ::prost::alloc::vec::Vec<ClusterInfo>,
 }
 /// Message for requesting list of FleetPackage.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListFleetPackagesRequest {
     /// Required. Parent value for ListFleetPackagesRequest.
     #[prost(string, tag = "1")]
@@ -798,7 +797,7 @@ pub struct ListFleetPackagesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a FleetPackage
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetFleetPackageRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -864,7 +863,7 @@ pub struct UpdateFleetPackageRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a FleetPackage
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteFleetPackageRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -895,7 +894,7 @@ pub struct DeleteFleetPackageRequest {
     pub allow_missing: bool,
 }
 /// Represents the metadata of the long-running operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -915,8 +914,8 @@ pub struct OperationMetadata {
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
     /// have
-    /// [google.longrunning.Operation.error][google.longrunning.Operation.error]
-    /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    /// \[google.longrunning.Operation.error\]\[google.longrunning.Operation.error\]
+    /// value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
     /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -1030,7 +1029,7 @@ pub struct Variant {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Message for requesting list of Variants.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListVariantsRequest {
     /// Required. Parent value for ListVariantsRequest.
     #[prost(string, tag = "1")]
@@ -1063,7 +1062,7 @@ pub struct ListVariantsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a Variant
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetVariantRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -1127,7 +1126,7 @@ pub struct UpdateVariantRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a Variant
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteVariantRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -1165,7 +1164,7 @@ pub struct ReleaseInfo {
     >,
 }
 /// Message for requesting list of Releases.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListReleasesRequest {
     /// Required. Parent value for ListReleasesRequest.
     #[prost(string, tag = "1")]
@@ -1198,7 +1197,7 @@ pub struct ListReleasesResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a Release
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetReleaseRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -1264,7 +1263,7 @@ pub struct UpdateReleaseRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Message for deleting a Release
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteReleaseRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -1291,7 +1290,7 @@ pub struct DeleteReleaseRequest {
     pub force: bool,
 }
 /// Message for requesting list of Rollouts
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListRolloutsRequest {
     /// Required. Parent value for ListRolloutsRequest
     #[prost(string, tag = "1")]
@@ -1324,7 +1323,7 @@ pub struct ListRolloutsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting a Rollout
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetRolloutRequest {
     /// Required. Name of the resource
     #[prost(string, tag = "1")]
@@ -1448,7 +1447,7 @@ pub struct Rollout {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Message for suspending a rollout.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SuspendRolloutRequest {
     /// Required. Name of the Rollout.
     #[prost(string, tag = "1")]
@@ -1458,7 +1457,7 @@ pub struct SuspendRolloutRequest {
     pub reason: ::prost::alloc::string::String,
 }
 /// Message for resuming a rollout.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResumeRolloutRequest {
     /// Required. Name of the Rollout.
     #[prost(string, tag = "1")]
@@ -1468,7 +1467,7 @@ pub struct ResumeRolloutRequest {
     pub reason: ::prost::alloc::string::String,
 }
 /// Message for aborting a rollout.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AbortRolloutRequest {
     /// Required. Name of the Rollout.
     #[prost(string, tag = "1")]
@@ -1612,7 +1611,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/ListResourceBundles",
             );
@@ -1639,7 +1638,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/GetResourceBundle",
             );
@@ -1669,7 +1668,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/CreateResourceBundle",
             );
@@ -1699,7 +1698,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/UpdateResourceBundle",
             );
@@ -1729,7 +1728,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/DeleteResourceBundle",
             );
@@ -1759,7 +1758,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/ListFleetPackages",
             );
@@ -1786,7 +1785,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/GetFleetPackage",
             );
@@ -1816,7 +1815,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/CreateFleetPackage",
             );
@@ -1846,7 +1845,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/UpdateFleetPackage",
             );
@@ -1876,7 +1875,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/DeleteFleetPackage",
             );
@@ -1906,7 +1905,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/ListReleases",
             );
@@ -1933,7 +1932,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/GetRelease",
             );
@@ -1963,7 +1962,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/CreateRelease",
             );
@@ -1993,7 +1992,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/UpdateRelease",
             );
@@ -2023,7 +2022,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/DeleteRelease",
             );
@@ -2053,7 +2052,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/ListVariants",
             );
@@ -2080,7 +2079,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/GetVariant",
             );
@@ -2111,7 +2110,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/CreateVariant",
             );
@@ -2141,7 +2140,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/UpdateVariant",
             );
@@ -2171,7 +2170,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/DeleteVariant",
             );
@@ -2201,7 +2200,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/ListRollouts",
             );
@@ -2228,7 +2227,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/GetRollout",
             );
@@ -2258,7 +2257,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/SuspendRollout",
             );
@@ -2288,7 +2287,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/ResumeRollout",
             );
@@ -2318,7 +2317,7 @@ pub mod config_delivery_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.configdelivery.v1alpha.ConfigDelivery/AbortRollout",
             );

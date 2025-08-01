@@ -99,7 +99,7 @@ pub mod cluster {
     }
 }
 /// A capacity configuration of a Kafka cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CapacityConfig {
     /// Required. The number of vCPUs to provision for the cluster. Minimum: 3.
     #[prost(int64, tag = "1")]
@@ -111,7 +111,7 @@ pub struct CapacityConfig {
     pub memory_bytes: i64,
 }
 /// Defines rebalancing behavior of a Kafka cluster.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RebalanceConfig {
     /// Optional. The rebalance behavior for the cluster.
     /// When not specified, defaults to `NO_REBALANCE`.
@@ -167,7 +167,7 @@ pub mod rebalance_config {
 }
 /// The configuration of a Virtual Private Cloud (VPC) network that can access
 /// the Kafka cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NetworkConfig {
     /// Required. Name of the VPC subnet in which to create Private Service Connect
     /// (PSC) endpoints for the Kafka brokers and bootstrap address. Structured
@@ -234,7 +234,7 @@ pub struct TrustConfig {
 /// Nested message and enum types in `TrustConfig`.
 pub mod trust_config {
     /// A configuration for the Google Certificate Authority Service.
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CertificateAuthorityServiceConfig {
         /// Required. The name of the CA pool to pull CA certificates from.
         /// Structured like:
@@ -281,7 +281,7 @@ pub struct ConsumerTopicMetadata {
     pub partitions: ::std::collections::HashMap<i32, ConsumerPartitionMetadata>,
 }
 /// Metadata for a consumer group corresponding to a specific partition.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConsumerPartitionMetadata {
     /// Required. The current offset for this partition, or 0 if no offset has been
     /// committed.
@@ -310,7 +310,7 @@ pub struct ConsumerGroup {
     >,
 }
 /// Represents the metadata of the long-running operation.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OperationMetadata {
     /// Output only. The time the operation was created.
     #[prost(message, optional, tag = "1")]
@@ -329,8 +329,8 @@ pub struct OperationMetadata {
     pub status_message: ::prost::alloc::string::String,
     /// Output only. Identifies whether the user has requested cancellation
     /// of the operation. Operations that have been cancelled successfully
-    /// have [Operation.error][] value with a
-    /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+    /// have \[Operation.error\]\[\] value with a
+    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
     /// `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub requested_cancellation: bool,
@@ -440,7 +440,7 @@ pub mod connect_cluster {
 }
 /// The configuration of a Virtual Private Cloud (VPC) network that can access
 /// the Kafka Connect cluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConnectNetworkConfig {
     /// Required. VPC subnet to make available to the Kafka Connect cluster.
     /// Structured like:
@@ -582,7 +582,7 @@ pub mod connector {
     /// A policy that specifies how to restart the failed connectors/tasks in a
     /// Cluster resource. If not set, the failed connectors/tasks won't be
     /// restarted.
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum RestartPolicy {
         /// Optional. Restarts the individual tasks of a Connector.
         #[prost(message, tag = "4")]
@@ -598,7 +598,7 @@ pub mod connector {
 /// ConnectCluster is in rebalancing state or if the ConnectCluster is
 /// unresponsive etc. The default values for minimum and maximum backoffs are
 /// 60 seconds and 30 minutes respectively.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TaskRetryPolicy {
     /// Optional. The minimum amount of time to wait before retrying a failed task.
     /// This sets a lower bound for the backoff delay.
@@ -622,22 +622,22 @@ pub struct Acl {
     /// the following:
     ///
     /// For acls on the cluster:
-    ///    `cluster`
+    /// `cluster`
     ///
     /// For acls on a single resource within the cluster:
-    ///    `topic/{resource_name}`
-    ///    `consumerGroup/{resource_name}`
-    ///    `transactionalId/{resource_name}`
+    /// `topic/{resource_name}`
+    /// `consumerGroup/{resource_name}`
+    /// `transactionalId/{resource_name}`
     ///
     /// For acls on all resources that match a prefix:
-    ///    `topicPrefixed/{resource_name}`
-    ///    `consumerGroupPrefixed/{resource_name}`
-    ///    `transactionalIdPrefixed/{resource_name}`
+    /// `topicPrefixed/{resource_name}`
+    /// `consumerGroupPrefixed/{resource_name}`
+    /// `transactionalIdPrefixed/{resource_name}`
     ///
-    /// For acls on all resources of a given type (i.e. the wildcard literal "*"):
-    ///    `allTopics` (represents `topic/*`)
-    ///    `allConsumerGroups` (represents `consumerGroup/*`)
-    ///    `allTransactionalIds` (represents `transactionalId/*`)
+    /// For acls on all resources of a given type (i.e. the wildcard literal "\*"):
+    /// `allTopics` (represents `topic/*`)
+    /// `allConsumerGroups` (represents `consumerGroup/*`)
+    /// `allTransactionalIds` (represents `transactionalId/*`)
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The ACL entries that apply to the resource pattern. The maximum
@@ -660,7 +660,7 @@ pub struct Acl {
     pub resource_type: ::prost::alloc::string::String,
     /// Output only. The ACL resource name derived from the name. For cluster
     /// resource_type, this is always "kafka-cluster". Can be the wildcard literal
-    /// "*".
+    /// "\*".
     #[prost(string, tag = "5")]
     pub resource_name: ::prost::alloc::string::String,
     /// Output only. The ACL pattern type derived from the name. One of: LITERAL,
@@ -669,12 +669,12 @@ pub struct Acl {
     pub pattern_type: ::prost::alloc::string::String,
 }
 /// Represents the access granted for a given Resource Pattern in an ACL.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AclEntry {
     /// Required. The principal. Specified as Google Cloud account, with the Kafka
     /// StandardAuthorizer prefix "User:". For example:
     /// "User:test-kafka-client@test-project.iam.gserviceaccount.com".
-    /// Can be the wildcard "User:*" to refer to all users.
+    /// Can be the wildcard "User:\*" to refer to all users.
     #[prost(string, tag = "4")]
     pub principal: ::prost::alloc::string::String,
     /// Required. The permission type. Accepted values are (case insensitive):
@@ -689,13 +689,13 @@ pub struct AclEntry {
     /// API requests.
     #[prost(string, tag = "6")]
     pub operation: ::prost::alloc::string::String,
-    /// Required. The host. Must be set to "*" for Managed Service for Apache
+    /// Required. The host. Must be set to "\*" for Managed Service for Apache
     /// Kafka.
     #[prost(string, tag = "7")]
     pub host: ::prost::alloc::string::String,
 }
 /// Request for ListClusters.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListClustersRequest {
     /// Required. The parent location whose clusters are to be listed. Structured
     /// like `projects/{project}/locations/{location}`.
@@ -735,7 +735,7 @@ pub struct ListClustersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for GetCluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetClusterRequest {
     /// Required. The name of the cluster whose configuration to return.
     #[prost(string, tag = "1")]
@@ -808,7 +808,7 @@ pub struct UpdateClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request for DeleteCluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteClusterRequest {
     /// Required. The name of the cluster to delete.
     #[prost(string, tag = "1")]
@@ -831,7 +831,7 @@ pub struct DeleteClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request for ListTopics.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListTopicsRequest {
     /// Required. The parent cluster whose topics are to be listed. Structured like
     /// `projects/{project}/locations/{location}/clusters/{cluster}`.
@@ -863,7 +863,7 @@ pub struct ListTopicsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for GetTopic.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetTopicRequest {
     /// Required. The name of the topic whose configuration to return. Structured
     /// like:
@@ -905,7 +905,7 @@ pub struct UpdateTopicRequest {
     pub topic: ::core::option::Option<Topic>,
 }
 /// Request for DeleteTopic.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteTopicRequest {
     /// Required. The name of the topic to delete.
     /// `projects/{project}/locations/{location}/clusters/{cluster}/topics/{topic}`.
@@ -913,7 +913,7 @@ pub struct DeleteTopicRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for ListConsumerGroups.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListConsumerGroupsRequest {
     /// Required. The parent cluster whose consumer groups are to be listed.
     /// Structured like
@@ -946,7 +946,7 @@ pub struct ListConsumerGroupsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for GetConsumerGroup.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetConsumerGroupRequest {
     /// Required. The name of the consumer group whose configuration to return.
     /// `projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumerGroup}`.
@@ -968,7 +968,7 @@ pub struct UpdateConsumerGroupRequest {
     pub consumer_group: ::core::option::Option<ConsumerGroup>,
 }
 /// Request for DeleteConsumerGroup.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteConsumerGroupRequest {
     /// Required. The name of the consumer group to delete.
     /// `projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumerGroup}`.
@@ -976,7 +976,7 @@ pub struct DeleteConsumerGroupRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for ListAcls.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAclsRequest {
     /// Required. The parent cluster whose acls are to be listed.
     /// Structured like
@@ -1009,7 +1009,7 @@ pub struct ListAclsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for GetAcl.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetAclRequest {
     /// Required. The name of the acl to return.
     /// Structured like:
@@ -1035,22 +1035,22 @@ pub struct CreateAclRequest {
     /// structured like one of the following:
     ///
     /// For acls on the cluster:
-    ///    `cluster`
+    /// `cluster`
     ///
     /// For acls on a single resource within the cluster:
-    ///    `topic/{resource_name}`
-    ///    `consumerGroup/{resource_name}`
-    ///    `transactionalId/{resource_name}`
+    /// `topic/{resource_name}`
+    /// `consumerGroup/{resource_name}`
+    /// `transactionalId/{resource_name}`
     ///
     /// For acls on all resources that match a prefix:
-    ///    `topicPrefixed/{resource_name}`
-    ///    `consumerGroupPrefixed/{resource_name}`
-    ///    `transactionalIdPrefixed/{resource_name}`
+    /// `topicPrefixed/{resource_name}`
+    /// `consumerGroupPrefixed/{resource_name}`
+    /// `transactionalIdPrefixed/{resource_name}`
     ///
-    /// For acls on all resources of a given type (i.e. the wildcard literal "*"):
-    ///    `allTopics` (represents `topic/*`)
-    ///    `allConsumerGroups` (represents `consumerGroup/*`)
-    ///    `allTransactionalIds` (represents `transactionalId/*`)
+    /// For acls on all resources of a given type (i.e. the wildcard literal "\*"):
+    /// `allTopics` (represents `topic/*`)
+    /// `allConsumerGroups` (represents `consumerGroup/*`)
+    /// `allTransactionalIds` (represents `transactionalId/*`)
     #[prost(string, tag = "2")]
     pub acl_id: ::prost::alloc::string::String,
     /// Required. Configuration of the acl to create. Its `name` field is ignored.
@@ -1073,7 +1073,7 @@ pub struct UpdateAclRequest {
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Request for DeleteAcl.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteAclRequest {
     /// Required. The name of the acl to delete.
     /// Structured like:
@@ -1085,7 +1085,7 @@ pub struct DeleteAclRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for AddAclEntry.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AddAclEntryRequest {
     /// Required. The name of the acl to add the acl entry to.
     /// Structured like:
@@ -1111,7 +1111,7 @@ pub struct AddAclEntryResponse {
     pub acl_created: bool,
 }
 /// Request for RemoveAclEntry.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RemoveAclEntryRequest {
     /// Required. The name of the acl to remove the acl entry from.
     /// Structured like:
@@ -1248,7 +1248,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/ListClusters",
             );
@@ -1275,7 +1275,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/GetCluster",
             );
@@ -1305,7 +1305,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/CreateCluster",
             );
@@ -1335,7 +1335,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/UpdateCluster",
             );
@@ -1365,7 +1365,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/DeleteCluster",
             );
@@ -1395,7 +1395,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/ListTopics",
             );
@@ -1422,7 +1422,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/GetTopic",
             );
@@ -1449,7 +1449,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/CreateTopic",
             );
@@ -1476,7 +1476,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/UpdateTopic",
             );
@@ -1503,7 +1503,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/DeleteTopic",
             );
@@ -1533,7 +1533,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/ListConsumerGroups",
             );
@@ -1560,7 +1560,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/GetConsumerGroup",
             );
@@ -1587,7 +1587,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/UpdateConsumerGroup",
             );
@@ -1614,7 +1614,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/DeleteConsumerGroup",
             );
@@ -1644,7 +1644,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/ListAcls",
             );
@@ -1671,7 +1671,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/GetAcl",
             );
@@ -1698,7 +1698,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/CreateAcl",
             );
@@ -1725,7 +1725,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/UpdateAcl",
             );
@@ -1752,7 +1752,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/DeleteAcl",
             );
@@ -1783,7 +1783,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/AddAclEntry",
             );
@@ -1815,7 +1815,7 @@ pub mod managed_kafka_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafka/RemoveAclEntry",
             );
@@ -1832,7 +1832,7 @@ pub mod managed_kafka_client {
     }
 }
 /// Request for GetConnectCluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetConnectClusterRequest {
     /// Required. The name of the Kafka Connect cluster whose configuration to
     /// return. Structured like
@@ -1909,7 +1909,7 @@ pub struct UpdateConnectClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request for DeleteConnectCluster.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteConnectClusterRequest {
     /// Required. The name of the Kafka Connect cluster to delete.
     /// Structured like
@@ -1934,7 +1934,7 @@ pub struct DeleteConnectClusterRequest {
     pub request_id: ::prost::alloc::string::String,
 }
 /// Request for ListConnectClusters.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListConnectClustersRequest {
     /// Required. The parent project/location whose Connect clusters are to be
     /// listed. Structured like `projects/{project}/locations/{location}`.
@@ -1974,7 +1974,7 @@ pub struct ListConnectClustersResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for GetConnector.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetConnectorRequest {
     /// Required. The name of the connector whose configuration to return.
     /// Structured like:
@@ -2017,7 +2017,7 @@ pub struct UpdateConnectorRequest {
     pub connector: ::core::option::Option<Connector>,
 }
 /// Request for DeleteConnector.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteConnectorRequest {
     /// Required. The name of the connector to delete.
     /// Structured like:
@@ -2026,7 +2026,7 @@ pub struct DeleteConnectorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request for ListConnectors.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListConnectorsRequest {
     /// Required. The parent Connect cluster whose connectors are to be listed.
     /// Structured like
@@ -2058,7 +2058,7 @@ pub struct ListConnectorsResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for PauseConnector.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PauseConnectorRequest {
     /// Required. The name of the connector to pause.
     /// Structured like:
@@ -2067,10 +2067,10 @@ pub struct PauseConnectorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response for PauseConnector.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PauseConnectorResponse {}
 /// Request for ResumeConnector.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResumeConnectorRequest {
     /// Required. The name of the connector to pause.
     /// Structured like:
@@ -2079,10 +2079,10 @@ pub struct ResumeConnectorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response for ResumeConnector.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ResumeConnectorResponse {}
 /// Request for RestartConnector.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RestartConnectorRequest {
     /// Required. The name of the connector to restart.
     /// Structured like:
@@ -2091,10 +2091,10 @@ pub struct RestartConnectorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response for RestartConnector.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RestartConnectorResponse {}
 /// Request for StopConnector.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StopConnectorRequest {
     /// Required. The name of the connector to stop.
     /// Structured like:
@@ -2103,7 +2103,7 @@ pub struct StopConnectorRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Response for StopConnector.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StopConnectorResponse {}
 /// Generated client implementations.
 pub mod managed_kafka_connect_client {
@@ -2203,7 +2203,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/ListConnectClusters",
             );
@@ -2230,7 +2230,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/GetConnectCluster",
             );
@@ -2260,7 +2260,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/CreateConnectCluster",
             );
@@ -2290,7 +2290,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/UpdateConnectCluster",
             );
@@ -2320,7 +2320,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/DeleteConnectCluster",
             );
@@ -2350,7 +2350,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/ListConnectors",
             );
@@ -2377,7 +2377,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/GetConnector",
             );
@@ -2404,7 +2404,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/CreateConnector",
             );
@@ -2431,7 +2431,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/UpdateConnector",
             );
@@ -2458,7 +2458,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/DeleteConnector",
             );
@@ -2488,7 +2488,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/PauseConnector",
             );
@@ -2518,7 +2518,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/ResumeConnector",
             );
@@ -2548,7 +2548,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/RestartConnector",
             );
@@ -2578,7 +2578,7 @@ pub mod managed_kafka_connect_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/google.cloud.managedkafka.v1.ManagedKafkaConnect/StopConnector",
             );
