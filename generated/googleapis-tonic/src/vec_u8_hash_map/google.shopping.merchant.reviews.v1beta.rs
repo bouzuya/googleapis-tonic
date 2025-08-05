@@ -316,7 +316,7 @@ pub struct MerchantReview {
     pub merchant_review_id: ::prost::alloc::string::String,
     /// Optional. A list of merchant review attributes.
     #[prost(message, optional, tag = "3")]
-    pub attributes: ::core::option::Option<MerchantReviewAttributes>,
+    pub merchant_review_attributes: ::core::option::Option<MerchantReviewAttributes>,
     /// Optional. A list of custom (merchant-provided) attributes. It can also be
     /// used for submitting any attribute of the data specification in its generic
     /// form (for example,
@@ -964,7 +964,7 @@ pub struct ProductReview {
     pub product_review_id: ::prost::alloc::string::String,
     /// Optional. A list of product review attributes.
     #[prost(message, optional, tag = "3")]
-    pub attributes: ::core::option::Option<ProductReviewAttributes>,
+    pub product_review_attributes: ::core::option::Option<ProductReviewAttributes>,
     /// Optional. A list of custom (merchant-provided) attributes.
     #[prost(message, repeated, tag = "4")]
     pub custom_attributes: ::prost::alloc::vec::Vec<

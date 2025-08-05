@@ -163,6 +163,65 @@ pub struct BdrBackupVaultDetailsLog {
     #[prost(string, optional, tag = "9")]
     pub source_resource_location: ::core::option::Option<::prost::alloc::string::String>,
 }
+/// Log entry for BDRBackupPlanJobLog for resources using BackupPlan
+/// based protection.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BdrBackupPlanJobLog {
+    /// The job_id field displays the identifier of the job being reported.
+    #[prost(string, tag = "1")]
+    pub job_id: ::prost::alloc::string::String,
+    /// The category field displays the category of the job. Can be one of
+    /// \[UPDATE_BACKUP_PLAN\].
+    #[prost(string, tag = "2")]
+    pub job_category: ::prost::alloc::string::String,
+    /// The status field displays the status of the job. Can be one of
+    /// \[RUNNING,SUCCESSFUL, FAILED\].
+    #[prost(string, tag = "3")]
+    pub job_status: ::prost::alloc::string::String,
+    /// The resource_type field displays the type of the protected resource.
+    #[prost(string, tag = "4")]
+    pub resource_type: ::prost::alloc::string::String,
+    /// Canonical resource name for Backup Plan Plan of the job.
+    #[prost(string, tag = "5")]
+    pub backup_plan_name: ::prost::alloc::string::String,
+    /// User friendly revision id e.g. v0, v1 etc.
+    #[prost(string, tag = "6")]
+    pub previous_backup_plan_revision_id: ::prost::alloc::string::String,
+    /// Full resource name for previous backup plan revision
+    #[prost(string, tag = "7")]
+    pub previous_backup_plan_revision_name: ::prost::alloc::string::String,
+    /// User friendly revision id e.g. v0, v1 etc.
+    #[prost(string, tag = "8")]
+    pub new_backup_plan_revision_id: ::prost::alloc::string::String,
+    /// Full resource name for new backup plan revision
+    #[prost(string, tag = "9")]
+    pub new_backup_plan_revision_name: ::prost::alloc::string::String,
+    /// Start time of the job.
+    #[prost(message, optional, tag = "10")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// End time of the job.
+    #[prost(message, optional, tag = "11")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The total number of workloads affected by the job.
+    #[prost(int32, tag = "12")]
+    pub workloads_affected_count: i32,
+    /// Previous Backup Plan rules.
+    #[prost(message, repeated, tag = "13")]
+    pub previous_backup_rules: ::prost::alloc::vec::Vec<BackupRuleDetail>,
+    /// Revised Backup Plan rules.
+    #[prost(message, repeated, tag = "14")]
+    pub revised_backup_rules: ::prost::alloc::vec::Vec<BackupRuleDetail>,
+    /// The error code. Only populated in error scenarios.
+    #[prost(int32, tag = "15")]
+    pub error_code: i32,
+    /// The name of the error type eg. PERMISSION_DENIED. Only populated in error
+    /// scenarios.
+    #[prost(string, tag = "16")]
+    pub error_type: ::prost::alloc::string::String,
+    /// The user readable error message. Only populated in error scenarios.
+    #[prost(string, tag = "17")]
+    pub error_message: ::prost::alloc::string::String,
+}
 /// Log entry for BDRBackupPlanAssociationJobLog for resources using BackupPlan
 /// based protection.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]

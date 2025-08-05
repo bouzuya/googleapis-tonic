@@ -86,17 +86,17 @@ pub struct ReportRow {
         CompetitiveVisibilityBenchmarkView,
     >,
     /// Fields available for query in `youtube_creator_performance_view` table.
-    #[prost(message, optional, tag = "11")]
+    #[prost(message, optional, tag = "13")]
     pub youtube_creator_performance_view: ::core::option::Option<
         YoutubeCreatorPerformanceView,
     >,
     /// Fields available for query in `youtube_content_performance_view` table.
-    #[prost(message, optional, tag = "12")]
+    #[prost(message, optional, tag = "14")]
     pub youtube_content_performance_view: ::core::option::Option<
         YoutubeContentPerformanceView,
     >,
     /// Fields available for query in `youtube_product_performance_view` table.
-    #[prost(message, optional, tag = "13")]
+    #[prost(message, optional, tag = "15")]
     pub youtube_product_performance_view: ::core::option::Option<
         YoutubeProductPerformanceView,
     >,
@@ -1763,6 +1763,11 @@ pub struct YoutubeContentPerformanceView {
     /// The net sales amount (includes both purchase and refunds).
     #[prost(message, optional, tag = "11")]
     pub net_sales: ::core::option::Option<super::super::super::r#type::Price>,
+    /// Set of unique [product
+    /// IDs](<https://support.google.com/merchants/answer/188494#id>) tagged on the
+    /// YouTube video. These IDs correspond to the 'offerId' in the Products API.
+    #[prost(string, repeated, tag = "12")]
+    pub tagged_product_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Fields available for query in `youtube_product_performance_view` table.
 ///
@@ -1811,6 +1816,12 @@ pub struct YoutubeProductPerformanceView {
     /// The net sales amount (includes both purchase and refunds).
     #[prost(message, optional, tag = "11")]
     pub net_sales: ::core::option::Option<super::super::super::r#type::Price>,
+    /// The number of distinct creators that tagged the product.
+    #[prost(int64, optional, tag = "12")]
+    pub tagged_creator_count: ::core::option::Option<i64>,
+    /// The number of distinct videos that tagged the product.
+    #[prost(int64, optional, tag = "13")]
+    pub tagged_video_count: ::core::option::Option<i64>,
 }
 /// Generated client implementations.
 pub mod report_service_client {

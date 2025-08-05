@@ -122,6 +122,62 @@ pub struct DataFormatOptions {
     /// Optional. Output timestamp as usec int64. Default is false.
     #[prost(bool, tag = "1")]
     pub use_int64_timestamp: bool,
+    /// Optional. The API output format for a timestamp.
+    /// This offers more explicit control over the timestamp output format
+    /// as compared to the existing `use_int64_timestamp` option.
+    #[prost(enumeration = "data_format_options::TimestampOutputFormat", tag = "3")]
+    pub timestamp_output_format: i32,
+}
+/// Nested message and enum types in `DataFormatOptions`.
+pub mod data_format_options {
+    /// The API output format for a timestamp.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum TimestampOutputFormat {
+        /// Corresponds to default API output behavior, which is FLOAT64.
+        Unspecified = 0,
+        /// Timestamp is output as float64 seconds since Unix epoch.
+        Float64 = 1,
+        /// Timestamp is output as int64 microseconds since Unix epoch.
+        Int64 = 2,
+        /// Timestamp is output as ISO 8601 String
+        /// ("YYYY-MM-DDTHH:MM:SS.FFFFFFFFFFFFZ").
+        Iso8601String = 3,
+    }
+    impl TimestampOutputFormat {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED",
+                Self::Float64 => "FLOAT64",
+                Self::Int64 => "INT64",
+                Self::Iso8601String => "ISO8601_STRING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                "FLOAT64" => Some(Self::Float64),
+                "INT64" => Some(Self::Int64),
+                "ISO8601_STRING" => Some(Self::Iso8601String),
+                _ => None,
+            }
+        }
+    }
 }
 /// Identifier for a dataset.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -2507,6 +2563,15 @@ pub struct QueryParameterType {
     /// Required. The top level type of this field.
     #[prost(string, tag = "1")]
     pub r#type: ::prost::alloc::string::String,
+    /// Optional. Precision (maximum number of total digits in base 10) for seconds
+    /// of TIMESTAMP type.
+    ///
+    /// Possible values include:
+    ///
+    /// * 6 (Default, for TIMESTAMP type with microsecond precision)
+    /// * 12 (For TIMESTAMP type with picosecond precision)
+    #[prost(int64, optional, tag = "5")]
+    pub timestamp_precision: ::core::option::Option<i64>,
     /// Optional. The type of the array's elements, if this is an array.
     #[prost(message, optional, boxed, tag = "2")]
     pub array_type: ::core::option::Option<
@@ -3812,6 +3877,13 @@ pub struct JobConfiguration {
     /// that takes 10 seconds to complete.
     #[prost(message, optional, tag = "6")]
     pub job_timeout_ms: ::core::option::Option<i64>,
+    /// Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to
+    /// allow for this job.
+    ///
+    /// If set, the number of slots used to execute the job will be throttled
+    /// to try and keep its slot consumption below the requested rate.
+    #[prost(int32, optional, tag = "12")]
+    pub max_slots: ::core::option::Option<i32>,
     /// The labels associated with this job. You can use these to organize and
     /// group your jobs.
     /// Label keys and values can be no longer than 63 characters, can only contain
@@ -7345,6 +7417,11 @@ pub struct ExternalServiceCost {
     /// converted to BigQuery slot with equivalent mount of price.
     #[prost(int64, tag = "5")]
     pub reserved_slot_count: i64,
+    /// The billing method used for the external job.
+    /// This field is only used when billed on the services sku, set to
+    /// "SERVICES_SKU". Otherwise, it is unspecified for backward compatibility.
+    #[prost(string, tag = "6")]
+    pub billing_method: ::prost::alloc::string::String,
 }
 /// Statistics for the EXPORT DATA statement as part of Query Job. EXTRACT
 /// JOB statistics are populated in JobStatistics4.
@@ -8065,6 +8142,12 @@ pub struct JobStatistics2 {
     /// Output only. Slot-milliseconds for the job.
     #[prost(message, optional, tag = "8")]
     pub total_slot_ms: ::core::option::Option<i64>,
+    /// Output only. Total slot-milliseconds for the job that run on external
+    /// services and billed on the service SKU. This field is only populated for
+    /// jobs that have external service costs, and is the total of the usage for
+    /// costs whose billing method is "SERVICES_SKU".
+    #[prost(int64, optional, tag = "52")]
+    pub total_services_sku_slot_ms: ::core::option::Option<i64>,
     /// Output only. Whether the query result was fetched from the query cache.
     #[prost(message, optional, tag = "9")]
     pub cache_hit: ::core::option::Option<bool>,
@@ -9536,6 +9619,14 @@ pub struct QueryRequest {
     /// if a job does not need to be created.
     #[prost(int64, optional, tag = "26")]
     pub job_timeout_ms: ::core::option::Option<i64>,
+    /// Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to
+    /// allow for this job.
+    ///
+    /// If set, the number of slots used to execute the job will be throttled
+    /// to try and keep its slot consumption below the requested rate. This limit
+    /// is best effort.
+    #[prost(int32, optional, tag = "28")]
+    pub max_slots: ::core::option::Option<i32>,
     /// Optional. Custom encryption configuration (e.g., Cloud KMS keys)
     #[prost(message, optional, tag = "27")]
     pub destination_encryption_configuration: ::core::option::Option<
@@ -10536,7 +10627,7 @@ pub struct Routine {
     ///
     /// For functions, this is the expression in the AS clause.
     ///
-    /// If language=SQL, it is the substring inside (but excluding) the
+    /// If `language = "SQL"`, it is the substring inside (but excluding) the
     /// parentheses. For example, for the function created with the following
     /// statement:
     ///
@@ -10545,7 +10636,7 @@ pub struct Routine {
     /// The definition_body is `concat(x, "\n", y)` (\n is not replaced with
     /// linebreak).
     ///
-    /// If language=JAVASCRIPT, it is the evaluated string in the AS clause.
+    /// If `language="JAVASCRIPT"`, it is the evaluated string in the AS clause.
     /// For example, for the function created with the following statement:
     ///
     /// `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'`
@@ -10555,6 +10646,9 @@ pub struct Routine {
     /// `return "\n";\n`
     ///
     /// Note that both \n are replaced with linebreaks.
+    ///
+    /// If `definition_body` references another routine, then that routine must
+    /// be fully qualified with its project ID.
     #[prost(string, tag = "9")]
     pub definition_body: ::prost::alloc::string::String,
     /// Optional. The description of the routine, if defined.
@@ -10594,7 +10688,7 @@ pub struct Routine {
     /// routines](<https://cloud.google.com/bigquery/docs/user-defined-functions#custom-mask>).
     #[prost(enumeration = "routine::DataGovernanceType", tag = "17")]
     pub data_governance_type: i32,
-    /// Optional. Options for Python UDF.
+    /// Optional. Options for the Python UDF.
     /// [Preview](<https://cloud.google.com/products/#product-launch-stages>)
     #[prost(message, optional, tag = "20")]
     pub python_options: ::core::option::Option<PythonOptions>,
@@ -11003,25 +11097,30 @@ pub mod routine {
 /// Options for a user-defined Python function.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PythonOptions {
-    /// Required. The entry point function in the user's Python code.
+    /// Required. The name of the function defined in Python code as the entry
+    /// point when the Python UDF is invoked.
     #[prost(string, tag = "1")]
     pub entry_point: ::prost::alloc::string::String,
-    /// Optional. A list of package names along with versions to be installed.
-    /// Follows requirements.txt syntax (e.g. numpy==2.0, permutation,
-    /// urllib3\<2.2.1)
+    /// Optional. A list of Python package names along with versions to be
+    /// installed. Example: \["pandas>=2.1", "google-cloud-translate==3.11"\]. For
+    /// more information, see [Use third-party
+    /// packages](<https://cloud.google.com/bigquery/docs/user-defined-functions-python#third-party-packages>).
     #[prost(string, repeated, tag = "2")]
     pub packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Options for the runtime of the external system.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExternalRuntimeOptions {
-    /// Optional. Amount of memory provisioned for the container instance. Format:
-    /// {number}{unit} where unit is one of "M", "G", "Mi" and "Gi" (e.g. 1G,
-    /// 512Mi). If not specified, the default value is 512Mi.
+    /// Optional. Amount of memory provisioned for a Python UDF container instance.
+    /// Format: {number}{unit} where unit is one of "M", "G", "Mi" and "Gi" (e.g.
+    /// 1G, 512Mi). If not specified, the default value is 512Mi. For more
+    /// information, see [Configure container limits for Python
+    /// UDFs](<https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits>)
     #[prost(string, tag = "1")]
     pub container_memory: ::prost::alloc::string::String,
-    /// Optional. Amount of CPU provisioned for the container instance. If not
-    /// specified, the default value is 0.33 vCPUs.
+    /// Optional. Amount of CPU provisioned for a Python UDF container instance.
+    /// For more information, see [Configure container limits for Python
+    /// UDFs](<https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits>)
     #[prost(double, tag = "2")]
     pub container_cpu: f64,
     /// Optional. Fully qualified name of the connection whose service account will
@@ -11034,7 +11133,7 @@ pub struct ExternalRuntimeOptions {
     /// in a batch.
     #[prost(int64, tag = "4")]
     pub max_batching_rows: i64,
-    /// Optional. Language runtime version (e.g. python-3.11).
+    /// Optional. Language runtime version. Example: `python-3.11`.
     #[prost(string, tag = "5")]
     pub runtime_version: ::prost::alloc::string::String,
 }
