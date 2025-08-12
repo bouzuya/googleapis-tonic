@@ -2410,8 +2410,8 @@ pub struct AutoscalingMetricSpec {
     /// (representing 60%) if not provided.
     #[prost(int32, tag = "2")]
     pub target: i32,
-    /// Optional. The Cloud Monitoring monitored resource labels used for metrics
-    /// filtering. See Cloud Monitoring Labels
+    /// Optional. The Cloud Monitoring monitored resource labels as key value pairs
+    /// used for metrics filtering. See Cloud Monitoring Labels
     /// <https://cloud.google.com/monitoring/api/v3/metric-model#generic-label-info>
     #[prost(map = "string, string", tag = "3")]
     pub monitored_resource_labels: ::std::collections::HashMap<
@@ -5054,6 +5054,10 @@ pub struct Tool {
     /// Specialized retrieval tool that is powered by Google search.
     #[prost(message, optional, tag = "3")]
     pub google_search_retrieval: ::core::option::Option<GoogleSearchRetrieval>,
+    /// Optional. GoogleMaps tool type.
+    /// Tool to support Google Maps in Model.
+    #[prost(message, optional, tag = "5")]
+    pub google_maps: ::core::option::Option<GoogleMaps>,
     /// Optional. Tool to support searching public web data, powered by Vertex AI
     /// Search and Sec4 compliance.
     #[prost(message, optional, tag = "6")]
@@ -5546,6 +5550,9 @@ pub struct GoogleSearchRetrieval {
     #[prost(message, optional, tag = "2")]
     pub dynamic_retrieval_config: ::core::option::Option<DynamicRetrievalConfig>,
 }
+/// Tool to retrieve public maps data for grounding, powered by Google.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GoogleMaps {}
 /// Tool to search public web data, powered by Vertex AI Search and Sec4
 /// compliance.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -7822,7 +7829,7 @@ pub struct Segment {
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GroundingChunk {
     /// Chunk type.
-    #[prost(oneof = "grounding_chunk::ChunkType", tags = "1, 2")]
+    #[prost(oneof = "grounding_chunk::ChunkType", tags = "1, 2, 3")]
     pub chunk_type: ::core::option::Option<grounding_chunk::ChunkType>,
 }
 /// Nested message and enum types in `GroundingChunk`.
@@ -7849,6 +7856,10 @@ pub mod grounding_chunk {
         /// Text of the attribution.
         #[prost(string, optional, tag = "3")]
         pub text: ::core::option::Option<::prost::alloc::string::String>,
+        /// Output only. The full document name for the referenced Vertex AI Search
+        /// document.
+        #[prost(string, optional, tag = "6")]
+        pub document_name: ::core::option::Option<::prost::alloc::string::String>,
         /// Tool-specific details about the retrieved context.
         #[prost(oneof = "retrieved_context::ContextDetails", tags = "4")]
         pub context_details: ::core::option::Option<retrieved_context::ContextDetails>,
@@ -7864,6 +7875,23 @@ pub mod grounding_chunk {
             RagChunk(super::super::RagChunk),
         }
     }
+    /// Chunk from Google Maps.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Maps {
+        /// URI reference of the chunk.
+        #[prost(string, optional, tag = "1")]
+        pub uri: ::core::option::Option<::prost::alloc::string::String>,
+        /// Title of the chunk.
+        #[prost(string, optional, tag = "2")]
+        pub title: ::core::option::Option<::prost::alloc::string::String>,
+        /// Text of the chunk.
+        #[prost(string, optional, tag = "3")]
+        pub text: ::core::option::Option<::prost::alloc::string::String>,
+        /// This Place's resource name, in `places/{place_id}` format.  Can be used
+        /// to look up the Place.
+        #[prost(string, optional, tag = "4")]
+        pub place_id: ::core::option::Option<::prost::alloc::string::String>,
+    }
     /// Chunk type.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ChunkType {
@@ -7873,6 +7901,9 @@ pub mod grounding_chunk {
         /// Grounding chunk from context retrieved by the retrieval tools.
         #[prost(message, tag = "2")]
         RetrievedContext(RetrievedContext),
+        /// Grounding chunk from Google Maps.
+        #[prost(message, tag = "3")]
+        Maps(Maps),
     }
 }
 /// Grounding support.
@@ -7914,6 +7945,13 @@ pub struct GroundingMetadata {
     /// Optional. Output only. Retrieval metadata.
     #[prost(message, optional, tag = "7")]
     pub retrieval_metadata: ::core::option::Option<RetrievalMetadata>,
+    /// Optional. Output only. Resource name of the Google Maps widget context
+    /// token to be used with the PlacesContextElement widget to render contextual
+    /// data. This is populated only for Google Maps grounding.
+    #[prost(string, optional, tag = "8")]
+    pub google_maps_widget_context_token: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Google search entry point.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -31534,6 +31572,27 @@ pub struct Memory {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// The expiration of the Memory. If not set, the Memory will not be
+    /// automatically deleted.
+    #[prost(oneof = "memory::Expiration", tags = "13, 14")]
+    pub expiration: ::core::option::Option<memory::Expiration>,
+}
+/// Nested message and enum types in `Memory`.
+pub mod memory {
+    /// The expiration of the Memory. If not set, the Memory will not be
+    /// automatically deleted.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Expiration {
+        /// Optional. Timestamp of when this resource is considered expired.
+        /// This is *always* provided on output, regardless of what `expiration` was
+        /// sent on input.
+        #[prost(message, tag = "13")]
+        ExpireTime(::prost_types::Timestamp),
+        /// Optional. Input only. The TTL for this resource. The expiration time is
+        /// computed: now + TTL.
+        #[prost(message, tag = "14")]
+        Ttl(::prost_types::Duration),
+    }
 }
 /// Request message for
 /// \[MemoryBankService.CreateMemory\]\[google.cloud.aiplatform.v1beta1.MemoryBankService.CreateMemory\].
@@ -31677,7 +31736,7 @@ pub struct GenerateMemoriesRequest {
         ::prost::alloc::string::String,
     >,
     /// Source content used to generate memories.
-    #[prost(oneof = "generate_memories_request::Source", tags = "2, 3")]
+    #[prost(oneof = "generate_memories_request::Source", tags = "2, 3, 9")]
     pub source: ::core::option::Option<generate_memories_request::Source>,
 }
 /// Nested message and enum types in `GenerateMemoriesRequest`.
@@ -31720,6 +31779,27 @@ pub mod generate_memories_request {
             pub content: ::core::option::Option<super::super::Content>,
         }
     }
+    /// Defines a direct source of memories that should be uploaded to Memory Bank
+    /// with consolidation.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DirectMemoriesSource {
+        /// Required. The direct memories to upload to Memory Bank. At most 5 direct
+        /// memories are allowed per request.
+        #[prost(message, repeated, tag = "1")]
+        pub direct_memories: ::prost::alloc::vec::Vec<
+            direct_memories_source::DirectMemory,
+        >,
+    }
+    /// Nested message and enum types in `DirectMemoriesSource`.
+    pub mod direct_memories_source {
+        /// A direct memory to upload to Memory Bank.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct DirectMemory {
+            /// Required. The fact to consolidate with existing memories.
+            #[prost(string, tag = "1")]
+            pub fact: ::prost::alloc::string::String,
+        }
+    }
     /// Source content used to generate memories.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Source {
@@ -31731,6 +31811,11 @@ pub mod generate_memories_request {
         /// generate memories.
         #[prost(message, tag = "3")]
         DirectContentsSource(DirectContentsSource),
+        /// Defines a direct source of memories that should be uploaded to Memory
+        /// Bank. This is similar to `CreateMemory`, but it allows for consolidation
+        /// between these new memories and existing memories for the same scope.
+        #[prost(message, tag = "9")]
+        DirectMemoriesSource(DirectMemoriesSource),
     }
 }
 /// Response message for
@@ -38477,6 +38562,123 @@ pub struct ListModelEvaluationSlicesResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
+/// Request message for
+/// \[ModelService.RecommendSpec\]\[google.cloud.aiplatform.v1beta1.ModelService.RecommendSpec\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct RecommendSpecRequest {
+    /// Required. The resource name of the Location from which to recommend specs.
+    /// The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "2")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The Google Cloud Storage URI of the custom model, storing weights
+    /// and config files (which can be used to infer the base model).
+    #[prost(string, tag = "1")]
+    pub gcs_uri: ::prost::alloc::string::String,
+    /// Optional. If true, check machine availability for the recommended regions.
+    /// Only return the machine spec in regions where the machine is available.
+    #[prost(bool, tag = "3")]
+    pub check_machine_availability: bool,
+    /// Optional. If true, check user quota for the recommended regions.
+    /// Returns all the machine spec in regions they are available, and also the
+    /// user quota state for each machine type in each region.
+    #[prost(bool, tag = "4")]
+    pub check_user_quota: bool,
+}
+/// Response message for
+/// \[ModelService.RecommendSpec\]\[google.cloud.aiplatform.v1beta1.ModelService.RecommendSpec\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RecommendSpecResponse {
+    /// Output only. The base model used to finetune the custom model.
+    #[prost(string, tag = "1")]
+    pub base_model: ::prost::alloc::string::String,
+    /// Output only. Recommendations of deployment options for the given custom
+    /// weights model.
+    #[prost(message, repeated, tag = "3")]
+    pub recommendations: ::prost::alloc::vec::Vec<
+        recommend_spec_response::Recommendation,
+    >,
+    /// Output only. The machine and model container specs.
+    #[prost(message, repeated, tag = "2")]
+    pub specs: ::prost::alloc::vec::Vec<
+        recommend_spec_response::MachineAndModelContainerSpec,
+    >,
+}
+/// Nested message and enum types in `RecommendSpecResponse`.
+pub mod recommend_spec_response {
+    /// A machine and model container spec.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MachineAndModelContainerSpec {
+        /// Output only. The machine spec.
+        #[prost(message, optional, tag = "1")]
+        pub machine_spec: ::core::option::Option<super::MachineSpec>,
+        /// Output only. The model container spec.
+        #[prost(message, optional, tag = "2")]
+        pub container_spec: ::core::option::Option<super::ModelContainerSpec>,
+    }
+    /// Recommendation of one deployment option for the given custom weights model
+    /// in one region.
+    /// Contains the machine and container spec, and user accelerator quota state.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Recommendation {
+        /// The region for the deployment spec (machine).
+        #[prost(string, tag = "1")]
+        pub region: ::prost::alloc::string::String,
+        /// Output only. The machine and model container specs.
+        #[prost(message, optional, tag = "2")]
+        pub spec: ::core::option::Option<MachineAndModelContainerSpec>,
+        /// Output only. The user accelerator quota state.
+        #[prost(enumeration = "recommendation::QuotaState", tag = "3")]
+        pub user_quota_state: i32,
+    }
+    /// Nested message and enum types in `Recommendation`.
+    pub mod recommendation {
+        /// The user accelerator quota state.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum QuotaState {
+            /// Unspecified quota state. Quota information not available.
+            Unspecified = 0,
+            /// User has enough accelerator quota for the machine type.
+            UserHasQuota = 1,
+            /// User does not have enough accelerator quota for the machine type.
+            NoUserQuota = 2,
+        }
+        impl QuotaState {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "QUOTA_STATE_UNSPECIFIED",
+                    Self::UserHasQuota => "QUOTA_STATE_USER_HAS_QUOTA",
+                    Self::NoUserQuota => "QUOTA_STATE_NO_USER_QUOTA",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "QUOTA_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "QUOTA_STATE_USER_HAS_QUOTA" => Some(Self::UserHasQuota),
+                    "QUOTA_STATE_NO_USER_QUOTA" => Some(Self::NoUserQuota),
+                    _ => None,
+                }
+            }
+        }
+    }
+}
 /// Generated client implementations.
 pub mod model_service_client {
     #![allow(
@@ -39140,6 +39342,36 @@ pub mod model_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.ModelService",
                         "ListModelEvaluationSlices",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a Model's spec recommendations.
+        pub async fn recommend_spec(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RecommendSpecRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RecommendSpecResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.ModelService/RecommendSpec",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.ModelService",
+                        "RecommendSpec",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -44984,6 +45216,34 @@ pub mod reasoning_engine_spec {
         /// Service Agent.
         #[prost(message, repeated, tag = "2")]
         pub secret_env: ::prost::alloc::vec::Vec<super::SecretEnvVar>,
+        /// Optional. Configuration for PSC-I.
+        #[prost(message, optional, tag = "4")]
+        pub psc_interface_config: ::core::option::Option<super::PscInterfaceConfig>,
+        /// Optional. The minimum number of application instances that will be kept
+        /// running at all times. Defaults to 1.
+        #[prost(int32, optional, tag = "5")]
+        pub min_instances: ::core::option::Option<i32>,
+        /// Optional. The maximum number of application instances that can be
+        /// launched to handle increased traffic. Defaults to 100.
+        #[prost(int32, optional, tag = "6")]
+        pub max_instances: ::core::option::Option<i32>,
+        /// Optional. Resource limits for each container. Only 'cpu' and 'memory'
+        /// keys are supported. Defaults to {"cpu": "4", "memory": "4Gi"}.
+        ///
+        /// * The only supported values for CPU are '1', '2', '4', and '8'. For
+        ///   more information, go to
+        ///   <https://cloud.google.com/run/docs/configuring/cpu.>
+        /// * For supported 'memory' values and syntax, go to
+        ///   <https://cloud.google.com/run/docs/configuring/memory-limits>
+        #[prost(map = "string, string", tag = "7")]
+        pub resource_limits: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+        /// Optional. Concurrency for each container and agent server. Recommended
+        /// value: 2 * cpu + 1. Defaults to 9.
+        #[prost(int32, optional, tag = "8")]
+        pub container_concurrency: ::core::option::Option<i32>,
     }
 }
 /// ReasoningEngine provides a customizable runtime for models to determine
@@ -45051,16 +45311,69 @@ pub mod reasoning_engine_context_spec {
         pub similarity_search_config: ::core::option::Option<
             memory_bank_config::SimilaritySearchConfig,
         >,
+        /// Optional. Configuration for automatic TTL ("time-to-live") of the
+        /// memories in the Memory Bank. If not set, TTL will not be applied
+        /// automatically. The TTL can be explicitly set by modifying the
+        /// `expire_time` of each Memory resource.
+        #[prost(message, optional, tag = "5")]
+        pub ttl_config: ::core::option::Option<memory_bank_config::TtlConfig>,
     }
     /// Nested message and enum types in `MemoryBankConfig`.
     pub mod memory_bank_config {
+        /// Configuration for automatically setting the TTL ("time-to-live") of the
+        /// memories in the Memory Bank.
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct TtlConfig {
+            /// Configuration for automatically setting the TTL of the memories in the
+            /// Memory Bank.
+            #[prost(oneof = "ttl_config::Ttl", tags = "1, 2")]
+            pub ttl: ::core::option::Option<ttl_config::Ttl>,
+        }
+        /// Nested message and enum types in `TtlConfig`.
+        pub mod ttl_config {
+            /// Configuration for TTL of the memories in the Memory Bank based on the
+            /// action that created or updated the memory.
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+            pub struct GranularTtlConfig {
+                /// Optional. The TTL duration for memories uploaded via CreateMemory.
+                #[prost(message, optional, tag = "1")]
+                pub create_ttl: ::core::option::Option<::prost_types::Duration>,
+                /// Optional. The TTL duration for memories newly generated via
+                /// GenerateMemories
+                /// (\[GenerateMemoriesResponse.GeneratedMemory.Action.CREATED\]\[google.cloud.aiplatform.v1beta1.GenerateMemoriesResponse.GeneratedMemory.Action.CREATED\]).
+                #[prost(message, optional, tag = "2")]
+                pub generate_created_ttl: ::core::option::Option<
+                    ::prost_types::Duration,
+                >,
+                /// Optional. The TTL duration for memories updated via GenerateMemories
+                /// (\[GenerateMemoriesResponse.GeneratedMemory.Action.CREATED\]\[google.cloud.aiplatform.v1beta1.GenerateMemoriesResponse.GeneratedMemory.Action.CREATED\]).
+                /// In the case of an UPDATE action, the `expire_time` of the existing
+                /// memory will be updated to the new value (now + TTL).
+                #[prost(message, optional, tag = "3")]
+                pub generate_updated_ttl: ::core::option::Option<
+                    ::prost_types::Duration,
+                >,
+            }
+            /// Configuration for automatically setting the TTL of the memories in the
+            /// Memory Bank.
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+            pub enum Ttl {
+                /// Optional. The default TTL duration of the memories in the Memory
+                /// Bank. This applies to all operations that create or update a memory.
+                #[prost(message, tag = "1")]
+                DefaultTtl(::prost_types::Duration),
+                /// Optional. The granular TTL configuration of the memories in the
+                /// Memory Bank.
+                #[prost(message, tag = "2")]
+                GranularTtlConfig(GranularTtlConfig),
+            }
+        }
         /// Configuration for how to generate memories.
         #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct GenerationConfig {
             /// Required. The model used to generate memories.
             /// Format:
-            /// `projects/{project}/locations/{location}/publishers/google/models/{model}`
-            /// or `projects/{project}/locations/{location}/endpoints/{endpoint}`.
+            /// `projects/{project}/locations/{location}/publishers/google/models/{model}`.
             #[prost(string, tag = "1")]
             pub model: ::prost::alloc::string::String,
         }
@@ -45069,8 +45382,7 @@ pub mod reasoning_engine_context_spec {
         pub struct SimilaritySearchConfig {
             /// Required. The model used to generate embeddings to lookup similar
             /// memories. Format:
-            /// `projects/{project}/locations/{location}/publishers/google/models/{model}`
-            /// or `projects/{project}/locations/{location}/endpoints/{endpoint}`.
+            /// `projects/{project}/locations/{location}/publishers/google/models/{model}`.
             #[prost(string, tag = "1")]
             pub embedding_model: ::prost::alloc::string::String,
         }
@@ -46262,6 +46574,24 @@ pub struct Session {
     /// Required. Immutable. String id provided by the user
     #[prost(string, tag = "12")]
     pub user_id: ::prost::alloc::string::String,
+    /// The expiration of the session.
+    #[prost(oneof = "session::Expiration", tags = "13, 14")]
+    pub expiration: ::core::option::Option<session::Expiration>,
+}
+/// Nested message and enum types in `Session`.
+pub mod session {
+    /// The expiration of the session.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Expiration {
+        /// Optional. Timestamp of when this session is considered expired.
+        /// This is *always* provided on output, regardless of what was sent
+        /// on input.
+        #[prost(message, tag = "13")]
+        ExpireTime(::prost_types::Timestamp),
+        /// Optional. Input only. The TTL for this session.
+        #[prost(message, tag = "14")]
+        Ttl(::prost_types::Duration),
+    }
 }
 /// An event represents a message from either the user or agent.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -46326,6 +46656,9 @@ pub struct EventMetadata {
     /// conversation history.
     #[prost(string, tag = "6")]
     pub branch: ::prost::alloc::string::String,
+    /// The custom metadata of the LlmResponse.
+    #[prost(message, optional, tag = "7")]
+    pub custom_metadata: ::core::option::Option<::prost_types::Struct>,
 }
 /// Actions are parts of events that are executed by the agent.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -46488,6 +46821,14 @@ pub struct ListEventsRequest {
     /// call.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. The standard list filter.
+    /// Supported fields:
+    /// \* `timestamp` range (i.e. `timestamp>="2025-01-31T11:30:00-04:00"` where
+    /// the timestamp is in RFC 3339 format)
+    ///
+    /// More detail in [AIP-160](<https://google.aip.dev/160>).
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 /// Response message for
 /// \[SessionService.ListEvents\]\[google.cloud.aiplatform.v1beta1.SessionService.ListEvents\].
@@ -49452,6 +49793,10 @@ pub struct DeleteRagFileRequest {
     /// `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If set to true, any errors generated by external vector database
+    /// during the deletion will be ignored. The default value is false.
+    #[prost(bool, tag = "2")]
+    pub force_delete: bool,
 }
 /// Runtime operation information for
 /// \[VertexRagDataService.CreateRagCorpus\]\[google.cloud.aiplatform.v1beta1.VertexRagDataService.CreateRagCorpus\].

@@ -4212,6 +4212,10 @@ pub struct Tool {
     /// Specialized retrieval tool that is powered by Google search.
     #[prost(message, optional, tag = "3")]
     pub google_search_retrieval: ::core::option::Option<GoogleSearchRetrieval>,
+    /// Optional. GoogleMaps tool type.
+    /// Tool to support Google Maps in Model.
+    #[prost(message, optional, tag = "5")]
+    pub google_maps: ::core::option::Option<GoogleMaps>,
     /// Optional. Tool to support searching public web data, powered by Vertex AI
     /// Search and Sec4 compliance.
     #[prost(message, optional, tag = "6")]
@@ -4638,6 +4642,9 @@ pub struct GoogleSearchRetrieval {
     #[prost(message, optional, tag = "2")]
     pub dynamic_retrieval_config: ::core::option::Option<DynamicRetrievalConfig>,
 }
+/// Tool to retrieve public maps data for grounding, powered by Google.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GoogleMaps {}
 /// Tool to search public web data, powered by Vertex AI Search and Sec4
 /// compliance.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -6377,7 +6384,7 @@ pub struct Segment {
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GroundingChunk {
     /// Chunk type.
-    #[prost(oneof = "grounding_chunk::ChunkType", tags = "1, 2")]
+    #[prost(oneof = "grounding_chunk::ChunkType", tags = "1, 2, 3")]
     pub chunk_type: ::core::option::Option<grounding_chunk::ChunkType>,
 }
 /// Nested message and enum types in `GroundingChunk`.
@@ -6404,6 +6411,10 @@ pub mod grounding_chunk {
         /// Text of the attribution.
         #[prost(string, optional, tag = "3")]
         pub text: ::core::option::Option<::prost::alloc::string::String>,
+        /// Output only. The full document name for the referenced Vertex AI Search
+        /// document.
+        #[prost(string, optional, tag = "6")]
+        pub document_name: ::core::option::Option<::prost::alloc::string::String>,
         /// Tool-specific details about the retrieved context.
         #[prost(oneof = "retrieved_context::ContextDetails", tags = "4")]
         pub context_details: ::core::option::Option<retrieved_context::ContextDetails>,
@@ -6419,6 +6430,23 @@ pub mod grounding_chunk {
             RagChunk(super::super::RagChunk),
         }
     }
+    /// Chunk from Google Maps.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Maps {
+        /// URI reference of the chunk.
+        #[prost(string, optional, tag = "1")]
+        pub uri: ::core::option::Option<::prost::alloc::string::String>,
+        /// Title of the chunk.
+        #[prost(string, optional, tag = "2")]
+        pub title: ::core::option::Option<::prost::alloc::string::String>,
+        /// Text of the chunk.
+        #[prost(string, optional, tag = "3")]
+        pub text: ::core::option::Option<::prost::alloc::string::String>,
+        /// This Place's resource name, in `places/{place_id}` format.  Can be used
+        /// to look up the Place.
+        #[prost(string, optional, tag = "4")]
+        pub place_id: ::core::option::Option<::prost::alloc::string::String>,
+    }
     /// Chunk type.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum ChunkType {
@@ -6428,6 +6456,9 @@ pub mod grounding_chunk {
         /// Grounding chunk from context retrieved by the retrieval tools.
         #[prost(message, tag = "2")]
         RetrievedContext(RetrievedContext),
+        /// Grounding chunk from Google Maps.
+        #[prost(message, tag = "3")]
+        Maps(Maps),
     }
 }
 /// Grounding support.
@@ -6466,6 +6497,13 @@ pub struct GroundingMetadata {
     /// Optional. Output only. Retrieval metadata.
     #[prost(message, optional, tag = "7")]
     pub retrieval_metadata: ::core::option::Option<RetrievalMetadata>,
+    /// Optional. Output only. Resource name of the Google Maps widget context
+    /// token to be used with the PlacesContextElement widget to render contextual
+    /// data. This is populated only for Google Maps grounding.
+    #[prost(string, optional, tag = "8")]
+    pub google_maps_widget_context_token: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Google search entry point.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -30616,6 +30654,15 @@ pub mod deploy_request {
         /// deploying. If not set, the default container spec will be used.
         #[prost(message, optional, tag = "5")]
         pub container_spec: ::core::option::Option<super::ModelContainerSpec>,
+        /// Optional. The ID to use for the uploaded Model, which will become the
+        /// final component of the model resource name. When not provided, Vertex AI
+        /// will generate a value for this ID. When Model Registry model is provided,
+        /// this field will be ignored.
+        ///
+        /// This value may be up to 63 characters, and valid characters are
+        /// `\[a-z0-9_-\]`. The first character cannot be a number or hyphen.
+        #[prost(string, tag = "6")]
+        pub model_user_id: ::prost::alloc::string::String,
     }
     /// The endpoint config to use for the deployment.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -30624,14 +30671,46 @@ pub mod deploy_request {
         /// default name will be used.
         #[prost(string, tag = "1")]
         pub endpoint_display_name: ::prost::alloc::string::String,
-        /// Optional. If true, the endpoint will be exposed through a dedicated
-        /// DNS \[Endpoint.dedicated_endpoint_dns\]. Your request to the dedicated DNS
-        /// will be isolated from other users' traffic and will have better
-        /// performance and reliability. Note: Once you enabled dedicated endpoint,
-        /// you won't be able to send request to the shared DNS
+        /// Optional. Deprecated. Use dedicated_endpoint_disabled instead.
+        /// If true, the endpoint will be exposed through a
+        /// dedicated DNS \[Endpoint.dedicated_endpoint_dns\]. Your request to the
+        /// dedicated DNS will be isolated from other users' traffic and will have
+        /// better performance and reliability. Note: Once you enabled dedicated
+        /// endpoint, you won't be able to send request to the shared DNS
         /// {region}-aiplatform.googleapis.com. The limitations will be removed soon.
+        #[deprecated]
         #[prost(bool, tag = "2")]
         pub dedicated_endpoint_enabled: bool,
+        /// Optional. By default, if dedicated endpoint is enabled, the endpoint will
+        /// be exposed through a dedicated DNS \[Endpoint.dedicated_endpoint_dns\].
+        /// Your request to the dedicated DNS will be isolated from other users'
+        /// traffic and will have better performance and reliability. Note: Once you
+        /// enabled dedicated endpoint, you won't be able to send request to the
+        /// shared DNS {region}-aiplatform.googleapis.com. The limitations will be
+        /// removed soon.
+        ///
+        /// If this field is set to true, the dedicated endpoint will be disabled
+        /// and the deployed model will be exposed through the shared DNS
+        /// {region}-aiplatform.googleapis.com.
+        #[prost(bool, tag = "4")]
+        pub dedicated_endpoint_disabled: bool,
+        /// Optional. Immutable. The ID to use for endpoint, which will become the
+        /// final component of the endpoint resource name. If not provided, Vertex AI
+        /// will generate a value for this ID.
+        ///
+        /// If the first character is a letter, this value may be up to 63
+        /// characters, and valid characters are `\[a-z0-9-\]`. The last character must
+        /// be a letter or number.
+        ///
+        /// If the first character is a number, this value may be up to 9 characters,
+        /// and valid characters are `\[0-9\]` with no leading zeros.
+        ///
+        /// When using HTTP/JSON, this field is populated
+        /// based on a query string argument, such as `?endpoint_id=12345`. This is
+        /// the fallback for fields that are not included in either the URI or the
+        /// body.
+        #[prost(string, tag = "3")]
+        pub endpoint_user_id: ::prost::alloc::string::String,
     }
     /// The deploy config to use for the deployment.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -36497,7 +36576,8 @@ pub struct ReasoningEngineSpec {
     #[prost(message, repeated, tag = "3")]
     pub class_methods: ::prost::alloc::vec::Vec<::prost_types::Struct>,
     /// Optional. The OSS agent framework used to develop the agent.
-    /// Currently supported values: "langchain", "langgraph", "ag2", "custom".
+    /// Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+    /// "llama-index", "custom".
     #[prost(string, tag = "5")]
     pub agent_framework: ::prost::alloc::string::String,
 }
@@ -36535,6 +36615,37 @@ pub mod reasoning_engine_spec {
         /// Service Agent.
         #[prost(message, repeated, tag = "2")]
         pub secret_env: ::prost::alloc::vec::Vec<super::SecretEnvVar>,
+        /// Optional. Configuration for PSC-I.
+        #[prost(message, optional, tag = "4")]
+        pub psc_interface_config: ::core::option::Option<super::PscInterfaceConfig>,
+        /// Optional. The minimum number of application instances that will be kept
+        /// running at all times. Defaults to 1. Range: \[0, 10\].
+        #[prost(int32, optional, tag = "5")]
+        pub min_instances: ::core::option::Option<i32>,
+        /// Optional. The maximum number of application instances that can be
+        /// launched to handle increased traffic. Defaults to 100. Range: \[1, 1000\].
+        ///
+        /// If VPC-SC or PSC-I is enabled, the acceptable range is \[1, 100\].
+        #[prost(int32, optional, tag = "6")]
+        pub max_instances: ::core::option::Option<i32>,
+        /// Optional. Resource limits for each container. Only 'cpu' and 'memory'
+        /// keys are supported. Defaults to {"cpu": "4", "memory": "4Gi"}.
+        ///
+        /// * The only supported values for CPU are '1', '2', '4', '6' and '8'. For
+        ///   more information, go to
+        ///   <https://cloud.google.com/run/docs/configuring/cpu.>
+        /// * The only supported values for memory are '1Gi', '2Gi', ... '32 Gi'.
+        /// * For required cpu on different memory values, go to
+        ///   <https://cloud.google.com/run/docs/configuring/memory-limits>
+        #[prost(map = "string, string", tag = "7")]
+        pub resource_limits: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+        /// Optional. Concurrency for each container and agent server. Recommended
+        /// value: 2 * cpu + 1. Defaults to 9.
+        #[prost(int32, optional, tag = "8")]
+        pub container_concurrency: ::core::option::Option<i32>,
     }
 }
 /// ReasoningEngine provides a customizable runtime for models to determine
@@ -36542,6 +36653,8 @@ pub mod reasoning_engine_spec {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReasoningEngine {
     /// Identifier. The resource name of the ReasoningEngine.
+    /// Format:
+    /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The display name of the ReasoningEngine.
@@ -36563,6 +36676,11 @@ pub struct ReasoningEngine {
     /// a blind "overwrite" update happens.
     #[prost(string, tag = "6")]
     pub etag: ::prost::alloc::string::String,
+    /// Customer-managed encryption key spec for a ReasoningEngine. If set, this
+    /// ReasoningEngine and all sub-resources of this ReasoningEngine will be
+    /// secured by this key.
+    #[prost(message, optional, tag = "11")]
+    pub encryption_spec: ::core::option::Option<EncryptionSpec>,
 }
 /// Request message for \[ReasoningEngineExecutionService.Query\]\[\].
 #[derive(Clone, PartialEq, ::prost::Message)]
