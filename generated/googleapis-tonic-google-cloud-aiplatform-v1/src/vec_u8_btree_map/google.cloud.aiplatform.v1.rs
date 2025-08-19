@@ -5581,7 +5581,14 @@ pub struct Content {
 /// of the media if `inline_data` or `file_data` field is filled with raw bytes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Part {
-    #[prost(oneof = "part::Data", tags = "1, 2, 3, 5, 6, 8, 9, 10, 11")]
+    /// Indicates if the part is thought from the model.
+    #[prost(bool, tag = "10")]
+    pub thought: bool,
+    /// An opaque signature for the thought so it can be reused in subsequent
+    /// requests.
+    #[prost(bytes = "vec", tag = "11")]
+    pub thought_signature: ::prost::alloc::vec::Vec<u8>,
+    #[prost(oneof = "part::Data", tags = "1, 2, 3, 5, 6, 8, 9")]
     pub data: ::core::option::Option<part::Data>,
     #[prost(oneof = "part::Metadata", tags = "4")]
     pub metadata: ::core::option::Option<part::Metadata>,
@@ -5616,13 +5623,6 @@ pub mod part {
         /// Optional. Result of executing the \[ExecutableCode\].
         #[prost(message, tag = "9")]
         CodeExecutionResult(super::CodeExecutionResult),
-        /// Indicates if the part is thought from the model.
-        #[prost(bool, tag = "10")]
-        Thought(bool),
-        /// An opaque signature for the thought so it can be reused in subsequent
-        /// requests.
-        #[prost(bytes, tag = "11")]
-        ThoughtSignature(::prost::alloc::vec::Vec<u8>),
     }
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Metadata {

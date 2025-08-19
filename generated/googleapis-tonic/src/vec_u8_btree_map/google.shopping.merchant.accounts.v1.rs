@@ -5893,7 +5893,7 @@ pub mod online_return_policy_service_client {
     ///
     /// ## programs. This API defines the following resource model:
     ///
-    /// [OnlineReturnPolicy](/merchant/api/reference/rpc/google.shopping.merchant.accounts.v1#google.shopping.merchant.accounts.v1.OnlineReturnPolicy)
+    /// \[OnlineReturnPolicy\]\[google.shopping.merchant.accounts.v1.OnlineReturnPolicy\]
     #[derive(Debug, Clone)]
     pub struct OnlineReturnPolicyServiceClient<T> {
         inner: tonic::client::Grpc<T>,

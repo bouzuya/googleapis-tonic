@@ -2202,6 +2202,22 @@ pub struct MachineSpec {
     /// The number of accelerators to attach to the machine.
     #[prost(int32, tag = "3")]
     pub accelerator_count: i32,
+    /// Optional. Immutable. The Nvidia GPU partition size.
+    ///
+    /// When specified, the requested accelerators will be partitioned into
+    /// smaller GPU partitions. For example, if the request is for 8 units of
+    /// NVIDIA A100 GPUs, and gpu_partition_size="1g.10gb", the service will
+    /// create 8 * 7 = 56 partitioned MIG instances.
+    ///
+    /// The partition size must be a value supported by the requested accelerator.
+    /// Refer to
+    /// [Nvidia GPU
+    /// Partitioning](<https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions>)
+    /// for the available partition sizes.
+    ///
+    /// If set, the accelerator_count should be set to 1.
+    #[prost(string, tag = "7")]
+    pub gpu_partition_size: ::prost::alloc::string::String,
     /// Immutable. The topology of the TPUs. Corresponds to the TPU topologies
     /// available from GKE. (Example: tpu_topology: "2x2x1").
     #[prost(string, tag = "4")]
@@ -24770,6 +24786,9 @@ pub struct TuningJob {
     /// models.
     #[prost(string, tag = "25")]
     pub output_uri: ::prost::alloc::string::String,
+    /// Output only. Evaluation runs for the Tuning Job.
+    #[prost(message, repeated, tag = "32")]
+    pub evaluate_dataset_runs: ::prost::alloc::vec::Vec<EvaluateDatasetRun>,
     #[prost(oneof = "tuning_job::SourceModel", tags = "4")]
     pub source_model: ::core::option::Option<tuning_job::SourceModel>,
     #[prost(oneof = "tuning_job::TuningSpec", tags = "5, 17, 21, 33")]
@@ -25136,6 +25155,9 @@ pub struct SupervisedTuningSpec {
     /// checkpoints for SFT. Default is false.
     #[prost(bool, tag = "6")]
     pub export_last_checkpoint_only: bool,
+    /// Optional. Evaluation Config for Tuning Job.
+    #[prost(message, optional, tag = "5")]
+    pub evaluation_config: ::core::option::Option<EvaluationConfig>,
     /// Tuning mode.
     #[prost(enumeration = "supervised_tuning_spec::TuningMode", tag = "7")]
     pub tuning_mode: i32,
@@ -25363,6 +25385,34 @@ pub struct VeoTuningSpec {
     /// Optional. Hyperparameters for Veo.
     #[prost(message, optional, tag = "3")]
     pub hyper_parameters: ::core::option::Option<VeoHyperParameters>,
+}
+/// Evaluation Config for Tuning Job.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvaluationConfig {
+    /// Required. The metrics used for evaluation.
+    #[prost(message, repeated, tag = "1")]
+    pub metrics: ::prost::alloc::vec::Vec<Metric>,
+    /// Required. Config for evaluation output.
+    #[prost(message, optional, tag = "2")]
+    pub output_config: ::core::option::Option<OutputConfig>,
+    /// Optional. Autorater config for evaluation.
+    #[prost(message, optional, tag = "3")]
+    pub autorater_config: ::core::option::Option<AutoraterConfig>,
+}
+/// Evaluate Dataset Run Result for Tuning Job.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvaluateDatasetRun {
+    /// Output only. The operation ID of the evaluation run. Format:
+    /// `projects/{project}/locations/{location}/operations/{operation_id}`.
+    #[prost(string, tag = "1")]
+    pub operation_name: ::prost::alloc::string::String,
+    /// Output only. The checkpoint id used in the evaluation run. Only populated
+    /// when evaluating checkpoints.
+    #[prost(string, tag = "2")]
+    pub checkpoint_id: ::prost::alloc::string::String,
+    /// Output only. The error of the evaluation run if any.
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
 }
 /// TunedModelCheckpoint for the Tuned Model of a Tuning Job.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -35795,6 +35845,15 @@ pub mod deploy_request {
         /// deploying. If not set, the default container spec will be used.
         #[prost(message, optional, tag = "5")]
         pub container_spec: ::core::option::Option<super::ModelContainerSpec>,
+        /// Optional. The ID to use for the uploaded Model, which will become the
+        /// final component of the model resource name. When not provided, Vertex AI
+        /// will generate a value for this ID. When Model Registry model is provided,
+        /// this field will be ignored.
+        ///
+        /// This value may be up to 63 characters, and valid characters are
+        /// `\[a-z0-9_-\]`. The first character cannot be a number or hyphen.
+        #[prost(string, tag = "6")]
+        pub model_user_id: ::prost::alloc::string::String,
     }
     /// The endpoint config to use for the deployment.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -35803,14 +35862,46 @@ pub mod deploy_request {
         /// default name will be used.
         #[prost(string, tag = "1")]
         pub endpoint_display_name: ::prost::alloc::string::String,
-        /// Optional. If true, the endpoint will be exposed through a dedicated
-        /// DNS \[Endpoint.dedicated_endpoint_dns\]. Your request to the dedicated DNS
-        /// will be isolated from other users' traffic and will have better
-        /// performance and reliability. Note: Once you enabled dedicated endpoint,
-        /// you won't be able to send request to the shared DNS
+        /// Optional. Deprecated. Use dedicated_endpoint_disabled instead.
+        /// If true, the endpoint will be exposed through a
+        /// dedicated DNS \[Endpoint.dedicated_endpoint_dns\]. Your request to the
+        /// dedicated DNS will be isolated from other users' traffic and will have
+        /// better performance and reliability. Note: Once you enabled dedicated
+        /// endpoint, you won't be able to send request to the shared DNS
         /// {region}-aiplatform.googleapis.com. The limitations will be removed soon.
+        #[deprecated]
         #[prost(bool, tag = "2")]
         pub dedicated_endpoint_enabled: bool,
+        /// Optional. By default, if dedicated endpoint is enabled, the endpoint will
+        /// be exposed through a dedicated DNS \[Endpoint.dedicated_endpoint_dns\].
+        /// Your request to the dedicated DNS will be isolated from other users'
+        /// traffic and will have better performance and reliability. Note: Once you
+        /// enabled dedicated endpoint, you won't be able to send request to the
+        /// shared DNS {region}-aiplatform.googleapis.com. The limitations will be
+        /// removed soon.
+        ///
+        /// If this field is set to true, the dedicated endpoint will be disabled
+        /// and the deployed model will be exposed through the shared DNS
+        /// {region}-aiplatform.googleapis.com.
+        #[prost(bool, tag = "4")]
+        pub dedicated_endpoint_disabled: bool,
+        /// Optional. Immutable. The ID to use for endpoint, which will become the
+        /// final component of the endpoint resource name. If not provided, Vertex AI
+        /// will generate a value for this ID.
+        ///
+        /// If the first character is a letter, this value may be up to 63
+        /// characters, and valid characters are `\[a-z0-9-\]`. The last character must
+        /// be a letter or number.
+        ///
+        /// If the first character is a number, this value may be up to 9 characters,
+        /// and valid characters are `\[0-9\]` with no leading zeros.
+        ///
+        /// When using HTTP/JSON, this field is populated
+        /// based on a query string argument, such as `?endpoint_id=12345`. This is
+        /// the fallback for fields that are not included in either the URI or the
+        /// body.
+        #[prost(string, tag = "3")]
+        pub endpoint_user_id: ::prost::alloc::string::String,
     }
     /// The deploy config to use for the deployment.
     #[derive(Clone, PartialEq, ::prost::Message)]
