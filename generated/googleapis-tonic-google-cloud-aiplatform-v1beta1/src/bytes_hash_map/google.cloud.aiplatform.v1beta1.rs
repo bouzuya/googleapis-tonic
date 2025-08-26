@@ -11233,6 +11233,15 @@ pub struct DeployedModel {
     /// Only supported for custom-trained Models and AutoML Tabular Models.
     #[prost(bool, tag = "12")]
     pub enable_container_logging: bool,
+    /// For custom-trained Models and AutoML Tabular Models, the container of the
+    /// DeployedModel instances will send `stderr` and `stdout` streams to
+    /// Cloud Logging by default. Please note that the logs incur cost,
+    /// which are subject to [Cloud Logging
+    /// pricing](<https://cloud.google.com/logging/pricing>).
+    ///
+    /// User can disable container logging by setting this flag to true.
+    #[prost(bool, tag = "15")]
+    pub disable_container_logging: bool,
     /// If true, online prediction access logs are sent to Cloud
     /// Logging.
     /// These logs are like standard server access logs, containing

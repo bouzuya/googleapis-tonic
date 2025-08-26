@@ -8,11 +8,6 @@
     feature = "google-ads-admanager-v1",
     feature = "google-ads-admob-v1",
     feature = "google-ads-datamanager-v1",
-    feature = "google-ads-googleads-v18-common",
-    feature = "google-ads-googleads-v18-enums",
-    feature = "google-ads-googleads-v18-errors",
-    feature = "google-ads-googleads-v18-resources",
-    feature = "google-ads-googleads-v18-services",
     feature = "google-ads-googleads-v19-common",
     feature = "google-ads-googleads-v19-enums",
     feature = "google-ads-googleads-v19-errors",
@@ -168,6 +163,7 @@
     feature = "google-cloud-cloudcontrolspartner-v1beta",
     feature = "google-cloud-clouddms-logging-v1",
     feature = "google-cloud-clouddms-v1",
+    feature = "google-cloud-cloudsecuritycompliance-v1",
     feature = "google-cloud-cloudsetup-logging-v1",
     feature = "google-cloud-commerce-consumer-procurement-v1",
     feature = "google-cloud-commerce-consumer-procurement-v1alpha1",
@@ -255,6 +251,7 @@
     feature = "google-cloud-gkehub-v1beta",
     feature = "google-cloud-gkehub-v1beta1",
     feature = "google-cloud-gkemulticloud-v1",
+    feature = "google-cloud-gkerecommender-v1",
     feature = "google-cloud-gsuiteaddons-logging-v1",
     feature = "google-cloud-gsuiteaddons-v1",
     feature = "google-cloud-healthcare-logging",
@@ -657,6 +654,7 @@ pub mod google {
         feature = "google-cloud-cloudcontrolspartner-v1beta",
         feature = "google-cloud-clouddms-logging-v1",
         feature = "google-cloud-clouddms-v1",
+        feature = "google-cloud-cloudsecuritycompliance-v1",
         feature = "google-cloud-cloudsetup-logging-v1",
         feature = "google-cloud-commerce-consumer-procurement-v1",
         feature = "google-cloud-commerce-consumer-procurement-v1alpha1",
@@ -744,6 +742,7 @@ pub mod google {
         feature = "google-cloud-gkehub-v1beta",
         feature = "google-cloud-gkehub-v1beta1",
         feature = "google-cloud-gkemulticloud-v1",
+        feature = "google-cloud-gkerecommender-v1",
         feature = "google-cloud-gsuiteaddons-logging-v1",
         feature = "google-cloud-gsuiteaddons-v1",
         feature = "google-cloud-healthcare-logging",
@@ -5350,6 +5349,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-gkerecommender-v1",
+        ))]
+        pub mod gkerecommender {
+            #[cfg(any(
+                feature = "google-cloud-gkerecommender-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-gkerecommender-v1",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.gkerecommender.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-webrisk-v1",
             feature = "google-cloud-webrisk-v1beta1",
         ))]
@@ -5371,6 +5384,20 @@ pub mod google {
                     feature = "google-cloud-webrisk-v1beta1",
                 ))]
                 include!("vec_u8_hash_map/google.cloud.webrisk.v1beta1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-cloudsecuritycompliance-v1",
+        ))]
+        pub mod cloudsecuritycompliance {
+            #[cfg(any(
+                feature = "google-cloud-cloudsecuritycompliance-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-cloudsecuritycompliance-v1",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.cloudsecuritycompliance.v1.rs");
             }
         }
         #[cfg(any(
@@ -6482,11 +6509,6 @@ pub mod google {
         feature = "google-ads-admanager-v1",
         feature = "google-ads-admob-v1",
         feature = "google-ads-datamanager-v1",
-        feature = "google-ads-googleads-v18-common",
-        feature = "google-ads-googleads-v18-enums",
-        feature = "google-ads-googleads-v18-errors",
-        feature = "google-ads-googleads-v18-resources",
-        feature = "google-ads-googleads-v18-services",
         feature = "google-ads-googleads-v19-common",
         feature = "google-ads-googleads-v19-enums",
         feature = "google-ads-googleads-v19-errors",
@@ -6573,11 +6595,6 @@ pub mod google {
             }
         }
         #[cfg(any(
-            feature = "google-ads-googleads-v18-common",
-            feature = "google-ads-googleads-v18-enums",
-            feature = "google-ads-googleads-v18-errors",
-            feature = "google-ads-googleads-v18-resources",
-            feature = "google-ads-googleads-v18-services",
             feature = "google-ads-googleads-v19-common",
             feature = "google-ads-googleads-v19-enums",
             feature = "google-ads-googleads-v19-errors",
@@ -6647,60 +6664,6 @@ pub mod google {
                         feature = "google-ads-googleads-v21-resources",
                     ))]
                     include!("vec_u8_hash_map/google.ads.googleads.v21.resources.rs");
-                }
-            }
-            #[cfg(any(
-                feature = "google-ads-googleads-v18-common",
-                feature = "google-ads-googleads-v18-enums",
-                feature = "google-ads-googleads-v18-errors",
-                feature = "google-ads-googleads-v18-resources",
-                feature = "google-ads-googleads-v18-services",
-            ))]
-            pub mod v18 {
-                #[cfg(any(
-                    feature = "google-ads-googleads-v18-errors",
-                ))]
-                pub mod errors {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v18-errors",
-                    ))]
-                    include!("vec_u8_hash_map/google.ads.googleads.v18.errors.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v18-resources",
-                ))]
-                pub mod resources {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v18-resources",
-                    ))]
-                    include!("vec_u8_hash_map/google.ads.googleads.v18.resources.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v18-services",
-                ))]
-                pub mod services {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v18-services",
-                    ))]
-                    include!("vec_u8_hash_map/google.ads.googleads.v18.services.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v18-common",
-                ))]
-                pub mod common {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v18-common",
-                    ))]
-                    include!("vec_u8_hash_map/google.ads.googleads.v18.common.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v18-enums",
-                ))]
-                pub mod enums {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v18-enums",
-                    ))]
-                    include!("vec_u8_hash_map/google.ads.googleads.v18.enums.rs");
                 }
             }
             #[cfg(any(
