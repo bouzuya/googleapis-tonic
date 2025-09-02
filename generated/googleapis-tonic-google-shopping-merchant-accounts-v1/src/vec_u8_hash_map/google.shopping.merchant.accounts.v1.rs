@@ -6476,6 +6476,25 @@ pub struct CreateRegionRequest {
     #[prost(message, optional, tag = "3")]
     pub region: ::core::option::Option<Region>,
 }
+/// Request message for the `BatchCreateRegions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchCreateRegionsRequest {
+    /// Required. The account to create one or more regions for.
+    /// Format: `accounts/{account}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The region(s) to create.
+    /// The maximum number of regions that can be created in a batch is 100.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<CreateRegionRequest>,
+}
+/// Response message for the `BatchCreateRegions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchCreateRegionsResponse {
+    /// The created region(s).
+    #[prost(message, repeated, tag = "1")]
+    pub regions: ::prost::alloc::vec::Vec<Region>,
+}
 /// Request message for the `UpdateRegion` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRegionRequest {
@@ -6488,6 +6507,25 @@ pub struct UpdateRegionRequest {
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
+/// Request message for the `BatchUpdateRegions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchUpdateRegionsRequest {
+    /// Required. The account to update one or more regions for.
+    /// Format: `accounts/{account}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The region(s) to update.
+    /// The maximum number of regions that can be updated in a batch is 100.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<UpdateRegionRequest>,
+}
+/// Response message for the `BatchUpdateRegions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchUpdateRegionsResponse {
+    /// The updated region(s).
+    #[prost(message, repeated, tag = "1")]
+    pub regions: ::prost::alloc::vec::Vec<Region>,
+}
 /// Request message for the `DeleteRegion` method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteRegionRequest {
@@ -6495,6 +6533,18 @@ pub struct DeleteRegionRequest {
     /// Format: `accounts/{account}/regions/{region}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// Request message for the `BatchDeleteRegions` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchDeleteRegionsRequest {
+    /// Required. The account to delete one or more regions from.
+    /// Format: `accounts/{account}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The names of the regions to delete.
+    /// A maximum of 100 regions can be deleted in a batch.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<DeleteRegionRequest>,
 }
 /// Request message for the `ListRegions` method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -6746,6 +6796,37 @@ pub mod regions_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Creates one or more regions in your Merchant Center account.
+        /// Executing this method requires admin access.
+        pub async fn batch_create_regions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateRegionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateRegionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1.RegionsService/BatchCreateRegions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1.RegionsService",
+                        "BatchCreateRegions",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Updates a region definition in your Merchant Center account.
         /// Executing this method requires admin access.
         pub async fn update_region(
@@ -6774,6 +6855,37 @@ pub mod regions_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Updates one or more regions in your Merchant Center account.
+        /// Executing this method requires admin access.
+        pub async fn batch_update_regions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchUpdateRegionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchUpdateRegionsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1.RegionsService/BatchUpdateRegions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1.RegionsService",
+                        "BatchUpdateRegions",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Deletes a region definition from your Merchant Center account. Executing
         /// this method requires admin access.
         pub async fn delete_region(
@@ -6798,6 +6910,34 @@ pub mod regions_service_client {
                     GrpcMethod::new(
                         "google.shopping.merchant.accounts.v1.RegionsService",
                         "DeleteRegion",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes multiple regions by name from your Merchant Center account.
+        /// Executing this method requires admin access.
+        pub async fn batch_delete_regions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchDeleteRegionsRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1.RegionsService/BatchDeleteRegions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1.RegionsService",
+                        "BatchDeleteRegions",
                     ),
                 );
             self.inner.unary(req, path, codec).await

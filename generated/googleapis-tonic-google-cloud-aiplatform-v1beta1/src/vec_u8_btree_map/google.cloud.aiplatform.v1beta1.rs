@@ -5681,13 +5681,21 @@ pub mod function_calling_config {
         /// or natural language response.
         Auto = 1,
         /// Model is constrained to always predicting function calls only.
-        /// If "allowed_function_names" are set, the predicted function calls will be
-        /// limited to any one of "allowed_function_names", else the predicted
-        /// function calls will be any one of the provided "function_declarations".
+        /// If \[allowed_function_names\]\[FunctionCallingConfig.allowed_function_names\]
+        /// are set, the predicted function calls will be limited to any one of
+        /// `allowed_function_names`, else the predicted function calls will be any
+        /// one of the provided \[FunctionDeclaration\].
         Any = 2,
         /// Model will not predict any function calls. Model behavior is same as when
         /// not passing any function declarations.
         None = 3,
+        /// Model is constrained to predict either function calls or natural language
+        /// response.
+        /// If \[allowed_function_names\]\[FunctionCallingConfig.allowed_function_names\]
+        /// are set, the predicted function calls will be limited to any one of
+        /// `allowed_function_names`, else the predicted function calls will be any
+        /// one of the provided \[FunctionDeclaration\].
+        Validated = 5,
     }
     impl Mode {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5700,6 +5708,7 @@ pub mod function_calling_config {
                 Self::Auto => "AUTO",
                 Self::Any => "ANY",
                 Self::None => "NONE",
+                Self::Validated => "VALIDATED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5709,6 +5718,7 @@ pub mod function_calling_config {
                 "AUTO" => Some(Self::Auto),
                 "ANY" => Some(Self::Any),
                 "NONE" => Some(Self::None),
+                "VALIDATED" => Some(Self::Validated),
                 _ => None,
             }
         }
@@ -25419,6 +25429,9 @@ pub struct EvaluateDatasetRun {
     /// when evaluating checkpoints.
     #[prost(string, tag = "2")]
     pub checkpoint_id: ::prost::alloc::string::String,
+    /// Output only. Results for EvaluationService.EvaluateDataset.
+    #[prost(message, optional, tag = "3")]
+    pub evaluate_dataset_response: ::core::option::Option<EvaluateDatasetResponse>,
     /// Output only. The error of the evaluation run if any.
     #[prost(message, optional, tag = "4")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
