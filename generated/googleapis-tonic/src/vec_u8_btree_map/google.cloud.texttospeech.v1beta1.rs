@@ -240,6 +240,12 @@ pub mod multi_speaker_markup {
 /// input size is limited to 5000 bytes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SynthesisInput {
+    /// This system instruction is supported only for controllable/promptable voice
+    /// models. If this system instruction is used, we pass the unedited text to
+    /// Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+    /// calls this system instruction, Style Instructions.
+    #[prost(string, optional, tag = "6")]
+    pub prompt: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. The pronunciation customizations are applied to the input. If
     /// this is set, the input is synthesized using the given pronunciation
     /// customizations.

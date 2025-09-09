@@ -128,6 +128,7 @@
     feature = "google-cloud-beyondcorp-appgateways-v1",
     feature = "google-cloud-beyondcorp-clientconnectorservices-v1",
     feature = "google-cloud-beyondcorp-clientgateways-v1",
+    feature = "google-cloud-biglake-v1",
     feature = "google-cloud-bigquery-analyticshub-v1",
     feature = "google-cloud-bigquery-biglake-v1",
     feature = "google-cloud-bigquery-biglake-v1alpha1",
@@ -155,6 +156,7 @@
     feature = "google-cloud-binaryauthorization-v1",
     feature = "google-cloud-binaryauthorization-v1beta1",
     feature = "google-cloud-blockchainnodeengine-v1",
+    feature = "google-cloud-capacityplanner-v1beta",
     feature = "google-cloud-certificatemanager-logging-v1",
     feature = "google-cloud-certificatemanager-v1",
     feature = "google-cloud-channel-v1",
@@ -273,6 +275,7 @@
     feature = "google-cloud-licensemanager-v1",
     feature = "google-cloud-lifesciences-v2beta",
     feature = "google-cloud-location",
+    feature = "google-cloud-locationfinder-v1",
     feature = "google-cloud-lustre-v1",
     feature = "google-cloud-maintenance-api-v1beta",
     feature = "google-cloud-managedidentities-v1",
@@ -408,6 +411,7 @@
     feature = "google-cloud-tpu-v2alpha1",
     feature = "google-cloud-translation-v3",
     feature = "google-cloud-translation-v3beta1",
+    feature = "google-cloud-universalledger-v1",
     feature = "google-cloud-video-livestream-logging-v1",
     feature = "google-cloud-video-livestream-v1",
     feature = "google-cloud-video-stitcher-v1",
@@ -619,6 +623,7 @@ pub mod google {
         feature = "google-cloud-beyondcorp-appgateways-v1",
         feature = "google-cloud-beyondcorp-clientconnectorservices-v1",
         feature = "google-cloud-beyondcorp-clientgateways-v1",
+        feature = "google-cloud-biglake-v1",
         feature = "google-cloud-bigquery-analyticshub-v1",
         feature = "google-cloud-bigquery-biglake-v1",
         feature = "google-cloud-bigquery-biglake-v1alpha1",
@@ -646,6 +651,7 @@ pub mod google {
         feature = "google-cloud-binaryauthorization-v1",
         feature = "google-cloud-binaryauthorization-v1beta1",
         feature = "google-cloud-blockchainnodeengine-v1",
+        feature = "google-cloud-capacityplanner-v1beta",
         feature = "google-cloud-certificatemanager-logging-v1",
         feature = "google-cloud-certificatemanager-v1",
         feature = "google-cloud-channel-v1",
@@ -764,6 +770,7 @@ pub mod google {
         feature = "google-cloud-licensemanager-v1",
         feature = "google-cloud-lifesciences-v2beta",
         feature = "google-cloud-location",
+        feature = "google-cloud-locationfinder-v1",
         feature = "google-cloud-lustre-v1",
         feature = "google-cloud-maintenance-api-v1beta",
         feature = "google-cloud-managedidentities-v1",
@@ -899,6 +906,7 @@ pub mod google {
         feature = "google-cloud-tpu-v2alpha1",
         feature = "google-cloud-translation-v3",
         feature = "google-cloud-translation-v3beta1",
+        feature = "google-cloud-universalledger-v1",
         feature = "google-cloud-video-livestream-logging-v1",
         feature = "google-cloud-video-livestream-v1",
         feature = "google-cloud-video-stitcher-v1",
@@ -5007,6 +5015,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-universalledger-v1",
+        ))]
+        pub mod universalledger {
+            #[cfg(any(
+                feature = "google-cloud-universalledger-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-universalledger-v1",
+                ))]
+                include!("bytes_hash_map/google.cloud.universalledger.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-apigateway-v1",
         ))]
         pub mod apigateway {
@@ -5424,6 +5446,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-locationfinder-v1",
+        ))]
+        pub mod locationfinder {
+            #[cfg(any(
+                feature = "google-cloud-locationfinder-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-locationfinder-v1",
+                ))]
+                include!("bytes_hash_map/google.cloud.locationfinder.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-certificatemanager-logging-v1",
             feature = "google-cloud-certificatemanager-v1",
         ))]
@@ -5478,6 +5514,20 @@ pub mod google {
                     feature = "google-cloud-edgecontainer-v1",
                 ))]
                 include!("bytes_hash_map/google.cloud.edgecontainer.v1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-capacityplanner-v1beta",
+        ))]
+        pub mod capacityplanner {
+            #[cfg(any(
+                feature = "google-cloud-capacityplanner-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-capacityplanner-v1beta",
+                ))]
+                include!("bytes_hash_map/google.cloud.capacityplanner.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -5553,6 +5603,20 @@ pub mod google {
                     feature = "google-cloud-deploy-v1",
                 ))]
                 include!("bytes_hash_map/google.cloud.deploy.v1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-biglake-v1",
+        ))]
+        pub mod biglake {
+            #[cfg(any(
+                feature = "google-cloud-biglake-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-biglake-v1",
+                ))]
+                include!("bytes_hash_map/google.cloud.biglake.v1.rs");
             }
         }
         #[cfg(any(

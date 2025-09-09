@@ -24790,7 +24790,7 @@ pub struct TuningJob {
     /// Output only. Evaluation runs for the Tuning Job.
     #[prost(message, repeated, tag = "32")]
     pub evaluate_dataset_runs: ::prost::alloc::vec::Vec<EvaluateDatasetRun>,
-    #[prost(oneof = "tuning_job::SourceModel", tags = "4")]
+    #[prost(oneof = "tuning_job::SourceModel", tags = "4, 31")]
     pub source_model: ::core::option::Option<tuning_job::SourceModel>,
     #[prost(oneof = "tuning_job::TuningSpec", tags = "5, 17, 21, 33")]
     pub tuning_spec: ::core::option::Option<tuning_job::TuningSpec>,
@@ -24803,6 +24803,9 @@ pub mod tuning_job {
         /// models](<https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models>).
         #[prost(string, tag = "4")]
         BaseModel(::prost::alloc::string::String),
+        /// The pre-tuned model for continuous tuning.
+        #[prost(message, tag = "31")]
+        PreTunedModel(super::PreTunedModel),
     }
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum TuningSpec {
@@ -25434,6 +25437,31 @@ pub struct TunedModelCheckpoint {
     /// `projects/{project}/locations/{location}/endpoints/{endpoint}`.
     #[prost(string, tag = "4")]
     pub endpoint: ::prost::alloc::string::String,
+}
+/// A pre-tuned model for continuous tuning.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct PreTunedModel {
+    /// The resource name of the Model.
+    /// E.g., a model resource name with a specified version id or alias:
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}@{version_id}`
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}@{alias}`
+    ///
+    /// Or, omit the version id to use the default version:
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}`
+    #[prost(string, tag = "1")]
+    pub tuned_model_name: ::prost::alloc::string::String,
+    /// Optional. The source checkpoint id. If not specified, the default
+    /// checkpoint will be used.
+    #[prost(string, tag = "2")]
+    pub checkpoint_id: ::prost::alloc::string::String,
+    /// Output only. The name of the base model this
+    /// \[PreTunedModel\]\[google.cloud.aiplatform.v1beta1.PreTunedModel\] was tuned
+    /// from.
+    #[prost(string, tag = "3")]
+    pub base_model: ::prost::alloc::string::String,
 }
 /// Request message for
 /// \[GenAiTuningService.CreateTuningJob\]\[google.cloud.aiplatform.v1beta1.GenAiTuningService.CreateTuningJob\].
@@ -35860,7 +35888,7 @@ pub mod deploy_request {
         pub model_user_id: ::prost::alloc::string::String,
     }
     /// The endpoint config to use for the deployment.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct EndpointConfig {
         /// Optional. The user-specified display name of the endpoint. If not set, a
         /// default name will be used.
@@ -35876,19 +35904,27 @@ pub mod deploy_request {
         #[deprecated]
         #[prost(bool, tag = "2")]
         pub dedicated_endpoint_enabled: bool,
-        /// Optional. By default, if dedicated endpoint is enabled, the endpoint will
-        /// be exposed through a dedicated DNS \[Endpoint.dedicated_endpoint_dns\].
-        /// Your request to the dedicated DNS will be isolated from other users'
-        /// traffic and will have better performance and reliability. Note: Once you
-        /// enabled dedicated endpoint, you won't be able to send request to the
-        /// shared DNS {region}-aiplatform.googleapis.com. The limitations will be
-        /// removed soon.
+        /// Optional. By default, if dedicated endpoint is enabled and private
+        /// service connect config is not set, the endpoint will be exposed through a
+        /// dedicated DNS \[Endpoint.dedicated_endpoint_dns\]. If private service
+        /// connect config is set, the endpoint will be exposed through private
+        /// service connect. Your request to the dedicated DNS will be isolated from
+        /// other users' traffic and will have better performance and reliability.
+        /// Note: Once you enabled dedicated endpoint, you won't be able to send
+        /// request to the shared DNS {region}-aiplatform.googleapis.com. The
+        /// limitations will be removed soon.
         ///
         /// If this field is set to true, the dedicated endpoint will be disabled
         /// and the deployed model will be exposed through the shared DNS
         /// {region}-aiplatform.googleapis.com.
         #[prost(bool, tag = "4")]
         pub dedicated_endpoint_disabled: bool,
+        /// Optional. Configuration for private service connect. If set, the endpoint
+        /// will be exposed through private service connect.
+        #[prost(message, optional, tag = "5")]
+        pub private_service_connect_config: ::core::option::Option<
+            super::PrivateServiceConnectConfig,
+        >,
         /// Optional. Immutable. The ID to use for endpoint, which will become the
         /// final component of the endpoint resource name. If not provided, Vertex AI
         /// will generate a value for this ID.

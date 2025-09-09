@@ -7763,6 +7763,9 @@ pub mod conversational_search_request {
     /// Nested message and enum types in `ConversationalFilteringSpec`.
     pub mod conversational_filtering_spec {
         /// Enum to control Conversational Filtering mode.
+        /// A single conversation session including multiple turns supports modes for
+        /// Conversational Search OR Conversational Filtering without
+        /// Conversational Search, but not both.
         #[derive(
             Clone,
             Copy,
@@ -7778,11 +7781,11 @@ pub mod conversational_search_request {
         pub enum Mode {
             /// Default value.
             Unspecified = 0,
-            /// Disable Conversational Filtering.
+            /// Disables Conversational Filtering when using Conversational Search.
             Disabled = 1,
-            /// Enabled Conversational Filtering with default Conversational Search.
+            /// Enables Conversational Filtering when using Conversational Search.
             Enabled = 2,
-            /// Enabled Conversational Filtering without default Conversational Search.
+            /// Enables Conversational Filtering without Conversational Search.
             ConversationalFilterOnly = 3,
         }
         impl Mode {
@@ -7820,9 +7823,6 @@ pub struct ConversationalSearchResponse {
     ///
     /// Supported values are:
     ///
-    /// * "ADVERSARIAL"
-    /// * "CHITCHAT"
-    /// * "JAILBREAK"
     /// * "ORDER_SUPPORT"
     /// * "SIMPLE_PRODUCT_SEARCH"
     /// * "INTENT_REFINEMENT"
