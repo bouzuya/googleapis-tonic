@@ -9694,6 +9694,9 @@ pub struct Endpoint {
     pub gen_ai_advanced_features_config: ::core::option::Option<
         GenAiAdvancedFeaturesConfig,
     >,
+    /// If true, the model server will be isolated from the external internet.
+    #[prost(bool, tag = "30")]
+    pub private_model_server_enabled: bool,
 }
 /// A deployment of a Model. Endpoints contain one or more DeployedModels.
 #[derive(Clone, PartialEq, ::prost::Message)]

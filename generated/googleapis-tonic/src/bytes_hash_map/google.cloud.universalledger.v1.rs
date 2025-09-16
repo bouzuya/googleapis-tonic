@@ -75,9 +75,46 @@ impl Role {
         }
     }
 }
-/// An entity in the GCUL network. All accounts are attached to an entity. The
-/// entity ID, also often referred to as the account ID, is unique and immutable
-/// across the network.
+/// The set of permissions that can be granted to a contract.
+/// More values are expected to be added in the future.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ContractPermission {
+    /// Invalid permission.
+    Unspecified = 0,
+    /// Allows a contract to read and write into storage owned by the account who
+    /// granted the permission. The contract can only read and write the properties
+    /// that it has previously written.
+    ///
+    /// Note this does not allow the contract to read or write data managed by
+    /// other contracts; nor does it allow the contract to directly update other
+    /// account properties (for example, the balance of the account in its native
+    /// currency).
+    Storage = 1,
+}
+impl ContractPermission {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "CONTRACT_PERMISSION_UNSPECIFIED",
+            Self::Storage => "CONTRACT_PERMISSION_STORAGE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONTRACT_PERMISSION_UNSPECIFIED" => Some(Self::Unspecified),
+            "CONTRACT_PERMISSION_STORAGE" => Some(Self::Storage),
+            _ => None,
+        }
+    }
+}
+/// An entity in the Universal Ledger network. All accounts are attached to an
+/// entity. The entity ID, also often referred to as the account ID, is unique
+/// and immutable across the network.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Entity {
     /// Output only. The ID assigned to the entity. This is assigned by the network
@@ -129,7 +166,7 @@ pub struct DictList {
     #[prost(message, repeated, tag = "1")]
     pub value: ::prost::alloc::vec::Vec<DictValue>,
 }
-/// Indices map key to value, e.g. `keys\[0\]` key maps to `values\[0\]`.
+/// Indices map key to value. For example, `keys\[0\]` key maps to `values\[0\]`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DictValue {
     /// Each key can be exactly one kind.
@@ -286,8 +323,10 @@ pub struct SettlementRequest {
 }
 /// Creates a new user account. The sender must be an account manager.
 ///
-/// Successful processing of this transaction creates a new account in the
-/// network and returns its ID.
+/// If the transaction is successful, the ID of the newly created account is
+/// returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateAccount {
     /// Required. Immutable. The public key of the account owner. Note that this is
@@ -314,7 +353,7 @@ pub struct CreateAccount {
     pub account_comment: ::prost::alloc::string::String,
     /// Optional. The token manager for this account. This field is optional and if
     /// not supplied, the default token manager associated to the account manager
-    /// (i.e. the sender of this txn) will be used.
+    /// (that is, the sender of this transaction) will be used.
     #[prost(message, optional, tag = "5")]
     pub token_manager: ::core::option::Option<Entity>,
 }
@@ -445,7 +484,7 @@ pub struct Burn {
 }
 /// Transfers tokens from one user account to another. The sender must be a
 /// regular user account, as opposed to a privileged account like a token manager
-/// or and account manager.
+/// or an account manager.
 ///
 /// Additionally, the transaction sender must have the `ROLE_PAYER` enabled on
 /// it, while the receiver must have the `ROLE_RECEIVER` enabled on it.
@@ -465,8 +504,10 @@ pub struct Transfer {
 /// Creates a new token manager associated to the currency of the operator
 /// sending the request. The sender must be a currency operator.
 ///
-/// If the transaction is successful, returns the ID of the newly created account
-/// as transaction output.
+/// If the transaction is successful, the ID of the newly created account is
+/// returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateTokenManager {
     /// The public key of the new token manager. Note that this is *not* the public
@@ -486,8 +527,10 @@ pub struct CreateTokenManager {
 }
 /// Creates a new account manager. The sender must be a currency operator.
 ///
-/// If the transaction is successful, returns the ID of the newly created account
-/// manager as transaction output.
+/// If the transaction is successful, the ID of the newly created account is
+/// returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateAccountManager {
     /// The public key of the new account manager. Note that this is *not* the
@@ -511,8 +554,10 @@ pub struct CreateAccountManager {
 }
 /// Creates a new clearinghouse. The sender must be a currency operator.
 ///
-/// If the transaction is successful, returns the ID of the newly created
-/// clearinghouse account as transaction output.
+/// If the transaction is successful, the ID of the newly created account is
+/// returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateClearinghouse {
     /// The public key of the new clearinghouse. Note that this is *not* the public
@@ -537,8 +582,9 @@ pub struct CreateClearinghouse {
 /// must be the current platform operator.
 ///
 /// If the transaction is successful, deactivates the current platform operator,
-/// and returns the ID of the newly created platform operator as transaction
-/// output.
+/// and the ID of the newly created account is returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TransferPlatformOperator {
     /// The public key of the new platform operator. This public key will be
@@ -558,8 +604,10 @@ pub struct TransferPlatformOperator {
 }
 /// Creates a new currency operator. The sender must be the platform operator.
 ///
-/// If the transaction is successful, returns the ID of the newly created
-/// currency operator as transaction output.
+/// If the transaction is successful, the ID of the newly created account is
+/// returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 ///
 /// This transaction must introduce a new currency into the system. If the
 /// specified currency already exists, this transaction will fail.
@@ -590,8 +638,9 @@ pub struct CreateCurrencyOperator {
 /// sender must be the platform operator.
 ///
 /// If the transaction is successful, deactivates the given currency operator,
-/// and returns the ID of the newly created currency operator as transaction
-/// output.
+/// and the ID of the newly created account is returned as an event in the
+/// \[TransactionCertificate\]\[google.cloud.universalledger.v1.TransactionCertificate\]
+/// of the finalized transaction.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct TransferCurrencyOperator {
     /// The public key of the new currency operator. This public key will be
@@ -612,11 +661,53 @@ pub struct TransferCurrencyOperator {
     #[prost(message, optional, tag = "4")]
     pub currency_operator: ::core::option::Option<Entity>,
 }
-/// Transaction types for GCUL Operational Transaction (OTx).
-/// Triggers the creation of a snapshot of the GCUL network. The sender must be
+/// Triggers the creation of a snapshot of the network. The sender must be
 /// the platform operator.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateSnapshot {}
+/// Stores a contract on the blockchain.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateContract {
+    /// Serialised biter_bytecode.Contract bytes.
+    #[prost(bytes = "bytes", tag = "1")]
+    pub contract_bytes: ::prost::bytes::Bytes,
+    /// Arguments for the `__init__` method.
+    #[prost(map = "string, message", tag = "2")]
+    pub arguments: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
+    /// An immutable opaque comment field that is associated with the contract.
+    #[prost(string, tag = "3")]
+    pub contract_comment: ::prost::alloc::string::String,
+}
+/// Grants permissions to the contract by the transaction sender.
+///
+/// Note that, at the moment, there is no support for revoking permissions.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GrantContractPermissions {
+    /// ID of the contract to which permissions are being granted.
+    #[prost(message, optional, tag = "1")]
+    pub contract: ::core::option::Option<Entity>,
+    /// The permissions to be granted.
+    #[prost(enumeration = "ContractPermission", repeated, tag = "2")]
+    pub permissions: ::prost::alloc::vec::Vec<i32>,
+}
+/// Invokes the execution of a contract method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InvokeContractMethod {
+    /// ID of the contract to run.
+    #[prost(message, optional, tag = "1")]
+    pub contract: ::core::option::Option<Entity>,
+    /// Name of the method to run.
+    #[prost(string, tag = "2")]
+    pub method_name: ::prost::alloc::string::String,
+    /// Arguments for the method.
+    #[prost(map = "string, message", tag = "3")]
+    pub arguments: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
+    /// The amount to be paid.
+    /// Must be greater than zero when invoking payable methods; and zero for
+    /// non-payable ones.
+    #[prost(message, optional, tag = "4")]
+    pub payment: ::core::option::Option<CurrencyValue>,
+}
 /// Specifies who pays the transaction fees.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -980,10 +1071,10 @@ pub struct ClientTransaction {
     /// transaction.
     #[prost(message, repeated, tag = "2")]
     pub signatories: ::prost::alloc::vec::Vec<Entity>,
-    /// Required. An unique, monotonically increasing number, starting from 0.
+    /// Required. A unique, monotonically increasing number, starting from 0.
     ///
     /// This number must be increased by one for each transaction previously
-    /// submitted to the GCUL network by the same transaction sender.
+    /// submitted to the network by the same transaction sender.
     ///
     /// Note this does not include any transaction units that may have been
     /// submitted as part of a chain, which must not set a sequence number. But it
@@ -1030,6 +1121,9 @@ pub mod client_transaction {
         /// * \[RemoveRoles\]\[google.cloud.universalledger.v1.RemoveRoles\]
         /// * \[ChangeAccountManager\]\[google.cloud.universalledger.v1.ChangeAccountManager\]
         /// * \[Transfer\]\[google.cloud.universalledger.v1.Transfer\]
+        /// * \[CreateContract\]\[google.cloud.universalledger.v1.CreateContract\]
+        /// * \[GrantContractPermissions\]\[google.cloud.universalledger.v1.GrantContractPermissions\]
+        /// * \[InvokeContractMethod\]\[google.cloud.universalledger.v1.InvokeContractMethod\]
         ///
         /// <!--
         /// clang-format on
@@ -1068,12 +1162,11 @@ pub struct SignedTransaction {
     pub serialized_client_transaction: ::prost::bytes::Bytes,
     /// Required. The signature of the transaction sender.
     ///
-    /// Each signatory should compute a signature by signing the
+    /// The signature should be computed by signing the
     /// `serialized_client_transaction` bytes with their own private key.
     ///
-    /// For a transaction chain, one signature is needed for each account appearing
-    /// as a signatory of a unit in the chain. In such a case, the bytes to be
-    /// signed are computed as the concatenation of:
+    /// For a transaction chain, the bytes to be signed are computed as the
+    /// concatenation of:
     ///
     /// * A digest of the serialized client transaction of the entire chain.
     /// * A digest of the serialized signed transaction of each unit in the chain,
@@ -1081,20 +1174,18 @@ pub struct SignedTransaction {
     ///   The digests are computed using SHA-256.
     #[prost(bytes = "bytes", tag = "3")]
     pub sender_signature: ::prost::bytes::Bytes,
-    /// Optional. The signatures of the remaining transaction signatories.
+    /// Optional. The signatures of accounts listed as additional transaction
+    /// signatories. The number and order of these signatures must match the
+    /// `signatories` field in the
+    /// \[ClientTransaction\]\[google.cloud.universalledger.v1.ClientTransaction\].
     ///
-    /// For a transaction, one signature is needed for each entry in `signatories`
-    /// of the transaction. Each signatory should compute a signature by signing
-    /// the `serialized_client_transaction` bytes with their own private key.
+    /// The bytes to be signed are the same as those for the `sender_signature`,
+    /// which each signatory should sign with their own private key.
     ///
-    /// For a transaction chain, one signature is needed for each account appearing
-    /// as a signatory of a unit in the chain. In such a case, the bytes to be
-    /// signed are computed as the concatenation of:
-    ///
-    /// * A digest of the serialized client transaction of the entire chain.
-    /// * A digest of the serialized signed transaction of each unit in the chain,
-    ///   in the order they appear in the chain.
-    ///   The digests are computed using SHA-256.
+    /// The number and identity of additional signatories depends on the particular
+    /// transaction kind. For a transaction chain, one signature is needed for each
+    /// account appearing either as the sender or as a signatory of a unit in the
+    /// chain.
     #[prost(bytes = "bytes", repeated, tag = "4")]
     pub other_signatures: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
 }
@@ -1210,8 +1301,8 @@ pub struct TransactionEffects {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransactionEvent {
     /// Output only. The type of event. A special event of type
-    /// `transaction_output` contains the outputs produced by the transaction
-    /// (e.g., the account ID of a newly created account).
+    /// `transaction_output` contains the outputs produced by the transaction—for
+    /// example, the account ID of a newly created account.
     #[prost(string, tag = "1")]
     pub r#type: ::prost::alloc::string::String,
     /// Output only. The event attributes as arbitrary key-value pairs.
@@ -1372,7 +1463,7 @@ pub mod transaction_attempt {
         }
     }
 }
-/// Represents a GCUL endpoint.
+/// Represents a Universal Ledger endpoint.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Endpoint {
     /// Identifier. The resource name of the endpoint.
@@ -1457,9 +1548,10 @@ pub struct SubmitTransactionRequest {
     pub endpoint: ::prost::alloc::string::String,
     /// Required. A protobuf serialized
     /// \[SignedTransaction\]\[google.cloud.universalledger.v1.SignedTransaction\] to
-    /// submit to the gcul network. Using a serialized format ensures that all
-    /// validators can compute the same hash for the transaction, regardless of the
-    /// machine or environment where the transaction was serialized.
+    /// submit to the Universal Ledger network. Using a serialized format ensures
+    /// that all validators can compute the same hash for the transaction,
+    /// regardless of the machine or environment where the transaction was
+    /// serialized.
     #[prost(bytes = "bytes", tag = "2")]
     pub serialized_signed_transaction: ::prost::bytes::Bytes,
 }
@@ -1468,10 +1560,9 @@ pub struct SubmitTransactionRequest {
 pub struct SubmitTransactionResponse {
     /// Hex encoded SHA-256 hash of the `serialized_signed_transaction` that
     /// uniquely identifies the submitted transaction.
-    /// This ID is provided so clients can easily track the transaction without
-    /// needing to implement the hashing logic themselve and it can be directly
-    /// used in subsequent API calls, such as
-    /// [QueryTransactionState](#google.cloud.universalledger.v1main.QueryTransactionState).
+    /// This ID is provided so that a client can track the transaction without
+    /// needing to implement the hashing logic itself. The ID can be directly
+    /// used in subsequent API calls, for example to query the transaction state.
     #[prost(string, tag = "1")]
     pub transaction_digest_hex: ::prost::alloc::string::String,
 }
@@ -1484,9 +1575,8 @@ pub struct SubmitOperationalTransactionRequest {
     #[prost(string, tag = "1")]
     pub endpoint: ::prost::alloc::string::String,
     /// Required. A protobuf serialized
-    /// [SignedTransaction](#google.cloud.universalledger.v1main.SignedTransaction)
-    /// to submit to the network.
-    /// The enclosed client transaction must be an
+    /// \[SignedTransaction\]\[google.cloud.universalledger.v1.SignedTransaction\] to
+    /// submit to the network. The enclosed client transaction must be an
     /// operational transaction, and the sender must be the platform operator.
     /// Having the fully serialized transaction allows all validators
     /// to compute the same hash without assuming any format for the serialized
@@ -1499,10 +1589,9 @@ pub struct SubmitOperationalTransactionRequest {
 pub struct SubmitOperationalTransactionResponse {
     /// Hex encoded SHA-256 hash of the `serialized_signed_operational_transaction`
     /// that uniquely identifies the submitted operational transaction.
-    /// This ID is provided so clients can easily track the transaction without
-    /// needing to implement the hashing logic themselve and it can be directly
-    /// used in subsequent API calls, such as
-    /// [QueryTransactionState](#google.cloud.universalledger.v1main.QueryTransactionState).
+    /// This ID is provided so that a client can track the transaction without
+    /// needing to implement the hashing logic itself. The ID can be directly
+    /// used in subsequent API calls, for example to query the transaction state.
     #[prost(string, tag = "1")]
     pub transaction_digest_hex: ::prost::alloc::string::String,
 }
@@ -1542,9 +1631,9 @@ pub mod universal_ledger_client {
     /// be modified by users.
     /// The names of available endpoints will be provided in the public
     /// documentation.
-    /// An endpoint is a regional resource within a GCUL network. Requests sent to
-    /// an endpoint may be routed to different validators in the given network within
-    /// the given region.
+    /// An endpoint is a regional resource within a Universal Ledger network.
+    /// Requests sent to an endpoint may be routed to different validators in the
+    /// given network within the given region.
     #[derive(Debug, Clone)]
     pub struct UniversalLedgerClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1618,8 +1707,8 @@ pub mod universal_ledger_client {
         /// The request is first validated for basic correctness. If validation fails,
         /// the request will fail immediately.
         /// If validation succeeds, this method returns only after the transaction has
-        /// been replicated across a majority of GCUL validators, or until the request
-        /// fails.
+        /// been replicated across a majority of validators in the network, or until
+        /// the request fails.
         pub async fn submit_transaction(
             &mut self,
             request: impl tonic::IntoRequest<super::SubmitTransactionRequest>,
@@ -1708,7 +1797,7 @@ pub mod universal_ledger_client {
         }
         /// Submits an operational transaction to the network.
         /// This method returns only after the transaction has been replicated across a
-        /// majority of GCUL validators, or if the transaction fails.
+        /// majority of validators in the network, or if the transaction fails.
         pub async fn submit_operational_transaction(
             &mut self,
             request: impl tonic::IntoRequest<super::SubmitOperationalTransactionRequest>,
@@ -1742,7 +1831,7 @@ pub mod universal_ledger_client {
         /// transaction submitted to the network. The returned transaction details may
         /// vary between calls, because an endpoint may route requests to different
         /// validators within the network and region, and the validators may not be at
-        /// the same rounid ID at any given time.
+        /// the same round ID at any given time.
         pub async fn query_transaction_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTransactionStateRequest>,
@@ -1772,10 +1861,10 @@ pub mod universal_ledger_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Queries all the information stored about a GCUL account.
+        /// Queries all the information stored about an account in the network.
         /// The returned account details may vary between calls, because an
         /// endpoint may route requests to different validators within the network and
-        /// region, and the validators may not be at the same rounid ID at any given
+        /// region, and the validators may not be at the same round ID at any given
         /// time.
         pub async fn query_account(
             &mut self,
