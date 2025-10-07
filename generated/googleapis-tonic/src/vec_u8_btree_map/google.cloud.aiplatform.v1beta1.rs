@@ -44202,6 +44202,13 @@ pub struct PredictRequest {
     /// \[parameters_schema_uri\]\[google.cloud.aiplatform.v1beta1.PredictSchemata.parameters_schema_uri\].
     #[prost(message, optional, tag = "3")]
     pub parameters: ::core::option::Option<::prost_types::Value>,
+    /// Optional. The user labels for Imagen billing usage only. Only Imagen
+    /// supports labels. For other use cases, it will be ignored.
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Response message for
 /// \[PredictionService.Predict\]\[google.cloud.aiplatform.v1beta1.PredictionService.Predict\].

@@ -21784,11 +21784,57 @@ pub struct DeployedIndex {
     /// Note: we only support up to 5 deployment groups(not including 'default').
     #[prost(string, tag = "11")]
     pub deployment_group: ::prost::alloc::string::String,
+    /// Optional. The deployment tier that the index is deployed to.
+    /// DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+    #[prost(enumeration = "deployed_index::DeploymentTier", tag = "18")]
+    pub deployment_tier: i32,
     /// Optional. If set for PSC deployed index, PSC connection will be
     /// automatically created after deployment is done and the endpoint information
     /// is populated in private_endpoints.psc_automated_endpoints.
     #[prost(message, repeated, tag = "19")]
     pub psc_automation_configs: ::prost::alloc::vec::Vec<PscAutomationConfig>,
+}
+/// Nested message and enum types in `DeployedIndex`.
+pub mod deployed_index {
+    /// Tiers encapsulate serving time attributes like latency and throughput.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DeploymentTier {
+        /// Default deployment tier.
+        Unspecified = 0,
+        /// Optimized for costs.
+        Storage = 2,
+    }
+    impl DeploymentTier {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "DEPLOYMENT_TIER_UNSPECIFIED",
+                Self::Storage => "STORAGE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEPLOYMENT_TIER_UNSPECIFIED" => Some(Self::Unspecified),
+                "STORAGE" => Some(Self::Storage),
+                _ => None,
+            }
+        }
+    }
 }
 /// Used to set up the auth on the DeployedIndex's private endpoint.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -26104,6 +26150,13 @@ pub struct PredictRequest {
     /// \[parameters_schema_uri\]\[google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri\].
     #[prost(message, optional, tag = "3")]
     pub parameters: ::core::option::Option<::prost_types::Value>,
+    /// Optional. The user labels for Imagen billing usage only. Only Imagen
+    /// supports labels. For other use cases, it will be ignored.
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Response message for
 /// \[PredictionService.Predict\]\[google.cloud.aiplatform.v1.PredictionService.Predict\].
