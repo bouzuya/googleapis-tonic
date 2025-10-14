@@ -299,6 +299,219 @@ pub mod allocation {
         SpecificAllocation(SpecificSkuAllocation),
     }
 }
+/// Repesents Future Reservation request which is part of aggregated
+/// reservations data response of "QueryReservations".
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FutureReservation {
+    /// A unique identifier for this future reservation. The server
+    /// defines this identifier.
+    #[prost(int64, tag = "1")]
+    pub id: i64,
+    /// The creation timestamp for this future reservation.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// URL of the Zone where this future reservation resides.
+    #[prost(string, tag = "5")]
+    pub zone: ::prost::alloc::string::String,
+    /// Description of the future reservation provided by user.
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
+    /// The future reservation resource name.
+    #[prost(string, tag = "7")]
+    pub future_reservation: ::prost::alloc::string::String,
+    #[prost(string, tag = "15")]
+    pub owner_project_id: ::prost::alloc::string::String,
+    /// Time window for this Future Reservation.
+    #[prost(message, optional, tag = "9")]
+    pub time_window: ::core::option::Option<future_reservation::TimeWindow>,
+    /// List of Projects/Folders to share with.
+    #[prost(message, optional, tag = "10")]
+    pub share_settings: ::core::option::Option<allocation::ShareSettings>,
+    /// Name prefix for the reservations to be created at the time of
+    /// delivery. The name prefix must comply with RFC1035.
+    /// Maximum allowed length for name prefix is 20. Automatically created
+    /// reservations name format will be <name-prefix>-date-####.
+    #[prost(string, tag = "11")]
+    pub name_prefix: ::prost::alloc::string::String,
+    /// Status of the Future Reservation
+    #[prost(message, optional, tag = "12")]
+    pub status: ::core::option::Option<future_reservation::Status>,
+    /// Future timestamp when the FR auto-created reservations will be deleted by
+    /// Compute Engine. Format of this field must be a valid RFC3339 value.
+    #[prost(message, optional, tag = "13")]
+    pub auto_created_reservations_delete_time: ::core::option::Option<
+        ::prost_types::Timestamp,
+    >,
+    /// Setting for enabling or disabling automatic deletion for auto-created
+    /// reservation. If set to true, auto-created reservations will be
+    /// deleted at Future Reservation's end time (default) or at user's defined
+    /// timestamp if any of the
+    /// \[auto_created_reservations_delete_time, auto_created_reservations_duration\]
+    /// values is specified.
+    /// For keeping auto-created reservation indefinitely, this value should be set
+    /// to false.
+    #[prost(bool, tag = "14")]
+    pub auto_delete_auto_created_reservations: bool,
+    /// The type of the future reservation which can only be for a specific SKU for
+    /// now.
+    #[prost(oneof = "future_reservation::Type", tags = "8")]
+    pub r#type: ::core::option::Option<future_reservation::Type>,
+}
+/// Nested message and enum types in `FutureReservation`.
+pub mod future_reservation {
+    /// Represents specific SKU properties for the Future Reservation.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SpecificSkuProperties {
+        /// Properties of the SKU instances being reserved.
+        #[prost(message, optional, tag = "1")]
+        pub instance_properties: ::core::option::Option<
+            super::allocation::specific_sku_allocation::AllocatedInstanceProperties,
+        >,
+        /// Total number of instances for which capacity assurance is requested at a
+        /// future time period.
+        #[prost(int64, tag = "2")]
+        pub total_count: i64,
+    }
+    /// Represents time window for the Future Reservation.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct TimeWindow {
+        /// Start time of the Future Reservation.
+        #[prost(message, optional, tag = "1")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        /// End time of the Future Reservation.
+        #[prost(message, optional, tag = "2")]
+        pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    /// Represents status related to the future reservation.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Status {
+        /// Current state of this Future Reservation
+        #[prost(enumeration = "status::ProcurementStatus", tag = "1")]
+        pub procurement_status: i32,
+        /// Time when Future Reservation would become LOCKED, after which no
+        /// modifications to Future Reservation will be allowed. Applicable only
+        /// after the Future Reservation is in the APPROVED state. The lock_time is
+        /// an RFC3339 string. The procurement_status will transition to PROCURING
+        /// state at this time.
+        #[prost(message, optional, tag = "2")]
+        pub lock_time: ::core::option::Option<::prost_types::Timestamp>,
+        /// Fully qualified urls of the automatically created reservations at
+        /// start_time.
+        #[prost(string, repeated, tag = "3")]
+        pub auto_created_reservations: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
+        /// This count indicates the fulfilled capacity so far. This is set during
+        /// "PROVISIONING" state. This count also includes capacity delivered as part
+        /// of existing matching reservations.
+        #[prost(int64, tag = "4")]
+        pub fulfilled_count: i64,
+    }
+    /// Nested message and enum types in `Status`.
+    pub mod status {
+        /// Represents procurement status of the Future Reservation.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum ProcurementStatus {
+            /// This is unused status value.
+            Unspecified = 0,
+            /// Future reservation is pending approval by Google Cloud Platform.
+            PendingApproval = 1,
+            /// Future reservation is approved by Google Cloud Platform.
+            Approved = 2,
+            /// Future reservation is committed by the customer.
+            Committed = 3,
+            /// Future reservation is rejected by Google Cloud Platform.
+            Declined = 4,
+            /// Future reservation is cancelled by the customer.
+            Cancelled = 5,
+            /// Future reservation is being procured by Google Cloud Platform. Beyond
+            /// this point, Future reservation is locked and no further modifications
+            /// are allowed.
+            Procuring = 6,
+            /// Future reservation capacity is being provisioned. This state will be
+            /// entered after start_time, while reservations are being created to
+            /// provide total_count reserved instance slots. This state will not
+            /// persist past start_time + 24h.
+            Provisioning = 7,
+            /// Future reservation is fulfilled completely.
+            Fulfilled = 8,
+            /// Future reservation failed. No additional reservations were provided.
+            Failed = 9,
+            /// Future reservation is partially fulfilled. Additional reservations were
+            /// provided but did not reach total_count reserved instance slots.
+            FailedPartiallyFulfilled = 10,
+            /// Related status for PlanningStatus.Draft. Transitions to
+            /// PENDING_APPROVAL upon user submitting FR.
+            Drafting = 11,
+            /// An Amendment to the Future Reservation has been requested. If the
+            /// Amendment is declined, the Future Reservation will be restored to the
+            /// last known good state.
+            PendingAmendmentApproval = 12,
+        }
+        impl ProcurementStatus {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "PROCUREMENT_STATUS_UNSPECIFIED",
+                    Self::PendingApproval => "PENDING_APPROVAL",
+                    Self::Approved => "APPROVED",
+                    Self::Committed => "COMMITTED",
+                    Self::Declined => "DECLINED",
+                    Self::Cancelled => "CANCELLED",
+                    Self::Procuring => "PROCURING",
+                    Self::Provisioning => "PROVISIONING",
+                    Self::Fulfilled => "FULFILLED",
+                    Self::Failed => "FAILED",
+                    Self::FailedPartiallyFulfilled => "FAILED_PARTIALLY_FULFILLED",
+                    Self::Drafting => "DRAFTING",
+                    Self::PendingAmendmentApproval => "PENDING_AMENDMENT_APPROVAL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PROCUREMENT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                    "PENDING_APPROVAL" => Some(Self::PendingApproval),
+                    "APPROVED" => Some(Self::Approved),
+                    "COMMITTED" => Some(Self::Committed),
+                    "DECLINED" => Some(Self::Declined),
+                    "CANCELLED" => Some(Self::Cancelled),
+                    "PROCURING" => Some(Self::Procuring),
+                    "PROVISIONING" => Some(Self::Provisioning),
+                    "FULFILLED" => Some(Self::Fulfilled),
+                    "FAILED" => Some(Self::Failed),
+                    "FAILED_PARTIALLY_FULFILLED" => Some(Self::FailedPartiallyFulfilled),
+                    "DRAFTING" => Some(Self::Drafting),
+                    "PENDING_AMENDMENT_APPROVAL" => Some(Self::PendingAmendmentApproval),
+                    _ => None,
+                }
+            }
+        }
+    }
+    /// The type of the future reservation which can only be for a specific SKU for
+    /// now.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        /// Future Reservation configuration to indicate instance properties and
+        /// total count.
+        #[prost(message, tag = "8")]
+        SpecificSkuProperties(SpecificSkuProperties),
+    }
+}
 /// Identifier for a Google Cloud Platform location.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationIdentifier {
@@ -583,754 +796,6 @@ impl Unit {
         }
     }
 }
-/// Request for getting a capacity plan.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct GetCapacityPlanRequest {
-    /// Required. The name of the capacity plan to retrieve.
-    /// Format: projects/{project}/capacityPlans/{capacity_plan}
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Request for querying capacity plans.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct QueryCapacityPlansRequest {
-    /// Required. The parent resource container.
-    /// Format:
-    /// projects/{project} or
-    /// folders/{folder} or
-    /// organizations/{organization}
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Optional. The maximum number of plans to return per page. The service may
-    /// return fewer than this value. If unspecified, the server will use a
-    /// sensible default. The maximum value is 1000; values above 1000 will be
-    /// coerced to 1000.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// Optional. A page token, received from a previous `QueryCapacityPlans` call.
-    /// Provide this to retrieve the subsequent page.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    /// Optional. The Google Cloud Platform location of capacity plans. If
-    /// unspecified, all locations will be included.
-    #[prost(string, tag = "4")]
-    pub location: ::prost::alloc::string::String,
-}
-/// Response of querying capacity plans.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryCapacityPlansResponse {
-    /// List of capacity plans.
-    #[prost(message, repeated, tag = "1")]
-    pub capacity_plans: ::prost::alloc::vec::Vec<CapacityPlan>,
-    /// Token to retrieve the next page of results. This will be empty if there are
-    /// no more pages.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// Request for capacity plan insights.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryCapacityPlanInsightsRequest {
-    /// Required. The parent resource container.
-    /// Format: projects/{project}
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. The filters to apply to the capacity plan.
-    #[prost(message, optional, tag = "2")]
-    pub capacity_plan_filters: ::core::option::Option<CapacityPlanFilters>,
-}
-/// Response for capacity plan insights.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryCapacityPlanInsightsResponse {
-    /// Optional. The aggregated capacity plan view. This is the aggregated view of
-    /// all the capacity plans that match the filters.
-    #[prost(message, optional, tag = "1")]
-    pub aggregated_capacity_plan_view: ::core::option::Option<CapacityPlanView>,
-}
-/// CapacityPlanFilters is a set of filters to apply to the capacity plan.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CapacityPlanFilters {
-    /// Required. The capacity plan keys to include in the response.
-    #[prost(message, repeated, tag = "1")]
-    pub keys: ::prost::alloc::vec::Vec<CapacityPlanKey>,
-    /// Required. The capacity types to include in the response.
-    #[prost(enumeration = "CapacityType", repeated, packed = "false", tag = "2")]
-    pub capacity_types: ::prost::alloc::vec::Vec<i32>,
-    /// Optional. Optional capacity plan id. Should be populated for request page
-    /// to lock based on the same capacity plan.
-    #[prost(string, tag = "3")]
-    pub capacity_plan_id: ::prost::alloc::string::String,
-}
-/// CapacityPlanKey is a the unique identifier for each Capacity Plan.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CapacityPlanKey {
-    /// Required. The resource container associated with the capacity plan.
-    #[prost(message, optional, tag = "1")]
-    pub resource_container: ::core::option::Option<ResourceContainer>,
-    /// Required. The resource id key associated with the capacity plan.
-    #[prost(message, optional, tag = "2")]
-    pub resource_id_key: ::core::option::Option<ResourceIdKey>,
-    /// Required. Identifier of location.
-    #[prost(message, optional, tag = "3")]
-    pub location_id: ::core::option::Option<LocationIdentifier>,
-}
-/// CapacityPlanView contains the capacity plan key and the time series views.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CapacityPlanView {
-    /// Required. The capacity plan key associated with the capacity plan view.
-    #[prost(message, optional, tag = "1")]
-    pub key: ::core::option::Option<CapacityPlanKey>,
-    /// Required. The time series views associated with the capacity plan view.
-    #[prost(message, repeated, tag = "2")]
-    pub time_series_views: ::prost::alloc::vec::Vec<TimeSeriesView>,
-}
-/// TimeSeriesView contains capacity_value which has the timeseries for a given
-/// type. Each type as a single timeseries associated with it.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TimeSeriesView {
-    /// Required. The capacity type associated with the time series view.
-    #[prost(enumeration = "CapacityType", tag = "1")]
-    pub r#type: i32,
-    /// Required. The capacity value associated with the time series view.
-    #[prost(message, optional, tag = "2")]
-    pub capacity_value: ::core::option::Option<DemandValue>,
-}
-/// A plan for additional capacity needed by a Google Cloud Platform project.
-/// This is synonymous with CapacityDemand, CapacityRequest, and
-/// CapacityDemandRequest.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CapacityPlan {
-    /// Identifier. The  name of the capacity plan.
-    ///
-    /// Format:
-    /// projects/{project}/capacityPlans/{capacity_plan_id}
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Optional. The metadata associated with a capacity demand.
-    #[prost(message, optional, tag = "2")]
-    pub capacity_demand_metadata: ::core::option::Option<DemandMetadata>,
-    /// Required. The capacity demand associated with a service.
-    #[prost(message, repeated, tag = "3")]
-    pub service_demands: ::prost::alloc::vec::Vec<ServiceDemand>,
-    /// Output only. User who created the capacity plan.
-    #[prost(message, optional, tag = "4")]
-    pub reporter: ::core::option::Option<User>,
-    /// Output only. State of the plan.
-    #[prost(enumeration = "State", tag = "5")]
-    pub state: i32,
-    /// Output only. Timestamp when the plan was created.
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Timestamp when the plan was last updated.
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Optional. Description of the plan.
-    #[prost(string, tag = "8")]
-    pub description: ::prost::alloc::string::String,
-    /// Optional. Title of the plan.
-    #[prost(string, tag = "9")]
-    pub title: ::prost::alloc::string::String,
-}
-/// The metadata associated with a capacity demand.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DemandMetadata {
-    /// Optional. The preferences associated with a capacity demand.
-    #[prost(message, repeated, tag = "1")]
-    pub demand_preferences: ::prost::alloc::vec::Vec<DemandPreference>,
-}
-/// Preference associated with a request, such as flexibility with alternate
-/// resource type.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DemandPreference {
-    /// Output only. The preference id.
-    #[prost(string, tag = "1")]
-    pub preference_id: ::prost::alloc::string::String,
-    /// Required. The value of demand preference.
-    #[prost(message, optional, tag = "2")]
-    pub value: ::core::option::Option<Value>,
-}
-/// Capacity demand for a service.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ServiceDemand {
-    /// Required. Name of the service.
-    #[prost(string, tag = "1")]
-    pub service: ::prost::alloc::string::String,
-    /// Optional. The metadata associated with a service demand.
-    #[prost(message, optional, tag = "2")]
-    pub demand_metadata: ::core::option::Option<DemandMetadata>,
-    /// Required. The demand associated with the resources.
-    #[prost(message, repeated, tag = "3")]
-    pub resource_demands: ::prost::alloc::vec::Vec<ResourceDemand>,
-}
-/// Capacity demand for a resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ResourceDemand {
-    /// Output only. Identifier of resource demand.
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    /// Required. The resource container associated with the demand.
-    #[prost(message, optional, tag = "2")]
-    pub resource_container: ::core::option::Option<ResourceContainer>,
-    /// Required. Identifier of resource.
-    #[prost(message, optional, tag = "3")]
-    pub resource_id: ::core::option::Option<ResourceIdentifier>,
-    /// Required. Identifier of location.
-    #[prost(message, optional, tag = "4")]
-    pub location_id: ::core::option::Option<LocationIdentifier>,
-    /// Output only. State of the resource demand.
-    #[prost(enumeration = "State", tag = "5")]
-    pub state: i32,
-    /// Output only. User who reported the demand.
-    #[prost(message, optional, tag = "6")]
-    pub reporter: ::core::option::Option<User>,
-    /// Output only. Timestamp when the demand was created.
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Timestamp when the demand was last updated.
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Required. The demand values associated with the resource.
-    #[prost(message, optional, tag = "9")]
-    pub demand_values: ::core::option::Option<DemandValues>,
-    /// Optional. The metadata associated with the demand.
-    #[prost(message, optional, tag = "10")]
-    pub demand_metadata: ::core::option::Option<DemandMetadata>,
-    /// Optional. The child resource demands associated with the resource.
-    #[prost(message, repeated, tag = "11")]
-    pub child_resource_demands: ::prost::alloc::vec::Vec<ChildResourceDemand>,
-}
-/// A user who created or updated a capacity demand.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct User {
-    /// Required. Email of the user.
-    #[prost(string, tag = "1")]
-    pub email: ::prost::alloc::string::String,
-}
-/// The capacity demand values for a resource.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DemandValues {
-    /// Required. The demand values.
-    #[prost(message, repeated, tag = "1")]
-    pub values: ::prost::alloc::vec::Vec<DemandValue>,
-}
-/// Capacity demand value for a single resource attribute such as CPU count,
-/// vertex AI peak QPM, etc.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DemandValue {
-    /// Required. The name of the demand value such as CPU count.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Required. The demand values at different time points.
-    #[prost(message, repeated, tag = "2")]
-    pub time_values: ::prost::alloc::vec::Vec<TimeValue>,
-    /// Required. Unit of measurement.
-    #[prost(enumeration = "Unit", tag = "3")]
-    pub unit: i32,
-}
-/// Capacity demand value for a single time point.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TimeValue {
-    /// Required. The time point. If this demand value is non-temporal, set time to
-    /// -1.
-    #[prost(message, optional, tag = "1")]
-    pub time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Required. The demand value at the time point.
-    #[prost(double, optional, tag = "2")]
-    pub value: ::core::option::Option<f64>,
-}
-/// Capacity demand for a child resource such as shapes.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ChildResourceDemand {
-    /// Required. Identifier of resource.
-    #[prost(message, optional, tag = "1")]
-    pub resource_id: ::core::option::Option<ResourceIdentifier>,
-    /// Required. The demand values associated with the child resource.
-    #[prost(message, optional, tag = "2")]
-    pub demand_values: ::core::option::Option<DemandValues>,
-    /// Optional. The metadata associated with the child resource demand.
-    #[prost(message, optional, tag = "3")]
-    pub demand_metadata: ::core::option::Option<DemandMetadata>,
-}
-/// The state of a capacity demand.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-    /// The state is unspecified.
-    Unspecified = 0,
-    /// The demand is pending review.
-    PendingReview = 1,
-    /// The demand is in review.
-    InReview = 3,
-    /// The demand is provisionally approved.
-    ApprovedProvisional = 8,
-    /// The demand is obsolete.
-    Obsolete = 5,
-    /// The demand cannot be fulfilled.
-    CannotBeFulfilled = 7,
-    /// The demand is on hold, contact sales.
-    OnHoldContactSales = 9,
-    /// The demand is in fulfillment.
-    InFulfillment = 10,
-}
-impl State {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Self::Unspecified => "STATE_UNSPECIFIED",
-            Self::PendingReview => "PENDING_REVIEW",
-            Self::InReview => "IN_REVIEW",
-            Self::ApprovedProvisional => "APPROVED_PROVISIONAL",
-            Self::Obsolete => "OBSOLETE",
-            Self::CannotBeFulfilled => "CANNOT_BE_FULFILLED",
-            Self::OnHoldContactSales => "ON_HOLD_CONTACT_SALES",
-            Self::InFulfillment => "IN_FULFILLMENT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PENDING_REVIEW" => Some(Self::PendingReview),
-            "IN_REVIEW" => Some(Self::InReview),
-            "APPROVED_PROVISIONAL" => Some(Self::ApprovedProvisional),
-            "OBSOLETE" => Some(Self::Obsolete),
-            "CANNOT_BE_FULFILLED" => Some(Self::CannotBeFulfilled),
-            "ON_HOLD_CONTACT_SALES" => Some(Self::OnHoldContactSales),
-            "IN_FULFILLMENT" => Some(Self::InFulfillment),
-            _ => None,
-        }
-    }
-}
-/// CapacityType is the type of the capacity plan.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CapacityType {
-    /// Default value.
-    Unknown = 0,
-    /// Latest inorganic data stored in horizon DB that is in draft state.
-    InorganicDraft = 1,
-    /// Latest inorganic data stored in horizon DB that are pending i.e. submitted
-    /// or assessment.
-    InorganicPending = 2,
-    /// Latest inorganic data stored in horizon DB that has been approved.
-    InorganicApproved = 3,
-}
-impl CapacityType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Self::Unknown => "CAPACITY_TYPE_UNKNOWN",
-            Self::InorganicDraft => "CAPACITY_TYPE_INORGANIC_DRAFT",
-            Self::InorganicPending => "CAPACITY_TYPE_INORGANIC_PENDING",
-            Self::InorganicApproved => "CAPACITY_TYPE_INORGANIC_APPROVED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CAPACITY_TYPE_UNKNOWN" => Some(Self::Unknown),
-            "CAPACITY_TYPE_INORGANIC_DRAFT" => Some(Self::InorganicDraft),
-            "CAPACITY_TYPE_INORGANIC_PENDING" => Some(Self::InorganicPending),
-            "CAPACITY_TYPE_INORGANIC_APPROVED" => Some(Self::InorganicApproved),
-            _ => None,
-        }
-    }
-}
-/// Generated client implementations.
-pub mod capacity_planning_service_client {
-    #![allow(
-        unused_variables,
-        dead_code,
-        missing_docs,
-        clippy::wildcard_imports,
-        clippy::let_unit_value,
-    )]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// This API allows users to plan for GCP capacity associated with their
-    /// projects. Users can request additional capacity for GCP resources such as
-    /// VMs, PDs, etc.
-    #[derive(Debug, Clone)]
-    pub struct CapacityPlanningServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CapacityPlanningServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::Body>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CapacityPlanningServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::Body>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::Body>,
-            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
-        {
-            CapacityPlanningServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns information about the capacity plan.
-        pub async fn get_capacity_plan(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCapacityPlanRequest>,
-        ) -> std::result::Result<tonic::Response<super::CapacityPlan>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic_prost::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.capacityplanner.v1beta.CapacityPlanningService/GetCapacityPlan",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.capacityplanner.v1beta.CapacityPlanningService",
-                        "GetCapacityPlan",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a list of the capacity plans that are in the parent parameter and
-        /// match your specified filters.
-        /// (The maximum list length is limited by the pageSize parameter.)
-        pub async fn query_capacity_plans(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryCapacityPlansRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryCapacityPlansResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic_prost::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.capacityplanner.v1beta.CapacityPlanningService/QueryCapacityPlans",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.capacityplanner.v1beta.CapacityPlanningService",
-                        "QueryCapacityPlans",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Query capacity plan insights that are in the parent parameter and match
-        /// your specified filters.
-        pub async fn query_capacity_plan_insights(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryCapacityPlanInsightsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryCapacityPlanInsightsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic_prost::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.capacityplanner.v1beta.CapacityPlanningService/QueryCapacityPlanInsights",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.capacityplanner.v1beta.CapacityPlanningService",
-                        "QueryCapacityPlanInsights",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
-}
-/// Repesents Future Reservation request which is part of aggregated
-/// reservations data response of "QueryReservations".
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FutureReservation {
-    /// A unique identifier for this future reservation. The server
-    /// defines this identifier.
-    #[prost(int64, tag = "1")]
-    pub id: i64,
-    /// The creation timestamp for this future reservation.
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// URL of the Zone where this future reservation resides.
-    #[prost(string, tag = "5")]
-    pub zone: ::prost::alloc::string::String,
-    /// Description of the future reservation provided by user.
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
-    /// The future reservation resource name.
-    #[prost(string, tag = "7")]
-    pub future_reservation: ::prost::alloc::string::String,
-    #[prost(string, tag = "15")]
-    pub owner_project_id: ::prost::alloc::string::String,
-    /// Time window for this Future Reservation.
-    #[prost(message, optional, tag = "9")]
-    pub time_window: ::core::option::Option<future_reservation::TimeWindow>,
-    /// List of Projects/Folders to share with.
-    #[prost(message, optional, tag = "10")]
-    pub share_settings: ::core::option::Option<allocation::ShareSettings>,
-    /// Name prefix for the reservations to be created at the time of
-    /// delivery. The name prefix must comply with RFC1035.
-    /// Maximum allowed length for name prefix is 20. Automatically created
-    /// reservations name format will be <name-prefix>-date-####.
-    #[prost(string, tag = "11")]
-    pub name_prefix: ::prost::alloc::string::String,
-    /// Status of the Future Reservation
-    #[prost(message, optional, tag = "12")]
-    pub status: ::core::option::Option<future_reservation::Status>,
-    /// Future timestamp when the FR auto-created reservations will be deleted by
-    /// Compute Engine. Format of this field must be a valid RFC3339 value.
-    #[prost(message, optional, tag = "13")]
-    pub auto_created_reservations_delete_time: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
-    /// Setting for enabling or disabling automatic deletion for auto-created
-    /// reservation. If set to true, auto-created reservations will be
-    /// deleted at Future Reservation's end time (default) or at user's defined
-    /// timestamp if any of the
-    /// \[auto_created_reservations_delete_time, auto_created_reservations_duration\]
-    /// values is specified.
-    /// For keeping auto-created reservation indefinitely, this value should be set
-    /// to false.
-    #[prost(bool, tag = "14")]
-    pub auto_delete_auto_created_reservations: bool,
-    /// The type of the future reservation which can only be for a specific SKU for
-    /// now.
-    #[prost(oneof = "future_reservation::Type", tags = "8")]
-    pub r#type: ::core::option::Option<future_reservation::Type>,
-}
-/// Nested message and enum types in `FutureReservation`.
-pub mod future_reservation {
-    /// Represents specific SKU properties for the Future Reservation.
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SpecificSkuProperties {
-        /// Properties of the SKU instances being reserved.
-        #[prost(message, optional, tag = "1")]
-        pub instance_properties: ::core::option::Option<
-            super::allocation::specific_sku_allocation::AllocatedInstanceProperties,
-        >,
-        /// Total number of instances for which capacity assurance is requested at a
-        /// future time period.
-        #[prost(int64, tag = "2")]
-        pub total_count: i64,
-    }
-    /// Represents time window for the Future Reservation.
-    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
-    pub struct TimeWindow {
-        /// Start time of the Future Reservation.
-        #[prost(message, optional, tag = "1")]
-        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-        /// End time of the Future Reservation.
-        #[prost(message, optional, tag = "2")]
-        pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    /// Represents status related to the future reservation.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-    pub struct Status {
-        /// Current state of this Future Reservation
-        #[prost(enumeration = "status::ProcurementStatus", tag = "1")]
-        pub procurement_status: i32,
-        /// Time when Future Reservation would become LOCKED, after which no
-        /// modifications to Future Reservation will be allowed. Applicable only
-        /// after the Future Reservation is in the APPROVED state. The lock_time is
-        /// an RFC3339 string. The procurement_status will transition to PROCURING
-        /// state at this time.
-        #[prost(message, optional, tag = "2")]
-        pub lock_time: ::core::option::Option<::prost_types::Timestamp>,
-        /// Fully qualified urls of the automatically created reservations at
-        /// start_time.
-        #[prost(string, repeated, tag = "3")]
-        pub auto_created_reservations: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        /// This count indicates the fulfilled capacity so far. This is set during
-        /// "PROVISIONING" state. This count also includes capacity delivered as part
-        /// of existing matching reservations.
-        #[prost(int64, tag = "4")]
-        pub fulfilled_count: i64,
-    }
-    /// Nested message and enum types in `Status`.
-    pub mod status {
-        /// Represents procurement status of the Future Reservation.
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ProcurementStatus {
-            /// This is unused status value.
-            Unspecified = 0,
-            /// Future reservation is pending approval by Google Cloud Platform.
-            PendingApproval = 1,
-            /// Future reservation is approved by Google Cloud Platform.
-            Approved = 2,
-            /// Future reservation is committed by the customer.
-            Committed = 3,
-            /// Future reservation is rejected by Google Cloud Platform.
-            Declined = 4,
-            /// Future reservation is cancelled by the customer.
-            Cancelled = 5,
-            /// Future reservation is being procured by Google Cloud Platform. Beyond
-            /// this point, Future reservation is locked and no further modifications
-            /// are allowed.
-            Procuring = 6,
-            /// Future reservation capacity is being provisioned. This state will be
-            /// entered after start_time, while reservations are being created to
-            /// provide total_count reserved instance slots. This state will not
-            /// persist past start_time + 24h.
-            Provisioning = 7,
-            /// Future reservation is fulfilled completely.
-            Fulfilled = 8,
-            /// Future reservation failed. No additional reservations were provided.
-            Failed = 9,
-            /// Future reservation is partially fulfilled. Additional reservations were
-            /// provided but did not reach total_count reserved instance slots.
-            FailedPartiallyFulfilled = 10,
-            /// Related status for PlanningStatus.Draft. Transitions to
-            /// PENDING_APPROVAL upon user submitting FR.
-            Drafting = 11,
-            /// An Amendment to the Future Reservation has been requested. If the
-            /// Amendment is declined, the Future Reservation will be restored to the
-            /// last known good state.
-            PendingAmendmentApproval = 12,
-        }
-        impl ProcurementStatus {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Self::Unspecified => "PROCUREMENT_STATUS_UNSPECIFIED",
-                    Self::PendingApproval => "PENDING_APPROVAL",
-                    Self::Approved => "APPROVED",
-                    Self::Committed => "COMMITTED",
-                    Self::Declined => "DECLINED",
-                    Self::Cancelled => "CANCELLED",
-                    Self::Procuring => "PROCURING",
-                    Self::Provisioning => "PROVISIONING",
-                    Self::Fulfilled => "FULFILLED",
-                    Self::Failed => "FAILED",
-                    Self::FailedPartiallyFulfilled => "FAILED_PARTIALLY_FULFILLED",
-                    Self::Drafting => "DRAFTING",
-                    Self::PendingAmendmentApproval => "PENDING_AMENDMENT_APPROVAL",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "PROCUREMENT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                    "PENDING_APPROVAL" => Some(Self::PendingApproval),
-                    "APPROVED" => Some(Self::Approved),
-                    "COMMITTED" => Some(Self::Committed),
-                    "DECLINED" => Some(Self::Declined),
-                    "CANCELLED" => Some(Self::Cancelled),
-                    "PROCURING" => Some(Self::Procuring),
-                    "PROVISIONING" => Some(Self::Provisioning),
-                    "FULFILLED" => Some(Self::Fulfilled),
-                    "FAILED" => Some(Self::Failed),
-                    "FAILED_PARTIALLY_FULFILLED" => Some(Self::FailedPartiallyFulfilled),
-                    "DRAFTING" => Some(Self::Drafting),
-                    "PENDING_AMENDMENT_APPROVAL" => Some(Self::PendingAmendmentApproval),
-                    _ => None,
-                }
-            }
-        }
-    }
-    /// The type of the future reservation which can only be for a specific SKU for
-    /// now.
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Type {
-        /// Future Reservation configuration to indicate instance properties and
-        /// total count.
-        #[prost(message, tag = "8")]
-        SpecificSkuProperties(SpecificSkuProperties),
-    }
-}
 /// The `QueryUsageHistories` request.
 /// Next : 16
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1379,10 +844,10 @@ pub struct QueryUsageHistoriesRequest {
     /// tpu_type will return results matching all TPUs.
     #[prost(string, tag = "12")]
     pub tpu_type: ::prost::alloc::string::String,
-    /// The resource for the `UsageHistory` values to return. Possible values
-    /// include "gce-vcpus", "gce-ram", "gce-local-ssd", "gce-persistent-disk",
-    /// "gce-gpu" and "gce-tpu".
-    /// Empty cloud_resource_type will return results matching all resources.
+    /// Required. The resource for the `UsageHistory` values to return. Possible
+    /// values include "gce-vcpus", "gce-ram", "gce-local-ssd",
+    /// "gce-persistent-disk", "gce-gpu" and "gce-tpu". Empty cloud_resource_type
+    /// will return results matching all resources.
     #[prost(string, tag = "3")]
     pub cloud_resource_type: ::prost::alloc::string::String,
     /// The method that should be used to convert sampled usage data to daily
@@ -1443,10 +908,10 @@ pub struct QueryForecastsRequest {
     /// will return results matching all TPUs.
     #[prost(string, tag = "11")]
     pub tpu_type: ::prost::alloc::string::String,
-    /// The resource for the `Forecast` values to return. Possible values include
-    /// "gce-vcpus", "gce-ram", "gce-local-ssd", "gce-persistent-disk", "gce-gpu"
-    /// and "gce-tpu".
-    /// Empty cloud_resource_type will return results matching all resources.
+    /// Required. The resource for the `Forecast` values to return. Possible values
+    /// include "gce-vcpus", "gce-ram", "gce-local-ssd", "gce-persistent-disk",
+    /// "gce-gpu" and "gce-tpu". Empty cloud_resource_type will return results
+    /// matching all resources.
     #[prost(string, tag = "3")]
     pub cloud_resource_type: ::prost::alloc::string::String,
     /// The type of forecast to use to select the `Forecast` values to return.
@@ -1499,11 +964,11 @@ pub struct QueryReservationsRequest {
     /// will return results matching all GPUs.
     #[prost(string, tag = "3")]
     pub gpu_type: ::prost::alloc::string::String,
-    /// Optional. The resource for the reserved values to return. Possible values
+    /// Required. The resource for the reserved values to return. Possible values
     /// include "gce-vcpus", "gce-ram", "gce-local-ssd", "gce-gpu" and "gce-vm".
     #[prost(string, tag = "4")]
     pub cloud_resource_type: ::prost::alloc::string::String,
-    /// Optional. The Reservation type for example, future reservation request and
+    /// Required. The Reservation type for example, future reservation request and
     /// allocation. If unspecified, all types are
     /// included.
     #[prost(enumeration = "query_reservations_request::ReservationType", tag = "5")]
@@ -1518,7 +983,7 @@ pub struct QueryReservationsRequest {
     /// included.
     #[prost(enumeration = "query_reservations_request::OwnershipType", tag = "7")]
     pub ownership_type: i32,
-    /// Optional. Reservations output data format.
+    /// Required. Reservations output data format.
     #[prost(enumeration = "query_reservations_request::ReservationDataLevel", tag = "8")]
     pub reservation_data_level: i32,
     /// Optional. Whether to include pending for approval reservations in the

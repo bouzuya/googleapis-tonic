@@ -1212,12 +1212,14 @@ pub struct SlurmOrchestrator {
     pub default_partition: ::prost::alloc::string::String,
     /// Optional. Slurm [prolog
     /// scripts](<https://slurm.schedmd.com/prolog_epilog.html>), which will be
-    /// executed by compute nodes before a node begins running a new job.
+    /// executed by compute nodes before a node begins running a new job. Values
+    /// must not be empty.
     #[prost(string, repeated, tag = "4")]
     pub prolog_bash_scripts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Slurm [epilog
     /// scripts](<https://slurm.schedmd.com/prolog_epilog.html>), which will be
-    /// executed by compute nodes whenever a node finishes running a job.
+    /// executed by compute nodes whenever a node finishes running a job. Values
+    /// must not be empty.
     #[prost(string, repeated, tag = "5")]
     pub epilog_bash_scripts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Unstable: Contact hypercompute-service-eng@ before using.

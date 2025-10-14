@@ -6705,6 +6705,8 @@ pub enum HarmCategory {
     /// Deprecated: Election filter is not longer supported.
     /// The harm category is civic integrity.
     CivicIntegrity = 5,
+    /// The harm category is for jailbreak prompts.
+    Jailbreak = 6,
 }
 impl HarmCategory {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6719,6 +6721,7 @@ impl HarmCategory {
             Self::Harassment => "HARM_CATEGORY_HARASSMENT",
             Self::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
             Self::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
+            Self::Jailbreak => "HARM_CATEGORY_JAILBREAK",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6730,6 +6733,7 @@ impl HarmCategory {
             "HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
             "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
+            "HARM_CATEGORY_JAILBREAK" => Some(Self::Jailbreak),
             _ => None,
         }
     }
@@ -13953,11 +13957,17 @@ pub struct FeatureOnlineStore {
 }
 /// Nested message and enum types in `FeatureOnlineStore`.
 pub mod feature_online_store {
-    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Bigtable {
         /// Required. Autoscaling config applied to Bigtable Instance.
         #[prost(message, optional, tag = "1")]
         pub auto_scaling: ::core::option::Option<bigtable::AutoScaling>,
+        /// Optional. Whether direct access to the Bigtable instance is enabled or not.
+        #[prost(bool, tag = "2")]
+        pub enable_direct_bigtable_access: bool,
+        /// Output only. Metadata of the Bigtable instance. Output only.
+        #[prost(message, optional, tag = "3")]
+        pub bigtable_metadata: ::core::option::Option<bigtable::BigtableMetadata>,
     }
     /// Nested message and enum types in `Bigtable`.
     pub mod bigtable {
@@ -13979,6 +13989,20 @@ pub mod feature_online_store {
             /// nodes. If not set will default to 50%.
             #[prost(int32, tag = "3")]
             pub cpu_utilization_target: i32,
+        }
+        /// Metadata of the Bigtable instance. This is used by direct read access to
+        /// the Bigtable in tenant project.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct BigtableMetadata {
+            /// Tenant project ID.
+            #[prost(string, tag = "1")]
+            pub tenant_project_id: ::prost::alloc::string::String,
+            /// The Cloud Bigtable instance id.
+            #[prost(string, tag = "2")]
+            pub instance_id: ::prost::alloc::string::String,
+            /// The Cloud Bigtable table id.
+            #[prost(string, tag = "3")]
+            pub table_id: ::prost::alloc::string::String,
         }
     }
     /// Optimized storage type
@@ -14056,7 +14080,7 @@ pub mod feature_online_store {
             }
         }
     }
-    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum StorageType {
         /// Contains settings for the Cloud Bigtable instance that will be created
         /// to serve featureValues for all FeatureViews under this
@@ -14140,6 +14164,9 @@ pub struct FeatureView {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "20")]
     pub satisfies_pzi: bool,
+    /// Metadata containing information about the Cloud Bigtable.
+    #[prost(message, optional, tag = "21")]
+    pub bigtable_metadata: ::core::option::Option<feature_view::BigtableMetadata>,
     #[prost(oneof = "feature_view::Source", tags = "6, 9, 18")]
     pub source: ::core::option::Option<feature_view::Source>,
 }
@@ -14347,6 +14374,14 @@ pub mod feature_view {
         /// is 6. The max allowed replica count is 1000.
         #[prost(message, optional, tag = "7")]
         pub automatic_resources: ::core::option::Option<super::AutomaticResources>,
+    }
+    /// Metadata for the Cloud Bigtable that supports directly interacting Bigtable
+    /// instances.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct BigtableMetadata {
+        /// The Bigtable App Profile to use for reading from Bigtable.
+        #[prost(string, tag = "1")]
+        pub read_app_profile: ::prost::alloc::string::String,
     }
     /// Service agent type used during data sync.
     #[derive(
@@ -16367,6 +16402,26 @@ pub mod feature_view_direct_write_response {
         pub online_store_write_time: ::core::option::Option<::prost_types::Timestamp>,
     }
 }
+/// Request message for
+/// \[FeatureOnlineStoreService.GenerateFetchAccessToken\]\[google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerateFetchAccessTokenRequest {
+    /// FeatureView resource format
+    /// `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`
+    #[prost(string, tag = "1")]
+    pub feature_view: ::prost::alloc::string::String,
+}
+/// Response message for
+/// \[FeatureOnlineStoreService.GenerateFetchAccessToken\]\[google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerateFetchAccessTokenResponse {
+    /// The OAuth 2.0 access token.
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    /// Token expiration time. This is always set
+    #[prost(message, optional, tag = "2")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+}
 /// Format of the data in the Feature View.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -16580,6 +16635,37 @@ pub mod feature_online_store_service_client {
                     ),
                 );
             self.inner.streaming(req, path, codec).await
+        }
+        /// RPC to generate an access token for the given feature view. FeatureViews
+        /// under the same FeatureOnlineStore share the same access token.
+        pub async fn generate_fetch_access_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateFetchAccessTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateFetchAccessTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.FeatureOnlineStoreService/GenerateFetchAccessToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.FeatureOnlineStoreService",
+                        "GenerateFetchAccessToken",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
         }
     }
 }
@@ -26688,6 +26774,8 @@ pub mod generate_content_response {
             ProhibitedContent = 4,
             /// The user prompt was blocked by Model Armor.
             ModelArmor = 5,
+            /// The user prompt was blocked due to jailbreak.
+            Jailbreak = 6,
         }
         impl BlockedReason {
             /// String value of the enum field names used in the ProtoBuf definition.
@@ -26702,6 +26790,7 @@ pub mod generate_content_response {
                     Self::Blocklist => "BLOCKLIST",
                     Self::ProhibitedContent => "PROHIBITED_CONTENT",
                     Self::ModelArmor => "MODEL_ARMOR",
+                    Self::Jailbreak => "JAILBREAK",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -26713,6 +26802,7 @@ pub mod generate_content_response {
                     "BLOCKLIST" => Some(Self::Blocklist),
                     "PROHIBITED_CONTENT" => Some(Self::ProhibitedContent),
                     "MODEL_ARMOR" => Some(Self::ModelArmor),
+                    "JAILBREAK" => Some(Self::Jailbreak),
                     _ => None,
                 }
             }

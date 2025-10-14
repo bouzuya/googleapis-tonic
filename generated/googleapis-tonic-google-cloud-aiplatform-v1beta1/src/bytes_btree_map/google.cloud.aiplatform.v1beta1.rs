@@ -2271,6 +2271,23 @@ pub struct DedicatedResources {
     /// required_replica_count will be min_replica_count.
     #[prost(int32, tag = "9")]
     pub required_replica_count: i32,
+    /// Immutable. Number of initial replicas being deployed on when scaling the
+    /// workload up from zero or when creating the workload in case
+    /// \[min_replica_count\]\[google.cloud.aiplatform.v1beta1.DedicatedResources.min_replica_count\]
+    /// = 0. When
+    /// \[min_replica_count\]\[google.cloud.aiplatform.v1beta1.DedicatedResources.min_replica_count\]
+    ///
+    /// >
+    /// > 0 (meaning that the scale-to-zero feature is not enabled),
+    /// > \[initial_replica_count\]\[google.cloud.aiplatform.v1beta1.DedicatedResources.initial_replica_count\]
+    /// > should not be set. When
+    /// > \[min_replica_count\]\[google.cloud.aiplatform.v1beta1.DedicatedResources.min_replica_count\]
+    /// > = 0 (meaning that the scale-to-zero feature is enabled),
+    /// > \[initial_replica_count\]\[google.cloud.aiplatform.v1beta1.DedicatedResources.initial_replica_count\]
+    /// > should be larger than zero, but no greater than
+    /// > \[max_replica_count\]\[google.cloud.aiplatform.v1beta1.DedicatedResources.max_replica_count\].
+    #[prost(int32, tag = "6")]
+    pub initial_replica_count: i32,
     /// Immutable. The metric specifications that overrides a resource
     /// utilization metric (CPU utilization, accelerator's duty cycle, and so on)
     /// target value (default to 60 if not set). At most one entry is allowed per
@@ -2305,6 +2322,26 @@ pub struct DedicatedResources {
     /// (<https://cloud.google.com/blog/products/compute/introducing-dynamic-workload-scheduler>)
     #[prost(message, optional, tag = "10")]
     pub flex_start: ::core::option::Option<FlexStart>,
+    /// Optional. Specification for scale-to-zero feature.
+    #[prost(message, optional, tag = "11")]
+    pub scale_to_zero_spec: ::core::option::Option<dedicated_resources::ScaleToZeroSpec>,
+}
+/// Nested message and enum types in `DedicatedResources`.
+pub mod dedicated_resources {
+    /// Specification for scale-to-zero feature.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct ScaleToZeroSpec {
+        /// Optional. Minimum duration that a deployment will be scaled up before
+        /// traffic is evaluated for potential scale-down. \[MinValue=300\] (5 minutes)
+        /// \[MaxValue=28800\] (8 hours)
+        #[prost(message, optional, tag = "1")]
+        pub min_scaleup_period: ::core::option::Option<::prost_types::Duration>,
+        /// Optional. Duration of no traffic before scaling to zero.
+        /// \[MinValue=3600\] (5 minutes)
+        /// \[MaxValue=28800\] (8 hours)
+        #[prost(message, optional, tag = "2")]
+        pub idle_scaledown_period: ::core::option::Option<::prost_types::Duration>,
+    }
 }
 /// A description of resources that to large degree are decided by Vertex AI,
 /// and require only a modest additional configuration.
@@ -7044,6 +7081,21 @@ pub struct SpeechConfig {
     #[prost(message, optional, tag = "1")]
     pub voice_config: ::core::option::Option<VoiceConfig>,
 }
+/// Config for image generation features.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ImageConfig {
+    /// Optional. The desired aspect ratio for the generated images. The following
+    /// aspect ratios are supported:
+    ///
+    /// "1:1"
+    /// "2:3", "3:2"
+    /// "3:4", "4:3"
+    /// "4:5", "5:4"
+    /// "9:16", "16:9"
+    /// "21:9"
+    #[prost(string, optional, tag = "2")]
+    pub aspect_ratio: ::core::option::Option<::prost::alloc::string::String>,
+}
 /// Generation config.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerationConfig {
@@ -7166,6 +7218,9 @@ pub struct GenerationConfig {
     /// Optional. Config for model selection.
     #[prost(message, optional, tag = "27")]
     pub model_config: ::core::option::Option<generation_config::ModelConfig>,
+    /// Optional. Config for image generation features.
+    #[prost(message, optional, tag = "30")]
+    pub image_config: ::core::option::Option<ImageConfig>,
 }
 /// Nested message and enum types in `GenerationConfig`.
 pub mod generation_config {
@@ -8179,6 +8234,8 @@ pub enum HarmCategory {
     /// Deprecated: Election filter is not longer supported.
     /// The harm category is civic integrity.
     CivicIntegrity = 5,
+    /// The harm category is for jailbreak prompts.
+    Jailbreak = 6,
 }
 impl HarmCategory {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8193,6 +8250,7 @@ impl HarmCategory {
             Self::Harassment => "HARM_CATEGORY_HARASSMENT",
             Self::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
             Self::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
+            Self::Jailbreak => "HARM_CATEGORY_JAILBREAK",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -8204,6 +8262,7 @@ impl HarmCategory {
             "HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
             "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
+            "HARM_CATEGORY_JAILBREAK" => Some(Self::Jailbreak),
             _ => None,
         }
     }
@@ -18530,11 +18589,17 @@ pub struct FeatureOnlineStore {
 }
 /// Nested message and enum types in `FeatureOnlineStore`.
 pub mod feature_online_store {
-    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Bigtable {
         /// Required. Autoscaling config applied to Bigtable Instance.
         #[prost(message, optional, tag = "1")]
         pub auto_scaling: ::core::option::Option<bigtable::AutoScaling>,
+        /// If true, enable direct access to the Bigtable instance.
+        #[prost(bool, tag = "2")]
+        pub enable_direct_bigtable_access: bool,
+        /// Metadata of the Bigtable instance. Output only.
+        #[prost(message, optional, tag = "3")]
+        pub bigtable_metadata: ::core::option::Option<bigtable::BigtableMetadata>,
     }
     /// Nested message and enum types in `Bigtable`.
     pub mod bigtable {
@@ -18556,6 +18621,20 @@ pub mod feature_online_store {
             /// nodes. If not set will default to 50%.
             #[prost(int32, tag = "3")]
             pub cpu_utilization_target: i32,
+        }
+        /// Metadata of the Bigtable instance. This is used by direct read access to
+        /// the Bigtable in tenant project.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct BigtableMetadata {
+            /// Tenant project ID.
+            #[prost(string, tag = "1")]
+            pub tenant_project_id: ::prost::alloc::string::String,
+            /// The Cloud Bigtable instance id.
+            #[prost(string, tag = "2")]
+            pub instance_id: ::prost::alloc::string::String,
+            /// The Cloud Bigtable table id.
+            #[prost(string, tag = "3")]
+            pub table_id: ::prost::alloc::string::String,
         }
     }
     /// Optimized storage type
@@ -18644,7 +18723,7 @@ pub mod feature_online_store {
             }
         }
     }
-    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum StorageType {
         /// Contains settings for the Cloud Bigtable instance that will be created
         /// to serve featureValues for all FeatureViews under this
@@ -18734,6 +18813,9 @@ pub struct FeatureView {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "20")]
     pub satisfies_pzi: bool,
+    /// Metadata containing information about the Cloud Bigtable.
+    #[prost(message, optional, tag = "21")]
+    pub bigtable_metadata: ::core::option::Option<feature_view::BigtableMetadata>,
     #[prost(oneof = "feature_view::Source", tags = "6, 9, 18")]
     pub source: ::core::option::Option<feature_view::Source>,
 }
@@ -19056,6 +19138,14 @@ pub mod feature_view {
         /// is 6. The max allowed replica count is 1000.
         #[prost(message, optional, tag = "7")]
         pub automatic_resources: ::core::option::Option<super::AutomaticResources>,
+    }
+    /// Metadata for the Cloud Bigtable that supports directly interacting Bigtable
+    /// instances.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct BigtableMetadata {
+        /// The Bigtable App Profile to use for reading from Bigtable.
+        #[prost(string, tag = "1")]
+        pub read_app_profile: ::prost::alloc::string::String,
     }
     /// Service agent type used during data sync.
     #[derive(
@@ -21192,6 +21282,24 @@ pub mod feature_view_direct_write_response {
         pub online_store_write_time: ::core::option::Option<::prost_types::Timestamp>,
     }
 }
+/// Request message for \[FeatureOnlineStoreService.GenerateFetchAccessToken\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerateFetchAccessTokenRequest {
+    /// FeatureView resource format
+    /// `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`
+    #[prost(string, tag = "1")]
+    pub feature_view: ::prost::alloc::string::String,
+}
+/// Response message for \[FeatureOnlineStoreService.GenerateFetchAccessToken\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerateFetchAccessTokenResponse {
+    /// The OAuth 2.0 access token.
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    /// Token expiration time. This is always set
+    #[prost(message, optional, tag = "2")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+}
 /// Format of the data in the Feature View.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -21441,6 +21549,37 @@ pub mod feature_online_store_service_client {
                     ),
                 );
             self.inner.streaming(req, path, codec).await
+        }
+        /// RPC to generate an access token for the given feature view. FeatureViews
+        /// under the same FeatureOnlineStore share the same access token.
+        pub async fn generate_fetch_access_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateFetchAccessTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateFetchAccessTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.FeatureOnlineStoreService/GenerateFetchAccessToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.FeatureOnlineStoreService",
+                        "GenerateFetchAccessToken",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
         }
     }
 }
