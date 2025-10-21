@@ -45,6 +45,12 @@ pub struct AdvancedVoiceOptions {
     /// and has a higher latency.
     #[prost(bool, optional, tag = "1")]
     pub low_latency_journey_synthesis: ::core::option::Option<bool>,
+    /// Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+    /// supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+    /// Otherwise, will return result
+    /// \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\].
+    #[prost(bool, tag = "8")]
+    pub relax_safety_filters: bool,
 }
 /// The top-level message sent by the client for the `SynthesizeSpeech` method.
 #[derive(Clone, PartialEq, ::prost::Message)]

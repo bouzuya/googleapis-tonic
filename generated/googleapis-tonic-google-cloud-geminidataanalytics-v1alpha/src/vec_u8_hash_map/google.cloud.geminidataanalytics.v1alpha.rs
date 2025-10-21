@@ -347,6 +347,103 @@ pub struct Context {
     /// optionally present. Currently only used for BigQuery data sources.
     #[prost(message, repeated, tag = "5")]
     pub example_queries: ::prost::alloc::vec::Vec<ExampleQuery>,
+    /// Optional. Term definitions (currently, only user authored)
+    #[prost(message, repeated, tag = "8")]
+    pub glossary_terms: ::prost::alloc::vec::Vec<GlossaryTerm>,
+    /// Optional. Relationships between table schema, including referencing and
+    /// referenced columns.
+    #[prost(message, repeated, tag = "9")]
+    pub schema_relationships: ::prost::alloc::vec::Vec<context::SchemaRelationship>,
+}
+/// Nested message and enum types in `Context`.
+pub mod context {
+    /// The relationship between two tables, including referencing and referenced
+    /// columns. This is a derived context retrieved from Dataplex Dataset
+    /// Insights.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SchemaRelationship {
+        /// An ordered list of fields for the join from the first table.
+        /// The size of this list must be the same as `right_schema_paths`.
+        /// Each field at index i in this list must correspond to a field at the same
+        /// index in the `right_schema_paths` list.
+        #[prost(message, optional, tag = "1")]
+        pub left_schema_paths: ::core::option::Option<schema_relationship::SchemaPaths>,
+        /// An ordered list of fields for the join from the second table.
+        /// The size of this list must be the same as `left_schema_paths`.
+        /// Each field at index i in this list must correspond to a field at the same
+        /// index in the `left_schema_paths` list.
+        #[prost(message, optional, tag = "2")]
+        pub right_schema_paths: ::core::option::Option<schema_relationship::SchemaPaths>,
+        /// Sources which generated the schema relation edge.
+        #[prost(enumeration = "schema_relationship::Source", repeated, tag = "3")]
+        pub sources: ::prost::alloc::vec::Vec<i32>,
+        /// A confidence score for the suggested relationship.
+        /// Manually added edges have the highest confidence score.
+        #[prost(float, tag = "4")]
+        pub confidence_score: f32,
+    }
+    /// Nested message and enum types in `SchemaRelationship`.
+    pub mod schema_relationship {
+        /// Represents an ordered set of paths within the table schema.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct SchemaPaths {
+            /// The service-qualified full resource name of the table
+            /// Ex:
+            /// bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+            #[prost(string, tag = "1")]
+            pub table_fqn: ::prost::alloc::string::String,
+            /// The ordered list of paths within the table schema.
+            #[prost(string, repeated, tag = "2")]
+            pub paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        }
+        /// Source which generated the schema relation edge.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Source {
+            /// The source of the schema relationship is unspecified.
+            Unspecified = 0,
+            /// The source of the schema relationship is BigQuery job history.
+            BigqueryJobHistory = 1,
+            /// The source of the schema relationship is LLM suggested.
+            LlmSuggested = 2,
+            /// The source of the schema relationship is BigQuery table constraints.
+            BigqueryTableConstraints = 3,
+        }
+        impl Source {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "SOURCE_UNSPECIFIED",
+                    Self::BigqueryJobHistory => "BIGQUERY_JOB_HISTORY",
+                    Self::LlmSuggested => "LLM_SUGGESTED",
+                    Self::BigqueryTableConstraints => "BIGQUERY_TABLE_CONSTRAINTS",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SOURCE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "BIGQUERY_JOB_HISTORY" => Some(Self::BigqueryJobHistory),
+                    "LLM_SUGGESTED" => Some(Self::LlmSuggested),
+                    "BIGQUERY_TABLE_CONSTRAINTS" => Some(Self::BigqueryTableConstraints),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 /// Example of relevant and commonly used SQL query and its corresponding natural
 /// language queries optionally present. Currently only used for BigQuery data
@@ -374,6 +471,23 @@ pub mod example_query {
         #[prost(string, tag = "101")]
         SqlQuery(::prost::alloc::string::String),
     }
+}
+/// Definition of a term within a specific domain.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GlossaryTerm {
+    /// Required. User friendly display name of the glossary term being defined.
+    /// For example: "CTR", "conversion rate", "pending"
+    #[prost(string, tag = "1")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Required. The description or meaning of the term.
+    /// For example: "Click-through rate", "The percentage of users who complete a
+    /// desired action", "An order that is waiting to be processed."
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. A list of general purpose labels associated to this term.
+    /// For example: \["click rate", "clickthrough", "waiting"\]
+    #[prost(string, repeated, tag = "3")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Options for the conversation.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
@@ -501,28 +615,6 @@ pub struct CreateConversationRequest {
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
-/// Request for updating a conversation.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateConversationRequest {
-    /// Required. The resource being updated.
-    #[prost(message, optional, tag = "1")]
-    pub conversation: ::core::option::Option<Conversation>,
-    /// Optional. Field mask is used to specify the fields to be overwritten in the
-    /// Conversation resource by the update.
-    /// The fields specified in the update_mask are relative to the resource, not
-    /// the full request. A field will be overwritten if it is in the mask. If the
-    /// user does not provide a mask then all fields with non-default values
-    /// present in the request will be overwritten. If a wildcard mask is provided,
-    /// all fields will be overwritten.
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    /// Optional. An optional request ID to identify requests. Specify a unique
-    /// request ID so that if you must retry your request, the server will know to
-    /// ignore the request if it has already been completed. The server will
-    /// guarantee that for at least 60 minutes since the first request.
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
-}
 /// Request for getting a conversation based on parent and conversation id.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetConversationRequest {
@@ -564,6 +656,15 @@ pub struct ListConversationsResponse {
     /// A token identifying a page of results the server should return.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request for deleting a conversation based on parent and conversation id.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct DeleteConversationRequest {
+    /// Required. Name of the resource.
+    /// Format:
+    /// `projects/{project}/locations/{location}/conversations/{conversation}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Message describing a DataAnalyticsAgent object.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1618,6 +1719,7 @@ pub mod data_message {
         #[prost(message, tag = "3")]
         Result(super::DataResult),
         /// Looker Query generated by the system to retrieve data.
+        /// DEPRECATED: generated looker query is now under DataQuery.looker.
         #[prost(message, tag = "4")]
         GeneratedLookerQuery(super::LookerQuery),
         /// A BigQuery job executed by the system to retrieve data.
@@ -2036,11 +2138,11 @@ pub mod data_chat_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates a conversation.
-        pub async fn update_conversation(
+        /// Deletes a conversation.
+        pub async fn delete_conversation(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateConversationRequest>,
-        ) -> std::result::Result<tonic::Response<super::Conversation>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::DeleteConversationRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -2051,14 +2153,14 @@ pub mod data_chat_service_client {
                 })?;
             let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.geminidataanalytics.v1alpha.DataChatService/UpdateConversation",
+                "/google.cloud.geminidataanalytics.v1alpha.DataChatService/DeleteConversation",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new(
                         "google.cloud.geminidataanalytics.v1alpha.DataChatService",
-                        "UpdateConversation",
+                        "DeleteConversation",
                     ),
                 );
             self.inner.unary(req, path, codec).await

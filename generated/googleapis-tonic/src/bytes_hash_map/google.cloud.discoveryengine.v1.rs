@@ -4034,6 +4034,10 @@ pub struct Session {
     /// Turns.
     #[prost(message, repeated, tag = "4")]
     pub turns: ::prost::alloc::vec::Vec<session::Turn>,
+    /// Optional. The labels for the session.
+    /// Can be set as filter in ListSessionsRequest.
+    #[prost(string, repeated, tag = "9")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Output only. The time the session started.
     #[prost(message, optional, tag = "5")]
     pub start_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -4069,6 +4073,14 @@ pub mod session {
         /// session.
         #[prost(message, optional, tag = "7")]
         pub detailed_answer: ::core::option::Option<super::Answer>,
+        /// Output only. In
+        /// \[ConversationalSearchService.GetSession\]\[google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession\]
+        /// API, if
+        /// \[GetSessionRequest.include_answer_details\]\[google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details\]
+        /// is set to true, this field will be populated when getting assistant
+        /// session.
+        #[prost(message, optional, tag = "8")]
+        pub detailed_assist_answer: ::core::option::Option<super::AssistAnswer>,
         /// Optional. Represents metadata related to the query config, for example
         /// LLM model and version used, model parameters (temperature, grounding
         /// parameters, etc.). The prefix "google." is reserved for Google-developed

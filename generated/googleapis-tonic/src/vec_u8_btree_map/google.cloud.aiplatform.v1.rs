@@ -4266,11 +4266,22 @@ pub mod tool {
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct CodeExecution {}
     /// Tool to support computer use.
-    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct ComputerUse {
         /// Required. The environment being operated.
         #[prost(enumeration = "computer_use::Environment", tag = "1")]
         pub environment: i32,
+        /// Optional. By default, [predefined
+        /// functions](<https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions>)
+        /// are included in the final model call. Some of them can be explicitly
+        /// excluded from being automatically included. This can serve two purposes:
+        ///
+        /// 1. Using a more restricted / different action space.
+        /// 1. Improving the definitions / instructions of predefined functions.
+        #[prost(string, repeated, tag = "2")]
+        pub excluded_predefined_functions: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
     }
     /// Nested message and enum types in `ComputerUse`.
     pub mod computer_use {
@@ -4460,6 +4471,74 @@ pub struct FunctionCall {
     #[prost(message, optional, tag = "2")]
     pub args: ::core::option::Option<::prost_types::Struct>,
 }
+/// A datatype containing media that is part of a `FunctionResponse` message.
+///
+/// A `FunctionResponsePart` consists of data which has an associated datatype. A
+/// `FunctionResponsePart` can only contain one of the accepted types in
+/// `FunctionResponsePart.data`.
+///
+/// A `FunctionResponsePart` must have a fixed IANA MIME type identifying the
+/// type and subtype of the media if the `inline_data` field is filled with raw
+/// bytes.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FunctionResponsePart {
+    /// The data of the function response part.
+    #[prost(oneof = "function_response_part::Data", tags = "1, 2")]
+    pub data: ::core::option::Option<function_response_part::Data>,
+}
+/// Nested message and enum types in `FunctionResponsePart`.
+pub mod function_response_part {
+    /// The data of the function response part.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Data {
+        /// Inline media bytes.
+        #[prost(message, tag = "1")]
+        InlineData(super::FunctionResponseBlob),
+        /// URI based data.
+        #[prost(message, tag = "2")]
+        FileData(super::FunctionResponseFileData),
+    }
+}
+/// Raw media bytes for function response.
+///
+/// Text should not be sent as raw bytes, use the 'text' field.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FunctionResponseBlob {
+    /// Required. The IANA standard MIME type of the source data.
+    #[prost(string, tag = "1")]
+    pub mime_type: ::prost::alloc::string::String,
+    /// Required. Raw bytes.
+    #[prost(bytes = "vec", tag = "2")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Display name of the blob.
+    ///
+    /// Used to provide a label or filename to distinguish blobs.
+    ///
+    /// This field is only returned in PromptMessage for prompt management.
+    /// It is currently used in the Gemini GenerateContent calls only when server
+    /// side tools (code_execution, google_search, and url_context) are enabled.
+    #[prost(string, tag = "4")]
+    pub display_name: ::prost::alloc::string::String,
+}
+/// URI based data for function response.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FunctionResponseFileData {
+    /// Required. The IANA standard MIME type of the source data.
+    #[prost(string, tag = "1")]
+    pub mime_type: ::prost::alloc::string::String,
+    /// Required. URI.
+    #[prost(string, tag = "2")]
+    pub file_uri: ::prost::alloc::string::String,
+    /// Optional. Display name of the file data.
+    ///
+    /// Used to provide a label or filename to distinguish file datas.
+    ///
+    /// This field is only returned in PromptMessage for prompt management.
+    /// It is currently used in the Gemini GenerateContent calls only when server
+    /// side tools (code_execution, google_search, and url_context) are enabled.
+    #[prost(string, tag = "3")]
+    pub display_name: ::prost::alloc::string::String,
+}
 /// The result output from a \[FunctionCall\] that contains a string representing
 /// the \[FunctionDeclaration.name\] and a structured JSON object containing any
 /// output from the function is used as context to the model. This should contain
@@ -4476,6 +4555,10 @@ pub struct FunctionResponse {
     /// then whole "response" is treated as function output.
     #[prost(message, optional, tag = "2")]
     pub response: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. Ordered `Parts` that constitute a function response. Parts may
+    /// have different IANA MIME types.
+    #[prost(message, repeated, tag = "4")]
+    pub parts: ::prost::alloc::vec::Vec<FunctionResponsePart>,
 }
 /// Code generated by the model that is meant to be executed, and the result
 /// returned to the model.
@@ -5742,6 +5825,21 @@ pub struct VideoMetadata {
     #[prost(message, optional, tag = "2")]
     pub end_offset: ::core::option::Option<::prost_types::Duration>,
 }
+/// Config for image generation features.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ImageConfig {
+    /// Optional. The desired aspect ratio for the generated images. The following
+    /// aspect ratios are supported:
+    ///
+    /// "1:1"
+    /// "2:3", "3:2"
+    /// "3:4", "4:3"
+    /// "4:5", "5:4"
+    /// "9:16", "16:9"
+    /// "21:9"
+    #[prost(string, optional, tag = "2")]
+    pub aspect_ratio: ::core::option::Option<::prost::alloc::string::String>,
+}
 /// Generation config.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerationConfig {
@@ -5843,6 +5941,9 @@ pub struct GenerationConfig {
     /// support thinking.
     #[prost(message, optional, tag = "25")]
     pub thinking_config: ::core::option::Option<generation_config::ThinkingConfig>,
+    /// Optional. Config for image generation features.
+    #[prost(message, optional, tag = "30")]
+    pub image_config: ::core::option::Option<ImageConfig>,
 }
 /// Nested message and enum types in `GenerationConfig`.
 pub mod generation_config {
@@ -19605,7 +19706,10 @@ pub struct TuningJob {
     pub name: ::prost::alloc::string::String,
     /// Optional. The display name of the
     /// \[TunedModel\]\[google.cloud.aiplatform.v1.Model\]. The name can be up to 128
-    /// characters long and can consist of any UTF-8 characters.
+    /// characters long and can consist of any UTF-8 characters. For continuous
+    /// tuning, tuned_model_display_name will by default use the same display name
+    /// as the pre-tuned model. If a new display name is provided, the tuning job
+    /// will create a new model instead of a new version.
     #[prost(string, tag = "2")]
     pub tuned_model_display_name: ::prost::alloc::string::String,
     /// Optional. The description of the
@@ -19679,7 +19783,7 @@ pub struct TuningJob {
     /// permission on this service account.
     #[prost(string, tag = "22")]
     pub service_account: ::prost::alloc::string::String,
-    #[prost(oneof = "tuning_job::SourceModel", tags = "4")]
+    #[prost(oneof = "tuning_job::SourceModel", tags = "4, 31")]
     pub source_model: ::core::option::Option<tuning_job::SourceModel>,
     #[prost(oneof = "tuning_job::TuningSpec", tags = "5")]
     pub tuning_spec: ::core::option::Option<tuning_job::TuningSpec>,
@@ -19692,6 +19796,9 @@ pub mod tuning_job {
         /// models](<https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models>).
         #[prost(string, tag = "4")]
         BaseModel(::prost::alloc::string::String),
+        /// The pre-tuned model for continuous tuning.
+        #[prost(message, tag = "31")]
+        PreTunedModel(super::PreTunedModel),
     }
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum TuningSpec {
@@ -19705,7 +19812,17 @@ pub mod tuning_job {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TunedModel {
     /// Output only. The resource name of the TunedModel. Format:
-    /// `projects/{project}/locations/{location}/models/{model}`.
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}@{version_id}`
+    ///
+    /// When tuning from a base model, the version ID will be 1.
+    ///
+    /// For continuous tuning, if the provided tuned_model_display_name is set and
+    /// different from parent model's display name, the tuned model will have a new
+    /// parent model with version 1. Otherwise the version id will be incremented
+    /// by 1 from the last version ID in the parent model. E.g.,
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}@{last_version_id +  1}`
     #[prost(string, tag = "1")]
     pub model: ::prost::alloc::string::String,
     /// Output only. A resource name of an Endpoint. Format:
@@ -19974,6 +20091,30 @@ pub struct TunedModelCheckpoint {
     /// `projects/{project}/locations/{location}/endpoints/{endpoint}`.
     #[prost(string, tag = "4")]
     pub endpoint: ::prost::alloc::string::String,
+}
+/// A pre-tuned model for continuous tuning.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct PreTunedModel {
+    /// The resource name of the Model.
+    /// E.g., a model resource name with a specified version id or alias:
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}@{version_id}`
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}@{alias}`
+    ///
+    /// Or, omit the version id to use the default version:
+    ///
+    /// `projects/{project}/locations/{location}/models/{model}`
+    #[prost(string, tag = "1")]
+    pub tuned_model_name: ::prost::alloc::string::String,
+    /// Optional. The source checkpoint id. If not specified, the default
+    /// checkpoint will be used.
+    #[prost(string, tag = "2")]
+    pub checkpoint_id: ::prost::alloc::string::String,
+    /// Output only. The name of the base model this
+    /// \[PreTunedModel\]\[google.cloud.aiplatform.v1.PreTunedModel\] was tuned from.
+    #[prost(string, tag = "3")]
+    pub base_model: ::prost::alloc::string::String,
 }
 /// Request message for
 /// \[GenAiTuningService.CreateTuningJob\]\[google.cloud.aiplatform.v1.GenAiTuningService.CreateTuningJob\].
@@ -37110,6 +37251,8 @@ pub struct ReasoningEngineSpec {
     /// Ignored when users directly specify a deployment image through
     /// `deployment_spec.first_party_image_override`, but keeping the
     /// field_behavior to avoid introducing breaking changes.
+    /// The `deployment_source` field should not be set if `package_spec` is
+    /// specified.
     #[prost(message, optional, tag = "2")]
     pub package_spec: ::core::option::Option<reasoning_engine_spec::PackageSpec>,
     /// Optional. The specification of a Reasoning Engine deployment.
@@ -37124,10 +37267,18 @@ pub struct ReasoningEngineSpec {
     /// "llama-index", "custom".
     #[prost(string, tag = "5")]
     pub agent_framework: ::prost::alloc::string::String,
+    /// Defines the source for the deployment.
+    /// The `package_spec` field should not be set if `deployment_source` is
+    /// specified.
+    #[prost(oneof = "reasoning_engine_spec::DeploymentSource", tags = "11")]
+    pub deployment_source: ::core::option::Option<
+        reasoning_engine_spec::DeploymentSource,
+    >,
 }
 /// Nested message and enum types in `ReasoningEngineSpec`.
 pub mod reasoning_engine_spec {
-    /// User provided package spec like pickled object and package requirements.
+    /// User-provided package specification, containing pickled object and package
+    /// requirements.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct PackageSpec {
         /// Optional. The Cloud Storage URI of the pickled python object.
@@ -37191,6 +37342,79 @@ pub mod reasoning_engine_spec {
         #[prost(int32, optional, tag = "8")]
         pub container_concurrency: ::core::option::Option<i32>,
     }
+    /// Specification for deploying from source code.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct SourceCodeSpec {
+        /// Specifies where the source code is located.
+        #[prost(oneof = "source_code_spec::Source", tags = "1")]
+        pub source: ::core::option::Option<source_code_spec::Source>,
+        /// Specifies the language-specific configuration for building and running
+        /// the code.
+        #[prost(oneof = "source_code_spec::LanguageSpec", tags = "2")]
+        pub language_spec: ::core::option::Option<source_code_spec::LanguageSpec>,
+    }
+    /// Nested message and enum types in `SourceCodeSpec`.
+    pub mod source_code_spec {
+        /// Specifies source code provided as a byte stream.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct InlineSource {
+            /// Required. Input only. The application source code archive, provided as
+            /// a compressed tarball
+            /// (.tar.gz) file.
+            #[prost(bytes = "vec", tag = "1")]
+            pub source_archive: ::prost::alloc::vec::Vec<u8>,
+        }
+        /// Specification for running a Python application from source.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct PythonSpec {
+            /// Optional. The version of Python to use. Support version
+            /// includes 3.9, 3.10, 3.11, 3.12, 3.13.
+            /// If not specified, default value is 3.10.
+            #[prost(string, tag = "1")]
+            pub version: ::prost::alloc::string::String,
+            /// Optional. The Python module to load as the entrypoint, specified as a
+            /// fully qualified module name. For example: path.to.agent.
+            /// If not specified, defaults to "agent".
+            ///
+            /// The project root will be added to Python sys.path, allowing imports
+            /// to be specified relative to the root.
+            #[prost(string, tag = "2")]
+            pub entrypoint_module: ::prost::alloc::string::String,
+            /// Optional. The name of the callable object within the
+            /// `entrypoint_module` to use as the application If not specified,
+            /// defaults to "root_agent".
+            #[prost(string, tag = "3")]
+            pub entrypoint_object: ::prost::alloc::string::String,
+            /// Optional. The path to the requirements file, relative to the source
+            /// root. If not specified, defaults to "requirements.txt".
+            #[prost(string, tag = "4")]
+            pub requirements_file: ::prost::alloc::string::String,
+        }
+        /// Specifies where the source code is located.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+        pub enum Source {
+            /// Source code is provided directly in the request.
+            #[prost(message, tag = "1")]
+            InlineSource(InlineSource),
+        }
+        /// Specifies the language-specific configuration for building and running
+        /// the code.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+        pub enum LanguageSpec {
+            /// Configuration for a Python application.
+            #[prost(message, tag = "2")]
+            PythonSpec(PythonSpec),
+        }
+    }
+    /// Defines the source for the deployment.
+    /// The `package_spec` field should not be set if `deployment_source` is
+    /// specified.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum DeploymentSource {
+        /// Deploy from source code files with a defined entrypoint.
+        #[prost(message, tag = "11")]
+        SourceCodeSpec(SourceCodeSpec),
+    }
 }
 /// ReasoningEngine provides a customizable runtime for models to determine
 /// which actions to take and in which order.
@@ -37225,6 +37449,12 @@ pub struct ReasoningEngine {
     /// secured by this key.
     #[prost(message, optional, tag = "11")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Labels for the ReasoningEngine.
+    #[prost(btree_map = "string, string", tag = "17")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Request message for \[ReasoningEngineExecutionService.Query\]\[\].
 #[derive(Clone, PartialEq, ::prost::Message)]

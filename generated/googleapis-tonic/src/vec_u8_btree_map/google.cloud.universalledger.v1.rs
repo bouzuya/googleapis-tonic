@@ -273,9 +273,6 @@ pub struct FractionalFee {
     /// Required. A percentage expressed in multiples of hundredths of a basis
     /// point, where 1 basis point = 0.01%. For example, 1% is expressed as an
     /// amount of 10000, while 0.01% (= 1 bp) is expressed as an amount of 100.
-    ///
-    /// The amount must be non-zero. All transactions with a zero amount will be
-    /// rejected.
     #[prost(int64, tag = "1")]
     pub amount: i64,
     /// Optional. Indicates who pays the fee. By default, it will be the
@@ -298,11 +295,6 @@ pub struct FractionalFee {
 /// clearinghouse has custody of the token manager funds, this is the only
 /// transaction that needs to be sent to execute a settlement between the two
 /// token managers.
-///
-/// If the clearinghouse does not have custody of the funds, this
-/// transaction only initiates the settlement process. The settlement isn't
-/// complete until the corresponding SettlementConfirmation transaction has
-/// been processed by the network.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SettlementRequest {
     /// Required. Immutable. The account ID of the party that needs to make the
@@ -312,8 +304,9 @@ pub struct SettlementRequest {
     /// Required. Immutable. The account ID of the party that needs to be paid.
     #[prost(message, optional, tag = "2")]
     pub beneficiary: ::core::option::Option<Entity>,
-    /// Required. Immutable. The balance that needs to be transferred by the
-    /// `payer` account to the `beneficiary` account in the backend.
+    /// Required. Immutable. The balance of issued tokens that need to be
+    /// transferred by the `payer` account to the `beneficiary` account on the
+    /// ledger.
     #[prost(message, optional, tag = "3")]
     pub balance: ::core::option::Option<CurrencyValue>,
     /// Required. Immutable. The round ID at which this settlement amount was
@@ -335,10 +328,14 @@ pub struct CreateAccount {
     /// validate the signature of the transactions emanating from the created
     /// account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "6")]
+    pub key_format: i32,
     /// Optional. The list of roles to grant to this account.
     #[prost(enumeration = "Role", repeated, packed = "false", tag = "2")]
     pub roles: ::prost::alloc::vec::Vec<i32>,
@@ -515,10 +512,14 @@ pub struct CreateTokenManager {
     /// manager and stored on the chain. It will be used to validate the signature
     /// of the transactions emanating from the token manager's account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "5")]
+    pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
     /// system but stored on-chain in the account. Maximum length is 128
     /// characters. May be left empty. Once created, the field is immutable.
@@ -538,10 +539,14 @@ pub struct CreateAccountManager {
     /// account manager and stored on the chain. It will be used to validate the
     /// signature of the transactions emanating from the account manager's account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "5")]
+    pub key_format: i32,
     /// The default token manager for the accounts that will be created by this
     /// manager.
     #[prost(message, optional, tag = "2")]
@@ -565,10 +570,14 @@ pub struct CreateClearinghouse {
     /// clearinghouse and stored on the chain. It will be used to validate
     /// signature of the transactions emanating from the clearinghouse's account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "6")]
+    pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
     /// system but stored on-chain in the account. Maximum length is 128
     /// characters. May be left empty. Once created, the field is immutable.
@@ -592,10 +601,14 @@ pub struct TransferPlatformOperator {
     /// used to validate the signature of the transactions emanating from the
     /// platform operator's account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "3")]
+    pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
     /// system but stored on-chain in the account. Maximum length is 128
     /// characters. May be left empty. Once created, the field is immutable.
@@ -620,10 +633,14 @@ pub struct CreateCurrencyOperator {
     /// used to validate the signature of the transactions emanating from the
     /// operator's account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "4")]
+    pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
     /// system but stored on-chain in the account. Maximum length is 128
     /// characters. May be left empty. Once created, the field is immutable.
@@ -648,10 +665,14 @@ pub struct TransferCurrencyOperator {
     /// used to validate the signature of the transactions emanating from the
     /// currency operator's account.
     ///
-    /// The public key must be provided as a binary serialized keyset in [Tink wire
-    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// The format of the public key is defined by the `key_format` field.
     #[prost(bytes = "vec", tag = "1")]
     pub public_key: ::prost::alloc::vec::Vec<u8>,
+    /// Optional. Immutable. The key format of the public key. If not
+    /// specified, defaults to a binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    #[prost(enumeration = "KeyFormat", tag = "5")]
+    pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
     /// system but stored on-chain in the account. Maximum length is 128
     /// characters. May be left empty. Once created, the field is immutable.
@@ -755,6 +776,42 @@ impl FeePayer {
             "FEE_PAYER_SENDER" => Some(Self::Sender),
             "FEE_PAYER_RECEIVER" => Some(Self::Receiver),
             "FEE_PAYER_OTHER" => Some(Self::Other),
+            _ => None,
+        }
+    }
+}
+/// Specifies the format a public key is provided in.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum KeyFormat {
+    /// The key format is unspecified. This value is invalid and should not be
+    /// used.
+    Unspecified = 0,
+    /// A binary serialized keyset in [Tink wire
+    /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    TinkWireFormat = 1,
+    /// A PEM-encoded elliptic curve signing key using the P-256 curve  with
+    /// SHA256 digest. Signatures must be provided in DER format.
+    PemEcP256Sha256 = 2,
+}
+impl KeyFormat {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "KEY_FORMAT_UNSPECIFIED",
+            Self::TinkWireFormat => "KEY_FORMAT_TINK_WIRE_FORMAT",
+            Self::PemEcP256Sha256 => "KEY_FORMAT_PEM_EC_P256_SHA256",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "KEY_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+            "KEY_FORMAT_TINK_WIRE_FORMAT" => Some(Self::TinkWireFormat),
+            "KEY_FORMAT_PEM_EC_P256_SHA256" => Some(Self::PemEcP256Sha256),
             _ => None,
         }
     }

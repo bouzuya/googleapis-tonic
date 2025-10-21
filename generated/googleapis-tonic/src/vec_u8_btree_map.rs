@@ -23,6 +23,11 @@
     feature = "google-ads-googleads-v21-errors",
     feature = "google-ads-googleads-v21-resources",
     feature = "google-ads-googleads-v21-services",
+    feature = "google-ads-googleads-v22-common",
+    feature = "google-ads-googleads-v22-enums",
+    feature = "google-ads-googleads-v22-errors",
+    feature = "google-ads-googleads-v22-resources",
+    feature = "google-ads-googleads-v22-services",
     feature = "google-ads-searchads360-v0-common",
     feature = "google-ads-searchads360-v0-enums",
     feature = "google-ads-searchads360-v0-errors",
@@ -595,6 +600,11 @@ pub mod google {
         feature = "google-ads-googleads-v21-errors",
         feature = "google-ads-googleads-v21-resources",
         feature = "google-ads-googleads-v21-services",
+        feature = "google-ads-googleads-v22-common",
+        feature = "google-ads-googleads-v22-enums",
+        feature = "google-ads-googleads-v22-errors",
+        feature = "google-ads-googleads-v22-resources",
+        feature = "google-ads-googleads-v22-services",
         feature = "google-ads-searchads360-v0-common",
         feature = "google-ads-searchads360-v0-enums",
         feature = "google-ads-searchads360-v0-errors",
@@ -618,6 +628,11 @@ pub mod google {
             feature = "google-ads-googleads-v21-errors",
             feature = "google-ads-googleads-v21-resources",
             feature = "google-ads-googleads-v21-services",
+            feature = "google-ads-googleads-v22-common",
+            feature = "google-ads-googleads-v22-enums",
+            feature = "google-ads-googleads-v22-errors",
+            feature = "google-ads-googleads-v22-resources",
+            feature = "google-ads-googleads-v22-services",
         ))]
         pub mod googleads {
             #[cfg(any(
@@ -726,6 +741,60 @@ pub mod google {
                         feature = "google-ads-googleads-v21-services",
                     ))]
                     include!("vec_u8_btree_map/google.ads.googleads.v21.services.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-ads-googleads-v22-common",
+                feature = "google-ads-googleads-v22-enums",
+                feature = "google-ads-googleads-v22-errors",
+                feature = "google-ads-googleads-v22-resources",
+                feature = "google-ads-googleads-v22-services",
+            ))]
+            pub mod v22 {
+                #[cfg(any(
+                    feature = "google-ads-googleads-v22-common",
+                ))]
+                pub mod common {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v22-common",
+                    ))]
+                    include!("vec_u8_btree_map/google.ads.googleads.v22.common.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v22-enums",
+                ))]
+                pub mod enums {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v22-enums",
+                    ))]
+                    include!("vec_u8_btree_map/google.ads.googleads.v22.enums.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v22-errors",
+                ))]
+                pub mod errors {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v22-errors",
+                    ))]
+                    include!("vec_u8_btree_map/google.ads.googleads.v22.errors.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v22-services",
+                ))]
+                pub mod services {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v22-services",
+                    ))]
+                    include!("vec_u8_btree_map/google.ads.googleads.v22.services.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v22-resources",
+                ))]
+                pub mod resources {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v22-resources",
+                    ))]
+                    include!("vec_u8_btree_map/google.ads.googleads.v22.resources.rs");
                 }
             }
             #[cfg(any(
