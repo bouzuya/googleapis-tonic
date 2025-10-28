@@ -263,6 +263,7 @@
     feature = "google-cloud-gsuiteaddons-v1",
     feature = "google-cloud-healthcare-logging",
     feature = "google-cloud-hypercomputecluster-v1alpha",
+    feature = "google-cloud-hypercomputecluster-v1beta",
     feature = "google-cloud-iap-v1",
     feature = "google-cloud-iap-v1beta1",
     feature = "google-cloud-identitytoolkit-logging",
@@ -1137,6 +1138,7 @@ pub mod google {
         feature = "google-cloud-gsuiteaddons-v1",
         feature = "google-cloud-healthcare-logging",
         feature = "google-cloud-hypercomputecluster-v1alpha",
+        feature = "google-cloud-hypercomputecluster-v1beta",
         feature = "google-cloud-iap-v1",
         feature = "google-cloud-iap-v1beta1",
         feature = "google-cloud-identitytoolkit-logging",
@@ -4834,6 +4836,7 @@ pub mod google {
         }
         #[cfg(any(
             feature = "google-cloud-hypercomputecluster-v1alpha",
+            feature = "google-cloud-hypercomputecluster-v1beta",
         ))]
         pub mod hypercomputecluster {
             #[cfg(any(
@@ -4844,6 +4847,15 @@ pub mod google {
                     feature = "google-cloud-hypercomputecluster-v1alpha",
                 ))]
                 include!("vec_u8_hash_map/google.cloud.hypercomputecluster.v1alpha.rs");
+            }
+            #[cfg(any(
+                feature = "google-cloud-hypercomputecluster-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-hypercomputecluster-v1beta",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.hypercomputecluster.v1beta.rs");
             }
         }
         #[cfg(any(

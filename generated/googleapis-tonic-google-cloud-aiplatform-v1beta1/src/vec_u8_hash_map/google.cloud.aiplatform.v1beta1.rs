@@ -18663,10 +18663,10 @@ pub mod feature_online_store {
         #[prost(message, optional, tag = "1")]
         pub auto_scaling: ::core::option::Option<bigtable::AutoScaling>,
         /// If true, enable direct access to the Bigtable instance.
-        #[prost(bool, tag = "2")]
+        #[prost(bool, tag = "3")]
         pub enable_direct_bigtable_access: bool,
         /// Metadata of the Bigtable instance. Output only.
-        #[prost(message, optional, tag = "3")]
+        #[prost(message, optional, tag = "4")]
         pub bigtable_metadata: ::core::option::Option<bigtable::BigtableMetadata>,
     }
     /// Nested message and enum types in `Bigtable`.
@@ -18882,7 +18882,7 @@ pub struct FeatureView {
     #[prost(bool, tag = "20")]
     pub satisfies_pzi: bool,
     /// Metadata containing information about the Cloud Bigtable.
-    #[prost(message, optional, tag = "21")]
+    #[prost(message, optional, tag = "22")]
     pub bigtable_metadata: ::core::option::Option<feature_view::BigtableMetadata>,
     #[prost(oneof = "feature_view::Source", tags = "6, 9, 18")]
     pub source: ::core::option::Option<feature_view::Source>,
@@ -44375,6 +44375,103 @@ pub mod pipeline_service_client {
         }
     }
 }
+/// Usage metadata about the content generation request and response.
+/// This message provides a detailed breakdown of token usage and other
+/// relevant metrics.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UsageMetadata {
+    /// The total number of tokens in the prompt. This includes any text, images,
+    /// or other media provided in the request. When `cached_content` is set,
+    /// this also includes the number of tokens in the cached content.
+    #[prost(int32, tag = "1")]
+    pub prompt_token_count: i32,
+    /// The total number of tokens in the generated candidates.
+    #[prost(int32, tag = "2")]
+    pub candidates_token_count: i32,
+    /// The total number of tokens for the entire request. This is the sum of
+    /// `prompt_token_count`, `candidates_token_count`,
+    /// `tool_use_prompt_token_count`, and `thoughts_token_count`.
+    #[prost(int32, tag = "3")]
+    pub total_token_count: i32,
+    /// Output only. The number of tokens in the results from tool executions,
+    /// which are provided back to the model as input, if applicable.
+    #[prost(int32, tag = "13")]
+    pub tool_use_prompt_token_count: i32,
+    /// Output only. The number of tokens that were part of the model's generated
+    /// "thoughts" output, if applicable.
+    #[prost(int32, tag = "14")]
+    pub thoughts_token_count: i32,
+    /// Output only. The number of tokens in the cached content that was used for
+    /// this request.
+    #[prost(int32, tag = "5")]
+    pub cached_content_token_count: i32,
+    /// Output only. A detailed breakdown of the token count for each modality in
+    /// the prompt.
+    #[prost(message, repeated, tag = "9")]
+    pub prompt_tokens_details: ::prost::alloc::vec::Vec<ModalityTokenCount>,
+    /// Output only. A detailed breakdown of the token count for each modality in
+    /// the cached content.
+    #[prost(message, repeated, tag = "10")]
+    pub cache_tokens_details: ::prost::alloc::vec::Vec<ModalityTokenCount>,
+    /// Output only. A detailed breakdown of the token count for each modality in
+    /// the generated candidates.
+    #[prost(message, repeated, tag = "11")]
+    pub candidates_tokens_details: ::prost::alloc::vec::Vec<ModalityTokenCount>,
+    /// Output only. A detailed breakdown by modality of the token counts from the
+    /// results of tool executions, which are provided back to the model as input.
+    #[prost(message, repeated, tag = "12")]
+    pub tool_use_prompt_tokens_details: ::prost::alloc::vec::Vec<ModalityTokenCount>,
+    /// Output only. The traffic type for this request.
+    #[prost(enumeration = "usage_metadata::TrafficType", tag = "8")]
+    pub traffic_type: i32,
+}
+/// Nested message and enum types in `UsageMetadata`.
+pub mod usage_metadata {
+    /// The type of traffic that this request was processed with, indicating which
+    /// quota gets consumed.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum TrafficType {
+        /// Unspecified request traffic type.
+        Unspecified = 0,
+        /// Type for Pay-As-You-Go traffic.
+        OnDemand = 1,
+        /// Type for Provisioned Throughput traffic.
+        ProvisionedThroughput = 2,
+    }
+    impl TrafficType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "TRAFFIC_TYPE_UNSPECIFIED",
+                Self::OnDemand => "ON_DEMAND",
+                Self::ProvisionedThroughput => "PROVISIONED_THROUGHPUT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TRAFFIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ON_DEMAND" => Some(Self::OnDemand),
+                "PROVISIONED_THROUGHPUT" => Some(Self::ProvisionedThroughput),
+                _ => None,
+            }
+        }
+    }
+}
 /// Request message for
 /// \[PredictionService.Predict\]\[google.cloud.aiplatform.v1beta1.PredictionService.Predict\].
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -45093,6 +45190,131 @@ pub struct GenerateVideoResponse {
         ::prost::alloc::string::String,
     >,
 }
+/// Request message for
+/// \[PredictionService.EmbedContent\]\[google.cloud.aiplatform.v1beta1.PredictionService.EmbedContent\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EmbedContentRequest {
+    /// Required. The name of the publisher model requested to serve the
+    /// prediction. Format:
+    /// `projects/{project}/locations/{location}/publishers/*/models/*`
+    #[prost(string, optional, tag = "1")]
+    pub model: ::core::option::Option<::prost::alloc::string::String>,
+    /// Required. Input content to be embedded. Required.
+    #[prost(message, optional, tag = "2")]
+    pub content: ::core::option::Option<Content>,
+    /// Optional. An optional title for the text.
+    #[prost(string, optional, tag = "4")]
+    pub title: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. The task type of the embedding.
+    #[prost(
+        enumeration = "embed_content_request::EmbeddingTaskType",
+        optional,
+        tag = "5"
+    )]
+    pub task_type: ::core::option::Option<i32>,
+    /// Optional. Optional reduced dimension for the output embedding. If set,
+    /// excessive values in the output embedding are truncated from the end.
+    #[prost(int32, optional, tag = "6")]
+    pub output_dimensionality: ::core::option::Option<i32>,
+    /// Optional. Whether to silently truncate the input content if it's longer
+    /// than the maximum sequence length.
+    #[prost(bool, optional, tag = "7")]
+    pub auto_truncate: ::core::option::Option<bool>,
+}
+/// Nested message and enum types in `EmbedContentRequest`.
+pub mod embed_content_request {
+    /// Represents a downstream task the embeddings will be used for.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum EmbeddingTaskType {
+        /// Unset value, which will default to one of the other enum values.
+        Unspecified = 0,
+        /// Specifies the given text is a query in a search/retrieval setting.
+        RetrievalQuery = 2,
+        /// Specifies the given text is a document from the corpus being searched.
+        RetrievalDocument = 3,
+        /// Specifies the given text will be used for STS.
+        SemanticSimilarity = 4,
+        /// Specifies that the given text will be classified.
+        Classification = 5,
+        /// Specifies that the embeddings will be used for clustering.
+        Clustering = 6,
+        /// Specifies that the embeddings will be used for question answering.
+        QuestionAnswering = 7,
+        /// Specifies that the embeddings will be used for fact verification.
+        FactVerification = 8,
+        /// Specifies that the embeddings will be used for code retrieval.
+        CodeRetrievalQuery = 9,
+    }
+    impl EmbeddingTaskType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::RetrievalQuery => "RETRIEVAL_QUERY",
+                Self::RetrievalDocument => "RETRIEVAL_DOCUMENT",
+                Self::SemanticSimilarity => "SEMANTIC_SIMILARITY",
+                Self::Classification => "CLASSIFICATION",
+                Self::Clustering => "CLUSTERING",
+                Self::QuestionAnswering => "QUESTION_ANSWERING",
+                Self::FactVerification => "FACT_VERIFICATION",
+                Self::CodeRetrievalQuery => "CODE_RETRIEVAL_QUERY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "RETRIEVAL_QUERY" => Some(Self::RetrievalQuery),
+                "RETRIEVAL_DOCUMENT" => Some(Self::RetrievalDocument),
+                "SEMANTIC_SIMILARITY" => Some(Self::SemanticSimilarity),
+                "CLASSIFICATION" => Some(Self::Classification),
+                "CLUSTERING" => Some(Self::Clustering),
+                "QUESTION_ANSWERING" => Some(Self::QuestionAnswering),
+                "FACT_VERIFICATION" => Some(Self::FactVerification),
+                "CODE_RETRIEVAL_QUERY" => Some(Self::CodeRetrievalQuery),
+                _ => None,
+            }
+        }
+    }
+}
+/// Response message for
+/// \[PredictionService.EmbedContent\]\[google.cloud.aiplatform.v1beta1.PredictionService.EmbedContent\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EmbedContentResponse {
+    /// The embedding generated from the input content.
+    #[prost(message, optional, tag = "1")]
+    pub embedding: ::core::option::Option<embed_content_response::Embedding>,
+    /// Metadata about the response(s).
+    #[prost(message, optional, tag = "2")]
+    pub usage_metadata: ::core::option::Option<UsageMetadata>,
+    /// Whether the input content was truncated before generating the embedding.
+    #[prost(bool, tag = "4")]
+    pub truncated: bool,
+}
+/// Nested message and enum types in `EmbedContentResponse`.
+pub mod embed_content_response {
+    /// A list of floats representing an embedding.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Embedding {
+        /// Embedding vector values.
+        #[prost(float, repeated, tag = "1")]
+        pub values: ::prost::alloc::vec::Vec<f32>,
+    }
+}
 /// Generated client implementations.
 pub mod prediction_service_client {
     #![allow(
@@ -45663,6 +45885,36 @@ pub mod prediction_service_client {
                     ),
                 );
             self.inner.server_streaming(req, path, codec).await
+        }
+        /// Embed content with multimodal inputs.
+        pub async fn embed_content(
+            &mut self,
+            request: impl tonic::IntoRequest<super::EmbedContentRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::EmbedContentResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.PredictionService/EmbedContent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.PredictionService",
+                        "EmbedContent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
         }
     }
 }

@@ -443,6 +443,210 @@ pub mod gcp_wrapped_key_info {
         }
     }
 }
+/// Error reasons for Data Manager API.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ErrorReason {
+    /// Do not use this default value.
+    Unspecified = 0,
+    /// An internal error has occurred.
+    InternalError = 1,
+    /// The request took too long to respond.
+    DeadlineExceeded = 2,
+    /// Too many requests.
+    ResourceExhausted = 3,
+    /// Resource not found.
+    NotFound = 4,
+    /// The user does not have permission or the resource is not found.
+    PermissionDenied = 5,
+    /// There was a problem with the request.
+    InvalidArgument = 6,
+    /// Required field is missing.
+    RequiredFieldMissing = 7,
+    /// Format is invalid.
+    InvalidFormat = 8,
+    /// The HEX encoded value is malformed.
+    InvalidHexEncoding = 9,
+    /// The base64 encoded value is malformed.
+    InvalidBase64Encoding = 10,
+    /// The SHA256 encoded value is malformed.
+    InvalidSha256Format = 11,
+    /// Postal code is not valid.
+    InvalidPostalCode = 12,
+    /// Country code is not valid.
+    InvalidCountryCode = 13,
+    /// Enum value cannot be used.
+    InvalidEnumValue = 14,
+    /// Type of the user list is not applicable for this request.
+    InvalidUserListType = 15,
+    /// This audience member is not valid.
+    InvalidAudienceMember = 16,
+    /// Maximum number of audience members allowed per request is 10,000.
+    TooManyAudienceMembers = 17,
+    /// Maximum number of user identifiers allowed per audience member is 10.
+    TooManyUserIdentifiers = 18,
+    /// Maximum number of destinations allowed per request is 10.
+    TooManyDestinations = 19,
+    /// This Destination is not valid.
+    InvalidDestination = 20,
+    /// Data Partner does not have access to the operating account owned userlist.
+    DataPartnerUserListMutateNotAllowed = 21,
+    /// Mobile ID format is not valid.
+    InvalidMobileIdFormat = 22,
+    /// User list is not valid.
+    InvalidUserListId = 23,
+    /// Multiple data types are not allowed to be ingested in a single request.
+    MultipleDataTypesNotAllowed = 24,
+    /// Destination configs containing a DataPartner login account must have the
+    /// same login account across all destination configs.
+    DifferentLoginAccountsNotAllowedForDataPartner = 25,
+    /// Required terms and conditions are not accepted.
+    TermsAndConditionsNotSigned = 26,
+    /// Invalid number format.
+    InvalidNumberFormat = 27,
+    /// Conversion action ID is not valid.
+    InvalidConversionActionId = 28,
+    /// The conversion action type is not valid.
+    InvalidConversionActionType = 29,
+    /// The currency code is not supported.
+    InvalidCurrencyCode = 30,
+    /// This event is not valid.
+    InvalidEvent = 31,
+    /// Maximum number of events allowed per request is 10,000.
+    TooManyEvents = 32,
+    /// The destination account is not enabled for enhanced conversions for leads.
+    DestinationAccountNotEnabledEnhancedConversionsForLeads = 33,
+    /// Enhanced conversions can't be used for the destination account because of
+    /// Google customer data policies. Contact your Google representative..
+    DestinationAccountDataPolicyProhibitsEnhancedConversions = 34,
+    /// The destination account hasn't agreed to the terms for enhanced
+    /// conversions.
+    DestinationAccountEnhancedConversionsTermsNotSigned = 35,
+    /// Two or more destinations in the request have the same reference.
+    DuplicateDestinationReference = 36,
+    /// Events data contains no user identifiers or ad identifiers.
+    NoIdentifiersProvided = 39,
+    /// The request ID used to retrieve the status of a request is not valid.
+    /// Status can only be retrieved for requests that succeed and don't have
+    /// `validate_only=true`.
+    InvalidRequestId = 48,
+}
+impl ErrorReason {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "ERROR_REASON_UNSPECIFIED",
+            Self::InternalError => "INTERNAL_ERROR",
+            Self::DeadlineExceeded => "DEADLINE_EXCEEDED",
+            Self::ResourceExhausted => "RESOURCE_EXHAUSTED",
+            Self::NotFound => "NOT_FOUND",
+            Self::PermissionDenied => "PERMISSION_DENIED",
+            Self::InvalidArgument => "INVALID_ARGUMENT",
+            Self::RequiredFieldMissing => "REQUIRED_FIELD_MISSING",
+            Self::InvalidFormat => "INVALID_FORMAT",
+            Self::InvalidHexEncoding => "INVALID_HEX_ENCODING",
+            Self::InvalidBase64Encoding => "INVALID_BASE64_ENCODING",
+            Self::InvalidSha256Format => "INVALID_SHA256_FORMAT",
+            Self::InvalidPostalCode => "INVALID_POSTAL_CODE",
+            Self::InvalidCountryCode => "INVALID_COUNTRY_CODE",
+            Self::InvalidEnumValue => "INVALID_ENUM_VALUE",
+            Self::InvalidUserListType => "INVALID_USER_LIST_TYPE",
+            Self::InvalidAudienceMember => "INVALID_AUDIENCE_MEMBER",
+            Self::TooManyAudienceMembers => "TOO_MANY_AUDIENCE_MEMBERS",
+            Self::TooManyUserIdentifiers => "TOO_MANY_USER_IDENTIFIERS",
+            Self::TooManyDestinations => "TOO_MANY_DESTINATIONS",
+            Self::InvalidDestination => "INVALID_DESTINATION",
+            Self::DataPartnerUserListMutateNotAllowed => {
+                "DATA_PARTNER_USER_LIST_MUTATE_NOT_ALLOWED"
+            }
+            Self::InvalidMobileIdFormat => "INVALID_MOBILE_ID_FORMAT",
+            Self::InvalidUserListId => "INVALID_USER_LIST_ID",
+            Self::MultipleDataTypesNotAllowed => "MULTIPLE_DATA_TYPES_NOT_ALLOWED",
+            Self::DifferentLoginAccountsNotAllowedForDataPartner => {
+                "DIFFERENT_LOGIN_ACCOUNTS_NOT_ALLOWED_FOR_DATA_PARTNER"
+            }
+            Self::TermsAndConditionsNotSigned => "TERMS_AND_CONDITIONS_NOT_SIGNED",
+            Self::InvalidNumberFormat => "INVALID_NUMBER_FORMAT",
+            Self::InvalidConversionActionId => "INVALID_CONVERSION_ACTION_ID",
+            Self::InvalidConversionActionType => "INVALID_CONVERSION_ACTION_TYPE",
+            Self::InvalidCurrencyCode => "INVALID_CURRENCY_CODE",
+            Self::InvalidEvent => "INVALID_EVENT",
+            Self::TooManyEvents => "TOO_MANY_EVENTS",
+            Self::DestinationAccountNotEnabledEnhancedConversionsForLeads => {
+                "DESTINATION_ACCOUNT_NOT_ENABLED_ENHANCED_CONVERSIONS_FOR_LEADS"
+            }
+            Self::DestinationAccountDataPolicyProhibitsEnhancedConversions => {
+                "DESTINATION_ACCOUNT_DATA_POLICY_PROHIBITS_ENHANCED_CONVERSIONS"
+            }
+            Self::DestinationAccountEnhancedConversionsTermsNotSigned => {
+                "DESTINATION_ACCOUNT_ENHANCED_CONVERSIONS_TERMS_NOT_SIGNED"
+            }
+            Self::DuplicateDestinationReference => "DUPLICATE_DESTINATION_REFERENCE",
+            Self::NoIdentifiersProvided => "NO_IDENTIFIERS_PROVIDED",
+            Self::InvalidRequestId => "INVALID_REQUEST_ID",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ERROR_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+            "INTERNAL_ERROR" => Some(Self::InternalError),
+            "DEADLINE_EXCEEDED" => Some(Self::DeadlineExceeded),
+            "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
+            "NOT_FOUND" => Some(Self::NotFound),
+            "PERMISSION_DENIED" => Some(Self::PermissionDenied),
+            "INVALID_ARGUMENT" => Some(Self::InvalidArgument),
+            "REQUIRED_FIELD_MISSING" => Some(Self::RequiredFieldMissing),
+            "INVALID_FORMAT" => Some(Self::InvalidFormat),
+            "INVALID_HEX_ENCODING" => Some(Self::InvalidHexEncoding),
+            "INVALID_BASE64_ENCODING" => Some(Self::InvalidBase64Encoding),
+            "INVALID_SHA256_FORMAT" => Some(Self::InvalidSha256Format),
+            "INVALID_POSTAL_CODE" => Some(Self::InvalidPostalCode),
+            "INVALID_COUNTRY_CODE" => Some(Self::InvalidCountryCode),
+            "INVALID_ENUM_VALUE" => Some(Self::InvalidEnumValue),
+            "INVALID_USER_LIST_TYPE" => Some(Self::InvalidUserListType),
+            "INVALID_AUDIENCE_MEMBER" => Some(Self::InvalidAudienceMember),
+            "TOO_MANY_AUDIENCE_MEMBERS" => Some(Self::TooManyAudienceMembers),
+            "TOO_MANY_USER_IDENTIFIERS" => Some(Self::TooManyUserIdentifiers),
+            "TOO_MANY_DESTINATIONS" => Some(Self::TooManyDestinations),
+            "INVALID_DESTINATION" => Some(Self::InvalidDestination),
+            "DATA_PARTNER_USER_LIST_MUTATE_NOT_ALLOWED" => {
+                Some(Self::DataPartnerUserListMutateNotAllowed)
+            }
+            "INVALID_MOBILE_ID_FORMAT" => Some(Self::InvalidMobileIdFormat),
+            "INVALID_USER_LIST_ID" => Some(Self::InvalidUserListId),
+            "MULTIPLE_DATA_TYPES_NOT_ALLOWED" => Some(Self::MultipleDataTypesNotAllowed),
+            "DIFFERENT_LOGIN_ACCOUNTS_NOT_ALLOWED_FOR_DATA_PARTNER" => {
+                Some(Self::DifferentLoginAccountsNotAllowedForDataPartner)
+            }
+            "TERMS_AND_CONDITIONS_NOT_SIGNED" => Some(Self::TermsAndConditionsNotSigned),
+            "INVALID_NUMBER_FORMAT" => Some(Self::InvalidNumberFormat),
+            "INVALID_CONVERSION_ACTION_ID" => Some(Self::InvalidConversionActionId),
+            "INVALID_CONVERSION_ACTION_TYPE" => Some(Self::InvalidConversionActionType),
+            "INVALID_CURRENCY_CODE" => Some(Self::InvalidCurrencyCode),
+            "INVALID_EVENT" => Some(Self::InvalidEvent),
+            "TOO_MANY_EVENTS" => Some(Self::TooManyEvents),
+            "DESTINATION_ACCOUNT_NOT_ENABLED_ENHANCED_CONVERSIONS_FOR_LEADS" => {
+                Some(Self::DestinationAccountNotEnabledEnhancedConversionsForLeads)
+            }
+            "DESTINATION_ACCOUNT_DATA_POLICY_PROHIBITS_ENHANCED_CONVERSIONS" => {
+                Some(Self::DestinationAccountDataPolicyProhibitsEnhancedConversions)
+            }
+            "DESTINATION_ACCOUNT_ENHANCED_CONVERSIONS_TERMS_NOT_SIGNED" => {
+                Some(Self::DestinationAccountEnhancedConversionsTermsNotSigned)
+            }
+            "DUPLICATE_DESTINATION_REFERENCE" => {
+                Some(Self::DuplicateDestinationReference)
+            }
+            "NO_IDENTIFIERS_PROVIDED" => Some(Self::NoIdentifiersProvided),
+            "INVALID_REQUEST_ID" => Some(Self::InvalidRequestId),
+            _ => None,
+        }
+    }
+}
 /// Experimental field representing unofficial fields.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ExperimentalField {

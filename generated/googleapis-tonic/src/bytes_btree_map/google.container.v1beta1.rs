@@ -865,8 +865,7 @@ pub struct NodeConfig {
     ///   persistent storage on your nodes.
     /// * `<https://www.googleapis.com/auth/devstorage.read_only`> is required for
     ///   communicating with **gcr.io**
-    ///   (the [Google Container
-    ///   Registry](<https://cloud.google.com/container-registry/>)).
+    ///   (the [Artifact Registry](<https://cloud.google.com/artifact-registry/>)).
     ///
     /// If unspecified, no scopes are added, unless Cloud Logging or Cloud
     /// Monitoring are enabled, in which case their required scopes will be added.
@@ -1829,8 +1828,7 @@ pub mod containerd_config {
         /// Nested message and enum types in `CertificateAuthorityDomainConfig`.
         pub mod certificate_authority_domain_config {
             /// GCPSecretManagerCertificateConfig configures a secret from
-            /// [Google Secret
-            /// Manager](<https://cloud.google.com/secret-manager>).
+            /// [Secret Manager](<https://cloud.google.com/secret-manager>).
             #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
             pub struct GcpSecretManagerCertificateConfig {
                 /// Secret URI, in the form
@@ -2051,7 +2049,7 @@ pub struct NodeLabels {
         ::prost::alloc::string::String,
     >,
 }
-/// Collection of [GCP
+/// Collection of [Resource Manager
 /// labels](<https://cloud.google.com/resource-manager/docs/creating-managing-labels>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceLabels {
@@ -4501,6 +4499,9 @@ pub struct ClusterUpdate {
     /// The desired network tier configuration for the cluster.
     #[prost(message, optional, tag = "155")]
     pub desired_network_tier_config: ::core::option::Option<NetworkTierConfig>,
+    /// Configuration for sync Secret Manager secrets as k8s secrets.
+    #[prost(message, optional, tag = "158")]
+    pub desired_secret_sync_config: ::core::option::Option<SecretSyncConfig>,
 }
 /// AdditionalPodRangesConfig is the configuration for additional pod secondary
 /// ranges supporting the ClusterUpdate message.
@@ -6822,8 +6823,7 @@ pub struct AutoprovisioningNodePoolDefaults {
     ///   persistent storage on your nodes.
     /// * `<https://www.googleapis.com/auth/devstorage.read_only`> is required for
     ///   communicating with **gcr.io**
-    ///   (the [Google Container
-    ///   Registry](<https://cloud.google.com/container-registry/>)).
+    ///   (the [Artifact Registry](<https://cloud.google.com/artifact-registry/>)).
     ///
     /// If unspecified, no scopes are added, unless Cloud Logging or Cloud
     /// Monitoring are enabled, in which case their required scopes will be added.
@@ -10939,7 +10939,7 @@ pub mod cluster_manager_client {
         /// network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
         ///
         /// One firewall is added for the cluster. After cluster creation,
-        /// the Kubelet creates routes for each node to allow the containers
+        /// the kubelet creates routes for each node to allow the containers
         /// on that node to communicate with all other instances in the
         /// cluster.
         ///

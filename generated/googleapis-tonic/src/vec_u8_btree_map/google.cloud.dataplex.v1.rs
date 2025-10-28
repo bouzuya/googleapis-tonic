@@ -4816,6 +4816,9 @@ pub struct AspectType {
     /// delete requests to ensure it has an up-to-date value before proceeding.
     #[prost(string, tag = "8")]
     pub etag: ::prost::alloc::string::String,
+    /// Optional. Immutable. Stores data classification of the aspect.
+    #[prost(enumeration = "aspect_type::DataClassification", tag = "9")]
+    pub data_classification: i32,
     /// Immutable. Defines the Authorization for this type.
     #[prost(message, optional, tag = "52")]
     pub authorization: ::core::option::Option<aspect_type::Authorization>,
@@ -4968,6 +4971,45 @@ pub mod aspect_type {
             /// suggest values to users through console.
             #[prost(string, repeated, tag = "7")]
             pub string_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        }
+    }
+    /// Classifies the data stored by the aspect.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DataClassification {
+        /// Denotes that the aspect contains only metadata.
+        Unspecified = 0,
+        /// Metadata and data classification.
+        MetadataAndData = 1,
+    }
+    impl DataClassification {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "DATA_CLASSIFICATION_UNSPECIFIED",
+                Self::MetadataAndData => "METADATA_AND_DATA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DATA_CLASSIFICATION_UNSPECIFIED" => Some(Self::Unspecified),
+                "METADATA_AND_DATA" => Some(Self::MetadataAndData),
+                _ => None,
+            }
         }
     }
 }
@@ -6087,14 +6129,13 @@ pub mod metadata_job {
         /// A boundary on the scope of impact that the metadata import job can have.
         #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
         pub struct ImportJobScope {
-            /// Required. The entry group that is in scope for the import job,
-            /// specified as a relative resource name in the format
+            /// Required. The entry groups that are in scope for the import job,
+            /// specified as relative resource names in the format
             /// `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-            /// Only entries and aspects that belong to the specified entry group are
+            /// Only entries and aspects that belong to the specified entry groups are
             /// affected by the job.
             ///
-            /// Must contain exactly one element. The entry group and the job
-            /// must be in the same location.
+            /// The entry groups and the job must be in the same location.
             #[prost(string, repeated, tag = "1")]
             pub entry_groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             /// Required. The entry types that are in scope for the import job,
@@ -6651,8 +6692,6 @@ pub enum EntryView {
     /// Returns aspects matching custom fields in GetEntryRequest. If the number of
     /// aspects exceeds 100, the first 100 will be returned.
     Custom = 3,
-    /// Returns all aspects. If the number of aspects exceeds 100, the first
-    /// 100 will be returned.
     All = 4,
 }
 impl EntryView {
@@ -7327,6 +7366,11 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists Entries within an EntryGroup.
+        /// Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+        /// Metastore metadata that is stored in Dataplex Universal Catalog is
+        /// changing. For more information, see [Changes to metadata stored in
+        /// Dataplex Universal
+        /// Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
         pub async fn list_entries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntriesRequest>,
@@ -7357,6 +7401,11 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an Entry.
+        /// Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+        /// Metastore metadata that is stored in Dataplex Universal Catalog is
+        /// changing. For more information, see [Changes to metadata stored in
+        /// Dataplex Universal
+        /// Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
         pub async fn get_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntryRequest>,
@@ -7384,6 +7433,11 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Looks up an entry by name using the permission on the source system.
+        /// Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+        /// Metastore metadata that is stored in Dataplex Universal Catalog is
+        /// changing. For more information, see [Changes to metadata stored in
+        /// Dataplex Universal
+        /// Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
         pub async fn lookup_entry(
             &mut self,
             request: impl tonic::IntoRequest<super::LookupEntryRequest>,
@@ -7673,6 +7727,9 @@ pub struct EncryptionConfig {
     /// Output only. Details of the failure if anything related to Cmek db fails.
     #[prost(message, optional, tag = "7")]
     pub failure_details: ::core::option::Option<encryption_config::FailureDetails>,
+    /// Optional. Represent the state of CMEK opt-in for metastore.
+    #[prost(bool, tag = "8")]
+    pub enable_metastore_encryption: bool,
 }
 /// Nested message and enum types in `EncryptionConfig`.
 pub mod encryption_config {
@@ -8828,6 +8885,75 @@ pub mod data_discovery_result {
         pub filesets_updated: i32,
     }
 }
+/// DataDocumentation scan related spec.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct DataDocumentationSpec {}
+/// The output of a DataDocumentation scan.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DataDocumentationResult {
+    /// The result of the data documentation scan.
+    #[prost(oneof = "data_documentation_result::Result", tags = "8")]
+    pub result: ::core::option::Option<data_documentation_result::Result>,
+}
+/// Nested message and enum types in `DataDocumentationResult`.
+pub mod data_documentation_result {
+    /// Generated metadata about the table.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TableResult {
+        /// Output only. The service-qualified full resource name of the cloud
+        /// resource. Ex:
+        /// //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        /// Output only. Generated description of the table.
+        #[prost(string, tag = "2")]
+        pub overview: ::prost::alloc::string::String,
+        /// Output only. Schema of the table with generated metadata of the columns
+        /// in the schema.
+        #[prost(message, optional, tag = "3")]
+        pub schema: ::core::option::Option<Schema>,
+        /// Output only. Sample SQL queries for the table.
+        #[prost(message, repeated, tag = "4")]
+        pub queries: ::prost::alloc::vec::Vec<Query>,
+    }
+    /// A sample SQL query in data documentation.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Query {
+        /// Output only. The SQL query string which can be executed.
+        #[prost(string, tag = "1")]
+        pub sql: ::prost::alloc::string::String,
+        /// Output only. The description for the query.
+        #[prost(string, tag = "2")]
+        pub description: ::prost::alloc::string::String,
+    }
+    /// Schema of the table with generated metadata of columns.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Schema {
+        /// Output only. The list of columns.
+        #[prost(message, repeated, tag = "1")]
+        pub fields: ::prost::alloc::vec::Vec<Field>,
+    }
+    /// Column of a table with generated metadata and nested fields.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Field {
+        /// Output only. The name of the column.
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        /// Output only. Generated description for columns and fields.
+        #[prost(string, tag = "2")]
+        pub description: ::prost::alloc::string::String,
+        /// Output only. Nested fields.
+        #[prost(message, repeated, tag = "3")]
+        pub fields: ::prost::alloc::vec::Vec<Field>,
+    }
+    /// The result of the data documentation scan.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Result {
+        /// Output only. Table result for insights.
+        #[prost(message, tag = "8")]
+        TableResult(TableResult),
+    }
+}
 /// DataScan scheduling and trigger settings.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Trigger {
@@ -8897,8 +9023,8 @@ pub mod data_source {
         /// Storage bucket for DataDiscoveryScan Format:
         /// //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID
         /// or
-        /// BigQuery table of type "TABLE" for DataProfileScan/DataQualityScan
-        /// Format:
+        /// BigQuery table of type "TABLE" for
+        /// DataProfileScan/DataQualityScan/DataDocumentationScan Format:
         /// //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
         #[prost(string, tag = "101")]
         Resource(::prost::alloc::string::String),
@@ -9479,6 +9605,11 @@ pub struct DataQualityResult {
     pub catalog_publishing_status: ::core::option::Option<
         DataScanCatalogPublishingStatus,
     >,
+    /// Output only. The generated assets for anomaly detection.
+    #[prost(message, optional, tag = "12")]
+    pub anomaly_detection_generated_assets: ::core::option::Option<
+        data_quality_result::AnomalyDetectionGeneratedAssets,
+    >,
 }
 /// Nested message and enum types in `DataQualityResult`.
 pub mod data_quality_result {
@@ -9554,6 +9685,33 @@ pub mod data_quality_result {
                 }
             }
         }
+    }
+    /// The assets generated by Anomaly Detection Data Scan.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct AnomalyDetectionGeneratedAssets {
+        /// Output only. The result table for anomaly detection.
+        /// Format:
+        /// PROJECT_ID.DATASET_ID.TABLE_ID
+        /// If the result table is set at AnomalyDetectionAssets, the result table
+        /// here would be the same as the one set in the
+        /// AnomalyDetectionAssets.result_table.
+        #[prost(string, tag = "1")]
+        pub result_table: ::prost::alloc::string::String,
+        /// Output only. The intermediate table for data anomaly detection.
+        /// Format:
+        /// PROJECT_ID.DATASET_ID.TABLE_ID
+        #[prost(string, tag = "2")]
+        pub data_intermediate_table: ::prost::alloc::string::String,
+        /// Output only. The intermediate table for freshness anomaly detection.
+        /// Format:
+        /// PROJECT_ID.DATASET_ID.TABLE_ID
+        #[prost(string, tag = "3")]
+        pub freshness_intermediate_table: ::prost::alloc::string::String,
+        /// Output only. The intermediate table for volume anomaly detection.
+        /// Format:
+        /// PROJECT_ID.DATASET_ID.TABLE_ID
+        #[prost(string, tag = "4")]
+        pub volume_intermediate_table: ::prost::alloc::string::String,
     }
 }
 /// DataQualityRuleResult provides a more detailed, per-rule view of the results.
@@ -11315,6 +11473,10 @@ pub struct GenerateDataQualityRulesResponse {
 /// * Data discovery: scans data in Cloud Storage buckets to extract and then
 ///   catalog metadata. For more information, see [Discover and catalog Cloud
 ///   Storage data](<https://cloud.google.com/bigquery/docs/automatic-discovery>).
+/// * Data documentation: analyzes the table details and generates insights
+///   including descriptions and sample SQL queries for the table. For more
+///   information, see [Generate data insights in
+///   BigQuery](<https://cloud.google.com/bigquery/docs/data-insights>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataScan {
     /// Output only. Identifier. The relative resource name of the scan, of the
@@ -11370,10 +11532,10 @@ pub struct DataScan {
     /// The settings are required and immutable. After you configure the settings
     /// for one type of data scan, you can't change the data scan to a different
     /// type of data scan.
-    #[prost(oneof = "data_scan::Spec", tags = "100, 101, 102")]
+    #[prost(oneof = "data_scan::Spec", tags = "100, 101, 102, 103")]
     pub spec: ::core::option::Option<data_scan::Spec>,
     /// The result of the data scan.
-    #[prost(oneof = "data_scan::Result", tags = "200, 201, 202")]
+    #[prost(oneof = "data_scan::Result", tags = "200, 201, 202, 203")]
     pub result: ::core::option::Option<data_scan::Result>,
 }
 /// Nested message and enum types in `DataScan`.
@@ -11440,6 +11602,9 @@ pub mod data_scan {
         /// Settings for a data discovery scan.
         #[prost(message, tag = "102")]
         DataDiscoverySpec(super::DataDiscoverySpec),
+        /// Settings for a data documentation scan.
+        #[prost(message, tag = "103")]
+        DataDocumentationSpec(super::DataDocumentationSpec),
     }
     /// The result of the data scan.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -11453,6 +11618,9 @@ pub mod data_scan {
         /// Output only. The result of a data discovery scan.
         #[prost(message, tag = "202")]
         DataDiscoveryResult(super::DataDiscoveryResult),
+        /// Output only. The result of a data documentation scan.
+        #[prost(message, tag = "203")]
+        DataDocumentationResult(super::DataDocumentationResult),
     }
 }
 /// A DataScanJob represents an instance of DataScan execution.
@@ -11487,10 +11655,10 @@ pub struct DataScanJob {
     #[prost(enumeration = "DataScanType", tag = "7")]
     pub r#type: i32,
     /// Data scan related setting.
-    #[prost(oneof = "data_scan_job::Spec", tags = "100, 101, 102")]
+    #[prost(oneof = "data_scan_job::Spec", tags = "100, 101, 102, 103")]
     pub spec: ::core::option::Option<data_scan_job::Spec>,
     /// The result of the data scan.
-    #[prost(oneof = "data_scan_job::Result", tags = "200, 201, 202")]
+    #[prost(oneof = "data_scan_job::Result", tags = "200, 201, 202, 203")]
     pub result: ::core::option::Option<data_scan_job::Result>,
 }
 /// Nested message and enum types in `DataScanJob`.
@@ -11566,6 +11734,9 @@ pub mod data_scan_job {
         /// Output only. Settings for a data discovery scan.
         #[prost(message, tag = "102")]
         DataDiscoverySpec(super::DataDiscoverySpec),
+        /// Output only. Settings for a data documentation scan.
+        #[prost(message, tag = "103")]
+        DataDocumentationSpec(super::DataDocumentationSpec),
     }
     /// The result of the data scan.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -11579,6 +11750,9 @@ pub mod data_scan_job {
         /// Output only. The result of a data discovery scan.
         #[prost(message, tag = "202")]
         DataDiscoveryResult(super::DataDiscoveryResult),
+        /// Output only. The result of a data documentation scan.
+        #[prost(message, tag = "203")]
+        DataDocumentationResult(super::DataDocumentationResult),
     }
 }
 /// The type of data scan.
@@ -11593,6 +11767,8 @@ pub enum DataScanType {
     DataProfile = 2,
     /// Data discovery scan.
     DataDiscovery = 3,
+    /// Data documentation scan.
+    DataDocumentation = 4,
 }
 impl DataScanType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11605,6 +11781,7 @@ impl DataScanType {
             Self::DataQuality => "DATA_QUALITY",
             Self::DataProfile => "DATA_PROFILE",
             Self::DataDiscovery => "DATA_DISCOVERY",
+            Self::DataDocumentation => "DATA_DOCUMENTATION",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11614,6 +11791,7 @@ impl DataScanType {
             "DATA_QUALITY" => Some(Self::DataQuality),
             "DATA_PROFILE" => Some(Self::DataProfile),
             "DATA_DISCOVERY" => Some(Self::DataDiscovery),
+            "DATA_DOCUMENTATION" => Some(Self::DataDocumentation),
             _ => None,
         }
     }
