@@ -3241,3 +3241,769 @@ pub mod deployment_client {
         }
     }
 }
+/// The request message for
+/// \[ListFrameworkComplianceSummariesRequest\]\[google.cloud.cloudsecuritycompliance.v1.ListFrameworkComplianceSummariesRequest\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListFrameworkComplianceSummariesRequest {
+    /// Required. The parent scope for the framework compliance summary.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The requested page size. The server might return fewer items than
+    /// requested. If unspecified, the server picks an appropriate default.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token that identifies the page of results that the server
+    /// should return.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. The filtering results.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+}
+/// The response message for
+/// \[ListFrameworkComplianceSummariesResponse\]\[google.cloud.cloudsecuritycompliance.v1.ListFrameworkComplianceSummariesResponse\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListFrameworkComplianceSummariesResponse {
+    /// The list of framework compliance summaries.
+    #[prost(message, repeated, tag = "1")]
+    pub framework_compliance_summaries: ::prost::alloc::vec::Vec<
+        FrameworkComplianceSummary,
+    >,
+    /// Output only. The token to retrieve the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// The response message for \[GetFrameworkComplianceReport\]\[\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FrameworkComplianceReport {
+    /// The name of the framework.
+    #[prost(string, tag = "1")]
+    pub framework: ::prost::alloc::string::String,
+    /// The description of the framework.
+    #[prost(string, tag = "2")]
+    pub framework_description: ::prost::alloc::string::String,
+    /// Output only. The last updated time of the report.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The control assessment details of the framework.
+    #[prost(message, optional, tag = "4")]
+    pub control_assessment_details: ::core::option::Option<ControlAssessmentDetails>,
+    /// The type of framework.
+    #[prost(enumeration = "framework::FrameworkType", tag = "5")]
+    pub framework_type: i32,
+    /// The list of cloud providers supported by the framework.
+    #[prost(enumeration = "CloudProvider", repeated, tag = "6")]
+    pub supported_cloud_providers: ::prost::alloc::vec::Vec<i32>,
+    /// The list of framework categories supported.
+    #[prost(enumeration = "FrameworkCategory", repeated, tag = "7")]
+    pub framework_categories: ::prost::alloc::vec::Vec<i32>,
+    /// Optional. The display name for the framework.
+    #[prost(string, tag = "8")]
+    pub framework_display_name: ::prost::alloc::string::String,
+    /// Identifier. The name of the framework compliance report.
+    #[prost(string, tag = "9")]
+    pub name: ::prost::alloc::string::String,
+    /// The latest major revision ID of the framework.
+    #[prost(int64, tag = "10")]
+    pub major_revision_id: i64,
+    /// The latest minor revision ID of the latest major revision of the framework.
+    #[prost(int64, tag = "11")]
+    pub minor_revision_id: i64,
+    /// The target resource details of the framework.
+    #[prost(message, repeated, tag = "12")]
+    pub target_resource_details: ::prost::alloc::vec::Vec<TargetResourceDetails>,
+}
+/// The request message for \[FetchFrameworkComplianceReport\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FetchFrameworkComplianceReportRequest {
+    /// Required. The name of the framework compliance report to retrieve.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. The end time of the report.
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// The request message for \[ListFindingSummaries\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListFindingSummariesRequest {
+    /// Required. The parent scope for the framework overview page.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The requested page size. The server might return fewer items than
+    /// requested. If unspecified, the server picks an appropriate default.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token that identifies the page of results that the server
+    /// should return.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. The filtering results.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. The end time of the finding summary.
+    #[deprecated]
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// The response message for \[ListFindingSummaries\]\[\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListFindingSummariesResponse {
+    /// List of finding summary by category.
+    #[prost(message, repeated, tag = "1")]
+    pub finding_summaries: ::prost::alloc::vec::Vec<FindingSummary>,
+    /// Output only. The token to retrieve the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// The request message for \[ListControlComplianceSummaries\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListControlComplianceSummariesRequest {
+    /// Required. The parent scope for the framework overview page.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The end time of the control compliance summary.
+    #[deprecated]
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. The requested page size. The server might return fewer items than
+    /// requested. If unspecified, the server picks an appropriate default.
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    /// Optional. A token that identifies the page of results that the server
+    /// should return.
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. The filtering results.
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
+}
+/// The response message for \[ListControlComplianceSummaries\]\[\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListControlComplianceSummariesResponse {
+    /// The list of control compliance details.
+    #[prost(message, repeated, tag = "1")]
+    pub control_compliance_summaries: ::prost::alloc::vec::Vec<ControlComplianceSummary>,
+    /// Output only. The token to retrieve the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// The request message for \[AggregateFrameworkComplianceReport\]\[\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AggregateFrameworkComplianceReportRequest {
+    /// Required. The name of the aggregated compliance report over time to
+    /// retrieve.
+    ///
+    /// The supported format is:
+    /// `organizations/{organization_id}/locations/{location}/frameworkComplianceReports/{framework_compliance_report}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. The start and end time range for the aggregated compliance
+    /// report.
+    #[prost(message, optional, tag = "2")]
+    pub interval: ::core::option::Option<super::super::super::r#type::Interval>,
+    /// Optional. The filtering results.
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+}
+/// The response message for \[AggregateFrameworkComplianceReport\]\[\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AggregateFrameworkComplianceReportResponse {
+    /// The list of aggregated compliance reports.
+    #[prost(message, repeated, tag = "1")]
+    pub aggregated_compliance_reports: ::prost::alloc::vec::Vec<
+        AggregatedComplianceReport,
+    >,
+}
+/// The details for a control assessment.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ControlAssessmentDetails {
+    /// The number of controls that are passing or not assessed.
+    #[prost(int32, tag = "1")]
+    pub passing_controls: i32,
+    /// The number of controls that are failing.
+    #[prost(int32, tag = "2")]
+    pub failing_controls: i32,
+    /// The number of controls that were assessed and are passing.
+    #[prost(int32, tag = "3")]
+    pub assessed_passing_controls: i32,
+    /// The number of controls that aren't assessed because they require manual
+    /// review.
+    #[prost(int32, tag = "4")]
+    pub not_assessed_controls: i32,
+}
+/// The details for a framework compliance summary.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FrameworkComplianceSummary {
+    /// The name of the framework.
+    #[prost(string, tag = "1")]
+    pub framework: ::prost::alloc::string::String,
+    /// The control assessment details of the framework.
+    #[prost(message, optional, tag = "2")]
+    pub control_assessment_details: ::core::option::Option<ControlAssessmentDetails>,
+    /// The type of framework.
+    #[prost(enumeration = "framework::FrameworkType", tag = "3")]
+    pub framework_type: i32,
+    /// The list of cloud providers supported by the framework.
+    #[prost(enumeration = "CloudProvider", repeated, tag = "4")]
+    pub supported_cloud_providers: ::prost::alloc::vec::Vec<i32>,
+    /// The list of framework categories supported by the framework.
+    #[prost(enumeration = "FrameworkCategory", repeated, tag = "5")]
+    pub framework_categories: ::prost::alloc::vec::Vec<i32>,
+    /// Optional. The display name for the framework.
+    #[prost(string, tag = "6")]
+    pub framework_display_name: ::prost::alloc::string::String,
+    /// Identifier. The name of the framework compliance summary.
+    #[prost(string, tag = "7")]
+    pub name: ::prost::alloc::string::String,
+    /// The major revision ID of the framework.
+    #[prost(int64, tag = "8")]
+    pub major_revision_id: i64,
+    /// The minor revision ID of the framework.
+    #[prost(int64, tag = "9")]
+    pub minor_revision_id: i64,
+    /// The target resource details for the framework.
+    #[prost(message, repeated, tag = "10")]
+    pub target_resource_details: ::prost::alloc::vec::Vec<TargetResourceDetails>,
+}
+/// The details for a finding.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FindingSummary {
+    /// The category of the finding.
+    #[prost(string, tag = "1")]
+    pub finding_category: ::prost::alloc::string::String,
+    /// The class of the finding.
+    #[prost(enumeration = "FindingClass", tag = "2")]
+    pub finding_class: i32,
+    /// The severity of the finding.
+    #[prost(enumeration = "Severity", tag = "3")]
+    pub severity: i32,
+    /// The count of the finding.
+    #[prost(int64, tag = "4")]
+    pub finding_count: i64,
+    /// Output only. The last updated time of the finding.
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. The list of compliance frameworks that the finding belongs to.
+    #[prost(string, repeated, tag = "6")]
+    pub related_frameworks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Identifier. The name of the finding summary.
+    #[prost(string, tag = "7")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The details for control compliance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ControlComplianceSummary {
+    /// The name of the control.
+    #[prost(string, tag = "1")]
+    pub control: ::prost::alloc::string::String,
+    /// The display name of the control.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// The description of the control.
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    /// Output only. The overall evaluation status of the control.
+    #[prost(enumeration = "EvaluationState", tag = "4")]
+    pub overall_evaluation_state: i32,
+    /// The total number of findings for the control.
+    #[prost(int32, tag = "5")]
+    pub total_findings_count: i32,
+    /// The list of compliance frameworks that the control belongs to.
+    #[prost(string, repeated, tag = "6")]
+    pub compliance_frameworks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// The list of similar controls.
+    #[prost(message, repeated, tag = "7")]
+    pub similar_controls: ::prost::alloc::vec::Vec<SimilarControls>,
+    /// The list of cloud control reports.
+    #[prost(message, repeated, tag = "8")]
+    pub cloud_control_reports: ::prost::alloc::vec::Vec<CloudControlReport>,
+    /// The responsibility type for the control.
+    #[prost(enumeration = "RegulatoryControlResponsibilityType", tag = "9")]
+    pub control_responsibility_type: i32,
+    /// Whether the control is a fake control. Fake controls are created
+    /// and mapped to cloud controls that don't belong to a control group.
+    #[prost(bool, tag = "10")]
+    pub is_fake_control: bool,
+    /// Identifier. The name of the control compliance summary.
+    #[prost(string, tag = "11")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The cloud control report.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CloudControlReport {
+    /// The name of the cloud control.
+    #[prost(string, tag = "1")]
+    pub cloud_control: ::prost::alloc::string::String,
+    /// The display name of the cloud control.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// The description of the cloud control.
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    /// The list of categories for the cloud control.
+    #[prost(string, repeated, tag = "6")]
+    pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// The list of similar controls.
+    #[prost(message, repeated, tag = "9")]
+    pub similar_controls: ::prost::alloc::vec::Vec<SimilarControls>,
+    /// The type of the cloud control.
+    #[prost(enumeration = "cloud_control::Type", tag = "10")]
+    pub cloud_control_type: i32,
+    /// The category of the finding.
+    #[prost(string, tag = "11")]
+    pub finding_category: ::prost::alloc::string::String,
+    /// The list of rules that correspond to the cloud control.
+    #[prost(message, repeated, tag = "12")]
+    pub rules: ::prost::alloc::vec::Vec<Rule>,
+    /// The severity of the finding.
+    #[prost(enumeration = "Severity", tag = "15")]
+    pub finding_severity: i32,
+    /// The enforcement mode of the cloud control.
+    #[prost(enumeration = "EnforcementMode", tag = "16")]
+    pub enforcement_mode: i32,
+    /// The name of the cloud control deployment.
+    #[prost(string, tag = "17")]
+    pub cloud_control_deployment: ::prost::alloc::string::String,
+    /// The major revision ID of the cloud control.
+    #[prost(int64, tag = "18")]
+    pub major_revision_id: i64,
+    /// The minor revision ID of the cloud control.
+    #[prost(int64, tag = "19")]
+    pub minor_revision_id: i64,
+    /// The major revision IDs of the frameworks that the cloud control belongs to.
+    #[prost(int64, repeated, tag = "20")]
+    pub framework_major_revision_ids: ::prost::alloc::vec::Vec<i64>,
+    /// The assessment details of the cloud control.
+    #[prost(oneof = "cloud_control_report::AssessmentDetails", tags = "13, 14")]
+    pub assessment_details: ::core::option::Option<
+        cloud_control_report::AssessmentDetails,
+    >,
+}
+/// Nested message and enum types in `CloudControlReport`.
+pub mod cloud_control_report {
+    /// The assessment details of the cloud control.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum AssessmentDetails {
+        /// The details of a manual cloud control assessment.
+        #[prost(message, tag = "13")]
+        ManualCloudControlAssessmentDetails(super::ManualCloudControlAssessmentDetails),
+        /// The details of a cloud control assessment.
+        #[prost(message, tag = "14")]
+        CloudControlAssessmentDetails(super::CloudControlAssessmentDetails),
+    }
+}
+/// The details for a manual cloud control assessment.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ManualCloudControlAssessmentDetails {
+    /// The guide for assessing a cloud control manually.
+    #[prost(string, repeated, tag = "1")]
+    pub manual_cloud_control_guide: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
+}
+/// The cloud control assessment details for non-manual cloud controls.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct CloudControlAssessmentDetails {
+    /// The number of findings for the cloud control.
+    #[prost(int32, tag = "1")]
+    pub findings_count: i32,
+    /// Output only. The evaluation status of the cloud control.
+    #[prost(enumeration = "EvaluationState", tag = "2")]
+    pub evaluation_state: i32,
+}
+/// The similar controls.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct SimilarControls {
+    /// The name of the framework.
+    #[prost(string, tag = "1")]
+    pub framework: ::prost::alloc::string::String,
+    /// The ID of the control.
+    #[prost(string, tag = "2")]
+    pub control_id: ::prost::alloc::string::String,
+}
+/// The aggregated compliance report.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AggregatedComplianceReport {
+    /// The control assessment details of the framework.
+    #[prost(message, optional, tag = "1")]
+    pub control_assessment_details: ::core::option::Option<ControlAssessmentDetails>,
+    /// The report time of the aggregated compliance report.
+    #[prost(message, optional, tag = "2")]
+    pub report_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// The details for a target resource.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct TargetResourceDetails {
+    /// The framework deployment name for the target resource.
+    ///
+    /// For example,
+    /// `organizations/{organization_id}/locations/{location}/frameworkDeployments/{framework_deployment_id}`
+    #[prost(string, tag = "1")]
+    pub framework_deployment: ::prost::alloc::string::String,
+    /// The display name of the target resource. For example, `google.com`,
+    /// `staging-project`, or `development-folder`.
+    #[prost(string, tag = "2")]
+    pub target_resource_display_name: ::prost::alloc::string::String,
+    /// The target resource. For example, `organizations/1234567890`,
+    /// `projects/1234567890`, or `folders/1234567890`.
+    #[prost(string, tag = "3")]
+    pub target_resource: ::prost::alloc::string::String,
+    /// The create time of the target resource.
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The update time of the target resource.
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The major revision ID of the framework for the target resource.
+    #[prost(int64, tag = "6")]
+    pub major_revision_id: i64,
+    /// The minor revision ID of the framework for the target resource.
+    #[prost(int64, tag = "7")]
+    pub minor_revision_id: i64,
+}
+/// The evaluation state of the control.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EvaluationState {
+    /// Default value. This value is unused.
+    Unspecified = 0,
+    /// The control is passing.
+    Passed = 1,
+    /// The control is failing.
+    Failed = 2,
+    /// The control is not assessed.
+    NotAssessed = 3,
+}
+impl EvaluationState {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "EVALUATION_STATE_UNSPECIFIED",
+            Self::Passed => "EVALUATION_STATE_PASSED",
+            Self::Failed => "EVALUATION_STATE_FAILED",
+            Self::NotAssessed => "EVALUATION_STATE_NOT_ASSESSED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EVALUATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "EVALUATION_STATE_PASSED" => Some(Self::Passed),
+            "EVALUATION_STATE_FAILED" => Some(Self::Failed),
+            "EVALUATION_STATE_NOT_ASSESSED" => Some(Self::NotAssessed),
+            _ => None,
+        }
+    }
+}
+/// A finding is a record of assessment data like security, risk, health, or
+/// privacy.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FindingClass {
+    /// Default value. This value is unused.
+    Unspecified = 0,
+    /// The activity is unwanted or malicious.
+    Threat = 1,
+    /// A potential weakness in software that increases risk to
+    /// confidentiality, integrity, and availability.
+    Vulnerability = 2,
+    /// A potential weakness in a cloud resource or asset configuration that
+    /// increases risk.
+    Misconfiguration = 3,
+    /// A security observation that is for informational purposes.
+    Observation = 4,
+    /// An error that prevents Security Command Center from functioning properly.
+    SccError = 5,
+    /// A potential security risk that's due to a change in the security
+    /// posture.
+    PostureViolation = 6,
+    /// A combination of security issues that represent a more severe
+    /// security problem when taken together.
+    ToxicCombination = 7,
+    /// A potential security risk to data assets that contain sensitive
+    /// data.
+    SensitiveDataRisk = 8,
+    /// A resource or resource group where high risk attack paths
+    /// converge, based on attack path simulations (APS).
+    Chokepoint = 9,
+}
+impl FindingClass {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "FINDING_CLASS_UNSPECIFIED",
+            Self::Threat => "THREAT",
+            Self::Vulnerability => "VULNERABILITY",
+            Self::Misconfiguration => "MISCONFIGURATION",
+            Self::Observation => "OBSERVATION",
+            Self::SccError => "SCC_ERROR",
+            Self::PostureViolation => "POSTURE_VIOLATION",
+            Self::ToxicCombination => "TOXIC_COMBINATION",
+            Self::SensitiveDataRisk => "SENSITIVE_DATA_RISK",
+            Self::Chokepoint => "CHOKEPOINT",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "FINDING_CLASS_UNSPECIFIED" => Some(Self::Unspecified),
+            "THREAT" => Some(Self::Threat),
+            "VULNERABILITY" => Some(Self::Vulnerability),
+            "MISCONFIGURATION" => Some(Self::Misconfiguration),
+            "OBSERVATION" => Some(Self::Observation),
+            "SCC_ERROR" => Some(Self::SccError),
+            "POSTURE_VIOLATION" => Some(Self::PostureViolation),
+            "TOXIC_COMBINATION" => Some(Self::ToxicCombination),
+            "SENSITIVE_DATA_RISK" => Some(Self::SensitiveDataRisk),
+            "CHOKEPOINT" => Some(Self::Chokepoint),
+            _ => None,
+        }
+    }
+}
+/// Generated client implementations.
+pub mod monitoring_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service describing handlers for resources
+    #[derive(Debug, Clone)]
+    pub struct MonitoringClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> MonitoringClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::Body>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> MonitoringClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            MonitoringClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists the framework compliance summary for a given scope.
+        pub async fn list_framework_compliance_summaries(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::ListFrameworkComplianceSummariesRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ListFrameworkComplianceSummariesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListFrameworkComplianceSummaries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudsecuritycompliance.v1.Monitoring",
+                        "ListFrameworkComplianceSummaries",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the finding summary by category for a given scope.
+        pub async fn list_finding_summaries(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFindingSummariesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListFindingSummariesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListFindingSummaries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudsecuritycompliance.v1.Monitoring",
+                        "ListFindingSummaries",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Fetches the framework compliance report for a given scope.
+        pub async fn fetch_framework_compliance_report(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::FetchFrameworkComplianceReportRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::FrameworkComplianceReport>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudsecuritycompliance.v1.Monitoring/FetchFrameworkComplianceReport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudsecuritycompliance.v1.Monitoring",
+                        "FetchFrameworkComplianceReport",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the control compliance summary for a given scope.
+        pub async fn list_control_compliance_summaries(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::ListControlComplianceSummariesRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::ListControlComplianceSummariesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListControlComplianceSummaries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudsecuritycompliance.v1.Monitoring",
+                        "ListControlComplianceSummaries",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the aggregated compliance report over time for a given scope.
+        pub async fn aggregate_framework_compliance_report(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::AggregateFrameworkComplianceReportRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::AggregateFrameworkComplianceReportResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.cloudsecuritycompliance.v1.Monitoring/AggregateFrameworkComplianceReport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.cloudsecuritycompliance.v1.Monitoring",
+                        "AggregateFrameworkComplianceReport",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}

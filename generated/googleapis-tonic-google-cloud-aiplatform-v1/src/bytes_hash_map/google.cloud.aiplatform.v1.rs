@@ -10637,6 +10637,10 @@ pub enum DeploymentStage {
     FinishingUp = 4,
     /// The deployment has terminated.
     DeploymentTerminated = 10,
+    /// The deployment has succeeded.
+    SuccessfullyDeployed = 11,
+    /// The deployment has failed.
+    FailedToDeploy = 12,
 }
 impl DeploymentStage {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10654,6 +10658,8 @@ impl DeploymentStage {
             Self::StartingModelServer => "STARTING_MODEL_SERVER",
             Self::FinishingUp => "FINISHING_UP",
             Self::DeploymentTerminated => "DEPLOYMENT_TERMINATED",
+            Self::SuccessfullyDeployed => "SUCCESSFULLY_DEPLOYED",
+            Self::FailedToDeploy => "FAILED_TO_DEPLOY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10668,6 +10674,8 @@ impl DeploymentStage {
             "STARTING_MODEL_SERVER" => Some(Self::StartingModelServer),
             "FINISHING_UP" => Some(Self::FinishingUp),
             "DEPLOYMENT_TERMINATED" => Some(Self::DeploymentTerminated),
+            "SUCCESSFULLY_DEPLOYED" => Some(Self::SuccessfullyDeployed),
+            "FAILED_TO_DEPLOY" => Some(Self::FailedToDeploy),
             _ => None,
         }
     }

@@ -732,10 +732,16 @@ pub struct CloudSqlInstanceBackupProperties {
     /// projects/{project}/instances/{instance}
     #[prost(string, tag = "4")]
     pub source_instance: ::prost::alloc::string::String,
+    /// Output only. The instance creation timestamp.
+    #[prost(message, optional, tag = "5")]
+    pub instance_create_time: ::core::option::Option<::prost_types::Timestamp>,
     /// Output only. The tier (or machine type) for this instance. Example:
     /// `db-custom-1-3840`
     #[prost(string, tag = "6")]
     pub instance_tier: ::prost::alloc::string::String,
+    /// Output only. The instance delete timestamp.
+    #[prost(message, optional, tag = "8")]
+    pub instance_delete_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// CloudSqlInstanceDataSourceReferenceProperties represents the properties of a
 /// Cloud SQL resource that are stored in the DataSourceReference.
@@ -3730,6 +3736,9 @@ pub struct Backup {
     /// Configuration Info has the resource format-specific configuration.
     #[prost(oneof = "backup::PlanInfo", tags = "22")]
     pub plan_info: ::core::option::Option<backup::PlanInfo>,
+    /// Resource that is being backed up.
+    #[prost(oneof = "backup::SourceResource", tags = "31")]
+    pub source_resource: ::core::option::Option<backup::SourceResource>,
 }
 /// Nested message and enum types in `Backup`.
 pub mod backup {
@@ -3883,6 +3892,14 @@ pub mod backup {
         #[prost(message, tag = "22")]
         GcpBackupPlanInfo(GcpBackupPlanInfo),
     }
+    /// Resource that is being backed up.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum SourceResource {
+        /// Output only. Unique identifier of the GCP resource that is being backed
+        /// up.
+        #[prost(message, tag = "31")]
+        GcpResource(super::BackupGcpResource),
+    }
 }
 /// Message for creating a BackupVault.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4011,6 +4028,59 @@ pub struct FetchUsableBackupVaultsResponse {
     /// Locations that could not be reached.
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Request for the FetchBackupsForResourceType method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FetchBackupsForResourceTypeRequest {
+    /// Required. Datasources are the parent resource for the backups.
+    /// Format:
+    /// projects/{project}/locations/{location}/backupVaults/{backupVaultId}/dataSources/{datasourceId}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The type of the GCP resource.
+    /// Ex: sqladmin.googleapis.com/Instance
+    #[prost(string, tag = "2")]
+    pub resource_type: ::prost::alloc::string::String,
+    /// Optional. The maximum number of Backups to return. The service may
+    /// return fewer than this value. If unspecified, at most 50
+    /// Backups will be returned. The maximum value is 100; values
+    /// above 100 will be coerced to 100.
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    /// Optional. A page token, received from a previous call of
+    /// `FetchBackupsForResourceType`.
+    /// Provide this to retrieve the subsequent page.
+    ///
+    /// When paginating, all other parameters provided to
+    /// `FetchBackupsForResourceType` must match
+    /// the call that provided the page token.
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. A filter expression that filters the results fetched in the
+    /// response. The expression must specify the field name, a comparison
+    /// operator, and the value that you want to use for filtering. Supported
+    /// fields:
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. A comma-separated list of fields to order by, sorted in ascending
+    /// order. Use "desc" after a field name for descending.
+    #[prost(string, tag = "6")]
+    pub order_by: ::prost::alloc::string::String,
+    /// Optional. This parameter is used to specify the view of the backup.
+    /// If not specified, the default view is BASIC.
+    #[prost(enumeration = "BackupView", tag = "7")]
+    pub view: i32,
+}
+/// Response for the FetchBackupsForResourceType method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FetchBackupsForResourceTypeResponse {
+    /// The Backups from the specified parent.
+    #[prost(message, repeated, tag = "1")]
+    pub backups: ::prost::alloc::vec::Vec<Backup>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request message for getting a BackupVault.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -4404,6 +4474,20 @@ pub struct GcpResource {
     #[prost(string, tag = "3")]
     pub r#type: ::prost::alloc::string::String,
 }
+/// Minimum details to identify a Google Cloud resource for a backup.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BackupGcpResource {
+    /// Name of the Google Cloud resource.
+    #[prost(string, tag = "1")]
+    pub gcp_resourcename: ::prost::alloc::string::String,
+    /// Location of the resource: <region>/<zone>/"global"/"unspecified".
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
+    /// Type of the resource. Use the Unified Resource Type,
+    /// eg. compute.googleapis.com/Instance.
+    #[prost(string, tag = "3")]
+    pub r#type: ::prost::alloc::string::String,
+}
 /// Backup configuration state. Is the resource configured for backup?
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -4537,6 +4621,10 @@ pub struct DataSourceReference {
     /// Output only. The GCP resource that the DataSource is associated with.
     #[prost(message, optional, tag = "7")]
     pub data_source_gcp_resource_info: ::core::option::Option<DataSourceGcpResourceInfo>,
+    /// Output only. Total size of the storage used by all backup resources for the
+    /// referenced datasource.
+    #[prost(int64, optional, tag = "8")]
+    pub total_stored_bytes: ::core::option::Option<i64>,
 }
 /// Information of backup configuration on the DataSource.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
@@ -4589,6 +4677,58 @@ pub struct GetDataSourceReferenceRequest {
     /// projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// Request for the ListDataSourceReferences method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListDataSourceReferencesRequest {
+    /// Required. The parent resource name.
+    /// Format: projects/{project}/locations/{location}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The maximum number of DataSourceReferences to return. The service
+    /// may return fewer than this value. If unspecified, at most 50
+    /// DataSourceReferences will be returned. The maximum value is 100; values
+    /// above 100 will be coerced to 100.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A page token, received from a previous `ListDataSourceReferences`
+    /// call. Provide this to retrieve the subsequent page.
+    ///
+    /// When paginating, all other parameters provided to
+    /// `ListDataSourceReferences` must match the call that provided the page
+    /// token.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. A filter expression that filters the results listed in the
+    /// response. The expression must specify the field name, a comparison
+    /// operator, and the value that you want to use for filtering.
+    ///
+    /// The following field and operator combinations are supported:
+    ///
+    /// * data_source_gcp_resource_info.gcp_resourcename with `=`, `!=`
+    /// * data_source_gcp_resource_info.type with `=`, `!=`
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. A comma-separated list of fields to order by, sorted in ascending
+    /// order. Use "desc" after a field name for descending.
+    ///
+    /// Supported fields:
+    ///
+    /// * data_source
+    /// * data_source_gcp_resource_info.gcp_resourcename
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+}
+/// Response for the ListDataSourceReferences method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListDataSourceReferencesResponse {
+    /// The DataSourceReferences from the specified parent.
+    #[prost(message, repeated, tag = "1")]
+    pub data_source_references: ::prost::alloc::vec::Vec<DataSourceReference>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Request for the FetchDataSourceReferencesForResourceType method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -5615,6 +5755,36 @@ pub mod backup_dr_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Fetch Backups for a given resource type.
+        pub async fn fetch_backups_for_resource_type(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchBackupsForResourceTypeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::FetchBackupsForResourceTypeResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.backupdr.v1.BackupDR/FetchBackupsForResourceType",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.backupdr.v1.BackupDR",
+                        "FetchBackupsForResourceType",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Gets details of a Backup.
         pub async fn get_backup(
             &mut self,
@@ -6159,6 +6329,36 @@ pub mod backup_dr_client {
                     GrpcMethod::new(
                         "google.cloud.backupdr.v1.BackupDR",
                         "GetDataSourceReference",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists DataSourceReferences for a given project and location.
+        pub async fn list_data_source_references(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDataSourceReferencesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListDataSourceReferencesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.backupdr.v1.BackupDR/ListDataSourceReferences",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.backupdr.v1.BackupDR",
+                        "ListDataSourceReferences",
                     ),
                 );
             self.inner.unary(req, path, codec).await

@@ -2337,7 +2337,7 @@ pub mod dedicated_resources {
         #[prost(message, optional, tag = "1")]
         pub min_scaleup_period: ::core::option::Option<::prost_types::Duration>,
         /// Optional. Duration of no traffic before scaling to zero.
-        /// \[MinValue=3600\] (5 minutes)
+        /// \[MinValue=300\] (5 minutes)
         /// \[MaxValue=28800\] (8 hours)
         #[prost(message, optional, tag = "2")]
         pub idle_scaledown_period: ::core::option::Option<::prost_types::Duration>,
@@ -12233,6 +12233,10 @@ pub enum DeploymentStage {
     FinishingUp = 4,
     /// The deployment has terminated.
     DeploymentTerminated = 10,
+    /// The deployment has succeeded.
+    SuccessfullyDeployed = 11,
+    /// The deployment has failed.
+    FailedToDeploy = 12,
 }
 impl DeploymentStage {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12250,6 +12254,8 @@ impl DeploymentStage {
             Self::StartingModelServer => "STARTING_MODEL_SERVER",
             Self::FinishingUp => "FINISHING_UP",
             Self::DeploymentTerminated => "DEPLOYMENT_TERMINATED",
+            Self::SuccessfullyDeployed => "SUCCESSFULLY_DEPLOYED",
+            Self::FailedToDeploy => "FAILED_TO_DEPLOY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -12264,6 +12270,8 @@ impl DeploymentStage {
             "STARTING_MODEL_SERVER" => Some(Self::StartingModelServer),
             "FINISHING_UP" => Some(Self::FinishingUp),
             "DEPLOYMENT_TERMINATED" => Some(Self::DeploymentTerminated),
+            "SUCCESSFULLY_DEPLOYED" => Some(Self::SuccessfullyDeployed),
+            "FAILED_TO_DEPLOY" => Some(Self::FailedToDeploy),
             _ => None,
         }
     }
@@ -40139,12 +40147,18 @@ pub struct NotebookRuntimeTemplateRef {
     #[prost(string, tag = "1")]
     pub notebook_runtime_template: ::prost::alloc::string::String,
 }
+/// Post-startup script config.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct PostStartupScriptConfig {
+    /// Optional. Post-startup script to run after runtime is started.
     #[prost(string, tag = "1")]
     pub post_startup_script: ::prost::alloc::string::String,
+    /// Optional. Post-startup script url to download. Example:
+    /// <https://bucket/script.sh>
     #[prost(string, tag = "2")]
     pub post_startup_script_url: ::prost::alloc::string::String,
+    /// Optional. Post-startup script behavior that defines download and execution
+    /// behavior.
     #[prost(
         enumeration = "post_startup_script_config::PostStartupScriptBehavior",
         tag = "3"
@@ -40153,6 +40167,7 @@ pub struct PostStartupScriptConfig {
 }
 /// Nested message and enum types in `PostStartupScriptConfig`.
 pub mod post_startup_script_config {
+    /// Represents a notebook runtime post-startup script behavior.
     #[derive(
         Clone,
         Copy,
@@ -40166,9 +40181,14 @@ pub mod post_startup_script_config {
     )]
     #[repr(i32)]
     pub enum PostStartupScriptBehavior {
+        /// Unspecified post-startup script behavior.
         Unspecified = 0,
+        /// Run the post-startup script only once, during runtime creation.
         RunOnce = 1,
+        /// Run the post-startup script after every start.
         RunEveryStart = 2,
+        /// After every start, download the post-startup script from its source and
+        /// run it.
         DownloadAndRunEveryStart = 3,
     }
     impl PostStartupScriptBehavior {
@@ -40217,6 +40237,7 @@ pub struct NotebookSoftwareConfig {
     /// Maximum limit is 100.
     #[prost(message, repeated, tag = "1")]
     pub env: ::prost::alloc::vec::Vec<EnvVar>,
+    /// Optional. Post-startup script config.
     #[prost(message, optional, tag = "2")]
     pub post_startup_script_config: ::core::option::Option<PostStartupScriptConfig>,
     /// The image to be used by the notebook runtime.
@@ -47556,10 +47577,6 @@ pub struct EventActions {
         ::prost::alloc::string::String,
         i32,
     >,
-    /// Deprecated. If set, the event transfers to the specified agent.
-    #[deprecated]
-    #[prost(bool, tag = "5")]
-    pub transfer_to_agent: bool,
     /// Optional. The agent is escalating to a higher level agent.
     #[prost(bool, tag = "6")]
     pub escalate: bool,
@@ -47629,8 +47646,9 @@ pub struct ListSessionsRequest {
     /// Optional. The standard list filter.
     /// Supported fields:
     /// \* `display_name`
+    /// \* `user_id`
     ///
-    /// Example: `display_name=abc`.
+    /// Example: `display_name="abc"`, `user_id="123"`.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. A comma-separated list of fields to order by, sorted in ascending
@@ -47710,6 +47728,14 @@ pub struct ListEventsRequest {
     /// More detail in [AIP-160](<https://google.aip.dev/160>).
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
+    /// Optional. A comma-separated list of fields to order by, sorted in ascending
+    /// order. Use "desc" after a field name for descending. Supported fields:
+    ///
+    /// * `timestamp`
+    ///
+    /// Example: `timestamp desc`.
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 /// Response message for
 /// \[SessionService.ListEvents\]\[google.cloud.aiplatform.v1beta1.SessionService.ListEvents\].
