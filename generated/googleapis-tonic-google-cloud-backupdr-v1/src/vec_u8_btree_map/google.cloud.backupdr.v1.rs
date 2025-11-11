@@ -4729,6 +4729,9 @@ pub struct ListDataSourceReferencesResponse {
     /// If this field is omitted, there are no subsequent pages.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Locations that could not be reached.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Request for the FetchDataSourceReferencesForResourceType method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]

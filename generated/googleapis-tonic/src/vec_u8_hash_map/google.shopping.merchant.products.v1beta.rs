@@ -95,7 +95,7 @@ pub struct Attributes {
     #[deprecated]
     #[prost(string, repeated, tag = "26")]
     pub gtin: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Global Trade Item Numbers
+    /// A list of Global Trade Item Numbers
     /// ([GTIN](<https://support.google.com/merchants/answer/188494#gtin>)) of the
     /// item.
     /// You can provide up to 10 GTINs.
@@ -253,7 +253,7 @@ pub struct Attributes {
     /// The number of identical products in a business-defined multipack.
     #[prost(int64, optional, tag = "58")]
     pub multipack: ::core::option::Option<i64>,
-    /// Used to group items in an arbitrary way. Only for CPA%, discouraged
+    /// Used to group items in an arbitrary way. Only for CPA, discouraged
     /// otherwise. For more information, see
     /// [Display ads
     /// attribute](<https://support.google.com/merchants/answer/6069387>).
@@ -338,6 +338,9 @@ pub struct Attributes {
     /// custom grouping of items in a Shopping campaign.
     #[prost(string, optional, tag = "75")]
     pub custom_label_4: ::core::option::Option<::prost::alloc::string::String>,
+    /// Destinations also known as [Marketing
+    /// methods](<https://support.google.com/merchants/answer/15130232>) selections.
+    ///
     /// The list of destinations to include for this target (corresponds to
     /// checked check boxes in Merchant Center). Default destinations are always
     /// included unless provided in `excludedDestinations`.
@@ -350,6 +353,9 @@ pub struct Attributes {
     /// cases. Use this field within products to only setup exceptions.
     #[prost(string, repeated, tag = "76")]
     pub included_destinations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Destinations also known as [Marketing
+    /// methods](<https://support.google.com/merchants/answer/15130232>) selections.
+    ///
     /// The list of destinations to exclude for this target (corresponds to
     /// unchecked check boxes in Merchant Center).
     ///
@@ -409,10 +415,10 @@ pub struct Attributes {
     pub structured_description: ::core::option::Option<ProductStructuredDescription>,
     /// A safeguard in the \[automated discounts\]
     /// (<https://support.google.com/merchants/answer/10295759>) and
-    /// "Dynamic Promotions"
-    /// (<https://support.google.com/merchants/answer/13949249>) projects,
-    /// ensuring that discounts on business offers do not fall below this value,
-    /// thereby preserving the offer's value and profitability.
+    /// ["dynamic
+    /// promotions"](<https://support.google.com/merchants/answer/13949249>)
+    /// projects, ensuring that discounts on business offers do not fall below this
+    /// value, thereby preserving the offer's value and profitability.
     #[prost(message, optional, tag = "124")]
     pub auto_pricing_min_price: ::core::option::Option<
         super::super::super::r#type::Price,
@@ -668,6 +674,20 @@ pub struct Shipping {
     /// is present.
     #[prost(int64, optional, tag = "11")]
     pub max_transit_time: ::core::option::Option<i64>,
+    /// The handling cutoff time until which an order has to be placed to be
+    /// processed in the same day. This is a string in format of HHMM (e.g.
+    /// `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted
+    /// to 8AM PST and `handling_cutoff_timezone` will be ignored.
+    #[prost(string, optional, tag = "12")]
+    pub handling_cutoff_time: ::core::option::Option<::prost::alloc::string::String>,
+    /// [Timezone
+    /// identifier](<https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids>)
+    /// For example `Europe/Zurich`. This field only applies if
+    /// `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this
+    /// field is not set, the shipping destination timezone will be used. If both
+    /// fields are not set, the handling cutoff time will default to 8AM PST.
+    #[prost(string, optional, tag = "13")]
+    pub handling_cutoff_timezone: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Conditions to be met for a product to have free shipping.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -1116,10 +1136,14 @@ impl SubscriptionPeriod {
 pub struct ProductInput {
     /// Identifier. The name of the product input.
     /// Format: `accounts/{account}/productInputs/{productinput}`
-    /// where the last section `productinput` consists of 4 parts:
-    /// `channel~content_language~feed_label~offer_id`
+    /// where the last section `productinput` consists of:
+    /// `content_language~feed_label~offer_id`
     /// example for product input name is
-    /// `accounts/123/productInputs/online~en~US~sku123`
+    /// `accounts/123/productInputs/en~US~sku123`. A legacy local product input
+    /// name would be `accounts/123/productInputs/local~en~US~sku123`.
+    /// Note: For calls to the v1beta version, the `productInput` section consists
+    /// of: `channel~content_language~feed_label~offer_id`, for example:
+    /// `accounts/123/productInputs/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The name of the processed product.
@@ -1147,8 +1171,8 @@ pub struct ProductInput {
     /// product.
     #[prost(string, tag = "5")]
     pub content_language: ::prost::alloc::string::String,
-    /// Required. Immutable. The label that lets you categorize and identify your
-    /// products. The maximum allowed characters are 20, and the supported
+    /// Required. Immutable. The feed label that lets you categorize and identify
+    /// your products. The maximum allowed characters are 20, and the supported
     /// characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
     /// not include any spaces. For more information, see [Using feed
     /// labels](//support.google.com/merchants/answer/14994087).
@@ -1203,8 +1227,8 @@ pub struct InsertProductInputRequest {
     /// Required. The primary or supplemental product data source name. If the
     /// product already exists and data source provided is different, then the
     /// product will be moved to a new data source. For more information, see
-    /// [Overview of Data sources
-    /// sub-API](/merchant/api/guides/data-sources/overview).
+    /// [Create a primary data
+    /// source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
     ///
     /// Only API data sources are supported.
     ///
@@ -1249,16 +1273,29 @@ pub struct UpdateProductInputRequest {
     /// `accounts/123456/dataSources/104628`.
     #[prost(string, tag = "3")]
     pub data_source: ::prost::alloc::string::String,
+    /// Optional. If true, the `{productInput}` in the `name` field of the request
+    /// will be interpreted as unpadded base64url-encoded and decoded during
+    /// request processing to match the decoded value. Default value is `false`.
+    /// Use this if your `{productInput}` contains special characters, such as
+    /// forward slash
+    /// `/` or other characters that are unpadded base64url-encoded (as per RFC
+    /// 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "4")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Request message for the DeleteProductInput method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteProductInputRequest {
     /// Required. The name of the product input resource to delete.
     /// Format: `accounts/{account}/productInputs/{product}`
-    /// where the last section `product` consists of 4 parts:
-    /// `channel~content_language~feed_label~offer_id`
+    /// where the last section `product` consists of:
+    /// `content_language~feed_label~offer_id`
     /// example for product name is
-    /// `accounts/123/productInputs/online~en~US~sku123`.
+    /// `accounts/123/productInputs/en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The primary or supplemental data source from which the product
@@ -1267,6 +1304,19 @@ pub struct DeleteProductInputRequest {
     /// `accounts/123456/dataSources/104628`.
     #[prost(string, tag = "2")]
     pub data_source: ::prost::alloc::string::String,
+    /// Optional. If true, the `{productInput}` in the `name` field of the request
+    /// will be interpreted as unpadded base64url-encoded and decoded during
+    /// request processing to match the decoded value. Default value is `false`.
+    /// Use this if your `{productInput}` contains special characters, such as
+    /// forward slash
+    /// `/` or other characters that are unpadded base64url-encoded (as per RFC
+    /// 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "3")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Generated client implementations.
 pub mod product_inputs_service_client {
@@ -1280,7 +1330,6 @@ pub mod product_inputs_service_client {
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Service to use ProductInput resource.
-    /// This service works for products with online channel only.
     #[derive(Debug, Clone)]
     pub struct ProductInputsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1351,13 +1400,15 @@ pub mod product_inputs_service_client {
             self
         }
         /// [Uploads a product input to your Merchant Center
-        /// account](/merchant/api/guides/products/overview#upload-product-input). You
-        /// must have a products data source to be able to insert a product. The unique
-        /// identifier of the data source is passed as a query parameter in the request
-        /// URL.
+        /// account](/merchant/api/guides/products/add-manage#add_a_product). You
+        /// must have a products [data
+        /// source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source)
+        /// to be able to insert a product. The unique identifier of the data source is
+        /// passed as a query parameter in the request URL.
         ///
-        /// If an input with the same contentLanguage, offerId, and dataSource already
-        /// exists, this method replaces that entry.
+        /// If a product input with the same contentLanguage, offerId, and dataSource
+        /// already exists, then the product input inserted by this method replaces
+        /// that entry.
         ///
         /// After inserting, updating, or deleting a product input, it may take several
         /// minutes before the processed product can be retrieved.
@@ -1467,9 +1518,13 @@ pub struct Product {
     /// The name of the product.
     /// Format:
     /// `accounts/{account}/products/{product}` where the last
-    /// section `product` consists of 4 parts:
-    /// `channel~content_language~feed_label~offer_id`
-    /// example for product name is `accounts/123/products/online~en~US~sku123`
+    /// section `product` consists of:
+    /// `content_language~feed_label~offer_id`
+    /// example for product name is `accounts/123/products/en~US~sku123`. A legacy
+    /// local product name would be `accounts/123/products/local~en~US~sku123`.
+    /// Note: For calls to the v1beta version, the `product` section consists
+    /// of: `channel~content_language~feed_label~offer_id`, for example:
+    /// `accounts/123/products/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The
@@ -1543,13 +1598,29 @@ pub struct Product {
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetProductRequest {
     /// Required. The name of the product to retrieve.
-    /// Format: `accounts/{account}/products/{product}`
-    /// where the last section `product` consists of 4 parts:
-    /// `channel~content_language~feed_label~offer_id`
-    /// example for product name is
-    /// `accounts/123/products/online~en~US~sku123`
+    /// Format:
+    /// `accounts/{account}/products/{product}` where the last
+    /// section `product` consists of:
+    /// `content_language~feed_label~offer_id`
+    /// example for product name is `accounts/123/products/en~US~sku123`. A legacy
+    /// local product name would be `accounts/123/products/local~en~US~sku123`.
+    /// Note: For calls to the v1beta version, the `product` section consists
+    /// of: `channel~content_language~feed_label~offer_id`, for example:
+    /// `accounts/123/products/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If true, the `{product}` in the `name` field of the request will
+    /// be interpreted as unpadded base64url-encoded and decoded during request
+    /// processing to match the decoded value. Default value is `false`. Use this
+    /// if your `{product}` contains special characters, such as forward slash `/`
+    /// or other characters that are unpadded base64url-encoded (as per RFC 7515:
+    /// <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "2")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Request message for the ListProducts method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -1561,7 +1632,7 @@ pub struct ListProductsRequest {
     /// The maximum number of products to return. The service may return fewer than
     /// this value.
     /// The maximum value is 1000; values above 1000 will be coerced to 1000.
-    /// If unspecified, the maximum number of products will be returned.
+    /// If unspecified, the default page size of 25 products will be returned.
     #[prost(int32, tag = "2")]
     pub page_size: i32,
     /// A page token, received from a previous `ListProducts` call.

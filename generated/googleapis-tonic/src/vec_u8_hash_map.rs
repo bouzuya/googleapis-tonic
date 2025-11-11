@@ -187,6 +187,7 @@
     feature = "google-cloud-connectors-v1",
     feature = "google-cloud-contactcenterinsights-v1",
     feature = "google-cloud-contentwarehouse-v1",
+    feature = "google-cloud-databasecenter-v1beta",
     feature = "google-cloud-datacatalog-lineage-v1",
     feature = "google-cloud-datacatalog-v1",
     feature = "google-cloud-datacatalog-v1beta1",
@@ -419,6 +420,7 @@
     feature = "google-cloud-translation-v3",
     feature = "google-cloud-translation-v3beta1",
     feature = "google-cloud-universalledger-v1",
+    feature = "google-cloud-vectorsearch-v1beta",
     feature = "google-cloud-video-livestream-logging-v1",
     feature = "google-cloud-video-livestream-v1",
     feature = "google-cloud-video-stitcher-v1",
@@ -1062,6 +1064,7 @@ pub mod google {
         feature = "google-cloud-connectors-v1",
         feature = "google-cloud-contactcenterinsights-v1",
         feature = "google-cloud-contentwarehouse-v1",
+        feature = "google-cloud-databasecenter-v1beta",
         feature = "google-cloud-datacatalog-lineage-v1",
         feature = "google-cloud-datacatalog-v1",
         feature = "google-cloud-datacatalog-v1beta1",
@@ -1294,6 +1297,7 @@ pub mod google {
         feature = "google-cloud-translation-v3",
         feature = "google-cloud-translation-v3beta1",
         feature = "google-cloud-universalledger-v1",
+        feature = "google-cloud-vectorsearch-v1beta",
         feature = "google-cloud-video-livestream-logging-v1",
         feature = "google-cloud-video-livestream-v1",
         feature = "google-cloud-video-stitcher-v1",
@@ -2991,6 +2995,20 @@ pub mod google {
                     feature = "google-cloud-advisorynotifications-v1",
                 ))]
                 include!("vec_u8_hash_map/google.cloud.advisorynotifications.v1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-databasecenter-v1beta",
+        ))]
+        pub mod databasecenter {
+            #[cfg(any(
+                feature = "google-cloud-databasecenter-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-databasecenter-v1beta",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.databasecenter.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -5544,6 +5562,20 @@ pub mod google {
                 feature = "google-cloud-location",
             ))]
             include!("vec_u8_hash_map/google.cloud.location.rs");
+        }
+        #[cfg(any(
+            feature = "google-cloud-vectorsearch-v1beta",
+        ))]
+        pub mod vectorsearch {
+            #[cfg(any(
+                feature = "google-cloud-vectorsearch-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-cloud-vectorsearch-v1beta",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.vectorsearch.v1beta.rs");
+            }
         }
         #[cfg(any(
             feature = "google-cloud-contactcenterinsights-v1",

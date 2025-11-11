@@ -365,6 +365,18 @@ pub struct ListLocalInventoriesRequest {
     /// in the response to the previous request.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, the `{product}` in the `parent` field of the request
+    /// will be interpreted as unpadded base64url-encoded and decoded during
+    /// request processing to match the decoded value. Default value is `false`.
+    /// Use this if your `{product}` contains special characters, such as forward
+    /// slash `/` or other characters that are unpadded base64url-encoded (as per
+    /// RFC 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "4")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Response message for the `ListLocalInventories` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -390,6 +402,18 @@ pub struct InsertLocalInventoryRequest {
     /// replacement of the `LocalInventory` resource is performed.
     #[prost(message, optional, tag = "2")]
     pub local_inventory: ::core::option::Option<LocalInventory>,
+    /// Optional. If true, the `{product}` in the `parent` field of the request
+    /// will be interpreted as unpadded base64url-encoded and decoded during
+    /// request processing to match the decoded value. Default value is `false`.
+    /// Use this if your `{product}` contains special characters, such as forward
+    /// slash `/` or other characters that are unpadded base64url-encoded (as per
+    /// RFC 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "3")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Request message for the `DeleteLocalInventory` method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -399,6 +423,18 @@ pub struct DeleteLocalInventoryRequest {
     /// `accounts/{account}/products/{product}/localInventories/{store_code}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If true, the `{product}` in the `name` field of the request will
+    /// be interpreted as unpadded base64url-encoded and decoded during request
+    /// processing to match the decoded value. Default value is `false`. Use this
+    /// if your `{product}` contains special characters, such as forward slash `/`
+    /// or other characters that are unpadded base64url-encoded (as per RFC 7515:
+    /// <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "2")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Generated client implementations.
 pub mod local_inventory_service_client {
@@ -636,6 +672,18 @@ pub struct ListRegionalInventoriesRequest {
     /// in the response to the previous request.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
+    /// Optional. If true, the `{product}` in the `parent` field of the request
+    /// will be interpreted as unpadded base64url-encoded and decoded during
+    /// request processing to match the decoded value. Default value is `false`.
+    /// Use this if your `{product}` contains special characters, such as forward
+    /// slash `/` or other characters that are unpadded base64url-encoded (as per
+    /// RFC 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "4")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Response message for the `ListRegionalInventories` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -661,6 +709,18 @@ pub struct InsertRegionalInventoryRequest {
     /// full replacement of the `RegionalInventory` resource is performed.
     #[prost(message, optional, tag = "2")]
     pub regional_inventory: ::core::option::Option<RegionalInventory>,
+    /// Optional. If true, the `{product}` in the `parent` field of the request
+    /// will be interpreted as unpadded base64url-encoded and decoded during
+    /// request processing to match the decoded value. Default value is `false`.
+    /// Use this if your `{product}` contains special characters, such as forward
+    /// slash `/` or other characters that are unpadded base64url-encoded (as per
+    /// RFC 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "3")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Request message for the `DeleteRegionalInventory` method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -670,6 +730,18 @@ pub struct DeleteRegionalInventoryRequest {
     /// `accounts/{account}/products/{product}/regionalInventories/{region}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If true, the `{product}` in the `name` field of the request will
+    /// be interpreted as unpadded base64url-encoded and decoded during request
+    /// processing to match the decoded value. Default value is `false`. Use this
+    /// if your `{product}` contains special characters, such as forward slash `/`
+    /// or other characters that are unpadded base64url-encoded (as per RFC 7515:
+    /// <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
+    ///
+    /// Note that future versions of the API will only accept unpadded
+    /// base64url-encoded product ids, so we strongly recommend proactively setting
+    /// this to `true` and encoding the product ids.
+    #[prost(bool, tag = "2")]
+    pub product_id_base64_url_encoded: bool,
 }
 /// Generated client implementations.
 pub mod regional_inventory_service_client {

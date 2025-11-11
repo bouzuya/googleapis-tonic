@@ -153,6 +153,19 @@ pub struct MobileData {
     #[prost(string, repeated, tag = "1")]
     pub mobile_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
+/// A bucket of any [event parameters related to an
+/// item](<https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events>)
+/// to be included within the event that were not already specified using other
+/// structured fields.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ItemParameter {
+    /// Required. The name of the parameter to use.
+    #[prost(string, tag = "1")]
+    pub parameter_name: ::prost::alloc::string::String,
+    /// Required. The string representation of the value of the parameter to set.
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+}
 /// The cart data associated with the event.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CartData {
@@ -187,6 +200,15 @@ pub struct Item {
     /// discounts.
     #[prost(double, tag = "3")]
     pub unit_price: f64,
+    /// Optional. A unique identifier to reference the item.
+    #[prost(string, tag = "4")]
+    pub item_id: ::prost::alloc::string::String,
+    /// Optional. A bucket of any [event parameters related to an
+    /// item](<https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events>)
+    /// to be included within the event that were not already specified using other
+    /// structured fields.
+    #[prost(message, repeated, tag = "5")]
+    pub additional_item_parameters: ::prost::alloc::vec::Vec<ItemParameter>,
 }
 /// The Google product you're sending data to. For example, a Google
 /// Ads account.
@@ -269,6 +291,8 @@ pub mod product_account {
         DisplayVideoAdvertiser = 3,
         /// Data Partner.
         DataPartner = 4,
+        /// Google Analytics.
+        GoogleAnalyticsProperty = 5,
     }
     impl AccountType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -282,6 +306,7 @@ pub mod product_account {
                 Self::DisplayVideoPartner => "DISPLAY_VIDEO_PARTNER",
                 Self::DisplayVideoAdvertiser => "DISPLAY_VIDEO_ADVERTISER",
                 Self::DataPartner => "DATA_PARTNER",
+                Self::GoogleAnalyticsProperty => "GOOGLE_ANALYTICS_PROPERTY",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -292,6 +317,7 @@ pub mod product_account {
                 "DISPLAY_VIDEO_PARTNER" => Some(Self::DisplayVideoPartner),
                 "DISPLAY_VIDEO_ADVERTISER" => Some(Self::DisplayVideoAdvertiser),
                 "DATA_PARTNER" => Some(Self::DataPartner),
+                "GOOGLE_ANALYTICS_PROPERTY" => Some(Self::GoogleAnalyticsProperty),
                 _ => None,
             }
         }
@@ -365,7 +391,7 @@ pub struct DeviceInfo {
 pub struct EncryptionInfo {
     /// The [wrapped key](//cloud.google.com/kms/docs/key-wrapping) used to encrypt
     /// the data.
-    #[prost(oneof = "encryption_info::WrappedKey", tags = "1")]
+    #[prost(oneof = "encryption_info::WrappedKey", tags = "1, 2")]
     pub wrapped_key: ::core::option::Option<encryption_info::WrappedKey>,
 }
 /// Nested message and enum types in `EncryptionInfo`.
@@ -377,6 +403,9 @@ pub mod encryption_info {
         /// Google Cloud Platform wrapped key information.
         #[prost(message, tag = "1")]
         GcpWrappedKeyInfo(super::GcpWrappedKeyInfo),
+        /// Amazon Web Services wrapped key information.
+        #[prost(message, tag = "2")]
+        AwsWrappedKeyInfo(super::AwsWrappedKeyInfo),
     }
 }
 /// Information about the Google Cloud Platform wrapped
@@ -403,6 +432,67 @@ pub struct GcpWrappedKeyInfo {
 }
 /// Nested message and enum types in `GcpWrappedKeyInfo`.
 pub mod gcp_wrapped_key_info {
+    /// The type of algorithm used to encrypt the data.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum KeyType {
+        /// Unspecified key type. Should never be used.
+        Unspecified = 0,
+        /// Algorithm XChaCha20-Poly1305
+        Xchacha20Poly1305 = 1,
+    }
+    impl KeyType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "KEY_TYPE_UNSPECIFIED",
+                Self::Xchacha20Poly1305 => "XCHACHA20_POLY1305",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "KEY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "XCHACHA20_POLY1305" => Some(Self::Xchacha20Poly1305),
+                _ => None,
+            }
+        }
+    }
+}
+/// A data encryption key wrapped by an AWS KMS key.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AwsWrappedKeyInfo {
+    /// Required. The type of algorithm used to encrypt the data.
+    #[prost(enumeration = "aws_wrapped_key_info::KeyType", tag = "1")]
+    pub key_type: i32,
+    /// Required. The Amazon Resource Name of the IAM Role to assume for KMS
+    /// decryption access. Should be in the format of
+    /// "arn:{partition}:iam::{account_id}:role/{role_name}"
+    #[prost(string, tag = "2")]
+    pub role_arn: ::prost::alloc::string::String,
+    /// Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in
+    /// the format of "arn:{partition}:kms:{region}:{account_id}:key/{key_id}"
+    #[prost(string, tag = "3")]
+    pub kek_uri: ::prost::alloc::string::String,
+    /// Required. The base64 encoded encrypted data encryption key.
+    #[prost(string, tag = "4")]
+    pub encrypted_dek: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `AwsWrappedKeyInfo`.
+pub mod aws_wrapped_key_info {
     /// The type of algorithm used to encrypt the data.
     #[derive(
         Clone,
@@ -524,12 +614,40 @@ pub enum ErrorReason {
     DestinationAccountEnhancedConversionsTermsNotSigned = 35,
     /// Two or more destinations in the request have the same reference.
     DuplicateDestinationReference = 36,
+    /// Unsupported operating account for data partner authorization.
+    UnsupportedOperatingAccountForDataPartner = 37,
+    /// Unsupported linked account for data partner authorization.
+    UnsupportedLinkedAccountForDataPartner = 38,
     /// Events data contains no user identifiers or ad identifiers.
     NoIdentifiersProvided = 39,
+    /// The property type is not supported.
+    InvalidPropertyType = 40,
+    /// The stream type is not supported.
+    InvalidStreamType = 41,
+    /// Linked account is only supported when the login account is a `DATA_PARTNER`
+    /// account.
+    LinkedAccountOnlyAllowedWithDataPartnerLoginAccount = 42,
+    /// The login account must be the same as the operating account for the given
+    /// use case.
+    OperatingAccountLoginAccountMismatch = 43,
+    /// Event did not occur within the acceptable time window.
+    EventTimeInvalid = 44,
+    /// Parameter uses a reserved name.
+    ReservedNameUsed = 45,
+    /// The event name is not supported.
+    InvalidEventName = 46,
+    /// The account is not allowlisted for the given feature.
+    NotAllowlisted = 47,
     /// The request ID used to retrieve the status of a request is not valid.
     /// Status can only be retrieved for requests that succeed and don't have
     /// `validate_only=true`.
     InvalidRequestId = 48,
+    /// An event had 2 or more Google Analytics destinations.
+    MultipleDestinationsForGoogleAnalyticsEvent = 49,
+    /// The field value is too long.
+    FieldValueTooLong = 50,
+    /// Too many elements in a list in the request.
+    TooManyElements = 51,
 }
 impl ErrorReason {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -585,8 +703,31 @@ impl ErrorReason {
                 "DESTINATION_ACCOUNT_ENHANCED_CONVERSIONS_TERMS_NOT_SIGNED"
             }
             Self::DuplicateDestinationReference => "DUPLICATE_DESTINATION_REFERENCE",
+            Self::UnsupportedOperatingAccountForDataPartner => {
+                "UNSUPPORTED_OPERATING_ACCOUNT_FOR_DATA_PARTNER"
+            }
+            Self::UnsupportedLinkedAccountForDataPartner => {
+                "UNSUPPORTED_LINKED_ACCOUNT_FOR_DATA_PARTNER"
+            }
             Self::NoIdentifiersProvided => "NO_IDENTIFIERS_PROVIDED",
+            Self::InvalidPropertyType => "INVALID_PROPERTY_TYPE",
+            Self::InvalidStreamType => "INVALID_STREAM_TYPE",
+            Self::LinkedAccountOnlyAllowedWithDataPartnerLoginAccount => {
+                "LINKED_ACCOUNT_ONLY_ALLOWED_WITH_DATA_PARTNER_LOGIN_ACCOUNT"
+            }
+            Self::OperatingAccountLoginAccountMismatch => {
+                "OPERATING_ACCOUNT_LOGIN_ACCOUNT_MISMATCH"
+            }
+            Self::EventTimeInvalid => "EVENT_TIME_INVALID",
+            Self::ReservedNameUsed => "RESERVED_NAME_USED",
+            Self::InvalidEventName => "INVALID_EVENT_NAME",
+            Self::NotAllowlisted => "NOT_ALLOWLISTED",
             Self::InvalidRequestId => "INVALID_REQUEST_ID",
+            Self::MultipleDestinationsForGoogleAnalyticsEvent => {
+                "MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT"
+            }
+            Self::FieldValueTooLong => "FIELD_VALUE_TOO_LONG",
+            Self::TooManyElements => "TOO_MANY_ELEMENTS",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -641,8 +782,31 @@ impl ErrorReason {
             "DUPLICATE_DESTINATION_REFERENCE" => {
                 Some(Self::DuplicateDestinationReference)
             }
+            "UNSUPPORTED_OPERATING_ACCOUNT_FOR_DATA_PARTNER" => {
+                Some(Self::UnsupportedOperatingAccountForDataPartner)
+            }
+            "UNSUPPORTED_LINKED_ACCOUNT_FOR_DATA_PARTNER" => {
+                Some(Self::UnsupportedLinkedAccountForDataPartner)
+            }
             "NO_IDENTIFIERS_PROVIDED" => Some(Self::NoIdentifiersProvided),
+            "INVALID_PROPERTY_TYPE" => Some(Self::InvalidPropertyType),
+            "INVALID_STREAM_TYPE" => Some(Self::InvalidStreamType),
+            "LINKED_ACCOUNT_ONLY_ALLOWED_WITH_DATA_PARTNER_LOGIN_ACCOUNT" => {
+                Some(Self::LinkedAccountOnlyAllowedWithDataPartnerLoginAccount)
+            }
+            "OPERATING_ACCOUNT_LOGIN_ACCOUNT_MISMATCH" => {
+                Some(Self::OperatingAccountLoginAccountMismatch)
+            }
+            "EVENT_TIME_INVALID" => Some(Self::EventTimeInvalid),
+            "RESERVED_NAME_USED" => Some(Self::ReservedNameUsed),
+            "INVALID_EVENT_NAME" => Some(Self::InvalidEventName),
+            "NOT_ALLOWLISTED" => Some(Self::NotAllowlisted),
             "INVALID_REQUEST_ID" => Some(Self::InvalidRequestId),
+            "MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT" => {
+                Some(Self::MultipleDestinationsForGoogleAnalyticsEvent)
+            }
+            "FIELD_VALUE_TOO_LONG" => Some(Self::FieldValueTooLong),
+            "TOO_MANY_ELEMENTS" => Some(Self::TooManyElements),
             _ => None,
         }
     }
@@ -660,7 +824,7 @@ pub struct ExperimentalField {
 /// Advertiser-assessed information about the user at the time that the event
 /// happened. See <https://support.google.com/google-ads/answer/14007601> for more
 /// details.
-#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserProperties {
     /// Optional. Type of the customer associated with the event.
     #[prost(enumeration = "CustomerType", tag = "1")]
@@ -668,6 +832,24 @@ pub struct UserProperties {
     /// Optional. The advertiser-assessed value of the customer.
     #[prost(enumeration = "CustomerValueBucket", tag = "2")]
     pub customer_value_bucket: i32,
+    /// Optional. A bucket of any additional [user
+    /// properties](<https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties>)
+    /// for the user associated with this event.
+    #[prost(message, repeated, tag = "3")]
+    pub additional_user_properties: ::prost::alloc::vec::Vec<UserProperty>,
+}
+/// A bucket of any additional [user
+/// properties](<https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties>)
+/// for the user associated with this event.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct UserProperty {
+    /// Required. The name of the user property to use.
+    #[prost(string, tag = "1")]
+    pub property_name: ::prost::alloc::string::String,
+    /// Required. The string representation of the value of the user property to
+    /// use.
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
 }
 /// Type of the customer associated with the event.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -805,6 +987,22 @@ pub struct Event {
     /// the event happened.
     #[prost(message, optional, tag = "15")]
     pub user_properties: ::core::option::Option<UserProperties>,
+    /// Optional. The name of the event. Required for GA4 events.
+    #[prost(string, tag = "16")]
+    pub event_name: ::prost::alloc::string::String,
+    /// Optional. A unique identifier for the user instance of a web client for
+    /// this GA4 web stream.
+    #[prost(string, tag = "17")]
+    pub client_id: ::prost::alloc::string::String,
+    /// Optional. A unique identifier for a user, as defined by the advertiser.
+    #[prost(string, tag = "18")]
+    pub user_id: ::prost::alloc::string::String,
+    /// Optional. A bucket of any [event
+    /// parameters](<https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events>)
+    /// to be included within the event that were not already specified using other
+    /// structured fields.
+    #[prost(message, repeated, tag = "19")]
+    pub additional_event_parameters: ::prost::alloc::vec::Vec<EventParameter>,
 }
 /// Identifiers and other information used to match the conversion event with
 /// other online activity (such as ad clicks).
@@ -846,6 +1044,16 @@ pub struct CustomVariable {
     /// will be used.
     #[prost(string, repeated, tag = "3")]
     pub destination_references: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Event parameter for GA4 events.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct EventParameter {
+    /// Required. The name of the parameter to use.
+    #[prost(string, tag = "1")]
+    pub parameter_name: ::prost::alloc::string::String,
+    /// Required. The string representation of the value of the parameter to set.
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
 }
 /// The source of the event.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -1052,6 +1260,8 @@ pub enum ProcessingErrorReason {
     WipAuthFailed = 23,
     /// The system did not have the permissions needed to access the KEK.
     KekPermissionDenied = 24,
+    /// The system failed to authenticate with AWS.
+    AwsAuthFailed = 27,
     /// Failed to decrypt the
     /// \[UserIdentifier\]\[google.ads.datamanager.v1.UserIdentifier\] data using the
     /// DEK.
@@ -1104,6 +1314,7 @@ impl ProcessingErrorReason {
             Self::InvalidKek => "PROCESSING_ERROR_REASON_INVALID_KEK",
             Self::WipAuthFailed => "PROCESSING_ERROR_REASON_WIP_AUTH_FAILED",
             Self::KekPermissionDenied => "PROCESSING_ERROR_REASON_KEK_PERMISSION_DENIED",
+            Self::AwsAuthFailed => "PROCESSING_ERROR_REASON_AWS_AUTH_FAILED",
             Self::UserIdentifierDecryptionError => {
                 "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR"
             }
@@ -1158,6 +1369,7 @@ impl ProcessingErrorReason {
             "PROCESSING_ERROR_REASON_KEK_PERMISSION_DENIED" => {
                 Some(Self::KekPermissionDenied)
             }
+            "PROCESSING_ERROR_REASON_AWS_AUTH_FAILED" => Some(Self::AwsAuthFailed),
             "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR" => {
                 Some(Self::UserIdentifierDecryptionError)
             }
@@ -1194,6 +1406,8 @@ pub enum ProcessingWarningReason {
     UserIdentifierDecryptionError = 7,
     /// Internal error.
     InternalError = 8,
+    /// The system failed to authenticate with AWS.
+    AwsAuthFailed = 9,
 }
 impl ProcessingWarningReason {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1215,6 +1429,7 @@ impl ProcessingWarningReason {
                 "PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR"
             }
             Self::InternalError => "PROCESSING_WARNING_REASON_INTERNAL_ERROR",
+            Self::AwsAuthFailed => "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1235,6 +1450,7 @@ impl ProcessingWarningReason {
                 Some(Self::UserIdentifierDecryptionError)
             }
             "PROCESSING_WARNING_REASON_INTERNAL_ERROR" => Some(Self::InternalError),
+            "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED" => Some(Self::AwsAuthFailed),
             _ => None,
         }
     }
