@@ -3109,6 +3109,14 @@ pub struct BackupVault {
     pub backup_minimum_enforced_retention_duration: ::core::option::Option<
         ::prost_types::Duration,
     >,
+    /// Optional. Setting for how a backup's enforced retention end time is
+    /// inherited.
+    #[prost(
+        enumeration = "backup_vault::BackupRetentionInheritance",
+        optional,
+        tag = "27"
+    )]
+    pub backup_retention_inheritance: ::core::option::Option<i32>,
     /// Output only. Set to true when there are no backups nested under this
     /// resource.
     #[prost(bool, optional, tag = "8")]
@@ -3151,9 +3159,76 @@ pub struct BackupVault {
     /// Default value is WITHIN_ORGANIZATION if not provided during creation.
     #[prost(enumeration = "backup_vault::AccessRestriction", tag = "24")]
     pub access_restriction: i32,
+    /// Optional. The encryption config of the backup vault.
+    #[prost(message, optional, tag = "29")]
+    pub encryption_config: ::core::option::Option<backup_vault::EncryptionConfig>,
 }
 /// Nested message and enum types in `BackupVault`.
 pub mod backup_vault {
+    /// Message describing the EncryptionConfig of backup vault.
+    /// This determines how data within the vault is encrypted at rest.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct EncryptionConfig {
+        /// Optional. The Cloud KMS key name to encrypt backups in this backup vault.
+        /// Must be in the same region as the vault. Some workload backups like
+        /// compute disk backups may use their inherited source key instead. Format:
+        /// projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}
+        #[prost(string, optional, tag = "1")]
+        pub kms_key_name: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    /// How a backup's enforced retention end time is inherited.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum BackupRetentionInheritance {
+        /// Inheritance behavior not set. This will default to
+        /// `INHERIT_VAULT_RETENTION`.
+        Unspecified = 0,
+        /// The enforced retention end time of a backup will be inherited from the
+        /// backup vault's `backup_minimum_enforced_retention_duration` field.
+        ///
+        /// This is the default behavior.
+        InheritVaultRetention = 1,
+        /// The enforced retention end time of a backup will always match the expire
+        /// time of the backup.
+        ///
+        /// If this is set, the backup's enforced retention end time will be set to
+        /// match the expire time during creation of the backup. When updating, the
+        /// ERET and expire time must be updated together and have the same value.
+        /// Invalid update requests will be rejected by the server.
+        MatchBackupExpireTime = 2,
+    }
+    impl BackupRetentionInheritance {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+                Self::InheritVaultRetention => "INHERIT_VAULT_RETENTION",
+                Self::MatchBackupExpireTime => "MATCH_BACKUP_EXPIRE_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INHERIT_VAULT_RETENTION" => Some(Self::InheritVaultRetention),
+                "MATCH_BACKUP_EXPIRE_TIME" => Some(Self::MatchBackupExpireTime),
+                _ => None,
+            }
+        }
+    }
     /// Holds the state of the backup vault resource.
     #[derive(
         Clone,
@@ -3697,6 +3772,14 @@ pub struct Backup {
     /// Optional. The backup can not be deleted before this time.
     #[prost(message, optional, tag = "6")]
     pub enforced_retention_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Setting for how the enforced retention end time is inherited.
+    /// This value is copied from this backup's BackupVault.
+    #[prost(
+        enumeration = "backup_vault::BackupRetentionInheritance",
+        optional,
+        tag = "30"
+    )]
+    pub backup_retention_inheritance: ::core::option::Option<i32>,
     /// Optional. When this backup is automatically expired.
     #[prost(message, optional, tag = "7")]
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
@@ -3730,6 +3813,10 @@ pub struct Backup {
     /// Optional. Output only. Reserved for future use.
     #[prost(bool, optional, tag = "25")]
     pub satisfies_pzi: ::core::option::Option<bool>,
+    /// Optional. Output only. The list of KMS key versions used to encrypt the
+    /// backup.
+    #[prost(string, repeated, tag = "33")]
+    pub kms_key_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Workload specific backup properties.
     #[prost(oneof = "backup::BackupProperties", tags = "19, 26, 21, 28")]
     pub backup_properties: ::core::option::Option<backup::BackupProperties>,
@@ -4397,6 +4484,21 @@ pub struct RestoreBackupRequest {
     /// not supported (00000000-0000-0000-0000-000000000000).
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
+    /// Optional. A field mask used to clear server-side default values
+    /// for fields within the `instance_properties` oneof.
+    ///
+    /// When a field in this mask is cleared, the server will not apply its
+    /// default logic (like inheriting a value from the source) for that field.
+    ///
+    /// The most common current use case is clearing default encryption keys.
+    ///
+    /// Examples of field mask paths:
+    ///
+    /// * Compute Instance Disks:
+    ///   `compute_instance_restore_properties.disks.*.disk_encryption_key`
+    /// * Single Disk: `disk_restore_properties.disk_encryption_key`
+    #[prost(message, optional, tag = "8")]
+    pub clear_overrides_field_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// The target environment for the restore operation.
     #[prost(oneof = "restore_backup_request::TargetEnvironment", tags = "3, 5, 6")]
     pub target_environment: ::core::option::Option<

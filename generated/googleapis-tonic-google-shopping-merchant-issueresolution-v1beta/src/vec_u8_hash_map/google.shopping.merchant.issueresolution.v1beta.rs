@@ -417,18 +417,6 @@ pub struct RenderProductIssuesRequest {
     /// Optional. The payload for configuring how the content should be rendered.
     #[prost(message, optional, tag = "4")]
     pub payload: ::core::option::Option<RenderIssuesRequestPayload>,
-    /// Optional. If true, the `{product}` in the `name` field of the request will
-    /// be interpreted as unpadded base64url-encoded and decoded during request
-    /// processing to match the decoded value. Default value is `false`. Use this
-    /// if your `{product}` contains special characters, such as forward slash `/`
-    /// or other characters that are unpadded base64url-encoded (as per RFC 7515:
-    /// <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
-    ///
-    /// Note that future versions of the API will only accept unpadded
-    /// base64url-encoded product ids, so we strongly recommend proactively setting
-    /// this to `true` and encoding the product ids.
-    #[prost(bool, tag = "5")]
-    pub product_id_base64_url_encoded: bool,
 }
 /// An issue affecting specific business or their product.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1302,9 +1290,6 @@ pub mod external_action {
         /// Redirect to Merchant Center where the business can perform identity
         /// verification.
         VerifyIdentityInMerchantCenter = 4,
-        /// Redirect to Merchant Center where the business can perform business
-        /// video verification.
-        VerifyBusinessVideoInMerchantCenter = 5,
     }
     impl ExternalActionType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1324,9 +1309,6 @@ pub mod external_action {
                 Self::VerifyIdentityInMerchantCenter => {
                     "VERIFY_IDENTITY_IN_MERCHANT_CENTER"
                 }
-                Self::VerifyBusinessVideoInMerchantCenter => {
-                    "VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER"
-                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1342,9 +1324,6 @@ pub mod external_action {
                 "LEGAL_APPEAL_IN_HELP_CENTER" => Some(Self::LegalAppealInHelpCenter),
                 "VERIFY_IDENTITY_IN_MERCHANT_CENTER" => {
                     Some(Self::VerifyIdentityInMerchantCenter)
-                }
-                "VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER" => {
-                    Some(Self::VerifyBusinessVideoInMerchantCenter)
                 }
                 _ => None,
             }

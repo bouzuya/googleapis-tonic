@@ -190,21 +190,6 @@ pub struct ProductAttributes {
     /// Minimal product handling time (in business days).
     #[prost(int64, optional, tag = "45")]
     pub min_handling_time: ::core::option::Option<i64>,
-    /// The business days during which orders can be handled. If not provided,
-    /// Monday to Friday business days will be assumed.
-    #[prost(message, repeated, tag = "143")]
-    pub shipping_handling_business_days: ::prost::alloc::vec::Vec<
-        product_attributes::ShippingBusinessDaysConfig,
-    >,
-    /// The business days during which orders are in transit.
-    /// If not provided, Monday to Friday business days will be assumed.
-    #[prost(message, repeated, tag = "144")]
-    pub shipping_transit_business_days: ::prost::alloc::vec::Vec<
-        product_attributes::ShippingBusinessDaysConfig,
-    >,
-    /// The handling cutoff times for shipping.
-    #[prost(message, repeated, tag = "141")]
-    pub handling_cutoff_times: ::prost::alloc::vec::Vec<HandlingCutoffTime>,
     /// The shipping label of the product, used to group product in account-level
     /// shipping rules.
     #[prost(string, optional, tag = "46")]
@@ -433,24 +418,6 @@ pub struct ProductAttributes {
 }
 /// Nested message and enum types in `ProductAttributes`.
 pub mod product_attributes {
-    /// The business days during which orders are on their path to fulfillment.
-    /// If not provided, Monday to Friday business days will be assumed.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-    pub struct ShippingBusinessDaysConfig {
-        /// The [CLDR territory
-        /// code](<http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml>)
-        /// of the country to which an item will ship.
-        #[prost(string, optional, tag = "1")]
-        pub country: ::core::option::Option<::prost::alloc::string::String>,
-        /// Effective days of the week considered for the delivery time calculation.
-        /// May not be empty. The more business days included the faster the
-        /// delivery. Can be set through individual days (e.g. `MTWRF`), or day
-        /// ranges (e.g. `Mon-Fri`). For more information about accepted formats,
-        /// see [Shipping handling business
-        /// days](<https://support.google.com/merchants/answer/16072859>).
-        #[prost(string, optional, tag = "2")]
-        pub business_days: ::core::option::Option<::prost::alloc::string::String>,
-    }
     /// Carrier-based shipping configuration. Allows for setting shipping speed or
     /// shipping cost based on a carrier's provided info.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1065,20 +1032,6 @@ pub struct Shipping {
     /// is present.
     #[prost(int64, optional, tag = "11")]
     pub max_transit_time: ::core::option::Option<i64>,
-    /// The handling cutoff time until which an order has to be placed to be
-    /// processed in the same day. This is a string in format of HHMM (e.g.
-    /// `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted
-    /// to 8AM PST and `handling_cutoff_timezone` will be ignored.
-    #[prost(string, optional, tag = "12")]
-    pub handling_cutoff_time: ::core::option::Option<::prost::alloc::string::String>,
-    /// [Timezone
-    /// identifier](<https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids>)
-    /// For example `Europe/Zurich`. This field only applies if
-    /// `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this
-    /// field is not set, the shipping destination timezone will be used. If both
-    /// fields are not set, the handling cutoff time will default to 8AM PST.
-    #[prost(string, optional, tag = "13")]
-    pub handling_cutoff_timezone: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Conditions to be met for a product to have free shipping.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -1458,33 +1411,6 @@ pub struct AutomatedDiscounts {
     /// the product is not available.
     #[prost(message, optional, tag = "3")]
     pub gad_price: ::core::option::Option<super::super::super::r#type::Price>,
-}
-/// Configuration for offer or offer-country level shipping handling cutoff time.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct HandlingCutoffTime {
-    /// The [CLDR territory
-    /// code](<http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml>)
-    /// of the country to which the handling cutoff time applies.
-    #[prost(string, optional, tag = "1")]
-    pub country: ::core::option::Option<::prost::alloc::string::String>,
-    /// The handling cutoff time until which an order has to be placed to be
-    /// processed in the same day. This is a string in format of HHMM (e.g. `1530`)
-    /// for 3:30 PM.
-    /// If not configured, the cutoff time will be defaulted to 8AM PST.
-    #[prost(string, optional, tag = "2")]
-    pub cutoff_time: ::core::option::Option<::prost::alloc::string::String>,
-    /// [Timezone
-    /// identifier](<https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids>)
-    /// For example 'Europe/Zurich'. If not set, the shipping destination
-    /// timezone will be used.
-    #[prost(string, optional, tag = "3")]
-    pub cutoff_timezone: ::core::option::Option<::prost::alloc::string::String>,
-    /// This field only applies to same-day delivery. If true, prevents next-day
-    /// delivery from being shown for this offer after the cutoff time. This field
-    /// only applies to same-day delivery offers, for merchants who want to
-    /// explicitly disable it.
-    #[prost(bool, optional, tag = "4")]
-    pub disable_delivery_after_cutoff: ::core::option::Option<bool>,
 }
 /// The subscription period of the product.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -2492,8 +2418,8 @@ pub struct InsertProductInputRequest {
     /// Required. The primary or supplemental product data source name. If the
     /// product already exists and data source provided is different, then the
     /// product will be moved to a new data source. For more information, see
-    /// [Create a primary data
-    /// source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
+    /// [Overview of Data sources
+    /// sub-API](/merchant/api/guides/data-sources/overview).
     ///
     /// Only API data sources are supported.
     ///
@@ -2538,19 +2464,6 @@ pub struct UpdateProductInputRequest {
     /// `accounts/123456/dataSources/104628`.
     #[prost(string, tag = "3")]
     pub data_source: ::prost::alloc::string::String,
-    /// Optional. If true, the `{productInput}` in the `name` field of the request
-    /// will be interpreted as unpadded base64url-encoded and decoded during
-    /// request processing to match the decoded value. Default value is `false`.
-    /// Use this if your `{productInput}` contains special characters, such as
-    /// forward slash
-    /// `/` or other characters that are unpadded base64url-encoded (as per RFC
-    /// 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
-    ///
-    /// Note that future versions of the API will only accept unpadded
-    /// base64url-encoded product ids, so we strongly recommend proactively setting
-    /// this to `true` and encoding the product ids.
-    #[prost(bool, tag = "4")]
-    pub product_id_base64_url_encoded: bool,
 }
 /// Request message for the DeleteProductInput method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -2569,19 +2482,6 @@ pub struct DeleteProductInputRequest {
     /// `accounts/123456/dataSources/104628`.
     #[prost(string, tag = "2")]
     pub data_source: ::prost::alloc::string::String,
-    /// Optional. If true, the `{productInput}` in the `name` field of the request
-    /// will be interpreted as unpadded base64url-encoded and decoded during
-    /// request processing to match the decoded value. Default value is `false`.
-    /// Use this if your `{productInput}` contains special characters, such as
-    /// forward slash
-    /// `/` or other characters that are unpadded base64url-encoded (as per RFC
-    /// 7515: <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
-    ///
-    /// Note that future versions of the API will only accept unpadded
-    /// base64url-encoded product ids, so we strongly recommend proactively setting
-    /// this to `true` and encoding the product ids.
-    #[prost(bool, tag = "3")]
-    pub product_id_base64_url_encoded: bool,
 }
 /// Generated client implementations.
 pub mod product_inputs_service_client {
@@ -2665,11 +2565,11 @@ pub mod product_inputs_service_client {
             self
         }
         /// [Uploads a product input to your Merchant Center
-        /// account](/merchant/api/guides/products/add-manage#add_a_product). You
+        /// account](/merchant/api/guides/products/overview#upload-product-input). You
         /// must have a products [data
-        /// source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source)
-        /// to be able to insert a product. The unique identifier of the data source is
-        /// passed as a query parameter in the request URL.
+        /// source](/merchant/api/guides/data-sources/overview) to be able to insert a
+        /// product. The unique identifier of the data source is passed as a query
+        /// parameter in the request URL.
         ///
         /// If a product input with the same contentLanguage, offerId, and dataSource
         /// already exists, then the product input inserted by this method replaces
@@ -2872,18 +2772,6 @@ pub struct GetProductRequest {
     /// `accounts/123/products/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// Optional. If true, the `{product}` in the `name` field of the request will
-    /// be interpreted as unpadded base64url-encoded and decoded during request
-    /// processing to match the decoded value. Default value is `false`. Use this
-    /// if your `{product}` contains special characters, such as forward slash `/`
-    /// or other characters that are unpadded base64url-encoded (as per RFC 7515:
-    /// <https://datatracker.ietf.org/doc/html/rfc7515#section-2>).
-    ///
-    /// Note that future versions of the API will only accept unpadded
-    /// base64url-encoded product ids, so we strongly recommend proactively setting
-    /// this to `true` and encoding the product ids.
-    #[prost(bool, tag = "2")]
-    pub product_id_base64_url_encoded: bool,
 }
 /// Request message for the ListProducts method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]

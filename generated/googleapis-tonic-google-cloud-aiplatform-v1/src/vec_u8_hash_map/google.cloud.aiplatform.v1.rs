@@ -5819,6 +5819,79 @@ pub struct VideoMetadata {
     #[prost(message, optional, tag = "2")]
     pub end_offset: ::core::option::Option<::prost_types::Duration>,
 }
+/// Configuration for a prebuilt voice.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct PrebuiltVoiceConfig {
+    /// The name of the prebuilt voice to use.
+    #[prost(string, optional, tag = "1")]
+    pub voice_name: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// The configuration for the replicated voice to use.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ReplicatedVoiceConfig {
+    /// Optional. The mimetype of the voice sample. Currently only
+    /// mime_type=audio/pcm is supported, which is raw mono 16-bit signed
+    /// little-endian pcm data, with 24k sampling rate.
+    #[prost(string, tag = "1")]
+    pub mime_type: ::prost::alloc::string::String,
+    /// Optional. The sample of the custom voice.
+    #[prost(bytes = "vec", tag = "2")]
+    pub voice_sample_audio: ::prost::alloc::vec::Vec<u8>,
+}
+/// Configuration for a voice.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VoiceConfig {
+    /// The configuration for the speaker to use.
+    #[prost(oneof = "voice_config::VoiceConfig", tags = "1, 3")]
+    pub voice_config: ::core::option::Option<voice_config::VoiceConfig>,
+}
+/// Nested message and enum types in `VoiceConfig`.
+pub mod voice_config {
+    /// The configuration for the speaker to use.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum VoiceConfig {
+        /// The configuration for a prebuilt voice.
+        #[prost(message, tag = "1")]
+        PrebuiltVoiceConfig(super::PrebuiltVoiceConfig),
+        /// Optional. The configuration for a replicated voice. This enables users to
+        /// replicate a voice from an audio sample.
+        #[prost(message, tag = "3")]
+        ReplicatedVoiceConfig(super::ReplicatedVoiceConfig),
+    }
+}
+/// Configuration for a single speaker in a multi-speaker setup.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct SpeakerVoiceConfig {
+    /// Required. The name of the speaker. This should be the same as the speaker
+    /// name used in the prompt.
+    #[prost(string, tag = "1")]
+    pub speaker: ::prost::alloc::string::String,
+    /// Required. The configuration for the voice of this speaker.
+    #[prost(message, optional, tag = "2")]
+    pub voice_config: ::core::option::Option<VoiceConfig>,
+}
+/// Configuration for a multi-speaker text-to-speech request.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MultiSpeakerVoiceConfig {
+    /// Required. A list of configurations for the voices of the speakers. Exactly
+    /// two speaker voice configurations must be provided.
+    #[prost(message, repeated, tag = "2")]
+    pub speaker_voice_configs: ::prost::alloc::vec::Vec<SpeakerVoiceConfig>,
+}
+/// Configuration for speech generation.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SpeechConfig {
+    /// The configuration for the voice to use.
+    #[prost(message, optional, tag = "1")]
+    pub voice_config: ::core::option::Option<VoiceConfig>,
+    /// Optional. The language code (ISO 639-1) for the speech synthesis.
+    #[prost(string, tag = "2")]
+    pub language_code: ::prost::alloc::string::String,
+    /// The configuration for a multi-speaker text-to-speech request.
+    /// This field is mutually exclusive with `voice_config`.
+    #[prost(message, optional, tag = "3")]
+    pub multi_speaker_voice_config: ::core::option::Option<MultiSpeakerVoiceConfig>,
+}
 /// Config for image generation features.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ImageConfig {
@@ -5930,6 +6003,9 @@ pub struct GenerationConfig {
     /// Optional. Routing configuration.
     #[prost(message, optional, tag = "17")]
     pub routing_config: ::core::option::Option<generation_config::RoutingConfig>,
+    /// Optional. The speech generation config.
+    #[prost(message, optional, tag = "23")]
+    pub speech_config: ::core::option::Option<SpeechConfig>,
     /// Optional. Config for thinking features.
     /// An error will be returned if this field is set for models that don't
     /// support thinking.

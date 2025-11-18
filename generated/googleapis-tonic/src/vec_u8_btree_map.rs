@@ -541,6 +541,7 @@
     feature = "google-security-safebrowsingohttpgateway-v1",
     feature = "google-shopping-css-v1",
     feature = "google-shopping-merchant-accounts-v1",
+    feature = "google-shopping-merchant-accounts-v1alpha",
     feature = "google-shopping-merchant-accounts-v1beta",
     feature = "google-shopping-merchant-conversions-v1",
     feature = "google-shopping-merchant-conversions-v1beta",
@@ -6918,6 +6919,7 @@ pub mod google {
     #[cfg(any(
         feature = "google-shopping-css-v1",
         feature = "google-shopping-merchant-accounts-v1",
+        feature = "google-shopping-merchant-accounts-v1alpha",
         feature = "google-shopping-merchant-accounts-v1beta",
         feature = "google-shopping-merchant-conversions-v1",
         feature = "google-shopping-merchant-conversions-v1beta",
@@ -6949,6 +6951,7 @@ pub mod google {
     pub mod shopping {
         #[cfg(any(
             feature = "google-shopping-merchant-accounts-v1",
+            feature = "google-shopping-merchant-accounts-v1alpha",
             feature = "google-shopping-merchant-accounts-v1beta",
             feature = "google-shopping-merchant-conversions-v1",
             feature = "google-shopping-merchant-conversions-v1beta",
@@ -7243,6 +7246,7 @@ pub mod google {
             }
             #[cfg(any(
                 feature = "google-shopping-merchant-accounts-v1",
+                feature = "google-shopping-merchant-accounts-v1alpha",
                 feature = "google-shopping-merchant-accounts-v1beta",
             ))]
             pub mod accounts {
@@ -7263,6 +7267,15 @@ pub mod google {
                         feature = "google-shopping-merchant-accounts-v1beta",
                     ))]
                     include!("vec_u8_btree_map/google.shopping.merchant.accounts.v1beta.rs");
+                }
+                #[cfg(any(
+                    feature = "google-shopping-merchant-accounts-v1alpha",
+                ))]
+                pub mod v1alpha {
+                    #[cfg(any(
+                        feature = "google-shopping-merchant-accounts-v1alpha",
+                    ))]
+                    include!("vec_u8_btree_map/google.shopping.merchant.accounts.v1alpha.rs");
                 }
             }
             #[cfg(any(
