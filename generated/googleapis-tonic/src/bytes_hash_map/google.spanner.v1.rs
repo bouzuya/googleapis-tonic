@@ -887,9 +887,8 @@ pub struct Tablet {
     /// address or DNS hostname and a port number.
     #[prost(string, tag = "2")]
     pub server_address: ::prost::alloc::string::String,
-    /// Where this tablet is located. In the Spanner managed service, this is the
-    /// name of a region, such as "us-central1". In Spanner Omni, this is a
-    /// previously created location.
+    /// Where this tablet is located. This is the name of a Google Cloud region,
+    /// such as "us-central1".
     #[prost(string, tag = "3")]
     pub location: ::prost::alloc::string::String,
     /// The role of the tablet.
@@ -1300,10 +1299,8 @@ pub struct RoutingHint {
     /// with new locations for those tablets.
     #[prost(message, repeated, tag = "9")]
     pub skipped_tablet_uid: ::prost::alloc::vec::Vec<routing_hint::SkippedTablet>,
-    /// If present, the client's current location. In the Spanner managed service,
-    /// this should be the name of a Google Cloud zone or region, such as
-    /// "us-central1". In Spanner Omni, this should correspond to a previously
-    /// created location.
+    /// If present, the client's current location. This should be the name of a
+    /// Google Cloud zone or region, such as "us-central1".
     ///
     /// If absent, the client's location will be assumed to be the same as the
     /// location of the server the client ends up connected to.

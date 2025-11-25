@@ -46055,8 +46055,9 @@ pub mod reasoning_engine_spec {
         /// Optional. The Cloud Storage URI of the `requirements.txt` file
         #[prost(string, tag = "3")]
         pub requirements_gcs_uri: ::prost::alloc::string::String,
-        /// Optional. The Python version. Currently support 3.8, 3.9, 3.10, 3.11.
-        /// If not specified, default value is 3.10.
+        /// Optional. The Python version. Supported values
+        /// are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value
+        /// is 3.10.
         #[prost(string, tag = "4")]
         pub python_version: ::prost::alloc::string::String,
     }
@@ -46111,7 +46112,7 @@ pub mod reasoning_engine_spec {
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct SourceCodeSpec {
         /// Specifies where the source code is located.
-        #[prost(oneof = "source_code_spec::Source", tags = "1")]
+        #[prost(oneof = "source_code_spec::Source", tags = "1, 3")]
         pub source: ::core::option::Option<source_code_spec::Source>,
         /// Specifies the language-specific configuration for building and running
         /// the code.
@@ -46128,6 +46129,34 @@ pub mod reasoning_engine_spec {
             /// (.tar.gz) file.
             #[prost(bytes = "vec", tag = "1")]
             pub source_archive: ::prost::alloc::vec::Vec<u8>,
+        }
+        /// Specifies the configuration for fetching source code from a Git
+        /// repository that is managed by Developer Connect. This includes the
+        /// repository, revision, and directory to use.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct DeveloperConnectConfig {
+            /// Required. The Developer Connect Git repository link, formatted as
+            /// `projects/*/locations/*/connections/*/gitRepositoryLink/*`.
+            #[prost(string, tag = "1")]
+            pub git_repository_link: ::prost::alloc::string::String,
+            /// Required. Directory, relative to the source root, in which to run the
+            /// build.
+            #[prost(string, tag = "2")]
+            pub dir: ::prost::alloc::string::String,
+            /// Required. The revision to fetch from the Git repository such as a
+            /// branch, a tag, a commit SHA, or any Git ref.
+            #[prost(string, tag = "3")]
+            pub revision: ::prost::alloc::string::String,
+        }
+        /// Specifies source code to be fetched from a Git repository managed through
+        /// the Developer Connect service.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct DeveloperConnectSource {
+            /// Required. The Developer Connect configuration that defines the
+            /// specific repository, revision, and directory to use as the source code
+            /// root.
+            #[prost(message, optional, tag = "1")]
+            pub config: ::core::option::Option<DeveloperConnectConfig>,
         }
         /// Specification for running a Python application from source.
         #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -46161,6 +46190,9 @@ pub mod reasoning_engine_spec {
             /// Source code is provided directly in the request.
             #[prost(message, tag = "1")]
             InlineSource(InlineSource),
+            /// Source code is in a Git repository managed by Developer Connect.
+            #[prost(message, tag = "3")]
+            DeveloperConnectSource(DeveloperConnectSource),
         }
         /// Specifies the language-specific configuration for building and running
         /// the code.

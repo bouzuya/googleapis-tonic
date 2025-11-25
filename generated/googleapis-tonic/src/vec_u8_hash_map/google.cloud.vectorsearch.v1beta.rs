@@ -225,7 +225,7 @@ pub mod search_hint {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Search {
     /// The type of search to perform.
-    #[prost(oneof = "search::SearchType", tags = "1, 2")]
+    #[prost(oneof = "search::SearchType", tags = "1, 2, 3")]
     pub search_type: ::core::option::Option<search::SearchType>,
 }
 /// Nested message and enum types in `Search`.
@@ -239,6 +239,9 @@ pub mod search {
         /// A semantic search.
         #[prost(message, tag = "2")]
         SemanticSearch(super::SemanticSearch),
+        /// A text search operation.
+        #[prost(message, tag = "3")]
+        TextSearch(super::TextSearch),
     }
 }
 /// Defines a search operation using a query vector.
@@ -282,7 +285,7 @@ pub mod vector_search {
     }
 }
 /// Defines a semantic search operation.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SemanticSearch {
     /// Required. The query text, which is used to generate an embedding according
     /// to the embedding model specified in the collection config.
@@ -297,6 +300,10 @@ pub struct SemanticSearch {
     /// Optional. The fields to return in the search results.
     #[prost(message, optional, tag = "3")]
     pub output_fields: ::core::option::Option<OutputFields>,
+    /// Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
+    /// represented as a google.protobuf.Struct.
+    #[prost(message, optional, tag = "6")]
+    pub filter: ::core::option::Option<::prost_types::Struct>,
     /// Optional. The number of data objects to return.
     #[prost(int32, optional, tag = "4")]
     pub top_k: ::core::option::Option<i32>,
@@ -1208,13 +1215,16 @@ pub struct Collection {
     #[prost(message, optional, tag = "5")]
     pub schema: ::core::option::Option<::prost_types::Struct>,
     /// Optional. Schema for vector fields. Only vector fields in this schema will
-    /// be searchable.
+    /// be searchable. Field names must contain only alphanumeric characters,
+    /// underscores, and hyphens.
     #[prost(map = "string, message", tag = "7")]
     pub vector_schema: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         VectorField,
     >,
     /// Optional. JSON Schema for data.
+    /// Field names must contain only alphanumeric characters,
+    /// underscores, and hyphens.
     #[prost(message, optional, tag = "10")]
     pub data_schema: ::core::option::Option<::prost_types::Struct>,
 }
@@ -1298,9 +1308,11 @@ pub struct CreateCollectionRequest {
     /// Required. Value for parent.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Required. Id of the requesting object
-    /// If auto-generating Id server-side, remove this field and
-    /// collection_id from the method_signature of Create RPC
+    /// Required. ID of the Collection to create.
+    /// The id must be 1-63 characters long, and comply with
+    /// <a href="<https://www.ietf.org/rfc/rfc1035.txt"> target="_blank">RFC1035</a>.
+    /// Specifically, it must be 1-63 characters long and match the regular
+    /// expression `[a-z](?:\[-a-z0-9\]{0,61}\[a-z0-9\])?`.
     #[prost(string, tag = "2")]
     pub collection_id: ::prost::alloc::string::String,
     /// Required. The resource being created
@@ -1432,9 +1444,11 @@ pub struct CreateIndexRequest {
     /// `projects/{project}/locations/{location}/collections/{collection}`
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Required. Id of the requesting object
-    /// If auto-generating Id server-side, remove this field and
-    /// index_id from the method_signature of Create RPC
+    /// Required. ID of the Index to create.
+    /// The id must be 1-63 characters long, and comply with
+    /// <a href="<https://www.ietf.org/rfc/rfc1035.txt"> target="_blank">RFC1035</a>.
+    /// Specifically, it must be 1-63 characters long and match the regular
+    /// expression `[a-z](?:\[-a-z0-9\]{0,61}\[a-z0-9\])?`.
     #[prost(string, tag = "2")]
     pub index_id: ::prost::alloc::string::String,
     /// Required. The resource being created
