@@ -3840,9 +3840,11 @@ pub mod workload_config {
         Basic = 4,
         /// Surfaces configurations that are not in line with the
         /// Pod Security Standard Baseline policy.
+        #[deprecated]
         Baseline = 2,
         /// Surfaces configurations that are not in line with the
         /// Pod Security Standard Restricted policy.
+        #[deprecated]
         Restricted = 3,
     }
     impl Mode {
@@ -3855,7 +3857,9 @@ pub mod workload_config {
                 Self::Unspecified => "MODE_UNSPECIFIED",
                 Self::Disabled => "DISABLED",
                 Self::Basic => "BASIC",
+                #[allow(deprecated)]
                 Self::Baseline => "BASELINE",
+                #[allow(deprecated)]
                 Self::Restricted => "RESTRICTED",
             }
         }
@@ -3865,8 +3869,8 @@ pub mod workload_config {
                 "MODE_UNSPECIFIED" => Some(Self::Unspecified),
                 "DISABLED" => Some(Self::Disabled),
                 "BASIC" => Some(Self::Basic),
-                "BASELINE" => Some(Self::Baseline),
-                "RESTRICTED" => Some(Self::Restricted),
+                "BASELINE" => Some(#[allow(deprecated)] Self::Baseline),
+                "RESTRICTED" => Some(#[allow(deprecated)] Self::Restricted),
                 _ => None,
             }
         }
@@ -4796,21 +4800,26 @@ pub mod operation {
         AutoRepairNodes = 10,
         /// Unused. Automatic node upgrade uses
         /// \[UPGRADE_NODES\]\[google.container.v1beta1.Operation.Type.UPGRADE_NODES\].
+        #[deprecated]
         AutoUpgradeNodes = 11,
         /// Unused. Updating labels uses
         /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
+        #[deprecated]
         SetLabels = 12,
         /// Unused. Updating master auth uses
         /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
+        #[deprecated]
         SetMasterAuth = 13,
         /// The node pool is being resized. With the exception of resizing to or from
         /// size zero, the node pool is generally usable during this operation.
         SetNodePoolSize = 14,
         /// Unused. Updating network policy uses
         /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
+        #[deprecated]
         SetNetworkPolicy = 15,
         /// Unused. Updating maintenance policy uses
         /// \[UPDATE_CLUSTER\]\[google.container.v1beta1.Operation.Type.UPDATE_CLUSTER\].
+        #[deprecated]
         SetMaintenancePolicy = 16,
         /// The control plane is being resized. This operation type is initiated by
         /// GKE. These operations are often performed preemptively to ensure that the
@@ -4841,11 +4850,16 @@ pub mod operation {
                 Self::DeleteNodePool => "DELETE_NODE_POOL",
                 Self::SetNodePoolManagement => "SET_NODE_POOL_MANAGEMENT",
                 Self::AutoRepairNodes => "AUTO_REPAIR_NODES",
+                #[allow(deprecated)]
                 Self::AutoUpgradeNodes => "AUTO_UPGRADE_NODES",
+                #[allow(deprecated)]
                 Self::SetLabels => "SET_LABELS",
+                #[allow(deprecated)]
                 Self::SetMasterAuth => "SET_MASTER_AUTH",
                 Self::SetNodePoolSize => "SET_NODE_POOL_SIZE",
+                #[allow(deprecated)]
                 Self::SetNetworkPolicy => "SET_NETWORK_POLICY",
+                #[allow(deprecated)]
                 Self::SetMaintenancePolicy => "SET_MAINTENANCE_POLICY",
                 Self::ResizeCluster => "RESIZE_CLUSTER",
                 Self::FleetFeatureUpgrade => "FLEET_FEATURE_UPGRADE",
@@ -4865,12 +4879,14 @@ pub mod operation {
                 "DELETE_NODE_POOL" => Some(Self::DeleteNodePool),
                 "SET_NODE_POOL_MANAGEMENT" => Some(Self::SetNodePoolManagement),
                 "AUTO_REPAIR_NODES" => Some(Self::AutoRepairNodes),
-                "AUTO_UPGRADE_NODES" => Some(Self::AutoUpgradeNodes),
-                "SET_LABELS" => Some(Self::SetLabels),
-                "SET_MASTER_AUTH" => Some(Self::SetMasterAuth),
+                "AUTO_UPGRADE_NODES" => Some(#[allow(deprecated)] Self::AutoUpgradeNodes),
+                "SET_LABELS" => Some(#[allow(deprecated)] Self::SetLabels),
+                "SET_MASTER_AUTH" => Some(#[allow(deprecated)] Self::SetMasterAuth),
                 "SET_NODE_POOL_SIZE" => Some(Self::SetNodePoolSize),
-                "SET_NETWORK_POLICY" => Some(Self::SetNetworkPolicy),
-                "SET_MAINTENANCE_POLICY" => Some(Self::SetMaintenancePolicy),
+                "SET_NETWORK_POLICY" => Some(#[allow(deprecated)] Self::SetNetworkPolicy),
+                "SET_MAINTENANCE_POLICY" => {
+                    Some(#[allow(deprecated)] Self::SetMaintenancePolicy)
+                }
                 "RESIZE_CLUSTER" => Some(Self::ResizeCluster),
                 "FLEET_FEATURE_UPGRADE" => Some(Self::FleetFeatureUpgrade),
                 _ => None,
@@ -7848,6 +7864,7 @@ pub mod gateway_api_config {
         Disabled = 1,
         /// Deprecated: use CHANNEL_STANDARD instead.
         /// Gateway API support is enabled, experimental CRDs are installed
+        #[deprecated]
         Experimental = 3,
         /// Gateway API support is enabled, standard CRDs are installed
         Standard = 4,
@@ -7861,6 +7878,7 @@ pub mod gateway_api_config {
             match self {
                 Self::Unspecified => "CHANNEL_UNSPECIFIED",
                 Self::Disabled => "CHANNEL_DISABLED",
+                #[allow(deprecated)]
                 Self::Experimental => "CHANNEL_EXPERIMENTAL",
                 Self::Standard => "CHANNEL_STANDARD",
             }
@@ -7870,7 +7888,7 @@ pub mod gateway_api_config {
             match value {
                 "CHANNEL_UNSPECIFIED" => Some(Self::Unspecified),
                 "CHANNEL_DISABLED" => Some(Self::Disabled),
-                "CHANNEL_EXPERIMENTAL" => Some(Self::Experimental),
+                "CHANNEL_EXPERIMENTAL" => Some(#[allow(deprecated)] Self::Experimental),
                 "CHANNEL_STANDARD" => Some(Self::Standard),
                 _ => None,
             }
@@ -9497,6 +9515,7 @@ pub mod monitoring_component_config {
         /// system components
         SystemComponents = 1,
         /// Deprecated: Use Google Cloud Managed Service for Prometheus.
+        #[deprecated]
         Workloads = 2,
         /// kube-apiserver
         Apiserver = 3,
@@ -9534,6 +9553,7 @@ pub mod monitoring_component_config {
             match self {
                 Self::Unspecified => "COMPONENT_UNSPECIFIED",
                 Self::SystemComponents => "SYSTEM_COMPONENTS",
+                #[allow(deprecated)]
                 Self::Workloads => "WORKLOADS",
                 Self::Apiserver => "APISERVER",
                 Self::Scheduler => "SCHEDULER",
@@ -9555,7 +9575,7 @@ pub mod monitoring_component_config {
             match value {
                 "COMPONENT_UNSPECIFIED" => Some(Self::Unspecified),
                 "SYSTEM_COMPONENTS" => Some(Self::SystemComponents),
-                "WORKLOADS" => Some(Self::Workloads),
+                "WORKLOADS" => Some(#[allow(deprecated)] Self::Workloads),
                 "APISERVER" => Some(Self::Apiserver),
                 "SCHEDULER" => Some(Self::Scheduler),
                 "CONTROLLER_MANAGER" => Some(Self::ControllerManager),

@@ -6327,6 +6327,7 @@ pub mod import_intents_request {
         /// \[REPORT_CONFLICT\]\[ImportIntentsRequest.REPORT_CONFLICT\] instead.
         /// Fail the request if there are intents whose display names conflict with
         /// the display names of intents in the agent.
+        #[deprecated]
         Reject = 1,
         /// Replace the original intent in the agent with the new intent when display
         /// name conflicts exist.
@@ -6352,6 +6353,7 @@ pub mod import_intents_request {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 Self::Unspecified => "MERGE_OPTION_UNSPECIFIED",
+                #[allow(deprecated)]
                 Self::Reject => "REJECT",
                 Self::Replace => "REPLACE",
                 Self::Merge => "MERGE",
@@ -6364,7 +6366,7 @@ pub mod import_intents_request {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "MERGE_OPTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "REJECT" => Some(Self::Reject),
+                "REJECT" => Some(#[allow(deprecated)] Self::Reject),
                 "REPLACE" => Some(Self::Replace),
                 "MERGE" => Some(Self::Merge),
                 "RENAME" => Some(Self::Rename),

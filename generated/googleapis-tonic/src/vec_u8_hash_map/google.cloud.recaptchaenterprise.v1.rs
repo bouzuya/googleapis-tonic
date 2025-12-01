@@ -240,10 +240,12 @@ pub mod annotate_assessment_request {
         /// Provides information that the event was related to a login event in which
         /// the user typed the correct password. Deprecated, prefer indicating
         /// CORRECT_PASSWORD through the reasons field instead.
+        #[deprecated]
         PasswordCorrect = 3,
         /// Provides information that the event was related to a login event in which
         /// the user typed the incorrect password. Deprecated, prefer indicating
         /// INCORRECT_PASSWORD through the reasons field instead.
+        #[deprecated]
         PasswordIncorrect = 4,
     }
     impl Annotation {
@@ -256,7 +258,9 @@ pub mod annotate_assessment_request {
                 Self::Unspecified => "ANNOTATION_UNSPECIFIED",
                 Self::Legitimate => "LEGITIMATE",
                 Self::Fraudulent => "FRAUDULENT",
+                #[allow(deprecated)]
                 Self::PasswordCorrect => "PASSWORD_CORRECT",
+                #[allow(deprecated)]
                 Self::PasswordIncorrect => "PASSWORD_INCORRECT",
             }
         }
@@ -266,8 +270,10 @@ pub mod annotate_assessment_request {
                 "ANNOTATION_UNSPECIFIED" => Some(Self::Unspecified),
                 "LEGITIMATE" => Some(Self::Legitimate),
                 "FRAUDULENT" => Some(Self::Fraudulent),
-                "PASSWORD_CORRECT" => Some(Self::PasswordCorrect),
-                "PASSWORD_INCORRECT" => Some(Self::PasswordIncorrect),
+                "PASSWORD_CORRECT" => Some(#[allow(deprecated)] Self::PasswordCorrect),
+                "PASSWORD_INCORRECT" => {
+                    Some(#[allow(deprecated)] Self::PasswordIncorrect)
+                }
                 _ => None,
             }
         }

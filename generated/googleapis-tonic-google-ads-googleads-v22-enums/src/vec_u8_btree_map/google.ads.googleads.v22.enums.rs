@@ -17235,6 +17235,7 @@ pub mod conversion_action_type_enum {
         /// replaced with an improved way to import your conversions from Salesforce.
         ///
         /// * see <https://support.google.com/google-ads/answer/14728349>
+        #[deprecated]
         Salesforce = 30,
         /// Conversions imported from Search Ads 360 Floodlight data. Read only.
         SearchAds360 = 31,
@@ -17316,6 +17317,7 @@ pub mod conversion_action_type_enum {
                 Self::FloodlightTransaction => "FLOODLIGHT_TRANSACTION",
                 Self::GoogleHosted => "GOOGLE_HOSTED",
                 Self::LeadFormSubmit => "LEAD_FORM_SUBMIT",
+                #[allow(deprecated)]
                 Self::Salesforce => "SALESFORCE",
                 Self::SearchAds360 => "SEARCH_ADS_360",
                 Self::SmartCampaignAdClicksToCall => "SMART_CAMPAIGN_AD_CLICKS_TO_CALL",
@@ -17379,7 +17381,7 @@ pub mod conversion_action_type_enum {
                 "FLOODLIGHT_TRANSACTION" => Some(Self::FloodlightTransaction),
                 "GOOGLE_HOSTED" => Some(Self::GoogleHosted),
                 "LEAD_FORM_SUBMIT" => Some(Self::LeadFormSubmit),
-                "SALESFORCE" => Some(Self::Salesforce),
+                "SALESFORCE" => Some(#[allow(deprecated)] Self::Salesforce),
                 "SEARCH_ADS_360" => Some(Self::SearchAds360),
                 "SMART_CAMPAIGN_AD_CLICKS_TO_CALL" => {
                     Some(Self::SmartCampaignAdClicksToCall)

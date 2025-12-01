@@ -1169,6 +1169,7 @@ pub mod tag_template {
         /// Visible in both services. Editable in DataCatalog, read-only in Dataplex.
         /// Deprecated: Individual TagTemplate migration is deprecated in favor of
         /// organization or project wide TagTemplate migration opt-in.
+        #[deprecated]
         Migrated = 1,
         /// TagTemplate and its tags are auto-copied to Dataplex service.
         /// Visible in both services. Editable in Dataplex, read-only in DataCatalog.
@@ -1182,6 +1183,7 @@ pub mod tag_template {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 Self::Unspecified => "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+                #[allow(deprecated)]
                 Self::Migrated => "MIGRATED",
                 Self::Transferred => "TRANSFERRED",
             }
@@ -1190,7 +1192,7 @@ pub mod tag_template {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "MIGRATED" => Some(Self::Migrated),
+                "MIGRATED" => Some(#[allow(deprecated)] Self::Migrated),
                 "TRANSFERRED" => Some(Self::Transferred),
                 _ => None,
             }

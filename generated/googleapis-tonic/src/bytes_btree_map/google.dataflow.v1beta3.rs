@@ -4721,6 +4721,7 @@ pub enum ParameterType {
     /// The parameter specifies a number input.
     Number = 19,
     /// Deprecated. Please use KAFKA_READ_TOPIC instead.
+    #[deprecated]
     KafkaTopic = 20,
     /// The parameter specifies the fully-qualified name of an Apache Kafka topic.
     /// This can be either a Google Managed Kafka topic or a non-managed Kafka
@@ -4758,6 +4759,7 @@ impl ParameterType {
             Self::Boolean => "BOOLEAN",
             Self::Enum => "ENUM",
             Self::Number => "NUMBER",
+            #[allow(deprecated)]
             Self::KafkaTopic => "KAFKA_TOPIC",
             Self::KafkaReadTopic => "KAFKA_READ_TOPIC",
             Self::KafkaWriteTopic => "KAFKA_WRITE_TOPIC",
@@ -4786,7 +4788,7 @@ impl ParameterType {
             "BOOLEAN" => Some(Self::Boolean),
             "ENUM" => Some(Self::Enum),
             "NUMBER" => Some(Self::Number),
-            "KAFKA_TOPIC" => Some(Self::KafkaTopic),
+            "KAFKA_TOPIC" => Some(#[allow(deprecated)] Self::KafkaTopic),
             "KAFKA_READ_TOPIC" => Some(Self::KafkaReadTopic),
             "KAFKA_WRITE_TOPIC" => Some(Self::KafkaWriteTopic),
             _ => None,

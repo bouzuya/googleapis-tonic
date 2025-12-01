@@ -141,8 +141,10 @@ pub mod step {
         /// Forwarding state: arriving at a Compute Engine instance.
         ArriveAtInstance = 9,
         /// Forwarding state: arriving at a Compute Engine internal load balancer.
+        #[deprecated]
         ArriveAtInternalLoadBalancer = 10,
         /// Forwarding state: arriving at a Compute Engine external load balancer.
+        #[deprecated]
         ArriveAtExternalLoadBalancer = 11,
         /// Forwarding state: arriving at a hybrid subnet. Appropriate routing
         /// configuration will be determined here.
@@ -209,7 +211,9 @@ pub mod step {
                 Self::AnalyzeLoadBalancerBackend => "ANALYZE_LOAD_BALANCER_BACKEND",
                 Self::SpoofingApproved => "SPOOFING_APPROVED",
                 Self::ArriveAtInstance => "ARRIVE_AT_INSTANCE",
+                #[allow(deprecated)]
                 Self::ArriveAtInternalLoadBalancer => "ARRIVE_AT_INTERNAL_LOAD_BALANCER",
+                #[allow(deprecated)]
                 Self::ArriveAtExternalLoadBalancer => "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
                 Self::ArriveAtHybridSubnet => "ARRIVE_AT_HYBRID_SUBNET",
                 Self::ArriveAtVpnGateway => "ARRIVE_AT_VPN_GATEWAY",
@@ -257,10 +261,10 @@ pub mod step {
                 "SPOOFING_APPROVED" => Some(Self::SpoofingApproved),
                 "ARRIVE_AT_INSTANCE" => Some(Self::ArriveAtInstance),
                 "ARRIVE_AT_INTERNAL_LOAD_BALANCER" => {
-                    Some(Self::ArriveAtInternalLoadBalancer)
+                    Some(#[allow(deprecated)] Self::ArriveAtInternalLoadBalancer)
                 }
                 "ARRIVE_AT_EXTERNAL_LOAD_BALANCER" => {
-                    Some(Self::ArriveAtExternalLoadBalancer)
+                    Some(#[allow(deprecated)] Self::ArriveAtExternalLoadBalancer)
                 }
                 "ARRIVE_AT_HYBRID_SUBNET" => Some(Self::ArriveAtHybridSubnet),
                 "ARRIVE_AT_VPN_GATEWAY" => Some(Self::ArriveAtVpnGateway),
@@ -347,6 +351,7 @@ pub mod step {
         Drop(super::DropInfo),
         /// Display information of the load balancers. Deprecated in favor of the
         /// `load_balancer_backend_info` field, not used in new tests.
+        #[deprecated]
         #[prost(message, tag = "16")]
         LoadBalancer(super::LoadBalancerInfo),
         /// Display information of a Google Cloud network.
@@ -1817,10 +1822,12 @@ pub mod forward_info {
         /// Forwarded to a Cloud Interconnect connection.
         Interconnect = 3,
         /// Forwarded to a Google Kubernetes Engine Container cluster master.
+        #[deprecated]
         GkeMaster = 4,
         /// Forwarded to the next hop of a custom route imported from a peering VPC.
         ImportedCustomRouteNextHop = 5,
         /// Forwarded to a Cloud SQL instance.
+        #[deprecated]
         CloudSqlInstance = 6,
         /// Forwarded to a VPC network in another project.
         AnotherProject = 7,
@@ -1842,8 +1849,10 @@ pub mod forward_info {
                 Self::PeeringVpc => "PEERING_VPC",
                 Self::VpnGateway => "VPN_GATEWAY",
                 Self::Interconnect => "INTERCONNECT",
+                #[allow(deprecated)]
                 Self::GkeMaster => "GKE_MASTER",
                 Self::ImportedCustomRouteNextHop => "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
+                #[allow(deprecated)]
                 Self::CloudSqlInstance => "CLOUD_SQL_INSTANCE",
                 Self::AnotherProject => "ANOTHER_PROJECT",
                 Self::NccHub => "NCC_HUB",
@@ -1858,11 +1867,11 @@ pub mod forward_info {
                 "PEERING_VPC" => Some(Self::PeeringVpc),
                 "VPN_GATEWAY" => Some(Self::VpnGateway),
                 "INTERCONNECT" => Some(Self::Interconnect),
-                "GKE_MASTER" => Some(Self::GkeMaster),
+                "GKE_MASTER" => Some(#[allow(deprecated)] Self::GkeMaster),
                 "IMPORTED_CUSTOM_ROUTE_NEXT_HOP" => {
                     Some(Self::ImportedCustomRouteNextHop)
                 }
-                "CLOUD_SQL_INSTANCE" => Some(Self::CloudSqlInstance),
+                "CLOUD_SQL_INSTANCE" => Some(#[allow(deprecated)] Self::CloudSqlInstance),
                 "ANOTHER_PROJECT" => Some(Self::AnotherProject),
                 "NCC_HUB" => Some(Self::NccHub),
                 "ROUTER_APPLIANCE" => Some(Self::RouterAppliance),
@@ -1910,28 +1919,36 @@ pub mod abort_info {
         /// Cause is unspecified.
         Unspecified = 0,
         /// Aborted due to unknown network. Deprecated, not used in the new tests.
+        #[deprecated]
         UnknownNetwork = 1,
         /// Aborted because no project information can be derived from the test
         /// input. Deprecated, not used in the new tests.
+        #[deprecated]
         UnknownProject = 3,
         /// Aborted because traffic is sent from a public IP to an instance without
         /// an external IP. Deprecated, not used in the new tests.
+        #[deprecated]
         NoExternalIp = 7,
         /// Aborted because none of the traces matches destination information
         /// specified in the input test request. Deprecated, not used in the new
         /// tests.
+        #[deprecated]
         UnintendedDestination = 8,
         /// Aborted because the source endpoint could not be found. Deprecated, not
         /// used in the new tests.
+        #[deprecated]
         SourceEndpointNotFound = 11,
         /// Aborted because the source network does not match the source endpoint.
         /// Deprecated, not used in the new tests.
+        #[deprecated]
         MismatchedSourceNetwork = 12,
         /// Aborted because the destination endpoint could not be found. Deprecated,
         /// not used in the new tests.
+        #[deprecated]
         DestinationEndpointNotFound = 13,
         /// Aborted because the destination network does not match the destination
         /// endpoint. Deprecated, not used in the new tests.
+        #[deprecated]
         MismatchedDestinationNetwork = 14,
         /// Aborted because no endpoint with the packet's destination IP address is
         /// found.
@@ -2030,13 +2047,21 @@ pub mod abort_info {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 Self::Unspecified => "CAUSE_UNSPECIFIED",
+                #[allow(deprecated)]
                 Self::UnknownNetwork => "UNKNOWN_NETWORK",
+                #[allow(deprecated)]
                 Self::UnknownProject => "UNKNOWN_PROJECT",
+                #[allow(deprecated)]
                 Self::NoExternalIp => "NO_EXTERNAL_IP",
+                #[allow(deprecated)]
                 Self::UnintendedDestination => "UNINTENDED_DESTINATION",
+                #[allow(deprecated)]
                 Self::SourceEndpointNotFound => "SOURCE_ENDPOINT_NOT_FOUND",
+                #[allow(deprecated)]
                 Self::MismatchedSourceNetwork => "MISMATCHED_SOURCE_NETWORK",
+                #[allow(deprecated)]
                 Self::DestinationEndpointNotFound => "DESTINATION_ENDPOINT_NOT_FOUND",
+                #[allow(deprecated)]
                 Self::MismatchedDestinationNetwork => "MISMATCHED_DESTINATION_NETWORK",
                 Self::UnknownIp => "UNKNOWN_IP",
                 Self::GoogleManagedServiceUnknownIp => {
@@ -2098,17 +2123,23 @@ pub mod abort_info {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "CAUSE_UNSPECIFIED" => Some(Self::Unspecified),
-                "UNKNOWN_NETWORK" => Some(Self::UnknownNetwork),
-                "UNKNOWN_PROJECT" => Some(Self::UnknownProject),
-                "NO_EXTERNAL_IP" => Some(Self::NoExternalIp),
-                "UNINTENDED_DESTINATION" => Some(Self::UnintendedDestination),
-                "SOURCE_ENDPOINT_NOT_FOUND" => Some(Self::SourceEndpointNotFound),
-                "MISMATCHED_SOURCE_NETWORK" => Some(Self::MismatchedSourceNetwork),
+                "UNKNOWN_NETWORK" => Some(#[allow(deprecated)] Self::UnknownNetwork),
+                "UNKNOWN_PROJECT" => Some(#[allow(deprecated)] Self::UnknownProject),
+                "NO_EXTERNAL_IP" => Some(#[allow(deprecated)] Self::NoExternalIp),
+                "UNINTENDED_DESTINATION" => {
+                    Some(#[allow(deprecated)] Self::UnintendedDestination)
+                }
+                "SOURCE_ENDPOINT_NOT_FOUND" => {
+                    Some(#[allow(deprecated)] Self::SourceEndpointNotFound)
+                }
+                "MISMATCHED_SOURCE_NETWORK" => {
+                    Some(#[allow(deprecated)] Self::MismatchedSourceNetwork)
+                }
                 "DESTINATION_ENDPOINT_NOT_FOUND" => {
-                    Some(Self::DestinationEndpointNotFound)
+                    Some(#[allow(deprecated)] Self::DestinationEndpointNotFound)
                 }
                 "MISMATCHED_DESTINATION_NETWORK" => {
-                    Some(Self::MismatchedDestinationNetwork)
+                    Some(#[allow(deprecated)] Self::MismatchedDestinationNetwork)
                 }
                 "UNKNOWN_IP" => Some(Self::UnknownIp),
                 "GOOGLE_MANAGED_SERVICE_UNKNOWN_IP" => {

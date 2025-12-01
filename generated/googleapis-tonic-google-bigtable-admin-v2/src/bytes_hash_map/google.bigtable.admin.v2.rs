@@ -646,6 +646,7 @@ pub mod app_profile {
         /// If you set this field, `standard_isolation.priority` will be set instead.
         ///
         /// The priority of requests sent using this app profile.
+        #[deprecated]
         #[prost(enumeration = "Priority", tag = "7")]
         Priority(i32),
         /// The standard options used for isolating this app profile's traffic from
@@ -2543,6 +2544,7 @@ pub mod r#type {
             #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
             pub enum Encoding {
                 /// Deprecated: if set, converts to an empty `utf8_bytes`.
+                #[deprecated]
                 #[prost(message, tag = "1")]
                 Utf8Raw(Utf8Raw),
                 /// Use `Utf8Bytes` encoding.

@@ -108,6 +108,7 @@ pub mod operation_metadata {
         #[prost(message, tag = "20")]
         UndeletePhraseSetRequest(super::UndeletePhraseSetRequest),
         /// The UpdateConfigRequest that spawned the Operation.
+        #[deprecated]
         #[prost(message, tag = "21")]
         UpdateConfigRequest(super::UpdateConfigRequest),
     }

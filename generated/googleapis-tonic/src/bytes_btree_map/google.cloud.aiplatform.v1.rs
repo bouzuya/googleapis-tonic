@@ -7,6 +7,7 @@ pub enum AcceleratorType {
     Unspecified = 0,
     /// Deprecated: Nvidia Tesla K80 GPU has reached end of support,
     /// see <https://cloud.google.com/compute/docs/eol/k80-eol.>
+    #[deprecated]
     NvidiaTeslaK80 = 1,
     /// Nvidia Tesla P100 GPU.
     NvidiaTeslaP100 = 2,
@@ -51,6 +52,7 @@ impl AcceleratorType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             Self::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
+            #[allow(deprecated)]
             Self::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
             Self::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
             Self::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
@@ -75,7 +77,7 @@ impl AcceleratorType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "ACCELERATOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "NVIDIA_TESLA_K80" => Some(Self::NvidiaTeslaK80),
+            "NVIDIA_TESLA_K80" => Some(#[allow(deprecated)] Self::NvidiaTeslaK80),
             "NVIDIA_TESLA_P100" => Some(Self::NvidiaTeslaP100),
             "NVIDIA_TESLA_V100" => Some(Self::NvidiaTeslaV100),
             "NVIDIA_TESLA_P4" => Some(Self::NvidiaTeslaP4),
@@ -5642,6 +5644,7 @@ pub mod import_rag_files_config {
     pub enum PartialFailureSink {
         /// The Cloud Storage path to write partial failures to.
         /// Deprecated. Prefer to use `import_result_gcs_sink`.
+        #[deprecated]
         #[prost(message, tag = "11")]
         PartialFailureGcsSink(super::GcsDestination),
         /// The BigQuery destination to write partial failures to. It should be a
@@ -5651,6 +5654,7 @@ pub mod import_rag_files_config {
         /// table exists, the schema will be validated and data will be added to this
         /// existing table.
         /// Deprecated. Prefer to use `import_result_bq_sink`.
+        #[deprecated]
         #[prost(message, tag = "12")]
         PartialFailureBigquerySink(super::BigQueryDestination),
     }
@@ -6897,6 +6901,7 @@ pub enum HarmCategory {
     SexuallyExplicit = 4,
     /// Deprecated: Election filter is not longer supported.
     /// The harm category is civic integrity.
+    #[deprecated]
     CivicIntegrity = 5,
     /// The harm category is for jailbreak prompts.
     Jailbreak = 6,
@@ -6913,6 +6918,7 @@ impl HarmCategory {
             Self::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
             Self::Harassment => "HARM_CATEGORY_HARASSMENT",
             Self::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            #[allow(deprecated)]
             Self::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
             Self::Jailbreak => "HARM_CATEGORY_JAILBREAK",
         }
@@ -6925,7 +6931,9 @@ impl HarmCategory {
             "HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
             "HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
-            "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
+            "HARM_CATEGORY_CIVIC_INTEGRITY" => {
+                Some(#[allow(deprecated)] Self::CivicIntegrity)
+            }
             "HARM_CATEGORY_JAILBREAK" => Some(Self::Jailbreak),
             _ => None,
         }
@@ -7602,8 +7610,10 @@ pub mod scheduling {
         /// Strategy will default to STANDARD.
         Unspecified = 0,
         /// Deprecated. Regular on-demand provisioning strategy.
+        #[deprecated]
         OnDemand = 1,
         /// Deprecated. Low cost by making potential use of spot resources.
+        #[deprecated]
         LowCost = 2,
         /// Standard provisioning strategy uses regular on-demand resources.
         Standard = 3,
@@ -7620,7 +7630,9 @@ pub mod scheduling {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 Self::Unspecified => "STRATEGY_UNSPECIFIED",
+                #[allow(deprecated)]
                 Self::OnDemand => "ON_DEMAND",
+                #[allow(deprecated)]
                 Self::LowCost => "LOW_COST",
                 Self::Standard => "STANDARD",
                 Self::Spot => "SPOT",
@@ -7631,8 +7643,8 @@ pub mod scheduling {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
-                "ON_DEMAND" => Some(Self::OnDemand),
-                "LOW_COST" => Some(Self::LowCost),
+                "ON_DEMAND" => Some(#[allow(deprecated)] Self::OnDemand),
+                "LOW_COST" => Some(#[allow(deprecated)] Self::LowCost),
                 "STANDARD" => Some(Self::Standard),
                 "SPOT" => Some(Self::Spot),
                 "FLEX_START" => Some(Self::FlexStart),
@@ -31228,9 +31240,11 @@ pub mod publisher_model {
             #[prost(string, tag = "2")]
             ResourceName(::prost::alloc::string::String),
             /// Use case (CUJ) of the resource.
+            #[deprecated]
             #[prost(string, tag = "3")]
             UseCase(::prost::alloc::string::String),
             /// Description of the resource.
+            #[deprecated]
             #[prost(string, tag = "4")]
             Description(::prost::alloc::string::String),
         }

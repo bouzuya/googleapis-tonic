@@ -191,6 +191,7 @@ pub mod reporting_context {
         /// Deprecated:  Use `DEMAND_GEN_ADS` instead.
         /// [Discovery and Demand Gen
         /// ads](<https://support.google.com/merchants/answer/13389785>).
+        #[deprecated]
         DiscoveryAds = 2,
         /// [Demand Gen ads](<https://support.google.com/merchants/answer/13389785>).
         DemandGenAds = 13,
@@ -233,6 +234,7 @@ pub mod reporting_context {
             match self {
                 Self::Unspecified => "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
                 Self::ShoppingAds => "SHOPPING_ADS",
+                #[allow(deprecated)]
                 Self::DiscoveryAds => "DISCOVERY_ADS",
                 Self::DemandGenAds => "DEMAND_GEN_ADS",
                 Self::DemandGenAdsDiscoverSurface => "DEMAND_GEN_ADS_DISCOVER_SURFACE",
@@ -253,7 +255,7 @@ pub mod reporting_context {
             match value {
                 "REPORTING_CONTEXT_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
                 "SHOPPING_ADS" => Some(Self::ShoppingAds),
-                "DISCOVERY_ADS" => Some(Self::DiscoveryAds),
+                "DISCOVERY_ADS" => Some(#[allow(deprecated)] Self::DiscoveryAds),
                 "DEMAND_GEN_ADS" => Some(Self::DemandGenAds),
                 "DEMAND_GEN_ADS_DISCOVER_SURFACE" => {
                     Some(Self::DemandGenAdsDiscoverSurface)

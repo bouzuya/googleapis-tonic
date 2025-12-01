@@ -1645,6 +1645,7 @@ pub enum HarmCategory {
     DangerousContent = 10,
     /// **Gemini** - Content that may be used to harm civic integrity.
     /// DEPRECATED: use enable_enhanced_civic_answers instead.
+    #[deprecated]
     CivicIntegrity = 11,
 }
 impl HarmCategory {
@@ -1665,6 +1666,7 @@ impl HarmCategory {
             Self::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
             Self::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
             Self::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
+            #[allow(deprecated)]
             Self::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
         }
     }
@@ -1682,7 +1684,9 @@ impl HarmCategory {
             "HARM_CATEGORY_HATE_SPEECH" => Some(Self::HateSpeech),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
             "HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
-            "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
+            "HARM_CATEGORY_CIVIC_INTEGRITY" => {
+                Some(#[allow(deprecated)] Self::CivicIntegrity)
+            }
             _ => None,
         }
     }

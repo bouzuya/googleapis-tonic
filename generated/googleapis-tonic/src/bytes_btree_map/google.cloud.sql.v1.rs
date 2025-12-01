@@ -1277,7 +1277,9 @@ pub mod operation {
         Delete = 5,
         /// Restarts the Cloud SQL instance.
         Restart = 6,
+        #[deprecated]
         Backup = 7,
+        #[deprecated]
         Snapshot = 8,
         /// Performs instance backup.
         BackupVolume = 9,
@@ -1324,9 +1326,12 @@ pub mod operation {
         /// typically causes the instance to be unavailable for 1-3 minutes.
         Maintenance = 30,
         /// This field is deprecated, and will be removed in future version of API.
+        #[deprecated]
         EnablePrivateIp = 31,
+        #[deprecated]
         DeferMaintenance = 32,
         /// Creates clone instance.
+        #[deprecated]
         CreateClone = 33,
         /// Reschedule maintenance to another time.
         RescheduleMaintenance = 34,
@@ -1383,7 +1388,9 @@ pub mod operation {
                 Self::Update => "UPDATE",
                 Self::Delete => "DELETE",
                 Self::Restart => "RESTART",
+                #[allow(deprecated)]
                 Self::Backup => "BACKUP",
+                #[allow(deprecated)]
                 Self::Snapshot => "SNAPSHOT",
                 Self::BackupVolume => "BACKUP_VOLUME",
                 Self::DeleteVolume => "DELETE_VOLUME",
@@ -1406,8 +1413,11 @@ pub mod operation {
                 Self::TruncateLog => "TRUNCATE_LOG",
                 Self::DemoteMaster => "DEMOTE_MASTER",
                 Self::Maintenance => "MAINTENANCE",
+                #[allow(deprecated)]
                 Self::EnablePrivateIp => "ENABLE_PRIVATE_IP",
+                #[allow(deprecated)]
                 Self::DeferMaintenance => "DEFER_MAINTENANCE",
+                #[allow(deprecated)]
                 Self::CreateClone => "CREATE_CLONE",
                 Self::RescheduleMaintenance => "RESCHEDULE_MAINTENANCE",
                 Self::StartExternalSync => "START_EXTERNAL_SYNC",
@@ -1434,8 +1444,8 @@ pub mod operation {
                 "UPDATE" => Some(Self::Update),
                 "DELETE" => Some(Self::Delete),
                 "RESTART" => Some(Self::Restart),
-                "BACKUP" => Some(Self::Backup),
-                "SNAPSHOT" => Some(Self::Snapshot),
+                "BACKUP" => Some(#[allow(deprecated)] Self::Backup),
+                "SNAPSHOT" => Some(#[allow(deprecated)] Self::Snapshot),
                 "BACKUP_VOLUME" => Some(Self::BackupVolume),
                 "DELETE_VOLUME" => Some(Self::DeleteVolume),
                 "RESTORE_VOLUME" => Some(Self::RestoreVolume),
@@ -1457,9 +1467,9 @@ pub mod operation {
                 "TRUNCATE_LOG" => Some(Self::TruncateLog),
                 "DEMOTE_MASTER" => Some(Self::DemoteMaster),
                 "MAINTENANCE" => Some(Self::Maintenance),
-                "ENABLE_PRIVATE_IP" => Some(Self::EnablePrivateIp),
-                "DEFER_MAINTENANCE" => Some(Self::DeferMaintenance),
-                "CREATE_CLONE" => Some(Self::CreateClone),
+                "ENABLE_PRIVATE_IP" => Some(#[allow(deprecated)] Self::EnablePrivateIp),
+                "DEFER_MAINTENANCE" => Some(#[allow(deprecated)] Self::DeferMaintenance),
+                "CREATE_CLONE" => Some(#[allow(deprecated)] Self::CreateClone),
                 "RESCHEDULE_MAINTENANCE" => Some(Self::RescheduleMaintenance),
                 "START_EXTERNAL_SYNC" => Some(Self::StartExternalSync),
                 "LOG_CLEANUP" => Some(Self::LogCleanup),
@@ -1819,6 +1829,7 @@ pub mod settings {
         /// The instance never starts.
         Never = 2,
         /// The instance starts upon receiving requests.
+        #[deprecated]
         OnDemand = 3,
     }
     impl SqlActivationPolicy {
@@ -1831,6 +1842,7 @@ pub mod settings {
                 Self::Unspecified => "SQL_ACTIVATION_POLICY_UNSPECIFIED",
                 Self::Always => "ALWAYS",
                 Self::Never => "NEVER",
+                #[allow(deprecated)]
                 Self::OnDemand => "ON_DEMAND",
             }
         }
@@ -1840,7 +1852,7 @@ pub mod settings {
                 "SQL_ACTIVATION_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
                 "ALWAYS" => Some(Self::Always),
                 "NEVER" => Some(Self::Never),
-                "ON_DEMAND" => Some(Self::OnDemand),
+                "ON_DEMAND" => Some(#[allow(deprecated)] Self::OnDemand),
                 _ => None,
             }
         }
@@ -2108,6 +2120,7 @@ pub enum SqlBackendType {
     /// This is an unknown backend type for instance.
     Unspecified = 0,
     /// V1 speckle instance.
+    #[deprecated]
     FirstGen = 1,
     /// V2 speckle instance.
     SecondGen = 2,
@@ -2122,6 +2135,7 @@ impl SqlBackendType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             Self::Unspecified => "SQL_BACKEND_TYPE_UNSPECIFIED",
+            #[allow(deprecated)]
             Self::FirstGen => "FIRST_GEN",
             Self::SecondGen => "SECOND_GEN",
             Self::External => "EXTERNAL",
@@ -2131,7 +2145,7 @@ impl SqlBackendType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "SQL_BACKEND_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "FIRST_GEN" => Some(Self::FirstGen),
+            "FIRST_GEN" => Some(#[allow(deprecated)] Self::FirstGen),
             "SECOND_GEN" => Some(Self::SecondGen),
             "EXTERNAL" => Some(Self::External),
             _ => None,
@@ -2191,8 +2205,10 @@ pub enum SqlDatabaseVersion {
     /// This is an unknown database version.
     Unspecified = 0,
     /// The database version is MySQL 5.1.
+    #[deprecated]
     Mysql51 = 2,
     /// The database version is MySQL 5.5.
+    #[deprecated]
     Mysql55 = 3,
     /// The database version is MySQL 5.6.
     Mysql56 = 5,
@@ -2237,6 +2253,7 @@ pub enum SqlDatabaseVersion {
     /// The database major version is MySQL 8.0 and the minor version is 28.
     Mysql8028 = 132,
     /// The database major version is MySQL 8.0 and the minor version is 29.
+    #[deprecated]
     Mysql8029 = 148,
     /// The database major version is MySQL 8.0 and the minor version is 30.
     Mysql8030 = 174,
@@ -2289,7 +2306,9 @@ impl SqlDatabaseVersion {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             Self::Unspecified => "SQL_DATABASE_VERSION_UNSPECIFIED",
+            #[allow(deprecated)]
             Self::Mysql51 => "MYSQL_5_1",
+            #[allow(deprecated)]
             Self::Mysql55 => "MYSQL_5_5",
             Self::Mysql56 => "MYSQL_5_6",
             Self::Mysql57 => "MYSQL_5_7",
@@ -2312,6 +2331,7 @@ impl SqlDatabaseVersion {
             Self::Mysql8026 => "MYSQL_8_0_26",
             Self::Mysql8027 => "MYSQL_8_0_27",
             Self::Mysql8028 => "MYSQL_8_0_28",
+            #[allow(deprecated)]
             Self::Mysql8029 => "MYSQL_8_0_29",
             Self::Mysql8030 => "MYSQL_8_0_30",
             Self::Mysql8031 => "MYSQL_8_0_31",
@@ -2340,8 +2360,8 @@ impl SqlDatabaseVersion {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "SQL_DATABASE_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
-            "MYSQL_5_1" => Some(Self::Mysql51),
-            "MYSQL_5_5" => Some(Self::Mysql55),
+            "MYSQL_5_1" => Some(#[allow(deprecated)] Self::Mysql51),
+            "MYSQL_5_5" => Some(#[allow(deprecated)] Self::Mysql55),
             "MYSQL_5_6" => Some(Self::Mysql56),
             "MYSQL_5_7" => Some(Self::Mysql57),
             "SQLSERVER_2017_STANDARD" => Some(Self::Sqlserver2017Standard),
@@ -2363,7 +2383,7 @@ impl SqlDatabaseVersion {
             "MYSQL_8_0_26" => Some(Self::Mysql8026),
             "MYSQL_8_0_27" => Some(Self::Mysql8027),
             "MYSQL_8_0_28" => Some(Self::Mysql8028),
-            "MYSQL_8_0_29" => Some(Self::Mysql8029),
+            "MYSQL_8_0_29" => Some(#[allow(deprecated)] Self::Mysql8029),
             "MYSQL_8_0_30" => Some(Self::Mysql8030),
             "MYSQL_8_0_31" => Some(Self::Mysql8031),
             "MYSQL_8_0_32" => Some(Self::Mysql8032),
@@ -2470,6 +2490,7 @@ pub enum SqlDataDiskType {
     PdHdd = 2,
     /// This field is deprecated and will be removed from a future version of the
     /// API.
+    #[deprecated]
     ObsoleteLocalSsd = 3,
 }
 impl SqlDataDiskType {
@@ -2482,6 +2503,7 @@ impl SqlDataDiskType {
             Self::Unspecified => "SQL_DATA_DISK_TYPE_UNSPECIFIED",
             Self::PdSsd => "PD_SSD",
             Self::PdHdd => "PD_HDD",
+            #[allow(deprecated)]
             Self::ObsoleteLocalSsd => "OBSOLETE_LOCAL_SSD",
         }
     }
@@ -2491,7 +2513,7 @@ impl SqlDataDiskType {
             "SQL_DATA_DISK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "PD_SSD" => Some(Self::PdSsd),
             "PD_HDD" => Some(Self::PdHdd),
-            "OBSOLETE_LOCAL_SSD" => Some(Self::ObsoleteLocalSsd),
+            "OBSOLETE_LOCAL_SSD" => Some(#[allow(deprecated)] Self::ObsoleteLocalSsd),
             _ => None,
         }
     }
@@ -5252,6 +5274,7 @@ pub mod database_instance {
         /// maintenance.
         Failed = 6,
         /// Deprecated
+        #[deprecated]
         OnlineMaintenance = 7,
     }
     impl SqlInstanceState {
@@ -5268,6 +5291,7 @@ pub mod database_instance {
                 Self::PendingCreate => "PENDING_CREATE",
                 Self::Maintenance => "MAINTENANCE",
                 Self::Failed => "FAILED",
+                #[allow(deprecated)]
                 Self::OnlineMaintenance => "ONLINE_MAINTENANCE",
             }
         }
@@ -5281,7 +5305,9 @@ pub mod database_instance {
                 "PENDING_CREATE" => Some(Self::PendingCreate),
                 "MAINTENANCE" => Some(Self::Maintenance),
                 "FAILED" => Some(Self::Failed),
-                "ONLINE_MAINTENANCE" => Some(Self::OnlineMaintenance),
+                "ONLINE_MAINTENANCE" => {
+                    Some(#[allow(deprecated)] Self::OnlineMaintenance)
+                }
                 _ => None,
             }
         }

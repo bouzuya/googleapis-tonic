@@ -273,6 +273,7 @@ pub mod agent {
         Enterprise = 2,
         /// Essentials Edition (same as TIER_ENTERPRISE), previously known as
         /// Enterprise Plus Edition.
+        #[deprecated]
         EnterprisePlus = 3,
     }
     impl Tier {
@@ -285,6 +286,7 @@ pub mod agent {
                 Self::Unspecified => "TIER_UNSPECIFIED",
                 Self::Standard => "TIER_STANDARD",
                 Self::Enterprise => "TIER_ENTERPRISE",
+                #[allow(deprecated)]
                 Self::EnterprisePlus => "TIER_ENTERPRISE_PLUS",
             }
         }
@@ -294,7 +296,7 @@ pub mod agent {
                 "TIER_UNSPECIFIED" => Some(Self::Unspecified),
                 "TIER_STANDARD" => Some(Self::Standard),
                 "TIER_ENTERPRISE" => Some(Self::Enterprise),
-                "TIER_ENTERPRISE_PLUS" => Some(Self::EnterprisePlus),
+                "TIER_ENTERPRISE_PLUS" => Some(#[allow(deprecated)] Self::EnterprisePlus),
                 _ => None,
             }
         }
@@ -2854,6 +2856,7 @@ pub mod intent {
             /// way to create new training phrases. If you have existing training
             /// phrases that you've created in template mode, those will continue to
             /// work.
+            #[deprecated]
             Template = 2,
         }
         impl Type {
@@ -2865,6 +2868,7 @@ pub mod intent {
                 match self {
                     Self::Unspecified => "TYPE_UNSPECIFIED",
                     Self::Example => "EXAMPLE",
+                    #[allow(deprecated)]
                     Self::Template => "TEMPLATE",
                 }
             }
@@ -2873,7 +2877,7 @@ pub mod intent {
                 match value {
                     "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                     "EXAMPLE" => Some(Self::Example),
-                    "TEMPLATE" => Some(Self::Template),
+                    "TEMPLATE" => Some(#[allow(deprecated)] Self::Template),
                     _ => None,
                 }
             }

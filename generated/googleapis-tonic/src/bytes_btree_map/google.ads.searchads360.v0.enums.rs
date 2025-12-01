@@ -2118,6 +2118,7 @@ pub mod ad_group_ad_engine_status_enum {
         /// Used for return value only. Represents value unknown in this version.
         Unknown = 1,
         /// Deprecated. Do not use.
+        #[deprecated]
         AdGroupAdEligible = 2,
         /// Baidu: Creative was not approved.
         AdGroupAdInappropriateForCampaign = 3,
@@ -2130,6 +2131,7 @@ pub mod ad_group_ad_engine_status_enum {
         /// Baidu: Creative not reviewed.
         AdGroupAdNotReviewed = 7,
         /// Deprecated. Do not use. Previously used by Gemini
+        #[deprecated]
         AdGroupAdOnHold = 8,
         /// Creative has been paused.
         AdGroupAdPaused = 9,
@@ -2161,6 +2163,7 @@ pub mod ad_group_ad_engine_status_enum {
             match self {
                 Self::Unspecified => "UNSPECIFIED",
                 Self::Unknown => "UNKNOWN",
+                #[allow(deprecated)]
                 Self::AdGroupAdEligible => "AD_GROUP_AD_ELIGIBLE",
                 Self::AdGroupAdInappropriateForCampaign => {
                     "AD_GROUP_AD_INAPPROPRIATE_FOR_CAMPAIGN"
@@ -2171,6 +2174,7 @@ pub mod ad_group_ad_engine_status_enum {
                 Self::AdGroupAdPartiallyInvalid => "AD_GROUP_AD_PARTIALLY_INVALID",
                 Self::AdGroupAdToBeActivated => "AD_GROUP_AD_TO_BE_ACTIVATED",
                 Self::AdGroupAdNotReviewed => "AD_GROUP_AD_NOT_REVIEWED",
+                #[allow(deprecated)]
                 Self::AdGroupAdOnHold => "AD_GROUP_AD_ON_HOLD",
                 Self::AdGroupAdPaused => "AD_GROUP_AD_PAUSED",
                 Self::AdGroupAdRemoved => "AD_GROUP_AD_REMOVED",
@@ -2189,7 +2193,9 @@ pub mod ad_group_ad_engine_status_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "AD_GROUP_AD_ELIGIBLE" => Some(Self::AdGroupAdEligible),
+                "AD_GROUP_AD_ELIGIBLE" => {
+                    Some(#[allow(deprecated)] Self::AdGroupAdEligible)
+                }
                 "AD_GROUP_AD_INAPPROPRIATE_FOR_CAMPAIGN" => {
                     Some(Self::AdGroupAdInappropriateForCampaign)
                 }
@@ -2199,7 +2205,7 @@ pub mod ad_group_ad_engine_status_enum {
                 "AD_GROUP_AD_PARTIALLY_INVALID" => Some(Self::AdGroupAdPartiallyInvalid),
                 "AD_GROUP_AD_TO_BE_ACTIVATED" => Some(Self::AdGroupAdToBeActivated),
                 "AD_GROUP_AD_NOT_REVIEWED" => Some(Self::AdGroupAdNotReviewed),
-                "AD_GROUP_AD_ON_HOLD" => Some(Self::AdGroupAdOnHold),
+                "AD_GROUP_AD_ON_HOLD" => Some(#[allow(deprecated)] Self::AdGroupAdOnHold),
                 "AD_GROUP_AD_PAUSED" => Some(Self::AdGroupAdPaused),
                 "AD_GROUP_AD_REMOVED" => Some(Self::AdGroupAdRemoved),
                 "AD_GROUP_AD_PENDING_REVIEW" => Some(Self::AdGroupAdPendingReview),
@@ -2354,6 +2360,7 @@ pub mod ad_group_criterion_engine_status_enum {
         /// Used for return value only. Represents value unknown in this version.
         Unknown = 1,
         /// Deprecated. Do not use.
+        #[deprecated]
         AdGroupCriterionEligible = 2,
         /// Baidu: Bid or quality too low to be displayed.
         AdGroupCriterionInappropriateForCampaign = 3,
@@ -2381,6 +2388,7 @@ pub mod ad_group_criterion_engine_status_enum {
         /// Baidu: Criterion to be reviewed.
         AdGroupCriterionNotReviewed = 12,
         /// Deprecated. Do not use. Previously used by Gemini
+        #[deprecated]
         AdGroupCriterionOnHold = 13,
         /// Y!J : Criterion pending review
         AdGroupCriterionPendingReview = 14,
@@ -2406,6 +2414,7 @@ pub mod ad_group_criterion_engine_status_enum {
             match self {
                 Self::Unspecified => "UNSPECIFIED",
                 Self::Unknown => "UNKNOWN",
+                #[allow(deprecated)]
                 Self::AdGroupCriterionEligible => "AD_GROUP_CRITERION_ELIGIBLE",
                 Self::AdGroupCriterionInappropriateForCampaign => {
                     "AD_GROUP_CRITERION_INAPPROPRIATE_FOR_CAMPAIGN"
@@ -2433,6 +2442,7 @@ pub mod ad_group_criterion_engine_status_enum {
                 }
                 Self::AdGroupCriterionUnderReview => "AD_GROUP_CRITERION_UNDER_REVIEW",
                 Self::AdGroupCriterionNotReviewed => "AD_GROUP_CRITERION_NOT_REVIEWED",
+                #[allow(deprecated)]
                 Self::AdGroupCriterionOnHold => "AD_GROUP_CRITERION_ON_HOLD",
                 Self::AdGroupCriterionPendingReview => {
                     "AD_GROUP_CRITERION_PENDING_REVIEW"
@@ -2452,7 +2462,9 @@ pub mod ad_group_criterion_engine_status_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "AD_GROUP_CRITERION_ELIGIBLE" => Some(Self::AdGroupCriterionEligible),
+                "AD_GROUP_CRITERION_ELIGIBLE" => {
+                    Some(#[allow(deprecated)] Self::AdGroupCriterionEligible)
+                }
                 "AD_GROUP_CRITERION_INAPPROPRIATE_FOR_CAMPAIGN" => {
                     Some(Self::AdGroupCriterionInappropriateForCampaign)
                 }
@@ -2483,7 +2495,9 @@ pub mod ad_group_criterion_engine_status_enum {
                 "AD_GROUP_CRITERION_NOT_REVIEWED" => {
                     Some(Self::AdGroupCriterionNotReviewed)
                 }
-                "AD_GROUP_CRITERION_ON_HOLD" => Some(Self::AdGroupCriterionOnHold),
+                "AD_GROUP_CRITERION_ON_HOLD" => {
+                    Some(#[allow(deprecated)] Self::AdGroupCriterionOnHold)
+                }
                 "AD_GROUP_CRITERION_PENDING_REVIEW" => {
                     Some(Self::AdGroupCriterionPendingReview)
                 }
@@ -2585,6 +2599,7 @@ pub mod ad_group_engine_status_enum {
         /// Used for return value only. Represents value unknown in this version.
         Unknown = 1,
         /// Deprecated. Do not use.
+        #[deprecated]
         AdGroupEligible = 2,
         /// No ads are running for this ad group, because the ad group's end date has
         /// passed.
@@ -2616,6 +2631,7 @@ pub mod ad_group_engine_status_enum {
             match self {
                 Self::Unspecified => "UNSPECIFIED",
                 Self::Unknown => "UNKNOWN",
+                #[allow(deprecated)]
                 Self::AdGroupEligible => "AD_GROUP_ELIGIBLE",
                 Self::AdGroupExpired => "AD_GROUP_EXPIRED",
                 Self::AdGroupRemoved => "AD_GROUP_REMOVED",
@@ -2632,7 +2648,7 @@ pub mod ad_group_engine_status_enum {
             match value {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
-                "AD_GROUP_ELIGIBLE" => Some(Self::AdGroupEligible),
+                "AD_GROUP_ELIGIBLE" => Some(#[allow(deprecated)] Self::AdGroupEligible),
                 "AD_GROUP_EXPIRED" => Some(Self::AdGroupExpired),
                 "AD_GROUP_REMOVED" => Some(Self::AdGroupRemoved),
                 "AD_GROUP_DRAFT" => Some(Self::AdGroupDraft),
@@ -5157,6 +5173,7 @@ pub mod conversion_action_type_enum {
         /// replaced with an improved way to import your conversions from Salesforce.
         ///
         /// * see <https://support.google.com/google-ads/answer/14728349>
+        #[deprecated]
         Salesforce = 30,
         /// Conversions imported from Search Ads 360 Floodlight data. Read only.
         SearchAds360 = 31,
@@ -5238,6 +5255,7 @@ pub mod conversion_action_type_enum {
                 Self::FloodlightTransaction => "FLOODLIGHT_TRANSACTION",
                 Self::GoogleHosted => "GOOGLE_HOSTED",
                 Self::LeadFormSubmit => "LEAD_FORM_SUBMIT",
+                #[allow(deprecated)]
                 Self::Salesforce => "SALESFORCE",
                 Self::SearchAds360 => "SEARCH_ADS_360",
                 Self::SmartCampaignAdClicksToCall => "SMART_CAMPAIGN_AD_CLICKS_TO_CALL",
@@ -5301,7 +5319,7 @@ pub mod conversion_action_type_enum {
                 "FLOODLIGHT_TRANSACTION" => Some(Self::FloodlightTransaction),
                 "GOOGLE_HOSTED" => Some(Self::GoogleHosted),
                 "LEAD_FORM_SUBMIT" => Some(Self::LeadFormSubmit),
-                "SALESFORCE" => Some(Self::Salesforce),
+                "SALESFORCE" => Some(#[allow(deprecated)] Self::Salesforce),
                 "SEARCH_ADS_360" => Some(Self::SearchAds360),
                 "SMART_CAMPAIGN_AD_CLICKS_TO_CALL" => {
                     Some(Self::SmartCampaignAdClicksToCall)
