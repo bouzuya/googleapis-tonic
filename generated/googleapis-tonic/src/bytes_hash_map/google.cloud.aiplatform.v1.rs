@@ -14167,6 +14167,11 @@ pub mod feature_online_store {
         /// Output only. Metadata of the Bigtable instance. Output only.
         #[prost(message, optional, tag = "4")]
         pub bigtable_metadata: ::core::option::Option<bigtable::BigtableMetadata>,
+        /// Optional. The zone where the underlying Bigtable cluster for the primary
+        /// Bigtable instance will be provisioned. Only the zone must be provided.
+        /// For example, only "us-central1-a" should be provided.
+        #[prost(string, tag = "5")]
+        pub zone: ::prost::alloc::string::String,
     }
     /// Nested message and enum types in `Bigtable`.
     pub mod bigtable {

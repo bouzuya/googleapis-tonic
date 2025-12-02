@@ -2235,6 +2235,11 @@ pub struct MachineSpec {
     /// consumes reservation.
     #[prost(message, optional, tag = "5")]
     pub reservation_affinity: ::core::option::Option<ReservationAffinity>,
+    /// Optional. Immutable. The minimum GPU driver version that this machine
+    /// requires. For example, "535.104.06". If not specified, the default GPU
+    /// driver version will be used by the underlying infrastructure.
+    #[prost(string, tag = "9")]
+    pub min_gpu_driver_version: ::prost::alloc::string::String,
 }
 /// A description of resources that are dedicated to a DeployedModel or
 /// DeployedIndex, and that need a higher degree of manual configuration.
@@ -18746,6 +18751,11 @@ pub mod feature_online_store {
         /// Metadata of the Bigtable instance. Output only.
         #[prost(message, optional, tag = "4")]
         pub bigtable_metadata: ::core::option::Option<bigtable::BigtableMetadata>,
+        /// Optional. The zone where the underlying Bigtable cluster for the primary
+        /// Bigtable instance will be provisioned. Only the zone must be provided.
+        /// For example, only "us-central1-a" should be provided.
+        #[prost(string, tag = "5")]
+        pub zone: ::prost::alloc::string::String,
     }
     /// Nested message and enum types in `Bigtable`.
     pub mod bigtable {

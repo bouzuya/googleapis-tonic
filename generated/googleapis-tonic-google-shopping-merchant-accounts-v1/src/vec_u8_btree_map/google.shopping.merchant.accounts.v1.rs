@@ -6825,6 +6825,9 @@ pub struct Region {
     /// Services configuration.
     #[prost(message, optional, tag = "6")]
     pub shipping_eligible: ::core::option::Option<bool>,
+    /// Optional. A radius area that defines the region area.
+    #[prost(message, optional, tag = "7")]
+    pub radius_area: ::core::option::Option<region::RadiusArea>,
 }
 /// Nested message and enum types in `Region`.
 pub mod region {
@@ -6872,6 +6875,73 @@ pub mod region {
         /// They must all be of the same location type (for example, state).
         #[prost(int64, repeated, packed = "false", tag = "1")]
         pub geotarget_criteria_ids: ::prost::alloc::vec::Vec<i64>,
+    }
+    /// A radius area that defines the region area.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RadiusArea {
+        /// Required. [CLDR territory
+        /// code](<http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml>)
+        /// or the country the radius area applies to.
+        #[prost(string, tag = "1")]
+        pub region_code: ::prost::alloc::string::String,
+        /// Required. The center of the radius area. It represents a
+        /// latitude/longitude pair in decimal degrees format.
+        #[prost(message, optional, tag = "2")]
+        pub lat_lng: ::core::option::Option<
+            super::super::super::super::super::r#type::LatLng,
+        >,
+        /// Required. The radius distance of the area.
+        #[prost(double, tag = "3")]
+        pub radius: f64,
+        /// Optional. The unit of the radius.
+        #[prost(enumeration = "radius_area::RadiusUnits", tag = "4")]
+        pub radius_units: i32,
+    }
+    /// Nested message and enum types in `RadiusArea`.
+    pub mod radius_area {
+        /// The unit of measurement of the radius. Default is KILOMETERS.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum RadiusUnits {
+            /// Unused default value
+            Unspecified = 0,
+            /// The distance is measured in miles.
+            Miles = 1,
+            /// The distance is measured in kilometers.
+            Kilometers = 2,
+        }
+        impl RadiusUnits {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "RADIUS_UNITS_UNSPECIFIED",
+                    Self::Miles => "MILES",
+                    Self::Kilometers => "KILOMETERS",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "RADIUS_UNITS_UNSPECIFIED" => Some(Self::Unspecified),
+                    "MILES" => Some(Self::Miles),
+                    "KILOMETERS" => Some(Self::Kilometers),
+                    _ => None,
+                }
+            }
+        }
     }
 }
 /// Generated client implementations.
