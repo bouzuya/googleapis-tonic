@@ -482,8 +482,7 @@ pub struct AdGroupBidModifier {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
     /// The modifier for the bid when the criterion matches. The modifier must be
-    /// in the range: 0.1 - 10.0. The range is 1.0 - 6.0 for PreferredContent.
-    /// Use 0 to opt out of a Device type.
+    /// in the range: 0.1 - 10.0. Use 0 to opt out of a Device type.
     #[prost(double, optional, tag = "15")]
     pub bid_modifier: ::core::option::Option<f64>,
     /// The criterion of this ad group bid modifier.
@@ -2901,11 +2900,24 @@ pub struct SearchAds360Field {
     pub is_repeated: ::core::option::Option<bool>,
 }
 /// Shopping performance view.
+///
 /// Provides Shopping campaign statistics aggregated at several product dimension
 /// levels. Product dimension values from Merchant Center such as brand,
 /// category, custom attributes, product condition and product type will reflect
 /// the state of each dimension as of the date and time when the corresponding
 /// event was recorded.
+///
+/// The number of impressions and clicks that shopping_performance_view
+/// returns stats for may be different from campaign reports.
+/// shopping_performance_view shows impressions and clicks on products appearing
+/// in ads, while campaign reports show impressions and clicks on the ads
+/// themselves. Depending on the format, an ad can show from zero to several
+/// products, so the numbers may not match.
+///
+/// In Google Ads UI, you can query impressions and clicks of products appearing
+/// in ads by selecting a column from "Product attributes" in the report editor.
+/// For example, selecting the "Brand" column is equivalent to selecting
+/// `segments.product_brand`.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShoppingPerformanceView {
     /// Output only. The resource name of the Shopping performance view.

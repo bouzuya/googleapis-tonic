@@ -285,6 +285,7 @@
     feature = "google-cloud-location",
     feature = "google-cloud-locationfinder-v1",
     feature = "google-cloud-lustre-v1",
+    feature = "google-cloud-maintenance-api-v1",
     feature = "google-cloud-maintenance-api-v1beta",
     feature = "google-cloud-managedidentities-v1",
     feature = "google-cloud-managedidentities-v1beta1",
@@ -1163,6 +1164,7 @@ pub mod google {
         feature = "google-cloud-location",
         feature = "google-cloud-locationfinder-v1",
         feature = "google-cloud-lustre-v1",
+        feature = "google-cloud-maintenance-api-v1",
         feature = "google-cloud-maintenance-api-v1beta",
         feature = "google-cloud-managedidentities-v1",
         feature = "google-cloud-managedidentities-v1beta1",
@@ -4854,6 +4856,36 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-maintenance-api-v1",
+            feature = "google-cloud-maintenance-api-v1beta",
+        ))]
+        pub mod maintenance {
+            #[cfg(any(
+                feature = "google-cloud-maintenance-api-v1",
+                feature = "google-cloud-maintenance-api-v1beta",
+            ))]
+            pub mod api {
+                #[cfg(any(
+                    feature = "google-cloud-maintenance-api-v1",
+                ))]
+                pub mod v1 {
+                    #[cfg(any(
+                        feature = "google-cloud-maintenance-api-v1",
+                    ))]
+                    include!("vec_u8_hash_map/google.cloud.maintenance.api.v1.rs");
+                }
+                #[cfg(any(
+                    feature = "google-cloud-maintenance-api-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-cloud-maintenance-api-v1beta",
+                    ))]
+                    include!("vec_u8_hash_map/google.cloud.maintenance.api.v1beta.rs");
+                }
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-hypercomputecluster-v1alpha",
             feature = "google-cloud-hypercomputecluster-v1beta",
         ))]
@@ -5745,25 +5777,6 @@ pub mod google {
                     feature = "google-cloud-timeseriesinsights-v1",
                 ))]
                 include!("vec_u8_hash_map/google.cloud.timeseriesinsights.v1.rs");
-            }
-        }
-        #[cfg(any(
-            feature = "google-cloud-maintenance-api-v1beta",
-        ))]
-        pub mod maintenance {
-            #[cfg(any(
-                feature = "google-cloud-maintenance-api-v1beta",
-            ))]
-            pub mod api {
-                #[cfg(any(
-                    feature = "google-cloud-maintenance-api-v1beta",
-                ))]
-                pub mod v1beta {
-                    #[cfg(any(
-                        feature = "google-cloud-maintenance-api-v1beta",
-                    ))]
-                    include!("vec_u8_hash_map/google.cloud.maintenance.api.v1beta.rs");
-                }
             }
         }
         #[cfg(any(

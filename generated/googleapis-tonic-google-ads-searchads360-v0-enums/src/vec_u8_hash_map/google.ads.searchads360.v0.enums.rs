@@ -3551,6 +3551,10 @@ pub mod asset_field_type_enum {
         HotelProperty = 28,
         /// The asset is linked for use as a discovery carousel card.
         DiscoveryCarouselCard = 29,
+        /// The asset is linked for use as a long description.
+        LongDescription = 39,
+        /// The asset is linked for use as a call-to-action.
+        CallToAction = 40,
     }
     impl AssetFieldType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -3589,6 +3593,8 @@ pub mod asset_field_type_enum {
                 Self::BusinessLogo => "BUSINESS_LOGO",
                 Self::HotelProperty => "HOTEL_PROPERTY",
                 Self::DiscoveryCarouselCard => "DISCOVERY_CAROUSEL_CARD",
+                Self::LongDescription => "LONG_DESCRIPTION",
+                Self::CallToAction => "CALL_TO_ACTION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3624,6 +3630,8 @@ pub mod asset_field_type_enum {
                 "BUSINESS_LOGO" => Some(Self::BusinessLogo),
                 "HOTEL_PROPERTY" => Some(Self::HotelProperty),
                 "DISCOVERY_CAROUSEL_CARD" => Some(Self::DiscoveryCarouselCard),
+                "LONG_DESCRIPTION" => Some(Self::LongDescription),
+                "CALL_TO_ACTION" => Some(Self::CallToAction),
                 _ => None,
             }
         }

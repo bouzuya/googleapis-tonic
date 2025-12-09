@@ -687,13 +687,14 @@ pub struct SearchAdReviewCenterAdsRequest {
     /// is the value returned from a previous Search request, or empty.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
-    /// Required. Only return ads with the given status.
+    /// Optional. Only return ads with the given status.
     #[prost(
         enumeration = "ad_review_center_ad_status_enum::AdReviewCenterAdStatus",
         tag = "4"
     )]
     pub status: i32,
-    /// Optional. If provided, only return ads with the given AdReviewCenterAd IDs.
+    /// Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
+    /// no other filter can be set (other than page size and page token).
     #[prost(string, repeated, tag = "5")]
     pub ad_review_center_ad_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. If provided, only return ads that served within the given date
@@ -1597,6 +1598,72 @@ pub struct ListAdUnitsResponse {
     #[prost(int32, tag = "3")]
     pub total_size: i32,
 }
+/// Request object for `CreateAdUnit` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateAdUnitRequest {
+    /// Required. The parent resource where this `AdUnit` will be created.
+    /// Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The `AdUnit` to create.
+    #[prost(message, optional, tag = "2")]
+    pub ad_unit: ::core::option::Option<AdUnit>,
+}
+/// Request object for `UpdateAdUnit` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateAdUnitRequest {
+    /// Required. The `AdUnit` to update.
+    ///
+    /// The `AdUnit`'s name is used to identify the `AdUnit` to update. Format:
+    /// `networks/{network_code}/adUnits/{ad_unit_id}`
+    #[prost(message, optional, tag = "1")]
+    pub ad_unit: ::core::option::Option<AdUnit>,
+    /// Required. The list of fields to update.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Request object for `BatchCreateAdUnits` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchCreateAdUnitsRequest {
+    /// Required. The parent resource where `AdUnits` will be created.
+    /// Format: `networks/{network_code}`
+    /// The parent field in the CreateAdUnitRequest must match this
+    /// field.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The `AdUnit` objects to create.
+    /// A maximum of 100 objects can be created in a batch.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<CreateAdUnitRequest>,
+}
+/// Response object for `BatchCreateAdUnits` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchCreateAdUnitsResponse {
+    /// The `AdUnit` objects created.
+    #[prost(message, repeated, tag = "1")]
+    pub ad_units: ::prost::alloc::vec::Vec<AdUnit>,
+}
+/// Request object for `BatchUpdateAdUnits` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchUpdateAdUnitsRequest {
+    /// Required. The parent resource where `AdUnits` will be updated.
+    /// Format: `networks/{network_code}`
+    /// The parent field in the UpdateAdUnitRequest must match this
+    /// field.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The `AdUnit` objects to update.
+    /// A maximum of 100 objects can be updated in a batch.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<UpdateAdUnitRequest>,
+}
+/// Response object for `BatchUpdateAdUnits` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchUpdateAdUnitsResponse {
+    /// The `AdUnit` objects updated.
+    #[prost(message, repeated, tag = "1")]
+    pub ad_units: ::prost::alloc::vec::Vec<AdUnit>,
+}
 /// Request object for ListAdUnitSizes method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListAdUnitSizesRequest {
@@ -1655,6 +1722,48 @@ pub struct ListAdUnitSizesResponse {
     #[prost(int32, tag = "3")]
     pub total_size: i32,
 }
+/// Request object for `BatchActivateAdUnits` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchActivateAdUnitsRequest {
+    /// Required. Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The resource names of the `AdUnit`s to activate.
+    /// Format: `networks/{network_code}/adUnits/{ad_unit_id}`
+    #[prost(string, repeated, tag = "2")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response object for `BatchActivateAdUnits` method.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchActivateAdUnitsResponse {}
+/// Request object for `BatchDeactivateAdUnits` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchDeactivateAdUnitsRequest {
+    /// Required. Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The resource names of the `AdUnit`s to deactivate.
+    /// Format: `networks/{network_code}/adUnits/{ad_unit_id}`
+    #[prost(string, repeated, tag = "2")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response object for `BatchDeactivateAdUnits` method.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchDeactivateAdUnitsResponse {}
+/// Request object for `BatchArchiveAdUnits` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchArchiveAdUnitsRequest {
+    /// Required. Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The resource names of the `AdUnit`s to archive.
+    /// Format: `networks/{network_code}/adUnits/{ad_unit_id}`
+    #[prost(string, repeated, tag = "2")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response object for `BatchArchiveAdUnits` method.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchArchiveAdUnitsResponse {}
 /// Generated client implementations.
 pub mod ad_unit_service_client {
     #![allow(
@@ -1816,6 +1925,210 @@ pub mod ad_unit_service_client {
                     GrpcMethod::new(
                         "google.ads.admanager.v1.AdUnitService",
                         "ListAdUnitSizes",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to create an `AdUnit` object.
+        pub async fn create_ad_unit(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAdUnitRequest>,
+        ) -> std::result::Result<tonic::Response<super::AdUnit>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/CreateAdUnit",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "CreateAdUnit",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to update an `AdUnit` object.
+        pub async fn update_ad_unit(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAdUnitRequest>,
+        ) -> std::result::Result<tonic::Response<super::AdUnit>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/UpdateAdUnit",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "UpdateAdUnit",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to batch create `AdUnit` objects.
+        pub async fn batch_create_ad_units(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateAdUnitsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateAdUnitsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/BatchCreateAdUnits",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "BatchCreateAdUnits",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to batch update `AdUnit` objects.
+        pub async fn batch_update_ad_units(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchUpdateAdUnitsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchUpdateAdUnitsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/BatchUpdateAdUnits",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "BatchUpdateAdUnits",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to batch activate `AdUnit` objects.
+        pub async fn batch_activate_ad_units(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchActivateAdUnitsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchActivateAdUnitsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/BatchActivateAdUnits",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "BatchActivateAdUnits",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deactivates a list of `AdUnit` objects.
+        pub async fn batch_deactivate_ad_units(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchDeactivateAdUnitsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchDeactivateAdUnitsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/BatchDeactivateAdUnits",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "BatchDeactivateAdUnits",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Archives a list of `AdUnit` objects.
+        pub async fn batch_archive_ad_units(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchArchiveAdUnitsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchArchiveAdUnitsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.AdUnitService/BatchArchiveAdUnits",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.AdUnitService",
+                        "BatchArchiveAdUnits",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -3315,7 +3628,7 @@ pub struct CmsMetadataValue {
 /// Request object for `GetCmsMetadataValue` method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetCmsMetadataValueRequest {
-    /// Required. The resource name of the CmsMetadataKey.
+    /// Required. The resource name of the CmsMetadataValue.
     /// Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -3462,7 +3775,7 @@ pub mod cms_metadata_value_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// API to retrieve a `CmsMetadataKey` object.
+        /// API to retrieve a `CmsMetadataValue` object.
         pub async fn get_cms_metadata_value(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCmsMetadataValueRequest>,
@@ -6875,6 +7188,102 @@ pub struct ListCustomTargetingKeysResponse {
     #[prost(int32, tag = "3")]
     pub total_size: i32,
 }
+/// Request object for `CreateCustomTargetingKey` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct CreateCustomTargetingKeyRequest {
+    /// Required. The parent resource where this `CustomTargetingKey` will be
+    /// created. Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The `CustomTargetingKey` to create.
+    #[prost(message, optional, tag = "2")]
+    pub custom_targeting_key: ::core::option::Option<CustomTargetingKey>,
+}
+/// Request object for `BatchCreateCustomTargetingKeys` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchCreateCustomTargetingKeysRequest {
+    /// Required. The parent resource where `CustomTargetingKeys` will be created.
+    /// Format: `networks/{network_code}`
+    /// The parent field in the CreateCustomTargetingKeyRequest must match this
+    /// field.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The `CustomTargetingKey` objects to create.
+    /// A maximum of 100 objects can be created in a batch.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<CreateCustomTargetingKeyRequest>,
+}
+/// Response object for `BatchCreateCustomTargetingKeys` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchCreateCustomTargetingKeysResponse {
+    /// The `CustomTargetingKey` objects created.
+    #[prost(message, repeated, tag = "1")]
+    pub custom_targeting_keys: ::prost::alloc::vec::Vec<CustomTargetingKey>,
+}
+/// Request object for `UpdateCustomTargetingKey` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct UpdateCustomTargetingKeyRequest {
+    /// Required. The `CustomTargetingKey` to update.
+    ///
+    /// The `CustomTargetingKey`'s `name` is used to identify the
+    /// `CustomTargetingKey` to update.
+    #[prost(message, optional, tag = "1")]
+    pub custom_targeting_key: ::core::option::Option<CustomTargetingKey>,
+    /// Required. The list of fields to update.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Request object for `BatchUpdateCustomTargetingKeys` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchUpdateCustomTargetingKeysRequest {
+    /// Required. The parent resource where `CustomTargetingKeys` will be updated.
+    /// Format: `networks/{network_code}`
+    /// The parent field in the UpdateCustomTargetingKeyRequest must match this
+    /// field.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The `CustomTargetingKey` objects to update.
+    /// A maximum of 100 objects can be updated in a batch.
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<UpdateCustomTargetingKeyRequest>,
+}
+/// Response object for `BatchUpdateCustomTargetingKeys` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchUpdateCustomTargetingKeysResponse {
+    /// The `CustomTargetingKey` objects updated.
+    #[prost(message, repeated, tag = "1")]
+    pub custom_targeting_keys: ::prost::alloc::vec::Vec<CustomTargetingKey>,
+}
+/// Request object for `BatchActivateCustomTargetingKeys` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchActivateCustomTargetingKeysRequest {
+    /// Required. Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The resource names of the `CustomTargetingKey`s to activate.
+    /// Format:
+    /// `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+    #[prost(string, repeated, tag = "2")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response object for `BatchActivateCustomTargetingKeys` method.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchActivateCustomTargetingKeysResponse {}
+/// Request message for `BatchDeactivateCustomTargetingKeys` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchDeactivateCustomTargetingKeysRequest {
+    /// Required. Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The resource names of the `CustomTargetingKey`s to deactivate.
+    /// Format:
+    /// `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+    #[prost(string, repeated, tag = "2")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response object for `BatchDeactivateCustomTargetingKeys` method.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchDeactivateCustomTargetingKeysResponse {}
 /// Generated client implementations.
 pub mod custom_targeting_key_service_client {
     #![allow(
@@ -7014,6 +7423,194 @@ pub mod custom_targeting_key_service_client {
                     GrpcMethod::new(
                         "google.ads.admanager.v1.CustomTargetingKeyService",
                         "ListCustomTargetingKeys",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to create a `CustomTargetingKey` object.
+        pub async fn create_custom_targeting_key(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateCustomTargetingKeyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CustomTargetingKey>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.CustomTargetingKeyService/CreateCustomTargetingKey",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "CreateCustomTargetingKey",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to batch create `CustomTargetingKey` objects.
+        pub async fn batch_create_custom_targeting_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::BatchCreateCustomTargetingKeysRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateCustomTargetingKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.CustomTargetingKeyService/BatchCreateCustomTargetingKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "BatchCreateCustomTargetingKeys",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to update a `CustomTargetingKey` object.
+        pub async fn update_custom_targeting_key(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateCustomTargetingKeyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CustomTargetingKey>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.CustomTargetingKeyService/UpdateCustomTargetingKey",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "UpdateCustomTargetingKey",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to batch update `CustomTargetingKey` objects.
+        pub async fn batch_update_custom_targeting_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::BatchUpdateCustomTargetingKeysRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchUpdateCustomTargetingKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.CustomTargetingKeyService/BatchUpdateCustomTargetingKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "BatchUpdateCustomTargetingKeys",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to batch activate `CustomTargetingKey` objects.
+        pub async fn batch_activate_custom_targeting_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::BatchActivateCustomTargetingKeysRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchActivateCustomTargetingKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.CustomTargetingKeyService/BatchActivateCustomTargetingKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "BatchActivateCustomTargetingKeys",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deactivates a list of `CustomTargetingKey` objects.
+        pub async fn batch_deactivate_custom_targeting_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::BatchDeactivateCustomTargetingKeysRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchDeactivateCustomTargetingKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.CustomTargetingKeyService/BatchDeactivateCustomTargetingKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.CustomTargetingKeyService",
+                        "BatchDeactivateCustomTargetingKeys",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -8808,6 +9405,215 @@ pub mod geo_target_service_client {
         }
     }
 }
+/// Wrapper message for
+/// \[GoalType\]\[google.ads.admanager.v1.GoalTypeEnum.GoalType\].
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GoalTypeEnum {}
+/// Nested message and enum types in `GoalTypeEnum`.
+pub mod goal_type_enum {
+    /// Specifies the type of the goal for a LineItem.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum GoalType {
+        /// Default value. This value is unused.
+        Unspecified = 0,
+        /// No goal is specified for the number of ads delivered.
+        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// must be one of:
+        ///
+        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
+        /// * \[LineItemTypeEnum.LineItemType.AD_EXCHANGE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE\]
+        /// * \[LineItemTypeEnum.LineItemType.CLICK_TRACKING\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING\]
+        None = 1,
+        /// There is a goal on the number of ads delivered for this line item during
+        /// its entire lifetime.
+        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// must be one of:
+        ///
+        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
+        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
+        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
+        /// * \[LineItemTypeEnum.LineItemType.ADSENSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADSENSE\]
+        /// * \[LineItemTypeEnum.LineItemType.AD_EXCHANGE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE\]
+        /// * \[LineItemTypeEnum.LineItemType.ADMOB\]\[\]
+        /// * \[LineItemTypeEnum.LineItemType.CLICK_TRACKING\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING\]
+        Lifetime = 2,
+        /// There is a daily goal on the number of ads delivered for this line item.
+        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// must be one of:
+        ///
+        /// * \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\]
+        /// * \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
+        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
+        /// * \[LineItemTypeEnum.LineItemType.HOUSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE\]
+        /// * \[LineItemTypeEnum.LineItemType.ADSENSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.ADSENSE\]
+        /// * \[LineItemTypeEnum.LineItemType.AD_EXCHANGE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE\]
+        /// * \[LineItemTypeEnum.LineItemType.ADMOB\]\[\]
+        /// * \[LineItemTypeEnum.LineItemType.BUMPER\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BUMPER\]
+        Daily = 3,
+    }
+    impl GoalType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "GOAL_TYPE_UNSPECIFIED",
+                Self::None => "NONE",
+                Self::Lifetime => "LIFETIME",
+                Self::Daily => "DAILY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "GOAL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NONE" => Some(Self::None),
+                "LIFETIME" => Some(Self::Lifetime),
+                "DAILY" => Some(Self::Daily),
+                _ => None,
+            }
+        }
+    }
+}
+/// Wrapper message for
+/// \[UnitType\]\[google.ads.admanager.v1.UnitTypeEnum.UnitType\].
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct UnitTypeEnum {}
+/// Nested message and enum types in `UnitTypeEnum`.
+pub mod unit_type_enum {
+    /// Indicates the type of unit used for defining a reservation. The
+    /// \[LineItem.cost_type\]\[\] can differ from the UnitType - an
+    /// ad can have an impression goal, but be billed by its click. Usually
+    /// CostType and UnitType will refer to the same unit.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum UnitType {
+        /// Default value. This value is unused.
+        Unspecified = 0,
+        /// The number of impressions served by creatives associated with the line
+        /// item.
+        Impressions = 1,
+        /// The number of clicks reported by creatives associated with the line item.
+        /// The line item \[type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// must be one of:
+        ///
+        /// * \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\]
+        /// * \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
+        /// * \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]
+        Clicks = 2,
+        /// The number of click-through Cost-Per-Action (CPA) conversions from
+        /// creatives associated with the line item. This is only supported as
+        /// secondary goal and the \[LineItem.cost_type\]\[\] must be
+        /// \[CostTypeEnum.CostType.CPA\]\[\].
+        ClickThroughCpaConversions = 3,
+        /// The number of view-through Cost-Per-Action (CPA) conversions from
+        /// creatives associated with the line item. This is only supported as
+        /// secondary goal and the \[LineItem.cost_type\]\[\] must be
+        /// \[CostTypeEnum.CostType.CPA}.
+        ViewThroughCpaConversions = 4,
+        /// The number of total Cost-Per-Action (CPA) conversions from creatives
+        /// associated with the line item. This is only supported as secondary goal
+        /// and the \[LineItem.cost_type} must be \[CostTypeEnum.CostType.CPA}.
+        TotalCpaConversions = 5,
+        /// The number of viewable impressions reported by creatives associated with
+        /// the line item. The
+        /// \[LineItem.line_item_type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// must be
+        /// \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\].
+        ViewableImpressions = 6,
+        /// The number of in-target impressions reported by third party measurements.
+        /// The
+        /// \[LineItem.line_item_type\]\[google.ads.admanager.v1.LineItem.line_item_type\]
+        /// must be
+        /// \[LineItemTypeEnum.LineItemType.STANDARD\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD\].
+        InTargetImpressions = 7,
+    }
+    impl UnitType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNIT_TYPE_UNSPECIFIED",
+                Self::Impressions => "IMPRESSIONS",
+                Self::Clicks => "CLICKS",
+                Self::ClickThroughCpaConversions => "CLICK_THROUGH_CPA_CONVERSIONS",
+                Self::ViewThroughCpaConversions => "VIEW_THROUGH_CPA_CONVERSIONS",
+                Self::TotalCpaConversions => "TOTAL_CPA_CONVERSIONS",
+                Self::ViewableImpressions => "VIEWABLE_IMPRESSIONS",
+                Self::InTargetImpressions => "IN_TARGET_IMPRESSIONS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNIT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "IMPRESSIONS" => Some(Self::Impressions),
+                "CLICKS" => Some(Self::Clicks),
+                "CLICK_THROUGH_CPA_CONVERSIONS" => Some(Self::ClickThroughCpaConversions),
+                "VIEW_THROUGH_CPA_CONVERSIONS" => Some(Self::ViewThroughCpaConversions),
+                "TOTAL_CPA_CONVERSIONS" => Some(Self::TotalCpaConversions),
+                "VIEWABLE_IMPRESSIONS" => Some(Self::ViewableImpressions),
+                "IN_TARGET_IMPRESSIONS" => Some(Self::InTargetImpressions),
+                _ => None,
+            }
+        }
+    }
+}
+/// Defines the criteria a \[LineItem\]\[google.ads.admanager.v1.LineItem\] needs to
+/// satisfy to meet its delivery goal.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct Goal {
+    /// The type of the goal for the LineItem. It defines the period over which the
+    /// goal should be reached.
+    #[prost(enumeration = "goal_type_enum::GoalType", optional, tag = "1")]
+    pub goal_type: ::core::option::Option<i32>,
+    /// The type of the goal unit for the LineItem.
+    #[prost(enumeration = "unit_type_enum::UnitType", optional, tag = "2")]
+    pub unit_type: ::core::option::Option<i32>,
+    /// If this is a primary goal, it represents the number or percentage of
+    /// impressions or clicks that will be reserved. If the line item is of type
+    /// \[LineItemTypeEnum.LineItemType.SPONSORSHIP\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP\],
+    /// it represents the percentage of available impressions reserved. If the line
+    /// item is of type
+    /// \[LineItemTypeEnum.LineItemType.BULK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK\]
+    /// or
+    /// \[LineItemTypeEnum.LineItemType.PRICE_PRIORITY\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY\],
+    /// it represents the number of remaining impressions reserved. If the line
+    /// item is of type
+    /// \[LineItemTypeEnum.LineItemType.NETWORK\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK\]
+    /// or
+    /// \[LineItemTypeEnum.LineItemType.HOUSE\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType.HOUSE\],
+    /// it represents the percentage of remaining impressions reserved. <p>If this
+    /// is an impression cap goal, it represents the number of impressions or
+    /// conversions that the line item will stop serving at if reached. For valid
+    /// line item types, see \[LineItem.impressions_cap\]\[\].
+    #[prost(int64, optional, tag = "3")]
+    pub units: ::core::option::Option<i64>,
+}
 /// A Label is additional information that can be added to an entity.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Label {
@@ -8815,6 +9621,364 @@ pub struct Label {
     /// Format: `networks/{network_code}/labels/{label_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// Wrapper message for
+/// \[LineItemType\]\[google.ads.admanager.v1.LineItemTypeEnum.LineItemType\].
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct LineItemTypeEnum {}
+/// Nested message and enum types in `LineItemTypeEnum`.
+pub mod line_item_type_enum {
+    /// Indicates the priority of a LineItem, determined by the way in which
+    /// impressions are reserved to be served for it.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum LineItemType {
+        /// Not specified value.
+        Unspecified = 0,
+        /// The type of LineItem for which a percentage of all the impressions that
+        /// are being sold are reserved.
+        Sponsorship = 12,
+        /// The type of LineItem for which a fixed quantity of impressions or
+        /// clicks are reserved.
+        Standard = 13,
+        /// The type of LineItem most commonly used to fill a site's unsold
+        /// inventory if not contractually obligated to deliver a requested number
+        /// of impressions. Uses daily percentage of unsold impressions or clicks.
+        Network = 9,
+        /// The type of LineItem for which a fixed quantity of impressions or
+        /// clicks will be delivered at a priority lower than the STANDARD type.
+        Bulk = 4,
+        /// The type of LineItem most commonly used to fill a site's unsold
+        /// inventory if not contractually obligated to deliver a requested number
+        /// of impressions. Uses fixed quantity percentage of unsold impressions or
+        /// clicks.
+        PricePriority = 11,
+        /// The type of LineItem typically used for ads that promote products and
+        /// services chosen by the publisher.
+        House = 7,
+        /// The type of LineItem used for ads that track ads being served
+        /// externally of Ad Manager.
+        ClickTracking = 6,
+        /// Targets the LineItem to specific inventory available to AdSense buyers.
+        Adsense = 2,
+        /// Targets the LineItem to specific inventory available to Authorized Buyers
+        /// and the Open Auction.
+        AdExchange = 3,
+        /// Represents a non-monetizable video LineItem that targets one or more
+        /// bumper positions, which are short house video messages used by
+        /// publishers to separate content from ad breaks.
+        Bumper = 5,
+        /// The type of LineItem for which there are no impressions reserved, and
+        /// will serve for a second price bid.
+        PreferredDeal = 10,
+        /// The type of LineItem used for configuring audience extension campaigns.
+        AudienceExtension = 14,
+    }
+    impl LineItemType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "LINE_ITEM_TYPE_UNSPECIFIED",
+                Self::Sponsorship => "SPONSORSHIP",
+                Self::Standard => "STANDARD",
+                Self::Network => "NETWORK",
+                Self::Bulk => "BULK",
+                Self::PricePriority => "PRICE_PRIORITY",
+                Self::House => "HOUSE",
+                Self::ClickTracking => "CLICK_TRACKING",
+                Self::Adsense => "ADSENSE",
+                Self::AdExchange => "AD_EXCHANGE",
+                Self::Bumper => "BUMPER",
+                Self::PreferredDeal => "PREFERRED_DEAL",
+                Self::AudienceExtension => "AUDIENCE_EXTENSION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LINE_ITEM_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SPONSORSHIP" => Some(Self::Sponsorship),
+                "STANDARD" => Some(Self::Standard),
+                "NETWORK" => Some(Self::Network),
+                "BULK" => Some(Self::Bulk),
+                "PRICE_PRIORITY" => Some(Self::PricePriority),
+                "HOUSE" => Some(Self::House),
+                "CLICK_TRACKING" => Some(Self::ClickTracking),
+                "ADSENSE" => Some(Self::Adsense),
+                "AD_EXCHANGE" => Some(Self::AdExchange),
+                "BUMPER" => Some(Self::Bumper),
+                "PREFERRED_DEAL" => Some(Self::PreferredDeal),
+                "AUDIENCE_EXTENSION" => Some(Self::AudienceExtension),
+                _ => None,
+            }
+        }
+    }
+}
+/// A LineItem contains information about how specific ad creatives are intended
+/// to serve to your website or app along with pricing and other delivery
+/// details.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LineItem {
+    /// Identifier. The resource name of the `LineItem`.
+    /// Format: `networks/{network_code}/lineItems/{line_item_id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The ID of the Order to which the LineItem belongs. This
+    /// attribute is required. Format: `networks/{network_code}/orders/{order}`
+    #[prost(string, optional, tag = "2")]
+    pub order: ::core::option::Option<::prost::alloc::string::String>,
+    /// Required. The name of the line item. This attribute is required and has a
+    /// maximum length of 255 characters.
+    #[prost(string, optional, tag = "3")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Required. The date and time on which the LineItem is enabled to begin
+    /// serving. This attribute is required and must be in the future.
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when the LineItem will stop serving. This
+    /// attribute is read-only and includes auto extension days.
+    #[prost(message, optional, tag = "7")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Required. Indicates the line item type of a LineItem. This attribute is
+    /// required. The line item type determines the default priority of the line
+    /// item. More information can be found at
+    /// <https://support.google.com/admanager/answer/177279.>
+    #[prost(enumeration = "line_item_type_enum::LineItemType", optional, tag = "17")]
+    pub line_item_type: ::core::option::Option<i32>,
+    /// Required. The amount of money to spend per impression or click.
+    #[prost(message, optional, tag = "20")]
+    pub rate: ::core::option::Option<super::super::super::r#type::Money>,
+    /// Output only. The amount of money allocated to the LineItem. This attribute
+    /// is readonly and is populated by Google. The currency code is readonly.
+    #[prost(message, optional, tag = "35")]
+    pub budget: ::core::option::Option<super::super::super::r#type::Money>,
+    /// Optional. The values of the custom fields associated with this line item.
+    #[prost(message, repeated, tag = "59")]
+    pub custom_field_values: ::prost::alloc::vec::Vec<CustomFieldValue>,
+    /// Optional. The primary goal that this LineItem is associated with, which is
+    /// used in its pacing and budgeting.
+    #[prost(message, optional, tag = "76")]
+    pub goal: ::core::option::Option<Goal>,
+}
+/// Request object for `GetLineItem` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetLineItemRequest {
+    /// Required. The resource name of the LineItem.
+    /// Format: `networks/{network_code}/lineItems/{line_item_id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request object for `ListLineItems` method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListLineItemsRequest {
+    /// Required. The parent, which owns this collection of LineItems.
+    /// Format: `networks/{network_code}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. The maximum number of `LineItems` to return. The service may
+    /// return fewer than this value. If unspecified, at most 50 `LineItems` will
+    /// be returned. The maximum value is 1000; values greater than 1000 will be
+    /// coerced to 1000.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A page token, received from a previous `ListLineItems` call.
+    /// Provide this to retrieve the subsequent page.
+    ///
+    /// When paginating, all other parameters provided to `ListLineItems` must
+    /// match the call that provided the page token.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. Expression to filter the response.
+    /// See syntax details at
+    /// <https://developers.google.com/ad-manager/api/beta/filters>
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. Expression to specify sorting order.
+    /// See syntax details at
+    /// <https://developers.google.com/ad-manager/api/beta/filters#order>
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+    /// Optional. Number of individual resources to skip while paginating.
+    #[prost(int32, tag = "6")]
+    pub skip: i32,
+}
+/// Response object for `ListLineItemsRequest` containing matching `LineItem`
+/// objects.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListLineItemsResponse {
+    /// The `LineItem` objects from the specified network.
+    #[prost(message, repeated, tag = "1")]
+    pub line_items: ::prost::alloc::vec::Vec<LineItem>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Total number of `LineItem` objects.
+    /// If a filter was included in the request, this reflects the total number
+    /// after the filtering is applied.
+    ///
+    /// `total_size` won't be calculated in the response unless it has been
+    /// included in a response field mask. The response field mask can be provided
+    /// to the method by using the URL parameter `$fields` or `fields`, or by using
+    /// the HTTP/gRPC header `X-Goog-FieldMask`.
+    ///
+    /// For more information, see
+    /// <https://developers.google.com/ad-manager/api/beta/field-masks>
+    #[prost(int32, tag = "3")]
+    pub total_size: i32,
+}
+/// Generated client implementations.
+pub mod line_item_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Provides methods for handling `LineItem` objects.
+    #[derive(Debug, Clone)]
+    pub struct LineItemServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> LineItemServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::Body>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> LineItemServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            LineItemServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// API to retrieve a `LineItem` object.
+        pub async fn get_line_item(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetLineItemRequest>,
+        ) -> std::result::Result<tonic::Response<super::LineItem>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.LineItemService/GetLineItem",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.LineItemService",
+                        "GetLineItem",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// API to retrieve a list of `LineItem` objects.
+        pub async fn list_line_items(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListLineItemsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListLineItemsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.admanager.v1.LineItemService/ListLineItems",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.admanager.v1.LineItemService",
+                        "ListLineItems",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// A `LiveStreamEvent` encapsulates all the information necessary to enable DAI
 /// (Dynamic Ad Insertion) into a live video stream.
@@ -9511,21 +10675,21 @@ pub struct Network {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. Display name for Network.
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Network Code.
-    #[prost(string, tag = "3")]
-    pub network_code: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "3")]
+    pub network_code: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Property code.
-    #[prost(string, tag = "4")]
-    pub property_code: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "4")]
+    pub property_code: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Time zone associated with the delivery of orders and
     /// reporting.
-    #[prost(string, tag = "5")]
-    pub time_zone: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "5")]
+    pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Primary currency code, in ISO-4217 format.
-    #[prost(string, tag = "6")]
-    pub currency_code: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "6")]
+    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. Currency codes that can be used as an alternative to the primary
     /// currency code for trafficking Line Items.
     #[prost(string, repeated, tag = "7")]
@@ -9535,14 +10699,14 @@ pub struct Network {
     /// Output only. Top most [Ad Unit](google.ads.admanager.v1.AdUnit) to which
     /// descendant Ad Units can be added.
     /// Format: networks/{network_code}/adUnits/{ad_unit}
-    #[prost(string, tag = "8")]
-    pub effective_root_ad_unit: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "8")]
+    pub effective_root_ad_unit: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Whether this is a test network.
-    #[prost(bool, tag = "10")]
-    pub test_network: bool,
+    #[prost(bool, optional, tag = "10")]
+    pub test_network: ::core::option::Option<bool>,
     /// Output only. Network ID.
-    #[prost(int64, tag = "11")]
-    pub network_id: i64,
+    #[prost(int64, optional, tag = "11")]
+    pub network_id: ::core::option::Option<i64>,
 }
 /// Request to get Network
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -9553,14 +10717,46 @@ pub struct GetNetworkRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Request object for `ListNetworks` method.
-#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct ListNetworksRequest {}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListNetworksRequest {
+    /// Optional. The maximum number of `Network`s to return. The service may
+    /// return fewer than this value. If unspecified, at most 50 `Network`s will be
+    /// returned. The maximum value is 1000; values greater than 1000 will be
+    /// coerced to 1000.
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    /// Optional. A page token, received from a previous `ListNetworks` call.
+    /// Provide this to retrieve the subsequent page.
+    ///
+    /// When paginating, all other parameters provided to `ListNetworks` must match
+    /// the call that provided the page token.
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. Number of individual resources to skip while paginating.
+    #[prost(int32, tag = "5")]
+    pub skip: i32,
+}
 /// Response object for `ListNetworks` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworksResponse {
     /// The `Network`s a user has access to.
     #[prost(message, repeated, tag = "1")]
     pub networks: ::prost::alloc::vec::Vec<Network>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Total number of `Network`s.
+    ///
+    /// `total_size` won't be calculated in the response unless it has been
+    /// included in a response field mask. The response field mask can be provided
+    /// to the method by using the URL parameter `$fields` or `fields`, or by using
+    /// the HTTP/gRPC header `X-Goog-FieldMask`.
+    ///
+    /// For more information, see
+    /// <https://developers.google.com/ad-manager/api/beta/field-masks>
+    #[prost(int32, tag = "3")]
+    pub total_size: i32,
 }
 /// Generated client implementations.
 pub mod network_service_client {
@@ -10252,8 +11448,9 @@ pub struct Order {
     /// Order. Format: "networks/{network_code}/users/{user_id}"
     #[prost(string, optional, tag = "23")]
     pub trafficker: ::core::option::Option<::prost::alloc::string::String>,
-    /// Optional. The resource names of Contacts from the advertiser of this Order.
-    /// Format: "networks/{network_code}/contacts/{contact_id}"
+    /// Optional. Unordered list. The resource names of Contacts from the
+    /// advertiser of this Order. Format:
+    /// "networks/{network_code}/contacts/{contact_id}"
     #[prost(string, repeated, tag = "5")]
     pub advertiser_contacts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. The resource name of the Company, which is of type
@@ -13059,6 +14256,9 @@ pub mod report_definition {
             /// The entire previous calendar week, Monday to Sunday (inclusive),
             /// preceding the calendar week the report is run.
             LastWeek = 7,
+            /// The entire previous calendar week, Sunday to Saturday (inclusive),
+            /// preceding the calendar week the report is run.
+            LastWeekStartingSunday = 39,
             /// The entire previous calendar month preceding the calendar month the
             /// report is run.
             LastMonth = 8,
@@ -13076,6 +14276,8 @@ pub mod report_definition {
             Last60Days = 13,
             /// The 90 days preceding the day the report is run.
             Last90Days = 14,
+            /// The 93 days preceding the day the report is run.
+            Last93Days = 38,
             /// The 180 days preceding the day the report is run.
             Last180Days = 15,
             /// The 360 days preceding the day the report is run.
@@ -13167,6 +14369,7 @@ pub mod report_definition {
                     Self::ThisYear => "THIS_YEAR",
                     Self::ThisYearToDate => "THIS_YEAR_TO_DATE",
                     Self::LastWeek => "LAST_WEEK",
+                    Self::LastWeekStartingSunday => "LAST_WEEK_STARTING_SUNDAY",
                     Self::LastMonth => "LAST_MONTH",
                     Self::LastQuarter => "LAST_QUARTER",
                     Self::LastYear => "LAST_YEAR",
@@ -13174,6 +14377,7 @@ pub mod report_definition {
                     Self::Last30Days => "LAST_30_DAYS",
                     Self::Last60Days => "LAST_60_DAYS",
                     Self::Last90Days => "LAST_90_DAYS",
+                    Self::Last93Days => "LAST_93_DAYS",
                     Self::Last180Days => "LAST_180_DAYS",
                     Self::Last360Days => "LAST_360_DAYS",
                     Self::Last365Days => "LAST_365_DAYS",
@@ -13208,6 +14412,7 @@ pub mod report_definition {
                     "THIS_YEAR" => Some(Self::ThisYear),
                     "THIS_YEAR_TO_DATE" => Some(Self::ThisYearToDate),
                     "LAST_WEEK" => Some(Self::LastWeek),
+                    "LAST_WEEK_STARTING_SUNDAY" => Some(Self::LastWeekStartingSunday),
                     "LAST_MONTH" => Some(Self::LastMonth),
                     "LAST_QUARTER" => Some(Self::LastQuarter),
                     "LAST_YEAR" => Some(Self::LastYear),
@@ -13215,6 +14420,7 @@ pub mod report_definition {
                     "LAST_30_DAYS" => Some(Self::Last30Days),
                     "LAST_60_DAYS" => Some(Self::Last60Days),
                     "LAST_90_DAYS" => Some(Self::Last90Days),
+                    "LAST_93_DAYS" => Some(Self::Last93Days),
                     "LAST_180_DAYS" => Some(Self::Last180Days),
                     "LAST_360_DAYS" => Some(Self::Last360Days),
                     "LAST_365_DAYS" => Some(Self::Last365Days),
@@ -13472,6 +14678,10 @@ pub mod report_definition {
         Reach = 5,
         /// Privacy and messaging.
         PrivacyAndMessaging = 6,
+        /// Gross revenue.
+        RevenueVerification = 7,
+        /// Partner finance.
+        PartnerFinance = 8,
         /// Ad speed.
         AdSpeed = 13,
     }
@@ -13486,6 +14696,8 @@ pub mod report_definition {
                 Self::Historical => "HISTORICAL",
                 Self::Reach => "REACH",
                 Self::PrivacyAndMessaging => "PRIVACY_AND_MESSAGING",
+                Self::RevenueVerification => "REVENUE_VERIFICATION",
+                Self::PartnerFinance => "PARTNER_FINANCE",
                 Self::AdSpeed => "AD_SPEED",
             }
         }
@@ -13496,6 +14708,8 @@ pub mod report_definition {
                 "HISTORICAL" => Some(Self::Historical),
                 "REACH" => Some(Self::Reach),
                 "PRIVACY_AND_MESSAGING" => Some(Self::PrivacyAndMessaging),
+                "REVENUE_VERIFICATION" => Some(Self::RevenueVerification),
+                "PARTNER_FINANCE" => Some(Self::PartnerFinance),
                 "AD_SPEED" => Some(Self::AdSpeed),
                 _ => None,
             }
@@ -13544,7 +14758,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         AdvertiserCreditStatus = 475,
-        /// Advertiser credit status locallized name
+        /// Advertiser credit status localized name
         ///
         /// Corresponds to "Advertiser credit status" in the Ad Manager UI.
         ///
@@ -13622,7 +14836,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         AdvertiserStatus = 471,
-        /// Advertiser status locallized name
+        /// Advertiser status localized name
         ///
         /// Corresponds to "Advertiser status" in the Ad Manager UI.
         ///
@@ -13640,7 +14854,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         AdvertiserType = 473,
-        /// Advertiser type locallized name
+        /// Advertiser type localized name
         ///
         /// Corresponds to "Advertiser type" in the Ad Manager UI.
         ///
@@ -13663,7 +14877,8 @@ pub mod report_definition {
         /// Corresponds to "Ad Exchange product value" in the Ad Manager UI (when
         /// showing API fields).
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `ENUM`
         AdxProduct = 499,
@@ -13672,7 +14887,8 @@ pub mod report_definition {
         ///
         /// Corresponds to "Ad Exchange product" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `STRING`
         AdxProductName = 500,
@@ -13712,6 +14928,14 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         AdLocationName = 391,
+        /// Multi-size inventory in an ad request.
+        ///
+        /// Corresponds to "Ad request sizes" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types:
+        ///
+        /// Data format: `STRING_LIST`
+        AdRequestSizes = 541,
         /// The domain of the ad technology provider associated with the bid.
         ///
         /// Corresponds to "Ad technology provider domain" in the Ad Manager UI.
@@ -14324,6 +15548,22 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         AgeBracketName = 582,
+        /// Property ID in Google Analytics
+        ///
+        /// Corresponds to "Analytics property ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `IDENTIFIER`
+        AnalyticsPropertyId = 733,
+        /// Property name in Google Analytics
+        ///
+        /// Corresponds to "Analytics property" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        AnalyticsPropertyName = 767,
         /// Enum value for App Tracking Transparency consent status.
         ///
         /// Corresponds to "App Tracking Transparency consent status value" in the Ad
@@ -14366,6 +15606,38 @@ pub mod report_definition {
         ///
         /// Data format: `IDENTIFIER`
         AuctionPackageDealId = 571,
+        /// Name of billable audience segment.
+        ///
+        /// Corresponds to "Audience segment (billable)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        AudienceSegmentBillable = 594,
+        /// ID of the data provider for the audience segment.
+        ///
+        /// Corresponds to "Audience segment data provider ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `IDENTIFIER`
+        AudienceSegmentDataProviderId = 613,
+        /// Name of the data provider for the audience segment.
+        ///
+        /// Corresponds to "Audience segment data provider" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        AudienceSegmentDataProviderName = 614,
+        /// ID of billable audience segment.
+        ///
+        /// Corresponds to "Audience segment ID (billable)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `IDENTIFIER`
+        AudienceSegmentIdBillable = 595,
         /// ID of targeted audience segment, including all first-party and
         /// third-party segments that matched the user on the winning line item.
         ///
@@ -14384,6 +15656,130 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         AudienceSegmentTargeted = 585,
+        /// Number of AdID identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) AdID size" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedAdIdUserSize = 605,
+        /// Number of Amazon Fire identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) Amazon Fire size" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedAmazonFireUserSize = 606,
+        /// Number of Android TV identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) Android TV size" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedAndroidTvUserSize = 607,
+        /// Number of Apple TV identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) Apple TV size" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedAppleTvUserSize = 608,
+        /// Number of IDFA identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) IDFA size" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedIdfaUserSize = 609,
+        /// Number of mobile web identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) mobile web size" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedMobileWebUserSize = 610,
+        /// Number of PlayStation identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) PlayStation size" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedPlaystationUserSize = 611,
+        /// Number of PPID identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) PPID size" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedPpidUserSize = 612,
+        /// Number of Roku identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) Roku size" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedRokuUserSize = 615,
+        /// Number of Samsung TV identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) Samsung TV size" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedSamsungTvUserSize = 616,
+        /// Number of identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) size" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedSize = 618,
+        /// Status of the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) status value" in the Ad
+        /// Manager UI (when showing API fields).
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `ENUM`
+        AudienceSegmentTargetedStatus = 628,
+        /// Name of the status of the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) status" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        AudienceSegmentTargetedStatusName = 617,
+        /// Number of Xbox identifiers in the audience segment.
+        ///
+        /// Corresponds to "Audience segment (targeted) Xbox size" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AudienceSegmentTargetedXboxUserSize = 619,
         /// Enum value of Auto refreshed traffic.
         ///
         /// Corresponds to "Auto refreshed traffic value" in the Ad Manager UI (when
@@ -14405,7 +15801,8 @@ pub mod report_definition {
         ///
         /// Corresponds to "Bidder encrypted ID" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `STRING`
         BidderEncryptedId = 493,
@@ -14413,7 +15810,8 @@ pub mod report_definition {
         ///
         /// Corresponds to "Bidder" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `STRING`
         BidderName = 494,
@@ -14625,6 +16023,38 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         ClassifiedBrandName = 244,
+        /// ID of the video content bundle served.
+        ///
+        /// Corresponds to "Content bundle ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `IDENTIFIER`
+        ContentBundleId = 460,
+        /// Name of the video content bundle served.
+        ///
+        /// Corresponds to "Content bundle" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        ContentBundleName = 461,
+        /// ID of the video content metadata namespace served.
+        ///
+        /// Corresponds to "CMS metadata key ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `IDENTIFIER`
+        ContentCmsMetadataKvNamespaceId = 462,
+        /// Name of the video content metadata namespace served.
+        ///
+        /// Corresponds to "CMS metadata key" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        ContentCmsMetadataKvNamespaceName = 463,
         /// The display name of the CMS content.
         ///
         /// Corresponds to "Content source name" in the Ad Manager UI.
@@ -14777,7 +16207,7 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         CreativePoliciesFilteringName = 712,
-        /// Creative Protections filtering (Publisher Blocks Enforcement).
+        /// Creative Protections filtering.
         ///
         /// Corresponds to "Creative protections filtering value" in the Ad Manager
         /// UI (when showing API fields).
@@ -14822,7 +16252,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         CreativeTechnology = 148,
-        /// Creative technology locallized name
+        /// Creative technology localized name
         ///
         /// Corresponds to "Creative technology" in the Ad Manager UI.
         ///
@@ -14953,7 +16383,7 @@ pub mod report_definition {
         /// Corresponds to "Date" in the Ad Manager UI.
         ///
         /// Compatible with the following report types: `HISTORICAL`, `REACH`,
-        /// `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+        /// `PRIVACY_AND_MESSAGING`, `REVENUE_VERIFICATION`, `AD_SPEED`
         ///
         /// Data format: `DATE`
         Date = 3,
@@ -15023,7 +16453,7 @@ pub mod report_definition {
         /// API fields).
         ///
         /// Compatible with the following report types: `HISTORICAL`, `REACH`,
-        /// `AD_SPEED`
+        /// `REVENUE_VERIFICATION`, `AD_SPEED`
         ///
         /// Data format: `ENUM`
         DemandChannel = 9,
@@ -15032,7 +16462,7 @@ pub mod report_definition {
         /// Corresponds to "Demand channel" in the Ad Manager UI.
         ///
         /// Compatible with the following report types: `HISTORICAL`, `REACH`,
-        /// `AD_SPEED`
+        /// `REVENUE_VERIFICATION`, `AD_SPEED`
         ///
         /// Data format: `STRING`
         DemandChannelName = 10,
@@ -15140,6 +16570,7 @@ pub mod report_definition {
         /// Compatible with the following report types: `HISTORICAL`
         ///
         /// Data format: `STRING`
+        #[deprecated]
         DeviceName = 225,
         /// The ID of DSP Seat
         ///
@@ -15558,6 +16989,14 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         KeyValuesName = 215,
+        /// The custom criteria key-values specified in ad requests.
+        ///
+        /// Corresponds to "Key-values" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types:
+        ///
+        /// Data format: `STRING_LIST`
+        KeyValuesSet = 713,
         /// The agency of the order associated with the line item.
         ///
         /// Corresponds to "Line item agency" in the Ad Manager UI.
@@ -15574,7 +17013,7 @@ pub mod report_definition {
         ///
         /// Data format: `BOOLEAN`
         LineItemArchived = 188,
-        /// Line item comanion delivery option ENUM value.
+        /// Line item companion delivery option ENUM value.
         ///
         /// Corresponds to "Line item companion delivery option value" in the Ad
         /// Manager UI (when showing API fields).
@@ -15583,7 +17022,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         LineItemCompanionDeliveryOption = 204,
-        /// Localized line item comanion delivery option name.
+        /// Localized line item companion delivery option name.
         ///
         /// Corresponds to "Line item companion delivery option" in the Ad Manager
         /// UI.
@@ -15883,7 +17322,7 @@ pub mod report_definition {
         ///
         /// Data format: `MONEY`
         LineItemNonCpdBookedRevenue = 98,
-        /// Whether a Line item is eligible for opitimization.
+        /// Whether a Line item is eligible for optimization.
         ///
         /// Corresponds to "Line item is optimizable" in the Ad Manager UI.
         ///
@@ -16259,7 +17698,8 @@ pub mod report_definition {
         /// Corresponds to "Rendering SDK value" in the Ad Manager UI (when showing
         /// API fields).
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `ENUM`
         MobileRenderingSdk = 646,
@@ -16267,7 +17707,8 @@ pub mod report_definition {
         ///
         /// Corresponds to "Rendering SDK" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `STRING`
         MobileRenderingSdkName = 647,
@@ -16300,7 +17741,7 @@ pub mod report_definition {
         /// Corresponds to "Month and year" in the Ad Manager UI.
         ///
         /// Compatible with the following report types: `HISTORICAL`, `REACH`,
-        /// `PRIVACY_AND_MESSAGING`
+        /// `PRIVACY_AND_MESSAGING`, `REVENUE_VERIFICATION`, `PARTNER_FINANCE`
         ///
         /// Data format: `INTEGER`
         MonthYear = 6,
@@ -16665,6 +18106,42 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         PageTitleAndScreenName = 513,
+        /// The ID of a partner management assignment.
+        ///
+        /// Corresponds to "Partner management assignment ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `PARTNER_FINANCE`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementAssignmentId = 657,
+        /// The name of a partner management assignment.
+        ///
+        /// Corresponds to "Partner management assignment" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `PARTNER_FINANCE`
+        ///
+        /// Data format: `STRING`
+        PartnerManagementAssignmentName = 658,
+        /// The ID of a partner in a partner management assignment.
+        ///
+        /// Corresponds to "Partner management partner ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `PARTNER_FINANCE`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementPartnerId = 655,
+        /// The name of a partner in a partner management assignment.
+        ///
+        /// Corresponds to "Partner management partner" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `PARTNER_FINANCE`
+        ///
+        /// Data format: `STRING`
+        PartnerManagementPartnerName = 656,
         /// Placement ID
         ///
         /// Corresponds to "Placement ID" in the Ad Manager UI.
@@ -16814,7 +18291,8 @@ pub mod report_definition {
         /// Corresponds to "Programmatic channel value" in the Ad Manager UI (when
         /// showing API fields).
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `ENUM`
         ProgrammaticChannel = 13,
@@ -16823,7 +18301,8 @@ pub mod report_definition {
         ///
         /// Corresponds to "Programmatic channel" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`, `REACH`
+        /// Compatible with the following report types: `HISTORICAL`, `REACH`,
+        /// `REVENUE_VERIFICATION`
         ///
         /// Data format: `STRING`
         ProgrammaticChannelName = 14,
@@ -17043,7 +18522,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         RequestType = 146,
-        /// Request type locallized name
+        /// Request type localized name
         ///
         /// Corresponds to "Request type" in the Ad Manager UI.
         ///
@@ -17051,6 +18530,14 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         RequestTypeName = 147,
+        /// Revenue Verification bidder-provided ID.
+        ///
+        /// Corresponds to "Revenue verification ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `REVENUE_VERIFICATION`
+        ///
+        /// Data format: `IDENTIFIER`
+        RevenueVerificationId = 645,
         /// Indicates if a request was eligible for server-side unwrapping.
         ///
         /// Corresponds to "Server-side unwrapping eligible" in the Ad Manager UI.
@@ -17215,6 +18702,23 @@ pub mod report_definition {
         ///
         /// Data format: `IDENTIFIER`
         UrlId = 507,
+        /// The choice made in a user message.
+        ///
+        /// Corresponds to "User choice value" in the Ad Manager UI (when showing API
+        /// fields).
+        ///
+        /// Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+        ///
+        /// Data format: `ENUM`
+        UserMessagesChoice = 702,
+        /// Localized name of the choice made in a user message.
+        ///
+        /// Corresponds to "User choice" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+        ///
+        /// Data format: `STRING`
+        UserMessagesChoiceName = 703,
         /// Enum value for the entitlement source.
         ///
         /// Corresponds to "Entitlement source value" in the Ad Manager UI (when
@@ -17394,6 +18898,55 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         VideoFallbackPosition = 530,
+        /// The duration of the ad break in seconds for a live stream event.
+        ///
+        /// Corresponds to "Ad break duration (seconds)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoLiveStreamEventAdBreakDuration = 547,
+        /// The ID of the ad break in a live stream event.
+        ///
+        /// Corresponds to "Live stream ad break ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        VideoLiveStreamEventAdBreakId = 548,
+        /// The name of the ad break in a live stream event.
+        ///
+        /// Corresponds to "Live stream ad break" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        VideoLiveStreamEventAdBreakName = 549,
+        /// The time of the ad break in a live stream event in the format of
+        /// YYYY-MM-DD HH:MM:SS+Timezone.
+        ///
+        /// Corresponds to "Ad break time" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `TIMESTAMP`
+        VideoLiveStreamEventAdBreakTime = 550,
+        /// The ID of the live stream event.
+        ///
+        /// Corresponds to "Live stream ID" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoLiveStreamEventId = 551,
+        /// The name of the live stream event.
+        ///
+        /// Corresponds to "Live stream" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        VideoLiveStreamEventName = 552,
         /// The performance of the video ad inventory broken out by source.
         ///
         /// Corresponds to "Video measurement source value" in the Ad Manager UI
@@ -17479,6 +19032,14 @@ pub mod report_definition {
         ///
         /// Data format: `STRING`
         VideoStitcherTypeName = 753,
+        /// Web property code
+        ///
+        /// Corresponds to "Web property code" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `STRING`
+        WebPropertyCode = 730,
         /// Breaks down reporting data by week of the year.
         ///
         /// Corresponds to "Week" in the Ad Manager UI.
@@ -17548,7 +19109,7 @@ pub mod report_definition {
         ///
         /// Data format: `ENUM`
         YoutubeAdType = 399,
-        /// YouTube instream Ad Type locallized name.
+        /// YouTube instream Ad Type localized name.
         ///
         /// Corresponds to "YouTube ad type" in the Ad Manager UI.
         ///
@@ -18371,6 +19932,7 @@ pub mod report_definition {
                 Self::AdExperiencesTypeName => "AD_EXPERIENCES_TYPE_NAME",
                 Self::AdLocation => "AD_LOCATION",
                 Self::AdLocationName => "AD_LOCATION_NAME",
+                Self::AdRequestSizes => "AD_REQUEST_SIZES",
                 Self::AdTechnologyProviderDomain => "AD_TECHNOLOGY_PROVIDER_DOMAIN",
                 Self::AdTechnologyProviderId => "AD_TECHNOLOGY_PROVIDER_ID",
                 Self::AdTechnologyProviderName => "AD_TECHNOLOGY_PROVIDER_NAME",
@@ -18443,6 +20005,8 @@ pub mod report_definition {
                 Self::AgencyLevel3Name => "AGENCY_LEVEL_3_NAME",
                 Self::AgeBracket => "AGE_BRACKET",
                 Self::AgeBracketName => "AGE_BRACKET_NAME",
+                Self::AnalyticsPropertyId => "ANALYTICS_PROPERTY_ID",
+                Self::AnalyticsPropertyName => "ANALYTICS_PROPERTY_NAME",
                 Self::AppTrackingTransparencyConsentStatus => {
                     "APP_TRACKING_TRANSPARENCY_CONSENT_STATUS"
                 }
@@ -18452,8 +20016,54 @@ pub mod report_definition {
                 Self::AppVersion => "APP_VERSION",
                 Self::AuctionPackageDeal => "AUCTION_PACKAGE_DEAL",
                 Self::AuctionPackageDealId => "AUCTION_PACKAGE_DEAL_ID",
+                Self::AudienceSegmentBillable => "AUDIENCE_SEGMENT_BILLABLE",
+                Self::AudienceSegmentDataProviderId => {
+                    "AUDIENCE_SEGMENT_DATA_PROVIDER_ID"
+                }
+                Self::AudienceSegmentDataProviderName => {
+                    "AUDIENCE_SEGMENT_DATA_PROVIDER_NAME"
+                }
+                Self::AudienceSegmentIdBillable => "AUDIENCE_SEGMENT_ID_BILLABLE",
                 Self::AudienceSegmentIdTargeted => "AUDIENCE_SEGMENT_ID_TARGETED",
                 Self::AudienceSegmentTargeted => "AUDIENCE_SEGMENT_TARGETED",
+                Self::AudienceSegmentTargetedAdIdUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedAmazonFireUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedAndroidTvUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedAppleTvUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedIdfaUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedMobileWebUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedPlaystationUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedPpidUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedRokuUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedSamsungTvUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE"
+                }
+                Self::AudienceSegmentTargetedSize => "AUDIENCE_SEGMENT_TARGETED_SIZE",
+                Self::AudienceSegmentTargetedStatus => "AUDIENCE_SEGMENT_TARGETED_STATUS",
+                Self::AudienceSegmentTargetedStatusName => {
+                    "AUDIENCE_SEGMENT_TARGETED_STATUS_NAME"
+                }
+                Self::AudienceSegmentTargetedXboxUserSize => {
+                    "AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE"
+                }
                 Self::AutoRefreshedTraffic => "AUTO_REFRESHED_TRAFFIC",
                 Self::AutoRefreshedTrafficName => "AUTO_REFRESHED_TRAFFIC_NAME",
                 Self::BidderEncryptedId => "BIDDER_ENCRYPTED_ID",
@@ -18483,6 +20093,14 @@ pub mod report_definition {
                 Self::ClassifiedAdvertiserName => "CLASSIFIED_ADVERTISER_NAME",
                 Self::ClassifiedBrandId => "CLASSIFIED_BRAND_ID",
                 Self::ClassifiedBrandName => "CLASSIFIED_BRAND_NAME",
+                Self::ContentBundleId => "CONTENT_BUNDLE_ID",
+                Self::ContentBundleName => "CONTENT_BUNDLE_NAME",
+                Self::ContentCmsMetadataKvNamespaceId => {
+                    "CONTENT_CMS_METADATA_KV_NAMESPACE_ID"
+                }
+                Self::ContentCmsMetadataKvNamespaceName => {
+                    "CONTENT_CMS_METADATA_KV_NAMESPACE_NAME"
+                }
                 Self::ContentCmsName => "CONTENT_CMS_NAME",
                 Self::ContentCmsVideoId => "CONTENT_CMS_VIDEO_ID",
                 Self::ContentId => "CONTENT_ID",
@@ -18546,6 +20164,7 @@ pub mod report_definition {
                 Self::DeviceManufacturerName => "DEVICE_MANUFACTURER_NAME",
                 Self::DeviceModelId => "DEVICE_MODEL_ID",
                 Self::DeviceModelName => "DEVICE_MODEL_NAME",
+                #[allow(deprecated)]
                 Self::DeviceName => "DEVICE_NAME",
                 Self::DspSeatId => "DSP_SEAT_ID",
                 Self::DynamicAllocationType => "DYNAMIC_ALLOCATION_TYPE",
@@ -18606,6 +20225,7 @@ pub mod report_definition {
                 Self::IsFirstLookDeal => "IS_FIRST_LOOK_DEAL",
                 Self::KeyValuesId => "KEY_VALUES_ID",
                 Self::KeyValuesName => "KEY_VALUES_NAME",
+                Self::KeyValuesSet => "KEY_VALUES_SET",
                 Self::LineItemAgency => "LINE_ITEM_AGENCY",
                 Self::LineItemArchived => "LINE_ITEM_ARCHIVED",
                 Self::LineItemCompanionDeliveryOption => {
@@ -18748,6 +20368,12 @@ pub mod report_definition {
                 Self::PagePath => "PAGE_PATH",
                 Self::PageTitleAndScreenClass => "PAGE_TITLE_AND_SCREEN_CLASS",
                 Self::PageTitleAndScreenName => "PAGE_TITLE_AND_SCREEN_NAME",
+                Self::PartnerManagementAssignmentId => "PARTNER_MANAGEMENT_ASSIGNMENT_ID",
+                Self::PartnerManagementAssignmentName => {
+                    "PARTNER_MANAGEMENT_ASSIGNMENT_NAME"
+                }
+                Self::PartnerManagementPartnerId => "PARTNER_MANAGEMENT_PARTNER_ID",
+                Self::PartnerManagementPartnerName => "PARTNER_MANAGEMENT_PARTNER_NAME",
                 Self::PlacementId => "PLACEMENT_ID",
                 Self::PlacementIdAll => "PLACEMENT_ID_ALL",
                 Self::PlacementName => "PLACEMENT_NAME",
@@ -18830,6 +20456,7 @@ pub mod report_definition {
                 Self::RequestedAdSizes => "REQUESTED_AD_SIZES",
                 Self::RequestType => "REQUEST_TYPE",
                 Self::RequestTypeName => "REQUEST_TYPE_NAME",
+                Self::RevenueVerificationId => "REVENUE_VERIFICATION_ID",
                 Self::ServerSideUnwrappingEligible => "SERVER_SIDE_UNWRAPPING_ELIGIBLE",
                 Self::ServingRestriction => "SERVING_RESTRICTION",
                 Self::ServingRestrictionName => "SERVING_RESTRICTION_NAME",
@@ -18849,6 +20476,8 @@ pub mod report_definition {
                 Self::UnifiedPricingRuleName => "UNIFIED_PRICING_RULE_NAME",
                 Self::Url => "URL",
                 Self::UrlId => "URL_ID",
+                Self::UserMessagesChoice => "USER_MESSAGES_CHOICE",
+                Self::UserMessagesChoiceName => "USER_MESSAGES_CHOICE_NAME",
                 Self::UserMessagesEntitlementSource => "USER_MESSAGES_ENTITLEMENT_SOURCE",
                 Self::UserMessagesEntitlementSourceName => {
                     "USER_MESSAGES_ENTITLEMENT_SOURCE_NAME"
@@ -18878,6 +20507,20 @@ pub mod report_definition {
                 Self::VideoContinuousPlayType => "VIDEO_CONTINUOUS_PLAY_TYPE",
                 Self::VideoContinuousPlayTypeName => "VIDEO_CONTINUOUS_PLAY_TYPE_NAME",
                 Self::VideoFallbackPosition => "VIDEO_FALLBACK_POSITION",
+                Self::VideoLiveStreamEventAdBreakDuration => {
+                    "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_DURATION"
+                }
+                Self::VideoLiveStreamEventAdBreakId => {
+                    "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID"
+                }
+                Self::VideoLiveStreamEventAdBreakName => {
+                    "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME"
+                }
+                Self::VideoLiveStreamEventAdBreakTime => {
+                    "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_TIME"
+                }
+                Self::VideoLiveStreamEventId => "VIDEO_LIVE_STREAM_EVENT_ID",
+                Self::VideoLiveStreamEventName => "VIDEO_LIVE_STREAM_EVENT_NAME",
                 Self::VideoMeasurementSource => "VIDEO_MEASUREMENT_SOURCE",
                 Self::VideoMeasurementSourceName => "VIDEO_MEASUREMENT_SOURCE_NAME",
                 Self::VideoPlcmt => "VIDEO_PLCMT",
@@ -18888,6 +20531,7 @@ pub mod report_definition {
                 Self::VideoSdkVersionName => "VIDEO_SDK_VERSION_NAME",
                 Self::VideoStitcherType => "VIDEO_STITCHER_TYPE",
                 Self::VideoStitcherTypeName => "VIDEO_STITCHER_TYPE_NAME",
+                Self::WebPropertyCode => "WEB_PROPERTY_CODE",
                 Self::Week => "WEEK",
                 Self::YieldGroupBuyerName => "YIELD_GROUP_BUYER_NAME",
                 Self::YieldGroupBuyerTagName => "YIELD_GROUP_BUYER_TAG_NAME",
@@ -19349,6 +20993,7 @@ pub mod report_definition {
                 "AD_EXPERIENCES_TYPE_NAME" => Some(Self::AdExperiencesTypeName),
                 "AD_LOCATION" => Some(Self::AdLocation),
                 "AD_LOCATION_NAME" => Some(Self::AdLocationName),
+                "AD_REQUEST_SIZES" => Some(Self::AdRequestSizes),
                 "AD_TECHNOLOGY_PROVIDER_DOMAIN" => Some(Self::AdTechnologyProviderDomain),
                 "AD_TECHNOLOGY_PROVIDER_ID" => Some(Self::AdTechnologyProviderId),
                 "AD_TECHNOLOGY_PROVIDER_NAME" => Some(Self::AdTechnologyProviderName),
@@ -19421,6 +21066,8 @@ pub mod report_definition {
                 "AGENCY_LEVEL_3_NAME" => Some(Self::AgencyLevel3Name),
                 "AGE_BRACKET" => Some(Self::AgeBracket),
                 "AGE_BRACKET_NAME" => Some(Self::AgeBracketName),
+                "ANALYTICS_PROPERTY_ID" => Some(Self::AnalyticsPropertyId),
+                "ANALYTICS_PROPERTY_NAME" => Some(Self::AnalyticsPropertyName),
                 "APP_TRACKING_TRANSPARENCY_CONSENT_STATUS" => {
                     Some(Self::AppTrackingTransparencyConsentStatus)
                 }
@@ -19430,8 +21077,58 @@ pub mod report_definition {
                 "APP_VERSION" => Some(Self::AppVersion),
                 "AUCTION_PACKAGE_DEAL" => Some(Self::AuctionPackageDeal),
                 "AUCTION_PACKAGE_DEAL_ID" => Some(Self::AuctionPackageDealId),
+                "AUDIENCE_SEGMENT_BILLABLE" => Some(Self::AudienceSegmentBillable),
+                "AUDIENCE_SEGMENT_DATA_PROVIDER_ID" => {
+                    Some(Self::AudienceSegmentDataProviderId)
+                }
+                "AUDIENCE_SEGMENT_DATA_PROVIDER_NAME" => {
+                    Some(Self::AudienceSegmentDataProviderName)
+                }
+                "AUDIENCE_SEGMENT_ID_BILLABLE" => Some(Self::AudienceSegmentIdBillable),
                 "AUDIENCE_SEGMENT_ID_TARGETED" => Some(Self::AudienceSegmentIdTargeted),
                 "AUDIENCE_SEGMENT_TARGETED" => Some(Self::AudienceSegmentTargeted),
+                "AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedAdIdUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedAmazonFireUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedAndroidTvUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedAppleTvUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedIdfaUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedMobileWebUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedPlaystationUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedPpidUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedRokuUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedSamsungTvUserSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedSize)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_STATUS" => {
+                    Some(Self::AudienceSegmentTargetedStatus)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_STATUS_NAME" => {
+                    Some(Self::AudienceSegmentTargetedStatusName)
+                }
+                "AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE" => {
+                    Some(Self::AudienceSegmentTargetedXboxUserSize)
+                }
                 "AUTO_REFRESHED_TRAFFIC" => Some(Self::AutoRefreshedTraffic),
                 "AUTO_REFRESHED_TRAFFIC_NAME" => Some(Self::AutoRefreshedTrafficName),
                 "BIDDER_ENCRYPTED_ID" => Some(Self::BidderEncryptedId),
@@ -19461,6 +21158,14 @@ pub mod report_definition {
                 "CLASSIFIED_ADVERTISER_NAME" => Some(Self::ClassifiedAdvertiserName),
                 "CLASSIFIED_BRAND_ID" => Some(Self::ClassifiedBrandId),
                 "CLASSIFIED_BRAND_NAME" => Some(Self::ClassifiedBrandName),
+                "CONTENT_BUNDLE_ID" => Some(Self::ContentBundleId),
+                "CONTENT_BUNDLE_NAME" => Some(Self::ContentBundleName),
+                "CONTENT_CMS_METADATA_KV_NAMESPACE_ID" => {
+                    Some(Self::ContentCmsMetadataKvNamespaceId)
+                }
+                "CONTENT_CMS_METADATA_KV_NAMESPACE_NAME" => {
+                    Some(Self::ContentCmsMetadataKvNamespaceName)
+                }
                 "CONTENT_CMS_NAME" => Some(Self::ContentCmsName),
                 "CONTENT_CMS_VIDEO_ID" => Some(Self::ContentCmsVideoId),
                 "CONTENT_ID" => Some(Self::ContentId),
@@ -19528,7 +21233,7 @@ pub mod report_definition {
                 "DEVICE_MANUFACTURER_NAME" => Some(Self::DeviceManufacturerName),
                 "DEVICE_MODEL_ID" => Some(Self::DeviceModelId),
                 "DEVICE_MODEL_NAME" => Some(Self::DeviceModelName),
-                "DEVICE_NAME" => Some(Self::DeviceName),
+                "DEVICE_NAME" => Some(#[allow(deprecated)] Self::DeviceName),
                 "DSP_SEAT_ID" => Some(Self::DspSeatId),
                 "DYNAMIC_ALLOCATION_TYPE" => Some(Self::DynamicAllocationType),
                 "DYNAMIC_ALLOCATION_TYPE_NAME" => Some(Self::DynamicAllocationTypeName),
@@ -19598,6 +21303,7 @@ pub mod report_definition {
                 "IS_FIRST_LOOK_DEAL" => Some(Self::IsFirstLookDeal),
                 "KEY_VALUES_ID" => Some(Self::KeyValuesId),
                 "KEY_VALUES_NAME" => Some(Self::KeyValuesName),
+                "KEY_VALUES_SET" => Some(Self::KeyValuesSet),
                 "LINE_ITEM_AGENCY" => Some(Self::LineItemAgency),
                 "LINE_ITEM_ARCHIVED" => Some(Self::LineItemArchived),
                 "LINE_ITEM_COMPANION_DELIVERY_OPTION" => {
@@ -19770,6 +21476,16 @@ pub mod report_definition {
                 "PAGE_PATH" => Some(Self::PagePath),
                 "PAGE_TITLE_AND_SCREEN_CLASS" => Some(Self::PageTitleAndScreenClass),
                 "PAGE_TITLE_AND_SCREEN_NAME" => Some(Self::PageTitleAndScreenName),
+                "PARTNER_MANAGEMENT_ASSIGNMENT_ID" => {
+                    Some(Self::PartnerManagementAssignmentId)
+                }
+                "PARTNER_MANAGEMENT_ASSIGNMENT_NAME" => {
+                    Some(Self::PartnerManagementAssignmentName)
+                }
+                "PARTNER_MANAGEMENT_PARTNER_ID" => Some(Self::PartnerManagementPartnerId),
+                "PARTNER_MANAGEMENT_PARTNER_NAME" => {
+                    Some(Self::PartnerManagementPartnerName)
+                }
                 "PLACEMENT_ID" => Some(Self::PlacementId),
                 "PLACEMENT_ID_ALL" => Some(Self::PlacementIdAll),
                 "PLACEMENT_NAME" => Some(Self::PlacementName),
@@ -19854,6 +21570,7 @@ pub mod report_definition {
                 "REQUESTED_AD_SIZES" => Some(Self::RequestedAdSizes),
                 "REQUEST_TYPE" => Some(Self::RequestType),
                 "REQUEST_TYPE_NAME" => Some(Self::RequestTypeName),
+                "REVENUE_VERIFICATION_ID" => Some(Self::RevenueVerificationId),
                 "SERVER_SIDE_UNWRAPPING_ELIGIBLE" => {
                     Some(Self::ServerSideUnwrappingEligible)
                 }
@@ -19875,6 +21592,8 @@ pub mod report_definition {
                 "UNIFIED_PRICING_RULE_NAME" => Some(Self::UnifiedPricingRuleName),
                 "URL" => Some(Self::Url),
                 "URL_ID" => Some(Self::UrlId),
+                "USER_MESSAGES_CHOICE" => Some(Self::UserMessagesChoice),
+                "USER_MESSAGES_CHOICE_NAME" => Some(Self::UserMessagesChoiceName),
                 "USER_MESSAGES_ENTITLEMENT_SOURCE" => {
                     Some(Self::UserMessagesEntitlementSource)
                 }
@@ -19910,6 +21629,20 @@ pub mod report_definition {
                     Some(Self::VideoContinuousPlayTypeName)
                 }
                 "VIDEO_FALLBACK_POSITION" => Some(Self::VideoFallbackPosition),
+                "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_DURATION" => {
+                    Some(Self::VideoLiveStreamEventAdBreakDuration)
+                }
+                "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID" => {
+                    Some(Self::VideoLiveStreamEventAdBreakId)
+                }
+                "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME" => {
+                    Some(Self::VideoLiveStreamEventAdBreakName)
+                }
+                "VIDEO_LIVE_STREAM_EVENT_AD_BREAK_TIME" => {
+                    Some(Self::VideoLiveStreamEventAdBreakTime)
+                }
+                "VIDEO_LIVE_STREAM_EVENT_ID" => Some(Self::VideoLiveStreamEventId),
+                "VIDEO_LIVE_STREAM_EVENT_NAME" => Some(Self::VideoLiveStreamEventName),
                 "VIDEO_MEASUREMENT_SOURCE" => Some(Self::VideoMeasurementSource),
                 "VIDEO_MEASUREMENT_SOURCE_NAME" => Some(Self::VideoMeasurementSourceName),
                 "VIDEO_PLCMT" => Some(Self::VideoPlcmt),
@@ -19920,6 +21653,7 @@ pub mod report_definition {
                 "VIDEO_SDK_VERSION_NAME" => Some(Self::VideoSdkVersionName),
                 "VIDEO_STITCHER_TYPE" => Some(Self::VideoStitcherType),
                 "VIDEO_STITCHER_TYPE_NAME" => Some(Self::VideoStitcherTypeName),
+                "WEB_PROPERTY_CODE" => Some(Self::WebPropertyCode),
                 "WEEK" => Some(Self::Week),
                 "YIELD_GROUP_BUYER_NAME" => Some(Self::YieldGroupBuyerName),
                 "YIELD_GROUP_BUYER_TAG_NAME" => Some(Self::YieldGroupBuyerTagName),
@@ -21060,7 +22794,7 @@ pub mod report_definition {
         /// The ratio of matched ad requests served by the Ad Exchange that
         /// resulted in users clicking on an ad. The clickthrough rate (CTR) is
         /// updated nightly. Ad Exchange Matched Request CTR is calculated as:
-        /// (Ad Exchange clicks / Ad Exchange Macthed Ad Requests).
+        /// (Ad Exchange clicks / Ad Exchange Matched Ad Requests).
         ///
         /// Corresponds to "Ad Exchange matched request CTR" in the Ad Manager UI.
         ///
@@ -21494,6 +23228,26 @@ pub mod report_definition {
         ///
         /// Data format: `INTEGER`
         AdServerInactiveBeginToRenderImpressions = 338,
+        /// Total number of ad server VAST errors discounting errors generated from
+        /// video fallback ads.
+        ///
+        /// Corresponds to "Ad Server opportunities from errors" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AdServerOpportunitiesFromErrors = 461,
+        /// Total number of ad server impressions discounting video fallback
+        /// impressions.
+        ///
+        /// Corresponds to "Ad Server opportunities from impressions" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        AdServerOpportunitiesFromImpressions = 462,
         /// Ratio of clicks delivered by the Google Ad Manager server in relation to
         /// the total clicks delivered.
         ///
@@ -21731,7 +23485,7 @@ pub mod report_definition {
         /// Number of header bidding trafficking ad requests with no bids in the Ads
         /// traffic navigator report.
         ///
-        /// Corresponds to "Header bidding trafficking ad requests with no bids" in
+        /// Corresponds to "Ad requests with no header bidding trafficking bids" in
         /// the Ad Manager UI.
         ///
         /// Compatible with the following report types:
@@ -21761,7 +23515,7 @@ pub mod report_definition {
         /// Number of header bidding trafficking ad requests with bids in the Ads
         /// traffic navigator report.
         ///
-        /// Corresponds to "Header bidding trafficking ad requests with bids" in the
+        /// Corresponds to "Ad requests with header bidding trafficking bids" in the
         /// Ad Manager UI.
         ///
         /// Compatible with the following report types:
@@ -21779,7 +23533,8 @@ pub mod report_definition {
         /// Number of line items with no creative retrieved in the Ads
         /// traffic navigator report.
         ///
-        /// Corresponds to "Creative not retrieved" in the Ad Manager UI.
+        /// Corresponds to "Line items with no creative retrieved" in the Ad Manager
+        /// UI.
         ///
         /// Compatible with the following report types:
         ///
@@ -21806,7 +23561,7 @@ pub mod report_definition {
         /// Number of line items that matched an ad request but were not selected to
         /// compete in the auction in the Ads traffic navigator report.
         ///
-        /// Corresponds to "Not selected to compete" in the Ad Manager UI.
+        /// Corresponds to "Line items not selected to compete" in the Ad Manager UI.
         ///
         /// Compatible with the following report types:
         ///
@@ -21863,8 +23618,8 @@ pub mod report_definition {
         /// Number of ad requests with mediation demand having no partners in the Ads
         /// traffic navigator report.
         ///
-        /// Corresponds to "Mediation requests with no partners" in the Ad Manager
-        /// UI.
+        /// Corresponds to "Ad requests with no targeted mediation partners" in the
+        /// Ad Manager UI.
         ///
         /// Compatible with the following report types:
         ///
@@ -22120,7 +23875,8 @@ pub mod report_definition {
         /// Total number of ad requests which counts optimized pod request as a
         /// single request in the Ads traffic navigator report.
         ///
-        /// Corresponds to "Total ad requests (ATN)" in the Ad Manager UI.
+        /// Corresponds to "Total ad requests (Ads traffic navigator)" in the Ad
+        /// Manager UI.
         ///
         /// Compatible with the following report types:
         ///
@@ -22159,6 +23915,14 @@ pub mod report_definition {
         ///
         /// Data format: `INTEGER`
         AtnYieldGroupMediationPassbacks = 390,
+        /// Cost of the audience segment.
+        ///
+        /// Corresponds to "Audience segment cost" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `MONEY`
+        AudienceSegmentCost = 558,
         /// eCPM averaged across the Google Ad Manager server, AdSense,
         /// and Ad Exchange.
         ///
@@ -22173,7 +23937,7 @@ pub mod report_definition {
         ///
         /// Corresponds to "Total average eCPM w/o CPD" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
         ///
         /// Data format: `MONEY`
         AverageEcpmWithoutCpd = 5,
@@ -22255,7 +24019,7 @@ pub mod report_definition {
         ///
         /// Corresponds to "Total clicks" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
         ///
         /// Data format: `INTEGER`
         Clicks = 2,
@@ -22338,7 +24102,7 @@ pub mod report_definition {
         ///
         /// Corresponds to "Total CTR" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
         ///
         /// Data format: `PERCENT`
         Ctr = 3,
@@ -22682,7 +24446,7 @@ pub mod report_definition {
         ///
         /// Corresponds to "Total impressions" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
         ///
         /// Data format: `INTEGER`
         Impressions = 1,
@@ -22772,6 +24536,131 @@ pub mod report_definition {
         ///
         /// Data format: `INTEGER`
         OverdeliveredImpressions = 432,
+        /// The gross revenue for partner finance reports.
+        ///
+        /// Corresponds to "Gross revenue" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PARTNER_FINANCE`
+        ///
+        /// Data format: `MONEY`
+        PartnerFinanceGrossRevenue = 648,
+        /// Monthly host eCPM for partner finance reports
+        ///
+        /// Corresponds to "Host eCPM" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PARTNER_FINANCE`
+        ///
+        /// Data format: `MONEY`
+        PartnerFinanceHostEcpm = 649,
+        /// The host impressions for partner finance reports.
+        ///
+        /// Corresponds to "Host impressions" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PARTNER_FINANCE`
+        ///
+        /// Data format: `INTEGER`
+        PartnerFinanceHostImpressions = 650,
+        /// Monthly host revenue for partner finance reports
+        ///
+        /// Corresponds to "Host revenue" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PARTNER_FINANCE`
+        ///
+        /// Data format: `MONEY`
+        PartnerFinanceHostRevenue = 651,
+        /// Monthly partner eCPM for partner finance reports
+        ///
+        /// Corresponds to "Partner eCPM" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PARTNER_FINANCE`
+        ///
+        /// Data format: `MONEY`
+        PartnerFinancePartnerEcpm = 652,
+        /// Monthly partner revenue for partner finance reports
+        ///
+        /// Corresponds to "Partner revenue" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PARTNER_FINANCE`
+        ///
+        /// Data format: `MONEY`
+        PartnerFinancePartnerRevenue = 653,
+        /// The gross revenue in the partner management.
+        ///
+        /// Corresponds to "Partner management gross revenue" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `MONEY`
+        PartnerManagementGrossRevenue = 533,
+        /// The host clicks in the partner management.
+        ///
+        /// Corresponds to "Partner management host clicks" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementHostClicks = 534,
+        /// The host CTR in the partner management.
+        ///
+        /// Corresponds to "Partner management host CTR" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `PERCENT`
+        PartnerManagementHostCtr = 535,
+        /// The host impressions in the partner management.
+        ///
+        /// Corresponds to "Partner management host impressions" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementHostImpressions = 536,
+        /// The partner clicks in the partner management.
+        ///
+        /// Corresponds to "Partner management partner clicks" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementPartnerClicks = 537,
+        /// The partner CTR in the partner management.
+        ///
+        /// Corresponds to "Partner management partner CTR" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `PERCENT`
+        PartnerManagementPartnerCtr = 538,
+        /// The partner impressions in the partner management.
+        ///
+        /// Corresponds to "Partner management partner impressions" in the Ad Manager
+        /// UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementPartnerImpressions = 539,
+        /// The total content views in the partner management.
+        ///
+        /// Corresponds to "Partner management total monetizable content views" in
+        /// the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementTotalContentViews = 540,
+        /// The unfilled impressions in the partner management.
+        ///
+        /// Corresponds to "Partner management unfilled impressions" in the Ad
+        /// Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`,
+        /// `PARTNER_FINANCE`
+        ///
+        /// Data format: `INTEGER`
+        PartnerManagementUnfilledImpressions = 541,
         /// The number of filled pod requests (filled by partner or Google) in
         /// partner sales.
         ///
@@ -22915,7 +24804,7 @@ pub mod report_definition {
         ///
         /// Corresponds to "Total revenue" in the Ad Manager UI.
         ///
-        /// Compatible with the following report types: `HISTORICAL`
+        /// Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
         ///
         /// Data format: `MONEY`
         Revenue = 36,
@@ -22930,7 +24819,48 @@ pub mod report_definition {
         ///
         /// Data format: `MONEY`
         RevenuePaidThroughMcmAutopayment = 214,
-        /// Total amount of revenue (excluding CPD) based on the number of units
+        /// The total CPD net revenue for Revenue Verification reporting.
+        ///
+        /// Corresponds to "Total CPD revenue" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `REVENUE_VERIFICATION`
+        ///
+        /// Data format: `MONEY`
+        RevenueVerificationCpdRevenue = 560,
+        /// The total CPD gross revenue for Revenue Verification reporting.
+        ///
+        /// Corresponds to "Total CPD revenue (gross)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `REVENUE_VERIFICATION`
+        ///
+        /// Data format: `MONEY`
+        RevenueVerificationGrossCpdRevenue = 559,
+        /// The total gross revenue (excluding CPD) for Revenue Verification
+        /// reporting.
+        ///
+        /// Corresponds to "Total CPM and CPC revenue (gross)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `REVENUE_VERIFICATION`
+        ///
+        /// Data format: `MONEY`
+        RevenueVerificationGrossRevenueWithoutCpd = 561,
+        /// The total impressions for Revenue Verification reporting.
+        ///
+        /// Corresponds to "Total impressions" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `REVENUE_VERIFICATION`
+        ///
+        /// Data format: `INTEGER`
+        RevenueVerificationImpressions = 564,
+        /// The total net revenue (excluding CPD) for Revenue Verification reporting.
+        ///
+        /// Corresponds to "Total CPM and CPC revenue" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `REVENUE_VERIFICATION`
+        ///
+        /// Data format: `MONEY`
+        RevenueVerificationRevenueWithoutCpd = 567,
+        /// Total revenue (excluding CPD) based on the number of units
         /// served by the Google Ad Manager server, AdSense, Ad Exchange, and
         /// third-party Mediation networks.
         ///
@@ -23481,14 +25411,6 @@ pub mod report_definition {
         ///
         /// Data format: `INTEGER`
         UserMessagesAllowAdsPageviews = 489,
-        /// Number of times a US state regulations message was shown to users.
-        ///
-        /// Corresponds to "US states messages shown" in the Ad Manager UI.
-        ///
-        /// Compatible with the following report types: `PRIVACY_AND_MESSAGING`
-        ///
-        /// Data format: `INTEGER`
-        UserMessagesCcpaMessagesShown = 490,
         /// Number of iOS ATT alerts that were triggered by an IDFA message (IDFA
         /// messages can be IDFA explainers or GDPR messages).
         ///
@@ -23611,6 +25533,22 @@ pub mod report_definition {
         ///
         /// Data format: `PERCENT`
         UserMessagesUptcPersonalizationOptOutRatio = 502,
+        /// Number of times a US state regulations message was shown to users.
+        ///
+        /// Corresponds to "US states messages shown" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+        ///
+        /// Data format: `INTEGER`
+        UserMessagesUsStatesMessagesShown = 490,
+        /// Number of times users selected the opt-out option in a US states message.
+        ///
+        /// Corresponds to "US states opt-out selections" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+        ///
+        /// Data format: `INTEGER`
+        UserMessagesUsStatesOptOutSelections = 586,
         /// The number of errors of type 100 in reporting.
         ///
         /// Corresponds to "VAST error 100 count" in the Ad Manager UI.
@@ -24262,6 +26200,90 @@ pub mod report_definition {
         ///
         /// Data format: `INTEGER`
         VideoRealTimeUnmatchedQueries = 141,
+        /// The total number of breaks completed or fatal errors for the last ad in
+        /// the pod.
+        ///
+        /// Corresponds to "Break end" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalBreakEnd = 279,
+        /// The total number of breaks starts or errors for the first ad in a pod
+        /// that users made it to.
+        ///
+        /// Corresponds to "Break start" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalBreakStart = 280,
+        /// The number of video ad opportunities reached by a user (rounded down, or
+        /// capped based on your max ads setting, whichever is less).
+        ///
+        /// Corresponds to "Capped opportunities (adbreak)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalCappedOpportunitiesAdbreak = 281,
+        /// The total number of seconds available to be filled.
+        ///
+        /// Corresponds to "Total duration (adbreak)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalDurationAdbreak = 283,
+        /// The total number of seconds filled.
+        ///
+        /// Corresponds to "Matched duration (adbreak)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalMatchedDurationAdbreak = 285,
+        /// The total matched opportunities in video true opportunities reporting.
+        ///
+        /// Corresponds to "Matched opportunities (adbreak)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalMatchedOpportunitiesAdbreak = 287,
+        /// The number of video ad opportunities reached by a user (rounded down).
+        ///
+        /// Corresponds to "Viewed opportunities (adbreak)" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueOpportunitiesTotalViewedOpportunitiesAdbreak = 289,
+        /// The number of TrueView ad impressions viewed.
+        ///
+        /// Corresponds to "True views" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `INTEGER`
+        VideoTrueViews = 392,
+        /// Measures the percentage of skips.
+        ///
+        /// Corresponds to "True views skip rate" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `PERCENT`
+        VideoTrueViewSkipRate = 393,
+        /// The view-through rate is the percentage of views divided by number of
+        /// impressions
+        ///
+        /// Corresponds to "True views view-through rate" in the Ad Manager UI.
+        ///
+        /// Compatible with the following report types: `HISTORICAL`
+        ///
+        /// Data format: `PERCENT`
+        VideoTrueViewViewThroughRate = 394,
         /// Number of times that the publisher specified a video ad played
         /// automatically.
         ///
@@ -24772,6 +26794,12 @@ pub mod report_definition {
                 Self::AdServerInactiveBeginToRenderImpressions => {
                     "AD_SERVER_INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS"
                 }
+                Self::AdServerOpportunitiesFromErrors => {
+                    "AD_SERVER_OPPORTUNITIES_FROM_ERRORS"
+                }
+                Self::AdServerOpportunitiesFromImpressions => {
+                    "AD_SERVER_OPPORTUNITIES_FROM_IMPRESSIONS"
+                }
                 Self::AdServerPercentClicks => "AD_SERVER_PERCENT_CLICKS",
                 Self::AdServerPercentImpressions => "AD_SERVER_PERCENT_IMPRESSIONS",
                 Self::AdServerPercentRevenue => "AD_SERVER_PERCENT_REVENUE",
@@ -24908,6 +26936,7 @@ pub mod report_definition {
                 Self::AtnYieldGroupMediationPassbacks => {
                     "ATN_YIELD_GROUP_MEDIATION_PASSBACKS"
                 }
+                Self::AudienceSegmentCost => "AUDIENCE_SEGMENT_COST",
                 Self::AverageEcpm => "AVERAGE_ECPM",
                 Self::AverageEcpmWithoutCpd => "AVERAGE_ECPM_WITHOUT_CPD",
                 Self::AverageEngagementSecondsPerSession => {
@@ -25040,6 +27069,31 @@ pub mod report_definition {
                 Self::MuteEligibleImpressions => "MUTE_ELIGIBLE_IMPRESSIONS",
                 Self::Opportunities => "OPPORTUNITIES",
                 Self::OverdeliveredImpressions => "OVERDELIVERED_IMPRESSIONS",
+                Self::PartnerFinanceGrossRevenue => "PARTNER_FINANCE_GROSS_REVENUE",
+                Self::PartnerFinanceHostEcpm => "PARTNER_FINANCE_HOST_ECPM",
+                Self::PartnerFinanceHostImpressions => "PARTNER_FINANCE_HOST_IMPRESSIONS",
+                Self::PartnerFinanceHostRevenue => "PARTNER_FINANCE_HOST_REVENUE",
+                Self::PartnerFinancePartnerEcpm => "PARTNER_FINANCE_PARTNER_ECPM",
+                Self::PartnerFinancePartnerRevenue => "PARTNER_FINANCE_PARTNER_REVENUE",
+                Self::PartnerManagementGrossRevenue => "PARTNER_MANAGEMENT_GROSS_REVENUE",
+                Self::PartnerManagementHostClicks => "PARTNER_MANAGEMENT_HOST_CLICKS",
+                Self::PartnerManagementHostCtr => "PARTNER_MANAGEMENT_HOST_CTR",
+                Self::PartnerManagementHostImpressions => {
+                    "PARTNER_MANAGEMENT_HOST_IMPRESSIONS"
+                }
+                Self::PartnerManagementPartnerClicks => {
+                    "PARTNER_MANAGEMENT_PARTNER_CLICKS"
+                }
+                Self::PartnerManagementPartnerCtr => "PARTNER_MANAGEMENT_PARTNER_CTR",
+                Self::PartnerManagementPartnerImpressions => {
+                    "PARTNER_MANAGEMENT_PARTNER_IMPRESSIONS"
+                }
+                Self::PartnerManagementTotalContentViews => {
+                    "PARTNER_MANAGEMENT_TOTAL_CONTENT_VIEWS"
+                }
+                Self::PartnerManagementUnfilledImpressions => {
+                    "PARTNER_MANAGEMENT_UNFILLED_IMPRESSIONS"
+                }
                 Self::PartnerSalesFilledPodRequests => {
                     "PARTNER_SALES_FILLED_POD_REQUESTS"
                 }
@@ -25066,6 +27120,19 @@ pub mod report_definition {
                 Self::Revenue => "REVENUE",
                 Self::RevenuePaidThroughMcmAutopayment => {
                     "REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT"
+                }
+                Self::RevenueVerificationCpdRevenue => "REVENUE_VERIFICATION_CPD_REVENUE",
+                Self::RevenueVerificationGrossCpdRevenue => {
+                    "REVENUE_VERIFICATION_GROSS_CPD_REVENUE"
+                }
+                Self::RevenueVerificationGrossRevenueWithoutCpd => {
+                    "REVENUE_VERIFICATION_GROSS_REVENUE_WITHOUT_CPD"
+                }
+                Self::RevenueVerificationImpressions => {
+                    "REVENUE_VERIFICATION_IMPRESSIONS"
+                }
+                Self::RevenueVerificationRevenueWithoutCpd => {
+                    "REVENUE_VERIFICATION_REVENUE_WITHOUT_CPD"
                 }
                 Self::RevenueWithoutCpd => "REVENUE_WITHOUT_CPD",
                 Self::RewardsGranted => "REWARDS_GRANTED",
@@ -25183,9 +27250,6 @@ pub mod report_definition {
                 Self::UserMessagesAllowAdsPageviews => {
                     "USER_MESSAGES_ALLOW_ADS_PAGEVIEWS"
                 }
-                Self::UserMessagesCcpaMessagesShown => {
-                    "USER_MESSAGES_CCPA_MESSAGES_SHOWN"
-                }
                 Self::UserMessagesIdfaAttAlertsShown => {
                     "USER_MESSAGES_IDFA_ATT_ALERTS_SHOWN"
                 }
@@ -25223,6 +27287,12 @@ pub mod report_definition {
                 }
                 Self::UserMessagesUptcPersonalizationOptOutRatio => {
                     "USER_MESSAGES_UPTC_PERSONALIZATION_OPT_OUT_RATIO"
+                }
+                Self::UserMessagesUsStatesMessagesShown => {
+                    "USER_MESSAGES_US_STATES_MESSAGES_SHOWN"
+                }
+                Self::UserMessagesUsStatesOptOutSelections => {
+                    "USER_MESSAGES_US_STATES_OPT_OUT_SELECTIONS"
                 }
                 Self::VideoError100Count => "VIDEO_ERROR_100_COUNT",
                 Self::VideoError101Count => "VIDEO_ERROR_101_COUNT",
@@ -25309,6 +27379,30 @@ pub mod report_definition {
                 Self::VideoRealTimeUnmatchedQueries => {
                     "VIDEO_REAL_TIME_UNMATCHED_QUERIES"
                 }
+                Self::VideoTrueOpportunitiesTotalBreakEnd => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END"
+                }
+                Self::VideoTrueOpportunitiesTotalBreakStart => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START"
+                }
+                Self::VideoTrueOpportunitiesTotalCappedOpportunitiesAdbreak => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK"
+                }
+                Self::VideoTrueOpportunitiesTotalDurationAdbreak => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK"
+                }
+                Self::VideoTrueOpportunitiesTotalMatchedDurationAdbreak => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK"
+                }
+                Self::VideoTrueOpportunitiesTotalMatchedOpportunitiesAdbreak => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK"
+                }
+                Self::VideoTrueOpportunitiesTotalViewedOpportunitiesAdbreak => {
+                    "VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK"
+                }
+                Self::VideoTrueViews => "VIDEO_TRUE_VIEWS",
+                Self::VideoTrueViewSkipRate => "VIDEO_TRUE_VIEW_SKIP_RATE",
+                Self::VideoTrueViewViewThroughRate => "VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE",
                 Self::VideoViewershipAutoPlays => "VIDEO_VIEWERSHIP_AUTO_PLAYS",
                 Self::VideoViewershipAverageViewRate => {
                     "VIDEO_VIEWERSHIP_AVERAGE_VIEW_RATE"
@@ -25636,6 +27730,12 @@ pub mod report_definition {
                 "AD_SERVER_INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS" => {
                     Some(Self::AdServerInactiveBeginToRenderImpressions)
                 }
+                "AD_SERVER_OPPORTUNITIES_FROM_ERRORS" => {
+                    Some(Self::AdServerOpportunitiesFromErrors)
+                }
+                "AD_SERVER_OPPORTUNITIES_FROM_IMPRESSIONS" => {
+                    Some(Self::AdServerOpportunitiesFromImpressions)
+                }
                 "AD_SERVER_PERCENT_CLICKS" => Some(Self::AdServerPercentClicks),
                 "AD_SERVER_PERCENT_IMPRESSIONS" => Some(Self::AdServerPercentImpressions),
                 "AD_SERVER_PERCENT_REVENUE" => Some(Self::AdServerPercentRevenue),
@@ -25786,6 +27886,7 @@ pub mod report_definition {
                 "ATN_YIELD_GROUP_MEDIATION_PASSBACKS" => {
                     Some(Self::AtnYieldGroupMediationPassbacks)
                 }
+                "AUDIENCE_SEGMENT_COST" => Some(Self::AudienceSegmentCost),
                 "AVERAGE_ECPM" => Some(Self::AverageEcpm),
                 "AVERAGE_ECPM_WITHOUT_CPD" => Some(Self::AverageEcpmWithoutCpd),
                 "AVERAGE_ENGAGEMENT_SECONDS_PER_SESSION" => {
@@ -25928,6 +28029,41 @@ pub mod report_definition {
                 "MUTE_ELIGIBLE_IMPRESSIONS" => Some(Self::MuteEligibleImpressions),
                 "OPPORTUNITIES" => Some(Self::Opportunities),
                 "OVERDELIVERED_IMPRESSIONS" => Some(Self::OverdeliveredImpressions),
+                "PARTNER_FINANCE_GROSS_REVENUE" => Some(Self::PartnerFinanceGrossRevenue),
+                "PARTNER_FINANCE_HOST_ECPM" => Some(Self::PartnerFinanceHostEcpm),
+                "PARTNER_FINANCE_HOST_IMPRESSIONS" => {
+                    Some(Self::PartnerFinanceHostImpressions)
+                }
+                "PARTNER_FINANCE_HOST_REVENUE" => Some(Self::PartnerFinanceHostRevenue),
+                "PARTNER_FINANCE_PARTNER_ECPM" => Some(Self::PartnerFinancePartnerEcpm),
+                "PARTNER_FINANCE_PARTNER_REVENUE" => {
+                    Some(Self::PartnerFinancePartnerRevenue)
+                }
+                "PARTNER_MANAGEMENT_GROSS_REVENUE" => {
+                    Some(Self::PartnerManagementGrossRevenue)
+                }
+                "PARTNER_MANAGEMENT_HOST_CLICKS" => {
+                    Some(Self::PartnerManagementHostClicks)
+                }
+                "PARTNER_MANAGEMENT_HOST_CTR" => Some(Self::PartnerManagementHostCtr),
+                "PARTNER_MANAGEMENT_HOST_IMPRESSIONS" => {
+                    Some(Self::PartnerManagementHostImpressions)
+                }
+                "PARTNER_MANAGEMENT_PARTNER_CLICKS" => {
+                    Some(Self::PartnerManagementPartnerClicks)
+                }
+                "PARTNER_MANAGEMENT_PARTNER_CTR" => {
+                    Some(Self::PartnerManagementPartnerCtr)
+                }
+                "PARTNER_MANAGEMENT_PARTNER_IMPRESSIONS" => {
+                    Some(Self::PartnerManagementPartnerImpressions)
+                }
+                "PARTNER_MANAGEMENT_TOTAL_CONTENT_VIEWS" => {
+                    Some(Self::PartnerManagementTotalContentViews)
+                }
+                "PARTNER_MANAGEMENT_UNFILLED_IMPRESSIONS" => {
+                    Some(Self::PartnerManagementUnfilledImpressions)
+                }
                 "PARTNER_SALES_FILLED_POD_REQUESTS" => {
                     Some(Self::PartnerSalesFilledPodRequests)
                 }
@@ -25960,6 +28096,21 @@ pub mod report_definition {
                 "REVENUE" => Some(Self::Revenue),
                 "REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT" => {
                     Some(Self::RevenuePaidThroughMcmAutopayment)
+                }
+                "REVENUE_VERIFICATION_CPD_REVENUE" => {
+                    Some(Self::RevenueVerificationCpdRevenue)
+                }
+                "REVENUE_VERIFICATION_GROSS_CPD_REVENUE" => {
+                    Some(Self::RevenueVerificationGrossCpdRevenue)
+                }
+                "REVENUE_VERIFICATION_GROSS_REVENUE_WITHOUT_CPD" => {
+                    Some(Self::RevenueVerificationGrossRevenueWithoutCpd)
+                }
+                "REVENUE_VERIFICATION_IMPRESSIONS" => {
+                    Some(Self::RevenueVerificationImpressions)
+                }
+                "REVENUE_VERIFICATION_REVENUE_WITHOUT_CPD" => {
+                    Some(Self::RevenueVerificationRevenueWithoutCpd)
                 }
                 "REVENUE_WITHOUT_CPD" => Some(Self::RevenueWithoutCpd),
                 "REWARDS_GRANTED" => Some(Self::RewardsGranted),
@@ -26087,9 +28238,6 @@ pub mod report_definition {
                 "USER_MESSAGES_ALLOW_ADS_PAGEVIEWS" => {
                     Some(Self::UserMessagesAllowAdsPageviews)
                 }
-                "USER_MESSAGES_CCPA_MESSAGES_SHOWN" => {
-                    Some(Self::UserMessagesCcpaMessagesShown)
-                }
                 "USER_MESSAGES_IDFA_ATT_ALERTS_SHOWN" => {
                     Some(Self::UserMessagesIdfaAttAlertsShown)
                 }
@@ -26131,6 +28279,12 @@ pub mod report_definition {
                 }
                 "USER_MESSAGES_UPTC_PERSONALIZATION_OPT_OUT_RATIO" => {
                     Some(Self::UserMessagesUptcPersonalizationOptOutRatio)
+                }
+                "USER_MESSAGES_US_STATES_MESSAGES_SHOWN" => {
+                    Some(Self::UserMessagesUsStatesMessagesShown)
+                }
+                "USER_MESSAGES_US_STATES_OPT_OUT_SELECTIONS" => {
+                    Some(Self::UserMessagesUsStatesOptOutSelections)
                 }
                 "VIDEO_ERROR_100_COUNT" => Some(Self::VideoError100Count),
                 "VIDEO_ERROR_101_COUNT" => Some(Self::VideoError101Count),
@@ -26290,6 +28444,32 @@ pub mod report_definition {
                 "VIDEO_REAL_TIME_TOTAL_QUERIES" => Some(Self::VideoRealTimeTotalQueries),
                 "VIDEO_REAL_TIME_UNMATCHED_QUERIES" => {
                     Some(Self::VideoRealTimeUnmatchedQueries)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END" => {
+                    Some(Self::VideoTrueOpportunitiesTotalBreakEnd)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START" => {
+                    Some(Self::VideoTrueOpportunitiesTotalBreakStart)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK" => {
+                    Some(Self::VideoTrueOpportunitiesTotalCappedOpportunitiesAdbreak)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK" => {
+                    Some(Self::VideoTrueOpportunitiesTotalDurationAdbreak)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK" => {
+                    Some(Self::VideoTrueOpportunitiesTotalMatchedDurationAdbreak)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK" => {
+                    Some(Self::VideoTrueOpportunitiesTotalMatchedOpportunitiesAdbreak)
+                }
+                "VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK" => {
+                    Some(Self::VideoTrueOpportunitiesTotalViewedOpportunitiesAdbreak)
+                }
+                "VIDEO_TRUE_VIEWS" => Some(Self::VideoTrueViews),
+                "VIDEO_TRUE_VIEW_SKIP_RATE" => Some(Self::VideoTrueViewSkipRate),
+                "VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE" => {
+                    Some(Self::VideoTrueViewViewThroughRate)
                 }
                 "VIDEO_VIEWERSHIP_AUTO_PLAYS" => Some(Self::VideoViewershipAutoPlays),
                 "VIDEO_VIEWERSHIP_AVERAGE_VIEW_RATE" => {
@@ -26578,7 +28758,8 @@ pub mod report {
         /// the user has configured the UI to show them.
         Draft = 1,
         /// Reports with saved visibility will appear in the Ad Manager UI by
-        /// default.
+        /// default. Alias for VISIBLE and will be replaced in the future.
+        #[deprecated]
         Saved = 2,
     }
     impl Visibility {
@@ -26590,6 +28771,7 @@ pub mod report {
             match self {
                 Self::Hidden => "HIDDEN",
                 Self::Draft => "DRAFT",
+                #[allow(deprecated)]
                 Self::Saved => "SAVED",
             }
         }
@@ -26598,7 +28780,7 @@ pub mod report {
             match value {
                 "HIDDEN" => Some(Self::Hidden),
                 "DRAFT" => Some(Self::Draft),
-                "SAVED" => Some(Self::Saved),
+                "SAVED" => Some(#[allow(deprecated)] Self::Saved),
                 _ => None,
             }
         }

@@ -480,6 +480,43 @@ pub mod example_query {
         SqlQuery(::prost::alloc::string::String),
     }
 }
+/// Looker Query Object
+/// [Looker API
+/// documentation](<https://cloud.google.com/looker/docs/reference/looker-api/latest/methods/Query/run_inline_query>).
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookerQuery {
+    /// Required. The LookML model used to generate the query.
+    #[prost(string, tag = "1")]
+    pub model: ::prost::alloc::string::String,
+    /// Required. The LookML explore used to generate the query.
+    #[prost(string, tag = "2")]
+    pub explore: ::prost::alloc::string::String,
+    /// Optional. The fields to retrieve from the explore.
+    #[prost(string, repeated, tag = "3")]
+    pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. The filters to apply to the explore.
+    #[prost(message, repeated, tag = "4")]
+    pub filters: ::prost::alloc::vec::Vec<looker_query::Filter>,
+    /// Optional. The sorts to apply to the explore.
+    #[prost(string, repeated, tag = "5")]
+    pub sorts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Limit in the query.
+    #[prost(string, optional, tag = "6")]
+    pub limit: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `LookerQuery`.
+pub mod looker_query {
+    /// A Looker query filter.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Filter {
+        /// Required. The field to filter on.
+        #[prost(string, tag = "1")]
+        pub field: ::prost::alloc::string::String,
+        /// Required. The value for the field to filter on.
+        #[prost(string, tag = "2")]
+        pub value: ::prost::alloc::string::String,
+    }
+}
 /// Definition of a term within a specific domain.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GlossaryTerm {
@@ -1363,6 +1400,137 @@ pub mod data_agent_service_client {
         }
     }
 }
+/// Request to query data from a natural language query.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDataRequest {
+    /// Required. The parent resource to generate the query for.
+    /// Format: projects/{project}/locations/{location}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The natural language query for which to generate query.
+    /// Example: "What are the top 5 best selling products this month?"
+    #[prost(string, tag = "2")]
+    pub prompt: ::prost::alloc::string::String,
+    /// Required. The context for the data query, including the data sources to
+    /// use.
+    #[prost(message, optional, tag = "3")]
+    pub context: ::core::option::Option<QueryDataContext>,
+    /// Optional. Options to control query generation and execution behavior.
+    #[prost(message, optional, tag = "4")]
+    pub generation_options: ::core::option::Option<GenerationOptions>,
+}
+/// Options to control query generation, execution, and response format.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerationOptions {
+    /// Optional. If true, the generated query will be executed, and the result
+    /// data will be returned in the response.
+    #[prost(bool, tag = "1")]
+    pub generate_query_result: bool,
+    /// Optional. If true, a natural language answer based on the query execution
+    /// result will be generated and returned in the response.
+    #[prost(bool, tag = "2")]
+    pub generate_natural_language_answer: bool,
+    /// Optional. If true, an explanation of the generated query will be returned
+    /// in the response.
+    #[prost(bool, tag = "3")]
+    pub generate_explanation: bool,
+    /// Optional. If true (default to false), the service may return a
+    /// clarifying_question if the input query is ambiguous.
+    #[prost(bool, tag = "4")]
+    pub generate_disambiguation_question: bool,
+}
+/// References to data sources and context to use for the query.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDataContext {
+    /// Required. The datasource references to use for the query.
+    #[prost(message, optional, tag = "1")]
+    pub datasource_references: ::core::option::Option<DatasourceReferences>,
+}
+/// Response containing the generated query and related information.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDataResponse {
+    /// Generated query for the given user prompt.
+    #[prost(string, tag = "1")]
+    pub generated_query: ::prost::alloc::string::String,
+    /// A natural language explanation of the generated query.
+    /// Populated if options.generate_explanation was true in the request.
+    #[prost(string, tag = "2")]
+    pub intent_explanation: ::prost::alloc::string::String,
+    /// The result of executing the query.
+    /// Populated if options.generate_query_result or
+    /// options.generate_natural_language_answer was true in the request, and
+    /// execution was successful or attempted.
+    #[prost(message, optional, tag = "3")]
+    pub query_result: ::core::option::Option<ExecutedQueryResult>,
+    /// A natural language answer to the query, based on the query_result.
+    /// Populated if options.generate_natural_language_answer was true in the
+    /// request and query execution was successful based in the response from
+    /// executeSql API.
+    #[prost(string, tag = "4")]
+    pub natural_language_answer: ::prost::alloc::string::String,
+    /// If ambiguity was detected in the natural language query and
+    /// options.generate_disambiguation_question was true, this field contains a
+    /// question to the user for clarification. The returned represents the
+    /// service's best effort based on the ambiguous input.
+    #[prost(string, repeated, tag = "5")]
+    pub disambiguation_question: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
+}
+/// The result of a query execution. The design is generic for all dialects.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExecutedQueryResult {
+    /// The columns in the result set, in order.
+    #[prost(message, repeated, tag = "1")]
+    pub columns: ::prost::alloc::vec::Vec<executed_query_result::Column>,
+    /// The rows returned by the query.
+    #[prost(message, repeated, tag = "2")]
+    pub rows: ::prost::alloc::vec::Vec<executed_query_result::Row>,
+    /// The total number of rows in the full result set, if known.
+    /// This may be an estimate or an exact count.
+    #[prost(int64, tag = "3")]
+    pub total_row_count: i64,
+    /// Set to true if the returned rows in `query_result` are a subset of the
+    /// full result. This can happen, for example, if the query execution hits a
+    /// row limit. When true, the `query_result` does not contain all
+    /// rows. To retrieve the complete result, consider using the
+    /// `generated_query` in `QueryDataResponse` and executing it in your own
+    /// environment.
+    #[prost(bool, tag = "4")]
+    pub partial_result: bool,
+    /// The error message if the query execution failed.
+    #[prost(string, tag = "5")]
+    pub query_execution_error: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ExecutedQueryResult`.
+pub mod executed_query_result {
+    /// Describes a single column in the result set.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Column {
+        /// The name of the column.
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        /// The type of the column (e.g., "VARCHAR", "INT64", "TIMESTAMP").
+        #[prost(string, tag = "2")]
+        pub r#type: ::prost::alloc::string::String,
+    }
+    /// Represents a single value within a row.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Value {
+        /// The cell value, represented in a string format.
+        /// Timestamps could be formatted, for example, using RFC3339Nano.
+        /// This field is used if the value is not null.
+        #[prost(string, tag = "1")]
+        pub value: ::prost::alloc::string::String,
+    }
+    /// Represents a single row in the result set.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Row {
+        /// The values in the row, corresponding positionally to the columns.
+        #[prost(message, repeated, tag = "1")]
+        pub values: ::prost::alloc::vec::Vec<Value>,
+    }
+}
 /// Request for listing chat messages based on parent and conversation_id.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ListMessagesRequest {
@@ -1778,43 +1946,6 @@ pub mod data_message {
         /// A BigQuery job executed by the system to retrieve data.
         #[prost(message, tag = "5")]
         BigQueryJob(super::BigQueryJob),
-    }
-}
-/// A query for retrieving data from a Looker Explore. See
-/// [Run Inline
-/// Query](<https://cloud.google.com/looker/docs/reference/looker-api/latest/methods/Query/run_inline_query>).
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LookerQuery {
-    /// Required. The LookML model used to generate the query.
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    /// Required. The LookML Explore used to generate the query.
-    #[prost(string, tag = "2")]
-    pub explore: ::prost::alloc::string::String,
-    /// Optional. The fields to retrieve from the Explore.
-    #[prost(string, repeated, tag = "3")]
-    pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Optional. The filters to apply to the Explore.
-    #[prost(message, repeated, tag = "4")]
-    pub filters: ::prost::alloc::vec::Vec<looker_query::Filter>,
-    /// Optional. The sorts to apply to the Explore.
-    #[prost(string, repeated, tag = "5")]
-    pub sorts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Optional. Limit in the query.
-    #[prost(string, optional, tag = "6")]
-    pub limit: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Nested message and enum types in `LookerQuery`.
-pub mod looker_query {
-    /// A Looker query filter.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-    pub struct Filter {
-        /// Required. The field to filter on.
-        #[prost(string, tag = "1")]
-        pub field: ::prost::alloc::string::String,
-        /// Required. The value f field to filter on.
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
     }
 }
 /// A query for retrieving data.
@@ -2314,6 +2445,36 @@ pub mod data_chat_service_client {
                     GrpcMethod::new(
                         "google.cloud.geminidataanalytics.v1alpha.DataChatService",
                         "ListMessages",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Queries data from a natural language user query.
+        pub async fn query_data(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryDataRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryDataResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.geminidataanalytics.v1alpha.DataChatService/QueryData",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.geminidataanalytics.v1alpha.DataChatService",
+                        "QueryData",
                     ),
                 );
             self.inner.unary(req, path, codec).await

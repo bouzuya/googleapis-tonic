@@ -2400,6 +2400,78 @@ pub struct BatchDedicatedResources {
     #[prost(bool, tag = "5")]
     pub spot: bool,
 }
+/// Resources for an fft model.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct FullFineTunedResources {
+    /// Required. The kind of deployment.
+    #[prost(enumeration = "full_fine_tuned_resources::DeploymentType", tag = "1")]
+    pub deployment_type: i32,
+    /// Optional. The number of model inference units to use for this deployment.
+    /// This can only be specified for DEPLOYMENT_TYPE_PROD.
+    /// The following table lists the number of model inference units for different
+    /// model types:
+    ///
+    /// * Gemini 2.5 Flash
+    ///   * Foundation FMIU: 25
+    ///   * Expansion FMIU: 4
+    /// * Gemini 2.5 Pro
+    ///   * Foundation FMIU: 32
+    ///   * Expansion FMIU: 16
+    /// * Veo 3.0 (undistilled)
+    ///   * Foundation FMIU: 63
+    ///   * Expansion FMIU: 7
+    /// * Veo 3.0 (distilled)
+    ///   * Foundation FMIU: 30
+    ///   * Expansion FMIU: 10
+    #[prost(int32, tag = "2")]
+    pub model_inference_unit_count: i32,
+}
+/// Nested message and enum types in `FullFineTunedResources`.
+pub mod full_fine_tuned_resources {
+    /// The type of deployment.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DeploymentType {
+        /// Unspecified deployment type.
+        Unspecified = 0,
+        /// Eval deployment type.
+        Eval = 1,
+        /// Prod deployment type.
+        Prod = 2,
+    }
+    impl DeploymentType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "DEPLOYMENT_TYPE_UNSPECIFIED",
+                Self::Eval => "DEPLOYMENT_TYPE_EVAL",
+                Self::Prod => "DEPLOYMENT_TYPE_PROD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEPLOYMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DEPLOYMENT_TYPE_EVAL" => Some(Self::Eval),
+                "DEPLOYMENT_TYPE_PROD" => Some(Self::Prod),
+                _ => None,
+            }
+        }
+    }
+}
 /// Statistics information about resource consumption.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ResourcesConsumed {
@@ -5130,7 +5202,7 @@ pub struct Tool {
     #[prost(message, optional, tag = "4")]
     pub code_execution: ::core::option::Option<tool::CodeExecution>,
     /// Optional. Tool to support URL context retrieval.
-    #[prost(message, optional, tag = "8")]
+    #[prost(message, optional, tag = "10")]
     pub url_context: ::core::option::Option<UrlContext>,
     /// Optional. Tool to support the model interacting directly with the computer.
     /// If enabled, it automatically populates computer-use specific Function
@@ -6128,7 +6200,7 @@ pub struct RagVectorDbConfig {
     #[prost(message, optional, tag = "7")]
     pub rag_embedding_model_config: ::core::option::Option<RagEmbeddingModelConfig>,
     /// The config for the Vector DB.
-    #[prost(oneof = "rag_vector_db_config::VectorDb", tags = "1, 2, 3, 4, 6")]
+    #[prost(oneof = "rag_vector_db_config::VectorDb", tags = "1, 2, 3, 4, 6, 8")]
     pub vector_db: ::core::option::Option<rag_vector_db_config::VectorDb>,
 }
 /// Nested message and enum types in `RagVectorDbConfig`.
@@ -6231,6 +6303,16 @@ pub mod rag_vector_db_config {
         #[prost(string, tag = "2")]
         pub index: ::prost::alloc::string::String,
     }
+    /// The config for the RAG-managed Vertex Vector Search 2.0.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct RagManagedVertexVectorSearch {
+        /// Output only. The resource name of the Vector Search 2.0 Collection that
+        /// RAG Created for the corpus. Only populated after the corpus is
+        /// successfully created. Format:
+        /// `projects/{project}/locations/{location}/collections/{collection_id}`
+        #[prost(string, tag = "1")]
+        pub collection_name: ::prost::alloc::string::String,
+    }
     /// The config for the Vector DB.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum VectorDb {
@@ -6249,6 +6331,9 @@ pub mod rag_vector_db_config {
         /// The config for the Vertex Vector Search.
         #[prost(message, tag = "6")]
         VertexVectorSearch(VertexVectorSearch),
+        /// The config for the RAG-managed Vertex Vector Search 2.0.
+        #[prost(message, tag = "8")]
+        RagManagedVertexVectorSearch(RagManagedVertexVectorSearch),
     }
 }
 /// RagFile status.
@@ -6412,6 +6497,9 @@ pub struct RagCorpus {
     #[prost(message, optional, tag = "8")]
     pub corpus_status: ::core::option::Option<CorpusStatus>,
     /// Output only. Number of RagFiles in the RagCorpus.
+    ///
+    /// NOTE: This field is not populated in the response of
+    /// \[VertexRagDataService.ListRagCorpora\]\[google.cloud.aiplatform.v1beta1.VertexRagDataService.ListRagCorpora\].
     #[prost(int32, tag = "11")]
     pub rag_files_count: i32,
     /// Optional. Immutable. The CMEK key name used to encrypt at-rest data related
@@ -6423,6 +6511,12 @@ pub struct RagCorpus {
     /// Optional. The corpus type config of the RagCorpus.
     #[prost(message, optional, tag = "13")]
     pub corpus_type_config: ::core::option::Option<rag_corpus::CorpusTypeConfig>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "20")]
+    pub satisfies_pzi: bool,
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
     #[prost(oneof = "rag_corpus::BackendConfig", tags = "9, 10")]
@@ -6507,7 +6601,7 @@ pub struct RagFile {
     /// Output only. State of the RagFile.
     #[prost(message, optional, tag = "13")]
     pub file_status: ::core::option::Option<FileStatus>,
-    /// Output only. The metadata for metadata search. The contents will be
+    /// Output only. The metadata for metadata search. The user_metadata Needs to
     /// be in JSON format.
     #[prost(string, tag = "15")]
     pub user_metadata: ::prost::alloc::string::String,
@@ -6773,13 +6867,13 @@ pub mod rag_file_metadata_config {
         ///
         /// * `gs://bucket_name/my_directory/object_name/metadata_schema.json`
         /// * `gs://bucket_name/my_directory`
-        ///   If providing a directory, the metadata schema will be read from
+        ///   If the user provides a directory, the metadata schema will be read from
         ///   the files that ends with "metadata_schema.json" in the directory.
         #[prost(message, tag = "1")]
         GcsMetadataSchemaSource(super::GcsSource),
         /// Google Drive location. Supports importing individual files as
         /// well as Google Drive folders.
-        /// If providing a folder, the metadata schema will be read from
+        /// If the user provides a folder, the metadata schema will be read from
         /// the files that ends with "metadata_schema.json" in the directory.
         #[prost(message, tag = "2")]
         GoogleDriveMetadataSchemaSource(super::GoogleDriveSource),
@@ -6795,13 +6889,13 @@ pub mod rag_file_metadata_config {
         ///
         /// * `gs://bucket_name/my_directory/object_name/metadata.json`
         /// * `gs://bucket_name/my_directory`
-        ///   If providing a directory, the metadata will be read from
+        ///   If the user provides a directory, the metadata will be read from
         ///   the files that ends with "metadata.json" in the directory.
         #[prost(message, tag = "4")]
         GcsMetadataSource(super::GcsSource),
         /// Google Drive location. Supports importing individual files as
         /// well as Google Drive folders.
-        /// If providing a directory, the metadata will be read from
+        /// If the user provides a directory, the metadata will be read from
         /// the files that ends with "metadata.json" in the directory.
         #[prost(message, tag = "5")]
         GoogleDriveMetadataSource(super::GoogleDriveSource),
@@ -6964,7 +7058,6 @@ pub struct RagManagedDbConfig {
 }
 /// Nested message and enum types in `RagManagedDbConfig`.
 pub mod rag_managed_db_config {
-    /// Deprecated: Please use `Scaled` tier instead.
     /// Enterprise tier offers production grade performance along with
     /// autoscaling functionality. It is suitable for customers with large
     /// amounts of data or performance sensitive workloads.
@@ -6997,13 +7090,12 @@ pub mod rag_managed_db_config {
     /// The tier of the RagManagedDb.
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Tier {
-        /// Deprecated: Please use `Scaled` tier instead.
-        /// Sets the RagManagedDb to the Enterprise tier. This is the default tier
-        /// if not explicitly chosen.
+        /// Sets the RagManagedDb to the Enterprise tier.
         #[deprecated]
         #[prost(message, tag = "1")]
         Enterprise(Enterprise),
-        /// Sets the RagManagedDb to the Scaled tier.
+        /// Sets the RagManagedDb to the Scaled tier. This is the default tier
+        /// if not explicitly chosen.
         #[prost(message, tag = "4")]
         Scaled(Scaled),
         /// Sets the RagManagedDb to the Basic tier.
@@ -7147,9 +7239,10 @@ pub struct PrebuiltVoiceConfig {
 /// The configuration for the replicated voice to use.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ReplicatedVoiceConfig {
-    /// Optional. The mimetype of the voice sample. Currently only
-    /// mime_type=audio/pcm is supported, which is raw mono 16-bit signed
-    /// little-endian pcm data, with 24k sampling rate.
+    /// Optional. The mimetype of the voice sample. The only currently supported
+    /// value is `audio/wav`. This represents 16-bit signed little-endian wav data,
+    /// with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not
+    /// set.
     #[prost(string, tag = "1")]
     pub mime_type: ::prost::alloc::string::String,
     /// Optional. The sample of the custom voice.
@@ -11633,7 +11726,7 @@ pub struct DeployedModel {
     /// Not all Models support all resources types. See
     /// \[Model.supported_deployment_resources_types\]\[google.cloud.aiplatform.v1beta1.Model.supported_deployment_resources_types\].
     /// Required except for Large Model Deploy use cases.
-    #[prost(oneof = "deployed_model::PredictionResources", tags = "7, 8, 17")]
+    #[prost(oneof = "deployed_model::PredictionResources", tags = "7, 8, 17, 36")]
     pub prediction_resources: ::core::option::Option<
         deployed_model::PredictionResources,
     >,
@@ -11674,6 +11767,9 @@ pub mod deployed_model {
         /// `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
         #[prost(string, tag = "17")]
         SharedResources(::prost::alloc::string::String),
+        /// Optional. Resources for a full fine tuned model.
+        #[prost(message, tag = "36")]
+        FullFineTunedResources(super::FullFineTunedResources),
     }
 }
 /// PrivateEndpoints proto is used to provide paths for users to send

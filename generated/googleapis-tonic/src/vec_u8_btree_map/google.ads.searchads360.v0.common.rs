@@ -1171,6 +1171,100 @@ pub struct Metrics {
     /// clicking on) another ad.
     #[prost(int64, optional, tag = "155")]
     pub client_account_view_through_conversions: ::core::option::Option<i64>,
+    /// Orders is the total number of purchase conversions you received attributed
+    /// to your ads.
+    /// How it works: You report conversions with cart data for
+    /// completed purchases on your website. If a conversion is attributed to
+    /// previous interactions with your ads (clicks for text or Shopping ads, views
+    /// for video ads etc.) it's counted as an order.
+    /// Example: Someone clicked on a Shopping ad for a hat then bought the same
+    /// hat and a shirt in an order on your website. Even though they bought 2
+    /// products, this would count as 1 order.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(double, optional, tag = "296")]
+    pub orders: ::core::option::Option<f64>,
+    /// Average order value is the average revenue you made per order attributed to
+    /// your ads.
+    /// How it works: You report conversions with cart data for completed purchases
+    /// on your website. Average order value is the total revenue from your orders
+    /// divided by the total number of orders.
+    /// Example: You received 3 orders which made $10, $15 and $20 worth of
+    /// revenue. The average order value is $15 = ($10 + $15 + $20)/3.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(int64, optional, tag = "297")]
+    pub average_order_value_micros: ::core::option::Option<i64>,
+    /// Average cart size is the average number of products in each order
+    /// attributed to your ads.
+    /// How it works: You report conversions with cart data for completed purchases
+    /// on your website. Average cart size is the total number of products sold
+    /// divided by the total number of orders you received.
+    /// Example: You received 2 orders, the first included 3 products and the
+    /// second included 2. The average cart size is 2.5 products = (3+2)/2.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(double, optional, tag = "298")]
+    pub average_cart_size: ::core::option::Option<f64>,
+    /// Cost of goods sold (COGS) is the total cost of the products you sold in
+    /// orders attributed to your ads.
+    /// How it works: You can add a cost of goods sold value to every product in
+    /// Merchant Center. If you report conversions with cart data, the products you
+    /// sold are matched with their cost of goods sold value and this can be used
+    /// to calculate the gross profit you made on each order.
+    /// Example: Someone clicked on a Shopping ad for a hat then bought the same
+    /// hat and a shirt. The hat has a cost of goods sold value of $3, the shirt
+    /// has a cost of goods sold value of $5. The cost of goods sold for this order
+    /// is $8 = $3 + $5.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(int64, optional, tag = "299")]
+    pub cost_of_goods_sold_micros: ::core::option::Option<i64>,
+    /// Gross profit is the profit you made from orders attributed to your ads
+    /// minus the cost of goods sold (COGS).
+    /// How it works: Gross profit is the revenue you made from sales attributed to
+    /// your ads minus cost of goods sold. Gross profit calculations only include
+    /// products that have a cost of goods sold value in Merchant Center.
+    /// Example: Someone clicked on a Shopping ad for a hat then bought the same
+    /// hat and a shirt in an order from your website. The hat is priced $10 and
+    /// the shirt is priced $20. The hat has a cost of goods sold value of $3, but
+    /// the shirt has no cost of goods sold value. Gross profit for this order will
+    /// only take into account the hat, so it's $7 = $10 - $3.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(int64, optional, tag = "300")]
+    pub gross_profit_micros: ::core::option::Option<i64>,
+    /// Gross profit margin is the percentage gross profit you made from orders
+    /// attributed to your ads, after taking out the cost of goods sold (COGS).
+    /// How it works: You report conversions with cart data for completed purchases
+    /// on your website. Gross profit margin is the gross profit you made divided
+    /// by your total revenue and multiplied by 100%. Gross profit margin
+    /// calculations only include products that have a cost of goods sold value in
+    /// Merchant Center.
+    /// Example: Someone bought a hat and a shirt in an order on your website. The
+    /// hat is priced $10 and has a cost of goods sold value of $3. The shirt is
+    /// priced $20 but has no cost of goods sold value. Gross profit margin for
+    /// this order will only take into account the hat because it has a cost of
+    /// goods sold value, so it's 70% = ($10 - $3)/$10 x 100%.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(double, optional, tag = "301")]
+    pub gross_profit_margin: ::core::option::Option<f64>,
+    /// Revenue is the total amount you made from orders attributed to your ads.
+    /// How it works: You report conversions with cart data for completed purchases
+    /// on your website. Revenue is the total value of all the orders you received
+    /// attributed to your ads, minus any discount.
+    /// Example: Someone clicked on a Shopping ad  for a hat then bought the same
+    /// hat and a shirt in an order from your website. The hat is priced $10 and
+    /// the shirt is priced $20. The entire order has a $5 discount. The revenue
+    /// from this order is $25 = ($10 + $20) - $5.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(int64, optional, tag = "302")]
+    pub revenue_micros: ::core::option::Option<i64>,
+    /// Units sold is the total number of products sold from orders attributed to
+    /// your ads.
+    /// How it works: You report conversions with cart data for completed purchases
+    /// on your website. Units sold is the total number of products sold from all
+    /// orders attributed to your ads.
+    /// Example: Someone clicked on a Shopping ad for a hat then bought the same
+    /// hat, a shirt and a jacket. The units sold in this order is 3.
+    /// This metric is only available if you report conversions with cart data.
+    #[prost(double, optional, tag = "303")]
+    pub units_sold: ::core::option::Option<f64>,
     /// Client account cross-sell cost of goods sold (COGS) is the total cost
     /// of products sold as a result of advertising a different product.
     /// How it works: You report conversions with cart data for
@@ -1437,6 +1531,18 @@ pub struct Metrics {
     /// This metric is only available if you report conversions with cart data.
     #[prost(double, optional, tag = "335")]
     pub lead_units_sold: ::core::option::Option<f64>,
+    /// The number of unique users who saw your ad during the requested time
+    /// period. This metric cannot be aggregated, and can only be requested for
+    /// date ranges of 92 days or less. This metric is available for following
+    /// campaign types - Display, Video, Discovery and App.
+    #[prost(int64, optional, tag = "319")]
+    pub unique_users: ::core::option::Option<i64>,
+    /// The average number of times a unique user saw your ad during the requested
+    /// time period. This metric cannot be aggregated, and can only be requested
+    /// for date ranges of 92 days or less. This metric is available for following
+    /// campaign types - Display, Video, Discovery and App.
+    #[prost(double, optional, tag = "320")]
+    pub average_impression_frequency_per_user: ::core::option::Option<f64>,
 }
 /// Settings for Real-Time Bidding, a feature only available for campaigns
 /// targeting the Ad Exchange network.
@@ -1489,6 +1595,9 @@ pub struct Segments {
     /// Resource name of the geo target constant that represents a metro.
     #[prost(string, optional, tag = "122")]
     pub geo_target_metro: ::core::option::Option<::prost::alloc::string::String>,
+    /// Resource name of the geo target constant that represents a postal code.
+    #[prost(string, optional, tag = "124")]
+    pub geo_target_postal_code: ::core::option::Option<::prost::alloc::string::String>,
     /// Resource name of the geo target constant that represents a region.
     #[prost(string, optional, tag = "126")]
     pub geo_target_region: ::core::option::Option<::prost::alloc::string::String>,
