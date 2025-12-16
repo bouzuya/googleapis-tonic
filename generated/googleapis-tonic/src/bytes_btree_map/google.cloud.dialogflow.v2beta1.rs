@@ -966,6 +966,11 @@ pub struct AgentCoachingInstruction {
     pub duplicate_check_result: ::core::option::Option<
         agent_coaching_instruction::DuplicateCheckResult,
     >,
+    /// Optional. The event that should trigger this instruction.
+    /// If UNSPECIFIED, the instruction triggering will be same as the generator's
+    /// trigger_event.
+    #[prost(enumeration = "agent_coaching_instruction::TriggerEvent", tag = "10")]
+    pub triggering_event: i32,
 }
 /// Nested message and enum types in `AgentCoachingInstruction`.
 pub mod agent_coaching_instruction {
@@ -994,6 +999,61 @@ pub mod agent_coaching_instruction {
             /// suggestion.
             #[prost(float, tag = "4")]
             pub similarity_score: f32,
+        }
+    }
+    /// The event that should trigger this instruction.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum TriggerEvent {
+        /// Default value for TriggerEvent.
+        Unspecified = 0,
+        /// Triggers when each chat message or voice utterance ends.
+        EndOfUtterance = 1,
+        /// Triggers on the conversation manually by API calls.
+        ManualCall = 2,
+        /// Triggers after each customer message.
+        CustomerMessage = 3,
+        /// Triggers after each agent message.
+        AgentMessage = 4,
+        /// Triggers on tool call completion.
+        ToolCallCompletion = 5,
+    }
+    impl TriggerEvent {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "TRIGGER_EVENT_UNSPECIFIED",
+                Self::EndOfUtterance => "END_OF_UTTERANCE",
+                Self::ManualCall => "MANUAL_CALL",
+                Self::CustomerMessage => "CUSTOMER_MESSAGE",
+                Self::AgentMessage => "AGENT_MESSAGE",
+                Self::ToolCallCompletion => "TOOL_CALL_COMPLETION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TRIGGER_EVENT_UNSPECIFIED" => Some(Self::Unspecified),
+                "END_OF_UTTERANCE" => Some(Self::EndOfUtterance),
+                "MANUAL_CALL" => Some(Self::ManualCall),
+                "CUSTOMER_MESSAGE" => Some(Self::CustomerMessage),
+                "AGENT_MESSAGE" => Some(Self::AgentMessage),
+                "TOOL_CALL_COMPLETION" => Some(Self::ToolCallCompletion),
+                _ => None,
+            }
         }
     }
 }

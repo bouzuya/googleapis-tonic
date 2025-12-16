@@ -4480,14 +4480,59 @@ pub struct FunctionDeclaration {
 /// containing the parameters and their values.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunctionCall {
-    /// Required. The name of the function to call.
+    /// Optional. The name of the function to call.
     /// Matches \[FunctionDeclaration.name\].
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// Optional. Required. The function parameters and values in JSON object
-    /// format. See \[FunctionDeclaration.parameters\] for parameter details.
+    /// Optional. The function parameters and values in JSON object format.
+    /// See \[FunctionDeclaration.parameters\] for parameter details.
     #[prost(message, optional, tag = "2")]
     pub args: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. The partial argument value of the function call.
+    /// If provided, represents the arguments/fields that are streamed
+    /// incrementally.
+    #[prost(message, repeated, tag = "4")]
+    pub partial_args: ::prost::alloc::vec::Vec<PartialArg>,
+    /// Optional. Whether this is the last part of the FunctionCall.
+    /// If true, another partial message for the current FunctionCall is expected
+    /// to follow.
+    #[prost(bool, tag = "5")]
+    pub will_continue: bool,
+}
+/// Partial argument value of the function call.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PartialArg {
+    /// Required. A JSON Path (RFC 9535) to the argument being streamed.
+    /// <https://datatracker.ietf.org/doc/html/rfc9535.> e.g. "$.foo.bar\[0\].data".
+    #[prost(string, tag = "1")]
+    pub json_path: ::prost::alloc::string::String,
+    /// Optional. Whether this is not the last part of the same json_path.
+    /// If true, another PartialArg message for the current json_path is expected
+    /// to follow.
+    #[prost(bool, tag = "6")]
+    pub will_continue: bool,
+    /// The delta of field value being streamed.
+    #[prost(oneof = "partial_arg::Delta", tags = "2, 3, 4, 5")]
+    pub delta: ::core::option::Option<partial_arg::Delta>,
+}
+/// Nested message and enum types in `PartialArg`.
+pub mod partial_arg {
+    /// The delta of field value being streamed.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Delta {
+        /// Optional. Represents a null value.
+        #[prost(enumeration = "::prost_types::NullValue", tag = "2")]
+        NullValue(i32),
+        /// Optional. Represents a double value.
+        #[prost(double, tag = "3")]
+        NumberValue(f64),
+        /// Optional. Represents a string value.
+        #[prost(string, tag = "4")]
+        StringValue(::prost::alloc::string::String),
+        /// Optional. Represents a boolean value.
+        #[prost(bool, tag = "5")]
+        BoolValue(bool),
+    }
 }
 /// A datatype containing media that is part of a `FunctionResponse` message.
 ///
@@ -4912,6 +4957,11 @@ pub struct FunctionCallingConfig {
     /// will predict a function call from the set of function names provided.
     #[prost(string, repeated, tag = "2")]
     pub allowed_function_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. When set to true, arguments of a single function call will be
+    /// streamed out in multiple parts/contents/responses. Partial parameter
+    /// results will be returned in the \[FunctionCall.partial_args\] field.
+    #[prost(bool, tag = "4")]
+    pub stream_function_call_arguments: bool,
 }
 /// Nested message and enum types in `FunctionCallingConfig`.
 pub mod function_calling_config {
