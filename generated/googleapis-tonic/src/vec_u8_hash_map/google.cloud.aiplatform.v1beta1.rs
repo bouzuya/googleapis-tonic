@@ -2525,6 +2525,23 @@ pub struct NfsMount {
     #[prost(string, tag = "3")]
     pub mount_point: ::prost::alloc::string::String,
 }
+/// Represents a mount configuration for Lustre file system.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct LustreMount {
+    /// Required. IP address of the Lustre instance.
+    #[prost(string, tag = "1")]
+    pub instance_ip: ::prost::alloc::string::String,
+    /// Required. The unique identifier of the Lustre volume.
+    #[prost(string, tag = "2")]
+    pub volume_handle: ::prost::alloc::string::String,
+    /// Required. The name of the Lustre filesystem.
+    #[prost(string, tag = "3")]
+    pub filesystem: ::prost::alloc::string::String,
+    /// Required. Destination mount path. The Lustre file system will be mounted
+    /// for the user under /mnt/lustre/\<mount_point>
+    #[prost(string, tag = "4")]
+    pub mount_point: ::prost::alloc::string::String,
+}
 /// The metric specification that defines the target resource utilization
 /// (CPU utilization, accelerator's duty cycle, and so on) for calculating the
 /// desired replica count.
@@ -9055,6 +9072,9 @@ pub struct WorkerPoolSpec {
     /// Optional. List of NFS mount spec.
     #[prost(message, repeated, tag = "4")]
     pub nfs_mounts: ::prost::alloc::vec::Vec<NfsMount>,
+    /// Optional. List of Lustre mounts.
+    #[prost(message, repeated, tag = "9")]
+    pub lustre_mounts: ::prost::alloc::vec::Vec<LustreMount>,
     /// Disk spec.
     #[prost(message, optional, tag = "5")]
     pub disk_spec: ::core::option::Option<DiskSpec>,
@@ -9124,10 +9144,10 @@ pub struct PythonPackageSpec {
 /// All parameters related to queuing and scheduling of custom jobs.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Scheduling {
-    /// The maximum job running time. The default is 7 days.
+    /// Optional. The maximum job running time. The default is 7 days.
     #[prost(message, optional, tag = "1")]
     pub timeout: ::core::option::Option<::prost_types::Duration>,
-    /// Restarts the entire CustomJob if a worker gets restarted.
+    /// Optional. Restarts the entire CustomJob if a worker gets restarted.
     /// This feature can be used by distributed training jobs that are not
     /// resilient to workers leaving and joining a job.
     #[prost(bool, tag = "3")]

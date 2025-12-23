@@ -2224,30 +2224,26 @@ pub struct MachineSpec {
     #[prost(message, optional, tag = "5")]
     pub reservation_affinity: ::core::option::Option<ReservationAffinity>,
 }
-/// A description of resources that are dedicated to a DeployedModel, and
-/// that need a higher degree of manual configuration.
+/// A description of resources that are dedicated to a DeployedModel or
+/// DeployedIndex, and that need a higher degree of manual configuration.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DedicatedResources {
-    /// Required. Immutable. The specification of a single machine used by the
-    /// prediction.
+    /// Required. Immutable. The specification of a single machine being used.
     #[prost(message, optional, tag = "1")]
     pub machine_spec: ::core::option::Option<MachineSpec>,
-    /// Required. Immutable. The minimum number of machine replicas this
-    /// DeployedModel will be always deployed on. This value must be greater than
-    /// or equal to 1.
+    /// Required. Immutable. The minimum number of machine replicas that will be
+    /// always deployed on. This value must be greater than or equal to 1.
     ///
-    /// If traffic against the DeployedModel increases, it may dynamically be
-    /// deployed onto more replicas, and as traffic decreases, some of these extra
-    /// replicas may be freed.
+    /// If traffic increases, it may dynamically be deployed onto more replicas,
+    /// and as traffic decreases, some of these extra replicas may be freed.
     #[prost(int32, tag = "2")]
     pub min_replica_count: i32,
-    /// Immutable. The maximum number of replicas this DeployedModel may be
-    /// deployed on when the traffic against it increases. If the requested value
-    /// is too large, the deployment will error, but if deployment succeeds then
-    /// the ability to scale the model to that many replicas is guaranteed (barring
-    /// service outages). If traffic against the DeployedModel increases beyond
-    /// what its replicas at maximum may handle, a portion of the traffic will be
-    /// dropped. If this value is not provided, will use
+    /// Immutable. The maximum number of replicas that may be deployed on when the
+    /// traffic against it increases. If the requested value is too large, the
+    /// deployment will error, but if deployment succeeds then the ability to scale
+    /// to that many replicas is guaranteed (barring service outages). If traffic
+    /// increases beyond what its replicas at maximum may handle, a portion of the
+    /// traffic will be dropped. If this value is not provided, will use
     /// \[min_replica_count\]\[google.cloud.aiplatform.v1.DedicatedResources.min_replica_count\]
     /// as the default value.
     ///
@@ -2258,8 +2254,8 @@ pub struct DedicatedResources {
     #[prost(int32, tag = "3")]
     pub max_replica_count: i32,
     /// Optional. Number of required available replicas for the deployment to
-    /// succeed. This field is only needed when partial model deployment/mutation
-    /// is desired. If set, the model deploy/mutate operation will succeed once
+    /// succeed. This field is only needed when partial deployment/mutation is
+    /// desired. If set, the deploy/mutate operation will succeed once
     /// available_replica_count reaches required_replica_count, and the rest of
     /// the replicas will be retried. If not set, the default
     /// required_replica_count will be min_replica_count.
@@ -2300,23 +2296,22 @@ pub struct DedicatedResources {
 /// Each Model supporting these resources documents its specific guidelines.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AutomaticResources {
-    /// Immutable. The minimum number of replicas this DeployedModel will be always
-    /// deployed on. If traffic against it increases, it may dynamically be
-    /// deployed onto more replicas up to
+    /// Immutable. The minimum number of replicas that will be always deployed on.
+    /// If traffic against it increases, it may dynamically be deployed onto more
+    /// replicas up to
     /// \[max_replica_count\]\[google.cloud.aiplatform.v1.AutomaticResources.max_replica_count\],
     /// and as traffic decreases, some of these extra replicas may be freed. If the
     /// requested value is too large, the deployment will error.
     #[prost(int32, tag = "1")]
     pub min_replica_count: i32,
-    /// Immutable. The maximum number of replicas this DeployedModel may be
-    /// deployed on when the traffic against it increases. If the requested value
-    /// is too large, the deployment will error, but if deployment succeeds then
-    /// the ability to scale the model to that many replicas is guaranteed (barring
-    /// service outages). If traffic against the DeployedModel increases beyond
-    /// what its replicas at maximum may handle, a portion of the traffic will be
-    /// dropped. If this value is not provided, a no upper bound for scaling under
-    /// heavy traffic will be assume, though Vertex AI may be unable to scale
-    /// beyond certain replica number.
+    /// Immutable. The maximum number of replicas that may be deployed on when the
+    /// traffic against it increases. If the requested value is too large, the
+    /// deployment will error, but if deployment succeeds then the ability to scale
+    /// to that many replicas is guaranteed (barring service outages). If traffic
+    /// increases beyond what its replicas at maximum may handle, a portion of the
+    /// traffic will be dropped. If this value is not provided, a no upper bound
+    /// for scaling under heavy traffic will be assume, though Vertex AI may be
+    /// unable to scale beyond certain replica number.
     #[prost(int32, tag = "2")]
     pub max_replica_count: i32,
 }
@@ -2349,9 +2344,10 @@ pub struct ResourcesConsumed {
 /// Represents the spec of disk options.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DiskSpec {
-    /// Type of the boot disk (default is "pd-ssd").
-    /// Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-    /// "pd-standard" (Persistent Disk Hard Disk Drive).
+    /// Type of the boot disk. For non-A3U machines, the default value is
+    /// "pd-ssd", for A3U machines, the default value is "hyperdisk-balanced".
+    /// Valid values: "pd-ssd" (Persistent Disk Solid State Drive),
+    /// "pd-standard" (Persistent Disk Hard Disk Drive) or "hyperdisk-balanced".
     #[prost(string, tag = "1")]
     pub boot_disk_type: ::prost::alloc::string::String,
     /// Size in GB of the boot disk (default is 100GB).
@@ -2389,6 +2385,23 @@ pub struct NfsMount {
     #[prost(string, tag = "3")]
     pub mount_point: ::prost::alloc::string::String,
 }
+/// Represents a mount configuration for Lustre file system.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct LustreMount {
+    /// Required. IP address of the Lustre instance.
+    #[prost(string, tag = "1")]
+    pub instance_ip: ::prost::alloc::string::String,
+    /// Required. The unique identifier of the Lustre volume.
+    #[prost(string, tag = "2")]
+    pub volume_handle: ::prost::alloc::string::String,
+    /// Required. The name of the Lustre filesystem.
+    #[prost(string, tag = "3")]
+    pub filesystem: ::prost::alloc::string::String,
+    /// Required. Destination mount path. The Lustre file system will be mounted
+    /// for the user under /mnt/lustre/\<mount_point>
+    #[prost(string, tag = "4")]
+    pub mount_point: ::prost::alloc::string::String,
+}
 /// The metric specification that defines the target resource utilization
 /// (CPU utilization, accelerator's duty cycle, and so on) for calculating the
 /// desired replica count.
@@ -2400,6 +2413,7 @@ pub struct AutoscalingMetricSpec {
     /// * For Online Prediction:
     /// * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle`
     /// * `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+    /// * `aiplatform.googleapis.com/prediction/online/request_count`
     #[prost(string, tag = "1")]
     pub metric_name: ::prost::alloc::string::String,
     /// The target resource utilization in percentage (1% - 100%) for the given
@@ -7540,6 +7554,9 @@ pub struct WorkerPoolSpec {
     /// Optional. List of NFS mount spec.
     #[prost(message, repeated, tag = "4")]
     pub nfs_mounts: ::prost::alloc::vec::Vec<NfsMount>,
+    /// Optional. List of Lustre mounts.
+    #[prost(message, repeated, tag = "9")]
+    pub lustre_mounts: ::prost::alloc::vec::Vec<LustreMount>,
     /// Disk spec.
     #[prost(message, optional, tag = "5")]
     pub disk_spec: ::core::option::Option<DiskSpec>,

@@ -1705,6 +1705,8 @@ pub struct Topic {
     /// resource. For example:
     /// "123/environment": "production",
     /// "123/costCenter": "marketing"
+    /// See <https://docs.cloud.google.com/pubsub/docs/tags> for more information on
+    /// using tags with Pub/Sub resources.
     #[prost(map = "string, string", tag = "14")]
     pub tags: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -2113,6 +2115,8 @@ pub struct Subscription {
     /// resource. For example:
     /// "123/environment": "production",
     /// "123/costCenter": "marketing"
+    /// See <https://docs.cloud.google.com/pubsub/docs/tags> for more information on
+    /// using tags with Pub/Sub resources.
     #[prost(map = "string, string", tag = "26")]
     pub tags: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -2984,6 +2988,8 @@ pub struct CreateSnapshotRequest {
     /// resource. For example:
     /// "123/environment": "production",
     /// "123/costCenter": "marketing"
+    /// See <https://docs.cloud.google.com/pubsub/docs/tags> for more information on
+    /// using tags with Pub/Sub resources.
     #[prost(map = "string, string", tag = "4")]
     pub tags: ::std::collections::HashMap<
         ::prost::alloc::string::String,

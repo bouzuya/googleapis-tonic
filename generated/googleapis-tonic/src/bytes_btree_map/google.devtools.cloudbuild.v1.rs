@@ -12,7 +12,7 @@ pub struct GetDefaultServiceAccountRequest {
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DefaultServiceAccount {
     /// Identifier. Format:
-    /// \`projects/{project}/locations/{location}/defaultServiceAccount
+    /// `projects/{project}/locations/{location}/defaultServiceAccount`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The email address of the service account identity that will be

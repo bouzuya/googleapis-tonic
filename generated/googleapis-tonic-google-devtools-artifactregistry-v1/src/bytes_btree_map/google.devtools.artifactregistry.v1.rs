@@ -910,6 +910,11 @@ pub struct Version {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// Output only. Immutable reference for the version, calculated based on the
+    /// version's content. Currently we only support dirsum_sha256 hash algorithm.
+    /// Additional hash algorithms may be added in the future.
+    #[prost(message, repeated, tag = "10")]
+    pub fingerprints: ::prost::alloc::vec::Vec<Hash>,
 }
 /// The request to list versions.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -4596,7 +4601,7 @@ pub mod artifact_registry_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Exports an artifact.
+        /// Exports an artifact to a Cloud Storage bucket.
         pub async fn export_artifact(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportArtifactRequest>,

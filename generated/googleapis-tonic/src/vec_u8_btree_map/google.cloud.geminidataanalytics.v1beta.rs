@@ -579,6 +579,11 @@ pub struct Context {
     /// optionally present. Currently only used for BigQuery data sources.
     #[prost(message, repeated, tag = "5")]
     pub example_queries: ::prost::alloc::vec::Vec<ExampleQuery>,
+    /// Optional. A list of golden queries, providing examples of relevant and
+    /// commonly used Looker queries and their corresponding natural language
+    /// queries optionally present.
+    #[prost(message, repeated, tag = "11")]
+    pub looker_golden_queries: ::prost::alloc::vec::Vec<LookerGoldenQuery>,
     /// Optional. Term definitions (currently, only user authored)
     #[prost(message, repeated, tag = "8")]
     pub glossary_terms: ::prost::alloc::vec::Vec<GlossaryTerm>,
@@ -702,6 +707,57 @@ pub mod example_query {
         /// order_date BETWEEN '2024-01-01' AND '2024-01-31'"
         #[prost(string, tag = "101")]
         SqlQuery(::prost::alloc::string::String),
+    }
+}
+/// A golden query for Looker, including natural language questions and a
+/// corresponding Looker Query. Analogous to ExampleQuery.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookerGoldenQuery {
+    /// Optional. Natural language questions that a user might ask.
+    /// For example: "How many orders were placed last month?"
+    #[prost(string, repeated, tag = "4")]
+    pub natural_language_questions: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. The Looker Query corresponding to the natural language questions.
+    #[prost(message, optional, tag = "5")]
+    pub looker_query: ::core::option::Option<LookerQuery>,
+}
+/// Looker Query Object
+/// [Looker API
+/// documentation](<https://cloud.google.com/looker/docs/reference/looker-api/latest/methods/Query/run_inline_query>).
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookerQuery {
+    /// Required. The LookML model used to generate the query.
+    #[prost(string, tag = "1")]
+    pub model: ::prost::alloc::string::String,
+    /// Required. The LookML explore used to generate the query.
+    #[prost(string, tag = "2")]
+    pub explore: ::prost::alloc::string::String,
+    /// Optional. The fields to retrieve from the explore.
+    #[prost(string, repeated, tag = "3")]
+    pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. The filters to apply to the explore.
+    #[prost(message, repeated, tag = "4")]
+    pub filters: ::prost::alloc::vec::Vec<looker_query::Filter>,
+    /// Optional. The sorts to apply to the explore.
+    #[prost(string, repeated, tag = "5")]
+    pub sorts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Limit in the query.
+    #[prost(string, optional, tag = "6")]
+    pub limit: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `LookerQuery`.
+pub mod looker_query {
+    /// A Looker query filter.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Filter {
+        /// Required. The field to filter on.
+        #[prost(string, tag = "1")]
+        pub field: ::prost::alloc::string::String,
+        /// Required. The value for the field to filter on.
+        #[prost(string, tag = "2")]
+        pub value: ::prost::alloc::string::String,
     }
 }
 /// Definition of a term within a specific domain.
@@ -2133,43 +2189,6 @@ pub mod data_message {
         /// A BigQuery job executed by the system to retrieve data.
         #[prost(message, tag = "5")]
         BigQueryJob(super::BigQueryJob),
-    }
-}
-/// A query for retrieving data from a Looker Explore. See
-/// [Run Inline
-/// Query](<https://cloud.google.com/looker/docs/reference/looker-api/latest/methods/Query/run_inline_query>).
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LookerQuery {
-    /// Required. The LookML model used to generate the query.
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    /// Required. The LookML Explore used to generate the query.
-    #[prost(string, tag = "2")]
-    pub explore: ::prost::alloc::string::String,
-    /// Optional. The fields to retrieve from the Explore.
-    #[prost(string, repeated, tag = "3")]
-    pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Optional. The filters to apply to the Explore.
-    #[prost(message, repeated, tag = "4")]
-    pub filters: ::prost::alloc::vec::Vec<looker_query::Filter>,
-    /// Optional. The sorts to apply to the Explore.
-    #[prost(string, repeated, tag = "5")]
-    pub sorts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Optional. Limit in the query.
-    #[prost(string, optional, tag = "6")]
-    pub limit: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Nested message and enum types in `LookerQuery`.
-pub mod looker_query {
-    /// A Looker query filter.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-    pub struct Filter {
-        /// Required. The field to filter on.
-        #[prost(string, tag = "1")]
-        pub field: ::prost::alloc::string::String,
-        /// Required. The value f field to filter on.
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
     }
 }
 /// A query for retrieving data.
