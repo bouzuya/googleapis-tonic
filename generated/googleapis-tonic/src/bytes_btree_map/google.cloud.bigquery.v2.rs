@@ -2102,6 +2102,22 @@ pub struct JsonOptions {
     #[prost(string, tag = "1")]
     pub encoding: ::prost::alloc::string::String,
 }
+/// Information related to a Bigtable protobuf column.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BigtableProtoConfig {
+    /// Optional. The ID of the Bigtable SchemaBundle resource associated with this
+    /// protobuf. The ID should be referred to within the parent table, e.g.,
+    /// `foo` rather than
+    /// `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/foo`.
+    /// See [more details on Bigtable
+    /// SchemaBundles](<https://docs.cloud.google.com/bigtable/docs/create-manage-protobuf-schemas>).
+    #[prost(string, tag = "3")]
+    pub schema_bundle_id: ::prost::alloc::string::String,
+    /// Optional. The fully qualified proto message name of the protobuf. In the
+    /// format of "foo.bar.Message".
+    #[prost(string, tag = "2")]
+    pub proto_message_name: ::prost::alloc::string::String,
+}
 /// Information related to a Bigtable column.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BigtableColumn {
@@ -2146,6 +2162,9 @@ pub struct BigtableColumn {
     /// TEXT - indicates values are alphanumeric text strings.
     /// BINARY - indicates values are encoded using HBase Bytes.toBytes family of
     /// functions.
+    /// PROTO_BINARY - indicates values are encoded using serialized proto
+    /// messages. This can only be used in combination with JSON
+    /// type.
     /// 'encoding' can also be set at the column family level. However, the setting
     /// at this level takes precedence if 'encoding' is set at both levels.
     #[prost(string, tag = "5")]
@@ -2157,6 +2176,10 @@ pub struct BigtableColumn {
     /// levels.
     #[prost(message, optional, tag = "6")]
     pub only_read_latest: ::core::option::Option<bool>,
+    /// Optional. Protobuf-specific configurations, only takes effect when the
+    /// encoding is PROTO_BINARY.
+    #[prost(message, optional, tag = "7")]
+    pub proto_config: ::core::option::Option<BigtableProtoConfig>,
 }
 /// Information related to a Bigtable column family.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2186,6 +2209,9 @@ pub struct BigtableColumnFamily {
     /// TEXT - indicates values are alphanumeric text strings.
     /// BINARY - indicates values are encoded using HBase Bytes.toBytes family of
     /// functions.
+    /// PROTO_BINARY - indicates values are encoded using serialized proto
+    /// messages. This can only be used in combination with JSON
+    /// type.
     /// This can be overridden for a specific column by listing that column in
     /// 'columns' and specifying an encoding for it.
     #[prost(string, tag = "3")]
@@ -2205,6 +2231,10 @@ pub struct BigtableColumnFamily {
     /// for that column.
     #[prost(message, optional, tag = "5")]
     pub only_read_latest: ::core::option::Option<bool>,
+    /// Optional. Protobuf-specific configurations, only takes effect when the
+    /// encoding is PROTO_BINARY.
+    #[prost(message, optional, tag = "7")]
+    pub proto_config: ::core::option::Option<BigtableProtoConfig>,
 }
 /// Options specific to Google Cloud Bigtable data sources.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7994,6 +8024,9 @@ pub struct IndexPruningStats {
     /// The base table reference.
     #[prost(message, optional, tag = "1")]
     pub base_table: ::core::option::Option<TableReference>,
+    /// The index id.
+    #[prost(string, optional, tag = "4")]
+    pub index_id: ::core::option::Option<::prost::alloc::string::String>,
     /// The number of parallel inputs before index pruning.
     #[prost(int64, optional, tag = "2")]
     pub pre_index_pruning_parallel_input_count: ::core::option::Option<i64>,
