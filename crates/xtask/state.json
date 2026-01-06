@@ -1,6 +1,6 @@
 {
   "crate_versions": {
-    "googleapis-tonic": "0.96.0",
+    "googleapis-tonic": "0.97.0",
     "googleapis-tonic-google-actions-sdk-v2": "0.28.0",
     "googleapis-tonic-google-actions-sdk-v2-conversation": "0.20.0",
     "googleapis-tonic-google-actions-sdk-v2-interactionmodel": "0.26.0",
@@ -93,7 +93,7 @@
     "googleapis-tonic-google-cloud-advisorynotifications-v1": "0.26.0",
     "googleapis-tonic-google-cloud-aiplatform-logging": "0.22.0",
     "googleapis-tonic-google-cloud-aiplatform-v1": "0.74.0",
-    "googleapis-tonic-google-cloud-aiplatform-v1beta1": "0.81.0",
+    "googleapis-tonic-google-cloud-aiplatform-v1beta1": "0.82.0",
     "googleapis-tonic-google-cloud-alloydb-connectors-v1": "0.26.0",
     "googleapis-tonic-google-cloud-alloydb-connectors-v1alpha": "0.26.0",
     "googleapis-tonic-google-cloud-alloydb-connectors-v1beta": "0.26.0",
@@ -375,7 +375,7 @@
     "googleapis-tonic-google-cloud-shell-v1": "0.30.0",
     "googleapis-tonic-google-cloud-speech-v1": "0.30.0",
     "googleapis-tonic-google-cloud-speech-v1p1beta1": "0.31.0",
-    "googleapis-tonic-google-cloud-speech-v2": "0.31.0",
+    "googleapis-tonic-google-cloud-speech-v2": "0.32.0",
     "googleapis-tonic-google-cloud-sql-v1": "0.31.0",
     "googleapis-tonic-google-cloud-sql-v1beta4": "0.29.0",
     "googleapis-tonic-google-cloud-storagebatchoperations-v1": "0.17.0",
@@ -559,7 +559,7 @@
     "googleapis-tonic-google-watcher-v1": "0.26.0",
     "googleapis-tonic-grafeas-v1": "0.29.0"
   },
-  "googleapis_version": "b607ece2e97f19a8f105a6cd40368da68e7bc613",
+  "googleapis_version": "286c66a565ed6d9cfecb062e7ac13363e76f2e0a",
   "package_hashes": {
     "cloud.kubernetes.security.containersecurity_logging": "51ece70e1c9ff5f25a883f0005be8de5107fad18",
     "google.actions.sdk.v2": "d5d2df631b7a705f83af5f544ed32f9f1c79aeeb",
@@ -658,7 +658,7 @@
     "google.cloud.aiplatform.v1.schema.predict.params": "14ab5b3ae4a9140cfc4141b5a7d706f3fa1f3e03",
     "google.cloud.aiplatform.v1.schema.predict.prediction": "5ed2866e24c384514d56a7755dfee7a89a339331",
     "google.cloud.aiplatform.v1.schema.trainingjob.definition": "1f48ae9be7d4c4f52c2b39591dbfbe083d58dee3",
-    "google.cloud.aiplatform.v1beta1": "d56da26e69c2ccce8d01c64be9611cdd65d0990d",
+    "google.cloud.aiplatform.v1beta1": "3bfbed137d87b0f9ecfbd7c513411b55ded87ae4",
     "google.cloud.aiplatform.v1beta1.schema": "23c4e75c840eb59f3c5b96b4dc55a019279296f5",
     "google.cloud.aiplatform.v1beta1.schema.predict.instance": "126d2b8203688e094305297b945d1f09eedb30ef",
     "google.cloud.aiplatform.v1beta1.schema.predict.params": "6fcf1eacc5d3190890e42ccda78105acd51acf66",
@@ -961,7 +961,7 @@
     "google.cloud.shell.v1": "26e020a69970ea12f9ac70f4d17c2fc34cd75cf9",
     "google.cloud.speech.v1": "d8521989dddacadf40a32ca37fdb6a49428902c4",
     "google.cloud.speech.v1p1beta1": "571a2a7cd0ca1904e1d08fb95099688fe253d82f",
-    "google.cloud.speech.v2": "5163c556279423871308624afde43711b448d6cf",
+    "google.cloud.speech.v2": "d4a309fb5d40fd5fecea72f9721b3d029b46ea8d",
     "google.cloud.sql.v1": "0ea74e60430240b9e1a53301a14d49d35b8c1783",
     "google.cloud.sql.v1beta4": "a278560abb1f4c1e7722639a91e26e4e8081e929",
     "google.cloud.storagebatchoperations.v1": "e4408d05bf4206a943c711287ece17eebd411c15",
