@@ -1517,6 +1517,33 @@ pub mod data_agent_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Creates a new DataAgent in a given project and location synchronously.
+        pub async fn create_data_agent_sync(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDataAgentRequest>,
+        ) -> std::result::Result<tonic::Response<super::DataAgent>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.geminidataanalytics.v1alpha.DataAgentService/CreateDataAgentSync",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.geminidataanalytics.v1alpha.DataAgentService",
+                        "CreateDataAgentSync",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Updates the parameters of a single DataAgent.
         pub async fn update_data_agent(
             &mut self,
@@ -1547,6 +1574,33 @@ pub mod data_agent_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Updates the parameters of a single DataAgent synchronously.
+        pub async fn update_data_agent_sync(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDataAgentRequest>,
+        ) -> std::result::Result<tonic::Response<super::DataAgent>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.geminidataanalytics.v1alpha.DataAgentService/UpdateDataAgentSync",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.geminidataanalytics.v1alpha.DataAgentService",
+                        "UpdateDataAgentSync",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Deletes a single DataAgent.
         pub async fn delete_data_agent(
             &mut self,
@@ -1573,6 +1627,33 @@ pub mod data_agent_service_client {
                     GrpcMethod::new(
                         "google.cloud.geminidataanalytics.v1alpha.DataAgentService",
                         "DeleteDataAgent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single DataAgent synchronously.
+        pub async fn delete_data_agent_sync(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDataAgentRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.geminidataanalytics.v1alpha.DataAgentService/DeleteDataAgentSync",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.geminidataanalytics.v1alpha.DataAgentService",
+                        "DeleteDataAgentSync",
                     ),
                 );
             self.inner.unary(req, path, codec).await
