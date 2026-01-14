@@ -40,7 +40,7 @@ use crate::state::State;
 ///     ...
 /// ```
 pub fn execute(force_update: bool) -> anyhow::Result<()> {
-    let prost_version = "0.14.1";
+    let prost_version = "0.14.3";
     let tonic_version = "0.14.2";
 
     let generated_dir = dirs::generated_dir()?;
