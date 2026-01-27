@@ -2723,7 +2723,7 @@ pub struct AcquireSsrsLeaseContext {
 /// DNS metadata.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DnsNameMapping {
-    /// The DNS name.
+    /// Output only. The DNS name.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The connection type of the DNS name.
@@ -2732,10 +2732,14 @@ pub struct DnsNameMapping {
     /// Output only. The scope that the DNS name applies to.
     #[prost(enumeration = "dns_name_mapping::DnsScope", tag = "3")]
     pub dns_scope: i32,
+    /// Output only. The manager for this DNS record.
+    #[prost(enumeration = "dns_name_mapping::RecordManager", tag = "4")]
+    pub record_manager: i32,
 }
 /// Nested message and enum types in `DnsNameMapping`.
 pub mod dns_name_mapping {
     /// The connection type of the DNS name.
+    /// This enum is not frozen, and new values may be added in the future.
     #[derive(
         Clone,
         Copy,
@@ -2796,10 +2800,12 @@ pub mod dns_name_mapping {
     )]
     #[repr(i32)]
     pub enum DnsScope {
-        /// Unknown DNS scope.
+        /// DNS scope not set. This value should not be used.
         Unspecified = 0,
-        /// Indicates a instance-level DNS name.
+        /// Indicates an instance-level DNS name.
         Instance = 1,
+        /// Indicates a cluster-level DNS name.
+        Cluster = 2,
     }
     impl DnsScope {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -2810,6 +2816,7 @@ pub mod dns_name_mapping {
             match self {
                 Self::Unspecified => "DNS_SCOPE_UNSPECIFIED",
                 Self::Instance => "INSTANCE",
+                Self::Cluster => "CLUSTER",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2817,6 +2824,53 @@ pub mod dns_name_mapping {
             match value {
                 "DNS_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
                 "INSTANCE" => Some(Self::Instance),
+                "CLUSTER" => Some(Self::Cluster),
+                _ => None,
+            }
+        }
+    }
+    /// The system responsible for managing the DNS record.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum RecordManager {
+        /// Record manager not set. This value should not be used.
+        Unspecified = 0,
+        /// The record may be managed by the customer. It is not automatically
+        /// managed by Cloud SQL automation.
+        Customer = 1,
+        /// The record is managed by Cloud SQL, which will create, update,
+        /// and delete the DNS records for the zone automatically when
+        /// the Cloud SQL database instance is created or updated.
+        CloudSqlAutomation = 2,
+    }
+    impl RecordManager {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "RECORD_MANAGER_UNSPECIFIED",
+                Self::Customer => "CUSTOMER",
+                Self::CloudSqlAutomation => "CLOUD_SQL_AUTOMATION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RECORD_MANAGER_UNSPECIFIED" => Some(Self::Unspecified),
+                "CUSTOMER" => Some(Self::Customer),
+                "CLOUD_SQL_AUTOMATION" => Some(Self::CloudSqlAutomation),
                 _ => None,
             }
         }
@@ -3098,6 +3152,8 @@ pub enum SqlDatabaseVersion {
     Mysql8046 = 556,
     /// The database version is MySQL 8.4.
     Mysql84 = 398,
+    /// The database version is MySQL 9.7.
+    Mysql97 = 654,
     /// The database version is SQL Server 2017 Standard.
     Sqlserver2017Standard = 11,
     /// The database version is SQL Server 2017 Enterprise.
@@ -3181,6 +3237,7 @@ impl SqlDatabaseVersion {
             Self::Mysql8045 => "MYSQL_8_0_45",
             Self::Mysql8046 => "MYSQL_8_0_46",
             Self::Mysql84 => "MYSQL_8_4",
+            Self::Mysql97 => "MYSQL_9_7",
             Self::Sqlserver2017Standard => "SQLSERVER_2017_STANDARD",
             Self::Sqlserver2017Enterprise => "SQLSERVER_2017_ENTERPRISE",
             Self::Sqlserver2017Express => "SQLSERVER_2017_EXPRESS",
@@ -3236,6 +3293,7 @@ impl SqlDatabaseVersion {
             "MYSQL_8_0_45" => Some(Self::Mysql8045),
             "MYSQL_8_0_46" => Some(Self::Mysql8046),
             "MYSQL_8_4" => Some(Self::Mysql84),
+            "MYSQL_9_7" => Some(Self::Mysql97),
             "SQLSERVER_2017_STANDARD" => Some(Self::Sqlserver2017Standard),
             "SQLSERVER_2017_ENTERPRISE" => Some(Self::Sqlserver2017Enterprise),
             "SQLSERVER_2017_EXPRESS" => Some(Self::Sqlserver2017Express),
@@ -6319,6 +6377,11 @@ pub struct ExecuteSqlPayload {
     /// to throw an error.
     #[prost(enumeration = "execute_sql_payload::PartialResultMode", tag = "13")]
     pub partial_result_mode: i32,
+    /// Optional. Specifies the name of the application that is making the request.
+    /// This field is used for telemetry. Only alphanumeric characters, dashes, and
+    /// underscores are allowed. The maximum length is 32 characters.
+    #[prost(string, tag = "16")]
+    pub application: ::prost::alloc::string::String,
     /// Credentials for the database connection.
     #[prost(oneof = "execute_sql_payload::UserPassword", tags = "11")]
     pub user_password: ::core::option::Option<execute_sql_payload::UserPassword>,

@@ -7122,6 +7122,9 @@ pub struct RagManagedDbConfig {
     /// The tier of the RagManagedDb.
     #[prost(oneof = "rag_managed_db_config::Tier", tags = "1, 4, 2, 3")]
     pub tier: ::core::option::Option<rag_managed_db_config::Tier>,
+    /// The choice of backend for your RagEngine.
+    #[prost(oneof = "rag_managed_db_config::Mode", tags = "5, 6")]
+    pub mode: ::core::option::Option<rag_managed_db_config::Mode>,
 }
 /// Nested message and enum types in `RagManagedDbConfig`.
 pub mod rag_managed_db_config {
@@ -7143,7 +7146,7 @@ pub mod rag_managed_db_config {
     /// * Latency insensitive workload.
     /// * Only using RAG Engine with external vector DBs.
     ///
-    /// NOTE: This is the default tier if not explicitly chosen.
+    /// NOTE: This is the default tier under Spanner mode if not explicitly chosen.
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Basic {}
     /// Disables the RAG Engine service and deletes all your data held
@@ -7154,6 +7157,33 @@ pub mod rag_managed_db_config {
     /// UpdateRagEngineConfig API.
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Unprovisioned {}
+    /// Message to configure the Spanner database used by RagManagedDb.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Spanner {
+        /// The tier of the RagManagedDb, built on top of Spanner.
+        #[prost(oneof = "spanner::Tier", tags = "1, 2, 3")]
+        pub tier: ::core::option::Option<spanner::Tier>,
+    }
+    /// Nested message and enum types in `Spanner`.
+    pub mod spanner {
+        /// The tier of the RagManagedDb, built on top of Spanner.
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+        pub enum Tier {
+            /// Sets the RagManagedDb to the Scaled tier.
+            #[prost(message, tag = "1")]
+            Scaled(super::Scaled),
+            /// Sets the RagManagedDb to the Basic tier. This is the default tier for
+            /// Spanner mode if not explicitly chosen.
+            #[prost(message, tag = "2")]
+            Basic(super::Basic),
+            /// Sets the RagManagedDb to the Unprovisioned tier.
+            #[prost(message, tag = "3")]
+            Unprovisioned(super::Unprovisioned),
+        }
+    }
+    /// Message to configure the serverless mode offered by RAG Engine.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Serverless {}
     /// The tier of the RagManagedDb.
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Tier {
@@ -7161,16 +7191,33 @@ pub mod rag_managed_db_config {
         #[deprecated]
         #[prost(message, tag = "1")]
         Enterprise(Enterprise),
-        /// Sets the RagManagedDb to the Scaled tier. This is the default tier
-        /// if not explicitly chosen.
+        /// Deprecated: Use `mode` instead to set the tier under Spanner.
+        /// Sets the RagManagedDb to the Scaled tier.
+        #[deprecated]
         #[prost(message, tag = "4")]
         Scaled(Scaled),
+        /// Deprecated: Use `mode` instead to set the tier under Spanner.
         /// Sets the RagManagedDb to the Basic tier.
+        #[deprecated]
         #[prost(message, tag = "2")]
         Basic(Basic),
+        /// Deprecated: Use `mode` instead to set the tier under Spanner.
         /// Sets the RagManagedDb to the Unprovisioned tier.
+        #[deprecated]
         #[prost(message, tag = "3")]
         Unprovisioned(Unprovisioned),
+    }
+    /// The choice of backend for your RagEngine.
+    #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Mode {
+        /// Sets the backend to be the serverless mode offered by RAG Engine.
+        #[prost(message, tag = "5")]
+        Serverless(Serverless),
+        /// Sets the RAG Engine backend to be RagManagedDb, built on top of Spanner.
+        ///
+        /// NOTE: This is the default mode (w/ Basic Tier) if not explicitly chosen.
+        #[prost(message, tag = "6")]
+        Spanner(Spanner),
     }
 }
 /// Config for RagEngine.

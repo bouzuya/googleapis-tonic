@@ -2041,6 +2041,9 @@ pub struct DiscoveryOccurrence {
     /// Files that make up the resource described by the occurrence.
     #[prost(message, repeated, tag = "11")]
     pub files: ::prost::alloc::vec::Vec<discovery_occurrence::File>,
+    /// The last time vulnerability scan results changed.
+    #[prost(message, optional, tag = "12")]
+    pub last_vulnerability_update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `DiscoveryOccurrence`.
 pub mod discovery_occurrence {
