@@ -8812,6 +8812,11 @@ pub struct StreamingAnalyzeContentRequest {
     /// return partial responses.
     #[prost(bool, tag = "12")]
     pub enable_partial_automated_agent_reply: bool,
+    /// Optional. If multiple utterances are detected in the audio stream, process
+    /// them individually instead of stitching them together to form a single
+    /// utterance.
+    #[prost(bool, tag = "18")]
+    pub output_multiple_utterances: bool,
     /// if true, `StreamingAnalyzeContentResponse.debugging_info` will get
     /// populated.
     #[prost(bool, tag = "19")]

@@ -59,7 +59,7 @@ pub struct BackupPlan {
     /// Vault Service Account.
     #[prost(string, tag = "11")]
     pub backup_vault_service_account: ::prost::alloc::string::String,
-    /// Optional. Applicable only for CloudSQL resource_type.
+    /// Optional. Applicable only for CloudSQL and AlloyDB resource_type.
     ///
     /// Configures how long logs will be stored. It is defined in “days”. This
     /// value should be greater than or equal to minimum enforced log retention
@@ -1248,6 +1248,36 @@ pub struct TriggerBackupRequest {
     /// not supported (00000000-0000-0000-0000-000000000000).
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
+}
+/// AlloyDBClusterDataSourceProperties represents the properties of a
+/// AlloyDB cluster resource that are stored in the DataSource.
+/// .
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AlloyDbClusterDataSourceProperties {
+    /// Output only. Name of the AlloyDB cluster backed up by the datasource.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// AlloyDbClusterBackupProperties represents AlloyDB cluster
+/// backup properties.
+/// .
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AlloyDbClusterBackupProperties {
+    /// An optional text description for the backup.
+    #[prost(string, optional, tag = "1")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    /// Output only. Storage usage of this particular backup
+    #[prost(int64, tag = "2")]
+    pub stored_bytes: i64,
+    /// Output only. The chain id of this backup. Backups belonging to the same
+    /// chain are sharing the same chain id. This property is calculated and
+    /// maintained by BackupDR.
+    #[prost(string, tag = "3")]
+    pub chain_id: ::prost::alloc::string::String,
+    /// Output only. The PostgreSQL major version of the AlloyDB cluster when the
+    /// backup was taken.
+    #[prost(string, tag = "4")]
+    pub database_version: ::prost::alloc::string::String,
 }
 /// BackupApplianceBackupProperties represents BackupDR backup appliance's
 /// properties.
@@ -3620,7 +3650,10 @@ pub struct DataSourceGcpResource {
     #[prost(string, tag = "3")]
     pub r#type: ::prost::alloc::string::String,
     /// gcp_Properties has properties of the Google Cloud Resource.
-    #[prost(oneof = "data_source_gcp_resource::GcpResourceProperties", tags = "4, 5, 7")]
+    #[prost(
+        oneof = "data_source_gcp_resource::GcpResourceProperties",
+        tags = "4, 5, 6, 7"
+    )]
     pub gcp_resource_properties: ::core::option::Option<
         data_source_gcp_resource::GcpResourceProperties,
     >,
@@ -3640,6 +3673,10 @@ pub mod data_source_gcp_resource {
         CloudSqlInstanceDatasourceProperties(
             super::CloudSqlInstanceDataSourceProperties,
         ),
+        /// Output only. AlloyDBClusterDataSourceProperties has a subset of AlloyDB
+        /// cluster properties that are useful at the Datasource level.
+        #[prost(message, tag = "6")]
+        AlloyDbClusterDatasourceProperties(super::AlloyDbClusterDataSourceProperties),
         /// DiskDataSourceProperties has a subset of Disk properties that are useful
         /// at the Datasource level.
         #[prost(message, tag = "7")]
@@ -3818,7 +3855,7 @@ pub struct Backup {
     #[prost(string, repeated, tag = "33")]
     pub kms_key_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Workload specific backup properties.
-    #[prost(oneof = "backup::BackupProperties", tags = "19, 26, 21, 28")]
+    #[prost(oneof = "backup::BackupProperties", tags = "19, 26, 21, 27, 28")]
     pub backup_properties: ::core::option::Option<backup::BackupProperties>,
     /// Configuration Info has the resource format-specific configuration.
     #[prost(oneof = "backup::PlanInfo", tags = "22")]
@@ -3968,6 +4005,9 @@ pub mod backup {
         /// Output only. Backup Appliance specific backup properties.
         #[prost(message, tag = "21")]
         BackupApplianceBackupProperties(super::BackupApplianceBackupProperties),
+        /// Output only. AlloyDB specific backup properties.
+        #[prost(message, tag = "27")]
+        AlloyDbBackupProperties(super::AlloyDbClusterBackupProperties),
         /// Output only. Disk specific backup properties.
         #[prost(message, tag = "28")]
         DiskBackupProperties(super::DiskBackupProperties),

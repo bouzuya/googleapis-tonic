@@ -423,7 +423,9 @@ pub struct GcpWrappedKeyInfo {
     /// Required. Google Cloud Platform [Cloud Key Management Service resource
     /// ID](//cloud.google.com/kms/docs/getting-resource-ids).  Should be in the
     /// format of
-    /// "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}".
+    /// `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
+    /// or
+    /// `gcp-kms://projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
     #[prost(string, tag = "3")]
     pub kek_uri: ::prost::alloc::string::String,
     /// Required. The base64 encoded encrypted data encryption key.
@@ -480,11 +482,12 @@ pub struct AwsWrappedKeyInfo {
     pub key_type: i32,
     /// Required. The Amazon Resource Name of the IAM Role to assume for KMS
     /// decryption access. Should be in the format of
-    /// "arn:{partition}:iam::{account_id}:role/{role_name}"
+    /// `arn:{partition}:iam::{account_id}:role/{role_name}`
     #[prost(string, tag = "2")]
     pub role_arn: ::prost::alloc::string::String,
     /// Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in
-    /// the format of "arn:{partition}:kms:{region}:{account_id}:key/{key_id}"
+    /// the format of `arn:{partition}:kms:{region}:{account_id}:key/{key_id}` or
+    /// `aws-kms://arn:{partition}:kms:{region}:{account_id}:key/{key_id}`
     #[prost(string, tag = "3")]
     pub kek_uri: ::prost::alloc::string::String,
     /// Required. The base64 encoded encrypted data encryption key.

@@ -2309,7 +2309,7 @@ pub mod settings {
             }
         }
     }
-    /// The edition of the instance, can be ENTERPRISE or ENTERPRISE_PLUS.
+    /// The edition of the instance.
     #[derive(
         Clone,
         Copy,
@@ -5041,6 +5041,18 @@ pub struct CloneContext {
     /// deleted. If this instance is deleted, then you must set the timestamp.
     #[prost(message, optional, tag = "12")]
     pub source_instance_deletion_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. The project ID of the destination project where the cloned
+    /// instance will be created. To perform a cross-project clone, this field is
+    /// required. If not specified, the clone is created in the same project
+    /// as the source instance.
+    #[prost(string, optional, tag = "13")]
+    pub destination_project: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. The fully qualified URI of the VPC network to which the cloned
+    /// instance will be connected via Private Services Access for private IP. For
+    /// example:`projects/my-network-project/global/networks/my-network`. This
+    /// field is only required for cross-project cloning.
+    #[prost(string, optional, tag = "14")]
+    pub destination_network: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// The context to perform a point-in-time recovery of an instance managed by
 /// Backup and Disaster Recovery (DR) Service.
@@ -10634,6 +10646,11 @@ pub struct SqlUsersUpdateRequest {
     /// will be ignored for update request.
     #[prost(string, repeated, tag = "5")]
     pub database_roles: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Specifies whether to revoke existing roles that are not present
+    /// in the `database_roles` field. If `false` or unset, the database roles
+    /// specified in `database_roles` are added to the user's existing roles.
+    #[prost(bool, optional, tag = "6")]
+    pub revoke_existing_roles: ::core::option::Option<bool>,
     #[prost(message, optional, tag = "100")]
     pub body: ::core::option::Option<User>,
 }

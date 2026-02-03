@@ -23,6 +23,11 @@
     feature = "google-ads-googleads-v22-errors",
     feature = "google-ads-googleads-v22-resources",
     feature = "google-ads-googleads-v22-services",
+    feature = "google-ads-googleads-v23-common",
+    feature = "google-ads-googleads-v23-enums",
+    feature = "google-ads-googleads-v23-errors",
+    feature = "google-ads-googleads-v23-resources",
+    feature = "google-ads-googleads-v23-services",
     feature = "google-ads-searchads360-v0-common",
     feature = "google-ads-searchads360-v0-enums",
     feature = "google-ads-searchads360-v0-errors",
@@ -118,6 +123,7 @@
     feature = "google-cloud-assuredworkloads-v1",
     feature = "google-cloud-assuredworkloads-v1beta1",
     feature = "google-cloud-audit",
+    feature = "google-cloud-auditmanager-v1",
     feature = "google-cloud-automl-v1",
     feature = "google-cloud-automl-v1beta1",
     feature = "google-cloud-backupdr-logging-v1",
@@ -602,6 +608,11 @@ pub mod google {
         feature = "google-ads-googleads-v22-errors",
         feature = "google-ads-googleads-v22-resources",
         feature = "google-ads-googleads-v22-services",
+        feature = "google-ads-googleads-v23-common",
+        feature = "google-ads-googleads-v23-enums",
+        feature = "google-ads-googleads-v23-errors",
+        feature = "google-ads-googleads-v23-resources",
+        feature = "google-ads-googleads-v23-services",
         feature = "google-ads-searchads360-v0-common",
         feature = "google-ads-searchads360-v0-enums",
         feature = "google-ads-searchads360-v0-errors",
@@ -625,6 +636,11 @@ pub mod google {
             feature = "google-ads-googleads-v22-errors",
             feature = "google-ads-googleads-v22-resources",
             feature = "google-ads-googleads-v22-services",
+            feature = "google-ads-googleads-v23-common",
+            feature = "google-ads-googleads-v23-enums",
+            feature = "google-ads-googleads-v23-errors",
+            feature = "google-ads-googleads-v23-resources",
+            feature = "google-ads-googleads-v23-services",
         ))]
         pub mod googleads {
             #[cfg(any(
@@ -789,6 +805,60 @@ pub mod google {
                     include!("vec_u8_hash_map/google.ads.googleads.v22.resources.rs");
                 }
             }
+            #[cfg(any(
+                feature = "google-ads-googleads-v23-common",
+                feature = "google-ads-googleads-v23-enums",
+                feature = "google-ads-googleads-v23-errors",
+                feature = "google-ads-googleads-v23-resources",
+                feature = "google-ads-googleads-v23-services",
+            ))]
+            pub mod v23 {
+                #[cfg(any(
+                    feature = "google-ads-googleads-v23-resources",
+                ))]
+                pub mod resources {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v23-resources",
+                    ))]
+                    include!("vec_u8_hash_map/google.ads.googleads.v23.resources.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v23-common",
+                ))]
+                pub mod common {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v23-common",
+                    ))]
+                    include!("vec_u8_hash_map/google.ads.googleads.v23.common.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v23-errors",
+                ))]
+                pub mod errors {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v23-errors",
+                    ))]
+                    include!("vec_u8_hash_map/google.ads.googleads.v23.errors.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v23-services",
+                ))]
+                pub mod services {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v23-services",
+                    ))]
+                    include!("vec_u8_hash_map/google.ads.googleads.v23.services.rs");
+                }
+                #[cfg(any(
+                    feature = "google-ads-googleads-v23-enums",
+                ))]
+                pub mod enums {
+                    #[cfg(any(
+                        feature = "google-ads-googleads-v23-enums",
+                    ))]
+                    include!("vec_u8_hash_map/google.ads.googleads.v23.enums.rs");
+                }
+            }
         }
         #[cfg(any(
             feature = "google-ads-searchads360-v0-common",
@@ -935,6 +1005,7 @@ pub mod google {
         feature = "google-cloud-assuredworkloads-v1",
         feature = "google-cloud-assuredworkloads-v1beta1",
         feature = "google-cloud-audit",
+        feature = "google-cloud-auditmanager-v1",
         feature = "google-cloud-automl-v1",
         feature = "google-cloud-automl-v1beta1",
         feature = "google-cloud-backupdr-logging-v1",
@@ -5804,6 +5875,20 @@ pub mod google {
                     feature = "google-cloud-translation-v3",
                 ))]
                 include!("vec_u8_hash_map/google.cloud.translation.v3.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-cloud-auditmanager-v1",
+        ))]
+        pub mod auditmanager {
+            #[cfg(any(
+                feature = "google-cloud-auditmanager-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-auditmanager-v1",
+                ))]
+                include!("vec_u8_hash_map/google.cloud.auditmanager.v1.rs");
             }
         }
         #[cfg(any(
