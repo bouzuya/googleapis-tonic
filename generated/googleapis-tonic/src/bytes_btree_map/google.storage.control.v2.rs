@@ -182,6 +182,27 @@ pub struct RenameFolderRequest {
     #[prost(string, tag = "6")]
     pub request_id: ::prost::alloc::string::String,
 }
+/// Request message for DeleteFolderRecursive.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct DeleteFolderRecursiveRequest {
+    /// Required. Name of the folder being deleted, however all of its contents
+    /// will be deleted too. Format:
+    /// `projects/{project}/buckets/{bucket}/folders/{folder}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. Makes the operation only succeed conditional on whether the root
+    /// folder's current metageneration matches the given value.
+    #[prost(int64, optional, tag = "2")]
+    pub if_metageneration_match: ::core::option::Option<i64>,
+    /// Optional. Makes the operation only succeed conditional on whether the root
+    /// folder's current metageneration does not match the given value.
+    #[prost(int64, optional, tag = "3")]
+    pub if_metageneration_not_match: ::core::option::Option<i64>,
+    /// Optional. A unique identifier for this request. UUID is the recommended
+    /// format, but other formats are still accepted.
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
+}
 /// The message contains metadata that is common to all Storage Control
 /// long-running operations, present in its `google.longrunning.Operation`
 /// messages, and accessible via `metadata.common_metadata`.
@@ -220,6 +241,17 @@ pub struct RenameFolderMetadata {
     /// The path of the destination folder.
     #[prost(string, tag = "3")]
     pub destination_folder_id: ::prost::alloc::string::String,
+}
+/// Message returned in the metadata field of the Operation resource for
+/// DeleteFolderRecursive operations.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct DeleteFolderRecursiveMetadata {
+    /// Generic metadata for the long running operation.
+    #[prost(message, optional, tag = "1")]
+    pub common_metadata: ::core::option::Option<CommonLongRunningOperationMetadata>,
+    /// The path of the folder recursively deleted.
+    #[prost(string, tag = "2")]
+    pub folder_id: ::prost::alloc::string::String,
 }
 /// The storage layout configuration of a bucket.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -1197,6 +1229,37 @@ pub mod storage_control_client {
                     GrpcMethod::new(
                         "google.storage.control.v2.StorageControl",
                         "RenameFolder",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a folder recursively. This operation is only applicable to a
+        /// hierarchical namespace enabled bucket.
+        pub async fn delete_folder_recursive(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteFolderRecursiveRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.storage.control.v2.StorageControl/DeleteFolderRecursive",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.storage.control.v2.StorageControl",
+                        "DeleteFolderRecursive",
                     ),
                 );
             self.inner.unary(req, path, codec).await

@@ -1048,6 +1048,26 @@ pub struct BigQueryDestination {
     #[prost(string, tag = "1")]
     pub output_uri: ::prost::alloc::string::String,
 }
+/// The Vertex Multimodal Dataset for the input content.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VertexMultimodalDatasetSource {
+    /// Required. The resource name of the Vertex Dataset.
+    /// Format: `projects/{project}/locations/{location}/datasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub dataset_name: ::prost::alloc::string::String,
+}
+/// The details for a Vertex Multimodal Dataset output.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VertexMultimodalDatasetDestination {
+    /// Optional. The destination of the underlying BigQuery table that will be
+    /// created for the output Multimodal Dataset. If not specified, the BigQuery
+    /// table will be created in a default BigQuery dataset.
+    #[prost(message, optional, tag = "1")]
+    pub bigquery_destination: ::core::option::Option<BigQueryDestination>,
+    /// Optional. Display name of the output dataset.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+}
 /// The storage details for CSV output content.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CsvDestination {
@@ -3819,7 +3839,7 @@ pub mod batch_prediction_job {
         #[prost(string, tag = "1")]
         pub instances_format: ::prost::alloc::string::String,
         /// Required. The source of the input.
-        #[prost(oneof = "input_config::Source", tags = "2, 3")]
+        #[prost(oneof = "input_config::Source", tags = "2, 3, 4")]
         pub source: ::core::option::Option<input_config::Source>,
     }
     /// Nested message and enum types in `InputConfig`.
@@ -3837,6 +3857,10 @@ pub mod batch_prediction_job {
             /// be ignored.
             #[prost(message, tag = "3")]
             BigquerySource(super::super::BigQuerySource),
+            /// A Vertex Managed Dataset. Currently, only datasets of type Multimodal
+            /// are supported.
+            #[prost(message, tag = "4")]
+            VertexMultimodalDatasetSource(super::super::VertexMultimodalDatasetSource),
         }
     }
     /// Configuration defining how to transform batch prediction input instances to
@@ -3952,7 +3976,7 @@ pub mod batch_prediction_job {
         #[prost(string, tag = "1")]
         pub predictions_format: ::prost::alloc::string::String,
         /// Required. The destination of the output.
-        #[prost(oneof = "output_config::Destination", tags = "2, 3")]
+        #[prost(oneof = "output_config::Destination", tags = "2, 3, 6")]
         pub destination: ::core::option::Option<output_config::Destination>,
     }
     /// Nested message and enum types in `OutputConfig`.
@@ -4006,6 +4030,12 @@ pub mod batch_prediction_job {
             /// represented as a STRUCT, and containing only `code` and `message`.
             #[prost(message, tag = "3")]
             BigqueryDestination(super::super::BigQueryDestination),
+            /// The details for a Vertex Multimodal Dataset that will be created for
+            /// the output.
+            #[prost(message, tag = "6")]
+            VertexMultimodalDatasetDestination(
+                super::super::VertexMultimodalDatasetDestination,
+            ),
         }
     }
     /// Further describes this job's output.
@@ -4020,7 +4050,7 @@ pub mod batch_prediction_job {
         #[prost(string, tag = "4")]
         pub bigquery_output_table: ::prost::alloc::string::String,
         /// The output location into which prediction output is written.
-        #[prost(oneof = "output_info::OutputLocation", tags = "1, 2")]
+        #[prost(oneof = "output_info::OutputLocation", tags = "1, 2, 5")]
         pub output_location: ::core::option::Option<output_info::OutputLocation>,
     }
     /// Nested message and enum types in `OutputInfo`.
@@ -4037,6 +4067,11 @@ pub mod batch_prediction_job {
             /// format, into which the prediction output is written.
             #[prost(string, tag = "2")]
             BigqueryOutputDataset(::prost::alloc::string::String),
+            /// Output only. The resource name of the Vertex Managed Dataset created,
+            /// into which the prediction output is written. Format:
+            /// `projects/{project}/locations/{location}/datasets/{dataset}`
+            #[prost(string, tag = "5")]
+            VertexMultimodalDatasetName(::prost::alloc::string::String),
         }
     }
 }
@@ -8618,6 +8653,8 @@ pub struct SavedQuery {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dataset {
     /// Output only. Identifier. The resource name of the Dataset.
+    /// Format:
+    /// `projects/{project}/locations/{location}/datasets/{dataset}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The user-defined name of the Dataset.
@@ -8957,6 +8994,8 @@ pub struct ExportFilterSplit {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatasetVersion {
     /// Output only. Identifier. The resource name of the DatasetVersion.
+    /// Format:
+    /// `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Timestamp when this DatasetVersion was created.
@@ -9038,7 +9077,6 @@ pub struct CreateDatasetOperationMetadata {
 }
 /// Request message for
 /// \[DatasetService.GetDataset\]\[google.cloud.aiplatform.v1.DatasetService.GetDataset\].
-/// Next ID: 4
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetDatasetRequest {
     /// Required. The name of the Dataset resource.
@@ -9246,7 +9284,6 @@ pub struct DeleteDatasetVersionRequest {
 }
 /// Request message for
 /// \[DatasetService.GetDatasetVersion\]\[google.cloud.aiplatform.v1.DatasetService.GetDatasetVersion\].
-/// Next ID: 4
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetDatasetVersionRequest {
     /// Required. The resource name of the Dataset version to delete.
@@ -10194,9 +10231,7 @@ pub mod dataset_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists Annotations belongs to a dataitem
-        /// This RPC is only available in InternalDatasetService. It is only used for
-        /// exporting conversation data to CCAI Insights.
+        /// Lists Annotations belongs to a dataitem.
         pub async fn list_annotations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAnnotationsRequest>,

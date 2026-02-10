@@ -1049,6 +1049,26 @@ pub struct BigQueryDestination {
     #[prost(string, tag = "1")]
     pub output_uri: ::prost::alloc::string::String,
 }
+/// The Vertex Multimodal Dataset for the input content.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VertexMultimodalDatasetSource {
+    /// Required. The resource name of the Vertex Dataset.
+    /// Format: `projects/{project}/locations/{location}/datasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub dataset_name: ::prost::alloc::string::String,
+}
+/// The details for a Vertex Multimodal Dataset output.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VertexMultimodalDatasetDestination {
+    /// Optional. The destination of the underlying BigQuery table that will be
+    /// created for the output Multimodal Dataset. If not specified, the BigQuery
+    /// table will be created in a default BigQuery dataset.
+    #[prost(message, optional, tag = "1")]
+    pub bigquery_destination: ::core::option::Option<BigQueryDestination>,
+    /// Optional. Display name of the output dataset.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+}
 /// The storage details for CSV output content.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CsvDestination {
@@ -4779,7 +4799,7 @@ pub mod batch_prediction_job {
         #[prost(string, tag = "1")]
         pub instances_format: ::prost::alloc::string::String,
         /// Required. The source of the input.
-        #[prost(oneof = "input_config::Source", tags = "2, 3")]
+        #[prost(oneof = "input_config::Source", tags = "2, 3, 4")]
         pub source: ::core::option::Option<input_config::Source>,
     }
     /// Nested message and enum types in `InputConfig`.
@@ -4797,6 +4817,10 @@ pub mod batch_prediction_job {
             /// be ignored.
             #[prost(message, tag = "3")]
             BigquerySource(super::super::BigQuerySource),
+            /// A Vertex Managed Dataset. Currently, only datasets of type Multimodal
+            /// are supported.
+            #[prost(message, tag = "4")]
+            VertexMultimodalDatasetSource(super::super::VertexMultimodalDatasetSource),
         }
     }
     /// Configuration defining how to transform batch prediction input instances to
@@ -4914,7 +4938,7 @@ pub mod batch_prediction_job {
         #[prost(string, tag = "1")]
         pub predictions_format: ::prost::alloc::string::String,
         /// Required. The destination of the output.
-        #[prost(oneof = "output_config::Destination", tags = "2, 3")]
+        #[prost(oneof = "output_config::Destination", tags = "2, 3, 6")]
         pub destination: ::core::option::Option<output_config::Destination>,
     }
     /// Nested message and enum types in `OutputConfig`.
@@ -4968,6 +4992,12 @@ pub mod batch_prediction_job {
             /// represented as a STRUCT, and containing only `code` and `message`.
             #[prost(message, tag = "3")]
             BigqueryDestination(super::super::BigQueryDestination),
+            /// The details for a Vertex Multimodal Dataset that will be created for
+            /// the output.
+            #[prost(message, tag = "6")]
+            VertexMultimodalDatasetDestination(
+                super::super::VertexMultimodalDatasetDestination,
+            ),
         }
     }
     /// Further describes this job's output.
@@ -4982,7 +5012,7 @@ pub mod batch_prediction_job {
         #[prost(string, tag = "4")]
         pub bigquery_output_table: ::prost::alloc::string::String,
         /// The output location into which prediction output is written.
-        #[prost(oneof = "output_info::OutputLocation", tags = "1, 2")]
+        #[prost(oneof = "output_info::OutputLocation", tags = "1, 2, 5")]
         pub output_location: ::core::option::Option<output_info::OutputLocation>,
     }
     /// Nested message and enum types in `OutputInfo`.
@@ -4999,6 +5029,11 @@ pub mod batch_prediction_job {
             /// format, into which the prediction output is written.
             #[prost(string, tag = "2")]
             BigqueryOutputDataset(::prost::alloc::string::String),
+            /// Output only. The resource name of the Vertex Managed Dataset created,
+            /// into which the prediction output is written. Format:
+            /// `projects/{project}/locations/{location}/datasets/{dataset}`
+            #[prost(string, tag = "5")]
+            VertexMultimodalDatasetName(::prost::alloc::string::String),
         }
     }
 }
@@ -9668,6 +9703,8 @@ pub struct SavedQuery {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dataset {
     /// Output only. Identifier. The resource name of the Dataset.
+    /// Format:
+    /// `projects/{project}/locations/{location}/datasets/{dataset}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The user-defined name of the Dataset.
@@ -9876,6 +9913,8 @@ pub struct ExportFractionSplit {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatasetVersion {
     /// Output only. Identifier. The resource name of the DatasetVersion.
+    /// Format:
+    /// `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Timestamp when this DatasetVersion was created.
@@ -10787,6 +10826,10 @@ pub struct GeminiExample {
     /// Enforced on GenerateContentResponse.candidates.
     #[prost(message, repeated, tag = "3")]
     pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
+    /// Optional. Settings for prompt and response sanitization using the Model
+    /// Armor service. If supplied, safety_settings must not be supplied.
+    #[prost(message, optional, tag = "11")]
+    pub model_armor_config: ::core::option::Option<ModelArmorConfig>,
     /// Optional. Generation config.
     #[prost(message, optional, tag = "4")]
     pub generation_config: ::core::option::Option<GenerationConfig>,
@@ -13804,18 +13847,18 @@ pub struct EvaluateDatasetOperationMetadata {
     #[prost(message, optional, tag = "1")]
     pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
 }
-/// Response in LRO for EvaluationService.EvaluateDataset.
+/// The results from an evaluation run performed by the EvaluationService.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvaluateDatasetResponse {
     /// Output only. Aggregation statistics derived from results of
-    /// EvaluationService.EvaluateDataset.
+    /// EvaluationService.
     #[prost(message, optional, tag = "1")]
     pub aggregation_output: ::core::option::Option<AggregationOutput>,
-    /// Output only. Output info for EvaluationService.EvaluateDataset.
+    /// Output only. Output info for EvaluationService.
     #[prost(message, optional, tag = "3")]
     pub output_info: ::core::option::Option<OutputInfo>,
 }
-/// Describes the info for output of EvaluationService.EvaluateDataset.
+/// Describes the info for output of EvaluationService.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct OutputInfo {
     /// The output location into which evaluation output is written.
@@ -13916,8 +13959,8 @@ pub mod output_config {
         GcsDestination(super::GcsDestination),
     }
 }
-/// The metric used for dataset level evaluation.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+/// The metric used for running evaluations.
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metric {
     /// Optional. The aggregation metrics to use.
     #[prost(
@@ -13927,13 +13970,15 @@ pub struct Metric {
         tag = "1"
     )]
     pub aggregation_metrics: ::prost::alloc::vec::Vec<i32>,
-    /// The metric spec used for evaluation.
-    #[prost(oneof = "metric::MetricSpec", tags = "2, 3, 4, 5, 6")]
+    /// The spec for the metric.
+    /// It would be either a pre-defined metric, or a inline metric spec.
+    #[prost(oneof = "metric::MetricSpec", tags = "8, 9, 10, 2, 3, 4, 5, 6")]
     pub metric_spec: ::core::option::Option<metric::MetricSpec>,
 }
 /// Nested message and enum types in `Metric`.
 pub mod metric {
-    /// The aggregation metrics supported by EvaluationService.EvaluateDataset.
+    /// The per-metric statistics on evaluation results supported by
+    /// `EvaluationService.EvaluateDataset`.
     #[derive(
         Clone,
         Copy,
@@ -14008,9 +14053,19 @@ pub mod metric {
             }
         }
     }
-    /// The metric spec used for evaluation.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    /// The spec for the metric.
+    /// It would be either a pre-defined metric, or a inline metric spec.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MetricSpec {
+        /// The spec for a pre-defined metric.
+        #[prost(message, tag = "8")]
+        PredefinedMetricSpec(super::PredefinedMetricSpec),
+        /// Spec for a computation based metric.
+        #[prost(message, tag = "9")]
+        ComputationBasedMetricSpec(super::ComputationBasedMetricSpec),
+        /// Spec for an LLM based metric.
+        #[prost(message, tag = "10")]
+        LlmBasedMetricSpec(super::LlmBasedMetricSpec),
         /// Spec for pointwise metric.
         #[prost(message, tag = "2")]
         PointwiseMetricSpec(super::PointwiseMetricSpec),
@@ -14211,6 +14266,11 @@ pub mod evaluate_instances_request {
 /// Response message for EvaluationService.EvaluateInstances.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvaluateInstancesResponse {
+    /// Metric results for each instance.
+    /// The order of the metric results is guaranteed to be the same as the order
+    /// of the instances in the request.
+    #[prost(message, repeated, tag = "43")]
+    pub metric_results: ::prost::alloc::vec::Vec<MetricResult>,
     /// Evaluation results will be served in the same order as presented in
     /// EvaluationRequest.instances.
     #[prost(
@@ -14335,6 +14395,129 @@ pub mod evaluate_instances_response {
         RubricBasedInstructionFollowingResult(
             super::RubricBasedInstructionFollowingResult,
         ),
+    }
+}
+/// Result for a single metric on a single instance.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MetricResult {
+    /// Output only. The score for the metric.
+    /// Please refer to each metric's documentation for the meaning of the score.
+    #[prost(float, optional, tag = "1")]
+    pub score: ::core::option::Option<f32>,
+    /// Output only. The explanation for the metric result.
+    #[prost(string, optional, tag = "3")]
+    pub explanation: ::core::option::Option<::prost::alloc::string::String>,
+    /// Output only. The error status for the metric result.
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+/// The spec for a pre-defined metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PredefinedMetricSpec {
+    /// Required. The name of a pre-defined metric, such as
+    /// "instruction_following_v1" or "text_quality_v1".
+    #[prost(string, tag = "1")]
+    pub metric_spec_name: ::prost::alloc::string::String,
+    /// Optional. The parameters needed to run the pre-defined metric.
+    #[prost(message, optional, tag = "2")]
+    pub metric_spec_parameters: ::core::option::Option<::prost_types::Struct>,
+}
+/// Specification for a computation based metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ComputationBasedMetricSpec {
+    /// Required. The type of the computation based metric.
+    #[prost(
+        enumeration = "computation_based_metric_spec::ComputationBasedMetricType",
+        optional,
+        tag = "1"
+    )]
+    pub r#type: ::core::option::Option<i32>,
+    /// Optional. A map of parameters for the metric, e.g. {"rouge_type":
+    /// "rougeL"}.
+    #[prost(message, optional, tag = "2")]
+    pub parameters: ::core::option::Option<::prost_types::Struct>,
+}
+/// Nested message and enum types in `ComputationBasedMetricSpec`.
+pub mod computation_based_metric_spec {
+    /// Types of computation based metrics.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ComputationBasedMetricType {
+        /// Unspecified computation based metric type.
+        Unspecified = 0,
+        /// Exact match metric.
+        ExactMatch = 1,
+        /// BLEU metric.
+        Bleu = 2,
+        /// ROUGE metric.
+        Rouge = 3,
+    }
+    impl ComputationBasedMetricType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "COMPUTATION_BASED_METRIC_TYPE_UNSPECIFIED",
+                Self::ExactMatch => "EXACT_MATCH",
+                Self::Bleu => "BLEU",
+                Self::Rouge => "ROUGE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COMPUTATION_BASED_METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "EXACT_MATCH" => Some(Self::ExactMatch),
+                "BLEU" => Some(Self::Bleu),
+                "ROUGE" => Some(Self::Rouge),
+                _ => None,
+            }
+        }
+    }
+}
+/// Specification for an LLM based metric.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LlmBasedMetricSpec {
+    /// Required. Template for the prompt sent to the judge model.
+    #[prost(string, optional, tag = "1")]
+    pub metric_prompt_template: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. System instructions for the judge model.
+    #[prost(string, optional, tag = "2")]
+    pub system_instruction: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. Optional configuration for the judge LLM (Autorater).
+    #[prost(message, optional, tag = "3")]
+    pub judge_autorater_config: ::core::option::Option<AutoraterConfig>,
+    /// Optional. Optional additional configuration for the metric.
+    #[prost(message, optional, tag = "7")]
+    pub additional_config: ::core::option::Option<::prost_types::Struct>,
+    /// Source of the rubrics to be used for evaluation.
+    #[prost(oneof = "llm_based_metric_spec::RubricsSource", tags = "4, 6")]
+    pub rubrics_source: ::core::option::Option<llm_based_metric_spec::RubricsSource>,
+}
+/// Nested message and enum types in `LLMBasedMetricSpec`.
+pub mod llm_based_metric_spec {
+    /// Source of the rubrics to be used for evaluation.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RubricsSource {
+        /// Use a pre-defined group of rubrics associated with the input.
+        /// Refers to a key in the rubric_groups map of EvaluationInstance.
+        #[prost(string, tag = "4")]
+        RubricGroupKey(::prost::alloc::string::String),
+        /// Dynamically generate rubrics using a predefined spec.
+        #[prost(message, tag = "6")]
+        PredefinedRubricGenerationSpec(super::PredefinedMetricSpec),
     }
 }
 /// Input for exact match metric.
@@ -47186,6 +47369,13 @@ pub struct Schedule {
     /// execution of the operations/jobs created by the requests (if applicable).
     #[prost(int64, tag = "11")]
     pub max_concurrent_run_count: i64,
+    /// Optional. Specifies the maximum number of active runs that can be executed
+    /// concurrently for this Schedule. This limits the number of runs that can be
+    /// in a non-terminal state at the same time.
+    /// Currently, this field is only supported for requests of type
+    /// CreatePipelineJobRequest.
+    #[prost(int64, tag = "21")]
+    pub max_concurrent_active_run_count: i64,
     /// Optional. Whether new scheduled runs can be queued when max_concurrent_runs
     /// limit is reached. If set to true, new runs will be queued instead of
     /// skipped. Default to false.

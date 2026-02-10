@@ -14,6 +14,11 @@ pub mod google {
                     include!("bytes_btree_map/google.cloud.gkehub.multiclusteringress.v1.rs");
                 }
             }
+            pub mod rbacrolebindingactuation {
+                pub mod v1 {
+                    include!("bytes_btree_map/google.cloud.gkehub.rbacrolebindingactuation.v1.rs");
+                }
+            }
             pub mod v1 {
                 include!("bytes_btree_map/google.cloud.gkehub.v1.rs");
             }

@@ -255,6 +255,7 @@
     feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
     feature = "google-cloud-gkehub-multiclusteringress-v1beta",
     feature = "google-cloud-gkehub-policycontroller-v1beta",
+    feature = "google-cloud-gkehub-rbacrolebindingactuation-v1",
     feature = "google-cloud-gkehub-servicemesh-v1alpha",
     feature = "google-cloud-gkehub-servicemesh-v1beta",
     feature = "google-cloud-gkehub-v1",
@@ -467,6 +468,7 @@
     feature = "google-datastore-admin-v1beta1",
     feature = "google-datastore-v1",
     feature = "google-datastore-v1beta3",
+    feature = "google-developers-knowledge-v1alpha",
     feature = "google-devtools-artifactregistry-v1",
     feature = "google-devtools-artifactregistry-v1beta2",
     feature = "google-devtools-build-v1",
@@ -1137,6 +1139,7 @@ pub mod google {
         feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
         feature = "google-cloud-gkehub-multiclusteringress-v1beta",
         feature = "google-cloud-gkehub-policycontroller-v1beta",
+        feature = "google-cloud-gkehub-rbacrolebindingactuation-v1",
         feature = "google-cloud-gkehub-servicemesh-v1alpha",
         feature = "google-cloud-gkehub-servicemesh-v1beta",
         feature = "google-cloud-gkehub-v1",
@@ -3322,6 +3325,7 @@ pub mod google {
             feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
             feature = "google-cloud-gkehub-multiclusteringress-v1beta",
             feature = "google-cloud-gkehub-policycontroller-v1beta",
+            feature = "google-cloud-gkehub-rbacrolebindingactuation-v1",
             feature = "google-cloud-gkehub-servicemesh-v1alpha",
             feature = "google-cloud-gkehub-servicemesh-v1beta",
             feature = "google-cloud-gkehub-v1",
@@ -3352,6 +3356,20 @@ pub mod google {
                         feature = "google-cloud-gkehub-servicemesh-v1beta",
                     ))]
                     include!("vec_u8_btree_map/google.cloud.gkehub.servicemesh.v1beta.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-cloud-gkehub-rbacrolebindingactuation-v1",
+            ))]
+            pub mod rbacrolebindingactuation {
+                #[cfg(any(
+                    feature = "google-cloud-gkehub-rbacrolebindingactuation-v1",
+                ))]
+                pub mod v1 {
+                    #[cfg(any(
+                        feature = "google-cloud-gkehub-rbacrolebindingactuation-v1",
+                    ))]
+                    include!("vec_u8_btree_map/google.cloud.gkehub.rbacrolebindingactuation.v1.rs");
                 }
             }
             #[cfg(any(
@@ -7797,6 +7815,25 @@ pub mod google {
                     ))]
                     include!("vec_u8_btree_map/google.compute.logging.dr.v1.rs");
                 }
+            }
+        }
+    }
+    #[cfg(any(
+        feature = "google-developers-knowledge-v1alpha",
+    ))]
+    pub mod developers {
+        #[cfg(any(
+            feature = "google-developers-knowledge-v1alpha",
+        ))]
+        pub mod knowledge {
+            #[cfg(any(
+                feature = "google-developers-knowledge-v1alpha",
+            ))]
+            pub mod v1alpha {
+                #[cfg(any(
+                    feature = "google-developers-knowledge-v1alpha",
+                ))]
+                include!("vec_u8_btree_map/google.developers.knowledge.v1alpha.rs");
             }
         }
     }

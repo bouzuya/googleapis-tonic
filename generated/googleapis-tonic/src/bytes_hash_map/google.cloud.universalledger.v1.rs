@@ -603,7 +603,7 @@ pub struct Transfer {
     /// Required. The amount to transfer. The amount must be positive.
     #[prost(message, optional, tag = "2")]
     pub amount: ::core::option::Option<CurrencyValue>,
-    /// Required. The transaction fee to be paid, as a fraction of the amount to
+    /// Optional. The transaction fee to be paid, as a fraction of the amount to
     /// transfer.
     #[prost(message, optional, tag = "3")]
     pub fractional_fee: ::core::option::Option<FractionalFee>,

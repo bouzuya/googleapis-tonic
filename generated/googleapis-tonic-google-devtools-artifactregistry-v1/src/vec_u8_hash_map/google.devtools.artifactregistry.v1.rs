@@ -597,6 +597,8 @@ pub mod hash {
         Sha256 = 1,
         /// MD5 hash.
         Md5 = 2,
+        /// Dirsum SHA256 hash.
+        DirsumSha256 = 3,
     }
     impl HashType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -608,6 +610,7 @@ pub mod hash {
                 Self::Unspecified => "HASH_TYPE_UNSPECIFIED",
                 Self::Sha256 => "SHA256",
                 Self::Md5 => "MD5",
+                Self::DirsumSha256 => "DIRSUM_SHA256",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -616,6 +619,7 @@ pub mod hash {
                 "HASH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                 "SHA256" => Some(Self::Sha256),
                 "MD5" => Some(Self::Md5),
+                "DIRSUM_SHA256" => Some(Self::DirsumSha256),
                 _ => None,
             }
         }
