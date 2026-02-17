@@ -39,6 +39,10 @@ pub struct Job {
     /// found from source. No transformations will be performed.
     #[prost(bool, tag = "22")]
     pub dry_run: bool,
+    /// Output only. If true, this Job operates on multiple buckets. Multibucket
+    /// jobs are subject to different quota limits than single-bucket jobs.
+    #[prost(bool, tag = "24")]
+    pub is_multi_bucket_job: bool,
     /// Specifies objects to be transformed.
     #[prost(oneof = "job::Source", tags = "19")]
     pub source: ::core::option::Option<job::Source>,
@@ -72,6 +76,8 @@ pub mod job {
         Canceled = 3,
         /// Terminated due to an unrecoverable failure.
         Failed = 4,
+        /// Queued but not yet started.
+        Queued = 5,
     }
     impl State {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -85,6 +91,7 @@ pub mod job {
                 Self::Succeeded => "SUCCEEDED",
                 Self::Canceled => "CANCELED",
                 Self::Failed => "FAILED",
+                Self::Queued => "QUEUED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -95,6 +102,7 @@ pub mod job {
                 "SUCCEEDED" => Some(Self::Succeeded),
                 "CANCELED" => Some(Self::Canceled),
                 "FAILED" => Some(Self::Failed),
+                "QUEUED" => Some(Self::Queued),
                 _ => None,
             }
         }
@@ -122,6 +130,130 @@ pub mod job {
         PutMetadata(super::PutMetadata),
         /// Rewrite the object and updates metadata like KMS key.
         #[prost(message, tag = "20")]
+        RewriteObject(super::RewriteObject),
+    }
+}
+/// BucketOperation represents a bucket-level breakdown of a Job.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BucketOperation {
+    /// Identifier. The resource name of the BucketOperation. This is defined by
+    /// the service. Format:
+    /// projects/{project}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation}.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The bucket name of the objects to be transformed in the BucketOperation.
+    #[prost(string, tag = "2")]
+    pub bucket_name: ::prost::alloc::string::String,
+    /// Output only. The time that the BucketOperation was created.
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The time that the BucketOperation was started.
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The time that the BucketOperation was completed.
+    #[prost(message, optional, tag = "7")]
+    pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Information about the progress of the bucket operation.
+    #[prost(message, optional, tag = "8")]
+    pub counters: ::core::option::Option<Counters>,
+    /// Output only. Summarizes errors encountered with sample error log entries.
+    #[prost(message, repeated, tag = "9")]
+    pub error_summaries: ::prost::alloc::vec::Vec<ErrorSummary>,
+    /// Output only. State of the BucketOperation.
+    #[prost(enumeration = "bucket_operation::State", tag = "10")]
+    pub state: i32,
+    /// Specifies objects to be transformed in the BucketOperation.
+    #[prost(oneof = "bucket_operation::ObjectConfiguration", tags = "3, 4")]
+    pub object_configuration: ::core::option::Option<
+        bucket_operation::ObjectConfiguration,
+    >,
+    /// Action to be performed on the objects.
+    #[prost(oneof = "bucket_operation::Transformation", tags = "11, 12, 13, 14")]
+    pub transformation: ::core::option::Option<bucket_operation::Transformation>,
+}
+/// Nested message and enum types in `BucketOperation`.
+pub mod bucket_operation {
+    /// Describes state of the BucketOperation.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// Default value. This value is unused.
+        Unspecified = 0,
+        /// Created but not yet started.
+        Queued = 1,
+        /// In progress.
+        Running = 2,
+        /// Completed successfully.
+        Succeeded = 3,
+        /// Cancelled by the user.
+        Canceled = 4,
+        /// Terminated due to an unrecoverable failure.
+        Failed = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "STATE_UNSPECIFIED",
+                Self::Queued => "QUEUED",
+                Self::Running => "RUNNING",
+                Self::Succeeded => "SUCCEEDED",
+                Self::Canceled => "CANCELED",
+                Self::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "QUEUED" => Some(Self::Queued),
+                "RUNNING" => Some(Self::Running),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "CANCELED" => Some(Self::Canceled),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
+    /// Specifies objects to be transformed in the BucketOperation.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum ObjectConfiguration {
+        /// Specifies objects matching a prefix set.
+        #[prost(message, tag = "3")]
+        PrefixList(super::PrefixList),
+        /// Specifies objects in a manifest file.
+        #[prost(message, tag = "4")]
+        Manifest(super::Manifest),
+    }
+    /// Action to be performed on the objects.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Transformation {
+        /// Changes object hold status.
+        #[prost(message, tag = "11")]
+        PutObjectHold(super::PutObjectHold),
+        /// Delete objects.
+        #[prost(message, tag = "12")]
+        DeleteObject(super::DeleteObject),
+        /// Updates object metadata. Allows updating fixed-key and custom metadata
+        /// and fixed-key metadata i.e. Cache-Control, Content-Disposition,
+        /// Content-Encoding, Content-Language, Content-Type, Custom-Time.
+        #[prost(message, tag = "13")]
+        PutMetadata(super::PutMetadata),
+        /// Rewrite the object and updates metadata like KMS key.
+        #[prost(message, tag = "14")]
         RewriteObject(super::RewriteObject),
     }
 }
@@ -636,10 +768,57 @@ pub struct DeleteJobRequest {
     /// UUID is not supported (00000000-0000-0000-0000-000000000000).
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
+    /// Optional. If set to true, any child bucket operations of the job will also
+    /// be deleted. Highly recommended to be set to true by all clients. Users
+    /// cannot mutate bucket operations directly, so only the jobs.delete
+    /// permission is required to delete a job (and its child bucket operations).
+    #[prost(bool, tag = "3")]
+    pub force: bool,
 }
 /// Message for response to cancel Job.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CancelJobResponse {}
+/// Message for request to list BucketOperations
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListBucketOperationsRequest {
+    /// Required. Format: projects/{project_id}/locations/global/jobs/{job_id}.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Filters results as defined by <https://google.aip.dev/160.>
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. The list page size. Default page size is 100.
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    /// Optional. The list page token.
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. Field to sort by. Supported fields are name, create_time.
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+}
+/// Message for response to listing BucketOperations
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListBucketOperationsResponse {
+    /// A list of storage batch bucket operations.
+    #[prost(message, repeated, tag = "1")]
+    pub bucket_operations: ::prost::alloc::vec::Vec<BucketOperation>,
+    /// A token identifying a page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Locations that could not be reached.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Message for getting a BucketOperation.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetBucketOperationRequest {
+    /// Required. `name` of the bucket operation to retrieve.
+    /// Format:
+    /// projects/{project_id}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation_id}.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
 /// Represents the metadata of the long-running operation.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
@@ -895,6 +1074,66 @@ pub mod storage_batch_operations_client {
                     GrpcMethod::new(
                         "google.cloud.storagebatchoperations.v1.StorageBatchOperations",
                         "CancelJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists BucketOperations in a given project and job.
+        pub async fn list_bucket_operations(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListBucketOperationsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListBucketOperationsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.storagebatchoperations.v1.StorageBatchOperations/ListBucketOperations",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.storagebatchoperations.v1.StorageBatchOperations",
+                        "ListBucketOperations",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a BucketOperation.
+        pub async fn get_bucket_operation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetBucketOperationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BucketOperation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.storagebatchoperations.v1.StorageBatchOperations/GetBucketOperation",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.storagebatchoperations.v1.StorageBatchOperations",
+                        "GetBucketOperation",
                     ),
                 );
             self.inner.unary(req, path, codec).await

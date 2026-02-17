@@ -38852,6 +38852,13 @@ pub struct Schedule {
     /// execution of the operations/jobs created by the requests (if applicable).
     #[prost(int64, tag = "11")]
     pub max_concurrent_run_count: i64,
+    /// Optional. Specifies the maximum number of active runs that can be executed
+    /// concurrently for this Schedule. This limits the number of runs that can be
+    /// in a non-terminal state at the same time.
+    /// Currently, this field is only supported for requests of type
+    /// CreatePipelineJobRequest.
+    #[prost(int64, tag = "21")]
+    pub max_concurrent_active_run_count: i64,
     /// Optional. Whether new scheduled runs can be queued when max_concurrent_runs
     /// limit is reached. If set to true, new runs will be queued instead of
     /// skipped. Default to false.

@@ -61,7 +61,7 @@ pub struct MaintenanceInfo {
     pub deny_maintenance_schedules: ::prost::alloc::vec::Vec<
         ResourceMaintenanceDenySchedule,
     >,
-    /// Optional. Current Maintenance version of the database resource. Example:
+    /// Output only. Current Maintenance version of the database resource. Example:
     /// "MYSQL_8_0_41.R20250531.01_15"
     #[prost(string, tag = "3")]
     pub maintenance_version: ::prost::alloc::string::String,
@@ -1712,12 +1712,11 @@ pub struct QueryDatabaseResourceGroupsRequest {
     /// expression, parentheses must be appropriately used to group the
     /// combinations.
     ///
-    /// Example: location="us-east1"
-    /// Example: container="projects/123" OR container="projects/456"
-    /// Example: (container="projects/123" OR
-    /// container="projects/456") AND location="us-east1"
-    /// Example: full_resource_name=<sub>"test"
-    /// Example: full_resource_name=</sub>"test.\*master"
+    /// Example: `location="us-east1"`
+    /// Example: `container="projects/123" OR container="projects/456"`
+    /// Example: `(container="projects/123" OR            container="projects/456") AND location="us-east1"`
+    /// Example: `full_resource_name=~"test"`
+    /// Example: `full_resource_name=~"test.*master"`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. Groups of signal types that are requested.
@@ -1762,12 +1761,13 @@ pub struct QueryDatabaseResourceGroupsRequest {
     /// order. It only supports a single field at a time.
     ///
     /// For example:
-    /// order_by = "full_resource_name" sorts response in ascending order
-    /// order_by = "full_resource_name DESC" sorts response in descending order
-    /// order_by = "issue_count DESC" sorts response in descending order of
+    /// `order_by = "full_resource_name"` sorts response in ascending order
+    /// `order_by = "full_resource_name DESC"` sorts response in descending order
+    /// `order_by = "issue_count DESC"` sorts response in descending order of
     /// count of all issues associated with a resource.
     ///
-    /// More explicitly, order_by = "full_resource_name, product" is not supported.
+    /// More explicitly, `order_by = "full_resource_name, product"` is not
+    /// supported.
     #[prost(string, tag = "5")]
     pub order_by: ::prost::alloc::string::String,
     /// Optional. If unspecified, at most 50 resource groups will be returned.
@@ -1929,10 +1929,9 @@ pub struct AggregateIssueStatsRequest {
     /// expression, parentheses must be appropriately used to group the
     /// combinations.
     ///
-    /// Example: location="us-east1"
-    /// Example: container="projects/123" OR container="projects/456"
-    /// Example: (container="projects/123" OR
-    /// container="projects/456") AND location="us-east1"
+    /// Example: `location="us-east1"`
+    /// Example: `container="projects/123" OR container="projects/456"`
+    /// Example: `(container="projects/123" OR            container="projects/456") AND location="us-east1"`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. Lists of signal types that are issues.
@@ -2052,10 +2051,9 @@ pub struct AggregateFleetRequest {
     /// expression, parentheses must be appropriately used to group the
     /// combinations.
     ///
-    /// Example: location="us-east1"
-    /// Example: container="projects/123" OR container="projects/456"
-    /// Example: (container="projects/123" OR
-    /// container="projects/456") AND location="us-east1"
+    /// Example: `location="us-east1"`
+    /// Example: `container="projects/123" OR container="projects/456"`
+    /// Example: `(container="projects/123" OR            container="projects/456") AND location="us-east1"`
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. A field that statistics are grouped by.
@@ -2089,9 +2087,10 @@ pub struct AggregateFleetRequest {
     ///   descending order. Add "ASC" after the field name to indicate ascending
     ///   order. It supports ordering using multiple fields.
     ///   For example:
-    ///   order_by = "resource_groups_count" sorts response in ascending order
-    ///   order_by = "resource_groups_count DESC" sorts response in descending order
-    ///   order_by = "product.type, product.version DESC, location" orders by type
+    ///   `order_by = "resource_groups_count"` sorts response in ascending order
+    ///   `order_by = "resource_groups_count DESC"` sorts response in descending
+    ///   order
+    ///   `order_by = "product.type, product.version DESC, location"` orders by type
     ///   in ascending order, version in descending order and location in ascending
     ///   order
     #[prost(string, tag = "4")]
@@ -2112,7 +2111,8 @@ pub struct AggregateFleetRequest {
     #[prost(message, optional, tag = "7")]
     pub baseline_date: ::core::option::Option<super::super::super::r#type::Date>,
 }
-/// The response message to aggregate a fleet by some group by fields.
+/// The response message to aggregate a fleet by some group by
+/// fields.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregateFleetResponse {
     /// Represents a row grouped by the fields in the input.
@@ -2239,6 +2239,92 @@ pub struct BackupDrConfig {
     /// Indicates if the resource is managed by BackupDR.
     #[prost(bool, optional, tag = "1")]
     pub backupdr_managed: ::core::option::Option<bool>,
+}
+/// QueryIssuesRequest is the request to get a list of issues.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryIssuesRequest {
+    /// Required. Parent can be a project, a folder, or an organization. The list
+    /// is limited to the one attached to resources within the `scope` that a user
+    /// has access to.
+    ///
+    /// The allowed values are:
+    ///
+    /// * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+    /// * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+    /// * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+    /// * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional.
+    /// Supported fields are:
+    /// 'product',
+    /// `location`,
+    /// `issue_severity`,
+    /// 'tags',
+    /// 'labels',
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. Filters based on signal and product. The filter list will be ORed
+    /// across pairs and ANDed within a signal and products pair.
+    #[prost(message, repeated, tag = "3")]
+    pub signal_products_filters: ::prost::alloc::vec::Vec<SignalProductsFilters>,
+    /// Optional. Following fields are sortable:
+    /// SignalType
+    /// Product
+    /// Location
+    /// IssueSeverity
+    ///
+    /// The default order is ascending. Add "DESC" after the field name to indicate
+    /// descending order. Add "ASC" after the field name to indicate ascending
+    /// order. It only supports a single field at a time.
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    /// Optional. If unspecified, at most 50 issues will be returned.
+    /// The maximum value is 1000; values above 1000 will be coerced to 1000.
+    #[prost(int32, tag = "5")]
+    pub page_size: i32,
+    /// Optional. A page token, received from a previous `QueryIssues` call.
+    /// Provide this to retrieve the subsequent page.
+    /// All parameters except page size should match the parameters used in the
+    /// call that provided the page token.
+    #[prost(string, tag = "6")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// SignalProductsFilters represents a signal and list of supported products.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SignalProductsFilters {
+    /// Optional. The type of signal.
+    #[prost(enumeration = "SignalType", tag = "1")]
+    pub signal_type: i32,
+    /// Optional. Product type of the resource. The version of the product will be
+    /// ignored in filtering.
+    #[prost(message, repeated, tag = "2")]
+    pub products: ::prost::alloc::vec::Vec<Product>,
+}
+/// QueryIssuesResponse is the response containing a list of issues.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryIssuesResponse {
+    /// List of issues and resource details.
+    #[prost(message, repeated, tag = "1")]
+    pub resource_issues: ::prost::alloc::vec::Vec<DatabaseResourceIssue>,
+    /// A token that can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    /// Unordered list. List of unreachable regions from where data could not be
+    /// retrieved.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// DatabaseResource and Issue associated with it.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatabaseResourceIssue {
+    /// Signal associated with the issue.
+    #[prost(message, optional, tag = "1")]
+    pub signal: ::core::option::Option<Signal>,
+    /// Resource associated with the issue.
+    #[prost(message, optional, tag = "2")]
+    pub resource: ::core::option::Option<DatabaseResource>,
 }
 /// Tag is a key value pair attached to a resource.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -2650,6 +2736,37 @@ pub mod database_center_client {
                     GrpcMethod::new(
                         "google.cloud.databasecenter.v1beta.DatabaseCenter",
                         "AggregateIssueStats",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// QueryIssues provides a list of issues and recommendations
+        /// that a user has access to and that are within the requested scope.
+        pub async fn query_issues(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryIssuesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryIssuesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.databasecenter.v1beta.DatabaseCenter/QueryIssues",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.databasecenter.v1beta.DatabaseCenter",
+                        "QueryIssues",
                     ),
                 );
             self.inner.unary(req, path, codec).await

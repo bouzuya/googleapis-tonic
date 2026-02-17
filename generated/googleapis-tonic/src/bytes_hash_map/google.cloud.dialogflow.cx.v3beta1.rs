@@ -10132,7 +10132,7 @@ pub struct SentimentAnalysisResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DetectIntentResponseView {
-    /// Not specified. `FULL` will be used.
+    /// Not specified. `DETECT_INTENT_RESPONSE_VIEW_DEFAULT` will be used.
     Unspecified = 0,
     /// Full response view includes all fields.
     Full = 1,
@@ -10142,6 +10142,10 @@ pub enum DetectIntentResponseView {
     ///
     /// \[QueryResult.generative_info\]\[google.cloud.dialogflow.cx.v3beta1.QueryResult.generative_info\]
     Basic = 2,
+    /// ## Default response view omits the following fields:
+    ///
+    /// \[QueryResult.trace_blocks\]\[google.cloud.dialogflow.cx.v3beta1.QueryResult.trace_blocks\]
+    Default = 3,
 }
 impl DetectIntentResponseView {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10153,6 +10157,7 @@ impl DetectIntentResponseView {
             Self::Unspecified => "DETECT_INTENT_RESPONSE_VIEW_UNSPECIFIED",
             Self::Full => "DETECT_INTENT_RESPONSE_VIEW_FULL",
             Self::Basic => "DETECT_INTENT_RESPONSE_VIEW_BASIC",
+            Self::Default => "DETECT_INTENT_RESPONSE_VIEW_DEFAULT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10161,6 +10166,7 @@ impl DetectIntentResponseView {
             "DETECT_INTENT_RESPONSE_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
             "DETECT_INTENT_RESPONSE_VIEW_FULL" => Some(Self::Full),
             "DETECT_INTENT_RESPONSE_VIEW_BASIC" => Some(Self::Basic),
+            "DETECT_INTENT_RESPONSE_VIEW_DEFAULT" => Some(Self::Default),
             _ => None,
         }
     }
