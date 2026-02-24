@@ -341,23 +341,23 @@ pub enum ProductType {
     /// PRODUCT_TYPE_UNSPECIFIED means product type is not known or that the user
     /// didn't provide this field in the request.
     Unspecified = 0,
-    /// Cloud SQL product area in GCP
+    /// Cloud SQL product area in Google Cloud
     CloudSql = 1,
-    /// AlloyDB product area in GCP
+    /// AlloyDB product area in Google Cloud
     Alloydb = 2,
-    /// Spanner product area in GCP
+    /// Spanner product area in Google Cloud
     Spanner = 3,
-    /// Bigtable product area in GCP
+    /// Bigtable product area in Google Cloud
     Bigtable = 6,
-    /// Memorystore product area in GCP
+    /// Memorystore product area in Google Cloud
     Memorystore = 7,
-    /// Firestore product area in GCP
+    /// Firestore product area in Google Cloud
     Firestore = 8,
     /// Compute Engine self managed databases
     ComputeEngine = 9,
-    /// Oracle product area in GCP
+    /// Oracle product area in Google Cloud
     OracleOnGcp = 10,
-    /// BigQuery product area in GCP
+    /// BigQuery product area in Google Cloud
     Bigquery = 11,
     /// Other refers to rest of other product type. This is to be when product type
     /// is known, but it is not present in this enum.
@@ -628,8 +628,8 @@ pub struct SubResource {
     /// OPTIONAL
     #[prost(message, optional, tag = "3")]
     pub product: ::core::option::Option<Product>,
-    /// Specifies where the resource is created. For GCP, it is the full name of
-    /// the project.
+    /// Specifies where the resource is created. For Google Cloud resources, it is
+    /// the full name of the project.
     #[prost(string, tag = "4")]
     pub container: ::prost::alloc::string::String,
 }
@@ -1031,15 +1031,15 @@ pub enum SignalType {
     /// Represents if the last backup of a resource is older than some threshold
     /// value.
     LastBackupOld = 7,
-    /// Represents if a resource violates CIS GCP Foundation 2.0.
+    /// Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.
     ViolatesCisGcpFoundation20 = 8,
-    /// Represents if a resource violates CIS GCP Foundation 1.3.
+    /// Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.
     ViolatesCisGcpFoundation13 = 9,
-    /// Represents if a resource violates CIS GCP Foundation 1.2.
+    /// Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.
     ViolatesCisGcpFoundation12 = 10,
-    /// Represents if a resource violates CIS GCP Foundation 1.1.
+    /// Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.
     ViolatesCisGcpFoundation11 = 11,
-    /// Represents if a resource violates CIS GCP Foundation 1.0.
+    /// Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.
     ViolatesCisGcpFoundation10 = 12,
     /// Represents if a resource violates CIS Controls 8.0.
     ViolatesCisControlsV80 = 76,
@@ -1815,7 +1815,6 @@ pub struct DatabaseResourceGroup {
 }
 /// DatabaseResource represents every individually configured database unit
 /// representing compute and/or storage.
-/// NextId: 20
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseResource {
     /// List of children associated with a database group.
@@ -1833,16 +1832,17 @@ pub struct DatabaseResource {
     /// `//alloydb.googleapis.com/projects/project-number/locations/us-central1/clusters/c1/instances/i1`
     #[prost(string, tag = "3")]
     pub full_resource_name: ::prost::alloc::string::String,
-    /// Specifies where the resource is created. For GCP, it is the full name of
-    /// the project.
+    /// Specifies where the resource is created. For Google Cloud resources, it is
+    /// the full name of the project.
     #[prost(string, tag = "4")]
     pub container: ::prost::alloc::string::String,
     /// The product this resource represents.
     #[prost(message, optional, tag = "5")]
     pub product: ::core::option::Option<Product>,
     /// The location of the resources. It supports returning only regional
-    /// locations in GCP. These are of the form: "us-central1", "us-east1", etc.
-    /// See <https://cloud.google.com/about/locations> for a list of such regions.
+    /// locations in Google Cloud. These are of the form: "us-central1",
+    /// "us-east1", etc. See <https://cloud.google.com/about/locations> for a list of
+    /// such regions.
     #[prost(string, tag = "6")]
     pub location: ::prost::alloc::string::String,
     /// Labels applied on the resource. The requirements for labels assigned to
@@ -2166,8 +2166,8 @@ pub mod dimension {
     /// Followings are the dimensions to be used to aggregate the fleet.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Dimension {
-        /// Specifies where the resource is created. For GCP, it is the full name of
-        /// the project.
+        /// Specifies where the resource is created. For Google Cloud resources, it
+        /// is the full name of the project.
         #[prost(string, tag = "2")]
         Container(::prost::alloc::string::String),
         /// Type to identify a product
@@ -2180,7 +2180,7 @@ pub mod dimension {
         #[prost(string, tag = "5")]
         ProductVersion(::prost::alloc::string::String),
         /// The location of the resources. It supports returning only regional
-        /// locations in GCP.
+        /// locations in Google Cloud.
         #[prost(string, tag = "6")]
         Location(::prost::alloc::string::String),
         /// The type of resource defined according to the pattern:
@@ -2359,8 +2359,8 @@ pub struct ResourceDetails {
     /// Full resource name of the resource.
     #[prost(string, tag = "1")]
     pub full_resource_name: ::prost::alloc::string::String,
-    /// Specifies where the resource is created. For GCP, it is the full name of
-    /// the project.
+    /// Specifies where the resource is created. For Google Cloud resources, it is
+    /// the full name of the project.
     #[prost(string, tag = "2")]
     pub container: ::prost::alloc::string::String,
     /// Product type of the resource.

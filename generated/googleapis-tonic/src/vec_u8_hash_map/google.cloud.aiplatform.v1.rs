@@ -27606,6 +27606,71 @@ pub mod generate_content_response {
         pub candidates_tokens_details: ::prost::alloc::vec::Vec<
             super::ModalityTokenCount,
         >,
+        /// Output only. A detailed breakdown by modality of the token counts from
+        /// the results of tool executions, which are provided back to the model as
+        /// input.
+        #[prost(message, repeated, tag = "12")]
+        pub tool_use_prompt_tokens_details: ::prost::alloc::vec::Vec<
+            super::ModalityTokenCount,
+        >,
+        /// Output only. The traffic type for this request.
+        #[prost(enumeration = "usage_metadata::TrafficType", tag = "8")]
+        pub traffic_type: i32,
+    }
+    /// Nested message and enum types in `UsageMetadata`.
+    pub mod usage_metadata {
+        /// The type of traffic that this request was processed with, indicating
+        /// which quota is consumed.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum TrafficType {
+            /// Unspecified request traffic type.
+            Unspecified = 0,
+            /// The request was processed using Pay-As-You-Go quota.
+            OnDemand = 1,
+            /// Type for Priority Pay-As-You-Go traffic.
+            OnDemandPriority = 3,
+            /// Type for Flex traffic.
+            OnDemandFlex = 4,
+            /// Type for Provisioned Throughput traffic.
+            ProvisionedThroughput = 2,
+        }
+        impl TrafficType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "TRAFFIC_TYPE_UNSPECIFIED",
+                    Self::OnDemand => "ON_DEMAND",
+                    Self::OnDemandPriority => "ON_DEMAND_PRIORITY",
+                    Self::OnDemandFlex => "ON_DEMAND_FLEX",
+                    Self::ProvisionedThroughput => "PROVISIONED_THROUGHPUT",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "TRAFFIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ON_DEMAND" => Some(Self::OnDemand),
+                    "ON_DEMAND_PRIORITY" => Some(Self::OnDemandPriority),
+                    "ON_DEMAND_FLEX" => Some(Self::OnDemandFlex),
+                    "PROVISIONED_THROUGHPUT" => Some(Self::ProvisionedThroughput),
+                    _ => None,
+                }
+            }
+        }
     }
 }
 /// Request message for
