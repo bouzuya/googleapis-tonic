@@ -524,7 +524,7 @@ pub mod batch_search_data_objects_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Ranker {
     /// The ranking method to use.
-    #[prost(oneof = "ranker::Ranker", tags = "1, 2")]
+    #[prost(oneof = "ranker::Ranker", tags = "1")]
     pub ranker: ::core::option::Option<ranker::Ranker>,
 }
 /// Nested message and enum types in `Ranker`.
@@ -535,9 +535,6 @@ pub mod ranker {
         /// Reciprocal Rank Fusion ranking.
         #[prost(message, tag = "1")]
         Rrf(super::ReciprocalRankFusion),
-        /// Vertex AI ranking.
-        #[prost(message, tag = "2")]
-        Vertex(super::VertexRanker),
     }
 }
 /// Defines the Reciprocal Rank Fusion (RRF) algorithm for result ranking.
@@ -546,25 +543,6 @@ pub struct ReciprocalRankFusion {
     /// Required. The weights to apply to each search result set during fusion.
     #[prost(double, repeated, packed = "false", tag = "1")]
     pub weights: ::prost::alloc::vec::Vec<f64>,
-}
-/// Defines a ranker using the Vertex AI ranking service.
-/// See <https://cloud.google.com/generative-ai-app-builder/docs/ranking> for
-/// details.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct VertexRanker {
-    /// Required. The query against which the records are ranked and scored.
-    #[prost(string, tag = "1")]
-    pub query: ::prost::alloc::string::String,
-    /// Optional. The template used to generate the record's title.
-    #[prost(string, tag = "2")]
-    pub title_template: ::prost::alloc::string::String,
-    /// Optional. The template used to generate the record's content.
-    #[prost(string, tag = "3")]
-    pub content_template: ::prost::alloc::string::String,
-    /// Required. The model used for ranking documents. If no model is specified,
-    /// then semantic-ranker-default@latest is used.
-    #[prost(string, tag = "4")]
-    pub model: ::prost::alloc::string::String,
 }
 /// A response from a batch search operation.
 #[derive(Clone, PartialEq, ::prost::Message)]

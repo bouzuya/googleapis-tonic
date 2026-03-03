@@ -912,7 +912,10 @@ pub struct AdGroup {
     /// Immutable. The campaign to which the ad group belongs.
     #[prost(string, optional, tag = "38")]
     pub campaign: ::core::option::Option<::prost::alloc::string::String>,
-    /// The maximum CPC (cost-per-click) bid.
+    /// The maximum CPC (cost-per-click) bid. This field is used when the
+    /// ad group's effective bidding strategy is Manual CPC. This field is not
+    /// applicable and will be ignored if the ad group's campaign is using a
+    /// portfolio bidding strategy.
     #[prost(int64, optional, tag = "39")]
     pub cpc_bid_micros: ::core::option::Option<i64>,
     /// Output only. Value will be same as that of the CPC (cost-per-click) bid
@@ -937,11 +940,21 @@ pub struct AdGroup {
     /// thousand times the ad is shown.
     #[prost(int64, optional, tag = "43")]
     pub target_cpm_micros: ::core::option::Option<i64>,
-    /// The target ROAS (return-on-ad-spend) override. If the ad group's campaign
-    /// bidding strategy is TargetRoas or MaximizeConversionValue (with its
-    /// target_roas field set), then this field overrides the target ROAS specified
-    /// in the campaign's bidding strategy.
-    /// Otherwise, this value is ignored.
+    /// The target ROAS (return-on-ad-spend) for this ad group.
+    ///
+    /// This field lets you override the target ROAS specified in the
+    /// campaign's bidding strategy, but only if the campaign is using a
+    /// standard (not portfolio) `TargetRoas` strategy or a standard
+    /// `MaximizeConversionValue` strategy with its `target_roas` field set.
+    ///
+    /// If the campaign is using a portfolio bidding strategy, this field
+    /// cannot be set and attempting to do so will result in an error.
+    ///
+    /// For any other bidding strategies, this value is ignored.
+    ///
+    /// To see the actual target ROAS being used by the ad group, considering
+    /// potential overrides, query the `effective_target_roas` and
+    /// `effective_target_roas_source` fields.
     #[prost(double, optional, tag = "44")]
     pub target_roas: ::core::option::Option<f64>,
     /// The percent cpc bid amount, expressed as a fraction of the advertised price
@@ -967,7 +980,7 @@ pub struct AdGroup {
     /// is false.
     #[prost(bool, tag = "67")]
     pub exclude_demographic_expansion: bool,
-    /// Allows advertisers to specify a targeting dimension on which to place
+    /// Lets advertisers specify a targeting dimension on which to place
     /// absolute bids. This is only applicable for campaigns that target only the
     /// display network and not search.
     #[prost(
@@ -1259,8 +1272,17 @@ pub struct AdGroupAdAssetCombinationView {
     #[prost(bool, optional, tag = "3")]
     pub enabled: ::core::option::Option<bool>,
 }
-/// A link between an AdGroupAd and an Asset. AdGroupAdAssetView supports AppAds,
-/// Demand Gen campaigns, and Responsive Search Ads.
+/// Represents a link between an AdGroupAd and an Asset.
+/// This view provides insights into the performance of assets within specific
+/// ads.
+///
+/// AdGroupAdAssetView supports the following ad types:
+///
+/// * App Ads
+/// * Demand Gen campaigns
+/// * Responsive Search Ads
+///
+/// It does not support Responsive Display Ads.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAdAssetView {
     /// Output only. The resource name of the ad group ad asset view.
@@ -1456,8 +1478,7 @@ pub struct AdGroupBidModifier {
     #[prost(int64, optional, tag = "14")]
     pub criterion_id: ::core::option::Option<i64>,
     /// The modifier for the bid when the criterion matches. The modifier must be
-    /// in the range: 0.1 - 10.0. The range is 1.0 - 6.0 for PreferredContent.
-    /// Use 0 to opt out of a Device type.
+    /// in the range: 0.1 - 10.0. Use 0 to opt out of a Device type.
     #[prost(double, optional, tag = "15")]
     pub bid_modifier: ::core::option::Option<f64>,
     /// Output only. The base ad group from which this draft/trial adgroup bid
@@ -1971,11 +1992,17 @@ pub struct AdGroupLabel {
 /// detailed below respectively.
 ///
 /// 1. SEARCH - CPC_BID - DEFAULT
+///
 /// 1. SEARCH - CPC_BID - UNIFORM
+///
 /// 1. SEARCH - TARGET_CPA - UNIFORM
+///
 /// 1. SEARCH - TARGET_ROAS - UNIFORM
+///
 /// 1. DISPLAY - CPC_BID - DEFAULT
+///
 /// 1. DISPLAY - CPC_BID - UNIFORM
+///
 /// 1. DISPLAY - TARGET_CPA - UNIFORM
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupSimulation {
@@ -2927,10 +2954,10 @@ pub struct AssetSet {
     /// Merchant ID and Feed Label from Google Merchant Center.
     #[prost(message, optional, tag = "5")]
     pub merchant_center_feed: ::core::option::Option<asset_set::MerchantCenterFeed>,
-    /// Immutable. Parent asset set id for the asset set where the elements of this
+    /// Immutable. Parent asset set ID for the asset set where the elements of this
     /// asset set come from. For example: the sync level location AssetSet id where
-    /// the the elements in LocationGroup AssetSet come from. This field is
-    /// required and only applicable for Location Group typed AssetSet.
+    /// the elements in LocationGroup AssetSet come from. This field is required
+    /// and only applicable for Location Group typed AssetSet.
     #[prost(int64, tag = "10")]
     pub location_group_parent_asset_set_id: i64,
     /// Output only. For Performance Max for travel goals campaigns with a Hotel
@@ -3997,6 +4024,14 @@ pub struct Campaign {
         tag = "102"
     )]
     pub contains_eu_political_advertising: i32,
+    /// Output only. Indicates whether this campaign is missing a declaration about
+    /// whether it contains political advertising targeted towards the EU and is
+    /// ineligible for any exemptions. If this field is true, use the
+    /// contains_eu_political_advertising field to add the required declaration.
+    ///
+    /// This field is read-only.
+    #[prost(bool, tag = "108")]
+    pub missing_eu_political_advertising_declaration: bool,
     /// The bidding strategy for the campaign.
     ///
     /// Must be either portfolio (created through BiddingStrategy service) or
@@ -4088,11 +4123,13 @@ pub mod campaign {
         #[prost(int64, optional, tag = "5")]
         pub merchant_id: ::core::option::Option<i64>,
         /// Feed label of products to include in the campaign.
-        /// Only one of feed_label or sales_country can be set.
-        /// If used instead of sales_country, the feed_label field accepts country
-        /// codes in the same format for example: 'XX'.
-        /// Otherwise can be any string used for feed label in Google Merchant
-        /// Center.
+        /// Valid feed labels may contain a maximum of 20 characters including
+        /// uppercase letters, numbers, hyphens, and underscores.
+        /// If you previously used the deprecated `sales_country` in the two-letter
+        /// country code (`XX`) format, the `feed_label` field should be used
+        /// instead. For more information see the
+        /// [feed label](//support.google.com/merchants/answer/12453549)
+        /// support article.
         #[prost(string, tag = "10")]
         pub feed_label: ::prost::alloc::string::String,
         /// Priority of the campaign. Campaigns with numerically higher priorities
@@ -4662,14 +4699,27 @@ pub struct CampaignBudget {
     /// in UTF-8 bytes, (trimmed).
     #[prost(string, optional, tag = "20")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
-    /// The amount of the budget, in the local currency for the account.
-    /// Amount is specified in micros, where one million is equivalent to one
-    /// currency unit. Monthly spend is capped at 30.4 times this amount.
+    /// The average daily amount to be spent by the campaign.
+    /// This field is used when the CampaignBudget `period` is set to `DAILY`,
+    /// which is the default.
+    ///
+    /// Amount is specified in micros in the account's local currency.
+    /// One million micros is equivalent to one currency unit.
+    /// The effective monthly spend is capped at 30.4 times this daily amount.
+    ///
+    /// This field is mutually exclusive with 'total_amount_micros'. Only one
+    /// of 'amount_micros' or 'total_amount_micros' should be set.
     #[prost(int64, optional, tag = "21")]
     pub amount_micros: ::core::option::Option<i64>,
-    /// The lifetime amount of the budget, in the local currency for the account.
-    /// Amount is specified in micros, where one million is equivalent to one
-    /// currency unit.
+    /// The total amount to be spent by the campaign over its entire duration.
+    /// This field is used *only* when the CampaignBudget `period` is set to
+    /// `CUSTOM_PERIOD`. It represents the budget cap for the campaign's lifetime,
+    /// rather than a daily limit. The amount is specified in micros in the
+    /// account's local currency. One million micros is equivalent to one currency
+    /// unit.
+    ///
+    /// This field is mutually exclusive with 'amount_micros'. Only one of
+    /// 'total_amount_micros' or 'amount_micros' should be set.
     #[prost(int64, optional, tag = "22")]
     pub total_amount_micros: ::core::option::Option<i64>,
     /// Output only. The status of this campaign budget. This field is read-only.
@@ -4903,6 +4953,8 @@ pub mod campaign_criterion {
         #[prost(message, tag = "26")]
         Language(super::super::common::LanguageInfo),
         /// Immutable. IpBlock.
+        ///
+        /// You can exclude up to 500 IP addresses per campaign.
         #[prost(message, tag = "27")]
         IpBlock(super::super::common::IpBlockInfo),
         /// Immutable. ContentLabel.
@@ -5541,6 +5593,9 @@ pub struct ChannelAggregateAssetView {
 /// Queries including ClickView must have a filter limiting the results to one
 /// day and can be requested for dates back to 90 days before the time of the
 /// request.
+///
+/// GCLIDs are not available in this report for App Campaigns for Installs (ACi)
+/// and App Campaigns for Pre-registration (ACpre).
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ClickView {
     /// Output only. The resource name of the click view.
@@ -6056,7 +6111,9 @@ pub mod conversion_value_rule {
         pub sunday: bool,
     }
 }
-/// A conversion value rule set
+/// A conversion value rule set is a collection of conversion value rules that
+/// lets you adjust conversion values based on the dimensions specified in
+/// the `dimensions` field.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConversionValueRuleSet {
     /// Immutable. The resource name of the conversion value rule set.
@@ -6438,6 +6495,16 @@ pub struct Customer {
         tag = "46"
     )]
     pub video_brand_safety_suitability: i32,
+    /// Output only. Returns the advertiser self-declaration status of whether this
+    /// customer contains political advertising content targeted towards the
+    /// European Union. You can use the Google Ads UI to update this account-level
+    /// declaration, or use the API to update the self-declaration status of
+    /// individual campaigns.
+    #[prost(
+        enumeration = "super::enums::eu_political_advertising_status_enum::EuPoliticalAdvertisingStatus",
+        tag = "55"
+    )]
+    pub contains_eu_political_advertising: i32,
 }
 /// Call reporting setting for a customer. Only mutable in an `update` operation.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -6839,7 +6906,9 @@ pub mod customer_negative_criterion {
         /// Immutable. NegativeKeywordList.
         #[prost(message, tag = "11")]
         NegativeKeywordList(super::super::common::NegativeKeywordListInfo),
-        /// Immutable. IPBLock
+        /// Immutable. IpBlock.
+        ///
+        /// You can exclude up to 500 IP addresses per account.
         #[prost(message, tag = "12")]
         IpBlock(super::super::common::IpBlockInfo),
     }
@@ -7225,6 +7294,12 @@ pub struct YoutubeVideoIdentifier {
     pub video_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// A view with metrics aggregated by ad group and URL or YouTube video.
+///
+/// This view primarily surfaces placement data from the Google Display
+/// Network. While you can select segments like `segments.ad_network_type`,
+/// this view generally does not include placement data from other networks, such
+/// as the Search Partners network. To understand performance on Search
+/// Partners, consider other reports and segmentations.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DetailPlacementView {
     /// Output only. The resource name of the detail placement view.
@@ -7287,6 +7362,20 @@ pub struct DetailedDemographic {
     >,
 }
 /// A display keyword view.
+///
+/// Provides performance data for keywords used in Display Network campaigns.
+/// This view lets you analyze how your display keywords are performing
+/// across various segments.
+///
+/// This view is primarily used to track the effectiveness of keyword targeting
+/// within your Display campaigns. To understand which network the metrics apply
+/// to, you can select the `segments.ad_network_type` field in your query. This
+/// field will segment the data by networks such as the Google Display Network,
+/// YouTube, Gmail, and so on.
+///
+/// You can select fields from this resource along with metrics like impressions,
+/// clicks, and conversions to gauge performance. Attributed resources like
+/// `ad_group` and `campaign` can also be selected without segmenting metrics.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DisplayKeywordView {
     /// Output only. The resource name of the display keyword view.
@@ -8621,7 +8710,7 @@ pub struct Fellowship {
 /// More info: <https://ads.google.com/local-services-ads>
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LocalServicesLead {
-    /// Output only. The resource name of the local services lead data.
+    /// Immutable. The resource name of the local services lead data.
     /// Local Services Lead resource name have the form
     ///
     /// `customers/{customer_id}/localServicesLead/{local_services_lead_id}`
@@ -8682,7 +8771,10 @@ pub struct LocalServicesLead {
 /// Fields containing consumer contact details.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ContactDetails {
-    /// Output only. Consumer phone number in E164 format.
+    /// Output only. Phone number of the consumer for the lead. This can be a real
+    /// phone number or a tracking number. The phone number is returned in E164
+    /// format. See <https://support.google.com/google-ads/answer/16355235?hl=en> to
+    /// learn more. Example: +16504519489.
     #[prost(string, tag = "1")]
     pub phone_number: ::prost::alloc::string::String,
     /// Output only. Consumer email address.
@@ -10892,11 +10984,24 @@ pub struct SharedSet {
     pub reference_count: ::core::option::Option<i64>,
 }
 /// Shopping performance view.
-/// Provides Shopping campaign statistics aggregated at several product dimension
-/// levels. Product dimension values from Merchant Center such as brand,
-/// category, custom attributes, product condition and product type will reflect
-/// the state of each dimension as of the date and time when the corresponding
-/// event was recorded.
+///
+/// Provides Shopping campaign and Performance Max campaign statistics aggregated
+/// at several product dimension levels. Product dimension values from
+/// Merchant Center such as brand, category, custom attributes, product
+/// condition, and product type will reflect the state of each dimension as of
+/// the date and time when the corresponding event was recorded.
+///
+/// The number of impressions and clicks that `shopping_performance_view`
+/// returns stats for may be different from campaign reports.
+/// `shopping_performance_view` shows impressions and clicks on products
+/// appearing in ads, while campaign reports show impressions and clicks on the
+/// ads themselves. Depending on the format, an ad can show from zero to several
+/// products, so the numbers may not match.
+///
+/// In Google Ads UI, you can query impressions and clicks of products
+/// appearing in ads by selecting a column from "Product attributes" in the
+/// report editor. For example, selecting the "Brand" column is equivalent to
+/// selecting `segments.product_brand`.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShoppingPerformanceView {
     /// Output only. The resource name of the Shopping performance view.
@@ -10929,12 +11034,16 @@ pub struct ShoppingPerformanceView {
 /// * Only products that are included by the specified campaign are returned.
 /// * Metrics and some fields (see the per-field documentation) are restricted
 ///   to the specified campaign.
+/// * Only the following metrics are supported for Demand Gen and Video
+///   campaigns: impressions, clicks, ctr.
 ///   Ad group:
 /// * An equality filter on `ad group` and `campaign` is specified. Supported
 ///   campaign types are Shopping, Demand Gen, Video.
 /// * Only products that are included by the specified campaign are returned.
 /// * Metrics and some fields (see the per-field documentation) are restricted
 ///   to the specified ad group.
+/// * Only the following metrics are supported for Demand Gen and Video
+///   campaigns: impressions, clicks, ctr.
 ///   Note that segmentation by date segments is not permitted and will return
 ///   UNSUPPORTED_DATE_SEGMENTATION error. On the other hand, filtering on date
 ///   segments is allowed.
@@ -11331,6 +11440,11 @@ pub struct UserInterest {
     >,
 }
 /// A user list. This is a list of users a customer may target.
+/// The unique key of a user list consists of the following fields: `id`.
+/// Note that the `name` must also be unique for user lists owned
+/// by a given customer, except in some cases where
+/// `access_reason` is set to `SHARED`. Violating the unique name constraint
+/// produces error: `UserListError.INVALID_NAME`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserList {
     /// Immutable. The resource name of the user list.
@@ -11349,8 +11463,9 @@ pub struct UserList {
     /// This field is read-only.
     #[prost(bool, optional, tag = "26")]
     pub read_only: ::core::option::Option<bool>,
-    /// Name of this user list. Depending on its access_reason, the user list name
-    /// may not be unique (for example, if access_reason=SHARED)
+    /// Name of this user list.
+    /// Unique per user list, except in some cases where a user list of the same
+    /// name has `access_reason` set to `SHARED`.
     #[prost(string, optional, tag = "27")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
     /// Description of this user list.

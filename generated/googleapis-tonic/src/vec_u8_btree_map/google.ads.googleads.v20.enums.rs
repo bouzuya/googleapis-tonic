@@ -5060,10 +5060,10 @@ pub mod insights_knowledge_graph_entity_capabilities_enum {
         /// The value is unknown in this version.
         Unknown = 1,
         /// An entity that is supported to use as a trending topic in
-        /// \[ContentCreatorInsightsService.GenerateTrendingInsights\].
+        /// \[ContentCreatorInsightsService.GenerateTrendingInsights\]\[google.ads.googleads.v20.services.ContentCreatorInsightsService.GenerateTrendingInsights\].
         ContentTrendingInsights = 2,
         /// An entity that is supported to use as a creator attribute in
-        /// \[ContentCreatorInsightsService.GenerateCreatorInsights\].
+        /// \[ContentCreatorInsightsService.GenerateCreatorInsights\]\[google.ads.googleads.v20.services.ContentCreatorInsightsService.GenerateCreatorInsights\].
         CreatorAttribute = 3,
     }
     impl InsightsKnowledgeGraphEntityCapabilities {
@@ -22123,9 +22123,13 @@ pub mod offline_user_data_job_status_enum {
         Pending = 2,
         /// Upload(s) have been accepted and data is being processed.
         Running = 3,
-        /// Uploaded data has been successfully processed.
+        /// Uploaded data has been successfully processed. The job might have no
+        /// operations, which can happen if the job was run without any operations
+        /// added, or if all operations failed validation individually when
+        /// attempting to add them to the job.
         Success = 4,
-        /// Uploaded data has failed to be processed.
+        /// Uploaded data has failed to be processed. Some operations may have been
+        /// successfully processed.
         Failed = 5,
     }
     impl OfflineUserDataJobStatus {

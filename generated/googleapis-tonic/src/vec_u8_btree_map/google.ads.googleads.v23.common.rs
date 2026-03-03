@@ -1200,8 +1200,11 @@ pub struct DemandGenProductAdInfo {
     pub call_to_action: ::core::option::Option<AdCallToActionAsset>,
 }
 /// Additional information about the application/tool issuing the request. This
-/// field is only used by \[ContentCreatorInsightsService\],
-/// \[AudienceInsightsService\], and \[ReachPlanService\] APIs.
+/// field is only used by
+/// \[ContentCreatorInsightsService\]\[google.ads.googleads.v23.services.ContentCreatorInsightsService\],
+/// \[AudienceInsightsService\]\[google.ads.googleads.v23.services.AudienceInsightsService\],
+/// and \[ReachPlanService\]\[google.ads.googleads.v23.services.ReachPlanService\]
+/// APIs.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdditionalApplicationInfo {
     /// The unique identifier of the agency proprietary application. This
@@ -3938,7 +3941,8 @@ pub struct UserInterestAttributeMetadata {
 /// Metadata associated with a Knowledge Graph Entity attribute.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KnowledgeGraphAttributeMetadata {
-    /// The capabilities of the entity used in \[ContentCreatorInsightsService\]\[\].
+    /// The capabilities of the entity used in
+    /// \[ContentCreatorInsightsService\]\[google.ads.googleads.v23.services.ContentCreatorInsightsService\].
     #[prost(
         enumeration = "super::enums::insights_knowledge_graph_entity_capabilities_enum::InsightsKnowledgeGraphEntityCapabilities",
         repeated,
@@ -6178,6 +6182,31 @@ pub struct Metrics {
     pub cost_converted_currency_per_platform_comparable_conversion: ::core::option::Option<
         f64,
     >,
+    /// This metric counts the unique individuals who were shown your video ad two
+    /// or more times within the selected date range. This metric cannot be
+    /// aggregated, and can only be requested for date ranges of 31 days or less.
+    #[prost(int64, optional, tag = "393")]
+    pub unique_users_two_plus: ::core::option::Option<i64>,
+    /// This metric counts the unique individuals who were shown your video ad
+    /// three or more times within the selected date range. This metric cannot be
+    /// aggregated, and can only be requested for date ranges of 31 days or less.
+    #[prost(int64, optional, tag = "394")]
+    pub unique_users_three_plus: ::core::option::Option<i64>,
+    /// This metric counts the unique individuals who were shown your video ad four
+    /// or more times within the selected date range. This metric cannot be
+    /// aggregated, and can only be requested for date ranges of 31 days or less.
+    #[prost(int64, optional, tag = "395")]
+    pub unique_users_four_plus: ::core::option::Option<i64>,
+    /// This metric counts the unique individuals who were shown your video ad five
+    /// or more times within the selected date range. This metric cannot be
+    /// aggregated, and can only be requested for date ranges of 31 days or less.
+    #[prost(int64, optional, tag = "396")]
+    pub unique_users_five_plus: ::core::option::Option<i64>,
+    /// This metric counts the unique individuals who were shown your video ad ten
+    /// or more times within the selected date range. This metric cannot be
+    /// aggregated, and can only be requested for date ranges of 31 days or less.
+    #[prost(int64, optional, tag = "397")]
+    pub unique_users_ten_plus: ::core::option::Option<i64>,
     /// The conversion value rule adjustment from biddable conversions in all
     /// conversion categories.
     #[prost(double, optional, tag = "398")]

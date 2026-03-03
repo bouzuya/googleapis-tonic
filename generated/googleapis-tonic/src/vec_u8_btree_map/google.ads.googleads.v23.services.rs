@@ -16877,6 +16877,11 @@ pub struct GoogleAdsRow {
     pub android_privacy_shared_key_google_network_type: ::core::option::Option<
         super::resources::AndroidPrivacySharedKeyGoogleNetworkType,
     >,
+    /// The YouTube video upload referenced in the query.
+    #[prost(message, optional, tag = "245")]
+    pub you_tube_video_upload: ::core::option::Option<
+        super::resources::YouTubeVideoUpload,
+    >,
     /// The applied incentive referenced in the query.
     #[prost(message, optional, tag = "246")]
     pub applied_incentive: ::core::option::Option<super::resources::AppliedIncentive>,
@@ -18280,6 +18285,10 @@ pub struct GenerateBenchmarksMetricsRequest {
     /// support a list of product IDs or a list of marketing objectives.
     #[prost(message, optional, tag = "5")]
     pub product_filter: ::core::option::Option<ProductFilter>,
+    /// Optional. The set of dimensions to group metrics by. If multiple dimensions
+    /// are selected, cross-dimension breakdowns are returned.
+    #[prost(message, optional, tag = "9")]
+    pub breakdown_definition: ::core::option::Option<BreakdownDefinition>,
     /// Optional. The three-character ISO 4217 currency code. If unspecified, the
     /// default currency for monetary values is USD.
     #[prost(string, tag = "6")]
@@ -18354,9 +18363,24 @@ pub mod product_filter {
         MarketingObjectiveList(MarketingObjectiveList),
     }
 }
+/// The set of dimensions to group metrics by.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BreakdownDefinition {
+    /// A date breakdown using the selected granularity. The effective date range
+    /// is extended to include the full time periods that overlap with the selected
+    /// start and end dates. For example, a monthly breakdown with a start date of
+    /// 2025-06-15 will include a breakdown for June. Weeks start on Sunday and end
+    /// on Saturday. This is different from the ISO 8601 standard, where weeks
+    /// start on Monday.
+    #[prost(
+        enumeration = "super::enums::benchmarks_time_granularity_enum::BenchmarksTimeGranularity",
+        tag = "1"
+    )]
+    pub date_breakdown: i32,
+}
 /// Response message for
 /// \[BenchmarksService.GenerateBenchmarksMetrics\]\[google.ads.googleads.v23.services.BenchmarksService.GenerateBenchmarksMetrics\].
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateBenchmarksMetricsResponse {
     /// Metrics belonging to the customer.
     #[prost(message, optional, tag = "1")]
@@ -18364,6 +18388,30 @@ pub struct GenerateBenchmarksMetricsResponse {
     /// Metrics for the selected benchmarks source.
     #[prost(message, optional, tag = "2")]
     pub average_benchmarks_metrics: ::core::option::Option<Metrics>,
+    /// Breakdown metrics grouped by dimensions.
+    #[prost(message, repeated, tag = "3")]
+    pub breakdown_metrics: ::prost::alloc::vec::Vec<BreakdownMetrics>,
+}
+/// Metrics for a given breakdown.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BreakdownMetrics {
+    /// Dimensions by which the breakdown metrics are grouped by.
+    #[prost(message, optional, tag = "1")]
+    pub breakdown_key: ::core::option::Option<BreakdownKey>,
+    /// Metrics belonging to the customer.
+    #[prost(message, optional, tag = "2")]
+    pub customer_metrics: ::core::option::Option<Metrics>,
+    /// Metrics for the selected benchmarks source.
+    #[prost(message, optional, tag = "3")]
+    pub average_benchmarks_metrics: ::core::option::Option<Metrics>,
+}
+/// Dimensions by which the breakdown metrics are grouped by.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BreakdownKey {
+    /// Dates used for the breakdown. For example, this represents the start and
+    /// end dates of the week for a weekly breakdown.
+    #[prost(message, optional, tag = "1")]
+    pub dates: ::core::option::Option<super::common::DateRange>,
 }
 /// All metrics returned against a criteria.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -19498,8 +19546,10 @@ pub mod generate_creator_insights_request {
             super::super::common::AudienceInsightsAttribute,
         >,
         /// Optional. When true, we will expand the search to beyond just the
-        /// entities specified in \[brand_entities\] to other related knowledge graph
-        /// entities similar to the brand. The default value is `false`.
+        /// entities specified in
+        /// \[brand_entities\]\[google.ads.googleads.v23.services.GenerateCreatorInsightsRequest.SearchBrand.brand_entities\]
+        /// to other related knowledge graph entities similar to the brand. The
+        /// default value is `false`.
         #[prost(bool, tag = "2")]
         pub include_related_topics: bool,
     }
@@ -19736,6 +19786,9 @@ pub struct SearchTopics {
     /// Required. A list of knowledge graph entities to retrieve trend information
     /// for. Supported entities are tagged with
     /// \[CONTENT_TRENDING_INSIGHTS\]\[google.ads.googleads.v23.enums.InsightsKnowledgeGraphEntityCapabilitiesEnum.InsightsKnowledgeGraphEntityCapabilities.CONTENT_TRENDING_INSIGHTS\].
+    /// Use
+    /// \[AudienceInsightsService.ListAudienceInsightsAttributes\]\[google.ads.googleads.v23.services.AudienceInsightsService.ListAudienceInsightsAttributes\]
+    /// to get the list of supported entities.
     #[prost(message, repeated, tag = "1")]
     pub entities: ::prost::alloc::vec::Vec<super::common::AudienceInsightsEntity>,
 }
@@ -19747,12 +19800,20 @@ pub struct TrendInsight {
     pub trend_attribute: ::core::option::Option<
         super::common::AudienceInsightsAttributeMetadata,
     >,
-    /// Metrics associated with this trend.
+    /// Metrics associated with this trend. These metrics are for the latest
+    /// available month and the comparison period is 3 months.
     #[prost(message, optional, tag = "2")]
     pub trend_metrics: ::core::option::Option<TrendInsightMetrics>,
     /// The direction of trend (such as RISING or DECLINING).
     #[prost(enumeration = "super::enums::insights_trend_enum::InsightsTrend", tag = "3")]
     pub trend: i32,
+    /// 12 months of historical data for the trend, including the most recent month
+    /// the TrendInsight represents. Each data point represents 1 month of data and
+    /// the comparison period is 1 month. The data points are ordered from most
+    /// recent month to least recent month. Only populated for trends using
+    /// search_topics.
+    #[prost(message, repeated, tag = "6")]
+    pub trend_data_points: ::prost::alloc::vec::Vec<TrendInsightDataPoint>,
     /// Related videos for this topic. Only populated for trends using
     /// search_topics.
     #[prost(message, repeated, tag = "4")]
@@ -19767,20 +19828,36 @@ pub struct TrendInsight {
 /// Metrics associated with a trend insight.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TrendInsightMetrics {
-    /// The number of views for this trend. This is only populated for SearchTopics
-    /// requests.
+    /// The number of views for this trend. This is only populated for the latest
+    /// month of data for SearchTopics requests.
     #[prost(int64, tag = "1")]
     pub views_count: i64,
+    /// Views value normalized to be in the range 0-100. This is only populated for
+    /// SearchTopics requests.
+    #[prost(int64, tag = "4")]
+    pub views_indexed_value: i64,
     /// The fraction (from 0 to 1 inclusive) of the requested audience that has
     /// has searched or viewed this trend. This is only populated for
     /// SearchAudience requests.
     #[prost(double, tag = "2")]
     pub audience_share: f64,
     /// The percentage of the change in the trend's value over the comparison
-    /// period, where 1.0 represents 100%. If this is not set, it means that the
-    /// trend is emerging.
+    /// period, where 1.0 represents 100%. If this is 0, it means that the trend is
+    /// emerging (new) or sustained (existing but unchanged).
     #[prost(double, tag = "3")]
     pub trend_change_percent: f64,
+}
+/// Trend data for a specific month.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrendInsightDataPoint {
+    /// The month that the trend data point represents in the string format
+    /// "YYYY-MM".
+    #[prost(string, tag = "1")]
+    pub month: ::prost::alloc::string::String,
+    /// Metrics associated with this trend and month. The comparison period for
+    /// these metrics is 1 month.
+    #[prost(message, optional, tag = "2")]
+    pub trend_metrics: ::core::option::Option<TrendInsightMetrics>,
 }
 /// Languages that pertain to a YouTube channel based on the channel content.
 /// Only languages above a certain proportion threshold are included.
@@ -20426,6 +20503,8 @@ pub struct ClickConversion {
     /// you collect on your sites, apps, and other properties and get consent where
     /// required by law or any applicable Google policies. See the
     /// <https://support.google.com/google-ads/answer/2998031> page for more details.
+    /// This field is only available to allowlisted users. To include this field in
+    /// conversion imports, upgrade to the Data Manager API.
     #[prost(string, optional, tag = "27")]
     pub user_ip_address: ::core::option::Option<::prost::alloc::string::String>,
     /// The session attributes for the event.
@@ -20440,10 +20519,14 @@ pub mod click_conversion {
         /// The session attributes for the event, represented as a base64-encoded
         /// JSON string. The content should be generated by Google-provided library.
         /// To set session attributes individually, use
-        /// session_attributes_key_value_pairs instead.
+        /// session_attributes_key_value_pairs instead. This field is only available
+        /// to allowlisted users. To include this field in conversion imports,
+        /// upgrade to the Data Manager API.
         #[prost(bytes, tag = "24")]
         SessionAttributesEncoded(::prost::alloc::vec::Vec<u8>),
         /// The session attributes for the event, represented as key-value pairs.
+        /// This field is only available to allowlisted users. To include this
+        /// field in conversion imports, upgrade to the Data Manager API.
         #[prost(message, tag = "25")]
         SessionAttributesKeyValuePairs(super::SessionAttributesKeyValuePairs),
     }
@@ -29754,6 +29837,251 @@ pub mod user_list_customer_type_service_client {
                     GrpcMethod::new(
                         "google.ads.googleads.v23.services.UserListCustomerTypeService",
                         "MutateUserListCustomerTypes",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Request message for
+/// \[YouTubeVideoUploadService.CreateYouTubeVideoUpload\]\[google.ads.googleads.v23.services.YouTubeVideoUploadService.CreateYouTubeVideoUpload\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct CreateYouTubeVideoUploadRequest {
+    /// Required. The customer ID requesting the upload. Required.
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    /// Required. The initial details of the video to upload. Required.
+    #[prost(message, optional, tag = "2")]
+    pub you_tube_video_upload: ::core::option::Option<
+        super::resources::YouTubeVideoUpload,
+    >,
+}
+/// Response message for
+/// \[YouTubeVideoUploadService.CreateYouTubeVideoUpload\]\[google.ads.googleads.v23.services.YouTubeVideoUploadService.CreateYouTubeVideoUpload\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct CreateYouTubeVideoUploadResponse {
+    /// The resource name of the successfully created YouTube video upload.
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// \[YouTubeVideoUploadService.UpdateYouTubeVideoUpload\]\[google.ads.googleads.v23.services.YouTubeVideoUploadService.UpdateYouTubeVideoUpload\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct UpdateYouTubeVideoUploadRequest {
+    /// Required. The customer ID requesting the YouTube video upload update.
+    /// Required.
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    /// Required. The YouTube video upload resource to be updated. It's expected to
+    /// have a valid resource name. Required.
+    #[prost(message, optional, tag = "2")]
+    pub you_tube_video_upload: ::core::option::Option<
+        super::resources::YouTubeVideoUpload,
+    >,
+    /// Required. FieldMask that determines which resource fields are modified in
+    /// an update.
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Response message for
+/// \[YouTubeVideoUploadService.UpdateYouTubeVideoUpload\]\[google.ads.googleads.v23.services.YouTubeVideoUploadService.UpdateYouTubeVideoUpload\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct UpdateYouTubeVideoUploadResponse {
+    /// The resource name of the successfully updated YouTube video upload.
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// \[YouTubeVideoUploadService.RemoveYouTubeVideoUpload\]\[google.ads.googleads.v23.services.YouTubeVideoUploadService.RemoveYouTubeVideoUpload\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct RemoveYouTubeVideoUploadRequest {
+    /// Required. The customer ID requesting the YouTube video upload deletion.
+    /// Required.
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    /// The resource names of the YouTube video uploads to be removed. Required.
+    #[prost(string, repeated, tag = "2")]
+    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response message for
+/// \[YouTubeVideoUploadService.RemoveYouTubeVideoUpload\]\[google.ads.googleads.v23.services.YouTubeVideoUploadService.RemoveYouTubeVideoUpload\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct RemoveYouTubeVideoUploadResponse {
+    /// The resource names of the successfully removed YouTube video uploads.
+    #[prost(string, repeated, tag = "1")]
+    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Generated client implementations.
+pub mod you_tube_video_upload_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service to manage YouTube video uploads.
+    #[derive(Debug, Clone)]
+    pub struct YouTubeVideoUploadServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> YouTubeVideoUploadServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::Body>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> YouTubeVideoUploadServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            YouTubeVideoUploadServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Uploads a video to Google-managed or advertiser owned (brand) YouTube
+        /// channel.
+        pub async fn create_you_tube_video_upload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateYouTubeVideoUploadRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CreateYouTubeVideoUploadResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v23.services.YouTubeVideoUploadService/CreateYouTubeVideoUpload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v23.services.YouTubeVideoUploadService",
+                        "CreateYouTubeVideoUpload",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates YouTube video's metadata, but only for videos uploaded using this
+        /// API.
+        pub async fn update_you_tube_video_upload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateYouTubeVideoUploadRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateYouTubeVideoUploadResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v23.services.YouTubeVideoUploadService/UpdateYouTubeVideoUpload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v23.services.YouTubeVideoUploadService",
+                        "UpdateYouTubeVideoUpload",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Removes YouTube videos uploaded using this API.
+        pub async fn remove_you_tube_video_upload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RemoveYouTubeVideoUploadRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RemoveYouTubeVideoUploadResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v23.services.YouTubeVideoUploadService/RemoveYouTubeVideoUpload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v23.services.YouTubeVideoUploadService",
+                        "RemoveYouTubeVideoUpload",
                     ),
                 );
             self.inner.unary(req, path, codec).await

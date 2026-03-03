@@ -26229,6 +26229,10 @@ pub struct EvaluationConfig {
     /// Optional. Autorater config for evaluation.
     #[prost(message, optional, tag = "3")]
     pub autorater_config: ::core::option::Option<AutoraterConfig>,
+    /// Optional. Configuration options for inference generation and outputs.
+    /// If not set, default generation parameters are used.
+    #[prost(message, optional, tag = "5")]
+    pub inference_generation_config: ::core::option::Option<GenerationConfig>,
 }
 /// Evaluate Dataset Run Result for Tuning Job.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -26237,11 +26241,15 @@ pub struct EvaluateDatasetRun {
     /// `projects/{project}/locations/{location}/operations/{operation_id}`.
     #[prost(string, tag = "1")]
     pub operation_name: ::prost::alloc::string::String,
+    /// Output only. The resource name of the evaluation run. Format:
+    /// `projects/{project}/locations/{location}/evaluationRuns/{evaluation_run_id}`.
+    #[prost(string, tag = "5")]
+    pub evaluation_run: ::prost::alloc::string::String,
     /// Output only. The checkpoint id used in the evaluation run. Only populated
     /// when evaluating checkpoints.
     #[prost(string, tag = "2")]
     pub checkpoint_id: ::prost::alloc::string::String,
-    /// Output only. Results for EvaluationService.EvaluateDataset.
+    /// Output only. Results for EvaluationService.
     #[prost(message, optional, tag = "3")]
     pub evaluate_dataset_response: ::core::option::Option<EvaluateDatasetResponse>,
     /// Output only. The error of the evaluation run if any.
@@ -46512,14 +46520,14 @@ pub mod reasoning_engine_spec {
         pub container_concurrency: ::core::option::Option<i32>,
     }
     /// Specification for deploying from source code.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SourceCodeSpec {
         /// Specifies where the source code is located.
         #[prost(oneof = "source_code_spec::Source", tags = "1, 3")]
         pub source: ::core::option::Option<source_code_spec::Source>,
         /// Specifies the language-specific configuration for building and running
         /// the code.
-        #[prost(oneof = "source_code_spec::LanguageSpec", tags = "2")]
+        #[prost(oneof = "source_code_spec::LanguageSpec", tags = "2, 5")]
         pub language_spec: ::core::option::Option<source_code_spec::LanguageSpec>,
     }
     /// Nested message and enum types in `SourceCodeSpec`.
@@ -46532,6 +46540,18 @@ pub mod reasoning_engine_spec {
             /// (.tar.gz) file.
             #[prost(bytes = "bytes", tag = "1")]
             pub source_archive: ::prost::bytes::Bytes,
+        }
+        /// The image spec for building an image (within a single build step), based
+        /// on the config file (i.e. Dockerfile) in the source directory.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ImageSpec {
+            /// Optional. Build arguments to be used. They will be passed through
+            /// --build-arg flags.
+            #[prost(map = "string, string", tag = "1")]
+            pub build_args: ::std::collections::HashMap<
+                ::prost::alloc::string::String,
+                ::prost::alloc::string::String,
+            >,
         }
         /// Specifies the configuration for fetching source code from a Git
         /// repository that is managed by Developer Connect. This includes the
@@ -46599,17 +46619,20 @@ pub mod reasoning_engine_spec {
         }
         /// Specifies the language-specific configuration for building and running
         /// the code.
-        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum LanguageSpec {
             /// Configuration for a Python application.
             #[prost(message, tag = "2")]
             PythonSpec(PythonSpec),
+            /// Optional. Configuration for building an image with custom config file.
+            #[prost(message, tag = "5")]
+            ImageSpec(ImageSpec),
         }
     }
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
-    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum DeploymentSource {
         /// Deploy from source code files with a defined entrypoint.
         #[prost(message, tag = "11")]
@@ -47951,6 +47974,18 @@ pub struct Session {
     /// Optional. The display name of the session.
     #[prost(string, tag = "5")]
     pub display_name: ::prost::alloc::string::String,
+    /// The labels with user-defined metadata to organize your Sessions.
+    ///
+    /// Label keys and values can be no longer than 64 characters
+    /// (Unicode codepoints), can only contain lowercase letters, numeric
+    /// characters, underscores and dashes. International characters are allowed.
+    ///
+    /// See <https://goo.gl/xmQnxf> for more information and examples of labels.
+    #[prost(map = "string, string", tag = "8")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// Optional. Session specific memory which stores key conversation points.
     #[prost(message, optional, tag = "10")]
     pub session_state: ::core::option::Option<::prost_types::Struct>,
@@ -47969,9 +48004,11 @@ pub mod session {
         /// Optional. Timestamp of when this session is considered expired.
         /// This is *always* provided on output, regardless of what was sent
         /// on input.
+        /// The minimum value is 24 hours from the time of creation.
         #[prost(message, tag = "13")]
         ExpireTime(::prost_types::Timestamp),
         /// Optional. Input only. The TTL for this session.
+        /// The minimum value is 24 hours.
         #[prost(message, tag = "14")]
         Ttl(::prost_types::Duration),
     }
@@ -48042,6 +48079,12 @@ pub struct EventMetadata {
     /// The custom metadata of the LlmResponse.
     #[prost(message, optional, tag = "7")]
     pub custom_metadata: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. Audio transcription of user input.
+    #[prost(message, optional, tag = "10")]
+    pub input_transcription: ::core::option::Option<Transcription>,
+    /// Optional. Audio transcription of model output.
+    #[prost(message, optional, tag = "11")]
+    pub output_transcription: ::core::option::Option<Transcription>,
 }
 /// Actions are parts of events that are executed by the agent.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -48070,6 +48113,16 @@ pub struct EventActions {
     /// Optional. If set, the event transfers to the specified agent.
     #[prost(string, tag = "8")]
     pub transfer_agent: ::prost::alloc::string::String,
+}
+/// Audio transcription in Server Content.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct Transcription {
+    /// Optional. Transcription text.
+    #[prost(string, tag = "1")]
+    pub text: ::prost::alloc::string::String,
+    /// Optional. The bool indicates the end of the transcription.
+    #[prost(bool, tag = "2")]
+    pub finished: bool,
 }
 /// Request message for
 /// \[SessionService.CreateSession\]\[google.cloud.aiplatform.v1beta1.SessionService.CreateSession\].
@@ -48128,8 +48181,9 @@ pub struct ListSessionsRequest {
     /// Supported fields:
     /// \* `display_name`
     /// \* `user_id`
+    /// \* `labels`
     ///
-    /// Example: `display_name="abc"`, `user_id="123"`.
+    /// Example: `display_name="abc"`, `user_id="123"`, `labels.key="value"`.
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
     /// Optional. A comma-separated list of fields to order by, sorted in ascending
@@ -52002,6 +52056,67 @@ pub struct Claim {
     #[prost(float, optional, tag = "4")]
     pub score: ::core::option::Option<f32>,
 }
+/// Agentic Retrieval Ask API for RAG.
+/// Request message for
+/// \[VertexRagService.AskContexts\]\[google.cloud.aiplatform.v1beta1.VertexRagService.AskContexts\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AskContextsRequest {
+    /// Required. The resource name of the Location from which to retrieve
+    /// RagContexts. The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. Single RAG retrieve query.
+    #[prost(message, optional, tag = "2")]
+    pub query: ::core::option::Option<RagQuery>,
+    /// Optional. The tools to use for AskContexts.
+    #[prost(message, repeated, tag = "3")]
+    pub tools: ::prost::alloc::vec::Vec<Tool>,
+}
+/// Response message for
+/// \[VertexRagService.AskContexts\]\[google.cloud.aiplatform.v1beta1.VertexRagService.AskContexts\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AskContextsResponse {
+    /// The Retrieval Response.
+    #[prost(string, tag = "1")]
+    pub response: ::prost::alloc::string::String,
+    /// The contexts of the query.
+    #[prost(message, optional, tag = "2")]
+    pub contexts: ::core::option::Option<RagContexts>,
+}
+/// Request message for
+/// \[VertexRagService.AsyncRetrieveContexts\]\[google.cloud.aiplatform.v1beta1.VertexRagService.AsyncRetrieveContexts\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AsyncRetrieveContextsRequest {
+    /// Required. The resource name of the Location from which to retrieve
+    /// RagContexts. The users must have permission to make a call in the project.
+    /// Format:
+    /// `projects/{project}/locations/{location}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. Single RAG retrieve query.
+    #[prost(message, optional, tag = "2")]
+    pub query: ::core::option::Option<RagQuery>,
+    /// Optional. The tools to use for AskContexts.
+    #[prost(message, repeated, tag = "3")]
+    pub tools: ::prost::alloc::vec::Vec<Tool>,
+}
+/// Response message for
+/// \[VertexRagService.AsyncRetrieveContexts\]\[google.cloud.aiplatform.v1beta1.VertexRagService.AsyncRetrieveContexts\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AsyncRetrieveContextsResponse {
+    /// The contexts of the query.
+    #[prost(message, optional, tag = "1")]
+    pub contexts: ::core::option::Option<RagContexts>,
+}
+/// Metadata for AsyncRetrieveContextsOperation.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AsyncRetrieveContextsOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+}
 /// Generated client implementations.
 pub mod vertex_rag_service_client {
     #![allow(
@@ -52172,6 +52287,66 @@ pub mod vertex_rag_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.VertexRagService",
                         "CorroborateContent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Agentic Retrieval Ask API for RAG.
+        pub async fn ask_contexts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AskContextsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AskContextsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.VertexRagService/AskContexts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.VertexRagService",
+                        "AskContexts",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Asynchronous API to retrieves relevant contexts for a query.
+        pub async fn async_retrieve_contexts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AsyncRetrieveContextsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.VertexRagService/AsyncRetrieveContexts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.VertexRagService",
+                        "AsyncRetrieveContexts",
                     ),
                 );
             self.inner.unary(req, path, codec).await

@@ -15707,6 +15707,9 @@ pub mod mutate_error_enum {
         OperationDoesNotSupportPartialFailure = 16,
         /// Attempt to write to read-only fields.
         ResourceReadOnly = 13,
+        /// Mutates are generally not allowed if the customer contains non-exempt
+        /// campaigns without the EU political advertising declaration.
+        EuPoliticalAdvertisingDeclarationRequired = 17,
     }
     impl MutateError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -15730,6 +15733,9 @@ pub mod mutate_error_enum {
                     "OPERATION_DOES_NOT_SUPPORT_PARTIAL_FAILURE"
                 }
                 Self::ResourceReadOnly => "RESOURCE_READ_ONLY",
+                Self::EuPoliticalAdvertisingDeclarationRequired => {
+                    "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -15750,6 +15756,9 @@ pub mod mutate_error_enum {
                     Some(Self::OperationDoesNotSupportPartialFailure)
                 }
                 "RESOURCE_READ_ONLY" => Some(Self::ResourceReadOnly),
+                "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED" => {
+                    Some(Self::EuPoliticalAdvertisingDeclarationRequired)
+                }
                 _ => None,
             }
         }
@@ -20841,7 +20850,7 @@ pub struct BudgetPerDayMinimumErrorDetails {
     /// in micros of the advertiser currency. Only set if this error is caused by
     /// the amount field value.
     #[prost(int64, tag = "3")]
-    pub minimum_bugdet_amount_micros: i64,
+    pub minimum_budget_amount_micros: i64,
     /// The minimum value for the budget's total_amount field required by the
     /// campaign given its configured start and end time, in micros of the
     /// advertiser currency. Only set if this error is caused by the total_amount

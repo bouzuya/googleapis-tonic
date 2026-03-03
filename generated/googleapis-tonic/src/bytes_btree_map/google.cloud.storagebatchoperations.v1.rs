@@ -47,7 +47,7 @@ pub struct Job {
     #[prost(oneof = "job::Source", tags = "19")]
     pub source: ::core::option::Option<job::Source>,
     /// Operation to be performed on the objects.
-    #[prost(oneof = "job::Transformation", tags = "5, 6, 8, 20")]
+    #[prost(oneof = "job::Transformation", tags = "5, 6, 8, 20, 23")]
     pub transformation: ::core::option::Option<job::Transformation>,
 }
 /// Nested message and enum types in `Job`.
@@ -131,6 +131,9 @@ pub mod job {
         /// Rewrite the object and updates metadata like KMS key.
         #[prost(message, tag = "20")]
         RewriteObject(super::RewriteObject),
+        /// Update object custom context.
+        #[prost(message, tag = "23")]
+        UpdateObjectCustomContext(super::UpdateObjectCustomContext),
     }
 }
 /// BucketOperation represents a bucket-level breakdown of a Job.
@@ -168,7 +171,7 @@ pub struct BucketOperation {
         bucket_operation::ObjectConfiguration,
     >,
     /// Action to be performed on the objects.
-    #[prost(oneof = "bucket_operation::Transformation", tags = "11, 12, 13, 14")]
+    #[prost(oneof = "bucket_operation::Transformation", tags = "11, 12, 13, 14, 15")]
     pub transformation: ::core::option::Option<bucket_operation::Transformation>,
 }
 /// Nested message and enum types in `BucketOperation`.
@@ -255,6 +258,9 @@ pub mod bucket_operation {
         /// Rewrite the object and updates metadata like KMS key.
         #[prost(message, tag = "14")]
         RewriteObject(super::RewriteObject),
+        /// Update object custom context.
+        #[prost(message, tag = "15")]
+        UpdateObjectCustomContext(super::UpdateObjectCustomContext),
     }
 }
 /// Describes list of buckets and their objects to be transformed.
@@ -525,6 +531,53 @@ pub struct PutMetadata {
     /// in <https://cloud.google.com/storage/docs/object-lock>
     #[prost(message, optional, tag = "8")]
     pub object_retention: ::core::option::Option<ObjectRetention>,
+}
+/// Describes the payload of a user defined object custom context.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ObjectCustomContextPayload {
+    /// The value of the object custom context.
+    /// If set, `value` must NOT be an empty string since it is a required field in
+    /// custom context. If unset, `value` will be ignored and no changes will be
+    /// made to the `value` field of the custom context payload.
+    #[prost(string, optional, tag = "1")]
+    pub value: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Describes a collection of updates to apply to custom contexts identified
+/// by key.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomContextUpdates {
+    /// Optional. Insert or update the existing custom contexts.
+    #[prost(btree_map = "string, message", tag = "1")]
+    pub updates: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ObjectCustomContextPayload,
+    >,
+    /// Optional. Custom contexts to clear by key.
+    /// A key cannot be present in both `updates` and `keys_to_clear`.
+    #[prost(string, repeated, tag = "2")]
+    pub keys_to_clear: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Describes options to update object custom contexts.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateObjectCustomContext {
+    /// One of the actions must be set.
+    #[prost(oneof = "update_object_custom_context::Action", tags = "1, 2")]
+    pub action: ::core::option::Option<update_object_custom_context::Action>,
+}
+/// Nested message and enum types in `UpdateObjectCustomContext`.
+pub mod update_object_custom_context {
+    /// One of the actions must be set.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Action {
+        /// A collection of updates to apply to specific custom contexts.
+        /// Use this to add, update or delete individual contexts by key.
+        #[prost(message, tag = "1")]
+        CustomContextUpdates(super::CustomContextUpdates),
+        /// If set, must be set to true and all existing object custom contexts will
+        /// be deleted.
+        #[prost(bool, tag = "2")]
+        ClearAll(bool),
+    }
 }
 /// A summary of errors by error code, plus a count and sample error log
 /// entries.

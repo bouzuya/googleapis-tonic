@@ -4636,15 +4636,17 @@ pub mod conversation {
 pub struct Deployment {
     /// Identifier. The resource name of the deployment.
     /// Format:
-    /// projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}
+    /// `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. Display name of the deployment.
     #[prost(string, tag = "8")]
     pub display_name: ::prost::alloc::string::String,
-    /// Required. The resource name of the app version to deploy.
+    /// Optional. The resource name of the app version to deploy.
     /// Format:
-    /// projects/{project}/locations/{location}/apps/{app}/versions/{version}
+    /// `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
+    /// Use `projects/{project}/locations/{location}/apps/{app}/versions/-` to use
+    /// the draft app.
     #[prost(string, tag = "2")]
     pub app_version: ::prost::alloc::string::String,
     /// Required. The channel profile used in the deployment.
@@ -5042,7 +5044,7 @@ pub mod bidi_session_server_message {
         /// Optional. Realtime speech recognition result for the audio input.
         #[prost(message, tag = "2")]
         RecognitionResult(super::RecognitionResult),
-        /// Optional. Interruption signal detected from the audio input.
+        /// Optional. Indicates the agent's audio response has been interrupted.
         #[prost(message, tag = "3")]
         InterruptionSignal(super::InterruptionSignal),
         /// Optional. Indicates that the session has ended.

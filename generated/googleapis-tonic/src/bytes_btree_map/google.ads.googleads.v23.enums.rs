@@ -7797,6 +7797,9 @@ pub mod conversion_action_category_enum {
         /// has further completed a chosen stage as defined by the lead gen
         /// advertiser.
         ConvertedLead = 23,
+        /// User watches an ad from a channel and later watches either the same video
+        /// or a video from the same channel as the ad.
+        YoutubeFollowOnViews = 24,
     }
     impl ConversionActionCategory {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -7828,6 +7831,7 @@ pub mod conversion_action_category_enum {
                 Self::StoreSale => "STORE_SALE",
                 Self::QualifiedLead => "QUALIFIED_LEAD",
                 Self::ConvertedLead => "CONVERTED_LEAD",
+                Self::YoutubeFollowOnViews => "YOUTUBE_FOLLOW_ON_VIEWS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7856,6 +7860,7 @@ pub mod conversion_action_category_enum {
                 "STORE_SALE" => Some(Self::StoreSale),
                 "QUALIFIED_LEAD" => Some(Self::QualifiedLead),
                 "CONVERTED_LEAD" => Some(Self::ConvertedLead),
+                "YOUTUBE_FOLLOW_ON_VIEWS" => Some(Self::YoutubeFollowOnViews),
                 _ => None,
             }
         }
@@ -9390,6 +9395,9 @@ pub mod search_term_match_source_enum {
         DynamicSearchAds = 5,
         /// The match is from the search term matching functionality in PMax.
         PerformanceMax = 6,
+        /// The match is from a vertical ads data feed (e.g. Travel Ads entity
+        /// targeting).
+        VerticalAdsDataFeed = 7,
     }
     impl SearchTermMatchSource {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -9405,6 +9413,7 @@ pub mod search_term_match_source_enum {
                 Self::AiMaxBroadMatch => "AI_MAX_BROAD_MATCH",
                 Self::DynamicSearchAds => "DYNAMIC_SEARCH_ADS",
                 Self::PerformanceMax => "PERFORMANCE_MAX",
+                Self::VerticalAdsDataFeed => "VERTICAL_ADS_DATA_FEED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -9417,6 +9426,7 @@ pub mod search_term_match_source_enum {
                 "AI_MAX_BROAD_MATCH" => Some(Self::AiMaxBroadMatch),
                 "DYNAMIC_SEARCH_ADS" => Some(Self::DynamicSearchAds),
                 "PERFORMANCE_MAX" => Some(Self::PerformanceMax),
+                "VERTICAL_ADS_DATA_FEED" => Some(Self::VerticalAdsDataFeed),
                 _ => None,
             }
         }
@@ -15134,6 +15144,64 @@ pub mod benchmarks_source_type_enum {
         }
     }
 }
+/// Container for enum describing time granularities for aggregating YouTube ad
+/// benchmarks data.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BenchmarksTimeGranularityEnum {}
+/// Nested message and enum types in `BenchmarksTimeGranularityEnum`.
+pub mod benchmarks_time_granularity_enum {
+    /// Possible time granularities for aggregating YouTube ad benchmarks data.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum BenchmarksTimeGranularity {
+        /// Not specified.
+        Unspecified = 0,
+        /// Used as a return value only. Represents value unknown in this version.
+        Unknown = 1,
+        /// Aggregate by week.
+        Week = 2,
+        /// Aggregate by month.
+        Month = 3,
+        /// Aggregate by quarter.
+        Quarter = 4,
+    }
+    impl BenchmarksTimeGranularity {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Week => "WEEK",
+                Self::Month => "MONTH",
+                Self::Quarter => "QUARTER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "WEEK" => Some(Self::Week),
+                "MONTH" => Some(Self::Month),
+                "QUARTER" => Some(Self::Quarter),
+                _ => None,
+            }
+        }
+    }
+}
 /// Container for enum describing possible bid modifier sources.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BidModifierSourceEnum {}
@@ -15701,6 +15769,72 @@ pub mod billing_setup_status_enum {
                 "APPROVED_HELD" => Some(Self::ApprovedHeld),
                 "APPROVED" => Some(Self::Approved),
                 "CANCELLED" => Some(Self::Cancelled),
+                _ => None,
+            }
+        }
+    }
+}
+/// Container for enum with booking status.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BookingStatusEnum {}
+/// Nested message and enum types in `BookingStatusEnum`.
+pub mod booking_status_enum {
+    /// Booking status.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum BookingStatus {
+        /// Not specified.
+        Unspecified = 0,
+        /// Used for return value only. Represents value unknown in this version.
+        Unknown = 1,
+        /// The booking is active and holds inventory for the campaign.
+        Booked = 2,
+        /// The campaign is holding inventory, but the booking is not confirmed.
+        Held = 3,
+        /// The campaign has ended and is no longer holding inventory.
+        CampaignEnded = 4,
+        /// The hold on the inventory has expired.
+        HoldExpired = 5,
+        /// The campaign was booked, but was in a non-servable state for too long and
+        /// the booking was cancelled by the system.
+        BookingCancelled = 6,
+    }
+    impl BookingStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Booked => "BOOKED",
+                Self::Held => "HELD",
+                Self::CampaignEnded => "CAMPAIGN_ENDED",
+                Self::HoldExpired => "HOLD_EXPIRED",
+                Self::BookingCancelled => "BOOKING_CANCELLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "BOOKED" => Some(Self::Booked),
+                "HELD" => Some(Self::Held),
+                "CAMPAIGN_ENDED" => Some(Self::CampaignEnded),
+                "HOLD_EXPIRED" => Some(Self::HoldExpired),
+                "BOOKING_CANCELLED" => Some(Self::BookingCancelled),
                 _ => None,
             }
         }
@@ -16624,6 +16758,22 @@ pub mod campaign_primary_status_reason_enum {
         /// The campaign has location restrictions but does not specify location
         /// targeting.
         MissingLocationTargeting = 39,
+        /// The campaign is a campaign with the FIXED_CPM bidding strategy but is not
+        /// booked. Contributes to CampaignPrimaryStatus.NOT_ELIGIBLE when the
+        /// campaign is not paused, and CampaignPrimaryStatus.PAUSED when the
+        /// campaign is paused.
+        CampaignNotBooked = 40,
+        /// The campaign is a campaign with the FIXED_CPM bidding strategy for which
+        /// inventory was held, with the hold expiring. The hold expiry time can be
+        /// read from Campaign.booking_details.hold_expiration_date_time. Contributes
+        /// to CampaignPrimaryStatus.PAUSED.
+        BookingHoldExpiring = 41,
+        /// The campaign is a campaign with the FIXED_CPM bidding strategy with the
+        /// inventory hold expired. Contributes to CampaignPrimaryStatus.PAUSED.
+        BookingHoldExpired = 42,
+        /// The campaign is a campaign with the FIXED_CPM bidding strategy that has
+        /// been auto-cancelled. Contributes to CampaignPrimaryStatus.NOT_ELIGIBLE.
+        BookingCancelled = 43,
     }
     impl CampaignPrimaryStatusReason {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -16678,6 +16828,10 @@ pub mod campaign_primary_status_reason_enum {
                 Self::NoAssetGroups => "NO_ASSET_GROUPS",
                 Self::AssetGroupsPaused => "ASSET_GROUPS_PAUSED",
                 Self::MissingLocationTargeting => "MISSING_LOCATION_TARGETING",
+                Self::CampaignNotBooked => "CAMPAIGN_NOT_BOOKED",
+                Self::BookingHoldExpiring => "BOOKING_HOLD_EXPIRING",
+                Self::BookingHoldExpired => "BOOKING_HOLD_EXPIRED",
+                Self::BookingCancelled => "BOOKING_CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -16737,6 +16891,10 @@ pub mod campaign_primary_status_reason_enum {
                 "NO_ASSET_GROUPS" => Some(Self::NoAssetGroups),
                 "ASSET_GROUPS_PAUSED" => Some(Self::AssetGroupsPaused),
                 "MISSING_LOCATION_TARGETING" => Some(Self::MissingLocationTargeting),
+                "CAMPAIGN_NOT_BOOKED" => Some(Self::CampaignNotBooked),
+                "BOOKING_HOLD_EXPIRING" => Some(Self::BookingHoldExpiring),
+                "BOOKING_HOLD_EXPIRED" => Some(Self::BookingHoldExpired),
+                "BOOKING_CANCELLED" => Some(Self::BookingCancelled),
                 _ => None,
             }
         }
@@ -23086,6 +23244,55 @@ pub mod media_type_enum {
         }
     }
 }
+/// Container for enum describing the type of a text generation restriction.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct MessagingRestrictionTypeEnum {}
+/// Nested message and enum types in `MessagingRestrictionTypeEnum`.
+pub mod messaging_restriction_type_enum {
+    /// The type of a text generation restriction.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum MessagingRestrictionType {
+        /// Not specified.
+        Unspecified = 0,
+        /// Used for return value only. Represents value unknown in this version.
+        Unknown = 1,
+        /// Exclude text assets that are not compliant with this restriction.
+        RestrictionBasedExclusion = 2,
+    }
+    impl MessagingRestrictionType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::RestrictionBasedExclusion => "RESTRICTION_BASED_EXCLUSION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "RESTRICTION_BASED_EXCLUSION" => Some(Self::RestrictionBasedExclusion),
+                _ => None,
+            }
+        }
+    }
+}
 /// Container for enum describing the types of mobile device.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MobileDeviceTypeEnum {}
@@ -24775,6 +24982,8 @@ pub mod reach_plan_surface_enum {
         InStreamSkippable = 5,
         /// Shorts ad surface.
         Shorts = 6,
+        /// Google Display Network ad surface.
+        GoogleDisplayNetwork = 9,
     }
     impl ReachPlanSurface {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -24792,6 +25001,7 @@ pub mod reach_plan_surface_enum {
                 Self::InStreamNonSkippable => "IN_STREAM_NON_SKIPPABLE",
                 Self::InStreamSkippable => "IN_STREAM_SKIPPABLE",
                 Self::Shorts => "SHORTS",
+                Self::GoogleDisplayNetwork => "GOOGLE_DISPLAY_NETWORK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -24806,6 +25016,7 @@ pub mod reach_plan_surface_enum {
                 "IN_STREAM_NON_SKIPPABLE" => Some(Self::InStreamNonSkippable),
                 "IN_STREAM_SKIPPABLE" => Some(Self::InStreamSkippable),
                 "SHORTS" => Some(Self::Shorts),
+                "GOOGLE_DISPLAY_NETWORK" => Some(Self::GoogleDisplayNetwork),
                 _ => None,
             }
         }
@@ -28229,6 +28440,133 @@ pub mod video_ad_sequence_minimum_duration_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "WEEK" => Some(Self::Week),
                 "MONTH" => Some(Self::Month),
+                _ => None,
+            }
+        }
+    }
+}
+/// Container for enum describing the privacy status of a YouTube video.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct YouTubeVideoPrivacyEnum {}
+/// Nested message and enum types in `YouTubeVideoPrivacyEnum`.
+pub mod you_tube_video_privacy_enum {
+    /// Describes the privacy status of a YouTube video.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum YouTubeVideoPrivacy {
+        /// Not specified.
+        Unspecified = 0,
+        /// The value is unknown in this version.
+        Unknown = 1,
+        /// Video is public.
+        Public = 2,
+        /// Video is unlisted.
+        Unlisted = 3,
+    }
+    impl YouTubeVideoPrivacy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Public => "PUBLIC",
+                Self::Unlisted => "UNLISTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "PUBLIC" => Some(Self::Public),
+                "UNLISTED" => Some(Self::Unlisted),
+                _ => None,
+            }
+        }
+    }
+}
+/// Container for enum describing the state of a YouTube video upload.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct YouTubeVideoUploadStateEnum {}
+/// Nested message and enum types in `YouTubeVideoUploadStateEnum`.
+pub mod you_tube_video_upload_state_enum {
+    /// Represents the current state of a video within its upload and processing
+    /// lifecycle. It tracks the full progression from upload initiation through
+    /// processing and completion, including failure, rejection, or deletion
+    /// outcomes. It helps determine whether a video is still being uploaded, ready
+    /// for use, or no longer available.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum YouTubeVideoUploadState {
+        /// Not specified.
+        Unspecified = 0,
+        /// The value is unknown in this version.
+        Unknown = 1,
+        /// The video is currently being uploaded.
+        Pending = 2,
+        /// The video was uploaded and is being processed.
+        Uploaded = 3,
+        /// The video was successfully uploaded and processed.
+        Processed = 4,
+        /// The video upload or processing did not complete successfully.
+        Failed = 5,
+        /// The video was not accepted due to validation or policy reasons.
+        Rejected = 6,
+        /// The video upload state is unavailable. It may have been removed from
+        /// YouTube.
+        Unavailable = 7,
+    }
+    impl YouTubeVideoUploadState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Pending => "PENDING",
+                Self::Uploaded => "UPLOADED",
+                Self::Processed => "PROCESSED",
+                Self::Failed => "FAILED",
+                Self::Rejected => "REJECTED",
+                Self::Unavailable => "UNAVAILABLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "PENDING" => Some(Self::Pending),
+                "UPLOADED" => Some(Self::Uploaded),
+                "PROCESSED" => Some(Self::Processed),
+                "FAILED" => Some(Self::Failed),
+                "REJECTED" => Some(Self::Rejected),
+                "UNAVAILABLE" => Some(Self::Unavailable),
                 _ => None,
             }
         }

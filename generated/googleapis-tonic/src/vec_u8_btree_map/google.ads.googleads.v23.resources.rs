@@ -1342,8 +1342,17 @@ pub struct AdGroupAdAssetCombinationView {
     #[prost(bool, optional, tag = "3")]
     pub enabled: ::core::option::Option<bool>,
 }
-/// A link between an AdGroupAd and an Asset. AdGroupAdAssetView supports AppAds,
-/// Demand Gen campaigns, and Responsive Search Ads.
+/// Represents a link between an AdGroupAd and an Asset.
+/// This view provides insights into the performance of assets within specific
+/// ads.
+///
+/// AdGroupAdAssetView supports the following ad types:
+///
+/// * App Ads
+/// * Demand Gen campaigns
+/// * Responsive Search Ads
+///
+/// It does not support Responsive Display Ads.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAdAssetView {
     /// Output only. The resource name of the ad group ad asset view.
@@ -4186,6 +4195,11 @@ pub struct Campaign {
     /// used for Performance Max campaigns that have Brand Guidelines enabled.
     #[prost(message, optional, tag = "98")]
     pub brand_guidelines: ::core::option::Option<campaign::BrandGuidelines>,
+    /// Settings to control automatically generated text assets. Only available
+    /// in Performance Max and Search campaigns (Brand Guidelines does not need
+    /// to be enabled).
+    #[prost(message, optional, tag = "107")]
+    pub text_guidelines: ::core::option::Option<campaign::TextGuidelines>,
     /// Third-Party integration partners.
     #[prost(message, optional, tag = "100")]
     pub third_party_integration_partners: ::core::option::Option<
@@ -4209,6 +4223,14 @@ pub struct Campaign {
         tag = "103"
     )]
     pub feed_types: ::prost::alloc::vec::Vec<i32>,
+    /// Output only. Indicates whether this campaign is missing a declaration about
+    /// whether it contains political advertising targeted towards the EU and is
+    /// ineligible for any exemptions. If this field is true, use the
+    /// contains_eu_political_advertising field to add the required declaration.
+    ///
+    /// This field is read-only.
+    #[prost(bool, tag = "108")]
+    pub missing_eu_political_advertising_declaration: bool,
     /// The bidding strategy for the campaign.
     ///
     /// Must be either portfolio (created through BiddingStrategy service) or
@@ -4493,6 +4515,18 @@ pub mod campaign {
         pub video_ad_sequence: ::core::option::Option<
             video_campaign_settings::VideoAdSequence,
         >,
+        /// Ad category self-disclosure for campaigns with the FIXED_CPM or
+        /// FIXED_SHARE_OF_VOICE bidding strategies.
+        #[prost(message, optional, tag = "5")]
+        pub reservation_ad_category_self_disclosure: ::core::option::Option<
+            video_campaign_settings::ReservationAdCategorySelfDisclosure,
+        >,
+        /// Output only. Booking information for campaigns with the FIXED_CPM or
+        /// FIXED_SHARE_OF_VOICE bidding strategies.
+        #[prost(message, optional, tag = "6")]
+        pub booking_details: ::core::option::Option<
+            video_campaign_settings::BookingDetails,
+        >,
         /// Controls for defining video responsive ads behavior.
         #[prost(oneof = "video_campaign_settings::FluidityControl", tags = "2, 3")]
         pub fluidity_control: ::core::option::Option<
@@ -4598,6 +4632,43 @@ pub mod campaign {
             )]
             pub previous_step_interaction_type: i32,
         }
+        /// Container for ad category self-disclosure for campaigns with the
+        /// FIXED_CPM or FIXED_SHARE_OF_VOICE bidding strategies.
+        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct ReservationAdCategorySelfDisclosure {
+            /// The campaign is expected to contain gambling-related ads.
+            #[prost(bool, tag = "1")]
+            pub gambling: bool,
+            /// The campaign is expected to contain alcohol-related ads.
+            #[prost(bool, tag = "2")]
+            pub alcohol: bool,
+            /// The campaign is expected to contain politics-related ads.
+            #[prost(bool, tag = "3")]
+            pub politics: bool,
+        }
+        /// Container for booking details for campaigns with the FIXED_CPM or
+        /// FIXED_SHARE_OF_VOICE bidding strategies.
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct BookingDetails {
+            /// Output only. The status of the booking.
+            #[prost(
+                enumeration = "super::super::super::enums::booking_status_enum::BookingStatus",
+                tag = "1"
+            )]
+            pub status: i32,
+            /// Output only. Time until which booked inventory will be held or has been
+            /// held for this campaign. Available for status HELD and HOLD_EXPIRED.
+            /// Format is "yyyy-MM-dd HH:mm:ss" in the customer's time zone.
+            #[prost(string, tag = "2")]
+            pub hold_expiration_date_time: ::prost::alloc::string::String,
+            /// Output only. Time when the booked inventory of this campaign will be
+            /// cancelled or has been cancelled. Available for primary status
+            /// NOT_ELIGIBLE if the campaign will be cancelled and for primary status
+            /// reason BOOKING_CANCELLED. Format is "yyyy-MM-dd HH:mm:ss" in the
+            /// customer's time zone.
+            #[prost(string, tag = "3")]
+            pub cancellation_date_time: ::prost::alloc::string::String,
+        }
         /// Controls for defining video responsive ads behavior.
         #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
         pub enum FluidityControl {
@@ -4666,6 +4737,35 @@ pub mod campaign {
         /// Playfair Display, Roboto Slab.
         #[prost(string, tag = "3")]
         pub predefined_font_family: ::prost::alloc::string::String,
+    }
+    /// Settings to control automatically generated text assets.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TextGuidelines {
+        /// Exact words or phrases that will be excluded from generated text
+        /// assets. At most 25 exclusions may be provided. Valid exclusions may
+        /// contain a maximum of 30 characters.
+        #[prost(string, repeated, tag = "1")]
+        pub term_exclusions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Freeform instructions that will be used to guide text asset generation
+        /// using LLM inference. At most 40 restrictions may be provided.
+        #[prost(message, repeated, tag = "2")]
+        pub messaging_restrictions: ::prost::alloc::vec::Vec<MessagingRestriction>,
+    }
+    /// Freeform instructions that will be used to guide text asset generation
+    /// using LLM inference.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct MessagingRestriction {
+        /// Freeform instructions to guide text asset generation using LLM
+        /// inference. Valid instructions may contain a maximum of 300 characters.
+        #[prost(string, tag = "1")]
+        pub restriction_text: ::prost::alloc::string::String,
+        /// Determines how the guideline is applied. Only
+        /// `RESTRICTION_BASED_EXCLUSION` is currently supported.
+        #[prost(
+            enumeration = "super::super::enums::messaging_restriction_type_enum::MessagingRestrictionType",
+            tag = "2"
+        )]
+        pub restriction_type: i32,
     }
     /// Settings for AI Max in search campaigns.
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
@@ -5015,14 +5115,27 @@ pub struct CampaignBudget {
     /// in UTF-8 bytes, (trimmed).
     #[prost(string, optional, tag = "20")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
-    /// The amount of the budget, in the local currency for the account.
-    /// Amount is specified in micros, where one million is equivalent to one
-    /// currency unit. Monthly spend is capped at 30.4 times this amount.
+    /// The average daily amount to be spent by the campaign.
+    /// This field is used when the CampaignBudget `period` is set to `DAILY`,
+    /// which is the default.
+    ///
+    /// Amount is specified in micros in the account's local currency.
+    /// One million micros is equivalent to one currency unit.
+    /// The effective monthly spend is capped at 30.4 times this daily amount.
+    ///
+    /// This field is mutually exclusive with 'total_amount_micros'. Only one
+    /// of 'amount_micros' or 'total_amount_micros' should be set.
     #[prost(int64, optional, tag = "21")]
     pub amount_micros: ::core::option::Option<i64>,
-    /// The lifetime amount of the budget, in the local currency for the account.
-    /// Amount is specified in micros, where one million is equivalent to one
-    /// currency unit.
+    /// The total amount to be spent by the campaign over its entire duration.
+    /// This field is used *only* when the CampaignBudget `period` is set to
+    /// `CUSTOM_PERIOD`. It represents the budget cap for the campaign's lifetime,
+    /// rather than a daily limit. The amount is specified in micros in the
+    /// account's local currency. One million micros is equivalent to one currency
+    /// unit.
+    ///
+    /// This field is mutually exclusive with 'amount_micros'. Only one of
+    /// 'total_amount_micros' or 'amount_micros' should be set.
     #[prost(int64, optional, tag = "22")]
     pub total_amount_micros: ::core::option::Option<i64>,
     /// Output only. The status of this campaign budget. This field is read-only.
@@ -6868,6 +6981,16 @@ pub struct Customer {
     /// Video specific information about a Customer.
     #[prost(message, optional, tag = "54")]
     pub video_customer: ::core::option::Option<VideoCustomer>,
+    /// Output only. Returns the advertiser self-declaration status of whether this
+    /// customer contains political advertising content targeted towards the
+    /// European Union. You can use the Google Ads UI to update this account-level
+    /// declaration, or use the API to update the self-declaration status of
+    /// individual campaigns.
+    #[prost(
+        enumeration = "super::enums::eu_political_advertising_status_enum::EuPoliticalAdvertisingStatus",
+        tag = "55"
+    )]
+    pub contains_eu_political_advertising: i32,
 }
 /// Call reporting setting for a customer. Only mutable in an `update` operation.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -9347,7 +9470,10 @@ pub struct LocalServicesLead {
 /// Fields containing consumer contact details.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ContactDetails {
-    /// Output only. Consumer phone number in E164 format.
+    /// Output only. Phone number of the consumer for the lead. This can be a real
+    /// phone number or a tracking number. The phone number is returned in E164
+    /// format. See <https://support.google.com/google-ads/answer/16355235?hl=en> to
+    /// learn more. Example: +16504519489.
     #[prost(string, tag = "1")]
     pub phone_number: ::prost::alloc::string::String,
     /// Output only. Consumer email address.
@@ -10390,6 +10516,11 @@ pub struct ProductLink {
     /// A product linked to this account.
     #[prost(oneof = "product_link::LinkedProduct", tags = "4, 5, 12, 13")]
     pub linked_product: ::core::option::Option<product_link::LinkedProduct>,
+    /// The properties for the product link.
+    #[prost(oneof = "product_link::ProductLinkProperties", tags = "15")]
+    pub product_link_properties: ::core::option::Option<
+        product_link::ProductLinkProperties,
+    >,
 }
 /// Nested message and enum types in `ProductLink`.
 pub mod product_link {
@@ -10408,6 +10539,14 @@ pub mod product_link {
         /// Output only. Advertising Partner link.
         #[prost(message, tag = "13")]
         AdvertisingPartner(super::AdvertisingPartnerIdentifier),
+    }
+    /// The properties for the product link.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum ProductLinkProperties {
+        /// Output only. Advertising Partner link properties. These properties are
+        /// only applicable when the link is for an Advertising Partner.
+        #[prost(message, tag = "15")]
+        AdvertisingPartnerProperties(super::AdvertisingPartnerProperties),
     }
 }
 /// The identifier for Data Partner account.
@@ -10450,6 +10589,15 @@ pub struct AdvertisingPartnerIdentifier {
     #[prost(string, optional, tag = "1")]
     pub customer: ::core::option::Option<::prost::alloc::string::String>,
 }
+/// Properties specific to an Advertising Partner link.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AdvertisingPartnerProperties {
+    /// Output only. The allowed domain for the Advertising Partner link. The
+    /// advertising partner will only be able to advertise on this domain. The
+    /// field is immutable.
+    #[prost(string, optional, tag = "1")]
+    pub allowed_domain: ::core::option::Option<::prost::alloc::string::String>,
+}
 /// Represents an invitation for data sharing connection between a Google Ads
 /// account and another account.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -10482,6 +10630,11 @@ pub struct ProductLinkInvitation {
     /// An account invited to link to this Google Ads account.
     #[prost(oneof = "product_link_invitation::InvitedAccount", tags = "4, 5, 7")]
     pub invited_account: ::core::option::Option<product_link_invitation::InvitedAccount>,
+    /// The properties for the product link invitation.
+    #[prost(oneof = "product_link_invitation::InvitedAccountProperties", tags = "8")]
+    pub invited_account_properties: ::core::option::Option<
+        product_link_invitation::InvitedAccountProperties,
+    >,
 }
 /// Nested message and enum types in `ProductLinkInvitation`.
 pub mod product_link_invitation {
@@ -10497,6 +10650,15 @@ pub mod product_link_invitation {
         /// Output only. Advertising Partner link invitation.
         #[prost(message, tag = "7")]
         AdvertisingPartner(super::AdvertisingPartnerLinkInvitationIdentifier),
+    }
+    /// The properties for the product link invitation.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum InvitedAccountProperties {
+        /// Output only. Advertising Partner link invitation properties. These
+        /// properties are only applicable when the link is for an Advertising
+        /// Partner.
+        #[prost(message, tag = "8")]
+        AdvertisingPartnerProperties(super::AdvertisingPartnerLinkInvitationProperties),
     }
 }
 /// The identifier for Hotel account.
@@ -10522,6 +10684,15 @@ pub struct AdvertisingPartnerLinkInvitationIdentifier {
     /// This field is read only.
     #[prost(string, optional, tag = "1")]
     pub customer: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Properties specific to an Advertising Partner link invitation.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AdvertisingPartnerLinkInvitationProperties {
+    /// Immutable. The allowed domain for the Advertising Partner link invitation.
+    /// The advertising partner will only be able to advertise on this domain. The
+    /// field is immutable after the creation of the link invitation.
+    #[prost(string, optional, tag = "1")]
+    pub allowed_domain: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Qualifying Questions for Lead Form.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -12096,6 +12267,11 @@ pub struct UserInterest {
     >,
 }
 /// A user list. This is a list of users a customer may target.
+/// The unique key of a user list consists of the following fields: `id`.
+/// Note that the `name` must also be unique for user lists owned
+/// by a given customer, except in some cases where
+/// `access_reason` is set to `SHARED`. Violating the unique name constraint
+/// produces error: `UserListError.INVALID_NAME`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserList {
     /// Immutable. The resource name of the user list.
@@ -12114,8 +12290,9 @@ pub struct UserList {
     /// This field is read-only.
     #[prost(bool, optional, tag = "26")]
     pub read_only: ::core::option::Option<bool>,
-    /// Name of this user list. Depending on its access_reason, the user list name
-    /// may not be unique (for example, if access_reason=SHARED)
+    /// Name of this user list.
+    /// Unique per user list, except in some cases where a user list of the same
+    /// name has `access_reason` set to `SHARED`.
     #[prost(string, optional, tag = "27")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
     /// Description of this user list.
@@ -12325,4 +12502,50 @@ pub struct WebpageView {
     /// `customers/{customer_id}/webpageViews/{ad_group_id}~{criterion_id}`
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
+}
+/// Represents a video upload to YouTube using the Google Ads API.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct YouTubeVideoUpload {
+    /// Immutable. Resource name of the YouTube video upload.
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    /// Output only. The unique ID of the YouTube video upload.
+    #[prost(int64, tag = "2")]
+    pub video_upload_id: i64,
+    /// Immutable. The destination YouTube channel ID for the video upload.
+    ///
+    /// Only mutable on YouTube video upload creation. If omitted, the video
+    /// will be uploaded to the Google-managed YouTube channel associated with the
+    /// Ads account.
+    #[prost(string, tag = "3")]
+    pub channel_id: ::prost::alloc::string::String,
+    /// Output only. The YouTube video ID of the uploaded video.
+    #[prost(string, tag = "4")]
+    pub video_id: ::prost::alloc::string::String,
+    /// Output only. The current state of the YouTube video upload.
+    #[prost(
+        enumeration = "super::enums::you_tube_video_upload_state_enum::YouTubeVideoUploadState",
+        tag = "5"
+    )]
+    pub state: i32,
+    /// Input only. Immutable. The title of the video.
+    ///
+    /// Only mutable on YouTube video upload creation. Immutable after creation.
+    #[prost(string, tag = "6")]
+    pub video_title: ::prost::alloc::string::String,
+    /// Input only. Immutable. The description of the video.
+    ///
+    /// Only mutable on YouTube video upload creation. Immutable after creation.
+    #[prost(string, tag = "7")]
+    pub video_description: ::prost::alloc::string::String,
+    /// The privacy state of the video.
+    ///
+    /// Only mutable for videos uploaded to the advertiser owned (brand) YouTube
+    /// channel. For videos uploaded to the Google-managed channels only UNLISTED
+    /// privacy is allowed. Defaults to UNLISTED privacy if not specified.
+    #[prost(
+        enumeration = "super::enums::you_tube_video_privacy_enum::YouTubeVideoPrivacy",
+        tag = "8"
+    )]
+    pub video_privacy: i32,
 }

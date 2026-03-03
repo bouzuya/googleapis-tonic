@@ -746,7 +746,7 @@ pub struct MutateAdGroupAdResult {
     pub ad_group_ad: ::core::option::Option<super::resources::AdGroupAd>,
 }
 /// Request message for
-/// \[AdGroupAdService.RemoveAutomaticallyCreatedAssetsRequest\]\[\].
+/// \[AdGroupAdService.RemoveAutomaticallyCreatedAssets\]\[google.ads.googleads.v20.services.AdGroupAdService.RemoveAutomaticallyCreatedAssets\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveAutomaticallyCreatedAssetsRequest {
     /// Required. The resource name of the AdGroupAd from which to remove
@@ -5079,8 +5079,8 @@ pub struct GenerateTargetingSuggestionMetricsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateTargetingSuggestionMetricsResponse {
     /// Suggested targetable audiences. There will be one suggestion for each
-    /// \[GenerateTargetingSuggestionMetricsRequest.audiences\] requested, matching
-    /// the order requested.
+    /// \[GenerateTargetingSuggestionMetricsRequest.audiences\]\[google.ads.googleads.v20.services.GenerateTargetingSuggestionMetricsRequest.audiences\]
+    /// requested, matching the order requested.
     #[prost(message, repeated, tag = "1")]
     pub suggestions: ::prost::alloc::vec::Vec<TargetingSuggestionMetrics>,
 }
@@ -8220,10 +8220,11 @@ pub mod campaign_draft_service_client {
         /// Promotes the changes in a draft back to the base campaign.
         ///
         /// This method returns a Long Running Operation (LRO) indicating if the
-        /// Promote is done. Use \[Operations.GetOperation\] to poll the LRO until it
-        /// is done. Only a done status is returned in the response. See the status
-        /// in the Campaign Draft resource to determine if the promotion was
-        /// successful. If the LRO failed, use
+        /// Promote is done. Use
+        /// \[google.longrunning.Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
+        /// to poll the LRO until it is done. Only a done status is returned in the
+        /// response. See the status in the Campaign Draft resource to determine if the
+        /// promotion was successful. If the LRO failed, use
         /// \[CampaignDraftService.ListCampaignDraftAsyncErrors\]\[google.ads.googleads.v20.services.CampaignDraftService.ListCampaignDraftAsyncErrors\]
         /// to view the list of error reasons.
         ///
@@ -14007,7 +14008,7 @@ pub mod label_service_client {
     }
 }
 /// Request message for
-/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]
+/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]\[google.ads.googleads.v20.services.RecommendationSubscriptionService.MutateRecommendationSubscription\]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateRecommendationSubscriptionRequest {
     /// Required. The ID of the subscribing customer.
@@ -14037,7 +14038,7 @@ pub struct MutateRecommendationSubscriptionRequest {
     pub response_content_type: i32,
 }
 /// A single operation (create, update) on a recommendation subscription.
-/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]
+/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]\[google.ads.googleads.v20.services.RecommendationSubscriptionService.MutateRecommendationSubscription\]
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RecommendationSubscriptionOperation {
     /// Optional. FieldMask that determines which resource fields are modified in
@@ -14065,7 +14066,7 @@ pub mod recommendation_subscription_operation {
     }
 }
 /// Response message for
-/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]
+/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]\[google.ads.googleads.v20.services.RecommendationSubscriptionService.MutateRecommendationSubscription\]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateRecommendationSubscriptionResponse {
     /// Results, one per operation.
@@ -14081,7 +14082,7 @@ pub struct MutateRecommendationSubscriptionResponse {
     >,
 }
 /// Result message for
-/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]
+/// \[RecommendationSubscriptionService.MutateRecommendationSubscription\]\[google.ads.googleads.v20.services.RecommendationSubscriptionService.MutateRecommendationSubscription\]
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct MutateRecommendationSubscriptionResult {
     /// Resource name of the subscription that was modified.
@@ -14190,6 +14191,7 @@ pub mod recommendation_subscription_service_client {
         /// [MutateError]()
         /// [QuotaError]()
         /// [RecommendationError]()
+        /// [RecommendationSubscriptionError]()
         /// [RequestError]()
         /// [UrlFieldError]()
         pub async fn mutate_recommendation_subscription(
@@ -17699,7 +17701,7 @@ pub mod brand_suggestion_service_client {
     }
 }
 /// Request message for
-/// \[CampaignLifecycleGoalService.configureCampaignLifecycleGoals\]\[\].
+/// \[CampaignLifecycleGoalService.ConfigureCampaignLifecycleGoals\]\[google.ads.googleads.v20.services.CampaignLifecycleGoalService.ConfigureCampaignLifecycleGoals\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigureCampaignLifecycleGoalsRequest {
     /// Required. The ID of the customer performing the upload.
@@ -17740,7 +17742,7 @@ pub mod campaign_lifecycle_goal_operation {
     }
 }
 /// Response message for
-/// \[CampaignLifecycleGoalService.configureCampaignLifecycleGoals\]\[\].
+/// \[CampaignLifecycleGoalService.ConfigureCampaignLifecycleGoals\]\[google.ads.googleads.v20.services.CampaignLifecycleGoalService.ConfigureCampaignLifecycleGoals\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConfigureCampaignLifecycleGoalsResponse {
     /// Result for the campaign lifecycle goal configuration.
@@ -17900,7 +17902,9 @@ pub struct GenerateCreatorInsightsRequest {
     #[prost(message, repeated, tag = "6")]
     pub country_locations: ::prost::alloc::vec::Vec<super::common::LocationInfo>,
     /// The sub-country geographic locations to search that apply to the criteria.
-    /// Only supported for \[SearchAttributes\] criteria.
+    /// Only supported for
+    /// \[SearchAttributes\]\[google.ads.googleads.v20.services.GenerateCreatorInsightsRequest.SearchAttributes\]
+    /// criteria.
     #[prost(message, repeated, tag = "7")]
     pub sub_country_locations: ::prost::alloc::vec::Vec<super::common::LocationInfo>,
     /// A criteria used to search for creators and creator insights.
@@ -17926,8 +17930,9 @@ pub mod generate_creator_insights_request {
         /// Optional. Creator attributes that describe a collection of types of
         /// content. This is used to search for creators whose content matches the
         /// input creator attributes. Attribute entity tagged with
-        /// \[InsightsKnowledgeGraphEntityCapabilities.CREATOR_ATTRIBUTE\]\[\] is
-        /// supported. Other attributes including location are not supported.
+        /// \[CREATOR_ATTRIBUTE\]\[google.ads.googleads.v20.enums.InsightsKnowledgeGraphEntityCapabilitiesEnum.InsightsKnowledgeGraphEntityCapabilities.CREATOR_ATTRIBUTE\]
+        /// is supported. Other attributes including location are not
+        /// supported.
         #[prost(message, repeated, tag = "2")]
         pub creator_attributes: ::prost::alloc::vec::Vec<
             super::super::common::AudienceInsightsAttribute,
@@ -17943,8 +17948,10 @@ pub mod generate_creator_insights_request {
             super::super::common::AudienceInsightsAttribute,
         >,
         /// Optional. When true, we will expand the search to beyond just the
-        /// entities specified in \[brand_entities\] to other related knowledge graph
-        /// entities similar to the brand. The default value is `false`.
+        /// entities specified in
+        /// \[brand_entities\]\[google.ads.googleads.v20.services.GenerateCreatorInsightsRequest.SearchBrand.brand_entities\]
+        /// to other related knowledge graph entities similar to the brand. The
+        /// default value is `false`.
         #[prost(bool, tag = "2")]
         pub include_related_topics: bool,
     }
@@ -17962,15 +17969,19 @@ pub mod generate_creator_insights_request {
     pub enum Criteria {
         /// The attributes used to identify top creators. Data fetched is based on
         /// the list of countries or sub-country locations specified in
-        /// \[country_locations\] or \[sub_country_locations\].
+        /// \[country_locations\]\[google.ads.googleads.v20.services.GenerateCreatorInsightsRequest.country_locations\]
+        /// or
+        /// \[sub_country_locations\]\[google.ads.googleads.v20.services.GenerateCreatorInsightsRequest.sub_country_locations\].
         #[prost(message, tag = "3")]
         SearchAttributes(SearchAttributes),
         /// A brand used to search for top creators. Data fetched is based on the
-        /// list of countries specified in \[country_locations\].
+        /// list of countries specified in
+        /// \[country_locations\]\[google.ads.googleads.v20.services.GenerateCreatorInsightsRequest.country_locations\].
         #[prost(message, tag = "5")]
         SearchBrand(SearchBrand),
         /// YouTube Channel IDs for Creator Insights. Data fetched for channels is
-        /// based on the list of countries specified in \[country_locations\].
+        /// based on the list of countries specified in
+        /// \[country_locations\]\[google.ads.googleads.v20.services.GenerateCreatorInsightsRequest.country_locations\].
         #[prost(message, tag = "4")]
         SearchChannels(YouTubeChannels),
     }
@@ -17984,7 +17995,8 @@ pub struct GenerateCreatorInsightsResponse {
     #[prost(message, repeated, tag = "1")]
     pub creator_insights: ::prost::alloc::vec::Vec<YouTubeCreatorInsights>,
 }
-/// Request message for \[ContentCreatorInsightsService.GenerateTrendingInsights\]
+/// Request message for
+/// \[ContentCreatorInsightsService.GenerateTrendingInsights\]\[google.ads.googleads.v20.services.ContentCreatorInsightsService.GenerateTrendingInsights\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateTrendingInsightsRequest {
     /// Required. The ID of the customer.
@@ -18019,7 +18031,8 @@ pub mod generate_trending_insights_request {
         SearchTopics(super::SearchTopics),
     }
 }
-/// Response message for \[ContentCreatorInsightsService.GenerateTrendingInsights\]
+/// Response message for
+/// \[ContentCreatorInsightsService.GenerateTrendingInsights\]\[google.ads.googleads.v20.services.ContentCreatorInsightsService.GenerateTrendingInsights\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateTrendingInsightsResponse {
     /// The list of trending insights for the given criteria.
@@ -18059,7 +18072,7 @@ pub struct YouTubeMetrics {
     pub comments_count: i64,
     /// The lifetime engagement rate of this channel. The value is computed as the
     /// total number of likes, shares, and comments across all videos divided by
-    /// the total number of videos.
+    /// the total number of video views.
     #[prost(double, tag = "8")]
     pub engagement_rate: f64,
     /// The average number of views per video in the last 28 days.
@@ -18149,7 +18162,10 @@ pub struct SearchAudience {
 pub struct SearchTopics {
     /// Required. A list of knowledge graph entities to retrieve trend information
     /// for. Supported entities are tagged with
-    /// \[InsightsKnowledgeGraphEntityCapabilities.CONTENT_TRENDING_INSIGHTS\]\[\].
+    /// \[CONTENT_TRENDING_INSIGHTS\]\[google.ads.googleads.v20.enums.InsightsKnowledgeGraphEntityCapabilitiesEnum.InsightsKnowledgeGraphEntityCapabilities.CONTENT_TRENDING_INSIGHTS\].
+    /// Use
+    /// \[AudienceInsightsService.ListAudienceInsightsAttributes\]\[google.ads.googleads.v20.services.AudienceInsightsService.ListAudienceInsightsAttributes\]
+    /// to get the list of supported entities.
     #[prost(message, repeated, tag = "1")]
     pub entities: ::prost::alloc::vec::Vec<super::common::AudienceInsightsEntity>,
 }
@@ -18161,7 +18177,8 @@ pub struct TrendInsight {
     pub trend_attribute: ::core::option::Option<
         super::common::AudienceInsightsAttributeMetadata,
     >,
-    /// Metrics associated with this trend.
+    /// Metrics associated with this trend. These metrics are for the latest
+    /// available month and the comparison period is 3 months.
     #[prost(message, optional, tag = "2")]
     pub trend_metrics: ::core::option::Option<TrendInsightMetrics>,
     /// The direction of trend (such as RISING or DECLINING).
@@ -18661,7 +18678,8 @@ pub struct UploadClickConversionsRequest {
     /// was found for the provided `user_identifiers`.
     ///
     /// This setting only affects Enhanced conversions for leads uploads that use
-    /// `user_identifiers` instead of `GCLID`, `GBRAID`, or `WBRAID`. When
+    /// `user_identifiers` instead of `GCLID`, or the `GBRAID` or `WBRAID` URL
+    /// parameters. When
     /// uploading enhanced conversions for leads, you should upload all conversion
     /// events to the API, including those that may not come from Google Ads
     /// campaigns. The upload of an event that is not from a Google Ads campaign
@@ -18756,12 +18774,10 @@ pub struct ClickConversion {
     /// The Google click ID (gclid) associated with this conversion.
     #[prost(string, optional, tag = "9")]
     pub gclid: ::core::option::Option<::prost::alloc::string::String>,
-    /// The click identifier for clicks associated with app conversions and
-    /// originating from iOS devices starting with iOS14.
+    /// The URL parameter for clicks associated with app conversions.
     #[prost(string, tag = "18")]
     pub gbraid: ::prost::alloc::string::String,
-    /// The click identifier for clicks associated with web conversions and
-    /// originating from iOS devices starting with iOS14.
+    /// The URL parameter for clicks associated with web conversions.
     #[prost(string, tag = "19")]
     pub wbraid: ::prost::alloc::string::String,
     /// Resource name of the conversion action associated with this conversion.
@@ -18828,6 +18844,8 @@ pub struct ClickConversion {
     /// you collect on your sites, apps, and other properties and get consent where
     /// required by law or any applicable Google policies. See the
     /// <https://support.google.com/google-ads/answer/2998031> page for more details.
+    /// This field is only available to allowlisted users. To include this field in
+    /// conversion imports, upgrade to the Data Manager API.
     #[prost(string, optional, tag = "27")]
     pub user_ip_address: ::core::option::Option<::prost::alloc::string::String>,
     /// The session attributes for the event.
@@ -18842,10 +18860,14 @@ pub mod click_conversion {
         /// The session attributes for the event, represented as a base64-encoded
         /// JSON string. The content should be generated by Google-provided library.
         /// To set session attributes individually, use
-        /// session_attributes_key_value_pairs instead.
+        /// session_attributes_key_value_pairs instead. This field is only available
+        /// to allowlisted users. To include this field in conversion imports,
+        /// upgrade to the Data Manager API.
         #[prost(bytes, tag = "24")]
         SessionAttributesEncoded(::prost::alloc::vec::Vec<u8>),
         /// The session attributes for the event, represented as key-value pairs.
+        /// This field is only available to allowlisted users. To include this
+        /// field in conversion imports, upgrade to the Data Manager API.
         #[prost(message, tag = "25")]
         SessionAttributesKeyValuePairs(super::SessionAttributesKeyValuePairs),
     }
@@ -18906,12 +18928,10 @@ pub struct ClickConversionResult {
     /// The Google Click ID (gclid) associated with this conversion.
     #[prost(string, optional, tag = "4")]
     pub gclid: ::core::option::Option<::prost::alloc::string::String>,
-    /// The click identifier for clicks associated with app conversions and
-    /// originating from iOS devices starting with iOS14.
+    /// The URL parameter for clicks associated with app conversions.
     #[prost(string, tag = "8")]
     pub gbraid: ::prost::alloc::string::String,
-    /// The click identifier for clicks associated with web conversions and
-    /// originating from iOS devices starting with iOS14.
+    /// The URL parameter for clicks associated with web conversions.
     #[prost(string, tag = "9")]
     pub wbraid: ::prost::alloc::string::String,
     /// Resource name of the conversion action associated with this conversion.
@@ -19930,7 +19950,7 @@ pub mod customer_client_link_service_client {
     }
 }
 /// Request message for
-/// \[CustomerLifecycleGoalService.configureCustomerLifecycleGoals\]\[\].
+/// \[CustomerLifecycleGoalService.ConfigureCustomerLifecycleGoals\]\[google.ads.googleads.v20.services.CustomerLifecycleGoalService.ConfigureCustomerLifecycleGoals\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigureCustomerLifecycleGoalsRequest {
     /// Required. The ID of the customer performing the upload.
@@ -19969,7 +19989,7 @@ pub mod customer_lifecycle_goal_operation {
     }
 }
 /// Response message for
-/// \[CustomerLifecycleGoalService.configureCustomerLifecycleGoals\]\[\].
+/// \[CustomerLifecycleGoalService.ConfigureCustomerLifecycleGoals\]\[google.ads.googleads.v20.services.CustomerLifecycleGoalService.ConfigureCustomerLifecycleGoals\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ConfigureCustomerLifecycleGoalsResponse {
     /// result for the customer lifecycle goal configuration.
@@ -21596,7 +21616,7 @@ pub mod google_ads_field_service_client {
     }
 }
 /// Request message for
-/// \[IdentityVerificationService.StartIdentityVerification\].
+/// \[StartIdentityVerification\]\[google.ads.googleads.v20.services.IdentityVerificationService.StartIdentityVerification\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct StartIdentityVerificationRequest {
     /// Required. The Id of the customer for whom we are creating this
@@ -21612,7 +21632,7 @@ pub struct StartIdentityVerificationRequest {
     pub verification_program: i32,
 }
 /// Request message for
-/// \[IdentityVerificationService.GetIdentityVerification\].
+/// \[GetIdentityVerification\]\[google.ads.googleads.v20.services.IdentityVerificationService.GetIdentityVerification\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetIdentityVerificationRequest {
     /// Required.  The ID of the customer for whom we are requesting verification
@@ -21621,7 +21641,7 @@ pub struct GetIdentityVerificationRequest {
     pub customer_id: ::prost::alloc::string::String,
 }
 /// Response message for
-/// \[IdentityVerificationService.GetIdentityVerification\].
+/// \[GetIdentityVerification\]\[google.ads.googleads.v20.services.IdentityVerificationService.GetIdentityVerification\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIdentityVerificationResponse {
     /// List of identity verifications for the customer.
@@ -22298,7 +22318,8 @@ pub struct UnusableAdGroup {
     #[prost(string, tag = "2")]
     pub campaign: ::prost::alloc::string::String,
 }
-/// Request message for \[KeywordPlanIdeaService.GenerateKeywordForecastMetrics\].
+/// Request message for
+/// \[KeywordPlanIdeaService.GenerateKeywordForecastMetrics\]\[google.ads.googleads.v20.services.KeywordPlanIdeaService.GenerateKeywordForecastMetrics\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateKeywordForecastMetricsRequest {
     /// The ID of the customer.
@@ -22463,7 +22484,8 @@ pub struct MaximizeConversionsBiddingStrategy {
     #[prost(int64, tag = "1")]
     pub daily_target_spend_micros: i64,
 }
-/// Response message for \[KeywordPlanIdeaService.GenerateKeywordForecastMetrics\].
+/// Response message for
+/// \[KeywordPlanIdeaService.GenerateKeywordForecastMetrics\]\[google.ads.googleads.v20.services.KeywordPlanIdeaService.GenerateKeywordForecastMetrics\].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GenerateKeywordForecastMetricsResponse {
     /// Results of the campaign forecast.
@@ -23681,7 +23703,7 @@ pub struct UpdateProductLinkInvitationResponse {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// Request message for
-/// \[ProductLinkinvitationService.RemoveProductLinkInvitation\]\[\].
+/// \[ProductLinkInvitationService.RemoveProductLinkInvitation\]\[google.ads.googleads.v20.services.ProductLinkInvitationService.RemoveProductLinkInvitation\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RemoveProductLinkInvitationRequest {
     /// Required. The ID of the product link invitation being removed.
@@ -23690,7 +23712,7 @@ pub struct RemoveProductLinkInvitationRequest {
     /// Required. The resource name of the product link invitation being removed.
     /// expected, in this format:
     ///
-    /// ` `
+    /// `customers/{customer_id}/productLinkInvitations/{product_link_invitation_id}  `
     #[prost(string, tag = "2")]
     pub resource_name: ::prost::alloc::string::String,
 }

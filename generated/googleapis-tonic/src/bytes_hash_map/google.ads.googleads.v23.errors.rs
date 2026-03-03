@@ -8852,6 +8852,9 @@ pub mod criterion_error_enum {
         CannotAddRemovedBrandSharedSet = 157,
         /// Brand list can only be negatively targeted for the campaign type.
         OnlyExclusionBrandListAllowedForCampaignType = 158,
+        /// The combination of demographic criteria would result in only targeting
+        /// the "undetermined" segment, which is prohibited.
+        CannotTargetOnlyUndetermined = 165,
         /// Cannot positively target locations outside of restricted area for
         /// campaign.
         LocationTargetingNotEligibleForRestrictedCampaign = 166,
@@ -9194,6 +9197,7 @@ pub mod criterion_error_enum {
                 Self::OnlyExclusionBrandListAllowedForCampaignType => {
                     "ONLY_EXCLUSION_BRAND_LIST_ALLOWED_FOR_CAMPAIGN_TYPE"
                 }
+                Self::CannotTargetOnlyUndetermined => "CANNOT_TARGET_ONLY_UNDETERMINED",
                 Self::LocationTargetingNotEligibleForRestrictedCampaign => {
                     "LOCATION_TARGETING_NOT_ELIGIBLE_FOR_RESTRICTED_CAMPAIGN"
                 }
@@ -9570,6 +9574,9 @@ pub mod criterion_error_enum {
                 }
                 "ONLY_EXCLUSION_BRAND_LIST_ALLOWED_FOR_CAMPAIGN_TYPE" => {
                     Some(Self::OnlyExclusionBrandListAllowedForCampaignType)
+                }
+                "CANNOT_TARGET_ONLY_UNDETERMINED" => {
+                    Some(Self::CannotTargetOnlyUndetermined)
                 }
                 "LOCATION_TARGETING_NOT_ELIGIBLE_FOR_RESTRICTED_CAMPAIGN" => {
                     Some(Self::LocationTargetingNotEligibleForRestrictedCampaign)
@@ -14677,6 +14684,11 @@ pub mod incentive_error_enum {
         /// The incentive ID is either invalid or not supported for the given
         /// country.
         InvalidIncentiveId = 2,
+        /// The maximum number of coupons has been redeemed.
+        MaxIncentivesRedeemed = 3,
+        /// This incentive cannot be applied because too much time has passed since
+        /// the account's first ad impression.
+        AccountTooOld = 4,
     }
     impl IncentiveError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -14688,6 +14700,8 @@ pub mod incentive_error_enum {
                 Self::Unspecified => "UNSPECIFIED",
                 Self::Unknown => "UNKNOWN",
                 Self::InvalidIncentiveId => "INVALID_INCENTIVE_ID",
+                Self::MaxIncentivesRedeemed => "MAX_INCENTIVES_REDEEMED",
+                Self::AccountTooOld => "ACCOUNT_TOO_OLD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -14696,6 +14710,8 @@ pub mod incentive_error_enum {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "INVALID_INCENTIVE_ID" => Some(Self::InvalidIncentiveId),
+                "MAX_INCENTIVES_REDEEMED" => Some(Self::MaxIncentivesRedeemed),
+                "ACCOUNT_TOO_OLD" => Some(Self::AccountTooOld),
                 _ => None,
             }
         }
@@ -16365,6 +16381,9 @@ pub mod mutate_error_enum {
         OperationDoesNotSupportPartialFailure = 16,
         /// Attempt to write to read-only fields.
         ResourceReadOnly = 13,
+        /// Mutates are generally not allowed if the customer contains non-exempt
+        /// campaigns without the EU political advertising declaration.
+        EuPoliticalAdvertisingDeclarationRequired = 17,
     }
     impl MutateError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -16388,6 +16407,9 @@ pub mod mutate_error_enum {
                     "OPERATION_DOES_NOT_SUPPORT_PARTIAL_FAILURE"
                 }
                 Self::ResourceReadOnly => "RESOURCE_READ_ONLY",
+                Self::EuPoliticalAdvertisingDeclarationRequired => {
+                    "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -16408,6 +16430,9 @@ pub mod mutate_error_enum {
                     Some(Self::OperationDoesNotSupportPartialFailure)
                 }
                 "RESOURCE_READ_ONLY" => Some(Self::ResourceReadOnly),
+                "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED" => {
+                    Some(Self::EuPoliticalAdvertisingDeclarationRequired)
+                }
                 _ => None,
             }
         }
@@ -17421,6 +17446,8 @@ pub mod product_link_invitation_error_enum {
         NoInvitationRequired = 4,
         /// The customer is not permitted to create the invitation.
         CustomerNotPermittedToCreateInvitation = 5,
+        /// The `allowed_domain` property for the advertising partner is invalid.
+        InvalidAdvertisingPartnerAllowedDomain = 6,
     }
     impl ProductLinkInvitationError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -17437,6 +17464,9 @@ pub mod product_link_invitation_error_enum {
                 Self::CustomerNotPermittedToCreateInvitation => {
                     "CUSTOMER_NOT_PERMITTED_TO_CREATE_INVITATION"
                 }
+                Self::InvalidAdvertisingPartnerAllowedDomain => {
+                    "INVALID_ADVERTISING_PARTNER_ALLOWED_DOMAIN"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -17449,6 +17479,9 @@ pub mod product_link_invitation_error_enum {
                 "NO_INVITATION_REQUIRED" => Some(Self::NoInvitationRequired),
                 "CUSTOMER_NOT_PERMITTED_TO_CREATE_INVITATION" => {
                     Some(Self::CustomerNotPermittedToCreateInvitation)
+                }
+                "INVALID_ADVERTISING_PARTNER_ALLOWED_DOMAIN" => {
+                    Some(Self::InvalidAdvertisingPartnerAllowedDomain)
                 }
                 _ => None,
             }

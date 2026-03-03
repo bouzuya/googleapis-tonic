@@ -15436,6 +15436,9 @@ pub mod mutate_error_enum {
         OperationDoesNotSupportPartialFailure = 16,
         /// Attempt to write to read-only fields.
         ResourceReadOnly = 13,
+        /// Mutates are generally not allowed if the customer contains non-exempt
+        /// campaigns without the EU political advertising declaration.
+        EuPoliticalAdvertisingDeclarationRequired = 17,
     }
     impl MutateError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -15459,6 +15462,9 @@ pub mod mutate_error_enum {
                     "OPERATION_DOES_NOT_SUPPORT_PARTIAL_FAILURE"
                 }
                 Self::ResourceReadOnly => "RESOURCE_READ_ONLY",
+                Self::EuPoliticalAdvertisingDeclarationRequired => {
+                    "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -15479,6 +15485,9 @@ pub mod mutate_error_enum {
                     Some(Self::OperationDoesNotSupportPartialFailure)
                 }
                 "RESOURCE_READ_ONLY" => Some(Self::ResourceReadOnly),
+                "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED" => {
+                    Some(Self::EuPoliticalAdvertisingDeclarationRequired)
+                }
                 _ => None,
             }
         }

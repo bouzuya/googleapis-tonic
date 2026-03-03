@@ -2780,6 +2780,12 @@ pub mod process_options {
         /// response.
         #[prost(bool, tag = "3")]
         pub return_bounding_boxes: bool,
+        /// Optional. Whether to include image annotations in layout parser response.
+        #[prost(bool, tag = "4")]
+        pub enable_image_annotation: bool,
+        /// Optional. Whether to include table annotations in layout parser response.
+        #[prost(bool, tag = "6")]
+        pub enable_table_annotation: bool,
     }
     /// Nested message and enum types in `LayoutConfig`.
     pub mod layout_config {

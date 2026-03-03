@@ -5422,6 +5422,13 @@ pub mod transport {
         /// The Transport is configured and the underlying connectivity is considered
         /// operational.
         Active = 4,
+        /// The Transport is being deleted from GCP. The underlying connectivity is
+        /// no longer operational.
+        Deleting = 5,
+        /// The Transport was deleted on the remote provider's end and is no longer
+        /// operational. GCP has insufficient information to move the resource back
+        /// to PENDING_KEY state.
+        Deprovisioned = 6,
     }
     impl State {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5435,6 +5442,8 @@ pub mod transport {
                 Self::PendingConfig => "PENDING_CONFIG",
                 Self::PendingKey => "PENDING_KEY",
                 Self::Active => "ACTIVE",
+                Self::Deleting => "DELETING",
+                Self::Deprovisioned => "DEPROVISIONED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5445,6 +5454,8 @@ pub mod transport {
                 "PENDING_CONFIG" => Some(Self::PendingConfig),
                 "PENDING_KEY" => Some(Self::PendingKey),
                 "ACTIVE" => Some(Self::Active),
+                "DELETING" => Some(Self::Deleting),
+                "DEPROVISIONED" => Some(Self::Deprovisioned),
                 _ => None,
             }
         }
@@ -5489,6 +5500,230 @@ pub struct GetTransportRequest {
     /// Required. Name of the resource.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// Message for getting a Transport's operational status.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetStatusRequest {
+    /// Required. Name of the resource.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Message for the response to getting a Transport's operational status.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetStatusResponse {
+    /// The overall status of the Transport. This field will always output the most
+    /// critical status of the Transport. For example, if the connectivity is
+    /// DISCONNECTED, and the underlying networking components are DOWN, then
+    /// the overall status will be DOWN.
+    #[prost(enumeration = "get_status_response::OverallStatus", tag = "1")]
+    pub overall_status: i32,
+    /// The operational status of the underlying networking components.
+    #[prost(enumeration = "get_status_response::OperationalStatus", tag = "2")]
+    pub operational_status: i32,
+    /// Current status of connectivity to the local GCP resource. This reflects
+    /// whether the VPC Peering or NCC Hub appears correctly configured.
+    #[prost(enumeration = "get_status_response::ConnectivityStatus", tag = "3")]
+    pub connectivity_status: i32,
+    /// Current status of MACSec on the underlying network connectivity between GC
+    /// and the partner.
+    #[prost(enumeration = "get_status_response::MacSecStatus", tag = "4")]
+    pub mac_sec_status: i32,
+}
+/// Nested message and enum types in `GetStatusResponse`.
+pub mod get_status_response {
+    /// The overall status of the Transport.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum OverallStatus {
+        /// Unspecified status.
+        Unspecified = 0,
+        /// Resource is active and operational.
+        Active = 1,
+        /// Resource is waiting for an activation key to be exchanged.
+        PendingKey = 2,
+        /// Activation keys have been exchanged and connectivity is being
+        /// established.
+        Configuring = 3,
+        /// VPC Peering has been taken down, or the NCC Spoke has been rejected.
+        Disconnected = 4,
+        /// User configuration is correct, but the configured capacity is
+        /// operationally down.
+        Down = 5,
+    }
+    impl OverallStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "OVERALL_STATUS_UNSPECIFIED",
+                Self::Active => "ACTIVE",
+                Self::PendingKey => "PENDING_KEY",
+                Self::Configuring => "CONFIGURING",
+                Self::Disconnected => "DISCONNECTED",
+                Self::Down => "DOWN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OVERALL_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "PENDING_KEY" => Some(Self::PendingKey),
+                "CONFIGURING" => Some(Self::Configuring),
+                "DISCONNECTED" => Some(Self::Disconnected),
+                "DOWN" => Some(Self::Down),
+                _ => None,
+            }
+        }
+    }
+    /// The operational status of the underlying networking components.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum OperationalStatus {
+        /// Unspecified status.
+        Unspecified = 0,
+        /// Protected capacity is available and networking components show as up.
+        Active = 1,
+        /// Protected capacity is showing as operationally down.
+        Down = 2,
+    }
+    impl OperationalStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "OPERATIONAL_STATUS_UNSPECIFIED",
+                Self::Active => "OPERATIONAL_STATUS_ACTIVE",
+                Self::Down => "OPERATIONAL_STATUS_DOWN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OPERATIONAL_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "OPERATIONAL_STATUS_ACTIVE" => Some(Self::Active),
+                "OPERATIONAL_STATUS_DOWN" => Some(Self::Down),
+                _ => None,
+            }
+        }
+    }
+    /// Current status of connectivity to the local GCP resource. This reflects
+    /// whether the VPC Peering or NCC Hub appears correctly configured.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ConnectivityStatus {
+        /// Unspecified status.
+        Unspecified = 0,
+        /// VPC Peering or the NCC Hub appear to be correctly established.
+        Connected = 1,
+        /// VPC Peering has been taken down, or the NCC Spoke has been rejected.
+        Disconnected = 2,
+    }
+    impl ConnectivityStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "CONNECTIVITY_STATUS_UNSPECIFIED",
+                Self::Connected => "CONNECTIVITY_STATUS_CONNECTED",
+                Self::Disconnected => "CONNECTIVITY_STATUS_DISCONNECTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CONNECTIVITY_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONNECTIVITY_STATUS_CONNECTED" => Some(Self::Connected),
+                "CONNECTIVITY_STATUS_DISCONNECTED" => Some(Self::Disconnected),
+                _ => None,
+            }
+        }
+    }
+    /// Current status of MACSec on the underlying network connectivity between GC
+    /// and the partner.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum MacSecStatus {
+        /// Unspecified status.
+        Unspecified = 0,
+        /// MACSec is protecting the links and configured in fail closed.
+        ActiveFailClosed = 1,
+        /// MACSec is protecting the links and configured to fail open on at least
+        /// one of the redundant links.
+        ActiveFailOpen = 2,
+        /// MACSec is not configured on at least one of the underlying links.
+        NotConfigured = 3,
+    }
+    impl MacSecStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "MAC_SEC_STATUS_UNSPECIFIED",
+                Self::ActiveFailClosed => "MAC_SEC_STATUS_ACTIVE_FAIL_CLOSED",
+                Self::ActiveFailOpen => "MAC_SEC_STATUS_ACTIVE_FAIL_OPEN",
+                Self::NotConfigured => "MAC_SEC_STATUS_NOT_CONFIGURED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MAC_SEC_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "MAC_SEC_STATUS_ACTIVE_FAIL_CLOSED" => Some(Self::ActiveFailClosed),
+                "MAC_SEC_STATUS_ACTIVE_FAIL_OPEN" => Some(Self::ActiveFailOpen),
+                "MAC_SEC_STATUS_NOT_CONFIGURED" => Some(Self::NotConfigured),
+                _ => None,
+            }
+        }
+    }
 }
 /// Message for creating a Transport
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -5764,6 +5999,36 @@ pub mod transport_manager_client {
                     GrpcMethod::new(
                         "google.cloud.networkconnectivity.v1beta.TransportManager",
                         "GetTransport",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the operational status of a single Transport.
+        pub async fn get_status(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStatusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetStatusResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkconnectivity.v1beta.TransportManager/GetStatus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkconnectivity.v1beta.TransportManager",
+                        "GetStatus",
                     ),
                 );
             self.inner.unary(req, path, codec).await

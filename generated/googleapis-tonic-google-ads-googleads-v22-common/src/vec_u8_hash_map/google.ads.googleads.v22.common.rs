@@ -17,26 +17,31 @@ pub struct PolicyViolationKey {
 /// Parameter for controlling how policy exemption is done.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicyValidationParameter {
-    /// The list of policy topics that should not cause a PolicyFindingError to
-    /// be reported. This field is currently only compatible with Enhanced Text Ad.
-    /// It corresponds to the PolicyTopicEntry.topic field.
+    /// The list of policy topics that should not cause a `PolicyFindingError` to
+    /// be reported. This field is used for ad policy exemptions. It corresponds
+    /// to the `PolicyTopicEntry.topic` field.
     ///
-    /// Resources violating these policies will be saved, but will not be eligible
-    /// to serve. They may begin serving at a later time due to a change in
-    /// policies, re-review of the resource, or a change in advertiser
+    /// If this field is populated, then `exempt_policy_violation_keys` must be
+    /// empty.
+    ///
+    /// Resources that violate these policies will be saved, but will not be
+    /// eligible to serve. They may begin serving at a later time due to a change
+    /// in policies, re-review of the resource, or a change in advertiser
     /// certificates.
     #[prost(string, repeated, tag = "3")]
     pub ignorable_policy_topics: ::prost::alloc::vec::Vec<
         ::prost::alloc::string::String,
     >,
     /// The list of policy violation keys that should not cause a
-    /// PolicyViolationError to be reported. Not all policy violations are
-    /// exemptable, refer to the is_exemptible field in the returned
-    /// PolicyViolationError.
+    /// `PolicyViolationError` to be reported. Not all policy violations are
+    /// exemptable. Refer to the `is_exemptible` field in the returned
+    /// `PolicyViolationError`. This field is used for keyword policy exemptions.
     ///
-    /// Resources violating these polices will be saved, but will not be eligible
-    /// to serve. They may begin serving at a later time due to a change in
-    /// policies, re-review of the resource, or a change in advertiser
+    /// If this field is populated, then `ignorable_policy_topics` must be empty.
+    ///
+    /// Resources that violate these policies will be saved, but will not be
+    /// eligible to serve. They may begin serving at a later time due to a change
+    /// in policies, re-review of the resource, or a change in advertiser
     /// certificates.
     #[prost(message, repeated, tag = "2")]
     pub exempt_policy_violation_keys: ::prost::alloc::vec::Vec<PolicyViolationKey>,
@@ -1229,8 +1234,11 @@ pub struct DemandGenProductAdInfo {
     pub call_to_action: ::core::option::Option<AdCallToActionAsset>,
 }
 /// Additional information about the application/tool issuing the request. This
-/// field is only used by \[ContentCreatorInsightsService\],
-/// \[AudienceInsightsService\], and \[ReachPlanService\] APIs.
+/// field is only used by
+/// \[ContentCreatorInsightsService\]\[google.ads.googleads.v22.services.ContentCreatorInsightsService\],
+/// \[AudienceInsightsService\]\[google.ads.googleads.v22.services.AudienceInsightsService\],
+/// and \[ReachPlanService\]\[google.ads.googleads.v22.services.ReachPlanService\]
+/// APIs.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdditionalApplicationInfo {
     /// The unique identifier of the agency proprietary application. This
@@ -2052,15 +2060,32 @@ pub struct LanguageInfo {
     #[prost(string, optional, tag = "2")]
     pub language_constant: ::core::option::Option<::prost::alloc::string::String>,
 }
-/// An IpBlock criterion used for IP exclusions. We allow:
+/// An IpBlock criterion used for excluding IP addresses.
 ///
-/// * IPv4 and IPv6 addresses
-/// * individual addresses (192.168.0.1)
-/// * masks for individual addresses (192.168.0.1/32)
-/// * masks for Class C networks (192.168.0.1/24)
+/// We support excluding individual IP addresses or CIDR blocks. Create one
+/// IpBlockInfo criterion for each individual IP address or CIDR block you want
+/// to exclude. You can exclude up to 500 IP addresses per campaign. For more
+/// details, see
+/// [Exclude IP addresses](//support.google.com/google-ads/answer/2456098).
+///
+/// IPv4 examples:
+///
+/// * Individual address: 192.168.0.1
+///
+/// * Individual address as CIDR block: 192.168.0.1/32
+///
+/// * CIDR block: 192.168.0.0/24
+///
+/// IPv6 examples:
+///
+/// * Individual address: 2001:db8:a0b:12f0::1
+///
+/// * Individual address as CIDR block: 2001:db8:a0b:12f0::1/128
+///
+/// * CIDR block: 2001:db8::/48
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct IpBlockInfo {
-    /// The IP address of this IP block.
+    /// The IP address or the CIDR block to be excluded.
     #[prost(string, optional, tag = "2")]
     pub ip_address: ::core::option::Option<::prost::alloc::string::String>,
 }
@@ -3699,7 +3724,7 @@ pub mod audience_insights_attribute_metadata {
 }
 /// An audience attribute that can be used to request insights about the
 /// audience. Valid inputs for these fields are available from
-/// \[AudienceInsightsService.ListAudienceInsightsAttributes\]\[\].
+/// \[AudienceInsightsService.ListAudienceInsightsAttributes\]\[google.ads.googleads.v22.services.AudienceInsightsService.ListAudienceInsightsAttributes\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AudienceInsightsAttribute {
     /// An audience attribute.
@@ -3872,7 +3897,8 @@ pub struct UserInterestAttributeMetadata {
 /// Metadata associated with a Knowledge Graph Entity attribute.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KnowledgeGraphAttributeMetadata {
-    /// The capabilities of the entity used in \[ContentCreatorInsightsService\]\[\].
+    /// The capabilities of the entity used in
+    /// \[ContentCreatorInsightsService\]\[google.ads.googleads.v22.services.ContentCreatorInsightsService\].
     #[prost(
         enumeration = "super::enums::insights_knowledge_graph_entity_capabilities_enum::InsightsKnowledgeGraphEntityCapabilities",
         repeated,
@@ -4947,15 +4973,15 @@ pub struct Metrics {
     /// (such as clicks for text ads or views for video ads).
     #[prost(double, optional, tag = "194")]
     pub all_conversions_value_per_cost: ::core::option::Option<f64>,
-    /// The number of times people clicked the "Call" button to call a store during
-    /// or after clicking an ad. This number doesn't include whether or not calls
-    /// were connected, or the duration of any calls.
+    /// The number of times people clicked the "Call" button to call a business
+    /// during or after clicking an ad. This number doesn't include whether or not
+    /// calls were connected, or the duration of any calls.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "195")]
     pub all_conversions_from_click_to_call: ::core::option::Option<f64>,
     /// The number of times people clicked a "Get directions" button to navigate to
-    /// a store after clicking an ad.
+    /// a business after clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "196")]
@@ -4966,30 +4992,31 @@ pub struct Metrics {
     pub all_conversions_from_interactions_value_per_interaction: ::core::option::Option<
         f64,
     >,
-    /// The number of times people clicked a link to view a store's menu after
+    /// The number of times people clicked a link to view a business's menu after
     /// clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "198")]
     pub all_conversions_from_menu: ::core::option::Option<f64>,
-    /// The number of times people placed an order at a store after clicking an ad.
+    /// The number of times people placed an order at a business after clicking an
+    /// ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "199")]
     pub all_conversions_from_order: ::core::option::Option<f64>,
     /// The number of other conversions (for example, posting a review or saving a
-    /// location for a store) that occurred after people clicked an ad.
+    /// location for a business) that occurred after people clicked an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "200")]
     pub all_conversions_from_other_engagement: ::core::option::Option<f64>,
-    /// Estimated number of times people visited a store after clicking an ad.
+    /// Estimated number of times people visited a business after clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "201")]
     pub all_conversions_from_store_visit: ::core::option::Option<f64>,
-    /// The number of times that people were taken to a store's URL after clicking
-    /// an ad.
+    /// The number of times that people were taken to a business's URL after
+    /// clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "202")]
@@ -5338,7 +5365,7 @@ pub struct Metrics {
     /// ads.
     #[prost(int64, optional, tag = "219")]
     pub gmail_secondary_clicks: ::core::option::Option<i64>,
-    /// The number of times a store's location-based ad was shown.
+    /// The number of times a business's location-based ad was shown.
     ///
     /// This metric applies to feed items only.
     #[prost(int64, optional, tag = "220")]
@@ -5659,7 +5686,7 @@ pub struct Metrics {
     pub all_conversions_from_location_asset_other_engagement: ::core::option::Option<
         f64,
     >,
-    /// Estimated number of visits to the store after a chargeable
+    /// Estimated number of visits to the business after a chargeable
     /// ad event (click or impression). This measure is coming from Asset
     /// based location.
     #[prost(double, optional, tag = "272")]
@@ -5669,8 +5696,8 @@ pub struct Metrics {
     /// location.
     #[prost(double, optional, tag = "273")]
     pub all_conversions_from_location_asset_website: ::core::option::Option<f64>,
-    /// Number of impressions in which the store location was shown or the location
-    /// was used for targeting. This measure is coming from Asset based
+    /// Number of impressions in which the business location was shown or the
+    /// location was used for targeting. This measure is coming from Asset based
     /// location.
     #[prost(int64, optional, tag = "274")]
     pub eligible_impressions_from_location_asset_store_reach: ::core::option::Option<
@@ -5702,7 +5729,7 @@ pub struct Metrics {
     pub view_through_conversions_from_location_asset_other_engagement: ::core::option::Option<
         f64,
     >,
-    /// Estimated number of visits to the store after an impression.
+    /// Estimated number of visits to the business after an impression.
     /// This measure is coming from Asset based location.
     #[prost(double, optional, tag = "280")]
     pub view_through_conversions_from_location_asset_store_visits: ::core::option::Option<
@@ -6096,7 +6123,7 @@ pub struct Metrics {
     /// This metric is only supported in Performance Max channel.
     #[prost(double, optional, tag = "363")]
     pub asset_unrated_performance_cost_percentage: ::core::option::Option<f64>,
-    /// The amount of store visits attributed by the last click model.
+    /// The amount of business visits attributed by the last click model.
     #[prost(double, optional, tag = "365")]
     pub store_visits_last_click_model_attributed_conversions: ::core::option::Option<
         f64,
