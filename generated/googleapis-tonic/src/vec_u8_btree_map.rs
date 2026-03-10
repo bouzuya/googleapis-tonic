@@ -525,6 +525,7 @@
     feature = "google-maps-areainsights-v1",
     feature = "google-maps-mapsplatformdatasets-v1",
     feature = "google-maps-mobilitybilling-logs-v1",
+    feature = "google-maps-navconnect-v1",
     feature = "google-maps-places-v1",
     feature = "google-maps-playablelocations-v3",
     feature = "google-maps-playablelocations-v3-sample",
@@ -6534,6 +6535,7 @@ pub mod google {
         feature = "google-maps-areainsights-v1",
         feature = "google-maps-mapsplatformdatasets-v1",
         feature = "google-maps-mobilitybilling-logs-v1",
+        feature = "google-maps-navconnect-v1",
         feature = "google-maps-places-v1",
         feature = "google-maps-playablelocations-v3",
         feature = "google-maps-playablelocations-v3-sample",
@@ -6560,6 +6562,20 @@ pub mod google {
                     feature = "google-maps-solar-v1",
                 ))]
                 include!("vec_u8_btree_map/google.maps.solar.v1.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-maps-navconnect-v1",
+        ))]
+        pub mod navconnect {
+            #[cfg(any(
+                feature = "google-maps-navconnect-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-maps-navconnect-v1",
+                ))]
+                include!("vec_u8_btree_map/google.maps.navconnect.v1.rs");
             }
         }
         #[cfg(any(

@@ -959,6 +959,182 @@ pub struct ForecastHour {
     #[prost(message, optional, tag = "19")]
     pub ice_thickness: ::core::option::Option<IceThickness>,
 }
+/// Contains high resolution forecast data for precipitation events.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PrecipitationEvent {
+    /// The localized title for the nowcast prediction event.
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// The localized subtitle for the nowcast prediction event.
+    #[prost(string, tag = "2")]
+    pub subtitle: ::prost::alloc::string::String,
+    /// The timeframe relevant to the event and the textual representations (title
+    /// and sub title).
+    #[prost(message, optional, tag = "3")]
+    pub time_frame: ::core::option::Option<super::super::super::r#type::Interval>,
+    /// The precipitation intervals in minutes resolution.
+    #[prost(message, repeated, tag = "4")]
+    pub intervals: ::prost::alloc::vec::Vec<PrecipitationsInterval>,
+}
+/// Represents a single interval of high resolution Precipitations forecast data.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PrecipitationsInterval {
+    /// The timeframe of the precipitation interval.
+    #[prost(message, optional, tag = "1")]
+    pub time_frame: ::core::option::Option<super::super::super::r#type::Interval>,
+    /// The type of precipitation associated with the precipitation event.
+    #[prost(
+        enumeration = "precipitations_interval::PrecipitationIntervalType",
+        tag = "2"
+    )]
+    pub r#type: i32,
+    /// The chance of `precipitation_type` for the interval.
+    ///
+    /// Values are in percentages ranging from 0 to 100.
+    #[prost(int32, tag = "3")]
+    pub probability: i32,
+    /// Quantitative precipitation forecast for the precipitation interval.
+    ///
+    /// Values are in either inches or millimeters.
+    #[prost(message, optional, tag = "4")]
+    pub qpf: ::core::option::Option<QuantitativePrecipitationForecast>,
+    /// Snow quantitative precipitation forecast for the precipitation interval.
+    ///
+    /// Values are in either inches or millimeters.
+    #[prost(message, optional, tag = "5")]
+    pub snow_qpf: ::core::option::Option<QuantitativePrecipitationForecast>,
+    /// Precipitation intensity of the interval.
+    #[prost(
+        enumeration = "precipitations_interval::IntervalPrecipitationIntensity",
+        tag = "6"
+    )]
+    pub intensity: i32,
+}
+/// Nested message and enum types in `PrecipitationsInterval`.
+pub mod precipitations_interval {
+    /// The type of precipitation associated with the precipitation event.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum PrecipitationIntervalType {
+        /// Unspecified precipitation interval type.
+        Unspecified = 0,
+        /// No precipitation.
+        NoPrecipitation = 1,
+        /// Snow precipitation.
+        Snow = 2,
+        /// Rain precipitation.
+        Rain = 3,
+        /// Light rain precipitation.
+        LightRain = 4,
+        /// Heavy rain precipitation.
+        HeavyRain = 5,
+        /// Both rain and snow precipitations.
+        RainAndSnow = 6,
+        /// Sleet precipitation.
+        Sleet = 7,
+        /// Freezing rain precipitation.
+        FreezingRain = 8,
+        /// Hail precipitation.
+        Hail = 9,
+    }
+    impl PrecipitationIntervalType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "PRECIPITATION_INTERVAL_TYPE_UNSPECIFIED",
+                Self::NoPrecipitation => "NO_PRECIPITATION",
+                Self::Snow => "SNOW",
+                Self::Rain => "RAIN",
+                Self::LightRain => "LIGHT_RAIN",
+                Self::HeavyRain => "HEAVY_RAIN",
+                Self::RainAndSnow => "RAIN_AND_SNOW",
+                Self::Sleet => "SLEET",
+                Self::FreezingRain => "FREEZING_RAIN",
+                Self::Hail => "HAIL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PRECIPITATION_INTERVAL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NO_PRECIPITATION" => Some(Self::NoPrecipitation),
+                "SNOW" => Some(Self::Snow),
+                "RAIN" => Some(Self::Rain),
+                "LIGHT_RAIN" => Some(Self::LightRain),
+                "HEAVY_RAIN" => Some(Self::HeavyRain),
+                "RAIN_AND_SNOW" => Some(Self::RainAndSnow),
+                "SLEET" => Some(Self::Sleet),
+                "FREEZING_RAIN" => Some(Self::FreezingRain),
+                "HAIL" => Some(Self::Hail),
+                _ => None,
+            }
+        }
+    }
+    /// Precipitation intensity of the interval.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum IntervalPrecipitationIntensity {
+        /// Unknown precipitation intensity.
+        Unspecified = 0,
+        /// No precipitation.
+        NoIntensity = 1,
+        /// Light precipitation.
+        Light = 2,
+        /// Moderate precipitation.
+        Moderate = 3,
+        /// Heavy precipitation.
+        Heavy = 4,
+    }
+    impl IntervalPrecipitationIntensity {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "INTERVAL_PRECIPITATION_INTENSITY_UNSPECIFIED",
+                Self::NoIntensity => "NO_INTENSITY",
+                Self::Light => "LIGHT",
+                Self::Moderate => "MODERATE",
+                Self::Heavy => "HEAVY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INTERVAL_PRECIPITATION_INTENSITY_UNSPECIFIED" => Some(Self::Unspecified),
+                "NO_INTENSITY" => Some(Self::NoIntensity),
+                "LIGHT" => Some(Self::Light),
+                "MODERATE" => Some(Self::Moderate),
+                "HEAVY" => Some(Self::Heavy),
+                _ => None,
+            }
+        }
+    }
+}
 /// Represents an hourly history record at a given location.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HistoryHour {

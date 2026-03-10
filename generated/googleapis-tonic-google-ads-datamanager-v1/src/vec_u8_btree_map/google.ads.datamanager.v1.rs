@@ -657,7 +657,8 @@ pub enum ErrorReason {
     InvalidSha256Format = 11,
     /// Postal code is not valid.
     InvalidPostalCode = 12,
-    /// Country code is not valid.
+    /// Deprecated: Enum is unused in the Data Manager API.
+    #[deprecated]
     InvalidCountryCode = 13,
     /// Enum value cannot be used.
     InvalidEnumValue = 14,
@@ -842,6 +843,8 @@ pub enum ErrorReason {
     UnsupportedAccountTypesForUserListType = 97,
     /// The account types are not supported for the partner link.
     UnsupportedAccountTypeForPartnerLink = 98,
+    /// The user list membership duration is too long.
+    MembershipDurationTooLong = 99,
 }
 impl ErrorReason {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -863,6 +866,7 @@ impl ErrorReason {
             Self::InvalidBase64Encoding => "INVALID_BASE64_ENCODING",
             Self::InvalidSha256Format => "INVALID_SHA256_FORMAT",
             Self::InvalidPostalCode => "INVALID_POSTAL_CODE",
+            #[allow(deprecated)]
             Self::InvalidCountryCode => "INVALID_COUNTRY_CODE",
             Self::InvalidEnumValue => "INVALID_ENUM_VALUE",
             Self::InvalidUserListType => "INVALID_USER_LIST_TYPE",
@@ -1005,6 +1009,7 @@ impl ErrorReason {
             Self::UnsupportedAccountTypeForPartnerLink => {
                 "UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK"
             }
+            Self::MembershipDurationTooLong => "MEMBERSHIP_DURATION_TOO_LONG",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1023,7 +1028,7 @@ impl ErrorReason {
             "INVALID_BASE64_ENCODING" => Some(Self::InvalidBase64Encoding),
             "INVALID_SHA256_FORMAT" => Some(Self::InvalidSha256Format),
             "INVALID_POSTAL_CODE" => Some(Self::InvalidPostalCode),
-            "INVALID_COUNTRY_CODE" => Some(Self::InvalidCountryCode),
+            "INVALID_COUNTRY_CODE" => Some(#[allow(deprecated)] Self::InvalidCountryCode),
             "INVALID_ENUM_VALUE" => Some(Self::InvalidEnumValue),
             "INVALID_USER_LIST_TYPE" => Some(Self::InvalidUserListType),
             "INVALID_AUDIENCE_MEMBER" => Some(Self::InvalidAudienceMember),
@@ -1171,6 +1176,7 @@ impl ErrorReason {
             "UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK" => {
                 Some(Self::UnsupportedAccountTypeForPartnerLink)
             }
+            "MEMBERSHIP_DURATION_TOO_LONG" => Some(Self::MembershipDurationTooLong),
             _ => None,
         }
     }
@@ -2929,8 +2935,11 @@ pub struct SearchPartnerLinksRequest {
     /// must match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
-    /// Optional. A [filter string](//google.aip.dev/160). All fields need to be on
-    /// the left hand side of each condition (for example: `partner_link_id =  123456789`).
+    /// Optional. A [filter string](<https://google.aip.dev/160>). All fields need to
+    /// be on the left hand side of each condition (for example: `partner_link_id =  123456789`). Fields must be specified using either all [camel
+    /// case](<https://en.wikipedia.org/wiki/Camel_case>) or all [snake
+    /// case](<https://en.wikipedia.org/wiki/Snake_case>). Don't use a combination of
+    /// camel case and snake case.
     ///
     /// Supported operations:
     ///
@@ -2947,7 +2956,7 @@ pub struct SearchPartnerLinksRequest {
     /// * `partner_account.account_id`
     ///
     /// Example:
-    /// `owning_account.account_type = "GOOGLE_ADS" OR partner_account.account_id =  987654321`
+    /// `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id  = 987654321`
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
@@ -3655,20 +3664,20 @@ pub struct PairIdInfo {
     /// cleanrooms.
     #[prost(int64, optional, tag = "1")]
     pub publisher_id: ::core::option::Option<i64>,
-    /// Optional. Descriptive name of the publisher to be displayed in the UI for a
+    /// Required. Descriptive name of the publisher to be displayed in the UI for a
     /// better targeting experience.
     #[prost(string, optional, tag = "2")]
     pub publisher_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Output only. This field denotes the percentage of membership match of this
+    /// Required. This field denotes the percentage of membership match of this
     /// user list with the corresponding publisher's first party data. Must be
     /// between 0 and 100 inclusive.
-    #[prost(int32, tag = "3")]
-    pub match_rate_percentage: i32,
-    /// Output only. The count of the advertiser's first party data records that
-    /// have been uploaded to a clean room provider. This does not signify the size
-    /// of a PAIR user list.
-    #[prost(int64, tag = "4")]
-    pub advertiser_identifier_count: i64,
+    #[prost(int32, optional, tag = "3")]
+    pub match_rate_percentage: ::core::option::Option<i32>,
+    /// Optional. The count of the advertiser's first party data records that have
+    /// been uploaded to a clean room provider. This does not signify the size of a
+    /// PAIR user list.
+    #[prost(int64, optional, tag = "4")]
+    pub advertiser_identifier_count: ::core::option::Option<i64>,
     /// Required. Immutable. Identifies a unique advertiser to publisher
     /// relationship with one clean room provider or across multiple clean room
     /// providers.
@@ -4213,8 +4222,12 @@ pub struct ListUserListDirectLicensesRequest {
     /// format accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Optional. Filters to apply to the list request. All fields need to be on
-    /// the left hand side of each condition (for example: user_list_id = 123).
+    /// Optional. A [filter string](<https://google.aip.dev/160>) to apply to the
+    /// list request. All fields need to be on the left hand side of each condition
+    /// (for example: `user_list_id = 123`). Fields must be specified using either
+    /// all [camel case](<https://en.wikipedia.org/wiki/Camel_case>) or all [snake
+    /// case](<https://en.wikipedia.org/wiki/Snake_case>). Don't use a combination of
+    /// camel case and snake case.
     ///
     /// **Supported Operations:**
     ///
@@ -4649,8 +4662,12 @@ pub struct ListUserListGlobalLicensesRequest {
     /// format accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Optional. Filters to apply to the list request. All fields need to be on
-    /// the left hand side of each condition (for example: user_list_id = 123).
+    /// Optional. A [filter string](<https://google.aip.dev/160>) to apply to the
+    /// list request. All fields need to be on the left hand side of each condition
+    /// (for example: `user_list_id = 123`). Fields must be specified using either
+    /// all [camel case](<https://en.wikipedia.org/wiki/Camel_case>) or all [snake
+    /// case](<https://en.wikipedia.org/wiki/Snake_case>). Don't use a combination of
+    /// camel case and snake case.
     ///
     /// **Supported Operations:**
     ///
@@ -4711,8 +4728,12 @@ pub struct ListUserListGlobalLicenseCustomerInfosRequest {
     /// `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Optional. Filters to apply to the list request. All fields need to be on
-    /// the left hand side of each condition (for example: user_list_id = 123).
+    /// Optional. A [filter string](<https://google.aip.dev/160>) to apply to the
+    /// list request. All fields need to be on the left hand side of each condition
+    /// (for example: `user_list_id = 123`). Fields must be specified using either
+    /// all [camel case](<https://en.wikipedia.org/wiki/Camel_case>) or all [snake
+    /// case](<https://en.wikipedia.org/wiki/Snake_case>). Don't use a combination of
+    /// camel case and snake case.
     ///
     /// **Supported Operations:**
     ///
@@ -5042,8 +5063,11 @@ pub struct ListUserListsRequest {
     /// match the call that provided the page token.
     #[prost(string, tag = "3")]
     pub page_token: ::prost::alloc::string::String,
-    /// Optional. A [filter string](//google.aip.dev/160). All fields need to be on
-    /// the left hand side of each condition (for example: `display_name = "list  1"`).
+    /// Optional. A [filter string](<https://google.aip.dev/160>). All fields need to
+    /// be on the left hand side of each condition (for example: `display_name =  "list 1"`). Fields must be specified using either all [camel
+    /// case](<https://en.wikipedia.org/wiki/Camel_case>) or all [snake
+    /// case](<https://en.wikipedia.org/wiki/Snake_case>). Don't use a combination of
+    /// camel case and snake case.
     ///
     /// Supported operations:
     ///

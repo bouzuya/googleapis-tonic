@@ -39621,6 +39621,9 @@ pub struct SessionEvent {
     /// Optional. Metadata relating to this event.
     #[prost(message, optional, tag = "11")]
     pub event_metadata: ::core::option::Option<EventMetadata>,
+    /// Optional. Weakly typed raw event data in proto struct format.
+    #[prost(message, optional, tag = "12")]
+    pub raw_event: ::core::option::Option<::prost_types::Struct>,
 }
 /// Metadata relating to a LLM response event.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -39715,6 +39718,15 @@ pub struct CreateSessionRequest {
     /// Required. The session to create.
     #[prost(message, optional, tag = "2")]
     pub session: ::core::option::Option<Session>,
+    /// Optional. The user defined ID to use for session, which will become the
+    /// final component of the session resource name. If not provided, Vertex AI
+    /// will generate a value for this ID.
+    ///
+    /// This value may be up to 63 characters, and valid characters are
+    /// `\[a-z0-9-\]`. The first character must be a letter, and the last character
+    /// must be a letter or number.
+    #[prost(string, tag = "3")]
+    pub session_id: ::prost::alloc::string::String,
 }
 /// Metadata associated with the
 /// \[SessionService.CreateSession\]\[google.cloud.aiplatform.v1.SessionService.CreateSession\]

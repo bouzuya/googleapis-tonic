@@ -27,10 +27,13 @@ pub struct MembershipState {
     /// Output only. Hierarchy Controller status
     #[prost(message, optional, tag = "7")]
     pub hierarchy_controller_state: ::core::option::Option<HierarchyControllerState>,
+    /// Output only. The Kubernetes API server version of the cluster.
+    #[prost(string, tag = "8")]
+    pub kubernetes_api_server_version: ::prost::alloc::string::String,
 }
 /// **Anthos Config Management**: Configuration for a single cluster.
 /// Intended to parallel the ConfigManagement CR.
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MembershipSpec {
     /// Optional. Config Sync configuration for the cluster.
     #[prost(message, optional, tag = "1")]
@@ -41,8 +44,8 @@ pub struct MembershipSpec {
     #[deprecated]
     #[prost(message, optional, tag = "2")]
     pub policy_controller: ::core::option::Option<PolicyController>,
-    /// Optional. Binauthz conifguration for the cluster. Deprecated: This field
-    /// will be ignored and should not be set.
+    /// Optional. Deprecated: Binauthz configuration will be ignored and should not
+    /// be set.
     #[deprecated]
     #[prost(message, optional, tag = "3")]
     pub binauthz: ::core::option::Option<BinauthzConfig>,
@@ -53,19 +56,25 @@ pub struct MembershipSpec {
     #[deprecated]
     #[prost(message, optional, tag = "4")]
     pub hierarchy_controller: ::core::option::Option<HierarchyControllerConfig>,
-    /// Optional. Version of ACM installed.
+    /// Optional. Version of Config Sync to install. Defaults to the latest
+    /// supported Config Sync version if the config_sync field is enabled. See
+    /// supported versions at
+    /// <https://cloud.google.com/kubernetes-engine/config-sync/docs/get-support-config-sync#version_support_policy.>
     #[prost(string, tag = "10")]
     pub version: ::prost::alloc::string::String,
-    /// Optional. The user-specified cluster name used by Config Sync
-    /// cluster-name-selector annotation or ClusterSelector, for applying configs
-    /// to only a subset of clusters. Omit this field if the cluster's fleet
-    /// membership name is used by Config Sync cluster-name-selector annotation or
-    /// ClusterSelector. Set this field if a name different from the cluster's
-    /// fleet membership name is used by Config Sync cluster-name-selector
-    /// annotation or ClusterSelector.
+    /// Optional. User-specified cluster name used by the Config Sync
+    /// cluster-name-selector annotation or ClusterSelector object, for applying
+    /// configs to only a subset of clusters. Read more about the
+    /// cluster-name-selector annotation and ClusterSelector object at
+    /// <https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-to/cluster-scoped-objects#limiting-configs.>
+    /// Only set this field if a name different from the cluster's fleet membership
+    /// name is used by the Config Sync cluster-name-selector annotation or
+    /// ClusterSelector.
     #[prost(string, tag = "11")]
     pub cluster: ::prost::alloc::string::String,
-    /// Optional. Enables automatic Feature management.
+    /// Optional. Deprecated: From version 1.21.0, automatic Feature management is
+    /// unavailable, and Config Sync only supports manual upgrades.
+    #[deprecated]
     #[prost(enumeration = "membership_spec::Management", tag = "12")]
     pub management: i32,
 }
@@ -116,27 +125,31 @@ pub mod membership_spec {
     }
 }
 /// Configuration for Config Sync
-#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigSync {
     /// Optional. Git repo configuration for the cluster.
     #[prost(message, optional, tag = "7")]
     pub git: ::core::option::Option<GitConfig>,
-    /// Optional. Specifies whether the Config Sync Repo is
-    /// in "hierarchical" or "unstructured" mode.
+    /// Optional. Specifies whether the Config Sync repo is in `hierarchical` or
+    /// `unstructured` mode. Defaults to `hierarchical`. See
+    /// <https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs>
+    /// for an explanation.
     #[prost(string, tag = "8")]
     pub source_format: ::prost::alloc::string::String,
-    /// Optional. Enables the installation of ConfigSync.
-    /// If set to true, ConfigSync resources will be created and the other
-    /// ConfigSync fields will be applied if exist.
-    /// If set to false, all other ConfigSync fields will be ignored, ConfigSync
-    /// resources will be deleted.
-    /// If omitted, ConfigSync resources will be managed depends on the presence
-    /// of the git or oci field.
+    /// Optional. Enables the installation of Config Sync.
+    /// If set to true, the Feature will manage Config Sync resources,
+    /// and apply the other ConfigSync fields if they exist.
+    /// If set to false, the Feature will ignore all other ConfigSync fields and
+    /// delete the Config Sync resources.
+    /// If omitted, ConfigSync is considered enabled if the git or oci field is
+    /// present.
     #[prost(bool, optional, tag = "10")]
     pub enabled: ::core::option::Option<bool>,
     /// Optional. Set to true to enable the Config Sync admission webhook to
-    /// prevent drifts. If set to `false`, disables the Config Sync admission
-    /// webhook and does not prevent drifts.
+    /// prevent drifts. If set to false, disables the Config Sync admission webhook
+    /// and does not prevent drifts. Defaults to false. See
+    /// <https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-to/prevent-config-drift>
+    /// for details.
     #[prost(bool, tag = "11")]
     pub prevent_drift: bool,
     /// Optional. OCI repo configuration for the cluster
@@ -146,6 +159,56 @@ pub struct ConfigSync {
     /// Default to false.
     #[prost(bool, tag = "16")]
     pub stop_syncing: bool,
+    /// Optional. Configuration for deployment overrides.
+    /// Applies only to Config Sync deployments with containers that are not a root
+    /// or namespace reconciler: `reconciler-manager`, `otel-collector`,
+    /// `resource-group-controller-manager`, `admission-webhook`.
+    /// To override a root or namespace reconciler, use the rootsync or reposync
+    /// fields at
+    /// <https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/reference/rootsync-reposync-fields#override-resources>
+    /// instead.
+    #[prost(message, repeated, tag = "17")]
+    pub deployment_overrides: ::prost::alloc::vec::Vec<DeploymentOverride>,
+}
+/// Configuration for a deployment override.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeploymentOverride {
+    /// Required. The name of the deployment resource to be overridden.
+    #[prost(string, tag = "1")]
+    pub deployment_name: ::prost::alloc::string::String,
+    /// Required. The namespace of the deployment resource to be overridden.
+    #[prost(string, tag = "2")]
+    pub deployment_namespace: ::prost::alloc::string::String,
+    /// Optional. The containers of the deployment resource to be overridden.
+    #[prost(message, repeated, tag = "3")]
+    pub containers: ::prost::alloc::vec::Vec<ContainerOverride>,
+}
+/// Configuration for a container override.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ContainerOverride {
+    /// Required. The name of the container.
+    #[prost(string, tag = "1")]
+    pub container_name: ::prost::alloc::string::String,
+    /// Optional. The cpu request of the container. Use the following CPU resource
+    /// units:
+    /// <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu.>
+    #[prost(string, tag = "2")]
+    pub cpu_request: ::prost::alloc::string::String,
+    /// Optional. The cpu limit of the container. Use the following CPU resource
+    /// units:
+    /// <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu.>
+    #[prost(string, tag = "3")]
+    pub cpu_limit: ::prost::alloc::string::String,
+    /// Optional. The memory request of the container. Use the following memory
+    /// resource units:
+    /// <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.>
+    #[prost(string, tag = "4")]
+    pub memory_request: ::prost::alloc::string::String,
+    /// Optional. The memory limit of the container. Use the following memory
+    /// resource units:
+    /// <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.>
+    #[prost(string, tag = "5")]
+    pub memory_limit: ::prost::alloc::string::String,
 }
 /// Git repo configuration for a single cluster.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -167,17 +230,18 @@ pub struct GitConfig {
     #[prost(string, tag = "5")]
     pub sync_rev: ::prost::alloc::string::String,
     /// Required. Type of secret configured for access to the Git repo.
-    /// Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount,
-    /// githubapp or none.
+    /// Must be one of `ssh`, `cookiefile`, `gcenode`, `token`,
+    /// `gcpserviceaccount`, `githubapp` or `none`.
     /// The validation of this is case-sensitive.
     #[prost(string, tag = "6")]
     pub secret_type: ::prost::alloc::string::String,
     /// Optional. URL for the HTTPS proxy to be used when communicating with the
-    /// Git repo.
+    /// Git repo. Only specify when secret_type is `cookiefile`, `token`, or
+    /// `none`.
     #[prost(string, tag = "7")]
     pub https_proxy: ::prost::alloc::string::String,
     /// Optional. The Google Cloud Service Account Email used for auth when
-    /// secret_type is gcpServiceAccount.
+    /// secret_type is `gcpserviceaccount`.
     #[prost(string, tag = "8")]
     pub gcp_service_account_email: ::prost::alloc::string::String,
 }
@@ -196,12 +260,13 @@ pub struct OciConfig {
     #[prost(int64, tag = "3")]
     pub sync_wait_secs: i64,
     /// Required. Type of secret configured for access to the OCI repo.
-    /// Must be one of gcenode, gcpserviceaccount, k8sserviceaccount or none.
+    /// Must be one of `gcenode`, `gcpserviceaccount`, `k8sserviceaccount` or
+    /// `none`.
     /// The validation of this is case-sensitive.
     #[prost(string, tag = "4")]
     pub secret_type: ::prost::alloc::string::String,
     /// Optional. The Google Cloud Service Account Email used for auth when
-    /// secret_type is gcpServiceAccount.
+    /// secret_type is `gcpserviceaccount`.
     #[prost(string, tag = "5")]
     pub gcp_service_account_email: ::prost::alloc::string::String,
 }

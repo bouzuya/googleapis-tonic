@@ -208,31 +208,6 @@ pub mod search_hint {
         /// `projects/{project}/locations/{location}/collections/{collection}/indexes/{index}`
         #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
-        /// The parameters for the index.
-        #[prost(oneof = "index_hint::Params", tags = "2")]
-        pub params: ::core::option::Option<index_hint::Params>,
-    }
-    /// Nested message and enum types in `IndexHint`.
-    pub mod index_hint {
-        /// Parameters for dense ScaNN.
-        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
-        pub struct DenseScannParams {
-            /// Optional. Dense ANN param overrides to control recall and latency.
-            /// The percentage of leaves to search, in the range \[0, 100\].
-            #[prost(int32, tag = "1")]
-            pub search_leaves_pct: i32,
-            /// Optional. The number of initial candidates. Must be a positive integer
-            /// (> 0).
-            #[prost(int32, tag = "2")]
-            pub initial_candidate_count: i32,
-        }
-        /// The parameters for the index.
-        #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Oneof)]
-        pub enum Params {
-            /// Optional. Dense ScaNN parameters.
-            #[prost(message, tag = "2")]
-            DenseScannParams(DenseScannParams),
-        }
     }
     /// KnnHint will be used if search should be explicitly done on system's
     /// default K-Nearest Neighbor (KNN) index engine.
@@ -1655,12 +1630,15 @@ pub mod dedicated_infrastructure {
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct AutoscalingSpec {
         /// Optional. The minimum number of replicas. If not set or set to `0`,
-        /// defaults to `2`. Must be >= `2` and \<= `1000`.
+        /// defaults to `2`. Must be >= `1` and \<= `1000`.
         #[prost(int32, tag = "1")]
         pub min_replica_count: i32,
-        /// Optional. The maximum number of replicas. If not set or set to `0`,
-        /// defaults to the greater of `min_replica_count` and `5`. Must be >=
+        /// Optional. The maximum number of replicas.  Must be >=
         /// `min_replica_count` and \<= `1000`.
+        /// For the v1beta version, if not set or set to `0`, defaults to
+        /// the greater of `min_replica_count` and `5`.
+        /// For all other versions, if not set or set to `0`, defaults to
+        /// the greater of `min_replica_count` and `2`.
         #[prost(int32, tag = "2")]
         pub max_replica_count: i32,
     }

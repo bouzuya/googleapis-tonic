@@ -246,11 +246,14 @@ pub mod tls_config {
         /// is empty or unspecified, CES will use Google's default trust
         /// store to verify certificates. N.B. Make sure the HTTPS server
         /// certificates are signed with "subject alt name". For instance a
-        /// certificate can be self-signed using the following command,
-        /// openssl x509 -req -days 200 -in example.com.csr
-        /// -signkey example.com.key
-        /// -out example.com.crt
-        /// -extfile \<(printf "\nsubjectAltName='DNS:www.example.com'")
+        /// certificate can be self-signed using the following command:
+        ///
+        /// ```text,
+        ///    openssl x509 -req -days 200 -in example.com.csr \
+        ///      -signkey example.com.key \
+        ///      -out example.com.crt \
+        ///      -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+        /// ```
         #[prost(bytes = "bytes", tag = "2")]
         pub cert: ::prost::bytes::Bytes,
     }
@@ -2786,6 +2789,20 @@ pub mod guardrail {
         CodeCallback(CodeCallback),
     }
 }
+/// Represents a tool that allows the agent to call another agent.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AgentTool {
+    /// Required. The name of the agent tool.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. Description of the tool's purpose.
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. The resource name of the root agent that is the entry point of
+    /// the tool. Format: `projects/{project}/locations/{location}/agents/{agent}`
+    #[prost(string, tag = "3")]
+    pub root_agent: ::prost::alloc::string::String,
+}
 /// Represents a client-side function that the agent can invoke. When the
 /// tool is chosen by the agent, control is handed off to the client.
 /// The client is responsible for executing the function and returning the result
@@ -4087,16 +4104,15 @@ pub mod widget_tool {
 /// goals.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tool {
-    /// Identifier. The unique identifier of the tool.
-    /// Format:
+    /// Identifier. The resource name of the tool. Format:
     ///
-    /// * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}` for
+    /// * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+    ///   for standalone tools.
+    /// * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
+    ///   for tools retrieved from a toolset.
     ///
-    /// ## standalone tools.
-    ///
-    /// `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
-    /// for tools retrieved from a toolset. These tools are dynamic and
-    /// output-only, they cannot be referenced directly where a tool is expected.
+    /// These tools are dynamic and output-only; they cannot be referenced directly
+    /// where a tool is expected.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The display name of the tool, derived based on the tool's
@@ -4126,7 +4142,7 @@ pub struct Tool {
     #[prost(message, optional, tag = "20")]
     pub tool_fake_config: ::core::option::Option<ToolFakeConfig>,
     /// The type of the tool.
-    #[prost(oneof = "tool::ToolType", tags = "2, 3, 5, 8, 10, 11, 16, 17, 18, 24")]
+    #[prost(oneof = "tool::ToolType", tags = "2, 3, 5, 8, 10, 11, 16, 17, 18, 23, 24")]
     pub tool_type: ::core::option::Option<tool::ToolType>,
 }
 /// Nested message and enum types in `Tool`.
@@ -4162,6 +4178,9 @@ pub mod tool {
         /// Optional. The system tool.
         #[prost(message, tag = "18")]
         SystemTool(super::SystemTool),
+        /// Optional. The agent tool.
+        #[prost(message, tag = "23")]
+        AgentTool(super::AgentTool),
         /// Optional. The widget tool.
         #[prost(message, tag = "24")]
         WidgetTool(super::WidgetTool),
@@ -4739,7 +4758,7 @@ pub struct SessionConfig {
     /// Optional. The entry agent to handle the session. If not specified, the
     /// session will be handled by the \[root
     /// agent\]\[google.cloud.ces.v1beta.App.root_agent\] of the app. Format:
-    /// `projects/{project}/locations/{location}/agents/{agent}`
+    /// `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
     #[prost(string, tag = "12")]
     pub entry_agent: ::prost::alloc::string::String,
     /// Optional. The deployment of the app to use for the session.
@@ -4755,6 +4774,11 @@ pub struct SessionConfig {
     /// "America/Los_Angeles".
     #[prost(string, tag = "11")]
     pub time_zone: ::prost::alloc::string::String,
+    /// Optional. Whether to use tool fakes for the session.
+    /// If this field is set, the agent will attempt use tool fakes instead of
+    /// calling the real tools.
+    #[prost(bool, tag = "14")]
+    pub use_tool_fakes: bool,
     /// Optional.
     /// [QueryParameters](<https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters>)
     /// to send to the remote
@@ -7245,6 +7269,90 @@ pub mod optimization_config {
         }
     }
 }
+/// Project/Location level security settings for CES.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct SecuritySettings {
+    /// Identifier. The unique identifier of the security settings.
+    /// Format: `projects/{project}/locations/{location}/securitySettings`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. Endpoint control related settings.
+    #[prost(message, optional, tag = "2")]
+    pub endpoint_control_policy: ::core::option::Option<EndpointControlPolicy>,
+    /// Output only. Create time of the security settings.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Last update time of the security settings.
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Etag of the security settings.
+    #[prost(string, tag = "5")]
+    pub etag: ::prost::alloc::string::String,
+}
+/// Defines project/location level endpoint control policy.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct EndpointControlPolicy {
+    /// Optional. The scope in which this policy's allowed_origins list is
+    /// enforced.
+    #[prost(enumeration = "endpoint_control_policy::EnforcementScope", tag = "1")]
+    pub enforcement_scope: i32,
+    /// Optional. The allowed HTTP(s) origins that tools in the App are able to
+    /// directly call. The enforcement depends on the value of
+    /// enforcement_scope and the VPC-SC status of the project.
+    /// If a port number is not provided, all ports will be allowed. Otherwise,
+    /// the port number must match exactly. For example, "<https://example.com">
+    /// will match "<https://example.com:443"> and any other port.
+    /// "<https://example.com:443"> will only match "<https://example.com:443".>
+    #[prost(string, repeated, tag = "2")]
+    pub allowed_origins: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `EndpointControlPolicy`.
+pub mod endpoint_control_policy {
+    /// Defines the scope in which this policy's allowed_origins list is
+    /// enforced.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum EnforcementScope {
+        /// Unspecified. This policy will be treated as VPCSC_ONLY.
+        Unspecified = 0,
+        /// This policy applies only when VPC-SC is active.
+        VpcscOnly = 1,
+        /// This policy ALWAYS applies, regardless of VPC-SC status.
+        Always = 2,
+    }
+    impl EnforcementScope {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "ENFORCEMENT_SCOPE_UNSPECIFIED",
+                Self::VpcscOnly => "VPCSC_ONLY",
+                Self::Always => "ALWAYS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ENFORCEMENT_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "VPCSC_ONLY" => Some(Self::VpcscOnly),
+                "ALWAYS" => Some(Self::Always),
+                _ => None,
+            }
+        }
+    }
+}
 /// Request message for
 /// \[AgentService.ListApps\]\[google.cloud.ces.v1beta.AgentService.ListApps\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -8499,6 +8607,27 @@ pub struct GetChangelogRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
+/// Request message for
+/// \[AgentService.GetSecuritySettings\]\[google.cloud.ces.v1beta.AgentService.GetSecuritySettings\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetSecuritySettingsRequest {
+    /// Required. The resource name of the security settings to retrieve.
+    /// Format: `projects/{project}/locations/{location}/securitySettings`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// \[AgentService.UpdateSecuritySettings\]\[google.cloud.ces.v1beta.AgentService.UpdateSecuritySettings\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct UpdateSecuritySettingsRequest {
+    /// Required. The security settings to update.
+    #[prost(message, optional, tag = "1")]
+    pub security_settings: ::core::option::Option<SecuritySettings>,
+    /// Optional. Field mask is used to control which fields get updated. If the
+    /// mask is not present, all fields will be updated.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
 /// Generated client implementations.
 pub mod agent_service_client {
     #![allow(
@@ -8761,6 +8890,66 @@ pub mod agent_service_client {
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new("google.cloud.ces.v1beta.AgentService", "ImportApp"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves the security settings for the project and location.
+        pub async fn get_security_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSecuritySettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SecuritySettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.ces.v1beta.AgentService/GetSecuritySettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.ces.v1beta.AgentService",
+                        "GetSecuritySettings",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the security settings for the project and location.
+        pub async fn update_security_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateSecuritySettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SecuritySettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.ces.v1beta.AgentService/UpdateSecuritySettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.ces.v1beta.AgentService",
+                        "UpdateSecuritySettings",
+                    ),
                 );
             self.inner.unary(req, path, codec).await
         }
@@ -10537,15 +10726,20 @@ pub struct TestPersonaVoiceRequest {
 /// \[EvaluationService.UploadEvaluationAudio\]\[google.cloud.ces.v1beta.EvaluationService.UploadEvaluationAudio\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UploadEvaluationAudioRequest {
-    /// Required. The resource name of the App for which to upload the evaluation
-    /// audio. Format: `projects/{project}/locations/{location}/apps/{app}`
+    /// Required. The resource name of the Evaluation for which to upload the
+    /// evaluation audio. Format:
+    /// `projects/{project}/locations/{location}/apps/{app}/evaluations/{evaluation}`
     #[prost(string, tag = "1")]
-    pub app: ::prost::alloc::string::String,
+    pub name: ::prost::alloc::string::String,
     /// Required. The raw audio bytes.
     /// The format of the audio must be single-channel LINEAR16 with a sample
     /// rate of 16kHz (default InputAudioConfig).
     #[prost(bytes = "bytes", tag = "2")]
     pub audio_content: ::prost::bytes::Bytes,
+    /// Optional. The Google Cloud Storage URI of the previously uploaded audio
+    /// file to be deleted. Format: `gs://<bucket-name>/<object-name>`
+    #[prost(string, tag = "3")]
+    pub previous_audio_gcs_uri: ::prost::alloc::string::String,
 }
 /// Response message for
 /// \[EvaluationService.UploadEvaluationAudio\]\[google.cloud.ces.v1beta.EvaluationService.UploadEvaluationAudio\].
@@ -10555,12 +10749,12 @@ pub struct UploadEvaluationAudioResponse {
     /// Format: `gs://<bucket-name>/<object-name>`
     #[prost(string, tag = "1")]
     pub audio_gcs_uri: ::prost::alloc::string::String,
-    /// The transcribed text from the audio, generated by Cloud Speech-to-Text.
+    /// The transcript of the audio, generated by Cloud Speech-to-Text.
     #[prost(string, tag = "2")]
-    pub audio_transcript: ::prost::alloc::string::String,
+    pub transcript: ::prost::alloc::string::String,
     /// The duration of the audio.
     #[prost(message, optional, tag = "3")]
-    pub audio_duration: ::core::option::Option<::prost_types::Duration>,
+    pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 /// Response message for
 /// \[EvaluationService.TestPersonaVoice\]\[google.cloud.ces.v1beta.EvaluationService.TestPersonaVoice\].
@@ -11816,13 +12010,15 @@ pub struct ExecuteToolRequest {
     /// format.
     #[prost(message, optional, tag = "2")]
     pub args: ::core::option::Option<::prost_types::Struct>,
-    /// Optional. The variables that are available for the tool execution.
-    #[prost(message, optional, tag = "5")]
-    pub variables: ::core::option::Option<::prost_types::Struct>,
     /// The identifier of the tool to execute. It could be either a persisted tool
     /// or a tool from a toolset.
     #[prost(oneof = "execute_tool_request::ToolIdentifier", tags = "1, 3")]
     pub tool_identifier: ::core::option::Option<execute_tool_request::ToolIdentifier>,
+    /// Additional context to be provided for the tool execution
+    #[prost(oneof = "execute_tool_request::ToolExecutionContext", tags = "5, 6")]
+    pub tool_execution_context: ::core::option::Option<
+        execute_tool_request::ToolExecutionContext,
+    >,
 }
 /// Nested message and enum types in `ExecuteToolRequest`.
 pub mod execute_tool_request {
@@ -11839,6 +12035,18 @@ pub mod execute_tool_request {
         /// predicate from the toolset. Otherwise, an error will be returned.
         #[prost(message, tag = "3")]
         ToolsetTool(super::ToolsetTool),
+    }
+    /// Additional context to be provided for the tool execution
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ToolExecutionContext {
+        /// Optional. The variables that are available for the tool execution.
+        #[prost(message, tag = "5")]
+        Variables(::prost_types::Struct),
+        /// Optional. The
+        /// \[ToolCallContext\](<https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/python#environment>
+        /// for details) to be passed to the Python tool.
+        #[prost(message, tag = "6")]
+        Context(::prost_types::Struct),
     }
 }
 /// Response message for
