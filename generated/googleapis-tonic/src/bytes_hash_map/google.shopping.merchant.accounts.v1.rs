@@ -1445,8 +1445,7 @@ pub mod user_service_client {
         }
         /// Deletes a Merchant Center account user. Executing this method requires
         /// admin access. The user to be deleted can't be the last admin user of that
-        /// account. Also a user is protected from deletion if it
-        /// is managed by Business Manager"
+        /// account.
         pub async fn delete_user(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserRequest>,
@@ -1640,10 +1639,12 @@ pub struct Account {
     /// Output only. The ID of the account.
     #[prost(int64, tag = "2")]
     pub account_id: i64,
-    /// Required. A human-readable name of the account. See
-    /// [store name](<https://support.google.com/merchants/answer/160556>) and
-    /// [business name](<https://support.google.com/merchants/answer/12159159>) for
-    /// more information.
+    /// Required. A human-readable name of the account. Don't use punctuation,
+    /// capitalization, or non-alphanumeric symbols such as the "/" or "\_" symbols.
+    /// See
+    /// [Adding a business
+    /// name](<https://support.google.com/merchants/answer/12159159>) for more
+    /// information.
     #[prost(string, tag = "3")]
     pub account_name: ::prost::alloc::string::String,
     /// Optional. Whether this account contains adult content.
@@ -1692,7 +1693,7 @@ pub struct CreateAndConfigureAccountRequest {
     /// `account_aggregation` and `accounts.createAndConfigure` method can be
     /// used to create a sub-account under an existing advanced account through
     /// this method. Additional `account_management` or
-    /// `product_management` services may be provided.
+    /// `products_management` services may be provided.
     #[prost(message, repeated, tag = "4")]
     pub service: ::prost::alloc::vec::Vec<
         create_and_configure_account_request::AddAccountService,
@@ -1804,6 +1805,17 @@ pub mod create_and_configure_account_request {
         #[prost(string, tag = "2")]
         pub account_id_alias: ::prost::alloc::string::String,
     }
+}
+/// Request message for the CreateTestAccount RPC
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct CreateTestAccountRequest {
+    /// Required. The account resource name to create the test account under.
+    /// Format: accounts/{account}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The account to be created.
+    #[prost(message, optional, tag = "2")]
+    pub account: ::core::option::Option<Account>,
 }
 /// Request message for the `DeleteAccount` method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -2034,6 +2046,47 @@ pub mod accounts_service_client {
                     GrpcMethod::new(
                         "google.shopping.merchant.accounts.v1.AccountsService",
                         "CreateAndConfigureAccount",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a Merchant Center test account.
+        ///
+        /// Test accounts are intended for development and testing purposes, such as
+        /// validating API integrations or new feature behavior.
+        ///
+        /// Key characteristics and limitations of test accounts:
+        ///
+        /// * Immutable Type: A test account cannot be converted into a regular
+        ///  (live) Merchant Center account. Likewise, a regular account cannot be
+        ///  converted into a test account.
+        /// * Non-Serving Products: Any products, offers, or data created within a
+        ///  test account will not be published or made visible to end-users on any
+        ///  Google surfaces. They are strictly for testing environments.
+        /// * Separate Environment: Test accounts operate in a sandbox-like manner,
+        ///  isolated from live serving and real user traffic.
+        pub async fn create_test_account(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateTestAccountRequest>,
+        ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1.AccountsService/CreateTestAccount",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1.AccountsService",
+                        "CreateTestAccount",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -3327,10 +3380,11 @@ pub struct CheckoutSettings {
     /// URI settings for cart or checkout URL.
     #[prost(message, optional, tag = "2")]
     pub uri_settings: ::core::option::Option<UriSettings>,
-    /// Optional. The destinations (also known as [Marketing
+    /// Optional. Required for the create operation. The destinations (also known
+    /// as [Marketing
     /// methods](<https://support.google.com/merchants/answer/15130232>)) to which
-    /// the checkout program applies, valid destination values are `SHOPPING_ADS`,
-    /// `FREE_LISTINGS`
+    /// the checkout program applies. Valid destination values are `SHOPPING_ADS`
+    /// and `FREE_LISTINGS`.
     #[prost(
         enumeration = "super::super::super::r#type::destination::DestinationEnum",
         repeated,
@@ -3738,15 +3792,16 @@ pub struct RegisterGcpRequest {
     /// `accounts/{account}/developerRegistration`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// Immutable. If the developer email provided is associated with a user in the
-    /// merchant account provided, the user will be updated to have "API developer"
-    /// access type and the email preference corresponding to that user will be
-    /// updated to have the new "API notifications" preference. If the developer
-    /// email provided is not associated with any user we will just add it as a
-    /// contact. The email preference corresponding to that contact will have the
-    /// new "API notifications" preference. Make sure the email used is associated
-    /// with a Google Account (Google Workspace account or Gmail account)
-    /// and is not a service account as service accounts can't receive emails.
+    /// Immutable. Optional field. Developer role can be also added by using
+    /// `users.update` method. If the developer email provided is associated with a
+    /// user in the provided merchant account, the user will be updated to have
+    /// `API_DEVELOPER` `access_rights` and the email preference corresponding to
+    /// that user will be updated to have the new API notifications preference. If
+    /// the developer email provided is not associated with any user, it is added
+    /// as a contact. The email preference corresponding to that contact will have
+    /// the new API notifications preference. Make sure the email used is
+    /// associated with a Google Account and is not a service account as service
+    /// accounts can't receive emails.
     #[prost(string, tag = "2")]
     pub developer_email: ::prost::alloc::string::String,
 }
@@ -6314,6 +6369,7 @@ pub mod online_return_policy_service_client {
 ///
 /// * `checkout`
 /// * `free-listings`
+/// * `product-ratings`
 /// * `shopping-ads`
 /// * `youtube-shopping-checkout`
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6798,8 +6854,13 @@ pub struct ListRegionsResponse {
 }
 /// Represents a geographic region that you can use as a target with both the
 /// `RegionalInventory` and `ShippingSettings` services. You can define regions
-/// as collections of either postal codes or, in some countries, using predefined
-/// geotargets. For more information, see [Set up regions
+/// as collections of either postal codes, radius areas or, in some countries,
+/// using predefined geotargets.
+///
+/// A region must be defined by specifying exactly one of `postal_code_area`,
+/// `geotarget_area`, or `radius_area`.
+///
+/// For more information, see [Set up regions
 /// ](<https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region>)
 /// for more information.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -8258,7 +8319,7 @@ pub mod shipping_settings_service_client {
 pub enum TermsOfServiceKind {
     /// Default value. This value is unused.
     Unspecified = 0,
-    /// Merchant Center application.
+    /// Terms of service for the Merchant Center application.
     MerchantCenter = 1,
 }
 impl TermsOfServiceKind {

@@ -1609,6 +1609,95 @@ pub struct ImportDataObjectsResponse {
     #[prost(message, optional, tag = "1")]
     pub status: ::core::option::Option<super::super::super::rpc::Status>,
 }
+/// Request message for
+/// \[VectorSearchService.ExportDataObjects\]\[google.cloud.vectorsearch.v1.VectorSearchService.ExportDataObjects\].
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ExportDataObjectsRequest {
+    /// Required. The resource name of the Collection from which we want to export
+    /// Data Objects. Format:
+    /// `projects/{project}/locations/{location}/collections/{collection}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The configuration for the export data.
+    #[prost(oneof = "export_data_objects_request::Destination", tags = "2")]
+    pub destination: ::core::option::Option<export_data_objects_request::Destination>,
+}
+/// Nested message and enum types in `ExportDataObjectsRequest`.
+pub mod export_data_objects_request {
+    /// Google Cloud Storage configuration for the export.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct GcsExportDestination {
+        /// Required. URI prefix of the Cloud Storage where to export Data Objects.
+        /// The bucket is required to be in the same region as the collection.
+        #[prost(string, tag = "1")]
+        pub export_uri: ::prost::alloc::string::String,
+        /// Required. The format of the exported Data Objects.
+        #[prost(enumeration = "gcs_export_destination::Format", tag = "2")]
+        pub format: i32,
+    }
+    /// Nested message and enum types in `GcsExportDestination`.
+    pub mod gcs_export_destination {
+        /// Options for the format of the exported Data Objects.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Format {
+            /// Unspecified format.
+            Unspecified = 0,
+            /// Exports Data Objects in `JSONL` format.
+            Jsonl = 2,
+        }
+        impl Format {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "FORMAT_UNSPECIFIED",
+                    Self::Jsonl => "JSONL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "JSONL" => Some(Self::Jsonl),
+                    _ => None,
+                }
+            }
+        }
+    }
+    /// The configuration for the export data.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Destination {
+        /// The Cloud Storage location where user wants to export Data Objects.
+        #[prost(message, tag = "2")]
+        GcsDestination(GcsExportDestination),
+    }
+}
+/// Metadata for the ExportDataObjects LRO.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ExportDataObjectsMetadata {
+    /// Output only. The time the operation was created.
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The time the operation finished.
+    #[prost(message, optional, tag = "2")]
+    pub finish_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Response for the ExportDataObjects LRO.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ExportDataObjectsResponse {}
 /// Represents dedicated infrastructure for the index.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DedicatedInfrastructure {
@@ -2111,6 +2200,36 @@ pub mod vector_search_service_client {
                     GrpcMethod::new(
                         "google.cloud.vectorsearch.v1.VectorSearchService",
                         "ImportDataObjects",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Initiates a Long-Running Operation to export DataObjects from a Collection.
+        pub async fn export_data_objects(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExportDataObjectsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.vectorsearch.v1.VectorSearchService/ExportDataObjects",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.vectorsearch.v1.VectorSearchService",
+                        "ExportDataObjects",
                     ),
                 );
             self.inner.unary(req, path, codec).await

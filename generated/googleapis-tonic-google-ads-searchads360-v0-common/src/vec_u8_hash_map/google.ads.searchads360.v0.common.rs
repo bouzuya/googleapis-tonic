@@ -807,15 +807,15 @@ pub struct Metrics {
     /// (such as clicks for text ads or views for video ads).
     #[prost(double, optional, tag = "194")]
     pub all_conversions_value_per_cost: ::core::option::Option<f64>,
-    /// The number of times people clicked the "Call" button to call a store during
-    /// or after clicking an ad. This number doesn't include whether or not calls
-    /// were connected, or the duration of any calls.
+    /// The number of times people clicked the "Call" button to call a business
+    /// during or after clicking an ad. This number doesn't include whether or not
+    /// calls were connected, or the duration of any calls.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "195")]
     pub all_conversions_from_click_to_call: ::core::option::Option<f64>,
     /// The number of times people clicked a "Get directions" button to navigate to
-    /// a store after clicking an ad.
+    /// a business after clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "196")]
@@ -826,24 +826,25 @@ pub struct Metrics {
     pub all_conversions_from_interactions_value_per_interaction: ::core::option::Option<
         f64,
     >,
-    /// The number of times people clicked a link to view a store's menu after
+    /// The number of times people clicked a link to view a business's menu after
     /// clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "198")]
     pub all_conversions_from_menu: ::core::option::Option<f64>,
-    /// The number of times people placed an order at a store after clicking an ad.
+    /// The number of times people placed an order at a business after clicking an
+    /// ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "199")]
     pub all_conversions_from_order: ::core::option::Option<f64>,
     /// The number of other conversions (for example, posting a review or saving a
-    /// location for a store) that occurred after people clicked an ad.
+    /// location for a business) that occurred after people clicked an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "200")]
     pub all_conversions_from_other_engagement: ::core::option::Option<f64>,
-    /// Estimated number of times people visited a store after clicking an ad.
+    /// Estimated number of times people visited a business after clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "201")]
@@ -852,8 +853,8 @@ pub struct Metrics {
     /// advertiser's landing page.
     #[prost(double, optional, tag = "289")]
     pub visits: ::core::option::Option<f64>,
-    /// The number of times that people were taken to a store's URL after clicking
-    /// an ad.
+    /// The number of times that people were taken to a business's URL after
+    /// clicking an ad.
     ///
     /// This metric applies to feed items only.
     #[prost(double, optional, tag = "202")]
@@ -1555,6 +1556,12 @@ pub struct RealTimeBiddingSetting {
 /// Segment only fields.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Segments {
+    /// Ad Format type.
+    #[prost(
+        enumeration = "super::enums::ad_format_type_enum::AdFormatType",
+        tag = "191"
+    )]
+    pub ad_format_type: i32,
     /// Ad network type.
     #[prost(
         enumeration = "super::enums::ad_network_type_enum::AdNetworkType",
@@ -1798,6 +1805,54 @@ pub struct Segments {
     /// 2018 starts on 2018-04-01. Formatted as yyyy-MM-dd.
     #[prost(string, optional, tag = "128")]
     pub quarter: ::core::option::Option<::prost::alloc::string::String>,
+    /// The display names of participants in an event listing, like performers,
+    /// speakers, or teams.
+    #[prost(string, optional, tag = "205")]
+    pub vertical_ads_event_participant_display_names: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+    /// The class of the hotel. Generally in the range of 1 to 5 stars, but fully
+    /// customizable in the hotel feed.
+    #[prost(int64, optional, tag = "206")]
+    pub vertical_ads_hotel_class: ::core::option::Option<i64>,
+    /// The listing associated with a listing impression, click or conversion.
+    #[prost(string, optional, tag = "207")]
+    pub vertical_ads_listing: ::core::option::Option<::prost::alloc::string::String>,
+    /// The brand associated with a specific listing within a Vertical Ads
+    /// context, for example, the brand of a car rental, a vacation home, or an
+    /// event.
+    #[prost(string, optional, tag = "208")]
+    pub vertical_ads_listing_brand: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+    /// The city where the vertical ads listing is located.
+    #[prost(string, optional, tag = "209")]
+    pub vertical_ads_listing_city: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+    /// The country where the vertical ads listing is located.
+    #[prost(string, optional, tag = "210")]
+    pub vertical_ads_listing_country: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+    /// The region where the vertical ads listing is located.
+    #[prost(string, optional, tag = "211")]
+    pub vertical_ads_listing_region: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+    /// A specific partner account within a Partner Center (for example, Hotel
+    /// Center) that supplies inventory feed data for Vertical Ads.
+    #[prost(int64, optional, tag = "212")]
+    pub vertical_ads_partner_account: ::core::option::Option<i64>,
+    /// Type of vertical ad, such as Vacation Rentals, Car Rentals, or
+    /// Events, used to categorize and segment data in the context of Vertical
+    /// Ads.
+    #[prost(
+        enumeration = "super::enums::vertical_ads_item_vertical_type_enum::VerticalAdsItemVerticalType",
+        optional,
+        tag = "213"
+    )]
+    pub vertical_ads_vertical: ::core::option::Option<i32>,
     /// The raw event conversion dimensions.
     #[prost(message, repeated, tag = "189")]
     pub raw_event_conversion_dimensions: ::prost::alloc::vec::Vec<Value>,

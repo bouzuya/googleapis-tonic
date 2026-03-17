@@ -932,6 +932,8 @@ pub mod query_error_enum {
         /// The number of values (right-hand-side operands) in a filter exceeds the
         /// limit.
         FilterHasTooManyValues = 63,
+        /// Required segment field is missing.
+        RequiredSegmentFieldMissing = 66,
     }
     impl QueryError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1031,6 +1033,7 @@ pub mod query_error_enum {
                 Self::UnexpectedInput => "UNEXPECTED_INPUT",
                 Self::RequestedMetricsForManager => "REQUESTED_METRICS_FOR_MANAGER",
                 Self::FilterHasTooManyValues => "FILTER_HAS_TOO_MANY_VALUES",
+                Self::RequiredSegmentFieldMissing => "REQUIRED_SEGMENT_FIELD_MISSING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1135,6 +1138,9 @@ pub mod query_error_enum {
                 "UNEXPECTED_INPUT" => Some(Self::UnexpectedInput),
                 "REQUESTED_METRICS_FOR_MANAGER" => Some(Self::RequestedMetricsForManager),
                 "FILTER_HAS_TOO_MANY_VALUES" => Some(Self::FilterHasTooManyValues),
+                "REQUIRED_SEGMENT_FIELD_MISSING" => {
+                    Some(Self::RequiredSegmentFieldMissing)
+                }
                 _ => None,
             }
         }

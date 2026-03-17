@@ -117,7 +117,7 @@ pub struct ProductAttributes {
     /// Number and amount of installments to pay for an item.
     #[prost(message, optional, tag = "32")]
     pub installment: ::core::option::Option<ProductInstallment>,
-    /// Number of periods (months or years) and amount of payment per period
+    /// Number of periods (weeks, months or years) and amount of payment per period
     /// for an item with an associated subscription contract.
     #[prost(message, optional, tag = "33")]
     pub subscription_cost: ::core::option::Option<SubscriptionCost>,
@@ -190,6 +190,21 @@ pub struct ProductAttributes {
     /// Minimal product handling time (in business days).
     #[prost(int64, optional, tag = "45")]
     pub min_handling_time: ::core::option::Option<i64>,
+    /// The business days during which orders can be handled. If not provided,
+    /// Monday to Friday business days will be assumed.
+    #[prost(message, repeated, tag = "143")]
+    pub shipping_handling_business_days: ::prost::alloc::vec::Vec<
+        product_attributes::ShippingBusinessDaysConfig,
+    >,
+    /// The business days during which orders are in transit.
+    /// If not provided, Monday to Friday business days will be assumed.
+    #[prost(message, repeated, tag = "144")]
+    pub shipping_transit_business_days: ::prost::alloc::vec::Vec<
+        product_attributes::ShippingBusinessDaysConfig,
+    >,
+    /// The handling cutoff times for shipping.
+    #[prost(message, repeated, tag = "141")]
+    pub handling_cutoff_times: ::prost::alloc::vec::Vec<HandlingCutoffTime>,
     /// The shipping label of the product, used to group product in account-level
     /// shipping rules.
     #[prost(string, optional, tag = "46")]
@@ -418,6 +433,24 @@ pub struct ProductAttributes {
 }
 /// Nested message and enum types in `ProductAttributes`.
 pub mod product_attributes {
+    /// The business days during which orders are on their path to fulfillment.
+    /// If not provided, Monday to Friday business days will be assumed.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct ShippingBusinessDaysConfig {
+        /// The [CLDR territory
+        /// code](<http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml>)
+        /// of the country to which an item will ship.
+        #[prost(string, optional, tag = "1")]
+        pub country: ::core::option::Option<::prost::alloc::string::String>,
+        /// Effective days of the week considered for the delivery time calculation.
+        /// May not be empty. The more business days included the faster the
+        /// delivery. Can be set through individual days (e.g. `MTWRF`), or day
+        /// ranges (e.g. `Mon-Fri`). For more information about accepted formats,
+        /// see [Shipping handling business
+        /// days](<https://support.google.com/merchants/answer/16072859>).
+        #[prost(string, optional, tag = "2")]
+        pub business_days: ::core::option::Option<::prost::alloc::string::String>,
+    }
     /// Carrier-based shipping configuration. Allows for setting shipping speed or
     /// shipping cost based on a carrier's provided info.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -870,6 +903,7 @@ pub struct SubscriptionCost {
     ///
     /// * "`month`"
     /// * "`year`"
+    /// * "`week`"
     #[prost(enumeration = "SubscriptionPeriod", tag = "1")]
     pub period: i32,
     /// The number of subscription periods the buyer has to pay.
@@ -1032,6 +1066,20 @@ pub struct Shipping {
     /// is present.
     #[prost(int64, optional, tag = "11")]
     pub max_transit_time: ::core::option::Option<i64>,
+    /// The handling cutoff time until which an order has to be placed to be
+    /// processed in the same day. This is a string in format of HHMM (e.g.
+    /// `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted
+    /// to 8AM PST and `handling_cutoff_timezone` will be ignored.
+    #[prost(string, optional, tag = "12")]
+    pub handling_cutoff_time: ::core::option::Option<::prost::alloc::string::String>,
+    /// [Timezone
+    /// identifier](<https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids>)
+    /// For example `Europe/Zurich`. This field only applies if
+    /// `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this
+    /// field is not set, the shipping destination timezone will be used. If both
+    /// fields are not set, the handling cutoff time will default to 8AM PST.
+    #[prost(string, optional, tag = "13")]
+    pub handling_cutoff_timezone: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Conditions to be met for a product to have free shipping.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -1164,6 +1212,10 @@ pub struct ProductStatus {
 /// Nested message and enum types in `ProductStatus`.
 pub mod product_status {
     /// The destination status of the product status.
+    ///
+    /// Equivalent to
+    /// \[`StatusPerReportingContext`\]\[google.shopping.merchant.reports.v1.ProductView.StatusPerReportingContext\]
+    /// in Reports API.
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct DestinationStatus {
         /// The name of the reporting context.
@@ -1412,6 +1464,33 @@ pub struct AutomatedDiscounts {
     #[prost(message, optional, tag = "3")]
     pub gad_price: ::core::option::Option<super::super::super::r#type::Price>,
 }
+/// Configuration for offer or offer-country level shipping handling cutoff time.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct HandlingCutoffTime {
+    /// The [CLDR territory
+    /// code](<http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml>)
+    /// of the country to which the handling cutoff time applies.
+    #[prost(string, optional, tag = "1")]
+    pub country: ::core::option::Option<::prost::alloc::string::String>,
+    /// The handling cutoff time until which an order has to be placed to be
+    /// processed in the same day. This is a string in format of HHMM (e.g. `1530`)
+    /// for 3:30 PM.
+    /// If not configured, the cutoff time will be defaulted to 8AM PST.
+    #[prost(string, optional, tag = "2")]
+    pub cutoff_time: ::core::option::Option<::prost::alloc::string::String>,
+    /// [Timezone
+    /// identifier](<https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids>)
+    /// For example 'Europe/Zurich'. If not set, the shipping destination
+    /// timezone will be used.
+    #[prost(string, optional, tag = "3")]
+    pub cutoff_timezone: ::core::option::Option<::prost::alloc::string::String>,
+    /// This field only applies to same-day delivery. If true, prevents next-day
+    /// delivery from being shown for this offer after the cutoff time. This field
+    /// only applies to same-day delivery offers, for merchants who want to
+    /// explicitly disable it.
+    #[prost(bool, optional, tag = "4")]
+    pub disable_delivery_after_cutoff: ::core::option::Option<bool>,
+}
 /// The subscription period of the product.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -1422,6 +1501,8 @@ pub enum SubscriptionPeriod {
     Month = 1,
     /// Indicates that the subscription period is year.
     Year = 2,
+    /// Indicates that the subscription period is week.
+    Week = 3,
 }
 impl SubscriptionPeriod {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1433,6 +1514,7 @@ impl SubscriptionPeriod {
             Self::Unspecified => "SUBSCRIPTION_PERIOD_UNSPECIFIED",
             Self::Month => "MONTH",
             Self::Year => "YEAR",
+            Self::Week => "WEEK",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1441,6 +1523,7 @@ impl SubscriptionPeriod {
             "SUBSCRIPTION_PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
             "MONTH" => Some(Self::Month),
             "YEAR" => Some(Self::Year),
+            "WEEK" => Some(Self::Week),
             _ => None,
         }
     }
@@ -2324,16 +2407,44 @@ impl CarrierTransitTimeOption {
 /// names in the **snake_case** casing style.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductInput {
-    /// Identifier. The name of the product input.
+    /// Identifier. The name of the product.
     /// Format: `accounts/{account}/productInputs/{productinput}`
-    /// where the last section `productinput` consists of:
-    /// `content_language~feed_label~offer_id`
-    /// example for product input name is
-    /// `accounts/123/productInputs/en~US~sku123`. A legacy local product input
-    /// name would be `accounts/123/productInputs/local~en~US~sku123`.
-    /// Note: For calls to the v1beta version, the `productInput` section consists
-    /// of: `channel~content_language~feed_label~offer_id`, for example:
-    /// `accounts/123/productInputs/online~en~US~sku123`.
+    ///
+    /// The {productinput} segment is a unique identifier for the product.
+    /// This identifier must be unique within a merchant account and generally
+    /// follows the structure: `content_language~feed_label~offer_id`. Example:
+    /// `en~US~sku123` For legacy local products, the structure is:
+    /// `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+    ///
+    /// The format of the {productinput} segment in the URL is automatically
+    /// detected by the server, supporting two options:
+    ///
+    /// 1. **Encoded Format**: The `{productinput}` segment is an unpadded
+    ///    base64url
+    ///    encoded string (RFC 4648 Section 5). The decoded string must result
+    ///    in the `content_language~feed_label~offer_id` structure. This encoding
+    ///    MUST be used if any part of the product identifier (like `offer_id`)
+    ///    contains characters such as `/`, `%`, or `~`.
+    ///
+    ///    * Example: To represent the product ID `en~US~sku/123`, the
+    ///      `{productinput}` segment must be the base64url encoding of this
+    ///      string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+    ///      for the product would be
+    ///      `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`.
+    /// 1. **Plain Format**: The `{productinput}` segment is the tilde-separated
+    ///    string
+    ///    `content_language~feed_label~offer_id`. This format is suitable only
+    ///    when `content_language`, `feed_label`, and `offer_id` do not contain
+    ///    URL-problematic characters like `/`, `%`, or `~`.
+    ///
+    /// We recommend using the **Encoded Format** for all product IDs to ensure
+    /// correct parsing, especially those containing special characters. The
+    /// presence of tilde (`~`) characters in the `{productinput}` segment is used
+    /// to differentiate between the two formats.
+    ///
+    /// Note: For calls to the v1beta version, the plain format is
+    /// `channel~content_language~feed_label~offer_id`, for example:
+    /// `accounts/123/productinputs/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. The name of the processed product.
@@ -2418,8 +2529,8 @@ pub struct InsertProductInputRequest {
     /// Required. The primary or supplemental product data source name. If the
     /// product already exists and data source provided is different, then the
     /// product will be moved to a new data source. For more information, see
-    /// [Overview of Data sources
-    /// sub-API](/merchant/api/guides/data-sources/overview).
+    /// [Create a primary data
+    /// source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
     ///
     /// Only API data sources are supported.
     ///
@@ -2435,7 +2546,8 @@ pub struct InsertProductInputRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProductInputRequest {
     /// Required. The product input resource to update. Information you submit will
-    /// be applied to the processed product as well.
+    /// be applied to the processed product as well. The `name` field within this
+    /// resource identifies the product input to be updated.
     #[prost(message, optional, tag = "1")]
     pub product_input: ::core::option::Option<ProductInput>,
     /// Optional. The list of product attributes to be updated.
@@ -2468,12 +2580,44 @@ pub struct UpdateProductInputRequest {
 /// Request message for the DeleteProductInput method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteProductInputRequest {
-    /// Required. The name of the product input resource to delete.
-    /// Format: `accounts/{account}/productInputs/{product}`
-    /// where the last section `product` consists of:
-    /// `content_language~feed_label~offer_id`
-    /// example for product name is
-    /// `accounts/123/productInputs/en~US~sku123`.
+    /// Required. The name of the product input to delete.
+    /// Format: `accounts/{account}/productInputs/{productInput}`
+    ///
+    /// The {productInput} segment is a unique identifier for the product.
+    /// This identifier must be unique within a merchant account and generally
+    /// follows the structure: `content_language~feed_label~offer_id`. Example:
+    /// `en~US~sku123` For legacy local products, the structure is:
+    /// `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+    ///
+    /// The format of the {productInput} segment in the URL is automatically
+    /// detected by the server, supporting two options:
+    ///
+    /// 1. **Encoded Format**: The `{productInput}` segment is an unpadded
+    ///    base64url
+    ///    encoded string (RFC 4648 Section 5). The decoded string must result
+    ///    in the `content_language~feed_label~offer_id` structure. This encoding
+    ///    MUST be used if any part of the product identifier (like `offer_id`)
+    ///    contains characters such as `/`, `%`, or `~`.
+    ///
+    ///    * Example: To represent the product ID `en~US~sku/123`, the
+    ///      `{productInput}` segment must be the base64url encoding of this
+    ///      string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+    ///      for the product would be
+    ///      `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`.
+    /// 1. **Plain Format**: The `{productInput}` segment is the tilde-separated
+    ///    string
+    ///    `content_language~feed_label~offer_id`. This format is suitable only
+    ///    when `content_language`, `feed_label`, and `offer_id` do not contain
+    ///    URL-problematic characters like `/`, `%`, or `~`.
+    ///
+    /// We recommend using the **Encoded Format** for all product IDs to ensure
+    /// correct parsing, especially those containing special characters. The
+    /// presence of tilde (`~`) characters in the `{productInput}` segment is used
+    /// to differentiate between the two formats.
+    ///
+    /// Note: For calls to the v1beta version, the plain format is
+    /// `channel~content_language~feed_label~offer_id`, for example:
+    /// `accounts/123/productinputs/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The primary or supplemental data source from which the product
@@ -2565,11 +2709,11 @@ pub mod product_inputs_service_client {
             self
         }
         /// [Uploads a product input to your Merchant Center
-        /// account](/merchant/api/guides/products/overview#upload-product-input). You
+        /// account](/merchant/api/guides/products/add-manage#add_a_product). You
         /// must have a products [data
-        /// source](/merchant/api/guides/data-sources/overview) to be able to insert a
-        /// product. The unique identifier of the data source is passed as a query
-        /// parameter in the request URL.
+        /// source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source)
+        /// to be able to insert a product. The unique identifier of the data source is
+        /// passed as a query parameter in the request URL.
         ///
         /// If a product input with the same contentLanguage, offerId, and dataSource
         /// already exists, then the product input inserted by this method replaces
@@ -2604,6 +2748,8 @@ pub mod product_inputs_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates the existing product input in your Merchant Center account.
+        /// The name of the product input to update is taken from the `name` field
+        /// within the `ProductInput` resource.
         ///
         /// After inserting, updating, or deleting a product input, it may take several
         /// minutes before the processed product can be retrieved.
@@ -2760,15 +2906,41 @@ pub struct Product {
 /// Request message for the GetProduct method.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetProductRequest {
-    /// Required. The name of the product to retrieve.
-    /// Format:
-    /// `accounts/{account}/products/{product}` where the last
-    /// section `product` consists of:
-    /// `content_language~feed_label~offer_id`
-    /// example for product name is `accounts/123/products/en~US~sku123`. A legacy
-    /// local product name would be `accounts/123/products/local~en~US~sku123`.
-    /// Note: For calls to the v1beta version, the `product` section consists
-    /// of: `channel~content_language~feed_label~offer_id`, for example:
+    /// Required. The name of the product.
+    /// Format: `accounts/{account}/products/{product}`
+    ///
+    /// The `{product}` segment is a unique identifier for the product.
+    /// This identifier must be unique within a merchant account and generally
+    /// follows the structure: `content_language~feed_label~offer_id`. Example:
+    /// `en~US~sku123` For legacy local products, the structure is:
+    /// `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+    ///
+    /// The format of the `{product}` segment in the URL is automatically detected
+    /// by the server, supporting two options:
+    ///
+    /// 1. **Encoded Format**: The `{product}` segment is an unpadded base64url
+    ///    encoded string (RFC 4648 Section 5). The decoded string must result
+    ///    in the `content_language~feed_label~offer_id` structure. This encoding
+    ///    MUST be used if any part of the product identifier (like `offer_id`)
+    ///    contains characters such as `/`, `%`, or `~`.
+    ///
+    ///    * Example: To represent the product ID `en~US~sku/123`, the
+    ///      `{product}` segment must be the base64url encoding of this
+    ///      string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+    ///      for the product would be
+    ///      `accounts/123/products/ZW5-VVMtc2t1LzEyMw`.
+    /// 1. **Plain Format**: The `{product}` segment is the tilde-separated string
+    ///    `content_language~feed_label~offer_id`. This format is suitable only
+    ///    when `content_language`, `feed_label`, and `offer_id` do not contain
+    ///    URL-problematic characters like `/`, `%`, or `~`.
+    ///
+    /// We recommend using the **Encoded Format** for all product IDs to ensure
+    /// correct parsing, especially those containing special characters. The
+    /// presence of tilde (`~`) characters in the `{product}` segment is used to
+    /// differentiate between the two formats.
+    ///
+    /// Note: For calls to the v1beta version, the plain format is
+    /// `channel~content_language~feed_label~offer_id`, for example:
     /// `accounts/123/products/online~en~US~sku123`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,

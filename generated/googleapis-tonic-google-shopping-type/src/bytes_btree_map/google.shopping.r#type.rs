@@ -127,6 +127,19 @@ pub mod destination {
         FreeLocalListings = 5,
         /// [YouTube Shopping](<https://support.google.com/merchants/answer/12362804>).
         YoutubeShopping = 6,
+        /// Youtube shopping checkout.
+        YoutubeShoppingCheckout = 7,
+        /// [Youtube Affiliate](<https://support.google.com/youtube/answer/13376398>).
+        YoutubeAffiliate = 8,
+        /// [Free vehicle
+        /// listings](<https://support.google.com/merchants/answer/11189169>).
+        FreeVehicleListings = 9,
+        /// [Vehicle ads](<https://support.google.com/merchants/answer/11189169>).
+        VehicleAds = 10,
+        /// [Cloud retail](<https://cloud.google.com/solutions/retail>).
+        CloudRetail = 11,
+        /// [Local cloud retail](<https://cloud.google.com/solutions/retail>).
+        LocalCloudRetail = 12,
     }
     impl DestinationEnum {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -142,6 +155,12 @@ pub mod destination {
                 Self::FreeListings => "FREE_LISTINGS",
                 Self::FreeLocalListings => "FREE_LOCAL_LISTINGS",
                 Self::YoutubeShopping => "YOUTUBE_SHOPPING",
+                Self::YoutubeShoppingCheckout => "YOUTUBE_SHOPPING_CHECKOUT",
+                Self::YoutubeAffiliate => "YOUTUBE_AFFILIATE",
+                Self::FreeVehicleListings => "FREE_VEHICLE_LISTINGS",
+                Self::VehicleAds => "VEHICLE_ADS",
+                Self::CloudRetail => "CLOUD_RETAIL",
+                Self::LocalCloudRetail => "LOCAL_CLOUD_RETAIL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -154,6 +173,12 @@ pub mod destination {
                 "FREE_LISTINGS" => Some(Self::FreeListings),
                 "FREE_LOCAL_LISTINGS" => Some(Self::FreeLocalListings),
                 "YOUTUBE_SHOPPING" => Some(Self::YoutubeShopping),
+                "YOUTUBE_SHOPPING_CHECKOUT" => Some(Self::YoutubeShoppingCheckout),
+                "YOUTUBE_AFFILIATE" => Some(Self::YoutubeAffiliate),
+                "FREE_VEHICLE_LISTINGS" => Some(Self::FreeVehicleListings),
+                "VEHICLE_ADS" => Some(Self::VehicleAds),
+                "CLOUD_RETAIL" => Some(Self::CloudRetail),
+                "LOCAL_CLOUD_RETAIL" => Some(Self::LocalCloudRetail),
                 _ => None,
             }
         }
@@ -211,12 +236,17 @@ pub mod reporting_context {
         /// [Free product
         /// listings](<https://support.google.com/merchants/answer/9199328>).
         FreeListings = 7,
+        /// [Free product listings on UCP
+        /// checkout](<https://developers.google.com/merchant/ucp>).
+        FreeListingsUcpCheckout = 19,
         /// [Free local product
         /// listings](<https://support.google.com/merchants/answer/9825611>).
         FreeLocalListings = 8,
         /// [Free local vehicle
         /// listings](<https://support.google.com/merchants/answer/11544533>).
         FreeLocalVehicleListings = 9,
+        /// [Youtube Affiliate](<https://support.google.com/youtube/answer/13376398>).
+        YoutubeAffiliate = 18,
         /// [YouTube
         /// Shopping](<https://support.google.com/merchants/answer/13478370>).
         YoutubeShopping = 10,
@@ -224,6 +254,15 @@ pub mod reporting_context {
         CloudRetail = 11,
         /// [Local cloud retail](<https://cloud.google.com/solutions/retail>).
         LocalCloudRetail = 12,
+        /// [Product
+        /// Reviews](<https://support.google.com/merchants/answer/14620732>).
+        ProductReviews = 15,
+        /// [Merchant
+        /// Reviews](<https://developers.google.com/merchant-review-feeds>).
+        MerchantReviews = 16,
+        /// YouTube Checkout
+        /// .
+        YoutubeCheckout = 17,
     }
     impl ReportingContextEnum {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -243,11 +282,16 @@ pub mod reporting_context {
                 Self::LocalInventoryAds => "LOCAL_INVENTORY_ADS",
                 Self::VehicleInventoryAds => "VEHICLE_INVENTORY_ADS",
                 Self::FreeListings => "FREE_LISTINGS",
+                Self::FreeListingsUcpCheckout => "FREE_LISTINGS_UCP_CHECKOUT",
                 Self::FreeLocalListings => "FREE_LOCAL_LISTINGS",
                 Self::FreeLocalVehicleListings => "FREE_LOCAL_VEHICLE_LISTINGS",
+                Self::YoutubeAffiliate => "YOUTUBE_AFFILIATE",
                 Self::YoutubeShopping => "YOUTUBE_SHOPPING",
                 Self::CloudRetail => "CLOUD_RETAIL",
                 Self::LocalCloudRetail => "LOCAL_CLOUD_RETAIL",
+                Self::ProductReviews => "PRODUCT_REVIEWS",
+                Self::MerchantReviews => "MERCHANT_REVIEWS",
+                Self::YoutubeCheckout => "YOUTUBE_CHECKOUT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -265,11 +309,16 @@ pub mod reporting_context {
                 "LOCAL_INVENTORY_ADS" => Some(Self::LocalInventoryAds),
                 "VEHICLE_INVENTORY_ADS" => Some(Self::VehicleInventoryAds),
                 "FREE_LISTINGS" => Some(Self::FreeListings),
+                "FREE_LISTINGS_UCP_CHECKOUT" => Some(Self::FreeListingsUcpCheckout),
                 "FREE_LOCAL_LISTINGS" => Some(Self::FreeLocalListings),
                 "FREE_LOCAL_VEHICLE_LISTINGS" => Some(Self::FreeLocalVehicleListings),
+                "YOUTUBE_AFFILIATE" => Some(Self::YoutubeAffiliate),
                 "YOUTUBE_SHOPPING" => Some(Self::YoutubeShopping),
                 "CLOUD_RETAIL" => Some(Self::CloudRetail),
                 "LOCAL_CLOUD_RETAIL" => Some(Self::LocalCloudRetail),
+                "PRODUCT_REVIEWS" => Some(Self::ProductReviews),
+                "MERCHANT_REVIEWS" => Some(Self::MerchantReviews),
+                "YOUTUBE_CHECKOUT" => Some(Self::YoutubeCheckout),
                 _ => None,
             }
         }

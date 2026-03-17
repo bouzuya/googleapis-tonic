@@ -464,6 +464,7 @@
     feature = "google-cloud-workstations-logging-v1",
     feature = "google-cloud-workstations-v1",
     feature = "google-cloud-workstations-v1beta",
+    feature = "google-compute-logging-agentcontrolplane-v1",
     feature = "google-compute-logging-dr-v1",
     feature = "google-compute-logging-gdnsusage-v1",
     feature = "google-container-v1",
@@ -8772,11 +8773,13 @@ pub mod google {
         }
     }
     #[cfg(any(
+        feature = "google-compute-logging-agentcontrolplane-v1",
         feature = "google-compute-logging-dr-v1",
         feature = "google-compute-logging-gdnsusage-v1",
     ))]
     pub mod compute {
         #[cfg(any(
+            feature = "google-compute-logging-agentcontrolplane-v1",
             feature = "google-compute-logging-dr-v1",
             feature = "google-compute-logging-gdnsusage-v1",
         ))]
@@ -8793,6 +8796,20 @@ pub mod google {
                         feature = "google-compute-logging-gdnsusage-v1",
                     ))]
                     include!("vec_u8_btree_map/google.compute.logging.gdnsusage.v1.rs");
+                }
+            }
+            #[cfg(any(
+                feature = "google-compute-logging-agentcontrolplane-v1",
+            ))]
+            pub mod agentcontrolplane {
+                #[cfg(any(
+                    feature = "google-compute-logging-agentcontrolplane-v1",
+                ))]
+                pub mod v1 {
+                    #[cfg(any(
+                        feature = "google-compute-logging-agentcontrolplane-v1",
+                    ))]
+                    include!("vec_u8_btree_map/google.compute.logging.agentcontrolplane.v1.rs");
                 }
             }
             #[cfg(any(

@@ -2292,6 +2292,48 @@ pub struct LookupPublicAlertsResponse {
     #[prost(string, tag = "3")]
     pub next_page_token: ::prost::alloc::string::String,
 }
+/// Request for the LookupForecastMinutes RPC.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookupForecastMinutesRequest {
+    /// The location to get the minutely forecast for.
+    #[prost(message, optional, tag = "1")]
+    pub location: ::core::option::Option<super::super::super::r#type::LatLng>,
+    /// Optional. The units system to use for the returned weather conditions. If
+    /// not provided, the returned weather conditions will be in the metric system
+    /// (default = METRIC).
+    #[prost(enumeration = "UnitsSystem", tag = "2")]
+    pub units_system: i32,
+    /// Optional. Allows the client to choose the language for the response. If
+    /// data cannot be provided for that language, the API uses the closest match.
+    /// Allowed values rely on the IETF BCP-47 standard. The default value is "en".
+    #[prost(string, optional, tag = "3")]
+    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional. The maximum number of forecast records to return per page.
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    /// Optional. A page token received from a previous request. It is used to
+    /// retrieve the subsequent page.
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response for the LookupForecastMinutes RPC.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookupForecastMinutesResponse {
+    /// The minute-level prediction events.
+    #[prost(message, repeated, tag = "1")]
+    pub events: ::prost::alloc::vec::Vec<PrecipitationEvent>,
+    /// The overall timeframe for the predictions.
+    #[prost(message, optional, tag = "2")]
+    pub overall_prediction_timeframe: ::core::option::Option<
+        super::super::super::r#type::Interval,
+    >,
+    /// The time zone at the requested location.
+    #[prost(message, optional, tag = "3")]
+    pub time_zone: ::core::option::Option<super::super::super::r#type::TimeZone>,
+    /// The token to retrieve the next page.
+    #[prost(string, tag = "4")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
 /// Generated client implementations.
 pub mod weather_client {
     #![allow(
@@ -2522,6 +2564,36 @@ pub mod weather_client {
                     GrpcMethod::new(
                         "google.maps.weather.v1.Weather",
                         "LookupPublicAlerts",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns minute-level precipitation nowcast events for up to 6 hours.
+        pub async fn lookup_forecast_minutes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LookupForecastMinutesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::LookupForecastMinutesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.maps.weather.v1.Weather/LookupForecastMinutes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.maps.weather.v1.Weather",
+                        "LookupForecastMinutes",
                     ),
                 );
             self.inner.unary(req, path, codec).await

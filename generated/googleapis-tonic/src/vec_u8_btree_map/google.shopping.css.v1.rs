@@ -345,7 +345,7 @@ pub mod accounts_service_client {
 /// Label assigned by CSS domain or CSS group to one of its sub-accounts.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AccountLabel {
-    /// The resource name of the label.
+    /// Identifier. The resource name of the label.
     /// Format: accounts/{account}/labels/{label}
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -777,7 +777,7 @@ pub struct Attributes {
     pub size_system: ::core::option::Option<::prost::alloc::string::String>,
     /// The cut of the item. It can be used to represent combined size types for
     /// apparel items. Maximum two of size types can be provided (see
-    /// \[<https://support.google.com/merchants/answer/6324497\](size> type)).
+    /// [size type](<https://support.google.com/merchants/answer/6324497>).
     #[prost(string, repeated, tag = "28")]
     pub size_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Shared identifier for all variants of the same product.
@@ -855,6 +855,31 @@ pub struct Attributes {
     pub headline_offer_subscription_cost: ::core::option::Option<
         HeadlineOfferSubscriptionCost,
     >,
+    /// Number of reviews of the product. Required if
+    /// \[`rating`\]\[google.shopping.css.v1.Attributes.rating\] is provided.
+    /// This field is for an upcoming feature and is not yet used.
+    #[prost(int64, optional, tag = "54")]
+    pub review_count: ::core::option::Option<i64>,
+    /// Minimum rating score of the product. Required if
+    /// \[`rating`\]\[google.shopping.css.v1.Attributes.rating\] is provided.
+    /// This field is for an upcoming feature and is not yet used.
+    #[prost(int64, optional, tag = "55")]
+    pub min_rating: ::core::option::Option<i64>,
+    /// Maximum rating score of the product. Required if
+    /// \[`rating`\]\[google.shopping.css.v1.Attributes.rating\] is provided.
+    /// This field is for an upcoming feature and is not yet used.
+    #[prost(int64, optional, tag = "56")]
+    pub max_rating: ::core::option::Option<i64>,
+    /// Average rating score of the product. The value must be within the
+    /// range of \[`min_rating`, `max_rating`\], inclusive. When displayed on the
+    /// product page, this rating is normalized to a scale of \[1, 5\] with one
+    /// decimal place. If provided,
+    /// \[`review_count`\]\[google.shopping.css.v1.Attributes.review_count\],
+    /// \[`min_rating`\]\[google.shopping.css.v1.Attributes.min_rating\], and
+    /// \[`max_rating`\]\[google.shopping.css.v1.Attributes.max_rating\] are also
+    /// required. This field is for an upcoming feature and is not yet used.
+    #[prost(double, optional, tag = "57")]
+    pub rating: ::core::option::Option<f64>,
 }
 /// The certification for the product. Use the this attribute to describe
 /// certifications, such as energy efficiency ratings, associated with a product.
@@ -1072,7 +1097,7 @@ impl SubscriptionPeriod {
 /// across Google surfaces.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CssProductInput {
-    /// The name of the CSS Product input.
+    /// Identifier. The name of the CSS Product input.
     /// Format:
     /// `accounts/{account}/cssProductInputs/{css_product_input}`, where the
     /// last section `css_product_input` consists of 3 parts:
@@ -1392,6 +1417,7 @@ pub mod css_product_inputs_service_client {
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetCssProductRequest {
     /// Required. The name of the CSS product to retrieve.
+    /// Format: `accounts/{account}/cssProducts/{css_product}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }

@@ -1090,6 +1090,26 @@ pub mod served_asset_field_type_enum {
         BusinessLogo = 31,
         /// The asset is used as a description prefix.
         DescriptionPrefix = 32,
+        /// The asset is used as an app icon.
+        AppIcon = 33,
+        /// The asset is used as an app title.
+        AppTitle = 34,
+        /// The asset is used as an app screenshot.
+        AppScreenshot = 35,
+        /// The asset is used as an app cover photo.
+        AppCoverPhoto = 36,
+        /// The asset is used as an app short description.
+        AppShortDescription = 37,
+        /// The asset is used as an app developer name.
+        AppDeveloperName = 38,
+        /// A headline asset used as a sitelink in position 1.
+        HeadlineAsSitelinkPositionOne = 39,
+        /// A headline asset used as a sitelink in position 2.
+        HeadlineAsSitelinkPositionTwo = 40,
+        /// A description line asset used as a sitelink in position 1.
+        DescriptionLineHeadlineAsSitelinkPositionOne = 41,
+        /// A description line asset used as a sitelink in position 2.
+        DescriptionLineHeadlineAsSitelinkPositionTwo = 42,
     }
     impl ServedAssetFieldType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1131,6 +1151,24 @@ pub mod served_asset_field_type_enum {
                 Self::LeadForm => "LEAD_FORM",
                 Self::BusinessLogo => "BUSINESS_LOGO",
                 Self::DescriptionPrefix => "DESCRIPTION_PREFIX",
+                Self::AppIcon => "APP_ICON",
+                Self::AppTitle => "APP_TITLE",
+                Self::AppScreenshot => "APP_SCREENSHOT",
+                Self::AppCoverPhoto => "APP_COVER_PHOTO",
+                Self::AppShortDescription => "APP_SHORT_DESCRIPTION",
+                Self::AppDeveloperName => "APP_DEVELOPER_NAME",
+                Self::HeadlineAsSitelinkPositionOne => {
+                    "HEADLINE_AS_SITELINK_POSITION_ONE"
+                }
+                Self::HeadlineAsSitelinkPositionTwo => {
+                    "HEADLINE_AS_SITELINK_POSITION_TWO"
+                }
+                Self::DescriptionLineHeadlineAsSitelinkPositionOne => {
+                    "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_ONE"
+                }
+                Self::DescriptionLineHeadlineAsSitelinkPositionTwo => {
+                    "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_TWO"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1169,6 +1207,24 @@ pub mod served_asset_field_type_enum {
                 "LEAD_FORM" => Some(Self::LeadForm),
                 "BUSINESS_LOGO" => Some(Self::BusinessLogo),
                 "DESCRIPTION_PREFIX" => Some(Self::DescriptionPrefix),
+                "APP_ICON" => Some(Self::AppIcon),
+                "APP_TITLE" => Some(Self::AppTitle),
+                "APP_SCREENSHOT" => Some(Self::AppScreenshot),
+                "APP_COVER_PHOTO" => Some(Self::AppCoverPhoto),
+                "APP_SHORT_DESCRIPTION" => Some(Self::AppShortDescription),
+                "APP_DEVELOPER_NAME" => Some(Self::AppDeveloperName),
+                "HEADLINE_AS_SITELINK_POSITION_ONE" => {
+                    Some(Self::HeadlineAsSitelinkPositionOne)
+                }
+                "HEADLINE_AS_SITELINK_POSITION_TWO" => {
+                    Some(Self::HeadlineAsSitelinkPositionTwo)
+                }
+                "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_ONE" => {
+                    Some(Self::DescriptionLineHeadlineAsSitelinkPositionOne)
+                }
+                "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_TWO" => {
+                    Some(Self::DescriptionLineHeadlineAsSitelinkPositionTwo)
+                }
                 _ => None,
             }
         }
@@ -1410,6 +1466,69 @@ pub mod quality_score_bucket_enum {
         }
     }
 }
+/// Container for enumeration of Google Ads format types.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct AdFormatTypeEnum {}
+/// Nested message and enum types in `AdFormatTypeEnum`.
+pub mod ad_format_type_enum {
+    /// Enumerates Google Ads format types.
+    ///
+    /// Note that this segmentation is available only for Video and Demand Gen
+    /// campaigns. For assets, only video assets are supported.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum AdFormatType {
+        /// No value has been specified.
+        Unspecified = 0,
+        /// Used for return value only. Represents value unknown in this version.
+        Unknown = 1,
+        /// An ad format that promotes a specific entity within a vertical, for
+        /// example, a hotel ad in the Travel vertical on Search.
+        VerticalAdsPromotion = 13,
+        /// An ad format for a booking link call-to-action within a vertical ad, for
+        /// example a 'Book Now' link for a hotel ad.
+        VerticalAdsBookingLink = 14,
+        /// A standard text ad format. This is currently only used for ads on the
+        /// Search network.
+        Text = 15,
+    }
+    impl AdFormatType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::VerticalAdsPromotion => "VERTICAL_ADS_PROMOTION",
+                Self::VerticalAdsBookingLink => "VERTICAL_ADS_BOOKING_LINK",
+                Self::Text => "TEXT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "VERTICAL_ADS_PROMOTION" => Some(Self::VerticalAdsPromotion),
+                "VERTICAL_ADS_BOOKING_LINK" => Some(Self::VerticalAdsBookingLink),
+                "TEXT" => Some(Self::Text),
+                _ => None,
+            }
+        }
+    }
+}
 /// Container for enumeration of Google Ads network types.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdNetworkTypeEnum {}
@@ -1557,6 +1676,9 @@ pub mod conversion_action_category_enum {
         /// has further completed a chosen stage as defined by the lead gen
         /// advertiser.
         ConvertedLead = 23,
+        /// User watches an ad from a channel and later watches either the same video
+        /// or a video from the same channel as the ad.
+        YoutubeFollowOnViews = 24,
     }
     impl ConversionActionCategory {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1589,6 +1711,7 @@ pub mod conversion_action_category_enum {
                 Self::StoreSale => "STORE_SALE",
                 Self::QualifiedLead => "QUALIFIED_LEAD",
                 Self::ConvertedLead => "CONVERTED_LEAD",
+                Self::YoutubeFollowOnViews => "YOUTUBE_FOLLOW_ON_VIEWS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1618,6 +1741,7 @@ pub mod conversion_action_category_enum {
                 "STORE_SALE" => Some(Self::StoreSale),
                 "QUALIFIED_LEAD" => Some(Self::QualifiedLead),
                 "CONVERTED_LEAD" => Some(Self::ConvertedLead),
+                "YOUTUBE_FOLLOW_ON_VIEWS" => Some(Self::YoutubeFollowOnViews),
                 _ => None,
             }
         }
@@ -1787,6 +1911,77 @@ pub mod product_condition_enum {
                 "NEW" => Some(Self::New),
                 "REFURBISHED" => Some(Self::Refurbished),
                 "USED" => Some(Self::Used),
+                _ => None,
+            }
+        }
+    }
+}
+/// Container for enum describing Vertical Ads Item Vertical Type for SharedSet
+/// of type VERTICAL_ADS_ITEM_GROUP_RULE_LIST.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VerticalAdsItemVerticalTypeEnum {}
+/// Nested message and enum types in `VerticalAdsItemVerticalTypeEnum`.
+pub mod vertical_ads_item_vertical_type_enum {
+    /// Enum describing Vertical Ads Item Vertical Type for SharedSet of type
+    /// VERTICAL_ADS_ITEM_GROUP_RULE_LIST.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum VerticalAdsItemVerticalType {
+        /// Not specified.
+        Unspecified = 0,
+        /// Used for return value only. Represents value unknown in this version.
+        Unknown = 1,
+        /// Hotels travel vertical.
+        Hotels = 2,
+        /// Vacation rentals travel vertical.
+        VacationRentals = 3,
+        /// Rental cars travel vertical.
+        RentalCars = 4,
+        /// Events travel vertical.
+        Events = 5,
+        /// Things to do travel vertical.
+        ThingsToDo = 6,
+        /// Flights travel vertical.
+        Flights = 7,
+    }
+    impl VerticalAdsItemVerticalType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::Hotels => "HOTELS",
+                Self::VacationRentals => "VACATION_RENTALS",
+                Self::RentalCars => "RENTAL_CARS",
+                Self::Events => "EVENTS",
+                Self::ThingsToDo => "THINGS_TO_DO",
+                Self::Flights => "FLIGHTS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "HOTELS" => Some(Self::Hotels),
+                "VACATION_RENTALS" => Some(Self::VacationRentals),
+                "RENTAL_CARS" => Some(Self::RentalCars),
+                "EVENTS" => Some(Self::Events),
+                "THINGS_TO_DO" => Some(Self::ThingsToDo),
+                "FLIGHTS" => Some(Self::Flights),
                 _ => None,
             }
         }

@@ -284,6 +284,66 @@ pub mod cloud_build {
         }
     }
 }
+/// A session to run on-demand tests.
+/// -- NEXT_TAG: 7 --
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Session {
+    /// Identifier. The resource name of the session.
+    /// Format: sessions/{session}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. The ID of the Satlab that the request comes from.
+    #[prost(string, tag = "2")]
+    pub satlab_id: ::prost::alloc::string::String,
+    /// Required. Input only. The dimensions of the device(s) to run tests on.
+    #[prost(map = "string, string", tag = "3")]
+    pub dimensions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. Input only. The timeout settings for the test run.
+    #[prost(message, optional, tag = "4")]
+    pub timeout: ::core::option::Option<Timeout>,
+    /// Optional. Input only. The number of shards to use for the test run.
+    #[prost(int32, tag = "5")]
+    pub shard_count: i32,
+    /// The test to run.
+    #[prost(oneof = "session::Test", tags = "6")]
+    pub test: ::core::option::Option<session::Test>,
+}
+/// Nested message and enum types in `Session`.
+pub mod session {
+    /// The test to run.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Test {
+        /// Input only. A Tradefed-based test.
+        #[prost(message, tag = "6")]
+        TradefedTest(super::TradefedTest),
+    }
+}
+/// Timeout settings for the test run.
+/// -- NEXT_TAG: 4 --
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct Timeout {
+    /// Optional. Max execution time of a job.
+    #[prost(message, optional, tag = "1")]
+    pub job_timeout: ::core::option::Option<::prost_types::Duration>,
+    /// Optional. Max execution time of a single test.
+    #[prost(message, optional, tag = "2")]
+    pub test_timeout: ::core::option::Option<::prost_types::Duration>,
+    /// Optional. Timeout for starting the job and waiting for allocating the first
+    /// device.
+    #[prost(message, optional, tag = "3")]
+    pub start_timeout: ::core::option::Option<::prost_types::Duration>,
+}
+/// Configuration for a Tradefed-based test.
+/// -- NEXT_TAG: 2 --
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct TradefedTest {
+    /// Required. The command to run the Tradefed test.
+    #[prost(string, tag = "1")]
+    pub command: ::prost::alloc::string::String,
+}
 /// Request message for finding the most stable build.
 /// -- NEXT_TAG: 3 --
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -787,6 +847,128 @@ pub mod build_service_client {
                     GrpcMethod::new(
                         "google.chromeos.moblab.v1beta1.BuildService",
                         "FindMostStableBuild",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Request message for creating a session.
+/// -- NEXT_TAG: 3 --
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateSessionRequest {
+    /// Required. The session to create.
+    #[prost(message, optional, tag = "1")]
+    pub session: ::core::option::Option<Session>,
+    /// Optional. The ID to use for the session, which will become the final
+    /// component of the session's resource name.
+    #[prost(string, tag = "2")]
+    pub session_id: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod test_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Manages test services for Satlab/Moblab.
+    #[derive(Debug, Clone)]
+    pub struct TestServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> TestServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::Body>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> TestServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            TestServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a session to run on-demand tests.
+        pub async fn create_session(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateSessionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Session>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.chromeos.moblab.v1beta1.TestService/CreateSession",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.chromeos.moblab.v1beta1.TestService",
+                        "CreateSession",
                     ),
                 );
             self.inner.unary(req, path, codec).await

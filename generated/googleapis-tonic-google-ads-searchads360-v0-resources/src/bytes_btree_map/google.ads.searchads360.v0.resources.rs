@@ -264,7 +264,10 @@ pub struct AdGroup {
     /// The URL template for constructing a tracking URL.
     #[prost(string, optional, tag = "37")]
     pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-    /// The maximum CPC (cost-per-click) bid.
+    /// The maximum CPC (cost-per-click) bid. This field is used when the
+    /// ad group's effective bidding strategy is Manual CPC. This field is not
+    /// applicable and will be ignored if the ad group's campaign is using a
+    /// portfolio bidding strategy.
     #[prost(int64, optional, tag = "39")]
     pub cpc_bid_micros: ::core::option::Option<i64>,
     /// Output only. The timestamp when this ad_group was created. The timestamp is
@@ -1605,11 +1608,13 @@ pub mod campaign {
         #[prost(string, optional, tag = "6")]
         pub sales_country: ::core::option::Option<::prost::alloc::string::String>,
         /// Feed label of products to include in the campaign.
-        /// Only one of feed_label or sales_country can be set.
-        /// If used instead of sales_country, the feed_label field accepts country
-        /// codes in the same format for example: 'XX'.
-        /// Otherwise can be any string used for feed label in Google Merchant
-        /// Center.
+        /// Valid feed labels may contain a maximum of 20 characters including
+        /// uppercase letters, numbers, hyphens, and underscores.
+        /// If you previously used the deprecated `sales_country` in the two-letter
+        /// country code (`XX`) format, the `feed_label` field should be used
+        /// instead. For more information see the
+        /// [feed label](//support.google.com/merchants/answer/12453549)
+        /// support article.
         #[prost(string, tag = "10")]
         pub feed_label: ::prost::alloc::string::String,
         /// Priority of the campaign. Campaigns with numerically higher priorities
@@ -1800,9 +1805,16 @@ pub struct CampaignBudget {
     /// `customers/{customer_id}/campaignBudgets/{campaign_budget_id}`
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
-    /// The amount of the budget, in the local currency for the account.
-    /// Amount is specified in micros, where one million is equivalent to one
-    /// currency unit. Monthly spend is capped at 30.4 times this amount.
+    /// The average daily amount to be spent by the campaign.
+    /// This field is used when the CampaignBudget `period` is set to `DAILY`,
+    /// which is the default.
+    ///
+    /// Amount is specified in micros in the account's local currency.
+    /// One million micros is equivalent to one currency unit.
+    /// The effective monthly spend is capped at 30.4 times this daily amount.
+    ///
+    /// This field is mutually exclusive with 'total_amount_micros'. Only one
+    /// of 'amount_micros' or 'total_amount_micros' should be set.
     #[prost(int64, optional, tag = "21")]
     pub amount_micros: ::core::option::Option<i64>,
     /// The delivery method that determines the rate at which the campaign budget
@@ -2901,23 +2913,23 @@ pub struct SearchAds360Field {
 }
 /// Shopping performance view.
 ///
-/// Provides Shopping campaign statistics aggregated at several product dimension
-/// levels. Product dimension values from Merchant Center such as brand,
-/// category, custom attributes, product condition and product type will reflect
-/// the state of each dimension as of the date and time when the corresponding
-/// event was recorded.
+/// Provides Shopping campaign and Performance Max campaign statistics aggregated
+/// at several product dimension levels. Product dimension values from
+/// Merchant Center such as brand, category, custom attributes, product
+/// condition, and product type will reflect the state of each dimension as of
+/// the date and time when the corresponding event was recorded.
 ///
-/// The number of impressions and clicks that shopping_performance_view
+/// The number of impressions and clicks that `shopping_performance_view`
 /// returns stats for may be different from campaign reports.
-/// shopping_performance_view shows impressions and clicks on products appearing
-/// in ads, while campaign reports show impressions and clicks on the ads
-/// themselves. Depending on the format, an ad can show from zero to several
+/// `shopping_performance_view` shows impressions and clicks on products
+/// appearing in ads, while campaign reports show impressions and clicks on the
+/// ads themselves. Depending on the format, an ad can show from zero to several
 /// products, so the numbers may not match.
 ///
-/// In Google Ads UI, you can query impressions and clicks of products appearing
-/// in ads by selecting a column from "Product attributes" in the report editor.
-/// For example, selecting the "Brand" column is equivalent to selecting
-/// `segments.product_brand`.
+/// In Search Ads 360 UI, you can query impressions and clicks of products
+/// appearing in ads by selecting a column from "Product attributes" in the
+/// report editor. For example, selecting the "Brand" column is equivalent to
+/// selecting `segments.product_brand`.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShoppingPerformanceView {
     /// Output only. The resource name of the Shopping performance view.
@@ -2927,6 +2939,11 @@ pub struct ShoppingPerformanceView {
     pub resource_name: ::prost::alloc::string::String,
 }
 /// A user list. This is a list of users a customer may target.
+/// The unique key of a user list consists of the following fields: `id`.
+/// Note that the `name` must also be unique for user lists owned
+/// by a given customer, except in some cases where
+/// `access_reason` is set to `SHARED`. Violating the unique name constraint
+/// produces error: `UserListError.INVALID_NAME`.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UserList {
     /// Immutable. The resource name of the user list.
@@ -2938,8 +2955,9 @@ pub struct UserList {
     /// Output only. Id of the user list.
     #[prost(int64, optional, tag = "25")]
     pub id: ::core::option::Option<i64>,
-    /// Name of this user list. Depending on its access_reason, the user list name
-    /// may not be unique (for example, if access_reason=SHARED)
+    /// Name of this user list.
+    /// Unique per user list, except in some cases where a user list of the same
+    /// name has `access_reason` set to `SHARED`.
     #[prost(string, optional, tag = "27")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
     /// Output only. Type of this list.
