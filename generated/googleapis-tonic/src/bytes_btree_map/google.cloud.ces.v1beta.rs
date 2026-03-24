@@ -426,6 +426,8 @@ pub mod channel_profile {
             VoiceOnly = 2,
             /// Widget supports only chat input.
             ChatOnly = 3,
+            /// Widget supports chat, voice, and video input.
+            ChatVoiceAndVideo = 4,
         }
         impl Modality {
             /// String value of the enum field names used in the ProtoBuf definition.
@@ -438,6 +440,7 @@ pub mod channel_profile {
                     Self::ChatAndVoice => "CHAT_AND_VOICE",
                     Self::VoiceOnly => "VOICE_ONLY",
                     Self::ChatOnly => "CHAT_ONLY",
+                    Self::ChatVoiceAndVideo => "CHAT_VOICE_AND_VIDEO",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -447,6 +450,7 @@ pub mod channel_profile {
                     "CHAT_AND_VOICE" => Some(Self::ChatAndVoice),
                     "VOICE_ONLY" => Some(Self::VoiceOnly),
                     "CHAT_ONLY" => Some(Self::ChatOnly),
+                    "CHAT_VOICE_AND_VIDEO" => Some(Self::ChatVoiceAndVideo),
                     _ => None,
                 }
             }
@@ -806,14 +810,14 @@ pub struct BigQueryExportSettings {
     /// Optional. Indicates whether the BigQuery export is enabled.
     #[prost(bool, tag = "1")]
     pub enabled: bool,
-    /// Optional. The project ID of the BigQuery dataset to export the data to.
+    /// Optional. The **project ID** of the BigQuery dataset to export the data to.
     ///
     /// Note: If the BigQuery dataset is in a different project from the app,
     /// you should grant `roles/bigquery.admin` role to the CES service agent
     /// `service-<PROJECT-NUMBER>@gcp-sa-ces.iam.gserviceaccount.com`.
     #[prost(string, tag = "2")]
     pub project: ::prost::alloc::string::String,
-    /// Optional. The BigQuery dataset to export the data to.
+    /// Optional. The BigQuery **dataset ID** to export the data to.
     #[prost(string, tag = "3")]
     pub dataset: ::prost::alloc::string::String,
 }
@@ -1288,8 +1292,11 @@ pub struct LanguageSettings {
     /// pre-built instructions to improve handling of multilingual input.
     #[prost(bool, tag = "3")]
     pub enable_multilingual_support: bool,
-    /// Optional. The action to perform when an agent receives input in an
-    /// unsupported language.
+    /// Optional. Deprecated: This feature is no longer supported. Use
+    /// `enable_multilingual_support` instead to improve handling of multilingual
+    /// input.
+    /// The action to perform when an agent receives input in an unsupported
+    /// language.
     ///
     /// This can be a predefined action or a custom tool call.
     /// Valid values are:
@@ -1299,6 +1306,7 @@ pub struct LanguageSettings {
     ///   an \[EndSession\]\[google.cloud.ces.v1beta.EndSession\] signal with
     ///   corresponding \[metadata\]\[google.cloud.ces.v1beta.EndSession.metadata\] to
     ///   terminate the conversation.
+    #[deprecated]
     #[prost(string, tag = "4")]
     pub fallback_action: ::prost::alloc::string::String,
 }
@@ -1541,13 +1549,16 @@ pub mod error_handling_settings {
     )]
     #[repr(i32)]
     pub enum ErrorHandlingStrategy {
-        /// Unspecified error handling strategy. Defaults to FALLBACK_RESPONSE.
+        /// Unspecified error handling strategy.
         Unspecified = 0,
         /// No specific handling is enabled.
         None = 1,
         /// A fallback message will be returned to the user in case of
-        /// LLM errors.
+        /// system errors (e.g. LLM errors).
         FallbackResponse = 2,
+        /// An \[EndSession\]\[google.cloud.ces.v1beta.EndSession\] signal will be
+        /// emitted in case of system errors (e.g. LLM errors).
+        EndSession = 3,
     }
     impl ErrorHandlingStrategy {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1559,6 +1570,7 @@ pub mod error_handling_settings {
                 Self::Unspecified => "ERROR_HANDLING_STRATEGY_UNSPECIFIED",
                 Self::None => "NONE",
                 Self::FallbackResponse => "FALLBACK_RESPONSE",
+                Self::EndSession => "END_SESSION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1567,6 +1579,7 @@ pub mod error_handling_settings {
                 "ERROR_HANDLING_STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
                 "NONE" => Some(Self::None),
                 "FALLBACK_RESPONSE" => Some(Self::FallbackResponse),
+                "END_SESSION" => Some(Self::EndSession),
                 _ => None,
             }
         }
@@ -3927,6 +3940,16 @@ pub struct McpTool {
     /// service names within a perimeter.
     #[prost(message, optional, tag = "8")]
     pub service_directory_config: ::core::option::Option<ServiceDirectoryConfig>,
+    /// Optional. The custom headers to send in the request to the MCP server. The
+    /// values must be in the format `$context.variables.<name_of_variable>` and
+    /// can be set in the session variables. See
+    /// <https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection>
+    /// for more details.
+    #[prost(btree_map = "string, string", tag = "9")]
+    pub custom_headers: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// A remote API tool defined by an OpenAPI schema.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4008,12 +4031,93 @@ pub struct WidgetTool {
     /// will be CUSTOMIZED.
     #[prost(enumeration = "widget_tool::WidgetType", tag = "3")]
     pub widget_type: i32,
+    /// Optional. Configuration for rendering the widget.
+    #[prost(message, optional, tag = "5")]
+    pub ui_config: ::core::option::Option<::prost_types::Struct>,
+    /// Optional. The mapping that defines how data from a source tool is mapped to
+    /// the widget's input parameters.
+    #[prost(message, optional, tag = "6")]
+    pub data_mapping: ::core::option::Option<widget_tool::DataMapping>,
     /// The input of the widget tool.
     #[prost(oneof = "widget_tool::Input", tags = "4")]
     pub input: ::core::option::Option<widget_tool::Input>,
 }
 /// Nested message and enum types in `WidgetTool`.
 pub mod widget_tool {
+    /// Configuration for mapping data from a source tool to the widget's input
+    /// parameters.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DataMapping {
+        /// Optional. The resource name of the tool that provides the data for the
+        /// widget (e.g., a search tool or a custom function). Format:
+        /// `projects/{project}/locations/{location}/agents/{agent}/tools/{tool}`
+        #[prost(string, tag = "1")]
+        pub source_tool_name: ::prost::alloc::string::String,
+        /// Optional. A map of widget input parameter fields to the corresponding
+        /// output fields of the source tool.
+        #[prost(btree_map = "string, string", tag = "2")]
+        pub field_mappings: ::prost::alloc::collections::BTreeMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+        /// Optional. Configuration for a Python function used to transform the
+        /// source tool's output into the widget's input format.
+        #[prost(message, optional, tag = "5")]
+        pub python_function: ::core::option::Option<super::PythonFunction>,
+        /// Optional. The mode of the data mapping.
+        #[prost(enumeration = "data_mapping::Mode", tag = "4")]
+        pub mode: i32,
+        /// Deprecated: Use `python_function` instead.
+        #[deprecated]
+        #[prost(string, tag = "3")]
+        pub python_script: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `DataMapping`.
+    pub mod data_mapping {
+        /// The strategy used to map data from the source tool to the widget.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Mode {
+            /// Unspecified mode.
+            Unspecified = 0,
+            /// Use the `field_mappings` map for data transformation.
+            FieldMapping = 1,
+            /// Use the `python_script` for data transformation.
+            PythonScript = 2,
+        }
+        impl Mode {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "MODE_UNSPECIFIED",
+                    Self::FieldMapping => "FIELD_MAPPING",
+                    Self::PythonScript => "PYTHON_SCRIPT",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "FIELD_MAPPING" => Some(Self::FieldMapping),
+                    "PYTHON_SCRIPT" => Some(Self::PythonScript),
+                    _ => None,
+                }
+            }
+        }
+    }
     /// All available widget types.
     /// New values may be added to this enum in the future.
     #[derive(
@@ -4242,6 +4346,16 @@ pub struct McpToolset {
     /// that the client should trust.
     #[prost(message, optional, tag = "4")]
     pub tls_config: ::core::option::Option<TlsConfig>,
+    /// Optional. The custom headers to send in the request to the MCP server. The
+    /// values must be in the format `$context.variables.<name_of_variable>` and
+    /// can be set in the session variables. See
+    /// <https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection>
+    /// for more details.
+    #[prost(btree_map = "string, string", tag = "5")]
+    pub custom_headers: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// A toolset that contains a list of tools that are defined by an OpenAPI
 /// schema.
@@ -4794,6 +4908,14 @@ pub struct SessionConfig {
     pub remote_dialogflow_query_parameters: ::core::option::Option<
         session_config::RemoteDialogflowQueryParameters,
     >,
+    /// Optional. Whether to enable streaming text outputs from the model.
+    /// By default, text outputs from the model are collected before sending to the
+    /// client.
+    /// NOTE: This is only supported for text (non-voice) sessions via
+    /// \[StreamRunSession\]\[google.cloud.ces.v1beta.SessionService.StreamRunSession\]
+    /// or \[BidiRunSession\]\[google.cloud.ces.v1beta.SessionService.BidiRunSession\].
+    #[prost(bool, tag = "18")]
+    pub enable_text_streaming: bool,
 }
 /// Nested message and enum types in `SessionConfig`.
 pub mod session_config {
@@ -5204,8 +5326,7 @@ pub mod session_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Initiates a single turn interaction with the CES agent within a
-        /// session.
+        /// Initiates a single-turn interaction with the CES agent within a session.
         pub async fn run_session(
             &mut self,
             request: impl tonic::IntoRequest<super::RunSessionRequest>,
@@ -5234,6 +5355,44 @@ pub mod session_service_client {
                     ),
                 );
             self.inner.unary(req, path, codec).await
+        }
+        /// Initiates a single-turn interaction with the CES agent. Uses server-side
+        /// streaming to deliver incremental results and partial responses as they are
+        /// generated.
+        ///
+        /// By default, complete responses (e.g., messages from callbacks or full LLM
+        /// responses) are sent to the client as soon as they are available. To enable
+        /// streaming individual text chunks directly from the model, set
+        /// \[enable_text_streaming\]\[google.cloud.ces.v1beta.SessionConfig.enable_text_streaming\]
+        /// to true.
+        pub async fn stream_run_session(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunSessionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::RunSessionResponse>>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.ces.v1beta.SessionService/StreamRunSession",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.ces.v1beta.SessionService",
+                        "StreamRunSession",
+                    ),
+                );
+            self.inner.server_streaming(req, path, codec).await
         }
         /// Establishes a bidirectional streaming connection with the CES agent.
         /// The agent processes continuous multimodal inputs (e.g., text, audio) and
@@ -7469,6 +7628,11 @@ pub struct ExportAppRequest {
     /// exported app archive will be written directly to the specified GCS object.
     #[prost(string, tag = "3")]
     pub gcs_uri: ::prost::alloc::string::String,
+    /// Optional. The resource name of the app version to export.
+    /// Format:
+    /// `projects/{project}/locations/{location}/apps/{app}/versions/{version}`.
+    #[prost(string, tag = "4")]
+    pub app_version: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ExportAppRequest`.
 pub mod export_app_request {
@@ -8484,7 +8648,7 @@ pub struct GenerateAppResourceResponse {
     /// The generated resource.
     #[prost(
         oneof = "generate_app_resource_response::GeneratedResource",
-        tags = "1, 3, 4, 5, 6, 7"
+        tags = "1, 3, 4, 5, 6, 7, 8"
     )]
     pub generated_resource: ::core::option::Option<
         generate_app_resource_response::GeneratedResource,
@@ -8547,6 +8711,53 @@ pub mod generate_app_resource_response {
         /// The app resources generated by the LLM assistant.
         #[prost(message, tag = "7")]
         AppResources(AppResources),
+        /// The quality report generated by the LLM assistant.
+        #[prost(message, tag = "8")]
+        QualityReport(super::QualityReport),
+    }
+}
+/// The report describing any identified quality issues in the app.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QualityReport {
+    /// Optional. The issues grouped by agent.
+    #[prost(message, repeated, tag = "1")]
+    pub issues: ::prost::alloc::vec::Vec<quality_report::AgentIssues>,
+    /// Optional. A list of evaluation runs used to generate the quality report.
+    /// Format:
+    /// `projects/{project}/locations/{location}/evaluationRuns/{evaluationRun}`.
+    #[prost(string, repeated, tag = "2")]
+    pub evaluation_runs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. General issues not specific to any agent.
+    #[prost(message, repeated, tag = "3")]
+    pub general_issues: ::prost::alloc::vec::Vec<quality_report::Issue>,
+}
+/// Nested message and enum types in `QualityReport`.
+pub mod quality_report {
+    /// The issue identified.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct Issue {
+        /// Optional. Description of the issue found.
+        #[prost(string, tag = "1")]
+        pub description: ::prost::alloc::string::String,
+        /// Optional. How many times this issue occurred.
+        #[prost(int32, tag = "2")]
+        pub occurrence_count: i32,
+        /// Optional. Proposed solution to fix the issue by modifying instructions or
+        /// tools.
+        #[prost(string, tag = "3")]
+        pub proposed_solution: ::prost::alloc::string::String,
+    }
+    /// Issues identified for a single agent.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AgentIssues {
+        /// Optional. The name of the agent to which the issues are related.
+        /// Format:
+        /// `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
+        #[prost(string, tag = "1")]
+        pub agent: ::prost::alloc::string::String,
+        /// Optional. List of issues found for this agent.
+        #[prost(message, repeated, tag = "2")]
+        pub issues: ::prost::alloc::vec::Vec<Issue>,
     }
 }
 /// Request message for
@@ -10087,7 +10298,7 @@ pub struct RunEvaluationResponse {
     pub evaluation_run: ::prost::alloc::string::String,
 }
 /// Operation metadata for
-/// \[EvaluationService.RunEvaluation\]\[google.cloud.ces.v1beta.EvaluationService.RunEvaluation\]
+/// \[EvaluationService.RunEvaluation\]\[google.cloud.ces.v1beta.EvaluationService.RunEvaluation\].
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RunEvaluationOperationMetadata {
     /// Output only. The list of evaluations that were run.
@@ -12359,6 +12570,9 @@ pub struct GenerateChatTokenRequest {
     /// Optional. The reCAPTCHA token generated by the client-side chat widget.
     #[prost(string, tag = "3")]
     pub recaptcha_token: ::prost::alloc::string::String,
+    /// Optional. Indicates if live handoff is enabled for the session.
+    #[prost(bool, tag = "4")]
+    pub live_handoff_enabled: bool,
 }
 /// Response message for
 /// \[WidgetService.GenerateChatToken\]\[google.cloud.ces.v1beta.WidgetService.GenerateChatToken\].

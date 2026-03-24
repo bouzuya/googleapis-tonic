@@ -327,11 +327,13 @@ pub struct CreateAccount {
     /// signature of the transactions emanating from the created account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "6")]
     pub key_format: i32,
     /// Optional. The list of roles to grant to this account.
@@ -588,11 +590,13 @@ pub struct CreateTokenManager {
     /// signature of the transactions emanating from the token manager's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "5")]
     pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -617,11 +621,13 @@ pub struct CreateAccountManager {
     /// manager's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "5")]
     pub key_format: i32,
     /// Optional. Deprecated: use `default_token_manager_id` instead.
@@ -655,11 +661,13 @@ pub struct CreateClearinghouse {
     /// signature of the transactions emanating from the clearinghouse's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "6")]
     pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -668,7 +676,8 @@ pub struct CreateClearinghouse {
     /// created, the field is immutable.
     #[prost(string, tag = "4")]
     pub account_comment: ::prost::alloc::string::String,
-    /// The settlement mode for this clearinghouse. Required.
+    /// Required. The settlement mode for this clearinghouse. Required.
+    /// Considered public information.
     #[prost(enumeration = "SettlementMode", tag = "5")]
     pub settlement_mode: i32,
 }
@@ -687,11 +696,13 @@ pub struct TransferPlatformOperator {
     /// platform operator's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "3")]
     pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -720,11 +731,13 @@ pub struct CreateCurrencyOperator {
     /// operator's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "4")]
     pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -733,8 +746,9 @@ pub struct CreateCurrencyOperator {
     /// created, the field is immutable.
     #[prost(string, tag = "2")]
     pub account_comment: ::prost::alloc::string::String,
-    /// The fiat currency associated with this operator, represented as a
+    /// Required. The fiat currency associated with this operator, represented as a
     /// 3-capital-letter ISO 4217 code.
+    /// Considered public information.
     #[prost(string, tag = "3")]
     pub currency: ::prost::alloc::string::String,
 }
@@ -753,11 +767,13 @@ pub struct TransferCurrencyOperator {
     /// currency operator's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "5")]
     pub key_format: i32,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -787,7 +803,7 @@ pub struct CreateContract {
     /// Serialised biter_bytecode.Contract bytes.
     #[prost(bytes = "bytes", tag = "1")]
     pub contract_bytes: ::prost::bytes::Bytes,
-    /// Arguments for the `__init__` method.
+    /// Optional. Immutable. Arguments for the `__init__` method.
     #[prost(map = "string, message", tag = "2")]
     pub arguments: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -830,7 +846,7 @@ pub struct InvokeContractMethod {
     /// Name of the method to run.
     #[prost(string, tag = "2")]
     pub method_name: ::prost::alloc::string::String,
-    /// Arguments for the method.
+    /// Optional. Immutable. Arguments for the method.
     #[prost(map = "string, message", tag = "3")]
     pub arguments: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
     /// The amount to be paid.
@@ -863,6 +879,7 @@ pub struct CreateContractTokenManager {
     /// token manager's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -874,6 +891,7 @@ pub struct CreateContractTokenManager {
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "3")]
     pub key_format: i32,
 }
@@ -894,6 +912,7 @@ pub struct TransferContractTokenManager {
     /// contract token manager's account.
     ///
     /// The format of the public key is defined by the `key_format` field.
+    /// Considered public information.
     #[prost(bytes = "bytes", tag = "1")]
     pub public_key: ::prost::bytes::Bytes,
     /// Optional. Immutable. An opaque comment field that is not interpreted by the
@@ -905,6 +924,7 @@ pub struct TransferContractTokenManager {
     /// Optional. Immutable. The key format of the public key. If not
     /// specified, defaults to a binary serialized keyset in [Tink wire
     /// format](<https://developers.google.com/tink/wire-format#keyset_serialization>).
+    /// Considered public information.
     #[prost(enumeration = "KeyFormat", tag = "3")]
     pub key_format: i32,
 }

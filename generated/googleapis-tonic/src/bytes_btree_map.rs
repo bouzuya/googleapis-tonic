@@ -136,6 +136,7 @@
     feature = "google-cloud-beyondcorp-appgateways-v1",
     feature = "google-cloud-beyondcorp-clientconnectorservices-v1",
     feature = "google-cloud-beyondcorp-clientgateways-v1",
+    feature = "google-cloud-biglake-hive-v1beta",
     feature = "google-cloud-biglake-v1",
     feature = "google-cloud-bigquery-analyticshub-v1",
     feature = "google-cloud-bigquery-biglake-v1",
@@ -193,6 +194,7 @@
     feature = "google-cloud-contactcenterinsights-v1",
     feature = "google-cloud-contentwarehouse-v1",
     feature = "google-cloud-databasecenter-v1beta",
+    feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
     feature = "google-cloud-datacatalog-lineage-v1",
     feature = "google-cloud-datacatalog-v1",
     feature = "google-cloud-datacatalog-v1beta1",
@@ -524,6 +526,7 @@
     feature = "google-maps-addressvalidation-v1",
     feature = "google-maps-aerialview-v1",
     feature = "google-maps-areainsights-v1",
+    feature = "google-maps-geocode-v4",
     feature = "google-maps-mapsplatformdatasets-v1",
     feature = "google-maps-mobilitybilling-logs-v1",
     feature = "google-maps-navconnect-v1",
@@ -652,6 +655,7 @@ pub mod google {
         feature = "google-cloud-beyondcorp-appgateways-v1",
         feature = "google-cloud-beyondcorp-clientconnectorservices-v1",
         feature = "google-cloud-beyondcorp-clientgateways-v1",
+        feature = "google-cloud-biglake-hive-v1beta",
         feature = "google-cloud-biglake-v1",
         feature = "google-cloud-bigquery-analyticshub-v1",
         feature = "google-cloud-bigquery-biglake-v1",
@@ -709,6 +713,7 @@ pub mod google {
         feature = "google-cloud-contactcenterinsights-v1",
         feature = "google-cloud-contentwarehouse-v1",
         feature = "google-cloud-databasecenter-v1beta",
+        feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
         feature = "google-cloud-datacatalog-lineage-v1",
         feature = "google-cloud-datacatalog-v1",
         feature = "google-cloud-datacatalog-v1beta1",
@@ -4204,6 +4209,7 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-biglake-hive-v1beta",
             feature = "google-cloud-biglake-v1",
         ))]
         pub mod biglake {
@@ -4215,6 +4221,20 @@ pub mod google {
                     feature = "google-cloud-biglake-v1",
                 ))]
                 include!("bytes_btree_map/google.cloud.biglake.v1.rs");
+            }
+            #[cfg(any(
+                feature = "google-cloud-biglake-hive-v1beta",
+            ))]
+            pub mod hive {
+                #[cfg(any(
+                    feature = "google-cloud-biglake-hive-v1beta",
+                ))]
+                pub mod v1beta {
+                    #[cfg(any(
+                        feature = "google-cloud-biglake-hive-v1beta",
+                    ))]
+                    include!("bytes_btree_map/google.cloud.biglake.hive.v1beta.rs");
+                }
             }
         }
         #[cfg(any(
@@ -4389,6 +4409,7 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
             feature = "google-cloud-datacatalog-lineage-v1",
             feature = "google-cloud-datacatalog-v1",
             feature = "google-cloud-datacatalog-v1beta1",
@@ -4404,18 +4425,24 @@ pub mod google {
                 include!("bytes_btree_map/google.cloud.datacatalog.v1.rs");
             }
             #[cfg(any(
-                feature = "google-cloud-datacatalog-v1beta1",
-            ))]
-            pub mod v1beta1 {
-                #[cfg(any(
-                    feature = "google-cloud-datacatalog-v1beta1",
-                ))]
-                include!("bytes_btree_map/google.cloud.datacatalog.v1beta1.rs");
-            }
-            #[cfg(any(
+                feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
                 feature = "google-cloud-datacatalog-lineage-v1",
             ))]
             pub mod lineage {
+                #[cfg(any(
+                    feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
+                ))]
+                pub mod configmanagement {
+                    #[cfg(any(
+                        feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
+                    ))]
+                    pub mod v1 {
+                        #[cfg(any(
+                            feature = "google-cloud-datacatalog-lineage-configmanagement-v1",
+                        ))]
+                        include!("bytes_btree_map/google.cloud.datacatalog.lineage.configmanagement.v1.rs");
+                    }
+                }
                 #[cfg(any(
                     feature = "google-cloud-datacatalog-lineage-v1",
                 ))]
@@ -4425,6 +4452,15 @@ pub mod google {
                     ))]
                     include!("bytes_btree_map/google.cloud.datacatalog.lineage.v1.rs");
                 }
+            }
+            #[cfg(any(
+                feature = "google-cloud-datacatalog-v1beta1",
+            ))]
+            pub mod v1beta1 {
+                #[cfg(any(
+                    feature = "google-cloud-datacatalog-v1beta1",
+                ))]
+                include!("bytes_btree_map/google.cloud.datacatalog.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -6534,6 +6570,7 @@ pub mod google {
         feature = "google-maps-addressvalidation-v1",
         feature = "google-maps-aerialview-v1",
         feature = "google-maps-areainsights-v1",
+        feature = "google-maps-geocode-v4",
         feature = "google-maps-mapsplatformdatasets-v1",
         feature = "google-maps-mobilitybilling-logs-v1",
         feature = "google-maps-navconnect-v1",
@@ -6747,6 +6784,20 @@ pub mod google {
                     feature = "google-maps-routing-v2",
                 ))]
                 include!("bytes_btree_map/google.maps.routing.v2.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-maps-geocode-v4",
+        ))]
+        pub mod geocode {
+            #[cfg(any(
+                feature = "google-maps-geocode-v4",
+            ))]
+            pub mod v4 {
+                #[cfg(any(
+                    feature = "google-maps-geocode-v4",
+                ))]
+                include!("bytes_btree_map/google.maps.geocode.v4.rs");
             }
         }
         #[cfg(any(

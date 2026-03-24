@@ -6794,6 +6794,12 @@ pub struct RagChunk {
     /// If populated, represents where the chunk starts and ends in the document.
     #[prost(message, optional, tag = "2")]
     pub page_span: ::core::option::Option<rag_chunk::PageSpan>,
+    /// The ID of the file that the chunk belongs to.
+    #[prost(string, tag = "3")]
+    pub file_id: ::prost::alloc::string::String,
+    /// The ID of the chunk.
+    #[prost(string, tag = "4")]
+    pub chunk_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `RagChunk`.
 pub mod rag_chunk {
@@ -45996,30 +46002,73 @@ pub struct EmbedContentRequest {
     /// `projects/{project}/locations/{location}/publishers/*/models/*`
     #[prost(string, optional, tag = "1")]
     pub model: ::core::option::Option<::prost::alloc::string::String>,
-    /// Required. Input content to be embedded. Required.
+    /// Required. Input content to be embedded.
     #[prost(message, optional, tag = "2")]
     pub content: ::core::option::Option<Content>,
-    /// Optional. An optional title for the text.
+    /// Optional. Deprecated: Please use EmbedContentConfig.title instead.
+    /// The title for the text.
+    #[deprecated]
     #[prost(string, optional, tag = "4")]
     pub title: ::core::option::Option<::prost::alloc::string::String>,
-    /// Optional. The task type of the embedding.
+    /// Optional. Deprecated: Please use EmbedContentConfig.task_type instead.
+    /// The task type of the embedding.
+    #[deprecated]
     #[prost(
         enumeration = "embed_content_request::EmbeddingTaskType",
         optional,
         tag = "5"
     )]
     pub task_type: ::core::option::Option<i32>,
-    /// Optional. Optional reduced dimension for the output embedding. If set,
-    /// excessive values in the output embedding are truncated from the end.
+    /// Optional. Deprecated: Please use EmbedContentConfig.output_dimensionality
+    /// instead. Reduced dimension for the output embedding. If set, excessive
+    /// values in the output embedding are truncated from the end.
+    #[deprecated]
     #[prost(int32, optional, tag = "6")]
     pub output_dimensionality: ::core::option::Option<i32>,
-    /// Optional. Whether to silently truncate the input content if it's longer
+    /// Optional. Deprecated: Please use EmbedContentConfig.auto_truncate instead.
+    /// Whether to silently truncate the input content if it's longer
     /// than the maximum sequence length.
+    #[deprecated]
     #[prost(bool, optional, tag = "7")]
     pub auto_truncate: ::core::option::Option<bool>,
+    /// Optional. Configuration for the EmbedContent request.
+    #[prost(message, optional, tag = "8")]
+    pub embed_content_config: ::core::option::Option<
+        embed_content_request::EmbedContentConfig,
+    >,
 }
 /// Nested message and enum types in `EmbedContentRequest`.
 pub mod embed_content_request {
+    /// Configurations for the EmbedContent API.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct EmbedContentConfig {
+        /// Optional. The title for the text.
+        ///
+        /// Only applicable to text-only embedding models.
+        #[prost(string, optional, tag = "1")]
+        pub title: ::core::option::Option<::prost::alloc::string::String>,
+        /// Optional. The task type of the embedding.
+        ///
+        /// Only applicable to text-only embedding models.
+        #[prost(enumeration = "EmbeddingTaskType", optional, tag = "2")]
+        pub task_type: ::core::option::Option<i32>,
+        /// Optional. Whether to silently truncate the input content if it's longer
+        /// than the maximum sequence length.
+        ///
+        /// Only applicable to text-only embedding models.
+        #[prost(bool, optional, tag = "3")]
+        pub auto_truncate: ::core::option::Option<bool>,
+        /// Optional. Reduced dimension for the output embedding. If set, excessive
+        /// values in the output embedding are truncated from the end.
+        #[prost(int32, optional, tag = "4")]
+        pub output_dimensionality: ::core::option::Option<i32>,
+        /// Optional. Whether to enable OCR for document content.
+        #[prost(bool, optional, tag = "5")]
+        pub document_ocr: ::core::option::Option<bool>,
+        /// Optional. Whether to extract audio from video content.
+        #[prost(bool, optional, tag = "6")]
+        pub audio_track_extraction: ::core::option::Option<bool>,
+    }
     /// Represents a downstream task the embeddings will be used for.
     #[derive(
         Clone,
@@ -46095,7 +46144,7 @@ pub struct EmbedContentResponse {
     /// The embedding generated from the input content.
     #[prost(message, optional, tag = "1")]
     pub embedding: ::core::option::Option<embed_content_response::Embedding>,
-    /// Metadata about the response(s).
+    /// Usage metadata about the response(s).
     #[prost(message, optional, tag = "2")]
     pub usage_metadata: ::core::option::Option<UsageMetadata>,
     /// Whether the input content was truncated before generating the embedding.

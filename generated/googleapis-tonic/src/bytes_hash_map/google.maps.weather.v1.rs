@@ -1211,6 +1211,44 @@ pub struct HistoryHour {
     #[prost(message, optional, tag = "19")]
     pub ice_thickness: ::core::option::Option<IceThickness>,
 }
+/// The type of the weather map. Defines the weather event that the
+/// map will graphically represent.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MapType {
+    /// The default value. The server ignores it if it is passed as a parameter.
+    Unspecified = 0,
+    /// Global precipitation current map.
+    GlobalPrecipitationCurrent = 1,
+    /// US precipitation current map.
+    UsPrecipitationCurrent = 2,
+    /// EU precipitation current map.
+    EuPrecipitationCurrent = 3,
+}
+impl MapType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "MAP_TYPE_UNSPECIFIED",
+            Self::GlobalPrecipitationCurrent => "GLOBAL_PRECIPITATION_CURRENT",
+            Self::UsPrecipitationCurrent => "US_PRECIPITATION_CURRENT",
+            Self::EuPrecipitationCurrent => "EU_PRECIPITATION_CURRENT",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MAP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "GLOBAL_PRECIPITATION_CURRENT" => Some(Self::GlobalPrecipitationCurrent),
+            "US_PRECIPITATION_CURRENT" => Some(Self::UsPrecipitationCurrent),
+            "EU_PRECIPITATION_CURRENT" => Some(Self::EuPrecipitationCurrent),
+            _ => None,
+        }
+    }
+}
 /// The type of the weather event.
 /// (-- Next available tag: 64 --)
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -2333,6 +2371,44 @@ pub struct LookupForecastMinutesResponse {
     /// The token to retrieve the next page.
     #[prost(string, tag = "4")]
     pub next_page_token: ::prost::alloc::string::String,
+}
+/// (-- Request for the LookupMapTile RPC. --)
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct LookupMapTileRequest {
+    /// The type of the weather map. Defines the weather event that the
+    /// map will graphically represent.
+    ///
+    /// ```text
+    /// Allowed values:
+    /// - GLOBAL_PRECIPITATION_CURRENT - Global precipitation current map.
+    /// - US_PRECIPITATION_CURRENT - US precipitation current map.
+    /// - EU_PRECIPITATION_CURRENT - EU precipitation current map.
+    /// ```
+    #[prost(enumeration = "MapType", tag = "2")]
+    pub map_type: i32,
+    /// The map's zoom level. Defines how large or small the contents
+    /// of a map appear in a map view.
+    ///
+    /// Zoom level 0 is the entire world in a single tile.
+    /// Zoom level 1 is the entire world in 4 tiles.
+    /// Zoom level 2 is the entire world in 16 tiles.
+    /// Zoom level 16 is the entire world in 65,536 tiles.
+    ///
+    /// Allowed values: 0-16
+    /// (-- api-linter: core::0203::required-and-optional=disabled
+    /// aip.dev/not-precedent: this field needs to keep presence. --)
+    #[prost(int32, tag = "3")]
+    pub zoom: i32,
+    /// Defines the east-west point in the requested tile.
+    /// (-- api-linter: core::0203::required-and-optional=disabled
+    /// aip.dev/not-precedent: this field needs to keep presence. --)
+    #[prost(int32, tag = "4")]
+    pub x: i32,
+    /// Defines the north-south point in the requested tile.
+    /// (-- api-linter: core::0203::required-and-optional=disabled
+    /// aip.dev/not-precedent: this field needs to keep presence. --)
+    #[prost(int32, tag = "5")]
+    pub y: i32,
 }
 /// Generated client implementations.
 pub mod weather_client {
