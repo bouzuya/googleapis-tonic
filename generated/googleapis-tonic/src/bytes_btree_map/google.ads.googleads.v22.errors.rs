@@ -2261,14 +2261,14 @@ pub mod asset_error_enum {
         Unspecified = 0,
         /// The received error code is not known in this version.
         Unknown = 1,
-        /// The customer is not is not on the allow-list for this asset type.
+        /// The customer is not on the allow-list for this asset type.
         CustomerNotOnAllowlistForAssetType = 13,
         /// Assets are duplicated across operations.
         DuplicateAsset = 3,
         /// The asset name is duplicated, either across operations or with an
         /// existing asset.
         DuplicateAssetName = 4,
-        /// The Asset.asset_data oneof is empty.
+        /// The `Asset.asset_data` oneof is empty.
         AssetDataIsMissing = 5,
         /// The asset has a name which is different from an existing duplicate that
         /// represents the same content.
@@ -2296,19 +2296,19 @@ pub mod asset_error_enum {
         PromotionCannotSetPromotionCodeAndOrdersOverAmount = 16,
         /// The field has too many decimal places specified.
         TooManyDecimalPlacesSpecified = 17,
-        /// Duplicate assets across operations, which have identical Asset.asset_data
-        /// oneof, cannot have different asset level fields for asset types which are
-        /// deduped.
+        /// Duplicate assets across operations, which have identical
+        /// `Asset.asset_data` oneof, cannot have different asset level fields for
+        /// asset types which are deduped.
         DuplicateAssetsWithDifferentFieldValue = 18,
-        /// Carrier specific short number is not allowed.
+        /// Carrier-specific short number is not allowed.
         CallCarrierSpecificShortNumberNotAllowed = 19,
         /// Customer consent required for call recording Terms of Service.
         CallCustomerConsentForCallRecordingRequired = 20,
         /// The type of the specified phone number is not allowed.
         CallDisallowedNumberType = 21,
-        /// If the default call_conversion_action is not used, the customer must have
-        /// a ConversionAction with the same id and the ConversionAction must be call
-        /// conversion type.
+        /// If the default `call_conversion_action` is not used, the customer must
+        /// have a `ConversionAction` with the same id and the `ConversionAction`
+        /// must be call conversion type.
         CallInvalidConversionAction = 22,
         /// The country code of the phone number is invalid.
         CallInvalidCountryCode = 23,
@@ -2316,15 +2316,15 @@ pub mod asset_error_enum {
         CallInvalidDomesticPhoneNumberFormat = 24,
         /// The input phone number is not a valid phone number.
         CallInvalidPhoneNumber = 25,
-        /// The phone number is not supported for country.
+        /// The phone number is not supported for this country.
         CallPhoneNumberNotSupportedForCountry = 26,
         /// Premium rate phone number is not allowed.
         CallPremiumRateNumberNotAllowed = 27,
         /// Vanity phone number is not allowed.
         CallVanityPhoneNumberNotAllowed = 28,
-        /// PriceOffering cannot have the same value for header and description.
+        /// `PriceOffering` cannot have the same value for header and description.
         PriceHeaderSameAsDescription = 29,
-        /// AppId is invalid.
+        /// `AppId` is invalid.
         MobileAppInvalidAppId = 30,
         /// Invalid App download URL in final URLs.
         MobileAppInvalidFinalUrlForAppDownloadUrl = 31,
@@ -2339,13 +2339,13 @@ pub mod asset_error_enum {
         CannotModifyAssetSource = 35,
         /// User can not modify the automatically created asset.
         CannotModifyAutomaticallyCreatedAsset = 36,
-        /// Lead Form is disallowed to use "LOCATION" answer type.
+        /// Lead Form is disallowed to use `LOCATION` answer type.
         LeadFormLocationAnswerTypeDisallowed = 37,
         /// Page Feed label text contains invalid characters.
         PageFeedInvalidLabelText = 38,
         /// The customer is not in the allow-list for whatsapp message asset type.
         CustomerNotOnAllowlistForWhatsappMessageAssets = 39,
-        /// Only customers on the allowlist can create AppDeepLinkAsset.
+        /// Only customers on the allowlist can create `AppDeepLinkAsset`.
         CustomerNotOnAllowlistForAppDeepLinkAssets = 40,
         /// Promotion barcode cannot contain links.
         PromotionBarcodeCannotContainLinks = 41,
@@ -9808,7 +9808,7 @@ pub mod custom_interest_error_enum {
         }
     }
 }
-/// Container for enum describing possible CustomeClientLink errors.
+/// Container for enum describing possible CustomerClientLink errors.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerClientLinkErrorEnum {}
 /// Nested message and enum types in `CustomerClientLinkErrorEnum`.
@@ -19833,7 +19833,10 @@ pub mod user_list_customer_type_error_enum {
         /// 1. Qualified Leads - Converted Leads
         /// 1. Disengaged customers - Converted Leads
         /// 1. Disengaged customers - Qualified Leads
-        /// 1. Disengaged customers- Cart Abandoners
+        /// 1. Disengaged customers - Cart Abandoners
+        /// 1. Converted Leads - Loyalty Tier X Members (X = 1..7)
+        /// 1. Qualified Leads - Loyalty Tier X Members (X = 1..7)
+        /// 1. Loyalty Tier X Members - Loyalty Tier Y Members (X != Y)
         ConflictingCustomerTypes = 2,
         /// The account does not have access to the user list.
         NoAccessToUserList = 3,

@@ -938,9 +938,12 @@ pub struct JavaSettings {
     ///
     /// Example of a YAML configuration::
     ///
+    /// ```text
     /// publishing:
-    /// java_settings:
-    /// library_package: com.google.cloud.pubsub.v1
+    ///    library_settings:
+    ///      java_settings:
+    ///        library_package: com.google.cloud.pubsub.v1
+    /// ```
     #[prost(string, tag = "1")]
     pub library_package: ::prost::alloc::string::String,
     /// Configure the Java class name to use instead of the service's for its
@@ -952,11 +955,13 @@ pub struct JavaSettings {
     ///
     /// Example of a YAML configuration::
     ///
+    /// ```text
     /// publishing:
-    /// java_settings:
-    /// service_class_names:
-    /// - google.pubsub.v1.Publisher: TopicAdmin
-    /// - google.pubsub.v1.Subscriber: SubscriptionAdmin
+    ///    java_settings:
+    ///      service_class_names:
+    ///        - google.pubsub.v1.Publisher: TopicAdmin
+    ///        - google.pubsub.v1.Subscriber: SubscriptionAdmin
+    /// ```
     #[prost(map = "string, string", tag = "2")]
     pub service_class_names: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -979,6 +984,22 @@ pub struct PhpSettings {
     /// Some settings.
     #[prost(message, optional, tag = "1")]
     pub common: ::core::option::Option<CommonLanguageSettings>,
+    /// The package name to use in Php. Clobbers the php_namespace option
+    /// set in the protobuf. This should be used **only** by APIs
+    /// who have already set the language_settings.php.package_name" field
+    /// in gapic.yaml. API teams should use the protobuf php_namespace option
+    /// where possible.
+    ///
+    /// Example of a YAML configuration::
+    ///
+    /// ```text
+    /// publishing:
+    ///    library_settings:
+    ///      php_settings:
+    ///        library_package: Google\Cloud\PubSub\V1
+    /// ```
+    #[prost(string, tag = "2")]
+    pub library_package: ::prost::alloc::string::String,
 }
 /// Settings for Python client libraries.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -1088,10 +1109,14 @@ pub struct GoSettings {
     /// service names and values are the name to be used for the service client
     /// and call options.
     ///
+    /// Example:
+    ///
+    /// ```text
     /// publishing:
-    /// go_settings:
-    /// renamed_services:
-    /// Publisher: TopicAdmin
+    ///    go_settings:
+    ///      renamed_services:
+    ///        Publisher: TopicAdmin
+    /// ```
     #[prost(map = "string, string", tag = "2")]
     pub renamed_services: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -1108,9 +1133,9 @@ pub struct MethodSettings {
     ///
     /// ```text
     /// publishing:
-    ///   method_settings:
-    ///   - selector: google.storage.control.v2.StorageControl.CreateFolder
-    ///     # method settings for CreateFolder...
+    ///    method_settings:
+    ///    - selector: google.storage.control.v2.StorageControl.CreateFolder
+    ///      # method settings for CreateFolder...
     /// ```
     #[prost(string, tag = "1")]
     pub selector: ::prost::alloc::string::String,
@@ -1122,13 +1147,13 @@ pub struct MethodSettings {
     ///
     /// ```text
     /// publishing:
-    ///   method_settings:
-    ///   - selector: google.cloud.speech.v2.Speech.BatchRecognize
-    ///     long_running:
-    ///       initial_poll_delay: 60s # 1 minute
-    ///       poll_delay_multiplier: 1.5
-    ///       max_poll_delay: 360s # 6 minutes
-    ///       total_poll_timeout: 54000s # 90 minutes
+    ///    method_settings:
+    ///    - selector: google.cloud.speech.v2.Speech.BatchRecognize
+    ///      long_running:
+    ///        initial_poll_delay: 60s # 1 minute
+    ///        poll_delay_multiplier: 1.5
+    ///        max_poll_delay: 360s # 6 minutes
+    ///        total_poll_timeout: 54000s # 90 minutes
     /// ```
     #[prost(message, optional, tag = "2")]
     pub long_running: ::core::option::Option<method_settings::LongRunning>,
@@ -1140,13 +1165,28 @@ pub struct MethodSettings {
     ///
     /// ```text
     /// publishing:
-    ///   method_settings:
-    ///   - selector: google.example.v1.ExampleService.CreateExample
-    ///     auto_populated_fields:
-    ///     - request_id
+    ///    method_settings:
+    ///    - selector: google.example.v1.ExampleService.CreateExample
+    ///      auto_populated_fields:
+    ///      - request_id
     /// ```
     #[prost(string, repeated, tag = "3")]
     pub auto_populated_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Batching configuration for an API method in client libraries.
+    ///
+    /// Example of a YAML configuration:
+    ///
+    /// ```text
+    /// publishing:
+    ///    method_settings:
+    ///    - selector: google.example.v1.ExampleService.BatchCreateExample
+    ///      batching:
+    ///        element_count_threshold: 1000
+    ///        request_byte_threshold: 100000000
+    ///        delay_threshold_millis: 10
+    /// ```
+    #[prost(message, optional, tag = "4")]
+    pub batching: ::core::option::Option<BatchingConfigProto>,
 }
 /// Nested message and enum types in `MethodSettings`.
 pub mod method_settings {
@@ -1192,6 +1232,71 @@ pub struct SelectiveGapicGeneration {
     /// obfuscated identifiers, or other language idiomatic patterns.
     #[prost(bool, tag = "2")]
     pub generate_omitted_as_internal: bool,
+}
+/// `BatchingConfigProto` defines the batching configuration for an API method.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchingConfigProto {
+    /// The thresholds which trigger a batched request to be sent.
+    #[prost(message, optional, tag = "1")]
+    pub thresholds: ::core::option::Option<BatchingSettingsProto>,
+    /// The request and response fields used in batching.
+    #[prost(message, optional, tag = "2")]
+    pub batch_descriptor: ::core::option::Option<BatchingDescriptorProto>,
+}
+/// `BatchingSettingsProto` specifies a set of batching thresholds, each of
+/// which acts as a trigger to send a batch of messages as a request. At least
+/// one threshold must be positive nonzero.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchingSettingsProto {
+    /// The number of elements of a field collected into a batch which, if
+    /// exceeded, causes the batch to be sent.
+    #[prost(int32, tag = "1")]
+    pub element_count_threshold: i32,
+    /// The aggregated size of the batched field which, if exceeded, causes the
+    /// batch to be sent. This size is computed by aggregating the sizes of the
+    /// request field to be batched, not of the entire request message.
+    #[prost(int64, tag = "2")]
+    pub request_byte_threshold: i64,
+    /// The duration after which a batch should be sent, starting from the addition
+    /// of the first message to that batch.
+    #[prost(message, optional, tag = "3")]
+    pub delay_threshold: ::core::option::Option<::prost_types::Duration>,
+    /// The maximum number of elements collected in a batch that could be accepted
+    /// by server.
+    #[prost(int32, tag = "4")]
+    pub element_count_limit: i32,
+    /// The maximum size of the request that could be accepted by server.
+    #[prost(int32, tag = "5")]
+    pub request_byte_limit: i32,
+    /// The maximum number of elements allowed by flow control.
+    #[prost(int32, tag = "6")]
+    pub flow_control_element_limit: i32,
+    /// The maximum size of data allowed by flow control.
+    #[prost(int32, tag = "7")]
+    pub flow_control_byte_limit: i32,
+    /// The behavior to take when the flow control limit is exceeded.
+    #[prost(enumeration = "FlowControlLimitExceededBehaviorProto", tag = "8")]
+    pub flow_control_limit_exceeded_behavior: i32,
+}
+/// `BatchingDescriptorProto` specifies the fields of the request message to be
+/// used for batching, and, optionally, the fields of the response message to be
+/// used for demultiplexing.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BatchingDescriptorProto {
+    /// The repeated field in the request message to be aggregated by batching.
+    #[prost(string, tag = "1")]
+    pub batched_field: ::prost::alloc::string::String,
+    /// A list of the fields in the request message. Two requests will be batched
+    /// together only if the values of every field specified in
+    /// `request_discriminator_fields` is equal between the two requests.
+    #[prost(string, repeated, tag = "2")]
+    pub discriminator_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. When present, indicates the field in the response message to be
+    /// used to demultiplex the response into multiple response messages, in
+    /// correspondence with the multiple request messages originally batched
+    /// together.
+    #[prost(string, tag = "3")]
+    pub subresponse_field: ::prost::alloc::string::String,
 }
 /// The organization for which the client libraries are being published.
 /// Affects the url where generated docs are published, etc.
@@ -1278,6 +1383,43 @@ impl ClientLibraryDestination {
             "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED" => Some(Self::Unspecified),
             "GITHUB" => Some(Self::Github),
             "PACKAGE_MANAGER" => Some(Self::PackageManager),
+            _ => None,
+        }
+    }
+}
+/// The behavior to take when the flow control limit is exceeded.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FlowControlLimitExceededBehaviorProto {
+    /// Default behavior, system-defined.
+    UnsetBehavior = 0,
+    /// Stop operation, raise error.
+    ThrowException = 1,
+    /// Pause operation until limit clears.
+    Block = 2,
+    /// Continue operation, disregard limit.
+    Ignore = 3,
+}
+impl FlowControlLimitExceededBehaviorProto {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::UnsetBehavior => "UNSET_BEHAVIOR",
+            Self::ThrowException => "THROW_EXCEPTION",
+            Self::Block => "BLOCK",
+            Self::Ignore => "IGNORE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNSET_BEHAVIOR" => Some(Self::UnsetBehavior),
+            "THROW_EXCEPTION" => Some(Self::ThrowException),
+            "BLOCK" => Some(Self::Block),
+            "IGNORE" => Some(Self::Ignore),
             _ => None,
         }
     }
@@ -1675,6 +1817,10 @@ pub struct BackendRule {
     /// operation. The default is no deadline.
     #[prost(double, tag = "5")]
     pub operation_deadline: f64,
+    /// Path translation specifies how to combine the backend address with the
+    /// request path in order to produce the appropriate forwarding URL for the
+    /// request. See \[PathTranslation\]\[google.api.BackendRule.PathTranslation\] for
+    /// more details.
     #[prost(enumeration = "backend_rule::PathTranslation", tag = "6")]
     pub path_translation: i32,
     /// The protocol used for sending a request to the backend.
@@ -1708,6 +1854,13 @@ pub struct BackendRule {
         ::prost::alloc::string::String,
         BackendRule,
     >,
+    /// The load balancing policy used for connection to the application backend.
+    ///
+    /// Defined as an arbitrary string to accomondate custom load balancing
+    /// policies supported by the underlying channel, but suggest most users use
+    /// one of the standard policies, such as the default, "RoundRobin".
+    #[prost(string, tag = "11")]
+    pub load_balancing_policy: ::prost::alloc::string::String,
     /// Authentication settings used by the backend.
     ///
     /// These are typically used to provide service management functionality to
@@ -2237,8 +2390,8 @@ pub struct MethodPolicy {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Control {
     /// The service controller environment to use. If empty, no control plane
-    /// feature (like quota and billing) will be enabled. The recommended value for
-    /// most services is servicecontrol.googleapis.com
+    /// features (like quota and billing) will be enabled. The recommended value
+    /// for most services is servicecontrol.googleapis.com.
     #[prost(string, tag = "1")]
     pub environment: ::prost::alloc::string::String,
     /// Defines policies applying to the API methods of the service.
@@ -3297,6 +3450,202 @@ pub enum ErrorReason {
     /// }
     /// }
     OverloadedCredentials = 34,
+    /// The request whose associated location violates the location org policy
+    /// restrictions when creating resources in the restricted region.
+    ///
+    /// Example of an ErrorInfo when creating the Cloud Storage Bucket in the
+    /// container "projects/123" under a restricted region
+    /// "locations/asia-northeast3":
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "LOCATION_ORG_POLICY_VIOLATED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///      "resource": "projects/123",
+    ///      "location": "locations/asia-northeast3"
+    ///    }
+    /// }
+    /// ```
+    ///
+    /// This response indicates creating the Cloud Storage Bucket in
+    /// "locations/asia-northeast3" violates the location org policy restriction.
+    LocationOrgPolicyViolated = 35,
+    /// The request is denied because it access data of regulated customers using
+    /// TLS 1.0 and 1.1.
+    ///
+    /// Example of an ErrorInfo when accessing a GCP resource "projects/123" that
+    /// is restricted by TLS Version Restriction for "pubsub.googleapis.com"
+    /// service.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "TLS_ORG_POLICY_VIOLATED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///      "service": "pubsub.googleapis.com"
+    ///      "resource": "projects/123",
+    ///      "policyName": "constraints/gcp.restrictTLSVersion",
+    ///      "tlsVersion": "TLS_VERSION_1"
+    ///    }
+    /// }
+    /// ```
+    TlsOrgPolicyViolated = 36,
+    /// The request is denied because the associated project has exceeded the
+    /// emulator quota limit.
+    ///
+    /// Example of an ErrorInfo when the associated "projects/123" has exceeded the
+    /// emulator quota limit.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "EMULATOR_QUOTA_EXCEEDED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///        "service": "pubsub.googleapis.com"
+    ///        "consumer": "projects/123"
+    ///     }
+    /// }
+    /// ```
+    EmulatorQuotaExceeded = 38,
+    /// The request is denied because the associated application credential header
+    /// is invalid for an Android applications.
+    ///
+    /// Example of an ErrorInfo when the request from an Android application to the
+    /// "pubsub.googleapis.com" with an invalid application credential header.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "CREDENTIAL_ANDROID_APP_INVALID",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///        "service": "pubsub.googleapis.com"
+    ///     }
+    /// }
+    /// ```
+    CredentialAndroidAppInvalid = 39,
+    /// The request is denied because IAM permission on resource is denied.
+    ///
+    /// Example of an ErrorInfo when the IAM permission `aiplatform.datasets.list`
+    /// is denied on resource `projects/123`.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "IAM_PERMISSION_DENIED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///        "resource": "projects/123"
+    ///        "permission": "aiplatform.datasets.list"
+    ///     }
+    /// }
+    /// ```
+    IamPermissionDenied = 41,
+    /// The request is denied because it contains the invalid JWT token.
+    ///
+    /// Example of an ErrorInfo when the request contains an invalid JWT token for
+    /// service `storage.googleapis.com`.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "JWT_TOKEN_INVALID",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///        "service": "storage.googleapis.com"
+    ///     }
+    /// }
+    /// ```
+    JwtTokenInvalid = 42,
+    /// The request is denied because it contains credential with type that is
+    /// unsupported.
+    ///
+    /// Example of an ErrorInfo when the request contains an unsupported credential
+    /// type for service `storage.googleapis.com`.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "CREDENTIAL_TYPE_UNSUPPORTED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///        "service": "storage.googleapis.com"
+    ///     }
+    /// }
+    /// ```
+    CredentialTypeUnsupported = 43,
+    /// The request is denied because it contains unsupported account type.
+    ///
+    /// Example of an ErrorInfo when the request contains an unsupported account
+    /// type for service `storage.googleapis.com`.
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "ACCOUNT_TYPE_UNSUPPORTED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///        "service": "storage.googleapis.com"
+    ///     }
+    /// }
+    /// ```
+    AccountTypeUnsupported = 44,
+    /// The request is denied because the API endpoint is restricted by
+    /// administrators according to the organization policy constraint.
+    /// For more information see
+    /// <https://cloud.google.com/assured-workloads/docs/restrict-endpoint-usage.>
+    ///
+    /// Example of an ErrorInfo when access to Google Cloud Storage service is
+    /// restricted by Restrict Endpoint Usage policy:
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "ENDPOINT_USAGE_RESTRICTION_VIOLATED",
+    ///    "domain": "googleapis.com/policies/endpointUsageRestriction",
+    ///    "metadata": {
+    ///      "policy_name": "constraints/gcp.restrictEndpointUsage",
+    ///      "checked_value": "storage.googleapis.com"
+    ///      "consumer": "organization/123"
+    ///      "service": "storage.googleapis.com"
+    ///     }
+    /// }
+    /// ```
+    EndpointUsageRestrictionViolated = 45,
+    /// The request is denied because the TLS Cipher Suite is restricted by
+    /// administrators according to the organization policy constraint.
+    /// For more information see
+    /// <https://cloud.google.com/assured-workloads/docs/restrict-tls-cipher-suites>
+    ///
+    /// Example of an ErrorInfo when access to Google Cloud BigQuery service is
+    /// restricted by Restrict TLS Cipher Suites policy:
+    ///
+    /// ```text
+    /// {
+    ///    "reason": "TLS_CIPHER_RESTRICTION_VIOLATED",
+    ///    "domain": "googleapis.com/policies/tlsCipherRestriction",
+    ///    "metadata": {
+    ///      "policy_name": "constraints/gcp.restrictTLSCipherSuites",
+    ///      "checked_value": "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+    ///      "consumer": "organization/123"
+    ///      "service": "bigquery.googleapis.com"
+    ///     }
+    /// }
+    /// ```
+    TlsCipherRestrictionViolated = 46,
+    /// The request is denied because the MCP activation check fails.
+    ///
+    /// Example of an ErrorInfo when the container "projects/123" contacting
+    /// "pubsub.googleapis.com" service which is disabled by MCP:
+    ///
+    /// ```text
+    /// { "reason": "MCP_SERVER_DISABLED",
+    ///    "domain": "googleapis.com",
+    ///    "metadata": {
+    ///      "consumer": "projects/123",
+    ///      "service": "pubsub.googleapis.com"
+    ///    }
+    /// }
+    /// ```
+    ///
+    /// This response indicates the "pubsub.googleapis.com" has been disabled in
+    /// "projects/123" for MCP.
+    McpServerDisabled = 47,
 }
 impl ErrorReason {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3340,6 +3689,19 @@ impl ErrorReason {
             Self::LocationPolicyViolated => "LOCATION_POLICY_VIOLATED",
             Self::MissingOrigin => "MISSING_ORIGIN",
             Self::OverloadedCredentials => "OVERLOADED_CREDENTIALS",
+            Self::LocationOrgPolicyViolated => "LOCATION_ORG_POLICY_VIOLATED",
+            Self::TlsOrgPolicyViolated => "TLS_ORG_POLICY_VIOLATED",
+            Self::EmulatorQuotaExceeded => "EMULATOR_QUOTA_EXCEEDED",
+            Self::CredentialAndroidAppInvalid => "CREDENTIAL_ANDROID_APP_INVALID",
+            Self::IamPermissionDenied => "IAM_PERMISSION_DENIED",
+            Self::JwtTokenInvalid => "JWT_TOKEN_INVALID",
+            Self::CredentialTypeUnsupported => "CREDENTIAL_TYPE_UNSUPPORTED",
+            Self::AccountTypeUnsupported => "ACCOUNT_TYPE_UNSUPPORTED",
+            Self::EndpointUsageRestrictionViolated => {
+                "ENDPOINT_USAGE_RESTRICTION_VIOLATED"
+            }
+            Self::TlsCipherRestrictionViolated => "TLS_CIPHER_RESTRICTION_VIOLATED",
+            Self::McpServerDisabled => "MCP_SERVER_DISABLED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3380,6 +3742,19 @@ impl ErrorReason {
             "LOCATION_POLICY_VIOLATED" => Some(Self::LocationPolicyViolated),
             "MISSING_ORIGIN" => Some(Self::MissingOrigin),
             "OVERLOADED_CREDENTIALS" => Some(Self::OverloadedCredentials),
+            "LOCATION_ORG_POLICY_VIOLATED" => Some(Self::LocationOrgPolicyViolated),
+            "TLS_ORG_POLICY_VIOLATED" => Some(Self::TlsOrgPolicyViolated),
+            "EMULATOR_QUOTA_EXCEEDED" => Some(Self::EmulatorQuotaExceeded),
+            "CREDENTIAL_ANDROID_APP_INVALID" => Some(Self::CredentialAndroidAppInvalid),
+            "IAM_PERMISSION_DENIED" => Some(Self::IamPermissionDenied),
+            "JWT_TOKEN_INVALID" => Some(Self::JwtTokenInvalid),
+            "CREDENTIAL_TYPE_UNSUPPORTED" => Some(Self::CredentialTypeUnsupported),
+            "ACCOUNT_TYPE_UNSUPPORTED" => Some(Self::AccountTypeUnsupported),
+            "ENDPOINT_USAGE_RESTRICTION_VIOLATED" => {
+                Some(Self::EndpointUsageRestrictionViolated)
+            }
+            "TLS_CIPHER_RESTRICTION_VIOLATED" => Some(Self::TlsCipherRestrictionViolated),
+            "MCP_SERVER_DISABLED" => Some(Self::McpServerDisabled),
             _ => None,
         }
     }
@@ -4412,9 +4787,13 @@ pub struct QuotaLimit {
 /// }
 /// ```
 ///
-/// The routing header consists of one or multiple key-value pairs. Every key
-/// and value must be percent-encoded, and joined together in the format of
-/// `key1=value1&key2=value2`.
+/// The routing header consists of one or multiple key-value pairs. The order of
+/// the key-value pairs is undefined, the order of the `routing_parameters` in
+/// the `RoutingRule` only matters for the evaluation order of the path
+/// templates when `field` is the same. See the examples below for more details.
+///
+/// Every key and value in the routing header must be percent-encoded,
+/// and joined together in the following format: `key1=value1&key2=value2`.
 /// The examples below skip the percent-encoding for readability.
 ///
 /// Example 1
@@ -4988,33 +5367,6 @@ pub struct Usage {
     pub producer_notification_channel: ::prost::alloc::string::String,
 }
 /// Usage configuration rules for the service.
-///
-/// NOTE: Under development.
-///
-/// Use this rule to configure unregistered calls for the service. Unregistered
-/// calls are calls that do not contain consumer project identity.
-/// (Example: calls that do not contain an API key).
-/// By default, API methods do not allow unregistered calls, and each method call
-/// must be identified by a consumer project identity. Use this rule to
-/// allow/disallow unregistered calls.
-///
-/// Example of an API that wants to allow unregistered calls for entire service.
-///
-/// ```text
-/// usage:
-///    rules:
-///    - selector: "*"
-///      allow_unregistered_calls: true
-/// ```
-///
-/// Example of a method that wants to allow unregistered calls.
-///
-/// ```text
-/// usage:
-///    rules:
-///    - selector: "google.example.library.v1.LibraryService.CreateBook"
-///      allow_unregistered_calls: true
-/// ```
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UsageRule {
     /// Selects the methods to which this rule applies. Use '\*' to indicate all
@@ -5024,8 +5376,12 @@ pub struct UsageRule {
     /// details.
     #[prost(string, tag = "1")]
     pub selector: ::prost::alloc::string::String,
-    /// If true, the selected method allows unregistered calls, e.g. calls
-    /// that don't identify any user or application.
+    /// Use this rule to configure unregistered calls for the service. Unregistered
+    /// calls are calls that do not contain consumer project identity.
+    /// (Example: calls that do not contain an API key).
+    ///
+    /// WARNING: By default, API methods do not allow unregistered calls, and each
+    /// method call must be identified by a consumer project identity.
     #[prost(bool, tag = "2")]
     pub allow_unregistered_calls: bool,
     /// If true, the selected method should skip service control and the control
@@ -5157,8 +5513,7 @@ pub struct Service {
     #[prost(message, repeated, tag = "24")]
     pub metrics: ::prost::alloc::vec::Vec<MetricDescriptor>,
     /// Defines the monitored resources used by this service. This is required
-    /// by the \[Service.monitoring\]\[google.api.Service.monitoring\] and
-    /// \[Service.logging\]\[google.api.Service.logging\] configurations.
+    /// by the `Service.monitoring` and `Service.logging` configurations.
     #[prost(message, repeated, tag = "25")]
     pub monitored_resources: ::prost::alloc::vec::Vec<MonitoredResourceDescriptor>,
     /// Billing configuration.

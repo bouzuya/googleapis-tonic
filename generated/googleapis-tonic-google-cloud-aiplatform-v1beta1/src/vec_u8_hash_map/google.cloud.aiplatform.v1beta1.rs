@@ -46797,7 +46797,7 @@ pub struct ReasoningEngineSpec {
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
-    #[prost(oneof = "reasoning_engine_spec::DeploymentSource", tags = "11")]
+    #[prost(oneof = "reasoning_engine_spec::DeploymentSource", tags = "11, 15")]
     pub deployment_source: ::core::option::Option<
         reasoning_engine_spec::DeploymentSource,
     >,
@@ -46980,6 +46980,15 @@ pub mod reasoning_engine_spec {
             ImageSpec(ImageSpec),
         }
     }
+    /// Specification for deploying from a container image.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct ContainerSpec {
+        /// Required. The Artifact Registry Docker image URI (e.g.,
+        /// us-central1-docker.pkg.dev/my-project/my-repo/my-image:tag) of the
+        /// container image that is to be run on each worker replica.
+        #[prost(string, tag = "1")]
+        pub image_uri: ::prost::alloc::string::String,
+    }
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
@@ -46988,6 +46997,9 @@ pub mod reasoning_engine_spec {
         /// Deploy from source code files with a defined entrypoint.
         #[prost(message, tag = "11")]
         SourceCodeSpec(SourceCodeSpec),
+        /// Deploy from a container image with a defined entrypoint and commands.
+        #[prost(message, tag = "15")]
+        ContainerSpec(ContainerSpec),
     }
 }
 /// ReasoningEngine provides a customizable runtime for models to determine

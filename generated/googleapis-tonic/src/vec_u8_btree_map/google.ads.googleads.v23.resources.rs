@@ -1243,6 +1243,18 @@ pub struct AdGroupAd {
     /// Immutable. The ad.
     #[prost(message, optional, tag = "5")]
     pub ad: ::core::option::Option<Ad>,
+    /// The date and time when ad group ad starts serving. This is added on top of
+    /// the campaign's start date and time, if present, to further restrict the
+    /// duration of an ad group ad. The timestamp is in the customer's time zone
+    /// and in "yyyy-MM-dd HH:mm:ss" format. Only supported for some ad types.
+    #[prost(string, tag = "20")]
+    pub start_date_time: ::prost::alloc::string::String,
+    /// The last day and time when ad group ad serves. This is added on top of
+    /// the campaign's end date and time, if present, to further restrict the
+    /// duration of an ad group ad. The timestamp is in the customer's time zone
+    /// and in "yyyy-MM-dd HH:mm:ss" format. Only supported for some ad types.
+    #[prost(string, tag = "21")]
+    pub end_date_time: ::prost::alloc::string::String,
     /// Output only. Policy information for the ad.
     #[prost(message, optional, tag = "6")]
     pub policy_summary: ::core::option::Option<AdGroupAdPolicySummary>,
@@ -2330,6 +2342,29 @@ pub struct AndroidPrivacySharedKeyGoogleNetworkType {
     /// retrieve the Aggregate API Report in Android Privacy Sandbox.
     #[prost(string, tag = "6")]
     pub shared_network_type_key: ::prost::alloc::string::String,
+}
+/// A view resource in the App Top Combination Report.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AppTopCombinationView {
+    /// Output only. The resource name of the app top combination view.
+    /// App Top Combination view resource names have the form:
+    /// `customers/{customer_id}/appTopCombinationViews/{ad_group_id}~{ad_id}~{asset_combination_category}`
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    /// Output only. The top combinations of assets that served together.
+    #[prost(message, repeated, tag = "2")]
+    pub ad_group_top_combinations: ::prost::alloc::vec::Vec<
+        AdGroupCreativeAssetCombinationData,
+    >,
+}
+/// Ad group asset combination data
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdGroupCreativeAssetCombinationData {
+    /// Output only. Served assets.
+    #[prost(message, repeated, tag = "1")]
+    pub asset_combination_served_assets: ::prost::alloc::vec::Vec<
+        super::common::AssetUsage,
+    >,
 }
 /// Represents an applied incentive.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -3983,7 +4018,7 @@ pub struct Campaign {
     /// The network settings for the campaign.
     #[prost(message, optional, tag = "14")]
     pub network_settings: ::core::option::Option<campaign::NetworkSettings>,
-    /// Immutable. The hotel setting for the campaign.
+    /// The hotel setting for the campaign.
     #[prost(message, optional, tag = "32")]
     pub hotel_setting: ::core::option::Option<campaign::HotelSettingInfo>,
     /// The setting for controlling Dynamic Search Ads (DSA).
@@ -4270,7 +4305,7 @@ pub mod campaign {
         /// Whether ads will be served with google.com search results.
         #[prost(bool, optional, tag = "5")]
         pub target_google_search: ::core::option::Option<bool>,
-        /// Whether ads will be served on partner sites in the Google Search Network
+        /// Whether ads will be served on sites in the Google Search Partners Network
         /// (requires `target_google_search` to also be `true`).
         #[prost(bool, optional, tag = "6")]
         pub target_search_network: ::core::option::Option<bool>,
@@ -4278,8 +4313,11 @@ pub mod campaign {
         /// Network. Placements are specified using the Placement criterion.
         #[prost(bool, optional, tag = "7")]
         pub target_content_network: ::core::option::Option<bool>,
-        /// Whether ads will be served on the Google Partner Network.
-        /// This is available only to some select Google partner accounts.
+        /// Whether ads will be served on the partner network. This is available
+        /// only to some select partner accounts. Unless you have been instructed to
+        /// use this field, it likely does not apply to your account. This does not
+        /// control whether ads will be served on Google Search Partners Network; use
+        /// `target_search_network` for that instead.
         #[prost(bool, optional, tag = "8")]
         pub target_partner_search_network: ::core::option::Option<bool>,
         /// Whether ads will be served on YouTube.
@@ -4292,9 +4330,13 @@ pub mod campaign {
     /// Campaign-level settings for hotel ads.
     #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct HotelSettingInfo {
-        /// Immutable. The linked Hotel Center account.
+        /// The linked Hotel Center account.
         #[prost(int64, optional, tag = "2")]
         pub hotel_center_id: ::core::option::Option<i64>,
+        /// Disable the optional hotel setting. This field is currently supported
+        /// only for Demand Gen campaigns.
+        #[prost(bool, optional, tag = "3")]
+        pub disable_hotel_setting: ::core::option::Option<bool>,
     }
     /// The setting for controlling Dynamic Search Ads (DSA).
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -12472,6 +12514,10 @@ pub struct UserLocationView {
     pub targeting_location: ::core::option::Option<bool>,
 }
 /// A video.
+///
+/// If the video has any enhancements, the stats on all of them will be
+/// aggregated and displayed on this video resource. To get stats for a specific
+/// enhancement, use the VideoEnhancement resource instead.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Video {
     /// Output only. The resource name of the video.
@@ -12492,6 +12538,37 @@ pub struct Video {
     /// Output only. The title of the video.
     #[prost(string, optional, tag = "9")]
     pub title: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents a video that can include both advertiser uploaded videos or
+/// enhancements generated from the advertiser uploaded videos. Only publicly
+/// available videos are returned.
+///
+/// Each row in this resource represents either the video uploaded by the
+/// advertiser or each specific variation of it. In contrast, the `Video`
+/// resource represents only the advertiser-provided video and would aggregate
+/// metrics across all its variations (including enhancements).
+/// {-- next tag to use: 5 --}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VideoEnhancement {
+    /// Output only. The resource name of the video enhancement.
+    /// Video enhancement resource names have the form:
+    ///
+    /// `customers/{customer_id}/videoEnhancements/{video_id}`
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    /// Output only. Duration of this video, in milliseconds.
+    #[prost(int64, tag = "2")]
+    pub duration_millis: i64,
+    /// Output only. The source of the video (e.g. advertiser or enhanced by Google
+    /// Ads).
+    #[prost(
+        enumeration = "super::enums::video_enhancement_source_enum::VideoEnhancementSource",
+        tag = "3"
+    )]
+    pub source: i32,
+    /// Output only. Title of this video.
+    #[prost(string, tag = "4")]
+    pub title: ::prost::alloc::string::String,
 }
 /// A webpage view.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]

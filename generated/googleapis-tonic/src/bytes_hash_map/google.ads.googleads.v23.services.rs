@@ -16189,6 +16189,11 @@ pub struct GoogleAdsRow {
     pub ad_group_ad_asset_combination_view: ::core::option::Option<
         super::resources::AdGroupAdAssetCombinationView,
     >,
+    /// The app top combination view in the query.
+    #[prost(message, optional, tag = "247")]
+    pub app_top_combination_view: ::core::option::Option<
+        super::resources::AppTopCombinationView,
+    >,
     /// The ad group ad asset view in the query.
     #[prost(message, optional, tag = "131")]
     pub ad_group_ad_asset_view: ::core::option::Option<
@@ -16846,6 +16851,9 @@ pub struct GoogleAdsRow {
     /// The video referenced in the query.
     #[prost(message, optional, tag = "39")]
     pub video: ::core::option::Option<super::resources::Video>,
+    /// The video enhancement referenced in the query.
+    #[prost(message, optional, tag = "250")]
+    pub video_enhancement: ::core::option::Option<super::resources::VideoEnhancement>,
     /// The webpage view referenced in the query.
     #[prost(message, optional, tag = "162")]
     pub webpage_view: ::core::option::Option<super::resources::WebpageView>,
@@ -16908,8 +16916,8 @@ pub struct MutateGoogleAdsRequest {
     /// Default is false.
     #[prost(bool, tag = "3")]
     pub partial_failure: bool,
-    /// If true, the request is validated but not executed. Only errors are
-    /// returned, not results.
+    /// If true, the request is validated but not executed. Mutates only return
+    /// errors, not results. Actions return results and errors.
     #[prost(bool, tag = "4")]
     pub validate_only: bool,
     /// The response content type setting. Determines whether the mutable resource
@@ -16938,19 +16946,20 @@ pub struct MutateGoogleAdsResponse {
     #[prost(message, repeated, tag = "1")]
     pub mutate_operation_responses: ::prost::alloc::vec::Vec<MutateOperationResponse>,
 }
-/// A single operation (create, update, remove) on a resource.
+/// A single operation (create, update, remove) on a resource, or execute an
+/// action.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateOperation {
-    /// The mutate operation.
+    /// The mutate or action operation.
     #[prost(
         oneof = "mutate_operation::Operation",
-        tags = "17, 1, 56, 2, 77, 18, 3, 75, 21, 5, 49, 22, 23, 65, 78, 80, 62, 71, 72, 81, 58, 59, 6, 52, 73, 7, 8, 67, 13, 76, 24, 9, 28, 10, 11, 12, 55, 69, 63, 64, 68, 57, 66, 79, 32, 34, 35, 70, 82, 83, 44, 50, 51, 45, 48, 41, 86, 43, 14, 15, 61, 16"
+        tags = "17, 1, 56, 2, 77, 18, 3, 75, 21, 5, 49, 22, 23, 65, 78, 80, 62, 71, 72, 81, 58, 59, 6, 89, 52, 73, 7, 8, 67, 13, 76, 24, 9, 28, 10, 11, 12, 55, 69, 63, 64, 68, 57, 66, 79, 32, 34, 35, 70, 82, 83, 44, 50, 51, 45, 48, 41, 88, 86, 43, 14, 15, 61, 16"
     )]
     pub operation: ::core::option::Option<mutate_operation::Operation>,
 }
 /// Nested message and enum types in `MutateOperation`.
 pub mod mutate_operation {
-    /// The mutate operation.
+    /// The mutate or action operation.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Operation {
         /// An ad group ad label mutate operation.
@@ -17026,6 +17035,9 @@ pub mod mutate_operation {
         /// A bidding strategy mutate operation.
         #[prost(message, tag = "6")]
         BiddingStrategyOperation(super::BiddingStrategyOperation),
+        /// Request message for the BookCampaigns action.
+        #[prost(message, tag = "89")]
+        BookCampaignsOperation(super::super::actions::BookCampaignsOperation),
         /// A campaign asset mutate operation.
         #[prost(message, tag = "52")]
         CampaignAssetOperation(super::CampaignAssetOperation),
@@ -17127,6 +17139,10 @@ pub mod mutate_operation {
         /// A label mutate operation.
         #[prost(message, tag = "41")]
         LabelOperation(super::LabelOperation),
+        /// Request message for the QuoteCampaigns action. Requests using this
+        /// operation must set validate_only to true.
+        #[prost(message, tag = "88")]
+        QuoteCampaignsOperation(super::super::actions::QuoteCampaignsOperation),
         /// A recommendation subscription mutate operation.
         #[prost(message, tag = "86")]
         RecommendationSubscriptionOperation(super::RecommendationSubscriptionOperation),
@@ -17147,19 +17163,19 @@ pub mod mutate_operation {
         UserListOperation(super::UserListOperation),
     }
 }
-/// Response message for the resource mutate.
+/// Response message for the resource mutate or action.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutateOperationResponse {
-    /// The mutate response.
+    /// The mutate or action response.
     #[prost(
         oneof = "mutate_operation_response::Response",
-        tags = "17, 1, 56, 2, 77, 18, 3, 75, 21, 5, 22, 49, 23, 65, 78, 79, 62, 71, 72, 80, 58, 59, 6, 52, 73, 7, 8, 67, 13, 76, 24, 9, 28, 10, 11, 12, 55, 69, 63, 64, 68, 57, 66, 74, 32, 34, 35, 70, 81, 82, 44, 45, 50, 51, 48, 41, 85, 43, 14, 15, 61, 16"
+        tags = "17, 1, 56, 2, 77, 18, 3, 75, 21, 5, 22, 49, 23, 65, 78, 79, 62, 71, 72, 80, 58, 59, 6, 89, 52, 73, 7, 8, 67, 13, 76, 24, 9, 28, 10, 11, 12, 55, 69, 63, 64, 68, 57, 66, 74, 32, 34, 35, 70, 81, 82, 44, 45, 50, 51, 48, 41, 88, 85, 43, 14, 15, 61, 16"
     )]
     pub response: ::core::option::Option<mutate_operation_response::Response>,
 }
 /// Nested message and enum types in `MutateOperationResponse`.
 pub mod mutate_operation_response {
-    /// The mutate response.
+    /// The mutate or action response.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Response {
         /// The result for the ad group ad label mutate.
@@ -17235,6 +17251,9 @@ pub mod mutate_operation_response {
         /// The result for the bidding strategy mutate.
         #[prost(message, tag = "6")]
         BiddingStrategyResult(super::MutateBiddingStrategyResult),
+        /// The result for the BookCampaigns action.
+        #[prost(message, tag = "89")]
+        BookCampaignsResult(super::super::actions::BookCampaignsResult),
         /// The result for the campaign asset mutate.
         #[prost(message, tag = "52")]
         CampaignAssetResult(super::MutateCampaignAssetResult),
@@ -17336,6 +17355,9 @@ pub mod mutate_operation_response {
         /// The result for the label mutate.
         #[prost(message, tag = "41")]
         LabelResult(super::MutateLabelResult),
+        /// The result for the QuoteCampaigns action.
+        #[prost(message, tag = "88")]
+        QuoteCampaignsResult(super::super::actions::QuoteCampaignsResult),
         /// The result for the recommendation subscription mutate.
         #[prost(message, tag = "85")]
         RecommendationSubscriptionResult(super::MutateRecommendationSubscriptionResult),
@@ -17565,10 +17587,11 @@ pub mod google_ads_service_client {
                 );
             self.inner.server_streaming(req, path, codec).await
         }
-        /// Creates, updates, or removes resources. This method supports atomic
-        /// transactions with multiple types of resources. For example, you can
-        /// atomically create a campaign and a campaign budget, or perform up to
-        /// thousands of mutates atomically.
+        /// Executes mutate and actions operations. Mutate operations create, update,
+        /// or remove resources. Actions perform custom operations. This method
+        /// supports atomic transactions with multiple types of resources and
+        /// actions. For example, you can atomically create a campaign and a campaign
+        /// budget, or perform up to thousands of mutates atomically.
         ///
         /// This method is essentially a wrapper around a series of mutate methods. The
         /// only features it offers over calling those methods directly are:
@@ -18366,12 +18389,15 @@ pub mod product_filter {
 /// The set of dimensions to group metrics by.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BreakdownDefinition {
-    /// A date breakdown using the selected granularity. The effective date range
-    /// is extended to include the full time periods that overlap with the selected
-    /// start and end dates. For example, a monthly breakdown with a start date of
-    /// 2025-06-15 will include a breakdown for June. Weeks start on Sunday and end
-    /// on Saturday. This is different from the ISO 8601 standard, where weeks
-    /// start on Monday.
+    /// The granularity for segmenting metrics by date. When this field is set,
+    /// a valid date_range in the GenerateBenchmarksMetricsRequest is required
+    /// and must precisely align with the boundaries of the selected granularity.
+    ///
+    /// For example, a monthly breakdown must start on the first day of a month and
+    /// end on the last day of a month. A quarterly breakdown must start on the
+    /// first day of a quarter and end on the last day of a quarter. A weekly
+    /// breakdown must start on a Sunday and end on a Saturday. This is different
+    /// from the ISO 8601 standard, where weeks start on Monday.
     #[prost(
         enumeration = "super::enums::benchmarks_time_granularity_enum::BenchmarksTimeGranularity",
         tag = "1"
@@ -19518,10 +19544,33 @@ pub mod generate_creator_insights_request {
         /// is used to search for creators whose own viewers match the input
         /// audience. Attributes age_range, gender, user_interest, entity, category,
         /// device, parental_status, and income_range are supported. Attribute
-        /// location is not supported.
+        /// location is not supported. Attributes user_interest, entity, and category
+        /// can only be set in audience_attributes when audience_combinations is
+        /// unused.
         #[prost(message, repeated, tag = "1")]
         pub audience_attributes: ::prost::alloc::vec::Vec<
             super::super::common::AudienceInsightsAttribute,
+        >,
+        /// Optional. A list of audience attribute groups consisting of one or more
+        /// Knowledge Graph entities, Product & Service Categories and user interests
+        /// that describes an audience. The groups have a logical AND-of-ORs
+        /// structure:
+        ///
+        /// 1. Attributes within each InsightsAudienceAttributeGroup are combined
+        ///    with OR.
+        ///
+        /// 1. The groups themselves are combined together with AND.
+        ///
+        /// For example, an audience (Interest A OR Interest B) AND (Entity C) is
+        /// represented using two groups. The first group contains the two interests
+        /// and the second group contains the entity.
+        ///
+        /// This field cannot be set if any Knowledge Graph entities, Product &
+        /// Service Categories, or user interests are specified in
+        /// audience_attributes.
+        #[prost(message, repeated, tag = "3")]
+        pub audience_combinations: ::prost::alloc::vec::Vec<
+            super::super::common::InsightsAudienceAttributeGroup,
         >,
         /// Optional. Creator attributes that describe a collection of types of
         /// content. This is used to search for creators whose content matches the
@@ -19648,7 +19697,7 @@ pub struct YouTubeCreatorInsights {
     pub creator_channels: ::prost::alloc::vec::Vec<YouTubeChannelInsights>,
 }
 /// YouTube Channel metrics.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct YouTubeMetrics {
     /// The number of subscribers.
     #[prost(int64, tag = "1")]
@@ -19704,6 +19753,13 @@ pub struct YouTubeMetrics {
     /// information about BrandConnect.
     #[prost(bool, tag = "15")]
     pub is_brand_connect_creator: bool,
+    /// Partnership opportunities available for this creator.
+    #[prost(
+        enumeration = "super::enums::partnership_opportunity_enum::PartnershipOpportunity",
+        repeated,
+        tag = "17"
+    )]
+    pub partnership_opportunities: ::prost::alloc::vec::Vec<i32>,
 }
 /// YouTube Channel insights, and its metadata (such as channel name and channel
 /// ID), returned for a creator insights response.
@@ -19774,10 +19830,34 @@ pub struct YouTubeChannelInsights {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAudience {
     /// Required. Audience attributes that describe an audience of viewers. This is
-    /// used to search for topics trending for the defined audience.
+    /// used to search for topics trending for the defined audience. Attributes
+    /// age_range, gender, user_interest, entity, category, parental_status, and
+    /// income_range are supported. Attributes user_interest, entity, and category
+    /// can only be set in audience_attributes when audience_combinations is
+    /// unused.
     #[prost(message, repeated, tag = "1")]
     pub audience_attributes: ::prost::alloc::vec::Vec<
         super::common::AudienceInsightsAttribute,
+    >,
+    /// Optional. A list of audience attribute groups consisting of one or more
+    /// Knowledge Graph entities, Product & Service Categories and user interests
+    /// that describes an audience. The groups have a logical AND-of-ORs structure:
+    ///
+    /// 1. Attributes within each InsightsAudienceAttributeGroup are combined
+    ///    with OR.
+    ///
+    /// 1. The groups themselves are combined together with AND.
+    ///
+    /// For example, an audience (Interest A OR Interest B) AND (Entity C) is
+    /// represented using two groups. The first group contains the two interests
+    /// and the second group contains the entity.
+    ///
+    /// This field cannot be set if any Knowledge Graph entities, Product &
+    /// Service Categories, or user interests are specified in
+    /// audience_attributes.
+    #[prost(message, repeated, tag = "2")]
+    pub audience_combinations: ::prost::alloc::vec::Vec<
+        super::common::InsightsAudienceAttributeGroup,
     >,
 }
 /// A collection of content topics to return trend information for.
@@ -19804,10 +19884,12 @@ pub struct TrendInsight {
     /// available month and the comparison period is 3 months.
     #[prost(message, optional, tag = "2")]
     pub trend_metrics: ::core::option::Option<TrendInsightMetrics>,
-    /// The direction of trend (such as RISING or DECLINING).
+    /// Indicate if a trend is sustained or emerging. Use
+    /// trend_metrics.trend_change_percent to determine the direction of the
+    /// trend.
     #[prost(enumeration = "super::enums::insights_trend_enum::InsightsTrend", tag = "3")]
     pub trend: i32,
-    /// 12 months of historical data for the trend, including the most recent month
+    /// 3 years of historical data for the trend, including the most recent month
     /// the TrendInsight represents. Each data point represents 1 month of data and
     /// the comparison period is 1 month. The data points are ordered from most
     /// recent month to least recent month. Only populated for trends using
@@ -26584,9 +26666,18 @@ pub struct PlannableTargeting {
         tag = "4"
     )]
     pub networks: ::prost::alloc::vec::Vec<i32>,
-    /// Targetable YouTube Select Lineups for the ad product.
+    /// Targetable YouTube Select Lineups for the ad product. This field is
+    /// deprecated in V23_2 and will eventually be removed. Use
+    /// youtube_select_lineup_targeting instead.
     #[prost(message, repeated, tag = "5")]
     pub youtube_select_lineups: ::prost::alloc::vec::Vec<YouTubeSelectLineUp>,
+    /// Targetable YouTube Select Lineups for the ad product.
+    ///
+    /// This field replaces the deprecated youtube_select_lineups field.
+    #[prost(message, optional, tag = "7")]
+    pub youtube_select_lineup_targeting: ::core::option::Option<
+        YouTubeSelectLineUpTargeting,
+    >,
     /// Targetable surface combinations for the ad product.
     #[prost(message, optional, tag = "6")]
     pub surface_targeting: ::core::option::Option<SurfaceTargetingCombinations>,
@@ -26965,6 +27056,13 @@ pub struct Forecast {
     /// more information on TrueView Views.
     #[prost(int64, optional, tag = "17")]
     pub trueview_views: ::core::option::Option<i64>,
+    /// The number of clicks, which is the main user action associated with an ad
+    /// format of bid type CPC (Cost-Per-Click).
+    ///
+    /// See <https://support.google.com/google-ads/answer/31799> for more
+    /// information on clicks.
+    #[prost(int64, optional, tag = "18")]
+    pub clicks: ::core::option::Option<i64>,
 }
 /// The forecasted allocation and traffic metrics for a specific product
 /// at a point on the reach curve.
@@ -27056,6 +27154,13 @@ pub struct PlannedProductForecast {
     /// more information on TrueView Views.
     #[prost(int64, optional, tag = "13")]
     pub trueview_views: ::core::option::Option<i64>,
+    /// The number of clicks, which is the main user action associated with an ad
+    /// format of bid type CPC (Cost-Per-Click).
+    ///
+    /// See <https://support.google.com/google-ads/answer/31799> for more
+    /// information on clicks.
+    #[prost(int64, optional, tag = "14")]
+    pub clicks: ::core::option::Option<i64>,
 }
 /// Audience metrics for the planned products.
 /// These metrics consider the following targeting dimensions:
@@ -27167,6 +27272,16 @@ pub struct YouTubeSelectLineUp {
     /// The unique name of the YouTube Select Lineup.
     #[prost(string, tag = "2")]
     pub lineup_name: ::prost::alloc::string::String,
+}
+/// Targetable YouTube Select Lineups for the ad product and the default Lineup.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct YouTubeSelectLineUpTargeting {
+    /// Targetable YouTube Select Lineups for the ad product.
+    #[prost(message, repeated, tag = "1")]
+    pub youtube_select_lineups: ::prost::alloc::vec::Vec<YouTubeSelectLineUp>,
+    /// The default YouTube Select Lineup for the ad product if available.
+    #[prost(message, optional, tag = "2")]
+    pub default_youtube_select_lineup: ::core::option::Option<YouTubeSelectLineUp>,
 }
 /// The surface targeting combinations available for an ad product.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -28521,6 +28636,190 @@ pub mod recommendation_service_client {
     }
 }
 /// Request message for
+/// \[ReservationService.QuoteCampaigns\]\[google.ads.googleads.v23.services.ReservationService.QuoteCampaigns\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QuoteCampaignsRequest {
+    /// Required. The ID of the customer making the request.
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    /// The operation to quote the campaigns.
+    #[prost(message, optional, tag = "2")]
+    pub operation: ::core::option::Option<super::actions::QuoteCampaignsOperation>,
+}
+/// Response message for
+/// \[ReservationService.QuoteCampaigns\]\[google.ads.googleads.v23.services.ReservationService.QuoteCampaigns\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QuoteCampaignsResponse {
+    /// The result of the quote campaigns operation.
+    #[prost(message, optional, tag = "1")]
+    pub result: ::core::option::Option<super::actions::QuoteCampaignsResult>,
+}
+/// Request message for
+/// \[ReservationService.BookCampaigns\]\[google.ads.googleads.v23.services.ReservationService.BookCampaigns\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BookCampaignsRequest {
+    /// Required. The ID of the customer making the request.
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    /// The operation to book the campaigns.
+    #[prost(message, optional, tag = "2")]
+    pub operation: ::core::option::Option<super::actions::BookCampaignsOperation>,
+}
+/// Response message for
+/// \[ReservationService.BookCampaigns\]\[google.ads.googleads.v23.services.ReservationService.BookCampaigns\].
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BookCampaignsResponse {
+    /// The result of the book campaigns operation.
+    #[prost(message, optional, tag = "1")]
+    pub result: ::core::option::Option<super::actions::BookCampaignsResult>,
+}
+/// Generated client implementations.
+pub mod reservation_service_client {
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service for reservation related operations.
+    /// This service is not publicly available.
+    #[derive(Debug, Clone)]
+    pub struct ReservationServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ReservationServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::Body>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ReservationServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            ReservationServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Proposes quotes for booking campaigns.
+        /// This request can have a latency of 30 seconds.
+        pub async fn quote_campaigns(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QuoteCampaignsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QuoteCampaignsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v23.services.ReservationService/QuoteCampaigns",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v23.services.ReservationService",
+                        "QuoteCampaigns",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Books the requested campaigns.
+        /// This request can have a latency of 30 seconds.
+        pub async fn book_campaigns(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BookCampaignsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BookCampaignsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v23.services.ReservationService/BookCampaigns",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v23.services.ReservationService",
+                        "BookCampaigns",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Request message for
 /// \[ShareablePreviewService.GenerateShareablePreviews\]\[google.ads.googleads.v23.services.ShareablePreviewService.GenerateShareablePreviews\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateShareablePreviewsRequest {
@@ -28532,11 +28831,30 @@ pub struct GenerateShareablePreviewsRequest {
     pub shareable_previews: ::prost::alloc::vec::Vec<ShareablePreview>,
 }
 /// A shareable preview with its identifier.
-#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShareablePreview {
-    /// Required. Asset group of the shareable preview.
+    /// Optional. Asset group of the shareable preview. Only supported for preview
+    /// type UI_PREVIEW or unset.
     #[prost(message, optional, tag = "1")]
     pub asset_group_identifier: ::core::option::Option<AssetGroupIdentifier>,
+    /// Optional. The type of preview to generate.
+    #[prost(enumeration = "super::enums::preview_type_enum::PreviewType", tag = "3")]
+    pub preview_type: i32,
+    /// The identifier of the shareable preview.
+    #[prost(oneof = "shareable_preview::Identifier", tags = "2")]
+    pub identifier: ::core::option::Option<shareable_preview::Identifier>,
+}
+/// Nested message and enum types in `ShareablePreview`.
+pub mod shareable_preview {
+    /// The identifier of the shareable preview.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Identifier {
+        /// Ad group ad of the shareable preview. Only supported for preview type
+        /// YOUTUBE_LIVE_PREVIEW.
+        /// Format: customers/{customer_id}/adGroupAds/{ad_group_id}~{ad_id}
+        #[prost(string, tag = "2")]
+        AdGroupAd(::prost::alloc::string::String),
+    }
 }
 /// Asset group of the shareable preview.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
@@ -28567,6 +28885,9 @@ pub struct ShareablePreviewOrError {
     pub generate_shareable_preview_response: ::core::option::Option<
         shareable_preview_or_error::GenerateShareablePreviewResponse,
     >,
+    /// The identifier of the shareable preview.
+    #[prost(oneof = "shareable_preview_or_error::Identifier", tags = "4")]
+    pub identifier: ::core::option::Option<shareable_preview_or_error::Identifier>,
 }
 /// Nested message and enum types in `ShareablePreviewOrError`.
 pub mod shareable_preview_or_error {
@@ -28580,16 +28901,49 @@ pub mod shareable_preview_or_error {
         #[prost(message, tag = "2")]
         PartialFailureError(super::super::super::super::super::rpc::Status),
     }
+    /// The identifier of the shareable preview.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Identifier {
+        /// The ad group ad of the shareable preview.
+        /// Format: customers/{customer_id}/adGroupAds/{ad_group_id}~{ad_id}
+        #[prost(string, tag = "4")]
+        AdGroupAd(::prost::alloc::string::String),
+    }
 }
 /// Message to hold a shareable preview result.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ShareablePreviewResult {
-    /// The shareable preview URL.
+    /// The shareable preview URL. Only populated if preview type is UI_PREVIEW
+    /// or unset.
     #[prost(string, tag = "1")]
     pub shareable_preview_url: ::prost::alloc::string::String,
     /// Expiration date time using the ISO-8601 format.
     #[prost(string, tag = "2")]
     pub expiration_date_time: ::prost::alloc::string::String,
+    /// The result of the shareable preview.
+    #[prost(oneof = "shareable_preview_result::Result", tags = "3")]
+    pub result: ::core::option::Option<shareable_preview_result::Result>,
+}
+/// Nested message and enum types in `ShareablePreviewResult`.
+pub mod shareable_preview_result {
+    /// The result of the shareable preview.
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Result {
+        /// The result of a YouTube live preview. Only populated for preview type
+        /// YOUTUBE_LIVE_PREVIEW.
+        #[prost(message, tag = "3")]
+        YoutubeLivePreviewResult(super::YouTubeLivePreviewResult),
+    }
+}
+/// Message to hold a YouTube live preview result.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct YouTubeLivePreviewResult {
+    /// The shareable preview URL for YouTube videos.
+    #[prost(string, tag = "1")]
+    pub youtube_preview_url: ::prost::alloc::string::String,
+    /// The shareable preview URL for YouTube TV.
+    #[prost(string, tag = "2")]
+    pub youtube_tv_preview_url: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod shareable_preview_service_client {

@@ -331,6 +331,59 @@ pub mod account_link_error_enum {
         }
     }
 }
+/// Container for enum describing possible action errors.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ActionErrorEnum {}
+/// Nested message and enum types in `ActionErrorEnum`.
+pub mod action_error_enum {
+    /// Enum describing possible action errors.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ActionError {
+        /// Enum unspecified.
+        Unspecified = 0,
+        /// The received error code is not known in this version.
+        Unknown = 1,
+        /// The action is missing a required field.
+        RequiredFieldMissing = 2,
+        /// The action has invalid arguments in the request.
+        InvalidArgument = 3,
+    }
+    impl ActionError {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::RequiredFieldMissing => "REQUIRED_FIELD_MISSING",
+                Self::InvalidArgument => "INVALID_ARGUMENT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "REQUIRED_FIELD_MISSING" => Some(Self::RequiredFieldMissing),
+                "INVALID_ARGUMENT" => Some(Self::InvalidArgument),
+                _ => None,
+            }
+        }
+    }
+}
 /// Container for enum describing possible ad customizer errors.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct AdCustomizerErrorEnum {}
@@ -1366,6 +1419,8 @@ pub mod ad_group_ad_error_enum {
         CannotUpdateDeprecatedAds = 12,
         /// Ad sharing is not allowed.
         AdSharingNotAllowed = 13,
+        /// The duration of the AdGroupAd is too short.
+        DurationTooShort = 14,
     }
     impl AdGroupAdError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1392,6 +1447,7 @@ pub mod ad_group_ad_error_enum {
                 Self::AdTypeCannotBeRemoved => "AD_TYPE_CANNOT_BE_REMOVED",
                 Self::CannotUpdateDeprecatedAds => "CANNOT_UPDATE_DEPRECATED_ADS",
                 Self::AdSharingNotAllowed => "AD_SHARING_NOT_ALLOWED",
+                Self::DurationTooShort => "DURATION_TOO_SHORT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1419,6 +1475,7 @@ pub mod ad_group_ad_error_enum {
                 "AD_TYPE_CANNOT_BE_REMOVED" => Some(Self::AdTypeCannotBeRemoved),
                 "CANNOT_UPDATE_DEPRECATED_ADS" => Some(Self::CannotUpdateDeprecatedAds),
                 "AD_SHARING_NOT_ALLOWED" => Some(Self::AdSharingNotAllowed),
+                "DURATION_TOO_SHORT" => Some(Self::DurationTooShort),
                 _ => None,
             }
         }
@@ -2296,14 +2353,14 @@ pub mod asset_error_enum {
         Unspecified = 0,
         /// The received error code is not known in this version.
         Unknown = 1,
-        /// The customer is not is not on the allow-list for this asset type.
+        /// The customer is not on the allow-list for this asset type.
         CustomerNotOnAllowlistForAssetType = 13,
         /// Assets are duplicated across operations.
         DuplicateAsset = 3,
         /// The asset name is duplicated, either across operations or with an
         /// existing asset.
         DuplicateAssetName = 4,
-        /// The Asset.asset_data oneof is empty.
+        /// The `Asset.asset_data` oneof is empty.
         AssetDataIsMissing = 5,
         /// The asset has a name which is different from an existing duplicate that
         /// represents the same content.
@@ -2331,19 +2388,19 @@ pub mod asset_error_enum {
         PromotionCannotSetPromotionCodeAndOrdersOverAmount = 16,
         /// The field has too many decimal places specified.
         TooManyDecimalPlacesSpecified = 17,
-        /// Duplicate assets across operations, which have identical Asset.asset_data
-        /// oneof, cannot have different asset level fields for asset types which are
-        /// deduped.
+        /// Duplicate assets across operations, which have identical
+        /// `Asset.asset_data` oneof, cannot have different asset level fields for
+        /// asset types which are deduped.
         DuplicateAssetsWithDifferentFieldValue = 18,
-        /// Carrier specific short number is not allowed.
+        /// Carrier-specific short number is not allowed.
         CallCarrierSpecificShortNumberNotAllowed = 19,
         /// Customer consent required for call recording Terms of Service.
         CallCustomerConsentForCallRecordingRequired = 20,
         /// The type of the specified phone number is not allowed.
         CallDisallowedNumberType = 21,
-        /// If the default call_conversion_action is not used, the customer must have
-        /// a ConversionAction with the same id and the ConversionAction must be call
-        /// conversion type.
+        /// If the default `call_conversion_action` is not used, the customer must
+        /// have a `ConversionAction` with the same id and the `ConversionAction`
+        /// must be call conversion type.
         CallInvalidConversionAction = 22,
         /// The country code of the phone number is invalid.
         CallInvalidCountryCode = 23,
@@ -2351,15 +2408,15 @@ pub mod asset_error_enum {
         CallInvalidDomesticPhoneNumberFormat = 24,
         /// The input phone number is not a valid phone number.
         CallInvalidPhoneNumber = 25,
-        /// The phone number is not supported for country.
+        /// The phone number is not supported for this country.
         CallPhoneNumberNotSupportedForCountry = 26,
         /// Premium rate phone number is not allowed.
         CallPremiumRateNumberNotAllowed = 27,
         /// Vanity phone number is not allowed.
         CallVanityPhoneNumberNotAllowed = 28,
-        /// PriceOffering cannot have the same value for header and description.
+        /// `PriceOffering` cannot have the same value for header and description.
         PriceHeaderSameAsDescription = 29,
-        /// AppId is invalid.
+        /// `AppId` is invalid.
         MobileAppInvalidAppId = 30,
         /// Invalid App download URL in final URLs.
         MobileAppInvalidFinalUrlForAppDownloadUrl = 31,
@@ -2374,13 +2431,13 @@ pub mod asset_error_enum {
         CannotModifyAssetSource = 35,
         /// User can not modify the automatically created asset.
         CannotModifyAutomaticallyCreatedAsset = 36,
-        /// Lead Form is disallowed to use "LOCATION" answer type.
+        /// Lead Form is disallowed to use `LOCATION` answer type.
         LeadFormLocationAnswerTypeDisallowed = 37,
         /// Page Feed label text contains invalid characters.
         PageFeedInvalidLabelText = 38,
         /// The customer is not in the allow-list for whatsapp message asset type.
         CustomerNotOnAllowlistForWhatsappMessageAssets = 39,
-        /// Only customers on the allowlist can create AppDeepLinkAsset.
+        /// Only customers on the allowlist can create `AppDeepLinkAsset`.
         CustomerNotOnAllowlistForAppDeepLinkAssets = 40,
         /// Promotion barcode cannot contain links.
         PromotionBarcodeCannotContainLinks = 41,
@@ -7258,6 +7315,60 @@ pub mod collection_size_error_enum {
         }
     }
 }
+/// Container for enum describing possible errors returned from the
+/// ContentCreatorInsightsService.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ContentCreatorInsightsErrorEnum {}
+/// Nested message and enum types in `ContentCreatorInsightsErrorEnum`.
+pub mod content_creator_insights_error_enum {
+    /// Enum describing possible errors from ContentCreatorInsightsService.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ContentCreatorInsightsError {
+        /// Enum unspecified.
+        Unspecified = 0,
+        /// The received error code is not known in this version.
+        Unknown = 1,
+        /// The dimension cannot be used in audience combinations.
+        DimensionIncompatibleWithAudienceCombinations = 2,
+    }
+    impl ContentCreatorInsightsError {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::DimensionIncompatibleWithAudienceCombinations => {
+                    "DIMENSION_INCOMPATIBLE_WITH_AUDIENCE_COMBINATIONS"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "DIMENSION_INCOMPATIBLE_WITH_AUDIENCE_COMBINATIONS" => {
+                    Some(Self::DimensionIncompatibleWithAudienceCombinations)
+                }
+                _ => None,
+            }
+        }
+    }
+}
 /// Container for enum describing possible context errors.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ContextErrorEnum {}
@@ -9982,7 +10093,7 @@ pub mod custom_interest_error_enum {
         }
     }
 }
-/// Container for enum describing possible CustomeClientLink errors.
+/// Container for enum describing possible CustomerClientLink errors.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CustomerClientLinkErrorEnum {}
 /// Nested message and enum types in `CustomerClientLinkErrorEnum`.
@@ -10021,6 +10132,12 @@ pub mod customer_client_link_error_enum {
         CustomerHasTooManyAccountsAtManager = 8,
         /// Client has too many managers.
         ClientHasTooManyManagers = 9,
+        /// You have reached the maximum limit of accounts that can be created for
+        /// this account.
+        MaxCustomerLimitReached = 10,
+        /// This account cannot create new client accounts due to a Google Ads policy
+        /// violation.
+        AccountCreationPolicyViolation = 11,
     }
     impl CustomerClientLinkError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -10047,6 +10164,10 @@ pub mod customer_client_link_error_enum {
                     "CUSTOMER_HAS_TOO_MANY_ACCOUNTS_AT_MANAGER"
                 }
                 Self::ClientHasTooManyManagers => "CLIENT_HAS_TOO_MANY_MANAGERS",
+                Self::MaxCustomerLimitReached => "MAX_CUSTOMER_LIMIT_REACHED",
+                Self::AccountCreationPolicyViolation => {
+                    "ACCOUNT_CREATION_POLICY_VIOLATION"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -10074,6 +10195,10 @@ pub mod customer_client_link_error_enum {
                     Some(Self::CustomerHasTooManyAccountsAtManager)
                 }
                 "CLIENT_HAS_TOO_MANY_MANAGERS" => Some(Self::ClientHasTooManyManagers),
+                "MAX_CUSTOMER_LIMIT_REACHED" => Some(Self::MaxCustomerLimitReached),
+                "ACCOUNT_CREATION_POLICY_VIOLATION" => {
+                    Some(Self::AccountCreationPolicyViolation)
+                }
                 _ => None,
             }
         }
@@ -18525,6 +18650,8 @@ pub mod request_error_enum {
         ImmutableField = 11,
         /// Received too many entries in request.
         TooManyMutateOperations = 13,
+        /// Received too many action operations in request.
+        TooManyActionOperations = 41,
         /// Request cannot be executed by a manager account.
         CannotBeExecutedByManagerAccount = 14,
         /// Mutate request was attempting to modify a readonly field.
@@ -18579,6 +18706,7 @@ pub mod request_error_enum {
                 Self::RequiredFieldMissing => "REQUIRED_FIELD_MISSING",
                 Self::ImmutableField => "IMMUTABLE_FIELD",
                 Self::TooManyMutateOperations => "TOO_MANY_MUTATE_OPERATIONS",
+                Self::TooManyActionOperations => "TOO_MANY_ACTION_OPERATIONS",
                 Self::CannotBeExecutedByManagerAccount => {
                     "CANNOT_BE_EXECUTED_BY_MANAGER_ACCOUNT"
                 }
@@ -18628,6 +18756,7 @@ pub mod request_error_enum {
                 "REQUIRED_FIELD_MISSING" => Some(Self::RequiredFieldMissing),
                 "IMMUTABLE_FIELD" => Some(Self::ImmutableField),
                 "TOO_MANY_MUTATE_OPERATIONS" => Some(Self::TooManyMutateOperations),
+                "TOO_MANY_ACTION_OPERATIONS" => Some(Self::TooManyActionOperations),
                 "CANNOT_BE_EXECUTED_BY_MANAGER_ACCOUNT" => {
                     Some(Self::CannotBeExecutedByManagerAccount)
                 }
@@ -19081,6 +19210,11 @@ pub mod shareable_preview_error_enum {
         TooManyAssetGroupsInRequest = 2,
         /// asset group does not exist under this customer.
         AssetGroupDoesNotExistUnderThisCustomer = 3,
+        /// Unsupported ad type for the given preview type.
+        UnsupportedAdType = 4,
+        /// The combined number of asset groups and ad group ads exceeds the maximum
+        /// of 10.
+        TooManyResourcesInRequest = 6,
     }
     impl ShareablePreviewError {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -19095,6 +19229,8 @@ pub mod shareable_preview_error_enum {
                 Self::AssetGroupDoesNotExistUnderThisCustomer => {
                     "ASSET_GROUP_DOES_NOT_EXIST_UNDER_THIS_CUSTOMER"
                 }
+                Self::UnsupportedAdType => "UNSUPPORTED_AD_TYPE",
+                Self::TooManyResourcesInRequest => "TOO_MANY_RESOURCES_IN_REQUEST",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -19108,6 +19244,8 @@ pub mod shareable_preview_error_enum {
                 "ASSET_GROUP_DOES_NOT_EXIST_UNDER_THIS_CUSTOMER" => {
                     Some(Self::AssetGroupDoesNotExistUnderThisCustomer)
                 }
+                "UNSUPPORTED_AD_TYPE" => Some(Self::UnsupportedAdType),
+                "TOO_MANY_RESOURCES_IN_REQUEST" => Some(Self::TooManyResourcesInRequest),
                 _ => None,
             }
         }
@@ -20107,7 +20245,10 @@ pub mod user_list_customer_type_error_enum {
         /// 1. Qualified Leads - Converted Leads
         /// 1. Disengaged customers - Converted Leads
         /// 1. Disengaged customers - Qualified Leads
-        /// 1. Disengaged customers- Cart Abandoners
+        /// 1. Disengaged customers - Cart Abandoners
+        /// 1. Converted Leads - Loyalty Tier X Members (X = 1..7)
+        /// 1. Qualified Leads - Loyalty Tier X Members (X = 1..7)
+        /// 1. Loyalty Tier X Members - Loyalty Tier Y Members (X != Y)
         ConflictingCustomerTypes = 2,
         /// The account does not have access to the user list.
         NoAccessToUserList = 3,
@@ -20506,6 +20647,228 @@ pub mod video_campaign_error_enum {
         }
     }
 }
+/// Container for enum describing possible video reservation errors.
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct VideoReservationErrorEnum {}
+/// Nested message and enum types in `VideoReservationErrorEnum`.
+pub mod video_reservation_error_enum {
+    /// Enum describing possible video reservation errors.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum VideoReservationError {
+        /// Enum unspecified.
+        Unspecified = 0,
+        /// The received error code is not known in this version.
+        Unknown = 1,
+        /// The quote has expired.
+        NewQuoteRequired = 2,
+        /// The campaign's end date has to be less than 120 days from now.
+        CampaignEndTimeTooDistant = 3,
+        /// The campaign budget is too small. To get a quote, increase the budget.
+        BudgetTooSmall = 4,
+        /// The campaign must run for more than 24 hours.
+        CampaignDurationTooShort = 5,
+        /// The campaign must be enabled before booking.
+        CampaignNotEnabled = 6,
+        /// There aren't enough impressions available for the campaigns settings and
+        /// targeting. Broaden the targeting or lower the budget of the campaign to
+        /// get a quote.
+        NotEnoughAvailableInventory = 7,
+        /// There aren't enough impressions available for the campaign settings and
+        /// targeting.
+        TargetingTooNarrow = 8,
+        /// The type of the enabled ad group of this campaign isn't supported.
+        UnsupportedAdGroupType = 9,
+        /// Bid modifiers other than 0% or -100% aren't supported.
+        UnsupportedBidModifier = 10,
+        /// The type of placement was changed. YouTube Select lineups can only be
+        /// paired with other YouTube Select lineups.
+        CannotChangePricingModel = 11,
+        /// More than one lineup was selected. Only one lineup per campaign can be
+        /// targeted.
+        IncompatibleTargeting = 12,
+        /// Some options in this campaign aren't supported.
+        UnsupportedFeature = 13,
+        /// The customer must be verified by Google to run election ads in the
+        /// targeted country.
+        MissingElectionCertificate = 14,
+        /// This campaign has ended. Select a campaign that hasn't reached its end
+        /// date.
+        CampaignEnded = 15,
+        /// Daily budget isn't available for fixed CPM campaigns. To use fixed CPM,
+        /// enter a campaign total budget.
+        UnsupportedBudgetPeriod = 16,
+        /// The campaign must have exactly one enabled ad group for reservation.
+        ExactlyOneEnabledAdgroupRequired = 17,
+        /// The frequency cap is lower than the minimum allowed for an enabled
+        /// campaign. Update the frequency cap to either a daily cap or a weekly cap
+        /// with at least 3 impressions per week.
+        FrequencyCapTooNarrow = 18,
+        /// The targeted country requires either a deal or a market rate.
+        TargetedPackNeedsDeal = 19,
+        /// The account is set to a currency that doesn't match the currency of the
+        /// rate card for the targeted video lineups.
+        DealCurrencyMismatch = 20,
+        /// Quote holds are unavailable for this campaign configuration.
+        CannotHoldContract = 21,
+        /// The account is suspended. Contact support for more info.
+        CustomerNotEnabled = 22,
+        /// The customer doesn't have permission to request a quote. Contact the
+        /// account owner for more info.
+        CustomerNotAllowed = 23,
+        /// This account type can't request quotes. Use a different account or
+        /// contact support for more info.
+        InvalidAccountType = 24,
+        /// Google Account Managers can't request quotes for reservation campaigns.
+        AccountIsManager = 25,
+        /// The booking window for this lineup is not open yet.
+        SeasonalLineupBookingWindowNotOpen = 26,
+        /// The campaign end date is later than the allowable end date for this
+        /// lineup. To continue booking, choose an earlier end date.
+        SeasonalLineupEndDateOffSeason = 27,
+        /// There aren't enough impressions available for the campaign settings and
+        /// targeting. Broaden the location targeting to get a quote.
+        SeasonalLineupGeoTargetingTooNarrow = 28,
+        /// The market rate for the targeted product isn't available.
+        NoMarketRateCardOrBaseRate = 29,
+        /// The quote is stale, get a new quote and try again.
+        StaleQuote = 30,
+        /// Some of the targeted video lineups aren't available for
+        /// reservation campaigns.
+        LineupNotAllowed = 31,
+        /// This bidding strategy is not supported for reservation.
+        UnsupportedBiddingStrategy = 32,
+        /// The campaign settings contain a positive geo target type which is not
+        /// allowed, for example Audio ads support PRESENCE only.
+        UnsupportedPositiveGeoTargetType = 33,
+        /// Only validate_only requests are supported.
+        ValidateOnlyRequired = 34,
+        /// Too many campaigns in request.
+        TooManyCampaigns = 35,
+    }
+    impl VideoReservationError {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::Unknown => "UNKNOWN",
+                Self::NewQuoteRequired => "NEW_QUOTE_REQUIRED",
+                Self::CampaignEndTimeTooDistant => "CAMPAIGN_END_TIME_TOO_DISTANT",
+                Self::BudgetTooSmall => "BUDGET_TOO_SMALL",
+                Self::CampaignDurationTooShort => "CAMPAIGN_DURATION_TOO_SHORT",
+                Self::CampaignNotEnabled => "CAMPAIGN_NOT_ENABLED",
+                Self::NotEnoughAvailableInventory => "NOT_ENOUGH_AVAILABLE_INVENTORY",
+                Self::TargetingTooNarrow => "TARGETING_TOO_NARROW",
+                Self::UnsupportedAdGroupType => "UNSUPPORTED_AD_GROUP_TYPE",
+                Self::UnsupportedBidModifier => "UNSUPPORTED_BID_MODIFIER",
+                Self::CannotChangePricingModel => "CANNOT_CHANGE_PRICING_MODEL",
+                Self::IncompatibleTargeting => "INCOMPATIBLE_TARGETING",
+                Self::UnsupportedFeature => "UNSUPPORTED_FEATURE",
+                Self::MissingElectionCertificate => "MISSING_ELECTION_CERTIFICATE",
+                Self::CampaignEnded => "CAMPAIGN_ENDED",
+                Self::UnsupportedBudgetPeriod => "UNSUPPORTED_BUDGET_PERIOD",
+                Self::ExactlyOneEnabledAdgroupRequired => {
+                    "EXACTLY_ONE_ENABLED_ADGROUP_REQUIRED"
+                }
+                Self::FrequencyCapTooNarrow => "FREQUENCY_CAP_TOO_NARROW",
+                Self::TargetedPackNeedsDeal => "TARGETED_PACK_NEEDS_DEAL",
+                Self::DealCurrencyMismatch => "DEAL_CURRENCY_MISMATCH",
+                Self::CannotHoldContract => "CANNOT_HOLD_CONTRACT",
+                Self::CustomerNotEnabled => "CUSTOMER_NOT_ENABLED",
+                Self::CustomerNotAllowed => "CUSTOMER_NOT_ALLOWED",
+                Self::InvalidAccountType => "INVALID_ACCOUNT_TYPE",
+                Self::AccountIsManager => "ACCOUNT_IS_MANAGER",
+                Self::SeasonalLineupBookingWindowNotOpen => {
+                    "SEASONAL_LINEUP_BOOKING_WINDOW_NOT_OPEN"
+                }
+                Self::SeasonalLineupEndDateOffSeason => {
+                    "SEASONAL_LINEUP_END_DATE_OFF_SEASON"
+                }
+                Self::SeasonalLineupGeoTargetingTooNarrow => {
+                    "SEASONAL_LINEUP_GEO_TARGETING_TOO_NARROW"
+                }
+                Self::NoMarketRateCardOrBaseRate => "NO_MARKET_RATE_CARD_OR_BASE_RATE",
+                Self::StaleQuote => "STALE_QUOTE",
+                Self::LineupNotAllowed => "LINEUP_NOT_ALLOWED",
+                Self::UnsupportedBiddingStrategy => "UNSUPPORTED_BIDDING_STRATEGY",
+                Self::UnsupportedPositiveGeoTargetType => {
+                    "UNSUPPORTED_POSITIVE_GEO_TARGET_TYPE"
+                }
+                Self::ValidateOnlyRequired => "VALIDATE_ONLY_REQUIRED",
+                Self::TooManyCampaigns => "TOO_MANY_CAMPAIGNS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "NEW_QUOTE_REQUIRED" => Some(Self::NewQuoteRequired),
+                "CAMPAIGN_END_TIME_TOO_DISTANT" => Some(Self::CampaignEndTimeTooDistant),
+                "BUDGET_TOO_SMALL" => Some(Self::BudgetTooSmall),
+                "CAMPAIGN_DURATION_TOO_SHORT" => Some(Self::CampaignDurationTooShort),
+                "CAMPAIGN_NOT_ENABLED" => Some(Self::CampaignNotEnabled),
+                "NOT_ENOUGH_AVAILABLE_INVENTORY" => {
+                    Some(Self::NotEnoughAvailableInventory)
+                }
+                "TARGETING_TOO_NARROW" => Some(Self::TargetingTooNarrow),
+                "UNSUPPORTED_AD_GROUP_TYPE" => Some(Self::UnsupportedAdGroupType),
+                "UNSUPPORTED_BID_MODIFIER" => Some(Self::UnsupportedBidModifier),
+                "CANNOT_CHANGE_PRICING_MODEL" => Some(Self::CannotChangePricingModel),
+                "INCOMPATIBLE_TARGETING" => Some(Self::IncompatibleTargeting),
+                "UNSUPPORTED_FEATURE" => Some(Self::UnsupportedFeature),
+                "MISSING_ELECTION_CERTIFICATE" => Some(Self::MissingElectionCertificate),
+                "CAMPAIGN_ENDED" => Some(Self::CampaignEnded),
+                "UNSUPPORTED_BUDGET_PERIOD" => Some(Self::UnsupportedBudgetPeriod),
+                "EXACTLY_ONE_ENABLED_ADGROUP_REQUIRED" => {
+                    Some(Self::ExactlyOneEnabledAdgroupRequired)
+                }
+                "FREQUENCY_CAP_TOO_NARROW" => Some(Self::FrequencyCapTooNarrow),
+                "TARGETED_PACK_NEEDS_DEAL" => Some(Self::TargetedPackNeedsDeal),
+                "DEAL_CURRENCY_MISMATCH" => Some(Self::DealCurrencyMismatch),
+                "CANNOT_HOLD_CONTRACT" => Some(Self::CannotHoldContract),
+                "CUSTOMER_NOT_ENABLED" => Some(Self::CustomerNotEnabled),
+                "CUSTOMER_NOT_ALLOWED" => Some(Self::CustomerNotAllowed),
+                "INVALID_ACCOUNT_TYPE" => Some(Self::InvalidAccountType),
+                "ACCOUNT_IS_MANAGER" => Some(Self::AccountIsManager),
+                "SEASONAL_LINEUP_BOOKING_WINDOW_NOT_OPEN" => {
+                    Some(Self::SeasonalLineupBookingWindowNotOpen)
+                }
+                "SEASONAL_LINEUP_END_DATE_OFF_SEASON" => {
+                    Some(Self::SeasonalLineupEndDateOffSeason)
+                }
+                "SEASONAL_LINEUP_GEO_TARGETING_TOO_NARROW" => {
+                    Some(Self::SeasonalLineupGeoTargetingTooNarrow)
+                }
+                "NO_MARKET_RATE_CARD_OR_BASE_RATE" => {
+                    Some(Self::NoMarketRateCardOrBaseRate)
+                }
+                "STALE_QUOTE" => Some(Self::StaleQuote),
+                "LINEUP_NOT_ALLOWED" => Some(Self::LineupNotAllowed),
+                "UNSUPPORTED_BIDDING_STRATEGY" => Some(Self::UnsupportedBiddingStrategy),
+                "UNSUPPORTED_POSITIVE_GEO_TARGET_TYPE" => {
+                    Some(Self::UnsupportedPositiveGeoTargetType)
+                }
+                "VALIDATE_ONLY_REQUIRED" => Some(Self::ValidateOnlyRequired),
+                "TOO_MANY_CAMPAIGNS" => Some(Self::TooManyCampaigns),
+                _ => None,
+            }
+        }
+    }
+}
 /// Container for enum describing YouTube video registration errors.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct YoutubeVideoRegistrationErrorEnum {}
@@ -20600,7 +20963,7 @@ pub struct ErrorCode {
     /// The list of error enums
     #[prost(
         oneof = "error_code::ErrorCode",
-        tags = "1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 182, 17, 161, 18, 159, 19, 21, 24, 25, 107, 149, 155, 148, 153, 154, 152, 26, 29, 166, 160, 31, 165, 109, 32, 150, 158, 90, 151, 33, 34, 35, 36, 193, 37, 38, 39, 40, 110, 42, 116, 86, 162, 44, 45, 46, 47, 48, 49, 58, 180, 51, 52, 53, 54, 55, 56, 57, 117, 59, 60, 61, 62, 63, 64, 65, 115, 143, 111, 145, 146, 66, 67, 68, 70, 71, 72, 132, 74, 133, 76, 77, 78, 136, 79, 80, 81, 82, 83, 84, 87, 88, 91, 92, 93, 94, 96, 97, 98, 100, 101, 102, 103, 140, 141, 104, 105, 112, 113, 114, 118, 119, 137, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 134, 135, 138, 139, 164, 174, 147, 156, 167, 169, 187, 170, 171, 176, 177, 178, 179, 181, 183, 184, 185, 186, 188, 189, 191, 194, 195, 197"
+        tags = "1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 182, 17, 196, 161, 18, 159, 19, 21, 24, 25, 107, 149, 155, 148, 153, 154, 152, 26, 29, 166, 160, 31, 165, 109, 32, 150, 158, 90, 151, 33, 34, 35, 36, 193, 37, 38, 39, 40, 110, 42, 116, 86, 162, 44, 45, 46, 47, 48, 49, 58, 180, 51, 52, 53, 54, 55, 56, 57, 117, 59, 60, 61, 62, 63, 64, 65, 115, 143, 111, 145, 146, 66, 67, 68, 70, 71, 72, 132, 74, 133, 76, 77, 78, 136, 79, 80, 81, 82, 83, 84, 87, 88, 91, 92, 93, 94, 96, 97, 98, 100, 101, 102, 103, 140, 141, 104, 105, 112, 113, 114, 118, 119, 137, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 134, 135, 138, 139, 164, 174, 147, 156, 167, 169, 187, 170, 171, 176, 177, 178, 179, 181, 183, 184, 185, 186, 188, 189, 191, 194, 195, 197, 198, 199"
     )]
     pub error_code: ::core::option::Option<error_code::ErrorCode>,
 }
@@ -20675,6 +21038,9 @@ pub mod error_code {
             tag = "17"
         )]
         AuthenticationError(i32),
+        /// An error with a Tangle Action.
+        #[prost(enumeration = "super::action_error_enum::ActionError", tag = "196")]
+        ActionError(i32),
         /// The reasons for the ad group criterion customizer error.
         #[prost(
             enumeration = "super::ad_group_criterion_customizer_error_enum::AdGroupCriterionCustomizerError",
@@ -21470,6 +21836,18 @@ pub mod error_code {
             tag = "197"
         )]
         IncentiveError(i32),
+        /// The reasons for the Content Creator Insights error.
+        #[prost(
+            enumeration = "super::content_creator_insights_error_enum::ContentCreatorInsightsError",
+            tag = "198"
+        )]
+        ContentCreatorInsightsError(i32),
+        /// The reasons for the video reservation error.
+        #[prost(
+            enumeration = "super::video_reservation_error_enum::VideoReservationError",
+            tag = "199"
+        )]
+        VideoReservationError(i32),
     }
 }
 /// Describes the part of the request proto that caused the error.
@@ -21517,6 +21895,9 @@ pub struct ErrorDetails {
     pub budget_per_day_minimum_error_details: ::core::option::Option<
         BudgetPerDayMinimumErrorDetails,
     >,
+    /// Details for a reservation error.
+    #[prost(message, optional, tag = "7")]
+    pub reservation_error_details: ::core::option::Option<ReservationErrorDetails>,
 }
 /// Error returned as part of a mutate response.
 /// This error indicates single policy violation by some text
@@ -21668,4 +22049,22 @@ pub struct BudgetPerDayMinimumErrorDetails {
     /// total_amount field value.
     #[prost(int64, tag = "6")]
     pub failed_budget_total_amount_micros: i64,
+}
+/// Error details returned for BookCampaigns or QuoteCampaigns.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReservationErrorDetails {
+    /// The resource name of the campaign affected by the error, as it was
+    /// specified in the request. It could contain a temporary ID. Format:
+    /// customers/{customer_id}/campaigns/{campaign_id}
+    #[prost(string, tag = "1")]
+    pub campaign: ::prost::alloc::string::String,
+    /// A list of proposed quotes for all the campaigns in the request. For the
+    /// failed campaign, the given quote allows booking.
+    #[prost(message, repeated, tag = "2")]
+    pub quotes: ::prost::alloc::vec::Vec<super::common::CampaignReservationQuote>,
+    /// A signature of the returned quote. The signature covers the entire set of
+    /// campaigns in the request, and can be used in subsequent requests for the
+    /// same set of campaigns.
+    #[prost(string, tag = "3")]
+    pub quote_signature: ::prost::alloc::string::String,
 }

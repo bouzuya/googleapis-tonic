@@ -845,6 +845,11 @@ pub enum ErrorReason {
     UnsupportedAccountTypeForPartnerLink = 98,
     /// The user list membership duration is too long.
     MembershipDurationTooLong = 99,
+    /// The `merchant_id` field is not valid.
+    InvalidMerchantId = 100,
+    /// The customer contains non-exempt campaigns without the EU political
+    /// advertising declaration.
+    EuPoliticalAdvertisingDeclarationRequired = 101,
 }
 impl ErrorReason {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1010,6 +1015,10 @@ impl ErrorReason {
                 "UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK"
             }
             Self::MembershipDurationTooLong => "MEMBERSHIP_DURATION_TOO_LONG",
+            Self::InvalidMerchantId => "INVALID_MERCHANT_ID",
+            Self::EuPoliticalAdvertisingDeclarationRequired => {
+                "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1177,6 +1186,10 @@ impl ErrorReason {
                 Some(Self::UnsupportedAccountTypeForPartnerLink)
             }
             "MEMBERSHIP_DURATION_TOO_LONG" => Some(Self::MembershipDurationTooLong),
+            "INVALID_MERCHANT_ID" => Some(Self::InvalidMerchantId),
+            "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED" => {
+                Some(Self::EuPoliticalAdvertisingDeclarationRequired)
+            }
             _ => None,
         }
     }
@@ -3082,9 +3095,6 @@ pub mod partner_link_service_client {
         ///  Google Account of the credentials is a user. If not set, defaults to the
         ///  account of the request. Format:
         ///  `accountTypes/{loginAccountType}/accounts/{loginAccountId}`
-        /// * `linked-account`: (Optional) The resource name of the account with an
-        ///  established product link to the `login-account`. Format:
-        ///  `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`
         pub async fn create_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePartnerLinkRequest>,
@@ -3122,9 +3132,6 @@ pub mod partner_link_service_client {
         ///  Google Account of the credentials is a user. If not set, defaults to the
         ///  account of the request. Format:
         ///  `accountTypes/{loginAccountType}/accounts/{loginAccountId}`
-        /// * `linked-account`: (Optional) The resource name of the account with an
-        ///  established product link to the `login-account`. Format:
-        ///  `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`
         pub async fn delete_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePartnerLinkRequest>,
@@ -3162,9 +3169,6 @@ pub mod partner_link_service_client {
         ///  Google Account of the credentials is a user. If not set, defaults to the
         ///  account of the request. Format:
         ///  `accountTypes/{loginAccountType}/accounts/{loginAccountId}`
-        /// * `linked-account`: (Optional) The resource name of the account with an
-        ///  established product link to the `login-account`. Format:
-        ///  `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`
         pub async fn search_partner_links(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchPartnerLinksRequest>,

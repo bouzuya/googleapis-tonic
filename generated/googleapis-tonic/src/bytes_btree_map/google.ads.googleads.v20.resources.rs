@@ -4071,7 +4071,7 @@ pub mod campaign {
         /// Whether ads will be served with google.com search results.
         #[prost(bool, optional, tag = "5")]
         pub target_google_search: ::core::option::Option<bool>,
-        /// Whether ads will be served on partner sites in the Google Search Network
+        /// Whether ads will be served on sites in the Google Search Partners Network
         /// (requires `target_google_search` to also be `true`).
         #[prost(bool, optional, tag = "6")]
         pub target_search_network: ::core::option::Option<bool>,
@@ -4079,8 +4079,11 @@ pub mod campaign {
         /// Network. Placements are specified using the Placement criterion.
         #[prost(bool, optional, tag = "7")]
         pub target_content_network: ::core::option::Option<bool>,
-        /// Whether ads will be served on the Google Partner Network.
-        /// This is available only to some select Google partner accounts.
+        /// Whether ads will be served on the partner network. This is available
+        /// only to some select partner accounts. Unless you have been instructed to
+        /// use this field, it likely does not apply to your account. This does not
+        /// control whether ads will be served on Google Search Partners Network; use
+        /// `target_search_network` for that instead.
         #[prost(bool, optional, tag = "8")]
         pub target_partner_search_network: ::core::option::Option<bool>,
         /// Whether ads will be served on YouTube.

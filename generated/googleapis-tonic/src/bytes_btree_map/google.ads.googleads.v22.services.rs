@@ -18950,7 +18950,9 @@ pub struct YouTubeChannelInsights {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAudience {
     /// Required. Audience attributes that describe an audience of viewers. This is
-    /// used to search for topics trending for the defined audience.
+    /// used to search for topics trending for the defined audience. Attributes
+    /// age_range, gender, user_interest, entity, category, parental_status, and
+    /// income_range are supported.
     #[prost(message, repeated, tag = "1")]
     pub audience_attributes: ::prost::alloc::vec::Vec<
         super::common::AudienceInsightsAttribute,

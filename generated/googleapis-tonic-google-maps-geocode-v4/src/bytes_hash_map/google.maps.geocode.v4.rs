@@ -235,9 +235,13 @@ pub struct Destination {
 /// `display_name` fields.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlaceView {
-    /// This place's resource name, in `places/{placeId}` format.
+    /// This Place's resource name, in `places/{placeId}` format.  Can be used to
+    /// look up the Place.
     #[prost(string, tag = "1")]
     pub place: ::prost::alloc::string::String,
+    /// The unique identifier of a place.
+    #[prost(string, tag = "2")]
+    pub place_id: ::prost::alloc::string::String,
     /// Human readable place description. For example, "Gate B", "McDonalds"
     #[prost(message, optional, tag = "3")]
     pub display_name: ::core::option::Option<super::super::super::r#type::LocalizedText>,
@@ -428,7 +432,9 @@ pub struct NavigationPoint {
     /// Travel modes that are appropriate for this navigation point.
     #[prost(enumeration = "navigation_point::TravelMode", repeated, tag = "4")]
     pub travel_modes: ::prost::alloc::vec::Vec<i32>,
-    /// Usages supported by this navigation point.
+    /// Lists `usages` supported by this navigation point. If empty, it does not
+    /// necessarily mean its usage is restricted in any way. All navigation
+    /// points can be used for general navigation.
     #[prost(enumeration = "navigation_point::Usage", repeated, tag = "5")]
     pub usages: ::prost::alloc::vec::Vec<i32>,
 }
@@ -494,9 +500,7 @@ pub mod navigation_point {
     pub enum Usage {
         /// Not used.
         Unspecified = 0,
-        /// Unknown usage type. Most navigation points will be `UNKNOWN` and it does
-        /// not necessarily mean their usage is restricted in any way. This
-        /// navigation might still be suitable for pickup and/or dropoff.
+        /// Indicates that the usage type is unknown.
         Unknown = 1,
         /// Suitable for dropping off a passenger. For example, a rideshare drop off
         /// location.
@@ -878,13 +882,11 @@ pub struct PlusCode {
 /// A geocode result contains geographic information about a place.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GeocodeResult {
-    /// The fully qualified place identifier for this result.
-    /// In the format of "//places.googleapis.com/places/{placeID}". See
-    /// <https://developers.google.com/maps/documentation/places/web-service/place-id.>
-    /// for more details.
+    /// This Place's resource name, in `places/{placeId}` format.  Can be used to
+    /// look up the Place.
     #[prost(string, tag = "1")]
     pub place: ::prost::alloc::string::String,
-    /// The place ID for this result.
+    /// The unique identifier of a place.
     #[prost(string, tag = "2")]
     pub place_id: ::prost::alloc::string::String,
     /// The latlng of this address.
