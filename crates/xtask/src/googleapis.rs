@@ -64,16 +64,24 @@ impl Googleapis {
                 }
             }
 
+            const IGNORE_PACKAGE_NAMES: &[&str] = &[
+                // TODO: skip google.cloud.storageinsights.v1
+                // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16189950077/job/45703200056>
+                "google.cloud.storageinsights.v1",
+                // TODO: skip google.storage.control.v2
+                // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16236131388/job/45846510787>
+                "google.storage.control.v2",
+                // TODO: skip google.ads.googleads.v20.resources
+                // <https://github.com/bouzuya/googleapis-tonic/actions/runs/25486662361/job/74783922137>
+                "google.ads.googleads.v20.resources",
+            ];
+
             const CRATES_IO_CRATE_NAME_MAX_LENGTH: usize = 64;
             const CRATE_NAME_PREFIX_LENGTH: usize = "googleapis-tonic-".len();
             let mut invalid_package_names = package_deps
                 .keys()
                 .filter(|it| {
-                    // TODO: skip google.cloud.storageinsights.v1
-                    // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16189950077/job/45703200056>
-                    it.to_string() == "google.cloud.storageinsights.v1"
-                    // TODO: skip google.storage.control.v2
-                    // <https://github.com/bouzuya/googleapis-tonic/actions/runs/16236131388/job/45846510787>
+                    IGNORE_PACKAGE_NAMES.contains(&it.to_string().as_str())
                         || it.to_string() == "google.storage.control.v2"
                         || CRATE_NAME_PREFIX_LENGTH + it.to_string().len()
                             > CRATES_IO_CRATE_NAME_MAX_LENGTH
