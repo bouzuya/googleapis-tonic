@@ -136,17 +136,26 @@ pub mod google {
         feature = "google-firestore-v1beta1",
     ))]
     pub mod firestore {
+        #[cfg(any(
+            feature = "google-firestore",
+        ))]
         include!("dir/google.firestore.rs");
         #[cfg(any(
             feature = "google-firestore-v1",
         ))]
         pub mod v1 {
+            #[cfg(any(
+                feature = "google-firestore-v1",
+            ))]
             include!("dir/google.firestore.v1.rs");
         }
         #[cfg(any(
             feature = "google-firestore-v1beta1",
         ))]
         pub mod v1beta1 {
+            #[cfg(any(
+                feature = "google-firestore-v1beta1",
+            ))]
             include!("dir/google.firestore.v1beta1.rs");
         }
     }
